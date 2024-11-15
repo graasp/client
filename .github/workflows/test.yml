@@ -46,6 +46,8 @@ jobs:
 
       - name: Build
         run: pnpm build
+        env:
+          VITE_RECAPTCHA_SITE_KEY: 123456789
 
   cypress:
     name: Cypress

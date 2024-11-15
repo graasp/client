@@ -2,19 +2,9 @@ import type { Plugin, ResolvedConfig } from 'vite';
 
 export interface UmamiPluginOptions {
   /**
-   * The ID of the project Clarity provides to you.
-   *
-   * Can be found in the URL of your project.
-   *
-   * @example `k4vhy94oj3`
+   * The Google recaptcha key
    */
-  websiteId?: string;
-
-  /**
-   * Host where the script is hosted
-   * @default "https://cloud.umami.is"
-   */
-  host?: string;
+  recaptchaKey?: string;
 
   /**
    * Whether to inject the script in development mode.
@@ -29,10 +19,10 @@ export interface UmamiPluginOptions {
   requireInProduction?: boolean;
 }
 
-export function umamiPlugin(options: UmamiPluginOptions): Plugin {
+export function recaptchaPlugin(options: UmamiPluginOptions): Plugin {
   let config: ResolvedConfig;
   return {
-    name: 'umami-script',
+    name: 'recaptcha-script',
     enforce: 'pre',
     configResolved(resolvedConfig) {
       config = resolvedConfig;
@@ -42,14 +32,14 @@ export function umamiPlugin(options: UmamiPluginOptions): Plugin {
         return [];
       }
 
-      // only fail if we are building in production mode and we need the value but it was not provided
+      // fail if the build mode is production and we are requiring the presence of the key
       if (
-        !options.websiteId &&
+        !options.recaptchaKey &&
         options.requireInProduction &&
         config.mode == 'production'
       ) {
         throw new Error(
-          '[umami-script] No website id provided. Please provide a website id.',
+          '[recaptcha-script] No recaptcha key provided. Captcha will not work, users might be unable to log in.',
         );
       }
 
@@ -58,17 +48,14 @@ export function umamiPlugin(options: UmamiPluginOptions): Plugin {
           tag: 'link',
           attrs: {
             rel: 'preconnect',
-            href: options.host,
+            href: 'https://www.google.com',
           },
         },
         {
           tag: 'script',
           attrs: {
             defer: true,
-            // remove trailing slash from base
-            src: `${config.base.replace(/\/$/, '')}/umami.js`,
-            'data-website-id': options.websiteId,
-            'data-host-url': options.host,
+            src: `https://www.google.com/recaptcha/api.js?render=${options.recaptchaKey}`,
           },
           children: '',
           injectTo: 'head',
