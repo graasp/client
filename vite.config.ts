@@ -88,10 +88,12 @@ const config = ({ mode }: { mode: string }): UserConfigExport => {
         websiteId: VITE_UMAMI_WEBSITE_ID,
         host: VITE_UMAMI_HOST,
         enableInDevMode: true,
+        requireInProduction: false,
       }),
       recaptchaPlugin({
         recaptchaKey: VITE_RECAPTCHA_SITE_KEY,
         enableInDevMode: false,
+        requireInProduction: true,
       }),
     ],
     resolve: {

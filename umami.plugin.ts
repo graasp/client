@@ -22,6 +22,11 @@ export interface UmamiPluginOptions {
    * @default false
    */
   enableInDevMode?: boolean;
+
+  /**
+   * Whether this is required when building for production
+   */
+  requireInProduction?: boolean;
 }
 
 export function umamiPlugin(options: UmamiPluginOptions): Plugin {
@@ -37,7 +42,12 @@ export function umamiPlugin(options: UmamiPluginOptions): Plugin {
         return [];
       }
 
-      if (!options.websiteId) {
+      // only fail if we are building in production mode and we need the value but it was not provided
+      if (
+        !options.websiteId &&
+        options.requireInProduction &&
+        config.mode == 'production'
+      ) {
         throw new Error(
           '[umami-script] No website id provided. Please provide a website id.',
         );
