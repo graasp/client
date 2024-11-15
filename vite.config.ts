@@ -6,7 +6,8 @@ import { type UserConfigExport, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
 import istanbul from 'vite-plugin-istanbul';
 
-import umamiPlugin from './umami.plugin';
+import { recaptchaPlugin } from './recaptcha.plugin';
+import { umamiPlugin } from './umami.plugin';
 
 // https://vitejs.dev/config/
 const config = ({ mode }: { mode: string }): UserConfigExport => {
@@ -23,6 +24,7 @@ const config = ({ mode }: { mode: string }): UserConfigExport => {
     VITE_UMAMI_WEBSITE_ID,
     VITE_UMAMI_HOST,
     VITE_GRAASP_API_HOST,
+    VITE_RECAPTCHA_SITE_KEY,
   } = process.env;
   // compute the port to use
   const PORT = parseInt(VITE_PORT || '3114', 10);
@@ -82,14 +84,15 @@ const config = ({ mode }: { mode: string }): UserConfigExport => {
             checkProd: true,
           }),
       react(),
-      // only include umami script when the WEBSITE_ID is set
-      VITE_UMAMI_WEBSITE_ID
-        ? umamiPlugin({
-            websiteId: VITE_UMAMI_WEBSITE_ID,
-            host: VITE_UMAMI_HOST,
-            enableInDevMode: true,
-          })
-        : undefined,
+      umamiPlugin({
+        websiteId: VITE_UMAMI_WEBSITE_ID,
+        host: VITE_UMAMI_HOST,
+        enableInDevMode: true,
+      }),
+      recaptchaPlugin({
+        recaptchaKey: VITE_RECAPTCHA_SITE_KEY,
+        enableInDevMode: false,
+      }),
     ],
     resolve: {
       alias: {
