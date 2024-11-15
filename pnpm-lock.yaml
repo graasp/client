@@ -31,7 +31,7 @@ importers:
         version: 1.42.0(i18next@23.16.5)
       '@graasp/ui':
         specifier: 5.4.1
-        version: 5.4.1(luulnnb7er7giwfuqrm7txj6ri)
+        version: 5.4.1(wzvg7bv6xr6544lluykabht4gm)
       '@mui/icons-material':
         specifier: 6.1.7
         version: 6.1.7(@mui/material@6.1.7(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react@18.3.1))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.12)(react@18.3.1)
@@ -75,8 +75,8 @@ importers:
         specifier: 4.4.2
         version: 4.4.2
       lucide-react:
-        specifier: 0.456.0
-        version: 0.456.0(react@18.3.1)
+        specifier: 0.460.0
+        version: 0.460.0(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -3647,8 +3647,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.456.0:
-    resolution: {integrity: sha512-DIIGJqTT5X05sbAsQ+OhA8OtJYyD4NsEMCA/HQW/Y6ToPQ7gwbtujIoeAaup4HpHzV35SQOarKAWH8LYglB6eA==}
+  lucide-react@0.460.0:
+    resolution: {integrity: sha512-BVtq/DykVeIvRTJvRAgCsOwaGL8Un3Bxh8MbDxMhEWlZay3T4IpEKDEpwt5KZ0KJMHzgm6jrltxlT5eXOWXDHg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
 
@@ -6197,7 +6197,7 @@ snapshots:
     dependencies:
       i18next: 23.16.5
 
-  '@graasp/ui@5.4.1(luulnnb7er7giwfuqrm7txj6ri)':
+  '@graasp/ui@5.4.1(wzvg7bv6xr6544lluykabht4gm)':
     dependencies:
       '@emotion/cache': 11.13.1
       '@emotion/react': 11.13.3(@types/react@18.3.12)(react@18.3.1)
@@ -6213,7 +6213,7 @@ snapshots:
       interweave: 13.1.0(react@18.3.1)
       katex: 0.16.11
       lodash.truncate: 4.4.2
-      lucide-react: 0.456.0(react@18.3.1)
+      lucide-react: 0.460.0(react@18.3.1)
       react: 18.3.1
       react-cookie-consent: 9.0.0(react@18.3.1)
       react-dnd: 16.0.1(@types/node@22.9.0)(@types/react@18.3.12)(react@18.3.1)
@@ -8792,7 +8792,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.456.0(react@18.3.1):
+  lucide-react@0.460.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 
