@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Masonry } from '@mui/lab';
 import { Stack, Typography } from '@mui/material';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
 import { TestimonyCard } from './TestimonyCard';
@@ -58,6 +59,7 @@ export function UserTestimoniesSection() {
   const { t } = useTranslation(NS.Landing, {
     keyPrefix: 'HOME.USER_TESTIMONIES',
   });
+  const { t: translateCommon } = useTranslation(NS.Common);
   return (
     <Stack
       gap={6}
@@ -80,6 +82,14 @@ export function UserTestimoniesSection() {
           <TestimonyCard {...testimony} />
         ))}
       </Masonry>
+      <Stack gap={2} alignItems="center">
+        <Typography fontSize={25} maxWidth="sm">
+          {t('JOIN_US')}
+        </Typography>
+        <ButtonLink variant="contained" sx={{ width: 'fit-content' }}>
+          {translateCommon('REGISTER.BUTTON_TEXT')}
+        </ButtonLink>
+      </Stack>
     </Stack>
   );
 }
