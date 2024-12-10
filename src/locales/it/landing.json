@@ -2,55 +2,36 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "La tua piattaforma di esperienza di apprendimento",
-    "DESCRIPTION": "Rivoluziona la tua formazione e il tuo sviluppo professionale! La nostra piattaforma si prende cura delle esigenze di educatori e ricercatori, cercando una soluzione completa per la creazione di contenuti, la presentazione e la condivisione collaborativa delle conoscenze.",
     "REGISTER_CALL_TO_ACTION": "Creare un account",
     "LIBRARY_CALL_TO_ACTION": "Visita la Biblioteca",
     "SUPPORTERS_LABEL": "Supportato da",
     "MISSION": {
-      "TITLE": "La nostra missione",
-      "DESCRIPTION": "Il nostro obiettivo è quello di consentire agli insegnanti di diventare i migliori professionisti possibili, attraverso la tecnologia e rivoluzionando le loro esperienze di insegnamento e apprendimento in una <strong>ampia comunità di apprendimento</strong>!",
       "CALL_TO_ACTION_LABEL": "Vuoi saperne di più?",
       "CALL_TO_ACTION_BUTTON_TEXT": "Conosciamoci meglio"
     },
     "PUZZLE": {
-      "TITLE": "Uno strumento tutto in uno, come?",
       "BUILDER": {
-        "LEAD_SENTENCE": "Utilizzare il",
-        "DESCRIPTION": "Per creare materiale ricco e interattivo",
         "BUTTON_TEXT": "Creare"
       },
       "PLAYER": {
-        "LEAD_SENTENCE": "Utilizzare il",
-        "DESCRIPTION": "E consentire agli studenti di accedere al materiale in un modo nuovo",
         "BUTTON_TEXT": "Esperienza"
       },
       "ANALYTICS": {
-        "LEAD_SENTENCE": "Accedi al",
-        "DESCRIPTION": "Per raccogliere informazioni e dati sulla tua classeName",
         "BUTTON_TEXT": "Analizzare"
       },
       "LIBRARY": {
-        "LEAD_SENTENCE": "Navigare il",
-        "DESCRIPTION": "Per trovare risorse e far parte di una comunità",
         "BUTTON_TEXT": "Esplorare"
       }
     },
     "USER_STORY": {
       "TEACHER": {
-        "LEADING_SENTENCE": "Sei un insegnante e vuoi migliorare la tua creazione di contenuti?",
-        "TITLE": "Costruisci il tuo materiale con Graasp, un modo strutturato per...",
         "USE_CASE_1": "Incorpora app interattive nel materiale didattico",
-        "USE_CASE_2": "Connettiti con un'ampia comunità di educatori",
         "USE_CASE_3": "Esplora analisi dettagliate sui tuoi studenti",
         "BUTTON_TEXT": "Inizia oggi",
         "IMAGE_ATTRIBUTION": "Foto di <author>Tra Nguyen</author> su <image>Unsplash</image>"
       },
       "RESEARCHER": {
-        "LEADING_SENTENCE": "Sei un ricercatore alla ricerca di una piattaforma che integri perfettamente la raccolta dati e le esperienze interattive?",
         "TITLE": "Inizia a usare Graasp per la tua ricerca",
-        "USE_CASE_1": "Accedi a un ambiente sicuro e controllato per condurre esperimenti",
-        "USE_CASE_2": "Eseguire test con diverse opzioni",
-        "USE_CASE_3": "Unisciti a una comunità vivace focalizzata sul progresso dell'istruzione digitale",
         "BUTTON_TEXT": "Registrati ora"
       }
     }

@@ -2,57 +2,57 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Your learning experience platform",
-    "DESCRIPTION": "Revolutionize your education and professional development! Our platform cares for the needs of educators and researchers, seeking a complete solution for content creation, presentation, and collaborative knowledge sharing.",
+    "DESCRIPTION": "For building, exploring and sharing engaging educational resources integrating interactive and intelligent elements in active learning scenarios for education and research.",
     "REGISTER_CALL_TO_ACTION": "Create an account",
     "LIBRARY_CALL_TO_ACTION": "Visit the Library",
     "SUPPORTERS_LABEL": "Supported by",
     "MISSION": {
-      "TITLE": "Our mission",
-      "DESCRIPTION": "We aim at empowering educators to become the best professionals they can be, through technology and revolutionizing their teaching and learning experiences in a <strong>wide learning community</strong>!",
+      "TITLE": "Our vision",
+      "DESCRIPTION": "We aim at empowering educators to fully embrace value-adding digital technology for engaging their students in innovative learning scenarios and for developing their digital skills",
       "CALL_TO_ACTION_LABEL": "Do you want to know more?",
       "CALL_TO_ACTION_BUTTON_TEXT": "Get to know us"
     },
     "PUZZLE": {
-      "TITLE": "An all-in-one tool, how?",
+      "TITLE": "An all-in-one platform, how?",
       "BUILDER": {
-        "LEAD_SENTENCE": "Use the",
-        "DESCRIPTION": "To create rich and interactive material",
+        "DESCRIPTION": "Create your own interactive and intelligent educational resources with the <strong>Builder</strong>",
         "BUTTON_TEXT": "Create"
       },
       "PLAYER": {
-        "LEAD_SENTENCE": "Use the",
-        "DESCRIPTION": "And let learners access material in a new way",
+        "DESCRIPTION": "Engage your students in active learning scenarios with the <strong>Player</strong>",
         "BUTTON_TEXT": "Experience"
       },
       "ANALYTICS": {
-        "LEAD_SENTENCE": "Access the",
-        "DESCRIPTION": "To collect insights and data about your className",
+        "DESCRIPTION": "Gain valuable insights and explore dashboards with <strong>Analytics</strong>",
         "BUTTON_TEXT": "Analyze"
       },
       "LIBRARY": {
-        "LEAD_SENTENCE": "Navigate the",
-        "DESCRIPTION": "To find resources and be part of a community",
+        "DESCRIPTION": "Explore and share open educational resources in our <strong>Library</strong>",
         "BUTTON_TEXT": "Explore"
       }
     },
     "USER_STORY": {
       "TEACHER": {
-        "LEADING_SENTENCE": "Are you a teacher wanting to enhance your content creation?",
-        "TITLE": "Build your material with Graasp, a structured way to…",
+        "LEADING_SENTENCE": "Are you a teacher interested to streamline your digital content creation?",
+        "TITLE": "Build your material with Graasp",
         "USE_CASE_1": "Embed interactive apps in your class material",
-        "USE_CASE_2": "Connect with a wide community of educators",
+        "USE_CASE_2": "Co-create and share resources with peers",
         "USE_CASE_3": "Explore detailed analytics about your students",
         "BUTTON_TEXT": "Start Today",
         "IMAGE_ATTRIBUTION": "Photo by <author>Tra Nguyen</author> on <image>Unsplash</image>"
       },
       "RESEARCHER": {
-        "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive experiences?",
+        "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive learning experiences?",
         "TITLE": "Start using Graasp for your research",
-        "USE_CASE_1": "Access a secure and controlled environment for conducting experiments",
-        "USE_CASE_2": "Conduct tests with several different options",
-        "USE_CASE_3": "Join a lively community focused on advancing digital education",
+        "USE_CASE_1": "Benefit from a safe environnement for research investigations",
+        "USE_CASE_2": "Conduct tests with various experimental conditions",
+        "USE_CASE_3": "Interact with peers advancing digital learning sciences",
         "BUTTON_TEXT": "Register Now"
       }
+    },
+    "USER_TESTIMONIES": {
+      "TITLE": "What our users say about us",
+      "JOIN_US": "Join us and embark on a bright journey in education and professional development!"
     }
   },
   "TERMS": {
@@ -306,20 +306,20 @@
         "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
       },
       "analytics": {
-        "LEAD_SENTENCE": "Present to your audience",
-        "TITLE": "Elevate your material with the <color>Player</color>",
-        "DESCRIPTION": "Engage learners with an array of interactive tools and features.<br/>From assessment tools such as quizzes, tests, and open questions, to simulating real-world experiments through physics or chemistry labs, coding skill assessments with the code capsule and more!<br/>Embed multimedia content, create shared writing pads, and interact with chatbots.<br/>Our platform enables educators to engage learners effectively and in a variety of ways, ensuring a rich and educative experience both in traditional classrooms and remote learning environments.",
-        "CTA_BUTTON_TEXT": "Begin Experiencing",
-        "SECONDARY_ACTION_BUTTON_TEXT": "How to add Apps",
-        "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
+        "LEAD_SENTENCE": "Learn from your success and mistakes",
+        "TITLE": "Improve your material through the <color>Analytics</color>",
+        "DESCRIPTION": "Uncover invaluable insights into learner engagement and content performance through our analytics dashboard. <br/> Track access, interactions, downloads, and more, empowering educators with data-driven insights to enhance student engagement and tailor content delivery to individual classroom needs",
+        "CTA_BUTTON_TEXT": "Start Learning",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Analytics tutorial",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Filter analytics"
       },
       "library": {
-        "LEAD_SENTENCE": "Present to your audience",
-        "TITLE": "Elevate your material with the <color>Player</color>",
-        "DESCRIPTION": "Engage learners with an array of interactive tools and features.<br/>From assessment tools such as quizzes, tests, and open questions, to simulating real-world experiments through physics or chemistry labs, coding skill assessments with the code capsule and more!<br/>Embed multimedia content, create shared writing pads, and interact with chatbots.<br/>Our platform enables educators to engage learners effectively and in a variety of ways, ensuring a rich and educative experience both in traditional classrooms and remote learning environments.",
-        "CTA_BUTTON_TEXT": "Begin Experiencing",
-        "SECONDARY_ACTION_BUTTON_TEXT": "How to add Apps",
-        "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
+        "LEAD_SENTENCE": "Share your knowledge!",
+        "TITLE": "Join a community of educators in the <color>Library</color>",
+        "DESCRIPTION": "Collaboration lies at the heart of Graasp. Our shared library fosters a vibrant community of educators and professionals. Easily share and access content, co-create materials, and connect with fellow educators, amplifying knowledge sharing and collective learning experiences.",
+        "CTA_BUTTON_TEXT": "Explore Content",
+        "SECONDARY_ACTION_BUTTON_TEXT": "How to navigate",
+        "TERTIARY_ACTION_BUTTON_TEXT": "How to Publish"
       }
     },
     "PRICING": {

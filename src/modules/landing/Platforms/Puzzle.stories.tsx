@@ -1,9 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { PuzzleSection } from './PuzzleSection';
+import { PuzzleSection } from './Puzzle';
 
 const meta = {
   component: PuzzleSection,
+  parameters: {
+    layout: 'centered',
+  },
 } satisfies Meta<typeof PuzzleSection>;
 
 export default meta;

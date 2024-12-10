@@ -6,8 +6,8 @@ import { Platform } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 
+import { BuilderPuzzle } from './BuilderPuzzle';
 import { PlatformButton } from './PlatformButton';
-import { BuilderPuzzle } from './icons/BuilderPuzzle';
 
 export function PuzzleSection(): JSX.Element {
   const { t } = useTranslation(NS.Landing);
@@ -46,14 +46,12 @@ export function PuzzleSection(): JSX.Element {
             justifyContent="space-between"
           >
             <PlatformButton
-              caption={t('HOME.PUZZLE.BUILDER.LEAD_SENTENCE')}
               platform={Platform.Builder}
               buttonText={t('HOME.PUZZLE.BUILDER.BUTTON_TEXT')}
               description={t('HOME.PUZZLE.BUILDER.DESCRIPTION')}
               direction="left"
             />
             <PlatformButton
-              caption={t('HOME.PUZZLE.PLAYER.LEAD_SENTENCE')}
               platform={Platform.Player}
               buttonText={t('HOME.PUZZLE.PLAYER.BUTTON_TEXT')}
               description={t('HOME.PUZZLE.PLAYER.DESCRIPTION')}
@@ -69,14 +67,12 @@ export function PuzzleSection(): JSX.Element {
             justifyContent="space-between"
           >
             <PlatformButton
-              caption={t('HOME.PUZZLE.ANALYTICS.LEAD_SENTENCE')}
               platform={Platform.Analytics}
               direction="right"
               buttonText={t('HOME.PUZZLE.ANALYTICS.BUTTON_TEXT')}
               description={t('HOME.PUZZLE.ANALYTICS.DESCRIPTION')}
             />
             <PlatformButton
-              caption={t('HOME.PUZZLE.LIBRARY.LEAD_SENTENCE')}
               platform={Platform.Library}
               direction="right"
               buttonText={t('HOME.PUZZLE.LIBRARY.BUTTON_TEXT')}
