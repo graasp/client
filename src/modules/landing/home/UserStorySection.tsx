@@ -18,24 +18,18 @@ export function UserStorySection(): JSX.Element {
         title={t('HOME.USER_STORY.TEACHER.TITLE')}
         image={<Image src="/illustration/teacher.webp" />}
         imageAttribution={
-          <Typography
-            variant="caption"
-            color="textSecondary"
-            sx={{ '& a': { color: 'inherit' } }}
-          >
-            <Trans
-              t={t}
-              i18nKey="HOME.USER_STORY.TEACHER.IMAGE_ATTRIBUTION"
-              components={{
-                author: <a href="https://unsplash.com/@thutra0803">_</a>,
-                image: (
-                  <a href="https://unsplash.com/photos/womens-blue-dress-shirt-TVSRWmnW8Us">
-                    _
-                  </a>
-                ),
-              }}
-            />
-          </Typography>
+          <Trans
+            t={t}
+            i18nKey="HOME.USER_STORY.TEACHER.IMAGE_ATTRIBUTION"
+            components={{
+              author: <a href="https://unsplash.com/@thutra0803">_</a>,
+              image: (
+                <a href="https://unsplash.com/photos/womens-blue-dress-shirt-TVSRWmnW8Us">
+                  _
+                </a>
+              ),
+            }}
+          />
         }
       >
         <Typography>

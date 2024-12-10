@@ -11,7 +11,6 @@ const meta = {
     buttonText: 'See more',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit delectus consequuntur a excepturi natus ducimus dignissimos amet quaerat',
-    caption: 'Enjoy the',
   },
   argTypes: {
     platform: {
@@ -23,7 +22,6 @@ const meta = {
       options: ['left', 'right'],
     },
   },
-  tags: ['autodocs'],
 } satisfies Meta<typeof PlatformButton>;
 
 export default meta;

@@ -2,9 +2,10 @@ import { ReactNode } from 'react';
 
 import { Box, Stack, Typography, styled } from '@mui/material';
 
-import { SECONDARY_COLOR } from '@graasp/ui';
-
 import { ButtonLink } from '@/components/ui/ButtonLink';
+
+const IMAGE_CONTAINER = 'image-container';
+const TEXT_CONTAINER = 'text-container';
 
 const InvertingStack = styled(Stack)(({ theme }) => ({
   // common styles
@@ -15,12 +16,20 @@ const InvertingStack = styled(Stack)(({ theme }) => ({
   '& img': {
     maxWidth: '20rem',
   },
+  textAlign: 'center',
+  [`& .${TEXT_CONTAINER}`]: {
+    alignItems: 'center',
+  },
 
   // larger screens
   [theme.breakpoints.up('md')]: {
     '& img': {
       maxWidth: 'unset',
     },
+    [`& .${IMAGE_CONTAINER}`]: {
+      alignItems: 'center',
+    },
+
     maxWidth: 'unset',
     // space elements
     justifyContent: 'space-between',
@@ -31,7 +40,7 @@ const InvertingStack = styled(Stack)(({ theme }) => ({
     textAlign: 'right',
 
     // style the first children
-    '& > .MuiStack-root': {
+    [`& .${TEXT_CONTAINER}`]: {
       alignItems: 'flex-end',
     },
 
@@ -42,7 +51,7 @@ const InvertingStack = styled(Stack)(({ theme }) => ({
       // invert text alignment
       textAlign: 'left',
       // style the first children
-      '& > .MuiStack-root': {
+      [`& .${TEXT_CONTAINER}`]: {
         alignItems: 'flex-start',
       },
     },
@@ -69,18 +78,24 @@ export function UserStory({
 }: Readonly<UserStoryProps>): JSX.Element {
   return (
     <InvertingStack gap={5}>
-      <Stack flex={1} gap={2}>
+      <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
         <Stack
           borderRadius={6}
           overflow="hidden"
-          boxShadow={`20px 20px 0px ${SECONDARY_COLOR}`}
+          // boxShadow={`20px 20px 0px ${SECONDARY_COLOR}`}
         >
           {image}
         </Stack>
-        {imageAttribution}
+        <Typography
+          variant="caption"
+          color="textSecondary"
+          sx={{ '& a': { color: 'inherit' } }}
+        >
+          {imageAttribution}
+        </Typography>
       </Stack>
-      <Stack gap={2} flex={2}>
-        <Box>
+      <Stack className={TEXT_CONTAINER} gap={2} flex={2}>
+        <Box maxWidth="50ch">
           <Typography variant="note">{caption}</Typography>
           <Typography variant="h2" color="primary">
             {title}

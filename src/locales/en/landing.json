@@ -49,6 +49,10 @@
         "USE_CASE_3": "Interact with peers advancing digital learning sciences",
         "BUTTON_TEXT": "Register Now"
       }
+    },
+    "USER_TESTIMONIES": {
+      "TITLE": "What our users say about us",
+      "JOIN_US": "Join us and embark on a bright journey in education and professional development!"
     }
   },
   "TERMS": {
