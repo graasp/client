@@ -11,41 +11,46 @@ const Testimonies = [
   {
     name: 'Tom',
     title: 'Student',
-    image: '/illustration/users/peeps5_n.webp',
+    image: '/illustration/users/peeps1.webp',
     text: 'I really liked working with Graasp, it motivates the students and they want to learn on their own.',
   },
   {
     name: 'Hanna',
-    image: '/illustration/users/peeps3_n.webp',
+    image: '/illustration/users/peeps2.webp',
     text: 'Graasp is awesome, I think you should use it.',
   },
   {
     name: 'Hank from Tank',
-    image: '/illustration/users/peeps8_n.webp',
+    image: '/illustration/users/peeps3.webp',
     text: 'From the very first interaction, I felt genuinely cared for and supported. The level of professionalism and attention to detail is unmatched, and the team went above and beyond to ensure that every need was met.',
   },
   {
     name: 'Captain Cook',
     title: 'Great explorer, unfortunately recently deceased',
-    image: '/illustration/users/peeps2_n.webp',
+    image: '/illustration/users/peeps4.webp',
     text: "I can't speak highly enough about my experience with Graasp. From start to finish, they made the entire process seamless and stress-free. Their expertise and dedication were evident in every step, and they truly went the extra mile to make sure I was satisfied.",
   },
   {
     name: 'Frizbelouski',
     title: 'Professional bowler in the US',
-    image: '/illustration/users/peeps1_n.webp',
+    image: '/illustration/users/peeps5.webp',
     text: 'From the very first interaction, I felt genuinely cared for and supported. The level of professionalism and attention to detail is unmatched, and the team went above and beyond to ensure that every need was met.',
   },
   {
     name: 'Tobby Kenoby',
     title: 'Master Jedi',
-    image: '/illustration/users/peeps7_n.webp',
+    image: '/illustration/users/peeps6.webp',
     text: 'Just great!',
   },
   {
     name: 'Stranger',
-    image: '/illustration/users/peeps4_n.webp',
+    image: '/illustration/users/peeps7.webp',
     text: "Haven't used too much...",
+  },
+  {
+    name: 'Moon Explorer',
+    image: '/illustration/users/peeps8.webp',
+    text: 'A bit like Google drive. Just the worst parts.',
   },
 ] as const;
 
@@ -65,7 +70,7 @@ export function UserTestimoniesSection() {
         {t('TITLE')}
       </Typography>
       <Masonry
-        sx={{ width: '100%', alignContent: 'center', margin: 4 }}
+        sx={{ width: '100%', alignContent: 'center' }}
         columns={{ sm: 2, md: 3, lg: 5 }}
         spacing={2}
         defaultColumns={6}
