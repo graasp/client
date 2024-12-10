@@ -2,55 +2,37 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Votre plateforme d'expérience d'apprentissage",
-    "DESCRIPTION": "Révolutionnez votre éducation et votre développement professionnel ! Notre plateforme répond aux besoins des enseignants et des chercheurs, à la recherche d'une solution complète pour la création de contenu, la présentation et le partage collaboratif des connaissances.",
     "REGISTER_CALL_TO_ACTION": "Créer un compte",
     "LIBRARY_CALL_TO_ACTION": "Visiter la bibliothèque",
     "SUPPORTERS_LABEL": "Soutenu par",
     "MISSION": {
-      "TITLE": "Notre mission",
-      "DESCRIPTION": "Notre objectif est de permettre aux éducateurs de devenir les meilleurs professionnels possibles, grâce à la technologie et en révolutionnant leurs expériences d'enseignement et d'apprentissage dans une <strong>large communauté d'apprentissage</strong> !",
       "CALL_TO_ACTION_LABEL": "Voulez-vous en savoir plus ?",
       "CALL_TO_ACTION_BUTTON_TEXT": "Apprenez à nous connaître"
     },
     "PUZZLE": {
-      "TITLE": "Un outil tout-en-un, comment ?",
+      "TITLE": "Une plateforme tout-en-un, comment ?",
       "BUILDER": {
-        "LEAD_SENTENCE": "Utilisez le",
-        "DESCRIPTION": "Pour créer du matériel riche et interactif",
         "BUTTON_TEXT": "Créer"
       },
       "PLAYER": {
-        "LEAD_SENTENCE": "Utilisez le",
-        "DESCRIPTION": "Et permettez aux apprenants d'accéder au matériel d'une nouvelle manière",
         "BUTTON_TEXT": "Essayer"
       },
       "ANALYTICS": {
-        "LEAD_SENTENCE": "Accéder au",
-        "DESCRIPTION": "Pour collecter des informations et des données sur votre classe",
         "BUTTON_TEXT": "Analyser"
       },
       "LIBRARY": {
-        "LEAD_SENTENCE": "Naviguer dans le",
-        "DESCRIPTION": "Pour trouver des ressources et faire partie d'une communauté",
         "BUTTON_TEXT": "Explorer"
       }
     },
     "USER_STORY": {
       "TEACHER": {
-        "LEADING_SENTENCE": "Êtes-vous un enseignant souhaitant améliorer sa création de contenu ?",
-        "TITLE": "Construisez votre matériel avec Graasp, une manière structurée de…",
         "USE_CASE_1": "Intégrez des applications interactives dans votre matériel de cours",
-        "USE_CASE_2": "Connectez-vous à une large communauté d'éducateurs",
         "USE_CASE_3": "Explorez des analyses détaillées sur vos étudiants",
         "BUTTON_TEXT": "Commencer aujourd'hui",
         "IMAGE_ATTRIBUTION": "Photo de <author>Tra Nguyen</author> sur <image>Unsplash</image>"
       },
       "RESEARCHER": {
-        "LEADING_SENTENCE": "Êtes-vous un chercheur à la recherche d’une plateforme qui intègre de manière transparente la collecte de données et les expériences interactives ?",
         "TITLE": "Commencez à utiliser Graasp pour vos recherches",
-        "USE_CASE_1": "Accéder à un environnement sécurisé et contrôlé pour mener des expériences",
-        "USE_CASE_2": "Effectuer des tests avec plusieurs options différentes",
-        "USE_CASE_3": "Rejoignez une communauté dynamique axée sur l'avancement de l'éducation numérique",
         "BUTTON_TEXT": "S'inscrire maintenant"
       }
     }

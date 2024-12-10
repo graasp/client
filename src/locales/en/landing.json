@@ -2,55 +2,51 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Your learning experience platform",
-    "DESCRIPTION": "Revolutionize your education and professional development! Our platform cares for the needs of educators and researchers, seeking a complete solution for content creation, presentation, and collaborative knowledge sharing.",
+    "DESCRIPTION": "For building, exploring and sharing engaging educational resources integrating interactive and intelligent elements in active learning scenarios for education and research.",
     "REGISTER_CALL_TO_ACTION": "Create an account",
     "LIBRARY_CALL_TO_ACTION": "Visit the Library",
     "SUPPORTERS_LABEL": "Supported by",
     "MISSION": {
-      "TITLE": "Our mission",
-      "DESCRIPTION": "We aim at empowering educators to become the best professionals they can be, through technology and revolutionizing their teaching and learning experiences in a <strong>wide learning community</strong>!",
+      "TITLE": "Our vision",
+      "DESCRIPTION": "We aim at empowering educators to fully embrace value-adding digital technology for engaging their students in innovative learning scenarios and for developing their digital skills",
       "CALL_TO_ACTION_LABEL": "Do you want to know more?",
       "CALL_TO_ACTION_BUTTON_TEXT": "Get to know us"
     },
     "PUZZLE": {
-      "TITLE": "An all-in-one tool, how?",
+      "TITLE": "An all-in-one platform, how?",
       "BUILDER": {
-        "LEAD_SENTENCE": "Use the",
-        "DESCRIPTION": "To create rich and interactive material",
+        "DESCRIPTION": "Create your own interactive and intelligent educational resources with the <strong>Builder</strong>",
         "BUTTON_TEXT": "Create"
       },
       "PLAYER": {
-        "LEAD_SENTENCE": "Use the",
-        "DESCRIPTION": "And let learners access material in a new way",
+        "DESCRIPTION": "Engage your students in active learning scenarios with the <strong>Player</strong>",
         "BUTTON_TEXT": "Experience"
       },
       "ANALYTICS": {
-        "LEAD_SENTENCE": "Access the",
-        "DESCRIPTION": "To collect insights and data about your className",
+        "DESCRIPTION": "Gain valuable insights and explore dashboards with <strong>Analytics</strong>",
         "BUTTON_TEXT": "Analyze"
       },
       "LIBRARY": {
-        "LEAD_SENTENCE": "Navigate the",
-        "DESCRIPTION": "To find resources and be part of a community",
+        "DESCRIPTION": "Explore and share open educational resources in our <strong>Library</strong>",
         "BUTTON_TEXT": "Explore"
       }
     },
     "USER_STORY": {
       "TEACHER": {
-        "LEADING_SENTENCE": "Are you a teacher wanting to enhance your content creation?",
-        "TITLE": "Build your material with Graasp, a structured way to…",
+        "LEADING_SENTENCE": "Are you a teacher interested to streamline your digital content creation?",
+        "TITLE": "Build your material with Graasp",
         "USE_CASE_1": "Embed interactive apps in your class material",
-        "USE_CASE_2": "Connect with a wide community of educators",
+        "USE_CASE_2": "Co-create and share resources with peers",
         "USE_CASE_3": "Explore detailed analytics about your students",
         "BUTTON_TEXT": "Start Today",
         "IMAGE_ATTRIBUTION": "Photo by <author>Tra Nguyen</author> on <image>Unsplash</image>"
       },
       "RESEARCHER": {
-        "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive experiences?",
+        "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive learning experiences?",
         "TITLE": "Start using Graasp for your research",
-        "USE_CASE_1": "Access a secure and controlled environment for conducting experiments",
-        "USE_CASE_2": "Conduct tests with several different options",
-        "USE_CASE_3": "Join a lively community focused on advancing digital education",
+        "USE_CASE_1": "Benefit from a safe environnement for research investigations",
+        "USE_CASE_2": "Conduct tests with various experimental conditions",
+        "USE_CASE_3": "Interact with peers advancing digital learning sciences",
         "BUTTON_TEXT": "Register Now"
       }
     }
