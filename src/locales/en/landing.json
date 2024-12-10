@@ -306,20 +306,20 @@
         "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
       },
       "analytics": {
-        "LEAD_SENTENCE": "Present to your audience",
-        "TITLE": "Elevate your material with the <color>Player</color>",
-        "DESCRIPTION": "Engage learners with an array of interactive tools and features.<br/>From assessment tools such as quizzes, tests, and open questions, to simulating real-world experiments through physics or chemistry labs, coding skill assessments with the code capsule and more!<br/>Embed multimedia content, create shared writing pads, and interact with chatbots.<br/>Our platform enables educators to engage learners effectively and in a variety of ways, ensuring a rich and educative experience both in traditional classrooms and remote learning environments.",
-        "CTA_BUTTON_TEXT": "Begin Experiencing",
-        "SECONDARY_ACTION_BUTTON_TEXT": "How to add Apps",
-        "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
+        "LEAD_SENTENCE": "Learn from your success and mistakes",
+        "TITLE": "Improve your material through the <color>Analytics</color>",
+        "DESCRIPTION": "Uncover invaluable insights into learner engagement and content performance through our analytics dashboard. <br/> Track access, interactions, downloads, and more, empowering educators with data-driven insights to enhance student engagement and tailor content delivery to individual classroom needs",
+        "CTA_BUTTON_TEXT": "Start Learning",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Analytics tutorial",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Filter analytics"
       },
       "library": {
-        "LEAD_SENTENCE": "Present to your audience",
-        "TITLE": "Elevate your material with the <color>Player</color>",
-        "DESCRIPTION": "Engage learners with an array of interactive tools and features.<br/>From assessment tools such as quizzes, tests, and open questions, to simulating real-world experiments through physics or chemistry labs, coding skill assessments with the code capsule and more!<br/>Embed multimedia content, create shared writing pads, and interact with chatbots.<br/>Our platform enables educators to engage learners effectively and in a variety of ways, ensuring a rich and educative experience both in traditional classrooms and remote learning environments.",
-        "CTA_BUTTON_TEXT": "Begin Experiencing",
-        "SECONDARY_ACTION_BUTTON_TEXT": "How to add Apps",
-        "TERTIARY_ACTION_BUTTON_TEXT": "Player tutorial"
+        "LEAD_SENTENCE": "Share your knowledge!",
+        "TITLE": "Join a community of educators in the <color>Library</color>",
+        "DESCRIPTION": "Collaboration lies at the heart of Graasp. Our shared library fosters a vibrant community of educators and professionals. Easily share and access content, co-create materials, and connect with fellow educators, amplifying knowledge sharing and collective learning experiences.",
+        "CTA_BUTTON_TEXT": "Explore Content",
+        "SECONDARY_ACTION_BUTTON_TEXT": "How to navigate",
+        "TERTIARY_ACTION_BUTTON_TEXT": "How to Publish"
       }
     },
     "PRICING": {

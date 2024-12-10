@@ -59,6 +59,7 @@ const InvertingStack = styled(Stack)(({ theme }) => ({
 }));
 
 type UserStoryProps = {
+  id: string;
   caption: string;
   title: string;
   href: string;
@@ -68,6 +69,7 @@ type UserStoryProps = {
   imageAttribution?: ReactNode;
 };
 export function UserStory({
+  id,
   caption,
   title,
   href,
@@ -77,45 +79,48 @@ export function UserStory({
   imageAttribution,
 }: Readonly<UserStoryProps>): JSX.Element {
   return (
-    <InvertingStack gap={5}>
-      <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
-        <Stack
-          borderRadius={6}
-          overflow="hidden"
-          // boxShadow={`20px 20px 0px ${SECONDARY_COLOR}`}
-        >
-          {image}
-        </Stack>
-        <Typography
-          variant="caption"
-          color="textSecondary"
-          sx={{ '& a': { color: 'inherit' } }}
-        >
-          {imageAttribution}
-        </Typography>
-      </Stack>
-      <Stack className={TEXT_CONTAINER} gap={2} flex={2}>
-        <Box maxWidth="50ch">
-          <Typography variant="note">{caption}</Typography>
-          <Typography variant="h2" color="primary">
-            {title}
+    <>
+      <InvertingStack gap={5} mt={6} sx={{ position: 'relative' }}>
+        <Box id={id} sx={{ position: 'absolute', top: '-200px' }} />
+        <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
+          <Stack
+            borderRadius={6}
+            overflow="hidden"
+            // boxShadow={`20px 20px 0px ${SECONDARY_COLOR}`}
+          >
+            {image}
+          </Stack>
+          <Typography
+            variant="caption"
+            color="textSecondary"
+            sx={{ '& a': { color: 'inherit' } }}
+          >
+            {imageAttribution}
           </Typography>
-        </Box>
+        </Stack>
+        <Stack className={TEXT_CONTAINER} gap={2} flex={2}>
+          <Box maxWidth="50ch">
+            <Typography variant="note">{caption}</Typography>
+            <Typography variant="h2" color="primary">
+              {title}
+            </Typography>
+          </Box>
 
-        {children}
+          {children}
 
-        <ButtonLink
-          to={href}
-          sx={{
-            // make button take only needed space
-            width: 'fit-content',
-          }}
-          color="primary"
-          variant="contained"
-        >
-          {buttonText}
-        </ButtonLink>
-      </Stack>
-    </InvertingStack>
+          <ButtonLink
+            to={href}
+            sx={{
+              // make button take only needed space
+              width: 'fit-content',
+            }}
+            color="primary"
+            variant="contained"
+          >
+            {buttonText}
+          </ButtonLink>
+        </Stack>
+      </InvertingStack>
+    </>
   );
 }
