@@ -27,7 +27,7 @@
     "@mui/icons-material": "6.1.9",
     "@mui/lab": "6.0.0-beta.17",
     "@mui/material": "6.1.9",
-    "@sentry/react": "8.41.0",
+    "@sentry/react": "8.43.0",
     "@tanstack/react-router": "1.84.0",
     "@tanstack/router-devtools": "1.84.0",
     "@tanstack/zod-adapter": "1.84.0",
