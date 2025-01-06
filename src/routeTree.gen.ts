@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SigninImport } from './routes/signin'
 import { Route as AuthImport } from './routes/auth'
 import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as AccountImport } from './routes/account'
@@ -22,6 +23,7 @@ import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as AccountIndexImport } from './routes/account/index'
 import { Route as EmailChangeImport } from './routes/email.change'
 import { Route as AuthSuccessImport } from './routes/auth/success'
+import { Route as AuthSigninImport } from './routes/auth/signin'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthRegisterImport } from './routes/auth/register'
 import { Route as AuthLoginImport } from './routes/auth/login'
@@ -54,6 +56,12 @@ const AnalyticsItemsItemIdLazyImport = createFileRoute(
 )()
 
 // Create/Update Routes
+
+const SigninRoute = SigninImport.update({
+  id: '/signin',
+  path: '/signin',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRoute = AuthImport.update({
   id: '/auth',
@@ -113,6 +121,12 @@ const EmailChangeRoute = EmailChangeImport.update({
 const AuthSuccessRoute = AuthSuccessImport.update({
   id: '/success',
   path: '/success',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthSigninRoute = AuthSigninImport.update({
+  id: '/signin',
+  path: '/signin',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -297,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninImport
+      parentRoute: typeof rootRoute
+    }
     '/_landing/about-us': {
       id: '/_landing/about-us'
       path: '/about-us'
@@ -393,6 +414,13 @@ declare module '@tanstack/react-router' {
       path: '/reset-password'
       fullPath: '/auth/reset-password'
       preLoaderRoute: typeof AuthResetPasswordImport
+      parentRoute: typeof AuthImport
+    }
+    '/auth/signin': {
+      id: '/auth/signin'
+      path: '/signin'
+      fullPath: '/auth/signin'
+      preLoaderRoute: typeof AuthSigninImport
       parentRoute: typeof AuthImport
     }
     '/auth/success': {
@@ -595,6 +623,7 @@ interface AuthRouteChildren {
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
+  AuthSigninRoute: typeof AuthSigninRoute
   AuthSuccessRoute: typeof AuthSuccessRoute
 }
 
@@ -603,6 +632,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResetPasswordRoute: AuthResetPasswordRoute,
+  AuthSigninRoute: AuthSigninRoute,
   AuthSuccessRoute: AuthSuccessRoute,
 }
 
@@ -626,6 +656,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
   '/disclaimer': typeof LandingDisclaimerRoute
@@ -640,6 +671,7 @@ export interface FileRoutesByFullPath {
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
   '/auth/success': typeof AuthSuccessRoute
   '/email/change': typeof EmailChangeRoute
   '/account/': typeof AccountIndexRoute
@@ -660,6 +692,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
   '/disclaimer': typeof LandingDisclaimerRoute
@@ -674,6 +707,7 @@ export interface FileRoutesByTo {
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
   '/auth/success': typeof AuthSuccessRoute
   '/email/change': typeof EmailChangeRoute
   '/account': typeof AccountIndexRoute
@@ -696,6 +730,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
   '/_landing/about-us': typeof LandingAboutUsRoute
   '/_landing/contact-us': typeof LandingContactUsRoute
   '/_landing/disclaimer': typeof LandingDisclaimerRoute
@@ -710,6 +745,7 @@ export interface FileRoutesById {
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
   '/auth/success': typeof AuthSuccessRoute
   '/email/change': typeof EmailChangeRoute
   '/account/': typeof AccountIndexRoute
@@ -735,6 +771,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/analytics'
     | '/auth'
+    | '/signin'
     | '/about-us'
     | '/contact-us'
     | '/disclaimer'
@@ -749,6 +786,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/register'
     | '/auth/reset-password'
+    | '/auth/signin'
     | '/auth/success'
     | '/email/change'
     | '/account/'
@@ -768,6 +806,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
+    | '/signin'
     | '/about-us'
     | '/contact-us'
     | '/disclaimer'
@@ -782,6 +821,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/register'
     | '/auth/reset-password'
+    | '/auth/signin'
     | '/auth/success'
     | '/email/change'
     | '/account'
@@ -802,6 +842,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/analytics'
     | '/auth'
+    | '/signin'
     | '/_landing/about-us'
     | '/_landing/contact-us'
     | '/_landing/disclaimer'
@@ -816,6 +857,7 @@ export interface FileRouteTypes {
     | '/auth/login'
     | '/auth/register'
     | '/auth/reset-password'
+    | '/auth/signin'
     | '/auth/success'
     | '/email/change'
     | '/account/'
@@ -840,6 +882,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
+  SigninRoute: typeof SigninRoute
   EmailChangeRoute: typeof EmailChangeRoute
   PlayerIndexRoute: typeof PlayerIndexRoute
   PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
@@ -851,6 +894,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRouteWithChildren,
   AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
+  SigninRoute: SigninRoute,
   EmailChangeRoute: EmailChangeRoute,
   PlayerIndexRoute: PlayerIndexRoute,
   PlayerRootIdItemIdRoute: PlayerRootIdItemIdRouteWithChildren,
@@ -871,6 +915,7 @@ export const routeTree = rootRoute
         "/account",
         "/analytics",
         "/auth",
+        "/signin",
         "/email/change",
         "/player/",
         "/player/$rootId/$itemId",
@@ -913,8 +958,12 @@ export const routeTree = rootRoute
         "/auth/login",
         "/auth/register",
         "/auth/reset-password",
+        "/auth/signin",
         "/auth/success"
       ]
+    },
+    "/signin": {
+      "filePath": "signin.tsx"
     },
     "/_landing/about-us": {
       "filePath": "_landing/about-us.tsx",
@@ -970,6 +1019,10 @@ export const routeTree = rootRoute
     },
     "/auth/reset-password": {
       "filePath": "auth/reset-password.tsx",
+      "parent": "/auth"
+    },
+    "/auth/signin": {
+      "filePath": "auth/signin.tsx",
       "parent": "/auth"
     },
     "/auth/success": {
