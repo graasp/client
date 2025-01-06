@@ -2,13 +2,7 @@ import { Control, useController, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { LoadingButton } from '@mui/lab';
-import {
-  Checkbox,
-  FormControlLabel,
-  Stack,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
 
 import {
   MAX_USERNAME_LENGTH,
@@ -56,26 +50,37 @@ function EnableAnalyticsForm({
   control,
 }: Readonly<FormElementProps>): JSX.Element {
   const { field } = useController({ control, name: 'enableSaveActions' });
-  const { t } = useTranslation(NS.Auth);
+  const { t } = useTranslation(NS.Auth, { keyPrefix: 'REGISTER' });
 
   return (
-    <Tooltip title={t(AUTH.SIGN_UP_SAVE_ACTIONS_TOOLTIP)} placement="right">
-      <FormControlLabel
-        control={
-          <Checkbox
-            id={REGISTER_SAVE_ACTIONS_ID}
-            size="small"
-            checked={field.value}
-            onChange={(_, checked) => field.onChange(checked)}
+    <FormControlLabel
+      control={
+        <Checkbox
+          id={REGISTER_SAVE_ACTIONS_ID}
+          size="small"
+          checked={field.value}
+          onChange={(_, checked) => field.onChange(checked)}
+        />
+      }
+      label={
+        <Typography fontSize="small">
+          <Trans
+            i18nKey="SAVE_ACTIONS_LABEL"
+            t={t}
+            components={{
+              1: (
+                <a
+                  href="https://graasp.github.io/docs/user/account/data-collection"
+                  target="_blank"
+                >
+                  _
+                </a>
+              ),
+            }}
           />
-        }
-        label={
-          <Typography fontSize="small">
-            {t(AUTH.SIGN_UP_SAVE_ACTIONS_LABEL)}
-          </Typography>
-        }
-      />
-    </Tooltip>
+        </Typography>
+      }
+    />
   );
 }
 
