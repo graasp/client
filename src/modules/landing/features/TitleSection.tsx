@@ -13,13 +13,12 @@ export function TitleSection() {
       <Stack
         flex={{ md: 1 }}
         maxHeight={{ xs: '15rem', md: 'fit-content' }}
-        maxWidth={{ xs: '30rem' }}
+        maxWidth={{ xs: '32rem' }}
         borderRadius={4}
         overflow="hidden"
       >
         <Image
-          src="/illustration/computer-teacher.webp"
-          title={`Photo by <a href="https://unsplash.com/@glenncarstenspeters">Glenn Carstens-Peters</a> on <a href="https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ">Unsplash</a>`}
+          src="/illustration/features.webp"
           sx={{
             // override the "show top of image" behavior of the Image component
             objectPosition: 'unset',

@@ -5,8 +5,6 @@ const baseIllustrationImageStyle = {
   width: '100%',
   objectFit: 'cover',
 
-  objectPosition: '50% 0',
-
   minHeight: '0px',
   minWidth: '0px',
 } as const;

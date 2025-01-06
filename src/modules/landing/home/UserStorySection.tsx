@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
@@ -26,21 +26,7 @@ export function UserStorySection(): JSX.Element {
         caption={t('HOME.USER_STORY.TEACHER.LEADING_SENTENCE')}
         buttonText={t('HOME.USER_STORY.TEACHER.BUTTON_TEXT')}
         title={t('HOME.USER_STORY.TEACHER.TITLE')}
-        image={<Image src="/illustration/teacher.webp" />}
-        imageAttribution={
-          <Trans
-            t={t}
-            i18nKey="HOME.USER_STORY.TEACHER.IMAGE_ATTRIBUTION"
-            components={{
-              author: <a href="https://unsplash.com/@thutra0803">_</a>,
-              image: (
-                <a href="https://unsplash.com/photos/womens-blue-dress-shirt-TVSRWmnW8Us">
-                  _
-                </a>
-              ),
-            }}
-          />
-        }
+        image={<Image src="/illustration/teacher-red.webp" />}
       >
         <Typography>
           <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_1')}</span>
@@ -58,7 +44,7 @@ export function UserStorySection(): JSX.Element {
         title={t('HOME.USER_STORY.RESEARCHER.TITLE')}
         image={
           <Image
-            src="/illustration/research.webp"
+            src="/illustration/group-work.webp"
             alt="students experimenting in a lab session"
           />
         }

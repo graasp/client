@@ -16,7 +16,7 @@ import { Unine } from './icons/Unine';
 export function TitleSection(): JSX.Element {
   const { t } = useTranslation(NS.Landing);
   return (
-    <Stack component="section" direction="column" my={5} maxWidth="lg">
+    <Stack component="section" direction="column" my={5} maxWidth="lg" gap={5}>
       <Stack
         direction={{ xs: 'column', lg: 'row-reverse' }}
         justifyItems="flex-start"
@@ -26,11 +26,15 @@ export function TitleSection(): JSX.Element {
       >
         <Stack
           flex={{ lg: 1 }}
-          height={{ xs: '400px', lg: 'unset' }}
+          maxHeight={{ xs: '400px', lg: 'unset' }}
           borderRadius={4}
           overflow="hidden"
         >
-          <Image alt="cover" src="/illustration/children-old.webp" />
+          <Image
+            alt="cover"
+            sx={{ objectPosition: '0 70%' }}
+            src="/illustration/landing.webp"
+          />
         </Stack>
         <Stack direction="column" gap={10} flex={{ lg: 2 }}>
           <Stack direction="column" gap={4}>
@@ -63,9 +67,10 @@ export function TitleSection(): JSX.Element {
           <Stack direction="column" gap={4}>
             <Stack
               id="buttonsContainer"
-              direction={{ xs: 'column', md: 'row' }}
+              direction={{ xs: 'column', sm: 'row' }}
               justifyItems="center"
               alignItems="center"
+              justifyContent={{ xs: 'center', lg: 'flex-start' }}
               gap={4}
             >
               <ButtonLink variant="contained" to="/auth/register">
@@ -81,27 +86,27 @@ export function TitleSection(): JSX.Element {
               </Button>
             </Stack>
           </Stack>
-          <Stack direction="column" gap={1}>
-            <Typography color="textSecondary">
-              {t('HOME.SUPPORTERS_LABEL')}
-            </Typography>
-            <Stack
-              id="logosContainer"
-              direction="row"
-              gap={1}
-              flexWrap="wrap"
-              alignItems="center"
-            >
-              <Epfl width="150px" height="3rem" />
-              <BeLEARN width="150px" height="3rem" />
-              <EdTech width="150px" height="3rem" />
-              <Unine width="150px" height="3rem" />
-              <GoLab width="150px" height="3rem" />
-              {/* <span>GOGA</span>
+        </Stack>
+      </Stack>
+      <Stack direction="column" gap={1}>
+        <Typography color="textSecondary">
+          {t('HOME.SUPPORTERS_LABEL')}
+        </Typography>
+        <Stack
+          id="logosContainer"
+          direction="row"
+          gap={1}
+          flexWrap="wrap"
+          alignItems="center"
+        >
+          <Epfl width="150px" height="3rem" />
+          <BeLEARN width="150px" height="3rem" />
+          <EdTech width="150px" height="3rem" />
+          <Unine width="150px" height="3rem" />
+          <GoLab width="150px" height="3rem" />
+          {/* <span>GOGA</span>
               <span>IHUB4SCHOOL</span>
               <span>UNCTAD</span> */}
-            </Stack>
-          </Stack>
         </Stack>
       </Stack>
     </Stack>
