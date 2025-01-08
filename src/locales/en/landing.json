@@ -396,8 +396,7 @@
     }
   },
   "NEWSLETTER": {
-    "LEAD_SENTENCE": "Do you want to be updated?",
-    "TITLE": "Subscribe to our newsletter!",
+    "TITLE": "Want to be stay updated?",
     "INPUT_LABEL": "Email Address",
     "INPUT_PLACEHOLDER": "Where should we contact you ?",
     "BUTTON_TEXT": "Subscribe"

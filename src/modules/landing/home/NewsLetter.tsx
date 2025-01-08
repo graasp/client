@@ -24,7 +24,6 @@ export function NewsLetter() {
         alignItems={{ xs: 'center', md: 'flex-start' }}
         gap={1}
       >
-        <Typography fontWeight="bold">{t('LEAD_SENTENCE')}</Typography>
         <Typography variant="h2" color="primary">
           {t('TITLE')}
         </Typography>

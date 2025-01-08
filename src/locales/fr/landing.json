@@ -390,8 +390,7 @@
     }
   },
   "NEWSLETTER": {
-    "LEAD_SENTENCE": "Voulez-vous rester informé ?",
-    "TITLE": "Abonnez-vous à notre newsletter !",
+    "TITLE": "Voulez-vous rester informé ?",
     "INPUT_LABEL": "Adresse email",
     "INPUT_PLACEHOLDER": "Où pouvons-nous vous contacter ?",
     "BUTTON_TEXT": "S'abonner"
