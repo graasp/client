@@ -396,7 +396,8 @@
     }
   },
   "NEWSLETTER": {
-    "TITLE": "Want to be stay updated?",
+    "TITLE": "Want to stay in the loop?",
+    "DESCRIPTION": "We will keep you up to date with important changes on the platform by email.",
     "INPUT_LABEL": "Email Address",
     "INPUT_PLACEHOLDER": "Where should we contact you ?",
     "BUTTON_TEXT": "Subscribe"

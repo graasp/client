@@ -390,7 +390,8 @@
     }
   },
   "NEWSLETTER": {
-    "TITLE": "Voulez-vous rester informé ?",
+    "TITLE": "Voulez-vous rester informé-e ?",
+    "DESCRIPTION": "Nous vous communiquerons les mises à jour importantes de la plateforme par email.",
     "INPUT_LABEL": "Adresse email",
     "INPUT_PLACEHOLDER": "Où pouvons-nous vous contacter ?",
     "BUTTON_TEXT": "S'abonner"
