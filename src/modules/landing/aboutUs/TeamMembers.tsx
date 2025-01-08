@@ -16,11 +16,6 @@ function TeamMembers() {
       role: 'STATUSES.TITLE_PRESIDENT',
     },
     {
-      name: 'Isabelle Vonèche Cardia',
-      image: 'isabelle.webp',
-      role: 'STATUSES.TITLE_MANAGING_DIRECTOR',
-    },
-    {
       name: 'María Jesús Rodríguez-Triana',
       image: 'maria.webp',
       role: 'STATUSES.TITLE_VP_RESEARCH',
@@ -64,11 +59,6 @@ function TeamMembers() {
       name: 'Philippe Kobel',
       image: 'philippe.webp',
       role: 'STATUSES.TITLE_AMBASSADOR',
-    },
-    {
-      name: 'François Bierlaire',
-      image: 'francois.webp',
-      role: 'STATUSES.TITLE_PEDAGOGICAL_ENGINEER',
     },
   ] as const;
 
