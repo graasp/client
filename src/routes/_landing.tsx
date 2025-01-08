@@ -28,7 +28,7 @@ export const Route = createFileRoute('/_landing')({
 });
 
 function RouteComponent() {
-  const { i18n } = useTranslation(NS.Landing);
+  const { i18n, t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
   const { isAuthenticated } = useAuth();
   const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
@@ -101,27 +101,27 @@ function RouteComponent() {
             >
               <ButtonLink
                 activeProps={() => ({ fontStyle: 'bold' })}
-                to="/features"
-              >
-                Features
-              </ButtonLink>
-              <ButtonLink
-                activeProps={() => ({ fontStyle: 'bold' })}
-                to="/about-us"
-              >
-                About us
-              </ButtonLink>
-              <ButtonLink
-                activeProps={() => ({ fontStyle: 'bold' })}
                 to="/support"
               >
-                Tutorials
+                {t('GETTING_STARTED')}
+              </ButtonLink>
+              <ButtonLink
+                activeProps={() => ({ fontStyle: 'bold' })}
+                to="/features"
+              >
+                {t('FEATURES')}
               </ButtonLink>
               <ButtonLink
                 activeProps={() => ({ fontStyle: 'bold' })}
                 to={GRAASP_LIBRARY_HOST}
               >
-                Library
+                {t('LIBRARY')}
+              </ButtonLink>
+              <ButtonLink
+                activeProps={() => ({ fontStyle: 'bold' })}
+                to="/about-us"
+              >
+                {t('ABOUT_US')}
               </ButtonLink>
             </Stack>
           </Stack>

@@ -7,7 +7,7 @@ import { NS } from '@/config/constants';
 import { BigTutorialCard } from './BigTutorialCard';
 import { SmallTutorialCard } from './SmallTutorialCard';
 
-function Tutorials() {
+export function Tutorials() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.TUTORIALS' });
 
   const GENERAL_TUTORIALS = [
@@ -36,7 +36,10 @@ function Tutorials() {
       link: 'https://player.graasp.org/bd918837-5f57-49d2-8867-1d3438377842/ed016bc4-4539-4471-8fa2-caf94568d779',
     },
   ];
+
+  // TODO: enable back when there are player tutorials
   // const PLAYER_TUTORIALS = [];
+
   const LIBRARY_TUTORIALS = [
     {
       title: 'Publish to Graasp Library',
@@ -116,6 +119,7 @@ function Tutorials() {
         <Stack direction={{ sm: 'row' }} gap={2} width="100%">
           {GENERAL_TUTORIALS.map(({ title, description, link }) => (
             <BigTutorialCard
+              key={title}
               title={title}
               description={description}
               link={link}
@@ -125,7 +129,7 @@ function Tutorials() {
       </Stack>
 
       {PLATFORM_TUTORIALS.map(({ title, tutorials }) => (
-        <Stack gap={2} width="100%">
+        <Stack key={title} gap={2} width="100%">
           <Typography
             color="primary"
             variant="h4"
@@ -136,7 +140,7 @@ function Tutorials() {
           </Typography>
           <Grid container spacing={2}>
             {tutorials.map(({ title: tutoTitle, description, link }) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
+              <Grid key={title} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
                 <SmallTutorialCard
                   title={tutoTitle}
                   description={description}
@@ -150,5 +154,3 @@ function Tutorials() {
     </Stack>
   );
 }
-
-export default Tutorials;

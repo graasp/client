@@ -9,11 +9,11 @@ export function BigTutorialCard({
   title,
   description,
   link,
-}: {
+}: Readonly<{
   title: string;
   description: string;
   link: string;
-}) {
+}>) {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.TUTORIALS' });
   return (
     <Card sx={{ width: '100%', p: 2, textAlign: 'center' }}>

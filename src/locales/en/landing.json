@@ -1,4 +1,10 @@
 {
+  "NAVBAR": {
+    "GETTING_STARTED": "Getting started",
+    "FEATURES": "Features",
+    "LIBRARY": "Library",
+    "ABOUT_US": "About us"
+  },
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Your learning experience platform",
