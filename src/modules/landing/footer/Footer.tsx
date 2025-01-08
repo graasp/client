@@ -142,6 +142,9 @@ export function Footer({ onChangeLang }: Readonly<FooterProps>): JSX.Element {
               >
                 {t('CONTENT.CONTACT_US')}
               </InternalLink>
+              <ExternalLink href="https://graasp.github.io/docs/blog">
+                {t('CONTENT.BLOG')}
+              </ExternalLink>
             </FooterSection>
 
             <FooterSection name={t('PARTNERS.TITLE')}>
