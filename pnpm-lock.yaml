@@ -25,10 +25,10 @@ importers:
         version: 5.1.0
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(p56oavub2c5mdlil5onkrhujum)
+        version: 3.3.1(737itup455j5vjfnrjmj3peqde)
       '@graasp/query-client':
         specifier: 5.7.0
-        version: 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.0(typescript@5.7.2)))(react@18.3.1)
+        version: 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.2(typescript@5.7.2)))(react@18.3.1)
       '@graasp/sdk':
         specifier: 5.5.0
         version: 5.5.0(date-fns@4.1.0)(uuid@11.0.3)
@@ -37,10 +37,10 @@ importers:
         version: 2.2.0(stylis@4.3.4)
       '@graasp/translations':
         specifier: 1.43.0
-        version: 1.43.0(i18next@24.1.0(typescript@5.7.2))
+        version: 1.43.0(i18next@24.1.2(typescript@5.7.2))
       '@graasp/ui':
         specifier: 5.4.7
-        version: 5.4.7(dlqiihckb42xpzboufvuzcr4k4)
+        version: 5.4.7(34ezm5zpe5hbklgv4tylim4pry)
       '@mui/icons-material':
         specifier: 6.2.0
         version: 6.2.0(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.16)(react@18.3.1)
@@ -75,8 +75,8 @@ importers:
         specifier: 2.3.0
         version: 2.3.0
       i18next:
-        specifier: 24.1.0
-        version: 24.1.0(typescript@5.7.2)
+        specifier: 24.1.2
+        version: 24.1.2(typescript@5.7.2)
       i18next-browser-languagedetector:
         specifier: 8.0.2
         version: 8.0.2
@@ -118,7 +118,7 @@ importers:
         version: 7.54.1(react@18.3.1)
       react-i18next:
         specifier: 15.2.0
-        version: 15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 15.2.0(i18next@24.1.2(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-image-crop:
         specifier: 11.0.7
         version: 11.0.7(react@18.3.1)
@@ -4035,8 +4035,8 @@ packages:
     resolution: {integrity: sha512-kVqnydqLVMZfVlOuP2nf71cREydlxEKLH43jUXAFdOku/GF+6b9fBg31anoos5XncdhdtiYgL9fheqMrtXRwng==}
     engines: {node: '>=18'}
 
-  i18next@24.1.0:
-    resolution: {integrity: sha512-suKlX82AlptkMUO5YRfaAeH4FQyyKvR66jNaubTMiyPPMx7INU6PXAiy3PGULc0q6K+t9nxmDf/TRj9KjAivmw==}
+  i18next@24.1.2:
+    resolution: {integrity: sha512-th/075GW0Ub1gYDMHLiZXMGSfGv1aP1VqjT3fma/12hNHCNlH8oJMftvlDzycT/R+KoULWk+xLU8H1JRwV85qw==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -7666,27 +7666,27 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(p56oavub2c5mdlil5onkrhujum)':
+  '@graasp/chatbox@3.3.1(737itup455j5vjfnrjmj3peqde)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.16)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1)
-      '@graasp/query-client': 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.0(typescript@5.7.2)))(react@18.3.1)
+      '@graasp/query-client': 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.2(typescript@5.7.2)))(react@18.3.1)
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.3)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.4)
-      '@graasp/translations': 1.43.0(i18next@24.1.0(typescript@5.7.2))
-      '@graasp/ui': 5.4.7(dlqiihckb42xpzboufvuzcr4k4)
+      '@graasp/translations': 1.43.0(i18next@24.1.2(typescript@5.7.2))
+      '@graasp/ui': 5.4.7(34ezm5zpe5hbklgv4tylim4pry)
       '@mui/icons-material': 6.2.0(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.16)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.19(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-query': 5.61.5(react@18.3.1)
       date-fns: 4.1.0
-      i18next: 24.1.0(typescript@5.7.2)
+      i18next: 24.1.2(typescript@5.7.2)
       lodash.groupby: 4.6.0
       lucide-react: 0.468.0(react@18.3.1)
       prism-react-renderer: 2.4.1(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-i18next: 15.2.0(i18next@24.1.2(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-markdown: 9.0.1(@types/react@18.3.16)(react@18.3.1)
       react-mentions: 4.4.10(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       remark-breaks: 4.0.0
@@ -7695,10 +7695,10 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@graasp/query-client@5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.0(typescript@5.7.2)))(react@18.3.1)':
+  '@graasp/query-client@5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.3))(@graasp/translations@1.43.0(i18next@24.1.2(typescript@5.7.2)))(react@18.3.1)':
     dependencies:
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.3)
-      '@graasp/translations': 1.43.0(i18next@24.1.0(typescript@5.7.2))
+      '@graasp/translations': 1.43.0(i18next@24.1.2(typescript@5.7.2))
       '@tanstack/react-query': 5.61.5(react@18.3.1)
       '@tanstack/react-query-devtools': 5.61.5(@tanstack/react-query@5.61.5(react@18.3.1))(react@18.3.1)
       axios: 1.7.8
@@ -7720,23 +7720,23 @@ snapshots:
       cssjanus: 2.3.0
       stylis: 4.3.4
 
-  '@graasp/translations@1.43.0(i18next@24.1.0(typescript@5.7.2))':
+  '@graasp/translations@1.43.0(i18next@24.1.2(typescript@5.7.2))':
     dependencies:
-      i18next: 24.1.0(typescript@5.7.2)
+      i18next: 24.1.2(typescript@5.7.2)
 
-  '@graasp/ui@5.4.7(dlqiihckb42xpzboufvuzcr4k4)':
+  '@graasp/ui@5.4.7(34ezm5zpe5hbklgv4tylim4pry)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.16)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1)
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.3)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.4)
-      '@graasp/translations': 1.43.0(i18next@24.1.0(typescript@5.7.2))
+      '@graasp/translations': 1.43.0(i18next@24.1.2(typescript@5.7.2))
       '@mui/icons-material': 6.2.0(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.16)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.19(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@mui/material@6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.2.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react@18.3.1))(@types/react@18.3.16)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       http-status-codes: 2.3.0
-      i18next: 24.1.0(typescript@5.7.2)
+      i18next: 24.1.2(typescript@5.7.2)
       interweave: 13.1.0(react@18.3.1)
       katex: 0.16.15
       lodash.truncate: 4.4.2
@@ -7746,7 +7746,7 @@ snapshots:
       react-dnd: 16.0.1(@types/node@22.10.2)(@types/react@18.3.16)(react@18.3.1)
       react-dnd-html5-backend: 16.0.1
       react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-i18next: 15.2.0(i18next@24.1.2(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-quill: 2.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-rnd: 10.4.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -10665,7 +10665,7 @@ snapshots:
 
   i18next-fetch-backend@6.0.0: {}
 
-  i18next@24.1.0(typescript@5.7.2):
+  i18next@24.1.2(typescript@5.7.2):
     dependencies:
       '@babel/runtime': 7.26.0
     optionalDependencies:
@@ -12047,11 +12047,11 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  react-i18next@15.2.0(i18next@24.1.0(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  react-i18next@15.2.0(i18next@24.1.2(typescript@5.7.2))(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.26.0
       html-parse-stringify: 3.0.1
-      i18next: 24.1.0(typescript@5.7.2)
+      i18next: 24.1.2(typescript@5.7.2)
       react: 18.3.1
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
@@ -12651,7 +12651,7 @@ snapshots:
 
   substyle@9.4.1(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.4.5
+      '@babel/runtime': 7.26.0
       invariant: 2.2.4
       react: 18.3.1
 

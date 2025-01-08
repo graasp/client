@@ -34,7 +34,7 @@
     "axios": "1.7.9",
     "date-fns": "4.1.0",
     "http-status-codes": "2.3.0",
-    "i18next": "24.1.0",
+    "i18next": "24.1.2",
     "i18next-browser-languagedetector": "8.0.2",
     "i18next-fetch-backend": "6.0.0",
     "jwt-decode": "4.0.0",
