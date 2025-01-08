@@ -9,7 +9,7 @@ import { ChevronDown } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 
-function Faq() {
+export function Faq() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.FAQ' });
 
   const QUESTIONS = [
@@ -79,5 +79,3 @@ function Faq() {
     </Stack>
   );
 }
-
-export default Faq;

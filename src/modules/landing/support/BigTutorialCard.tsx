@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
-import { Button, Card, Stack, Typography } from '@mui/material';
+import { Card, Stack, Typography } from '@mui/material';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
-function BigTutorialCard({
+export function BigTutorialCard({
   title,
   description,
   link,
@@ -19,20 +20,17 @@ function BigTutorialCard({
       <Stack gap={1} justifyContent="space-between" height="100%">
         <Typography variant="h6">{title}</Typography>
         <Typography>{description}</Typography>
-        <a href={link}>
-          <Button
-            variant="contained"
-            disableElevation
-            // fullWidth
-            size="small"
-            color="primary"
-          >
-            {t('READ_BUTTON')}
-          </Button>
-        </a>
+        <ButtonLink
+          to={link}
+          variant="contained"
+          disableElevation
+          // fullWidth
+          size="small"
+          color="primary"
+        >
+          {t('READ_BUTTON')}
+        </ButtonLink>
       </Stack>
     </Card>
   );
 }
-
-export default BigTutorialCard;

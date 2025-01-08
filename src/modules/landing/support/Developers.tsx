@@ -8,7 +8,7 @@ import { NS } from '@/config/constants';
 
 import { GithubLogo } from './GithubLogo';
 
-function Developers() {
+export function Developers() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.DEVELOPERS' });
   return (
     <Stack
@@ -77,5 +77,3 @@ function Developers() {
     </Stack>
   );
 }
-
-export default Developers;

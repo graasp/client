@@ -4,7 +4,7 @@ import { Grid2 as Grid, Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
-import BigTutorialCard from './BigTutorialCard';
+import { BigTutorialCard } from './BigTutorialCard';
 import { SmallTutorialCard } from './SmallTutorialCard';
 
 function Tutorials() {

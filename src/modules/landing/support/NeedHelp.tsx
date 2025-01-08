@@ -5,7 +5,7 @@ import { Card, Stack, Typography } from '@mui/material';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
-function NeedHelp() {
+export function NeedHelp() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.HELP' });
   return (
     <Card sx={{ borderRadius: 10, p: 4, maxWidth: 'sm' }}>
@@ -26,5 +26,3 @@ function NeedHelp() {
     </Card>
   );
 }
-
-export default NeedHelp;
