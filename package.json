@@ -128,7 +128,7 @@
     "@vitest/browser": "2.1.8",
     "@vitest/ui": "2.1.8",
     "concurrently": "9.1.2",
-    "cypress": "13.17.0",
+    "cypress": "13.16.1",
     "cypress-iframe": "1.0.1",
     "env-cmd": "10.1.0",
     "eslint": "9.17.0",
@@ -164,6 +164,7 @@
     ]
   },
   "resolutions": {
-    "date-fns": "^4"
+    "date-fns": "^4",
+    "cypress": "13.16.1"
   }
 }
