@@ -5,7 +5,7 @@ import { Box, Stack, Typography } from '@mui/material';
 import { PRIMARY_COLOR } from '@graasp/ui';
 
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
-import { NS } from '@/config/constants';
+import { GRAASP_BLOG_URL, NS } from '@/config/constants';
 import { OnChangeLangProp } from '@/types';
 
 import { CopyrightText } from './CopyrightText';
@@ -142,7 +142,7 @@ export function Footer({ onChangeLang }: Readonly<FooterProps>): JSX.Element {
               >
                 {t('CONTENT.CONTACT_US')}
               </InternalLink>
-              <ExternalLink href="https://graasp.github.io/docs/blog">
+              <ExternalLink href={GRAASP_BLOG_URL}>
                 {t('CONTENT.BLOG')}
               </ExternalLink>
             </FooterSection>

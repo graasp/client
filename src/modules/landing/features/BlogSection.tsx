@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Stack, Typography } from '@mui/material';
 
 import { Image } from '@/components/ui/StyledImages';
-import { NS } from '@/config/constants';
+import { GRAASP_BLOG_URL, NS } from '@/config/constants';
 
 import { CallOutSection } from './CallOutSection';
 
@@ -16,7 +16,7 @@ export function BlogSection() {
         title={t('TITLE')}
         children={<Typography>{t('DESCRIPTION')}</Typography>}
         actions={
-          <Button variant="contained" href="https://graasp.github.io/docs/blog">
+          <Button variant="contained" href={GRAASP_BLOG_URL}>
             {t('BUTTON_TEXT')}
           </Button>
         }

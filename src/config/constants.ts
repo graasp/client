@@ -13,6 +13,8 @@ export const AVATAR_SIZE = 128;
 
 export const ADMIN_CONTACT = 'admin@graasp.org';
 
+export const GRAASP_BLOG_URL = 'https://graasp.github.io/docs/blog';
+
 export const LINKEDIN_DOMAIN = 'linkedin';
 export const FACEBOOK_DOMAIN = 'facebook';
 export const TWITTER_DOMAIN = 'twitter';
