@@ -6,7 +6,7 @@ import { GraaspLogo, PRIMARY_COLOR } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 
-import { GithubLogo } from './GithubLogo';
+import { GithubIcon } from '~landing/footer/icons';
 
 export function Developers() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'SUPPORT.DEVELOPERS' });
@@ -63,7 +63,7 @@ export function Developers() {
               alignItems="center"
               borderRadius={2}
             >
-              <GithubLogo />
+              <GithubIcon fill="black" size={24} />
             </Stack>
           </Stack>
           <Typography textAlign="center">{t('GITHUB.SUBTITLE')}</Typography>
