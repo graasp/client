@@ -21,7 +21,9 @@ export function NeedHelp() {
 
         <Typography>{t('DESCRIPTION')}</Typography>
 
-        <ButtonLink variant="contained">{t('CONTACT_FORM_BUTTON')}</ButtonLink>
+        <ButtonLink to="/contact-us" variant="contained">
+          {t('CONTACT_FORM_BUTTON')}
+        </ButtonLink>
       </Stack>
     </Card>
   );

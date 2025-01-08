@@ -86,7 +86,11 @@ export function UserTestimoniesSection() {
         <Typography fontSize={25} maxWidth="sm">
           {t('JOIN_US')}
         </Typography>
-        <ButtonLink variant="contained" sx={{ width: 'fit-content' }}>
+        <ButtonLink
+          to="/auth/register"
+          variant="contained"
+          sx={{ width: 'fit-content' }}
+        >
           {translateCommon('REGISTER.BUTTON_TEXT')}
         </ButtonLink>
       </Stack>

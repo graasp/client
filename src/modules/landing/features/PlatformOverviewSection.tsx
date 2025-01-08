@@ -98,6 +98,7 @@ function PlatformOverview({ platform }: Readonly<PlatformOverviewProps>) {
         </Typography>
         <ButtonLink
           sx={{ backgroundColor: '#e4c8ff90', color: '#a84eff' }}
+          to="."
           hash={platform}
         >
           {t('BUTTON_TEXT')}

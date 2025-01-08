@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { styled } from '@mui/material';
+import { Button, styled } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 import { Main } from '@graasp/ui';
@@ -51,13 +51,14 @@ export function PageWrapper({
           >
             Player
           </ButtonLink>
-          <ButtonLink
+          <Button
+            component="a"
             variant="outlined"
             color="inherit"
-            to={`${GRAASP_BUILDER_HOST}/items/${itemId}`}
+            href={`${GRAASP_BUILDER_HOST}/items/${itemId}`}
           >
             Builder
-          </ButtonLink>
+          </Button>
         </>
       }
       LinkComponent={LinkComponent}

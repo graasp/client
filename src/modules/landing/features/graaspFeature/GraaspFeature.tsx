@@ -1,10 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Box, Stack, Typography, styled } from '@mui/material';
+import { Box, Button, Stack, Typography, styled } from '@mui/material';
 
 import { useButtonColor } from '@graasp/ui';
 
-import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
 const BUTTON_CONTAINER = 'button-container';
@@ -88,25 +87,25 @@ export function GraaspFeature({ platform }: Readonly<GraaspFeatureProps>) {
       </Stack>
 
       <Stack className={BUTTON_CONTAINER} gap={3}>
-        <ButtonLink
+        <Button
           sx={{ flex: 1 }}
           variant="contained"
           color="secondary"
           fullWidth
         >
           {t('SECONDARY_ACTION_BUTTON_TEXT')}
-        </ButtonLink>
-        <ButtonLink
+        </Button>
+        <Button
           sx={{ flex: 1 }}
           variant="contained"
           color="secondary"
           fullWidth
         >
           {t('TERTIARY_ACTION_BUTTON_TEXT')}
-        </ButtonLink>
-        <ButtonLink sx={{ flex: 2 }} variant="contained" color="primary">
+        </Button>
+        <Button sx={{ flex: 2 }} variant="contained" color="primary">
           {t('CTA_BUTTON_TEXT')}
-        </ButtonLink>
+        </Button>
       </Stack>
     </FeatureContainer>
   );
