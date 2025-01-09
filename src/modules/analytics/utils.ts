@@ -17,7 +17,7 @@ import orderBy from 'lodash/orderBy';
 import toPairs from 'lodash/toPairs';
 import truncate from 'lodash/truncate';
 
-import { GroupByInterval } from '~analytics/config/type';
+import { GroupByInterval, GroupByIntervalType } from '~analytics/config/type';
 
 import {
   ITEM_NAME_MAX_LENGTH,
@@ -298,7 +298,7 @@ export const groupByFirstLevelItems = (
   return d;
 };
 
-const getStartDateFunction = (interval: GroupByInterval) => {
+const getStartDateFunction = (interval: GroupByIntervalType) => {
   switch (interval) {
     case GroupByInterval.Year:
       return startOfYear;
@@ -314,7 +314,7 @@ const getStartDateFunction = (interval: GroupByInterval) => {
 
 const fillDateGaps = (
   data: { [key: string]: Action[] },
-  freq: GroupByInterval,
+  freq: GroupByIntervalType,
   start: Date,
   stop: Date,
 ): { [key: string]: Action[] } => {
@@ -343,7 +343,7 @@ const fillDateGaps = (
 
 const groupActionsByInterval = (
   actions: Action[],
-  interval: GroupByInterval,
+  interval: GroupByIntervalType,
 ): { [key: string]: Action[] } => {
   const getStartDate = getStartDateFunction(interval);
 
@@ -396,7 +396,7 @@ const groupActionsBasedOnMaxIntervals = (
 
 export const groupActions = (
   actions: Action[],
-  groupByKey: GroupByInterval,
+  groupByKey: GroupByIntervalType,
   start: Date,
   stop: Date,
   maxIntervals: number,

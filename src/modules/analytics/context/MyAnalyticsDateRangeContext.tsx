@@ -4,12 +4,16 @@ import type { Duration } from 'date-fns';
 import { addDays } from 'date-fns/addDays';
 import { intervalToDuration } from 'date-fns/intervalToDuration';
 
-import { DateRange, GroupByInterval } from '~analytics/config/type';
+import {
+  DateRange,
+  GroupByInterval,
+  GroupByIntervalType,
+} from '~analytics/config/type';
 
 const defaultValue: {
   dateRange: DateRange;
   setDateRange: (view: DateRange) => void;
-  groupInterval: GroupByInterval;
+  groupInterval: GroupByIntervalType;
 } = {
   dateRange: {
     startDate: addDays(new Date(), -30),
