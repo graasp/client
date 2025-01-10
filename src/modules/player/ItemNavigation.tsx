@@ -8,8 +8,8 @@ import { ItemType } from '@graasp/sdk';
 import { getRouteApi, useNavigate } from '@tanstack/react-router';
 import { isAxiosError } from 'axios';
 
-import { useAuth } from '@/AuthContext.tsx';
-import { NS } from '@/config/constants.ts';
+import { useAuth } from '@/AuthContext';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
 import MainMenu from '@/ui/MainMenu/MainMenu';

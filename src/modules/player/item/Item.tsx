@@ -1,5 +1,4 @@
 import { Fragment, type JSX, useCallback, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 
@@ -61,7 +60,6 @@ import { FolderCard } from '~player/ui/FolderCard';
 import { FromShortcutButton } from './FromShortcutButton';
 import { SectionHeader } from './SectionHeader';
 import { useCollapseAction } from './useCollapseAction';
-import usePageTitle from './usePageTitle';
 
 const paginationContentFilter = (items: PackedItem[]): PackedItem[] =>
   items
@@ -477,17 +475,18 @@ const Item = ({
 }: Props): JSX.Element | null => {
   const { t } = useTranslation(NS.Common);
   const { data: item, isLoading: isLoadingItem, isError } = useItem(id);
-  const title = usePageTitle();
+  // const title = usePageTitle();
   if (item && item.type === ItemType.FOLDER) {
     if (isChildren) {
       return <ItemContentWrapper item={item} />;
     }
 
+    // re-enable with loader function in tanstack start
     return (
       <>
-        <Helmet>
+        {/* <Helmet>
           <title>{title}</title>
-        </Helmet>
+        </Helmet> */}
         <FolderContent item={item} showPinnedOnly={showPinnedOnly} />
       </>
     );

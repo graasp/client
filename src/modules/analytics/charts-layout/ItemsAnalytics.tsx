@@ -1,19 +1,19 @@
 import type { JSX } from 'react';
 
-import { Grid } from '@mui/material';
+import { Grid2 } from '@mui/material';
 
 import ItemsByActionChart from '../charts/ItemsByActionChart';
 import ItemsByUserChart from '../charts/ItemsByUserChart';
 
 const ItemsAnalytics = (): JSX.Element => (
-  <Grid container>
-    <Grid item xs={12} sm={12} md={12} lg={12} xl={6}>
+  <Grid2 container>
+    <Grid2 size={{ xs: 12, xl: 6 }}>
       <ItemsByUserChart />
-    </Grid>
-    <Grid item xs={12} sm={12} md={12} lg={12} xl={6}>
+    </Grid2>
+    <Grid2 size={{ xs: 12, xl: 6 }}>
       <ItemsByActionChart />
-    </Grid>
-  </Grid>
+    </Grid2>
+  </Grid2>
 );
 
 export default ItemsAnalytics;

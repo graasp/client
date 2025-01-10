@@ -1,18 +1,20 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./cypress/tsconfig.json"
-    }
-  ],
   "compilerOptions": {
-    // this is needed for cypress to compile to ESM ... Should be removed when not using cypress anymore
-    "module": "ESNext"
+    "jsx": "react-jsx",
+    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "~account/*": ["./src/modules/account/*"],
+      "~analytics/*": ["./src/modules/analytics/*"],
+      "~auth/*": ["./src/modules/auth/*"],
+      "~builder/*": ["./src/modules/builder/*"],
+      "~landing/*": ["./src/modules/landing/*"],
+      "~player/*": ["./src/modules/player/*"]
+    }
   }
 }
