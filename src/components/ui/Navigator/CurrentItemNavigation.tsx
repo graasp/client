@@ -1,11 +1,8 @@
-import { Typography } from '@mui/material';
-
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
+import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 import CenterAlignWrapper from './common/CenterAlignWrapper.js';
-import NavigationLink from './common/NavigationLink.js';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
 
 export type CurrentItemProps = {
   item: DiscriminatedItem;
@@ -14,35 +11,32 @@ export type CurrentItemProps = {
   buildMenuId?: (id: string) => string;
   buildMenuItemId?: (id: string) => string;
   useChildren: ItemMenuProps['useChildren'];
-  buildToItemPath: (id: string) => LinkProps['to'];
   showArrow: boolean;
 };
-const CurrentItemNavigation = ({
+
+export function CurrentItemNavigation({
   item,
   buildBreadcrumbsItemLinkId,
-  buildToItemPath,
   useChildren,
   buildIconId,
   buildMenuId,
   buildMenuItemId,
   showArrow,
-}: CurrentItemProps): JSX.Element | null => {
+}: Readonly<CurrentItemProps>): JSX.Element | null {
   return (
     <CenterAlignWrapper>
-      <NavigationLink
+      <TypographyLink
         id={buildBreadcrumbsItemLinkId?.(item.id)}
         key={item.id}
-        to={buildToItemPath(item?.id)}
+        to="."
+        params={{ itemId: item.id }}
       >
-        <Typography>
-          {truncate(item.name, { length: ITEM_NAME_MAX_LENGTH })}
-        </Typography>
-      </NavigationLink>
+        {item.name}
+      </TypographyLink>
       {(item.type === ItemType.FOLDER || showArrow) && (
         <ItemMenu
           useChildren={useChildren}
           itemId={item.id}
-          buildToItemPath={buildToItemPath}
           buildIconId={buildIconId}
           buildMenuItemId={buildMenuItemId}
           buildMenuId={buildMenuId}
@@ -51,6 +45,4 @@ const CurrentItemNavigation = ({
       )}
     </CenterAlignWrapper>
   );
-};
-
-export default CurrentItemNavigation;
+}

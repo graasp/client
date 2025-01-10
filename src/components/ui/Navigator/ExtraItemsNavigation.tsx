@@ -1,12 +1,8 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
-import truncate from 'lodash.truncate';
-
-import ExtraItemsMenu from './ExtraItemsMenu.js';
-import { MenuItemType } from './Navigator.js';
-import CenterAlignWrapper from './common/CenterAlignWrapper.js';
-import NavigationLink from './common/NavigationLink.js';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
+import { TypographyLink } from '../TypographyLink';
+import { ExtraItemsMenu } from './ExtraItemsMenu';
+import { MenuItemType } from './Navigator';
 
 export interface ExtraItem {
   name: string;
@@ -15,26 +11,20 @@ export interface ExtraItem {
   menuItems?: MenuItemType[];
 }
 
-const ExtraItemsNavigation = ({
+export function ExtraItemsNavigation({
   extraItems,
-}: {
+}: Readonly<{
   extraItems: ExtraItem[];
-}): JSX.Element[] | null => {
+}>): JSX.Element[] {
   return extraItems.map(({ icon, name, path, menuItems }) => (
-    <CenterAlignWrapper>
+    <Stack key={name} direction="row" alignItems="center">
       <Box display="flex" gap={1}>
         {icon}
-        <NavigationLink to={path}>
-          <Typography>
-            {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
-          </Typography>
-        </NavigationLink>
+        <TypographyLink to={path}>{name}</TypographyLink>
       </Box>
       {menuItems && menuItems.length > 0 && (
-        <ExtraItemsMenu menuItems={menuItems} name={name} />
+        <ExtraItemsMenu menuItems={menuItems} />
       )}
-    </CenterAlignWrapper>
+    </Stack>
   ));
-};
-
-export default ExtraItemsNavigation;
+}

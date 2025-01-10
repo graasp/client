@@ -1,48 +1,40 @@
-import truncate from 'lodash.truncate';
-
-import { Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
+import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
-import NavigationLink from './common/NavigationLink.js';
-import { ITEM_NAME_MAX_LENGTH } from './common/constants.js';
 
 export type ParentsProps = {
   parents: DiscriminatedItem[];
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   useChildren: ItemMenuProps['useChildren'];
-  buildToItemPath: (id: string) => string;
 };
-const ParentsNavigation = ({
+
+export function ParentsNavigation({
   parents,
   useChildren,
   buildBreadcrumbsItemLinkId,
-  buildToItemPath,
-}: ParentsProps): JSX.Element => (
-  <Stack direction='row'>
-    {parents.map(({ name, id }) => (
-      <Stack
-        key={id}
-        direction='row'
-        alignItems='center'
-        justifyContent='center'
-      >
-        <NavigationLink
-          id={buildBreadcrumbsItemLinkId?.(id)}
-          to={buildToItemPath(id)}
+}: Readonly<ParentsProps>): JSX.Element {
+  return (
+    <Stack direction="row">
+      {parents.map(({ name, id }) => (
+        <Stack
+          key={id}
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
         >
-          <Typography>
-            {truncate(name, { length: ITEM_NAME_MAX_LENGTH })}
-          </Typography>
-        </NavigationLink>
-        <ItemMenu
-          useChildren={useChildren}
-          itemId={id}
-          buildToItemPath={buildToItemPath}
-        />
-      </Stack>
-    ))}
-  </Stack>
-);
-export default ParentsNavigation;
+          <TypographyLink
+            id={buildBreadcrumbsItemLinkId?.(id)}
+            to="/analytics/items/$itemId"
+            params={{ itemId: id }}
+          >
+            {name}
+          </TypographyLink>
+          <ItemMenu useChildren={useChildren} itemId={id} />
+        </Stack>
+      ))}
+    </Stack>
+  );
+}

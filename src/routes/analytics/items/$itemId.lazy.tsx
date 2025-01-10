@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Grid2, Skeleton, Stack, Typography } from '@mui/material';
+import { Box, Grid2, Skeleton, Stack } from '@mui/material';
 
 import { Outlet, createLazyFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 
+import { Navigator } from '~analytics/Navigator';
 import { PageWrapper } from '~analytics/PageWrapper';
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
 import StyledAlert from '~analytics/common/StyledAlert';
@@ -26,13 +27,8 @@ function RouteComponent() {
   return (
     <DataProvider itemId={itemId}>
       <PageWrapper>
-        {
-          // temp disable as we need to adapt it to the current router
-          <Typography color="textSecondary" p={2} bgcolor="lime">
-            here we should have the navigator
-          </Typography>
-          /* <Navigator itemId={itemId} /> */
-        }
+        <Navigator itemId={itemId} />
+
         <ViewDataProvider>
           <ItemPage />
         </ViewDataProvider>
