@@ -1,22 +1,10 @@
+import { Helmet } from 'react-helmet-async';
+
 import { Outlet, createFileRoute, redirect } from '@tanstack/react-router';
 
 import { RECAPTCHA_SITE_KEY } from '@/config/env';
 
 export const Route = createFileRoute('/auth')({
-  head: () => {
-    if (RECAPTCHA_SITE_KEY) {
-      return {
-        links: [{ rel: 'pre-connect', href: 'https://www.google.com' }],
-        scripts: [
-          {
-            defer: true,
-            src: `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`,
-          },
-        ],
-      };
-    }
-    return {};
-  },
   beforeLoad: ({ context }) => {
     // check if the user is authenticated.
     // if already authenticated, redirect to `/account`
@@ -30,5 +18,23 @@ export const Route = createFileRoute('/auth')({
 });
 
 function RouteComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Helmet>
+        {
+          // only add these tags if the env var is defined
+          RECAPTCHA_SITE_KEY && (
+            <>
+              <link rel="pre-connect" href="https://www.google.com" />
+              <script
+                defer
+                src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`}
+              />
+            </>
+          )
+        }
+      </Helmet>
+      <Outlet />
+    </>
+  );
 }
