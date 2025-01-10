@@ -1,9 +1,13 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Stack, Typography } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 import { ChevronDown } from 'lucide-react';
 

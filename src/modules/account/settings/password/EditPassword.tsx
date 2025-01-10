@@ -2,8 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { LoadingButton } from '@mui/lab';
-import { Alert, Box, Button, Stack } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { Alert, Box, Button, Stack, Typography } from '@mui/material';
 
 import { isPasswordStrong } from '@graasp/sdk';
 import { FAILURE_MESSAGES } from '@graasp/translations';

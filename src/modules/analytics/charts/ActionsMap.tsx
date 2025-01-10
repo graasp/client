@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@mui/material';
 
 import GoogleMapReact from 'google-map-react';
 import useSupercluster from 'use-supercluster';

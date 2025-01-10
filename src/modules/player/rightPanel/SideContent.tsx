@@ -1,15 +1,13 @@
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { useTranslation } from 'react-i18next';
 
-import EnterFullscreenIcon from '@mui/icons-material/Fullscreen';
-import ExitFullscreenIcon from '@mui/icons-material/FullscreenExit';
-import { Stack, Tooltip, styled } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
+import { IconButton, Stack, Tooltip, styled } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 import { useMobileView } from '@graasp/ui';
 
 import { useParams, useSearch } from '@tanstack/react-router';
+import { ExpandIcon, ShrinkIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -121,7 +119,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
           }
           onClick={toggleFullscreen}
         >
-          {isFullscreen ? <ExitFullscreenIcon /> : <EnterFullscreenIcon />}
+          {isFullscreen ? <ShrinkIcon /> : <ExpandIcon />}
         </StyledIconButton>
       </Tooltip>
     );

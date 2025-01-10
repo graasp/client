@@ -1,7 +1,6 @@
 import type { IBranchProps, INode, LeafProps } from 'react-accessible-treeview';
 
-import { Box, IconButton, Typography } from '@mui/material';
-import { deepPurple } from '@mui/material/colors';
+import { Box, IconButton, Typography, colors } from '@mui/material';
 
 import { UUID } from '@graasp/sdk';
 import { ItemIcon } from '@graasp/ui';
@@ -41,7 +40,7 @@ export function TreeNode({
       sx={{
         width: '100%',
         pl: 1,
-        background: isSelected ? deepPurple[50] : 'none',
+        background: isSelected ? colors.deepPurple[50] : 'none',
       }}
     >
       {/* icon type for root level items */}

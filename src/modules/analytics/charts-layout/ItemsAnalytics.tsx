@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import { Grid } from '@mui/material';
 
 import ItemsByActionChart from '../charts/ItemsByActionChart';
 import ItemsByUserChart from '../charts/ItemsByUserChart';

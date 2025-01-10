@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, TextField } from '@mui/material';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  TextField,
+} from '@mui/material';
 
 import { Button } from '@graasp/ui';
 
