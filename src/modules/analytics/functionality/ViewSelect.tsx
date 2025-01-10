@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import InfoIcon from '@mui/icons-material/Info';
+import { Info } from '@mui/icons-material';
 import {
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   Stack,
+  Tooltip,
 } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
 
 import { Context } from '@graasp/sdk';
 
@@ -92,7 +92,7 @@ const ViewSelect = (): JSX.Element => {
         </Select>
       </FormControl>
       <Tooltip title={viewMessage}>
-        <InfoIcon color="primary" />
+        <Info color="primary" />
       </Tooltip>
     </Stack>
   );

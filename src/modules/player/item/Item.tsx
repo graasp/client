@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useInView } from 'react-intersection-observer';
 
@@ -487,11 +487,12 @@ const Item = ({
       return <ItemContentWrapper item={item} />;
     }
 
+    // re-enable with loader function in tanstack start
     return (
       <>
-        <Helmet>
+        {/* <Helmet>
           <title>{title}</title>
-        </Helmet>
+        </Helmet> */}
         <FolderContent item={item} showPinnedOnly={showPinnedOnly} />
       </>
     );

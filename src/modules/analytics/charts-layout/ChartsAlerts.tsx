@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Info from '@mui/icons-material/Info';
-import Tooltip from '@mui/material/Tooltip';
-import { styled } from '@mui/material/styles';
+import { Info } from '@mui/icons-material';
+import { Tooltip, styled } from '@mui/material';
 
 import { NS } from '@/config/constants';
 

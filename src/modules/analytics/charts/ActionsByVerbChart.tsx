@@ -1,8 +1,7 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Typography from '@mui/material/Typography';
-import { styled } from '@mui/material/styles';
+import { Typography, styled } from '@mui/material';
 
 import { ActionTriggers } from '@graasp/sdk';
 

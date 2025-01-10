@@ -1,6 +1,5 @@
-import InfoIcon from '@mui/icons-material/Info';
-import { Stack, Tooltip } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { Info as InfoIcon } from '@mui/icons-material';
+import { Stack, Tooltip, Typography } from '@mui/material';
 
 const ChartTitle = ({
   title,
