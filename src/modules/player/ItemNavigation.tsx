@@ -12,9 +12,9 @@ import { NS } from '@/config/constants.ts';
 import { axios, hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
 
-import { LoadingTree } from './tree/LoadingTree.js';
-import { TreeView } from './tree/TreeView.js';
-import { combineUuids, shuffleAllButLastItemInArray } from './utils/shuffle.js';
+import { LoadingTree } from './tree/LoadingTree';
+import { TreeView } from './tree/TreeView';
+import { combineUuids, shuffleAllButLastItemInArray } from './utils/shuffle';
 
 const { useItem, useDescendants } = hooks;
 const playerRoute = getRouteApi('/player/$rootId/$itemId');
