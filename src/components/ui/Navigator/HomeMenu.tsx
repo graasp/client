@@ -1,20 +1,19 @@
-import { ChevronRightIcon, HomeIcon } from 'lucide-react';
+import { useState } from 'react';
 
 import {
   IconButton,
   IconButtonProps,
   Menu,
-  MenuItem,
   MenuProps,
   Typography,
 } from '@mui/material';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 
-import NavigationLink from './common/NavigationLink.js';
+import { MenuItemLink } from '../MenuItemLink';
+import { TypographyLink } from '../TypographyLink';
 
-const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
+const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
 type Props = {
   selected: { name: string; id: string; to: string };
@@ -35,7 +34,7 @@ const HomeMenu = ({
   menuId,
   selected,
 }: Props): JSX.Element => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleClick: IconButtonProps['onClick'] = (event) => {
@@ -57,7 +56,7 @@ const HomeMenu = ({
         onClick={handleClick}
         id={homeDropdownId}
         aria-controls={open ? 'root' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? true : undefined}
       >
         {Separator}
@@ -78,19 +77,14 @@ const HomeMenu = ({
         }}
       >
         {elements.map(({ name, id, to }) => (
-          <MenuItem
-            key={id}
-            component={Link}
-            to={to}
-            id={buildMenuItemId?.(id)}
-          >
+          <MenuItemLink key={id} to={to} id={buildMenuItemId?.(id)}>
             <Typography>{name}</Typography>
-          </MenuItem>
+          </MenuItemLink>
         ))}
       </Menu>
-      <NavigationLink to={selected.to} key={selected.id}>
-        <Typography>{selected.name}</Typography>
-      </NavigationLink>
+      <TypographyLink to={selected.to} key={selected.id}>
+        {selected.name}
+      </TypographyLink>
     </>
   );
 };
