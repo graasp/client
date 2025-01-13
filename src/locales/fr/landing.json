@@ -419,18 +419,18 @@
         }
       },
       "BUILDER": {
-        "TITLE": "Builder Tutorials"
+        "TITLE": "Tutoriels pour le Builder"
       },
       "PLAYER": {
-        "TITLE": "Player Tutorials"
+        "TITLE": "Tutoriels pour le Player"
       },
       "LIBRARY": {
-        "TITLE": "Library Tutorials"
+        "TITLE": "Tutoriels pour la Bibliothèque"
       },
       "ACCOUNT": {
-        "TITLE": "Account Tutorials"
+        "TITLE": "Tutoriels pour Compte"
       },
-      "READ_BUTTON": "Read"
+      "READ_BUTTON": "Lire"
     },
     "DEVELOPERS": {
       "TITLE": "Développeurs",
