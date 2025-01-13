@@ -93,7 +93,6 @@ export function EditPublicProfile({
   // register visibility checkbox manually
   const visibility = register('visibility');
 
-  console.log(errors.facebookID);
   return (
     <BorderedSection title={t('TITLE')}>
       <Typography variant="body1">{t('DESCRIPTION')}</Typography>

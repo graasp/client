@@ -2,10 +2,7 @@ import { ACCOUNT_SETTINGS_PATH } from '../../../../src/config/paths';
 import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_EDIT_BUTTON_ID,
-  PUBLIC_PROFILE_FACEBOOK_ID,
-  PUBLIC_PROFILE_LINKEDIN_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
-  PUBLIC_PROFILE_TWITTER_ID,
 } from '../../../../src/config/selectors';
 import {
   MEMBERS,
@@ -38,36 +35,27 @@ describe('Display public profile', () => {
       );
 
       // displays the correct member linkedIn
-      cy.get(`#${PUBLIC_PROFILE_LINKEDIN_ID}`).should(
-        'contain',
-        MEMBER_PUBLIC_PROFILE.linkedinID,
-      );
+      cy.get(`#linkedinID`).should('contain', MEMBER_PUBLIC_PROFILE.linkedinID);
       // displays the correct member linkedIn link
-      cy.get(`#${PUBLIC_PROFILE_LINKEDIN_ID} a`).should(
+      cy.get(`#linkedinID a`).should(
         'have.attr',
         'href',
         `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinID}`,
       );
 
       // displays the correct member twitter
-      cy.get(`#${PUBLIC_PROFILE_TWITTER_ID}`).should(
-        'contain',
-        MEMBER_PUBLIC_PROFILE.twitterID,
-      );
+      cy.get(`#twitterID`).should('contain', MEMBER_PUBLIC_PROFILE.twitterID);
       // displays the correct member twitter link
-      cy.get(`#${PUBLIC_PROFILE_TWITTER_ID} a`).should(
+      cy.get(`#twitterID a`).should(
         'have.attr',
         'href',
         `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterID}`,
       );
 
       // displays the correct member facebook
-      cy.get(`#${PUBLIC_PROFILE_FACEBOOK_ID}`).should(
-        'contain',
-        MEMBER_PUBLIC_PROFILE.facebookID,
-      );
+      cy.get(`#facebookID`).should('contain', MEMBER_PUBLIC_PROFILE.facebookID);
       // displays the correct member facebook link
-      cy.get(`#${PUBLIC_PROFILE_FACEBOOK_ID} a`).should(
+      cy.get(`#facebookID a`).should(
         'have.attr',
         'href',
         `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookID}`,
@@ -93,19 +81,19 @@ describe('Display public profile', () => {
       );
 
       // displays a message indicating no LinkedIn ID is available
-      cy.get(`#${PUBLIC_PROFILE_LINKEDIN_ID}`).should(
+      cy.get(`#linkedinID`).should(
         'contain',
         'No LinkedIn username has been specified',
       );
 
       // displays a message indicating no Twitter ID is available
-      cy.get(`#${PUBLIC_PROFILE_TWITTER_ID}`).should(
+      cy.get(`#twitterID`).should(
         'contain',
         'No Twitter username has been specified',
       );
 
       // displays a message indicating no Facebook ID is available
-      cy.get(`#${PUBLIC_PROFILE_FACEBOOK_ID}`).should(
+      cy.get(`#facebookID`).should(
         'contain',
         'No Facebook username has been specified',
       );
@@ -132,17 +120,17 @@ describe('Edit public profile', () => {
       MEMBER_PUBLIC_PROFILE.bio,
     );
     // displays the correct member linkedin value
-    cy.get(`#${PUBLIC_PROFILE_LINKEDIN_ID}`).should(
+    cy.get(`#linkedinID`).should(
       'have.value',
       `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinID}`,
     );
     // displays the correct member twitter value
-    cy.get(`#${PUBLIC_PROFILE_TWITTER_ID}`).should(
+    cy.get(`#twitterID`).should(
       'have.value',
       `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterID}`,
     );
     // displays the correct member facebook value
-    cy.get(`#${PUBLIC_PROFILE_FACEBOOK_ID}`).should(
+    cy.get(`#facebookID`).should(
       'have.value',
       `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookID}`,
     );
