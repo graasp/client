@@ -13,7 +13,13 @@
   "RECENT_ITEMS_TITLE": "Most Recent Items",
   "DRAWER_ARIAL_LABEL": "Open drawer",
   "ERROR_FETCHING_ITEM": "There was an error fetching the requested item",
-
+  "HOME_CHOOSE_ITEM": {
+    "TITLE": "This page is being deprecated",
+    "TEXT": "Please select an item to view in the player from your items.",
+    "ANONYMOUS_TEXT": "You are not logged in. Please use a link to a specific capsule.",
+    "BUTTON": "Choose an item",
+    "TO_HOME_PAGE": "Graasp home page"
+  },
   "SIGN_IN_BUTTON_TEXT": "Sign In",
   "FALLBACK_TITLE": "Oops",
   "FALLBACK_TEXT": "Something went wrong. Please try again. If the issue persists contact us.",

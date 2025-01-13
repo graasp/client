@@ -12,9 +12,11 @@ import {
 import { AccountType } from '@graasp/sdk';
 
 import { createFileRoute, redirect } from '@tanstack/react-router';
-import { ClipboardPenIcon } from 'lucide-react';
+import { ClipboardPenIcon, GhostIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
+import { ButtonLink } from '@/components/ui/ButtonLink';
+import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
 import { LOG_IN_PAGE_PATH } from '@/config/paths';
 import { PREVENT_GUEST_MESSAGE_ID } from '@/config/selectors';
@@ -70,5 +72,39 @@ function HomePage(): JSX.Element {
       </Stack>
     );
   }
-  return <Button>helllo</Button>;
+  return <ChooseItemScreen />;
+}
+
+function ChooseItemScreen() {
+  const { t } = useTranslation(NS.Player, { keyPrefix: 'HOME_CHOOSE_ITEM' });
+  const { isAuthenticated } = useAuth();
+
+  return (
+    <Stack
+      height="100vh"
+      justifyContent="center"
+      maxWidth="md"
+      alignItems="center"
+      alignSelf="center"
+      gap={5}
+    >
+      <GhostIcon size={60} />
+      <Typography variant="h2">{t('TITLE')}</Typography>
+      {isAuthenticated ? (
+        <Stack gap={2}>
+          <Typography>{t('TEXT')}</Typography>
+          <ButtonLink variant="contained" to="/account">
+            {t('BUTTON')}
+          </ButtonLink>
+        </Stack>
+      ) : (
+        <Stack>
+          <Typography>{t('ANONYMOUS_TEXT')}</Typography>
+        </Stack>
+      )}
+      <TypographyLink color="textSecondary" to="/">
+        {t('TO_HOME_PAGE')}
+      </TypographyLink>
+    </Stack>
+  );
 }
