@@ -1,17 +1,19 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import InfoIcon from '@mui/icons-material/Info';
 import {
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   Stack,
+  Tooltip,
 } from '@mui/material';
-import Tooltip from '@mui/material/Tooltip';
 
 import { Context } from '@graasp/sdk';
+import { useButtonColor } from '@graasp/ui';
+
+import { Info } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 
@@ -29,6 +31,7 @@ import { ViewDataContext } from '~analytics/context/ViewDataProvider';
 const ViewSelect = (): JSX.Element => {
   const { t } = useTranslation(NS.Analytics);
   const { t: enumT } = useTranslation(NS.Enums);
+  const { color } = useButtonColor('primary');
 
   const { view, setView } = useContext(ViewDataContext);
 
@@ -92,7 +95,7 @@ const ViewSelect = (): JSX.Element => {
         </Select>
       </FormControl>
       <Tooltip title={viewMessage}>
-        <InfoIcon color="primary" />
+        <Info color={color} />
       </Tooltip>
     </Stack>
   );

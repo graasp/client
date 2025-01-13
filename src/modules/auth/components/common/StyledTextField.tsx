@@ -1,5 +1,4 @@
-import { styled } from '@mui/material';
-import TextField from '@mui/material/TextField';
+import { TextField, styled } from '@mui/material';
 
 const FORM_INPUT_MIN_WIDTH = 300;
 

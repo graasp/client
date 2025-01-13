@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Stack } from '@mui/material';
-import List from '@mui/material/List';
+import { List, Stack } from '@mui/material';
 
 import { DRAWER_WIDTH } from '@graasp/ui';
 

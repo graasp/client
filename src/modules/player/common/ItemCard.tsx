@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Stack } from '@mui/material';
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
+import { Box, Card, Stack, Typography } from '@mui/material';
 
 import { PackedItem, formatDate } from '@graasp/sdk';
 import { AnalyticsIcon, PlayIcon } from '@graasp/ui';

@@ -1,5 +1,4 @@
-import { Stack } from '@mui/material';
-import Typography from '@mui/material/Typography';
+import { Stack, Typography } from '@mui/material';
 
 const SectionTitle = ({
   title,
