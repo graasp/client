@@ -53,9 +53,6 @@ export const PERSONAL_INFO_INPUT_EMAIL_ID = 'personal-info-input-email';
 export const PUBLIC_PROFILE_BIO_ID = 'public-profile-bio';
 export const PUBLIC_PROFILE_EDIT_BUTTON_ID = 'public-profile-edit-button';
 export const PUBLIC_PROFILE_SAVE_BUTTON_ID = 'public-profile-save-button';
-export const PUBLIC_PROFILE_LINKEDIN_ID = 'public-profile-linkedIn';
-export const PUBLIC_PROFILE_TWITTER_ID = 'public-profile-twitter';
-export const PUBLIC_PROFILE_FACEBOOK_ID = 'public-profile-facebook';
 export const PUBLIC_PROFILE_DISPLAY_CONTAINER_ID =
   'public-profile-display-container';
 export const PUBLIC_PROFILE_EDIT_CONTAINER_ID = 'public-profile-edit-container';
