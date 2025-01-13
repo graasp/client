@@ -72,7 +72,7 @@ declare global {
       setUpApi(args: {
         currentMember?: MemberForTest | null;
         hasPassword?: boolean;
-        currentProfile?: PublicProfile;
+        currentProfile?: PublicProfile | null;
         storageAmountInBytes?: number;
         getCurrentMemberError?: boolean;
         getCurrentProfileError?: boolean;

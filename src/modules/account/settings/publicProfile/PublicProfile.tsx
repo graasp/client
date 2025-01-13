@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { Button, Typography } from '@mui/material';
+import { Button, Skeleton, Typography } from '@mui/material';
 
 import SocialLinks from 'social-links';
 
@@ -13,8 +13,10 @@ import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   PUBLIC_PROFILE_BIO_ID,
+  PUBLIC_PROFILE_CONFIGURE_BUTTON_ID,
   PUBLIC_PROFILE_DISPLAY_CONTAINER_ID,
   PUBLIC_PROFILE_EDIT_BUTTON_ID,
+  PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID,
 } from '@/config/selectors';
 
 import { DisplayLink } from './DisplayLink';
@@ -49,51 +51,77 @@ export function PublicProfile(): JSX.Element {
   if (isEditing) {
     return <EditPublicProfile onClose={onClose} profile={publicProfile} />;
   }
+
+  if (publicProfile) {
+    return (
+      <BorderedSection
+        id={PUBLIC_PROFILE_DISPLAY_CONTAINER_ID}
+        title={t('TITLE')}
+        topAction={
+          <Button
+            variant="contained"
+            onClick={onOpen}
+            id={PUBLIC_PROFILE_EDIT_BUTTON_ID}
+            size="small"
+          >
+            {translateCommon('EDIT.BUTTON_TEXT')}
+          </Button>
+        }
+      >
+        <Typography variant="body1" color="textSecondary">
+          {t('BIO_LABEL')}
+        </Typography>
+        <Typography variant="body1" id={PUBLIC_PROFILE_BIO_ID}>
+          {bio ?? t('BIO_EMPTY_MSG')}
+        </Typography>
+        {linkedinID && (
+          <DisplayLink
+            icon={<LinkedInIcon />}
+            contentId="linkedinID"
+            href={socialLinks.sanitize('linkedin', linkedinID)}
+            content={linkedinID}
+          />
+        )}
+        {twitterID && (
+          <DisplayLink
+            icon={<TwitterIcon />}
+            contentId="twitterID"
+            href={socialLinks.sanitize('twitter', twitterID)}
+            content={twitterID}
+          />
+        )}
+        {facebookID && (
+          <DisplayLink
+            icon={<FacebookIcon />}
+            contentId="facebookID"
+            href={socialLinks.sanitize('facebook', facebookID)}
+            content={facebookID}
+          />
+        )}
+      </BorderedSection>
+    );
+  }
   return (
     <BorderedSection
-      id={PUBLIC_PROFILE_DISPLAY_CONTAINER_ID}
+      id={PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID}
       title={t('TITLE')}
-      topActions={[
+      topAction={
         <Button
-          key="edit"
           variant="contained"
           onClick={onOpen}
-          id={PUBLIC_PROFILE_EDIT_BUTTON_ID}
+          id={PUBLIC_PROFILE_CONFIGURE_BUTTON_ID}
           size="small"
         >
-          {translateCommon('EDIT.BUTTON_TEXT')}
-        </Button>,
-      ]}
+          {t('CONFIGURE')}
+        </Button>
+      }
     >
-      <Typography variant="body1" color="textSecondary">
-        {t('BIO_LABEL')}
-      </Typography>
-      <Typography variant="body1" id={PUBLIC_PROFILE_BIO_ID}>
-        {bio ?? t('BIO_EMPTY_MSG')}
-      </Typography>
-      {linkedinID && (
-        <DisplayLink
-          icon={<LinkedInIcon />}
-          contentId="linkedinID"
-          href={socialLinks.sanitize('linkedin', linkedinID)}
-          content={linkedinID}
-        />
-      )}
-      {twitterID && (
-        <DisplayLink
-          icon={<TwitterIcon />}
-          contentId="twitterID"
-          href={socialLinks.sanitize('twitter', twitterID)}
-          content={twitterID}
-        />
-      )}
-      {facebookID && (
-        <DisplayLink
-          icon={<FacebookIcon />}
-          contentId="facebookID"
-          href={socialLinks.sanitize('facebook', facebookID)}
-          content={facebookID}
-        />
+      {publicProfile === null ? (
+        <Typography color="textSecondary" fontStyle="italic">
+          {t('NOT_CONFIGURED_DESCRIPTION')}
+        </Typography>
+      ) : (
+        <Skeleton width="100%" />
       )}
     </BorderedSection>
   );

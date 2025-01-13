@@ -45,6 +45,8 @@
   "PUBLIC_PROFILE": {
     "TITLE": "Public Profile",
     "DESCRIPTION": "Personalize your public profile to let other users interested in your work know a bit more about you. You can make it private anytime.",
+    "CONFIGURE": "Configure",
+    "NOT_CONFIGURED_DESCRIPTION": "You haven't configured your public profile yet. Add a description and social links to personalize your profile for other users.",
     "LINKEDIN_LINK": "LinkedIn ID",
     "TWITTER_LINK": "Twitter ID",
     "FACEBOOK_LINK": "Facebook ID",

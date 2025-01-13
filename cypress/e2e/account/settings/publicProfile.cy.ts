@@ -1,14 +1,12 @@
 import { ACCOUNT_SETTINGS_PATH } from '../../../../src/config/paths';
 import {
   PUBLIC_PROFILE_BIO_ID,
+  PUBLIC_PROFILE_CONFIGURE_BUTTON_ID,
   PUBLIC_PROFILE_EDIT_BUTTON_ID,
+  PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
 } from '../../../../src/config/selectors';
-import {
-  MEMBERS,
-  MEMBER_EMPTY_PUBLIC_PROFILE,
-  MEMBER_PUBLIC_PROFILE,
-} from '../../../fixtures/members';
+import { MEMBERS, MEMBER_PUBLIC_PROFILE } from '../../../fixtures/members';
 
 const SocialProfile = {
   Linkedin: 'linkedinID',
@@ -67,7 +65,7 @@ describe('Display public profile', () => {
     beforeEach(() => {
       cy.setUpApi({
         currentMember: MEMBERS.BOB,
-        currentProfile: MEMBER_EMPTY_PUBLIC_PROFILE,
+        currentProfile: null,
       });
       cy.visit(ACCOUNT_SETTINGS_PATH);
       cy.wait('@getOwnProfile');
@@ -75,27 +73,15 @@ describe('Display public profile', () => {
 
     it('display public profile when empty', () => {
       // displays a message indicating no bio is available
-      cy.get(`#${PUBLIC_PROFILE_BIO_ID}`).should(
+      cy.get(`#${PUBLIC_PROFILE_CONFIGURE_BUTTON_ID}`).should(
         'contain',
-        'No biography has been specified',
+        'Configure',
       );
 
       // displays a message indicating no LinkedIn ID is available
-      cy.get(`#linkedinID`).should(
+      cy.get(`#${PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID}`).should(
         'contain',
-        'No LinkedIn username has been specified',
-      );
-
-      // displays a message indicating no Twitter ID is available
-      cy.get(`#twitterID`).should(
-        'contain',
-        'No Twitter username has been specified',
-      );
-
-      // displays a message indicating no Facebook ID is available
-      cy.get(`#facebookID`).should(
-        'contain',
-        'No Facebook username has been specified',
+        "You haven't configured your public profile yet. Add a description and social links to personalize your profile for other users.",
       );
     });
   });
@@ -122,23 +108,20 @@ describe('Edit public profile', () => {
     // displays the correct member linkedin value
     cy.get(`#linkedinID`).should(
       'have.value',
-      `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinID}`,
+      MEMBER_PUBLIC_PROFILE.linkedinID,
     );
     // displays the correct member twitter value
-    cy.get(`#twitterID`).should(
-      'have.value',
-      `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterID}`,
-    );
+    cy.get(`#twitterID`).should('have.value', MEMBER_PUBLIC_PROFILE.twitterID);
     // displays the correct member facebook value
     cy.get(`#facebookID`).should(
       'have.value',
-      `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookID}`,
+      MEMBER_PUBLIC_PROFILE.facebookID,
     );
   });
 
-  it('bio field cannot be empty ', () => {
+  it('bio field can be empty ', () => {
     cy.get(`#${PUBLIC_PROFILE_BIO_ID}`).clear();
-    cy.get(`#${PUBLIC_PROFILE_SAVE_BUTTON_ID}`).should('be.disabled');
+    cy.get(`#${PUBLIC_PROFILE_SAVE_BUTTON_ID}`).should('be.enabled');
   });
 
   [

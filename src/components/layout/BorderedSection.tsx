@@ -5,13 +5,13 @@ import { Stack, Typography } from '@mui/material';
 type BorderedSectionProps = {
   id?: string;
   title: string;
-  topActions?: ReactNode[];
+  topAction?: ReactNode;
   children: ReactNode;
 };
 export function BorderedSection({
   id,
   title,
-  topActions,
+  topAction,
   children,
 }: Readonly<BorderedSectionProps>): JSX.Element {
   return (
@@ -25,9 +25,7 @@ export function BorderedSection({
     >
       <Stack direction="row" justifyContent="space-between">
         <Typography variant="h5">{title}</Typography>
-        <Stack direction="row" gap={1}>
-          {topActions}
-        </Stack>
+        {topAction}
       </Stack>
       {children}
     </Stack>
