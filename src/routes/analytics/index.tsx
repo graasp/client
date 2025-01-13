@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -16,9 +16,6 @@ function RouteComponent() {
       justifyContent="center"
       height="100vh"
     >
-      <Typography>
-        There is nothing here, select an item and check out the analytics
-      </Typography>
       <HomeMessage />
     </Stack>
   );

@@ -1,14 +1,19 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, styled } from '@mui/material';
+import { styled, useTheme } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
-import { Main } from '@graasp/ui';
+import {
+  AnalyticsIcon,
+  Main,
+  Platform,
+  PlatformSwitch,
+  useMobileView,
+} from '@graasp/ui';
 
 import { Link, getRouteApi } from '@tanstack/react-router';
 
-import { ButtonLink } from '@/components/ui/ButtonLink';
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
 import { GRAASP_BUILDER_HOST } from '@/config/env';
@@ -34,6 +39,22 @@ export function PageWrapper({
 }>): JSX.Element {
   const { t } = useTranslation(NS.Analytics);
   const { itemId } = itemRoute.useParams();
+  const { isMobile } = useMobileView();
+  const theme = useTheme();
+  const platformProps = {
+    [Platform.Builder]: {
+      href: `${GRAASP_BUILDER_HOST}/items/${itemId}`,
+    },
+    [Platform.Player]: {
+      href: `/player/${itemId}/${itemId}`,
+    },
+    [Platform.Library]: {
+      disabled: true,
+    },
+    [Platform.Analytics]: {
+      disabled: true,
+    },
+  };
 
   return (
     <Main
@@ -42,24 +63,12 @@ export function PageWrapper({
       drawerOpenAriaLabel={t('DRAWER_OPEN_ARIA')}
       headerRightContent={<UserSwitchWrapper />}
       PlatformComponent={
-        <>
-          <ButtonLink
-            variant="outlined"
-            color="inherit"
-            to="/player/$rootId/$itemId"
-            params={{ itemId, rootId: itemId }}
-          >
-            Player
-          </ButtonLink>
-          <Button
-            component="a"
-            variant="outlined"
-            color="inherit"
-            href={`${GRAASP_BUILDER_HOST}/items/${itemId}`}
-          >
-            Builder
-          </Button>
-        </>
+        <PlatformSwitch
+          CustomMobileIcon={AnalyticsIcon}
+          platformsProps={platformProps}
+          color={isMobile ? theme.palette.primary.main : 'white'}
+          accentColor={isMobile ? 'white' : theme.palette.primary.main}
+        />
       }
       LinkComponent={LinkComponent}
     >
