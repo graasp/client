@@ -50,5 +50,6 @@
   "collapse-item": "réduction de l'élément",
   "uncollapse-item": "expansion de l'élément",
   "member-login": "connexion",
-  "ask-reset-password": "demande de réinitialisation du mot de passe"
+  "ask-reset-password": "demande de réinitialisation du mot de passe",
+  "reset-password": "réinitialisation du mot de passe"
 }
