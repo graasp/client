@@ -1,4 +1,8 @@
 {
+  "NAVBAR": {
+    "GETTING_STARTED": "Commencer",
+    "ABOUT_US": "À propos de nous"
+  },
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Votre plateforme d'expérience d'apprentissage",
@@ -344,13 +348,18 @@
         "CONTACT_US": "Contactez notre équipe pour discuter d'une solution adaptée à vos besoins.",
         "GET_A_QUOTE": "Obtenez un devis pour les services souhaités"
       }
+    },
+    "BLOG": {
+      "LEAD_SENTENCE": "Graasp est en constante croissance !",
+      "TITLE": "Visitez notre blog pour découvrir toutes les dernières mises à jour !",
+      "DESCRIPTION": "Découvrez les mises à jour, enrichissez votre expérience Graasp",
+      "BUTTON_TEXT": "Visitez notre blog"
     }
   },
   "ABOUT_US": {
     "TITLE": "Rencontre les personnes derrière Graasp",
     "DESCRIPTION_1": "Fondée par une équipe dédiée de professionnels, notre mission est de combler l'écart entre la technologie de pointe et l'éducation, en autonomisant les éducateurs et les chercheurs à l'échelle mondiale.",
     "DESCRIPTION_2": "Nous avons pour objectif de combler l'écart entre les environnements de recherche et les établissements éducatifs traditionnels tels que les écoles. Nous imaginons un avenir où Graasp permet aux éducateurs et aux étudiants des structures éducatives traditionnelles et au-delà, de révolutionner les méthodes d'enseignement et de favoriser des expériences d'apprentissage engageantes.",
-
     "ASSOCIATION": {
       "TITLE": "Association Graasp",
       "DESCRIPTION": "Graasp est bien plus qu'une plateforme d'expérience d'apprentissage. C'est un produit porté par une organisation à but non lucratif suisse dédiée à l'avancement de l'éducation numérique. Notre objectif principal est de soutenir les éducateurs et les chercheurs à chaque étape de leur parcours, en leur offrant aide et formation pour atteindre leurs objectifs de manière efficace.",
@@ -407,10 +416,18 @@
           "LINK": "https://player.graasp.org/9d80d81f-ec9d-4bfb-836a-1c6b125aef2f/84518f10-3174-4216-98e9-aede34ee108e"
         }
       },
-      "BUILDER": { "TITLE": "Builder Tutorials" },
-      "PLAYER": { "TITLE": "Player Tutorials" },
-      "LIBRARY": { "TITLE": "Library Tutorials" },
-      "ACCOUNT": { "TITLE": "Account Tutorials" },
+      "BUILDER": {
+        "TITLE": "Builder Tutorials"
+      },
+      "PLAYER": {
+        "TITLE": "Player Tutorials"
+      },
+      "LIBRARY": {
+        "TITLE": "Library Tutorials"
+      },
+      "ACCOUNT": {
+        "TITLE": "Account Tutorials"
+      },
       "READ_BUTTON": "Read"
     },
     "DEVELOPERS": {
@@ -445,7 +462,8 @@
       "FEATURES": "Fonctionnalités",
       "ABOUT_US": "À propos de nous",
       "SUPPORT": "Support utilisateur",
-      "CONTACT_US": "Contactez-nous"
+      "CONTACT_US": "Contactez-nous",
+      "BLOG": "Blog"
     },
     "PARTNERS": {
       "TITLE": "Partenaires"
