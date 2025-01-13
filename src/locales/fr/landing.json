@@ -1,6 +1,8 @@
 {
   "NAVBAR": {
     "GETTING_STARTED": "Commencer",
+    "FEATURES": "Fonctionalités",
+    "LIBRARY": "Bibliothèque",
     "ABOUT_US": "À propos de nous"
   },
   "HOME": {
