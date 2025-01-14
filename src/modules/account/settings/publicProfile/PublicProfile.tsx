@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { Button, Skeleton, Typography } from '@mui/material';
+import { Skeleton, Typography } from '@mui/material';
 
 import SocialLinks from 'social-links';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {

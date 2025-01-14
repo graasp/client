@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { EXPORT_DATA_BUTTON_ID } from '@/config/selectors';
@@ -29,7 +30,6 @@ export function ExportMemberData(): JSX.Element {
           disabled={isExported}
           id={EXPORT_DATA_BUTTON_ID}
           variant="contained"
-          sx={{ textWrap: 'nowrap', maxWidth: 'min-content' }}
         >
           {t('EXPORT_INFORMATIONS_BUTTON_TEXT')}
         </Button>

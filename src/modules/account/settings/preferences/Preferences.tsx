@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '@mui/material';
-
 import { AccountType } from '@graasp/sdk';
 import { DEFAULT_LANG, langs } from '@graasp/translations';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {

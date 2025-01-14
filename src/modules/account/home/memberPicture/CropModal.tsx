@@ -16,8 +16,7 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { CROP_MODAL_CONFIRM_BUTTON_ID } from '@/config/selectors';
 

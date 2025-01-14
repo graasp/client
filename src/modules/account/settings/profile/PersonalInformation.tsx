@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, AlertTitle, Button } from '@mui/material';
+import { Alert, AlertTitle } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {

@@ -13,8 +13,7 @@ import {
 import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
 import { Loader } from '@graasp/ui';
 
-import { createFileRoute } from '@tanstack/react-router';
-import { Navigate } from '@tanstack/react-router';
+import { Navigate, createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';

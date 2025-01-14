@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Stack, Switch, Tooltip } from '@mui/material';
+import { Stack, Switch, Tooltip } from '@mui/material';
 
 import { CompleteMember } from '@graasp/sdk';
 import { DEFAULT_LANG } from '@graasp/translations';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
+import { Button } from '@/components/ui/Button';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
 import { DEFAULT_EMAIL_FREQUENCY, NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -77,7 +78,7 @@ export function EditPreferences({
       </FormProperty>
       <FormProperty title={t('PROFILE_EMAIL_FREQUENCY_TITLE')}>
         <EmailPreferenceSwitch
-          emailFreq={member.extra?.emailFreq || DEFAULT_EMAIL_FREQUENCY}
+          emailFreq={member.extra?.emailFreq ?? DEFAULT_EMAIL_FREQUENCY}
           onChange={setSelectedEmailFreq}
           id={PREFERENCES_EMAIL_FREQUENCY_ID}
         />
