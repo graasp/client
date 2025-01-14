@@ -18,7 +18,10 @@ const StyledAnchor = styled('a')(({ theme }) => ({
   padding: theme.spacing(2, 4),
 }));
 
-export function UserStoryButton({ id, text }: { id: string; text: string }) {
+export function UserStoryButton({
+  id,
+  text,
+}: Readonly<{ id: string; text: string }>) {
   return (
     <StyledAnchor href={`#${id}`}>
       {text}
