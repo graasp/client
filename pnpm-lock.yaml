@@ -25,7 +25,7 @@ importers:
         version: 5.1.1
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(hx4w7cipqfuoiuips3zqjs6csi)
+        version: 3.3.1(ggkamkwhezz3peymzwdbflhzmu)
       '@graasp/query-client':
         specifier: 5.7.0
         version: 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
@@ -34,13 +34,13 @@ importers:
         version: 5.5.0(date-fns@4.1.0)(uuid@11.0.4)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
-        version: 2.2.0(stylis@4.3.4)
+        version: 2.2.0(stylis@4.3.5)
       '@graasp/translations':
         specifier: 1.43.0
         version: 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@graasp/ui':
         specifier: 5.4.7
-        version: 5.4.7(kfd2ro4tbvvrldjoca7fj7atuu)
+        version: 5.4.7(wzxri2utad5xuous5chzi3lnlu)
       '@mui/icons-material':
         specifier: 6.3.1
         version: 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -138,8 +138,8 @@ importers:
         specifier: 1.14.0
         version: 1.14.0
       stylis:
-        specifier: 4.3.4
-        version: 4.3.4
+        specifier: 4.3.5
+        version: 4.3.5
       use-supercluster:
         specifier: 1.2.0
         version: 1.2.0(react@18.3.1)(supercluster@8.0.1)
@@ -5665,8 +5665,8 @@ packages:
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
 
-  stylis@4.3.4:
-    resolution: {integrity: sha512-osIBl6BGUmSfDkyH2mB7EFvCJntXDrLhKjHTRj/rK6xLH0yuPrHULDRQzKokSOD4VoorhtKpfcfW1GAntu8now==}
+  stylis@4.3.5:
+    resolution: {integrity: sha512-K7npNOKGRYuhAFFzkzMGfxFDpN6gDwf8hcMiE+uveTVbBgm93HrNP3ZDUpKqzZ4pG7TP6fmb+EMAQPjq9FqqvA==}
 
   substyle@9.4.1:
     resolution: {integrity: sha512-VOngeq/W1/UkxiGzeqVvDbGDPM8XgUyJVWjrqeh+GgKqspEPiLYndK+XRcsKUHM5Muz/++1ctJ1QCF/OqRiKWA==}
@@ -7653,15 +7653,15 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(hx4w7cipqfuoiuips3zqjs6csi)':
+  '@graasp/chatbox@3.3.1(ggkamkwhezz3peymzwdbflhzmu)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@graasp/query-client': 5.7.0(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.4)
-      '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.4)
+      '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.4.7(kfd2ro4tbvvrldjoca7fj7atuu)
+      '@graasp/ui': 5.4.7(wzxri2utad5xuous5chzi3lnlu)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7702,22 +7702,22 @@ snapshots:
       js-cookie: 3.0.5
       uuid: 11.0.4
 
-  '@graasp/stylis-plugin-rtl@2.2.0(stylis@4.3.4)':
+  '@graasp/stylis-plugin-rtl@2.2.0(stylis@4.3.5)':
     dependencies:
       cssjanus: 2.3.0
-      stylis: 4.3.4
+      stylis: 4.3.5
 
   '@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3))':
     dependencies:
       i18next: 24.2.1(typescript@5.7.3)
 
-  '@graasp/ui@5.4.7(kfd2ro4tbvvrldjoca7fj7atuu)':
+  '@graasp/ui@5.4.7(wzxri2utad5xuous5chzi3lnlu)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.4)
-      '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.4)
+      '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7737,7 +7737,7 @@ snapshots:
       react-quill: 2.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-rnd: 10.4.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-router-dom: 6.28.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      stylis: 4.3.4
+      stylis: 4.3.5
       uuid: 11.0.3
     transitivePeerDependencies:
       - '@types/hoist-non-react-statics'
@@ -12614,7 +12614,7 @@ snapshots:
 
   stylis@4.2.0: {}
 
-  stylis@4.3.4: {}
+  stylis@4.3.5: {}
 
   substyle@9.4.1(react@18.3.1):
     dependencies:
