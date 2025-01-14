@@ -1,14 +1,14 @@
-import { FlagType, PackedFolderItemFactory } from "@graasp/sdk";
+import { FlagType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import i18n, { BUILDER_NAMESPACE } from "../../../../config/i18n";
-import { HOME_PATH } from "../../../../config/paths";
+import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+import { HOME_PATH } from '../../../../config/paths';
 import {
   ITEM_MENU_FLAG_BUTTON_CLASS,
   buildFlagListItemId,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
-import { BUILDER } from "../../../../langs/constants";
-import { CURRENT_USER } from "../../../fixtures/members";
+} from '../../../../config/selectors';
+import { BUILDER } from '../../../../langs/constants';
+import { CURRENT_USER } from '../../../fixtures/members';
 
 const openFlagItemModal = (itemId: string) => {
   cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
@@ -31,19 +31,19 @@ const flagItem = (itemId: string, type: FlagType) => {
 
 const FOLDER = PackedFolderItemFactory();
 
-describe("Flag Item", () => {
+describe('Flag Item', () => {
   beforeEach(() => {
     cy.setUpApi({ items: [FOLDER] });
     cy.visit(HOME_PATH);
   });
 
-  it("flag item", () => {
+  it('flag item', () => {
     const item = FOLDER;
     const type = FlagType.FalseInformation;
 
     flagItem(item.id, type);
 
-    cy.wait("@postItemFlag").then(
+    cy.wait('@postItemFlag').then(
       ({
         request: {
           url,
@@ -52,7 +52,7 @@ describe("Flag Item", () => {
       }) => {
         expect(flagType).to.equal(type);
         expect(url).to.contain(item.id);
-      }
+      },
     );
   });
 });

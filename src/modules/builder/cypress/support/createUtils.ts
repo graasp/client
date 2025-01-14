@@ -3,7 +3,7 @@ import {
   DiscriminatedItem,
   DocumentItemType,
   ItemType,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
 import {
   ADD_FOLDER_BUTTON_CY,
@@ -18,14 +18,14 @@ import {
   H5P_DASHBOARD_UPLOADER_ID,
   ZIP_DASHBOARD_UPLOADER_ID,
   buildDataCyWrapper,
-} from "../../config/selectors";
-import { InternalItemType } from "../../config/types";
-import { ZIPInternalItem } from "../fixtures/files";
-import { FileItemForTest } from "./types";
+} from '../../config/selectors';
+import { InternalItemType } from '../../config/types';
+import { ZIPInternalItem } from '../fixtures/files';
+import { FileItemForTest } from './types';
 
 export const createApp = (
   payload: AppItemType,
-  options?: { confirm?: boolean; custom?: boolean; id?: string }
+  options?: { confirm?: boolean; custom?: boolean; id?: string },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
   cy.get(`#${CREATE_ITEM_APP_ID}`).click();
@@ -34,7 +34,7 @@ export const createApp = (
 
 export const createDocument = (
   payload: DocumentItemType,
-  options?: { confirm?: boolean }
+  options?: { confirm?: boolean },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
   cy.get(`#${CREATE_ITEM_DOCUMENT_ID}`).click();
@@ -43,7 +43,7 @@ export const createDocument = (
 
 export const createFolder = (
   payload: { name?: string; description?: string },
-  options?: { confirm?: boolean }
+  options?: { confirm?: boolean },
 ): void => {
   cy.get(buildDataCyWrapper(ADD_FOLDER_BUTTON_CY)).click({ force: true });
   cy.fillFolderModal(payload, options);
@@ -51,7 +51,7 @@ export const createFolder = (
 
 export const createFile = (
   payload: FileItemForTest,
-  options?: { confirm?: boolean }
+  options?: { confirm?: boolean },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
   const { confirm = true } = options ?? {};
@@ -62,9 +62,9 @@ export const createFile = (
     cy.get(`#${DASHBOARD_UPLOADER_ID} .uppy-Dashboard-input`).first(),
     payload?.createFilepath,
     {
-      action: "drag-drop",
+      action: 'drag-drop',
       force: true,
-    }
+    },
   );
   if (confirm) {
     cy.get(`#${CREATE_ITEM_CLOSE_BUTTON_ID}`).click();
@@ -76,8 +76,8 @@ export const createItem = (
   payload:
     | DiscriminatedItem
     | ZIPInternalItem
-    | { type: "h5p"; filepath: string },
-  options?: { confirm?: boolean }
+    | { type: 'h5p'; filepath: string },
+  options?: { confirm?: boolean },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
 
@@ -94,9 +94,9 @@ export const createItem = (
         // @ts-ignore
         payload?.createFilepath,
         {
-          action: "drag-drop",
+          action: 'drag-drop',
           force: true,
-        }
+        },
       );
       if (confirm) {
         cy.get(`#${CREATE_ITEM_CLOSE_BUTTON_ID}`).click();
@@ -116,7 +116,7 @@ export const createItem = (
       // drag-drop a file in the uploader
       cy.attachFile(
         cy.get(`#${H5P_DASHBOARD_UPLOADER_ID}`),
-        (payload as { filepath: string })?.filepath
+        (payload as { filepath: string })?.filepath,
       );
       break;
     }

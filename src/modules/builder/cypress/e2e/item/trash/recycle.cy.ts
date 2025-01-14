@@ -1,11 +1,11 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_RECYCLE_BUTTON_CLASS,
   ITEM_RECYCLE_BUTTON_CLASS,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const recycleItem = (id: string) => {
   cy.get(buildItemsGridMoreButtonSelector(id)).click();
@@ -20,21 +20,21 @@ const recycleItems = () => {
   cy.get(`.${ITEM_RECYCLE_BUTTON_CLASS}`).click();
 };
 
-describe("Recycle Items", () => {
-  it("recycle item on Home", () => {
+describe('Recycle Items', () => {
+  it('recycle item on Home', () => {
     cy.setUpApi({ items });
     cy.visit(HOME_PATH);
 
     const { id } = items[0];
 
     recycleItem(id);
-    cy.wait("@recycleItems").then(({ request: { url } }) => {
+    cy.wait('@recycleItems').then(({ request: { url } }) => {
       expect(url).to.contain(id);
     });
-    cy.wait("@getAccessibleItems");
+    cy.wait('@getAccessibleItems');
   });
 
-  it("recycle item inside parent", () => {
+  it('recycle item inside parent', () => {
     cy.setUpApi({ items });
     const { id } = FOLDER;
     const { id: idToDelete } = CHILD;
@@ -44,12 +44,12 @@ describe("Recycle Items", () => {
 
     // delete
     recycleItem(idToDelete);
-    cy.wait("@recycleItems").then(({ request: { url } }) => {
+    cy.wait('@recycleItems').then(({ request: { url } }) => {
       expect(url).to.contain(idToDelete);
     });
   });
 
-  it("recycle many items from Home", () => {
+  it('recycle many items from Home', () => {
     const folders = [
       PackedFolderItemFactory(),
       PackedFolderItemFactory(),
@@ -59,7 +59,7 @@ describe("Recycle Items", () => {
       items: folders,
     });
 
-    cy.visit("/");
+    cy.visit('/');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
@@ -67,14 +67,14 @@ describe("Recycle Items", () => {
 
     recycleItems();
 
-    cy.wait("@recycleItems").then(({ request: { url } }) => {
+    cy.wait('@recycleItems').then(({ request: { url } }) => {
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
       });
     });
   });
 
-  it("recycle many items from folder", () => {
+  it('recycle many items from folder', () => {
     const parentItem = PackedFolderItemFactory();
     const folders = [
       PackedFolderItemFactory({ parentItem }),
@@ -94,7 +94,7 @@ describe("Recycle Items", () => {
 
     recycleItems();
 
-    cy.wait("@recycleItems").then(({ request: { url } }) => {
+    cy.wait('@recycleItems').then(({ request: { url } }) => {
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
       });

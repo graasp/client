@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Stack, styled, useTheme } from '@mui/material';
 
@@ -13,18 +13,20 @@ import {
   usePlatformNavigation,
 } from '@graasp/ui';
 
-import { HOST_MAP } from '@/config/externalPaths';
-import { useBuilderTranslation } from '@/config/i18n';
-import { hooks } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+import { Link, getRouteApi } from '@tanstack/react-router';
 
-import { HOME_PATH, ITEM_ID_PARAMS } from '../../config/paths';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS,
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_APP_BAR_ID,
-} from '../../config/selectors';
-import MemberValidationBanner from '../alerts/MemberValidationBanner';
+} from '@/config/selectors';
+
+import { HOST_MAP } from '~builder/config/externalPaths';
+
+import { HOME_PATH } from '../../config/paths';
+import { MemberValidationBanner } from '../alerts/MemberValidationBanner';
 import CookiesBanner from '../common/CookiesBanner';
 import UserSwitchWrapper from '../common/UserSwitchWrapper';
 import MainMenu from './MainMenu';
@@ -53,15 +55,17 @@ export const platformsHostsMap = defaultHostsMapper({
   [Platform.Analytics]: HOST_MAP.analytics,
 });
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
+
 type Props = { children: ReactNode };
 
-export const Main = ({ children }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+export function PageWrapper({ children }: Readonly<Props>): JSX.Element {
+  const { t } = useTranslation(NS.Builder);
   const theme = useTheme();
   const { isMobile } = useMobileView();
   const { data: currentMember } = hooks.useCurrentMember();
 
-  const itemId = useParams()[ITEM_ID_PARAMS];
+  const { itemId } = itemRoute.useParams();
 
   const getNavigationEvents = usePlatformNavigation(platformsHostsMap, itemId);
   const platformProps = {
@@ -101,7 +105,7 @@ export const Main = ({ children }: Props): JSX.Element => {
       }
       context={Context.Builder}
       headerId={HEADER_APP_BAR_ID}
-      drawerOpenAriaLabel={t(BUILDER.ARIA_OPEN_DRAWER)}
+      drawerOpenAriaLabel={t('ARIA_OPEN_DRAWER')}
       headerRightContent={rightContent}
       drawerContent={<MainMenu />}
       LinkComponent={LinkComponent}
@@ -120,6 +124,4 @@ export const Main = ({ children }: Props): JSX.Element => {
       {children}
     </GraaspMain>
   );
-};
-
-export default Main;
+}

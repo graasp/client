@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box, FormLabel, Typography } from '@mui/material';
 
 import TextEditor from '@graasp/ui/text-editor';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 export type DescriptionFormProps = {
   id?: string;
@@ -15,14 +16,14 @@ export function DescriptionForm({
   id,
   value = '',
   onChange,
-}: DescriptionFormProps): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
+}: Readonly<DescriptionFormProps>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Box>
       <FormLabel>
         <Typography variant="caption">
-          {translateBuilder(BUILDER.DESCRIPTION_LABEL)}
+          {translateBuilder('DESCRIPTION_LABEL')}
         </Typography>
       </FormLabel>
       <TextEditor

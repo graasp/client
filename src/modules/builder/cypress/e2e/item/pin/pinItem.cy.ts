@@ -1,12 +1,12 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_HEADER_ID,
   PIN_ITEM_BUTTON_CLASS,
   buildDownloadButtonId,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const togglePinButton = (itemId: string) => {
   cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
@@ -16,10 +16,10 @@ const togglePinButton = (itemId: string) => {
 const PINNED_ITEM = PackedFolderItemFactory({ settings: { isPinned: true } });
 const ITEM = PackedFolderItemFactory({ settings: { isPinned: false } });
 
-describe("Anonymous", () => {
+describe('Anonymous', () => {
   const PUBLIC_TTEM = PackedFolderItemFactory(
     { settings: { isPinned: false } },
-    { permission: null, publicVisibility: {} }
+    { permission: null, publicVisibility: {} },
   );
   const itemId = PUBLIC_TTEM.id;
   beforeEach(() => {
@@ -27,20 +27,20 @@ describe("Anonymous", () => {
     cy.visit(buildItemPath(itemId));
   });
   it("Can see item but can't pin", () => {
-    cy.get(`#${buildDownloadButtonId(itemId)}`).should("be.visible");
+    cy.get(`#${buildDownloadButtonId(itemId)}`).should('be.visible');
     cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).should(
-      "not.exist"
+      'not.exist',
     );
   });
 });
 
-describe("Pinning Item", () => {
+describe('Pinning Item', () => {
   beforeEach(() => {
     cy.setUpApi({ items: [PINNED_ITEM, ITEM] });
     cy.visit(HOME_PATH);
   });
 
-  it("Pin an item", () => {
+  it('Pin an item', () => {
     const item = ITEM;
 
     togglePinButton(item.id);
@@ -52,23 +52,23 @@ describe("Pinning Item", () => {
         },
       }) => {
         expect(settings.isPinned).to.equals(true);
-      }
+      },
     );
   });
 
-  it("Unpin Item", () => {
+  it('Unpin Item', () => {
     const item = PINNED_ITEM;
 
     togglePinButton(item.id);
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         request: {
           body: { settings },
         },
       }) => {
         expect(settings.isPinned).to.equals(false);
-      }
+      },
     );
   });
 });

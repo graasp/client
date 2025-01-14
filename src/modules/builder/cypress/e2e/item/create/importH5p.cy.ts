@@ -1,19 +1,19 @@
-import { ItemType, PackedFolderItemFactory } from "@graasp/sdk";
+import { ItemType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,
   H5P_DASHBOARD_UPLOADER_ID,
-} from "../../../../config/selectors";
-import { createItem } from "../../../support/createUtils";
+} from '../../../../config/selectors';
+import { createItem } from '../../../support/createUtils';
 
 const NEW_H5P_ITEM = {
-  filepath: "files/accordion.h5p",
+  filepath: 'files/accordion.h5p',
   type: ItemType.H5P,
 };
 
-describe("Import H5P", () => {
-  it("import h5p on Home", () => {
+describe('Import H5P', () => {
+  it('import h5p on Home', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
@@ -23,10 +23,10 @@ describe("Import H5P", () => {
 
     // check interface didn't crash
     cy.wait(2000);
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should("be.visible");
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
   });
 
-  it("import h5p in item", () => {
+  it('import h5p in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
 
@@ -37,7 +37,7 @@ describe("Import H5P", () => {
     // create
     createItem(NEW_H5P_ITEM);
 
-    cy.wait("@importH5p").then(({ request: { url } }) => {
+    cy.wait('@importH5p').then(({ request: { url } }) => {
       expect(url).to.contain(FOLDER.id);
       // add after child
       expect(url).to.contain(CHILD.id);
@@ -45,10 +45,10 @@ describe("Import H5P", () => {
 
     // check interface didn't crash
     cy.wait(3000);
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should("be.visible");
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
   });
 
-  it("catch error", () => {
+  it('catch error', () => {
     const FOLDER = PackedFolderItemFactory();
 
     cy.setUpApi({ items: [FOLDER], importH5pError: true });
@@ -60,6 +60,6 @@ describe("Import H5P", () => {
 
     // H5P Upload button is still visible
     cy.wait(3000);
-    cy.get(`#${H5P_DASHBOARD_UPLOADER_ID}`).should("be.visible");
+    cy.get(`#${H5P_DASHBOARD_UPLOADER_ID}`).should('be.visible');
   });
 });

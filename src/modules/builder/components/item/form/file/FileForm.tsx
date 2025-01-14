@@ -148,7 +148,7 @@ const FileForm = ({
             id={ITEM_FORM_CONFIRM_BUTTON_ID}
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </Box>

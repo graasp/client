@@ -2,26 +2,26 @@ import {
   ItemVisibilityType,
   PackedFolderItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
 import {
   HOME_PATH,
   buildItemPath,
   buildItemSettingsPath,
   buildItemSharePath,
-} from "../../../../config/paths";
+} from '../../../../config/paths';
 import {
   HIDDEN_ITEM_BUTTON_CLASS,
   SETTINGS_HIDE_ITEM_ID,
   buildHideButtonId,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
-import { MEMBERS } from "../../../fixtures/members";
-import { ItemForTest } from "../../../support/types";
+} from '../../../../config/selectors';
+import { MEMBERS } from '../../../fixtures/members';
+import { ItemForTest } from '../../../support/types';
 
 const hiddenItem = PackedFolderItemFactory(
   {},
-  { hiddenVisibility: { type: ItemVisibilityType.Hidden } }
+  { hiddenVisibility: { type: ItemVisibilityType.Hidden } },
 );
 const HIDDEN_ITEM: ItemForTest = {
   ...hiddenItem,
@@ -31,18 +31,18 @@ const HIDDEN_ITEM: ItemForTest = {
       permission: PermissionLevel.Admin,
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
-      id: "ecbfbd2a-5688-12db-ae93-0242ac130002",
-      createdAt: "2021-08-11T12:56:36.834Z",
-      updatedAt: "2021-08-11T12:56:36.834Z",
+      id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
+      createdAt: '2021-08-11T12:56:36.834Z',
+      updatedAt: '2021-08-11T12:56:36.834Z',
     },
     {
       item: hiddenItem,
       permission: PermissionLevel.Read,
       account: MEMBERS.BOB,
       creator: MEMBERS.ANNA,
-      id: "ecbfbd2a-5688-12db-ae93-0242ac130002",
-      createdAt: "2021-08-11T12:56:36.834Z",
-      updatedAt: "2021-08-11T12:56:36.834Z",
+      id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
+      createdAt: '2021-08-11T12:56:36.834Z',
+      updatedAt: '2021-08-11T12:56:36.834Z',
     },
   ],
 };
@@ -53,23 +53,23 @@ const ITEM = PackedFolderItemFactory(
   {},
   {
     permission: PermissionLevel.Admin,
-  }
+  },
 );
 
 const toggleHideButton = (itemId: string, isHidden = false) => {
   cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
 
   cy.get(`.${HIDDEN_ITEM_BUTTON_CLASS}`)
-    .should("have.attr", "data-cy", buildHideButtonId(isHidden))
+    .should('have.attr', 'data-cy', buildHideButtonId(isHidden))
     .click();
 };
 
-describe("Hide Item", () => {
+describe('Hide Item', () => {
   beforeEach(() => {
     cy.setUpApi({ items: [ITEM, HIDDEN_ITEM, CHILD_HIDDEN_ITEM] });
   });
 
-  it("Hide an item", () => {
+  it('Hide an item', () => {
     cy.visit(HOME_PATH);
 
     toggleHideButton(ITEM.id, false);
@@ -78,11 +78,11 @@ describe("Hide Item", () => {
       ({ request: { url } }) => {
         expect(url).to.contain(ItemVisibilityType.Hidden);
         expect(url).to.contain(ITEM.id);
-      }
+      },
     );
   });
 
-  it("Show an item", () => {
+  it('Show an item', () => {
     cy.visit(HOME_PATH);
     const item = HIDDEN_ITEM;
 
@@ -93,22 +93,22 @@ describe("Hide Item", () => {
       ({ request: { url } }) => {
         expect(url).to.contain(ItemVisibilityType.Hidden);
         expect(url).to.contain(item.id);
-      }
+      },
     );
   });
 
-  it("Cannot hide child of hidden item", () => {
+  it('Cannot hide child of hidden item', () => {
     cy.visit(buildItemPath(HIDDEN_ITEM.id));
     cy.get(buildItemsGridMoreButtonSelector(CHILD_HIDDEN_ITEM.id)).click();
     cy.get(`.${HIDDEN_ITEM_BUTTON_CLASS}`).should(($menuItem) => {
       const classList = Array.from($menuItem[0].classList);
-      // eslint-disable-next-line no-unused-expressions, @typescript-eslint/no-unused-expressions
-      expect(classList.some((c) => c.includes("disabled"))).to.be.true;
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(classList.some((c) => c.includes('disabled'))).to.be.true;
     });
   });
 
-  describe("Sharing tab", () => {
-    it("Hide an item", () => {
+  describe('Sharing tab', () => {
+    it('Hide an item', () => {
       cy.visit(buildItemSharePath(ITEM.id));
 
       cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).click();
@@ -117,10 +117,10 @@ describe("Hide Item", () => {
         ({ request: { url } }) => {
           expect(url).to.contain(ItemVisibilityType.Hidden);
           expect(url).to.contain(ITEM.id);
-        }
+        },
       );
     });
-    it("Show an item", () => {
+    it('Show an item', () => {
       cy.visit(buildItemSharePath(HIDDEN_ITEM.id));
 
       cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).click();
@@ -129,19 +129,19 @@ describe("Hide Item", () => {
         ({ request: { url } }) => {
           expect(url).to.contain(ItemVisibilityType.Hidden);
           expect(url).to.contain(HIDDEN_ITEM.id);
-        }
+        },
       );
     });
 
-    it("Cannot hide child of hidden item", () => {
+    it('Cannot hide child of hidden item', () => {
       cy.visit(buildItemSharePath(CHILD_HIDDEN_ITEM.id));
 
-      cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).should("be.disabled");
+      cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).should('be.disabled');
     });
   });
 
-  describe("Settings", () => {
-    it("Hide an item", () => {
+  describe('Settings', () => {
+    it('Hide an item', () => {
       cy.visit(buildItemSettingsPath(ITEM.id));
 
       cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).click();
@@ -150,10 +150,10 @@ describe("Hide Item", () => {
         ({ request: { url } }) => {
           expect(url).to.contain(ItemVisibilityType.Hidden);
           expect(url).to.contain(ITEM.id);
-        }
+        },
       );
     });
-    it("Show an item", () => {
+    it('Show an item', () => {
       cy.visit(buildItemSettingsPath(HIDDEN_ITEM.id));
 
       cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).click();
@@ -162,14 +162,14 @@ describe("Hide Item", () => {
         ({ request: { url } }) => {
           expect(url).to.contain(ItemVisibilityType.Hidden);
           expect(url).to.contain(HIDDEN_ITEM.id);
-        }
+        },
       );
     });
 
-    it("Cannot hide child of hidden item", () => {
+    it('Cannot hide child of hidden item', () => {
       cy.visit(buildItemSettingsPath(CHILD_HIDDEN_ITEM.id));
 
-      cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).should("be.disabled");
+      cy.get(`#${SETTINGS_HIDE_ITEM_ID}`).should('be.disabled');
     });
   });
 });

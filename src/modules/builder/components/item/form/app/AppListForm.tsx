@@ -1,5 +1,6 @@
 import { ChangeEventHandler, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -9,10 +10,11 @@ import {
   TextField,
 } from '@mui/material';
 
-import AppCard from '@/components/main/AppCard';
+import { NS } from '@/config/constants';
 import { CUSTOM_APP_CYPRESS_ID } from '@/config/selectors';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
+import AppCard from '~builder/components/main/AppCard';
+
 import { BUILDER } from '../../../../langs/constants';
 import addNewImage from '../../../../resources/addNew.png';
 import { ItemNameField } from '../ItemNameField';
@@ -20,10 +22,10 @@ import { AppGrid } from './AppGrid';
 
 function AppListForm({
   addCustomApp,
-}: {
+}: Readonly<{
   addCustomApp: () => void;
-}): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
+}>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const {
     formState: { errors },
@@ -41,6 +43,7 @@ function AppListForm({
         fullWidth
         placeholder={translateBuilder(BUILDER.CREATE_APP_SEARCH_FIELD_HELPER)}
         variant="outlined"
+        // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         size="small"
         onChange={searchAnApp}
@@ -71,7 +74,11 @@ function AppListForm({
           />
         </Grid>
       </Box>
-      <ItemNameField required autoFocus={false} />
+      <ItemNameField
+        required
+        // eslint-disable-next-line jsx-a11y/no-autofocus
+        autoFocus={false}
+      />
       {errors.url?.type === 'required' && (
         <Alert severity="error">
           {translateBuilder('You have to choose an app to add.')}

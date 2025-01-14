@@ -3,54 +3,54 @@ import {
   DocumentItemFactory,
   ItemType,
   PackedFolderItemFactory,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { ITEM_FORM_CONFIRM_BUTTON_ID } from "@/config/selectors";
+import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
-import { createDocument } from "../../../support/createUtils";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { createDocument } from '../../../support/createUtils';
 
-describe("Create Document", () => {
-  it("create document on Home", () => {
+describe('Create Document', () => {
+  it('create document on Home', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
     // create
     const document = DocumentItemFactory({
-      extra: { document: { content: "my content" } },
+      extra: { document: { content: 'my content' } },
     });
     createDocument(document);
 
-    cy.wait("@postItem").then(({ request: { body } }) => {
+    cy.wait('@postItem').then(({ request: { body } }) => {
       expect(body.extra.document.content).to.contain(
-        document.extra.document.content
+        document.extra.document.content,
       );
       // should update view
-      cy.wait("@getAccessibleItems");
+      cy.wait('@getAccessibleItems');
     });
   });
 
-  it("create html document on Home", () => {
+  it('create html document on Home', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
     // create
     const document = DocumentItemFactory({
-      extra: { document: { content: "my content", isRaw: true } },
+      extra: { document: { content: 'my content', isRaw: true } },
     });
     createDocument(document);
 
-    cy.wait("@postItem").then(({ request: { body } }) => {
+    cy.wait('@postItem').then(({ request: { body } }) => {
       expect(body.extra.document.isRaw).to.equal(true);
       expect(body.extra.document.content).to.equal(
-        document.extra.document.content
+        document.extra.document.content,
       );
       // should update view
-      cy.wait("@getAccessibleItems");
+      cy.wait('@getAccessibleItems');
     });
   });
 
-  it("create document in item", () => {
+  it('create document in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
     cy.setUpApi({ items: [FOLDER, CHILD] });
@@ -62,59 +62,59 @@ describe("Create Document", () => {
     // create
     createDocument(DocumentItemFactory());
 
-    cy.wait("@postItem").then(({ request: { url } }) => {
+    cy.wait('@postItem').then(({ request: { url } }) => {
       expect(url).to.contain(FOLDER.id);
       // add after child
       expect(url).to.contain(CHILD.id);
       // expect update
-      cy.wait("@getItem").its("response.url").should("contain", id);
+      cy.wait('@getItem').its('response.url').should('contain', id);
     });
   });
 
-  it("cannot create Document with blank name", () => {
+  it('cannot create Document with blank name', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
     createDocument(
       DocumentItemFactory({
-        name: "",
+        name: '',
         extra: {
           [ItemType.DOCUMENT]: {
-            content: "<h1>Some Title</h1>",
+            content: '<h1>Some Title</h1>',
           },
         },
       }),
-      { confirm: false }
+      { confirm: false },
     );
 
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should(
-      "have.prop",
-      "disabled",
-      true
+      'have.prop',
+      'disabled',
+      true,
     );
   });
 
-  it("create document with flavor", () => {
+  it('create document with flavor', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
     const documentToCreate = DocumentItemFactory({
-      name: "document",
+      name: 'document',
       extra: {
         [ItemType.DOCUMENT]: {
-          content: "<h1>Some Title</h1>",
+          content: '<h1>Some Title</h1>',
           flavor: DocumentItemExtraFlavor.Error,
         },
       },
     });
     createDocument(documentToCreate);
 
-    cy.wait("@postItem").then(({ request: { body } }) => {
+    cy.wait('@postItem').then(({ request: { body } }) => {
       expect(body.extra.document.flavor).to.eq(
-        documentToCreate.extra.document.flavor
+        documentToCreate.extra.document.flavor,
       );
-      expect(body.extra.document.content).to.contain("Some Title");
+      expect(body.extra.document.content).to.contain('Some Title');
     });
   });
 });

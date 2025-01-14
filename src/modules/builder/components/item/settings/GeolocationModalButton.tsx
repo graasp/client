@@ -142,7 +142,7 @@ export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
           <Button onClick={handleClose} variant="text">
             {commonT(COMMON.CANCEL_BUTTON)}
           </Button>
-          <Button onClick={onSave}>{commonT(COMMON.SAVE_BUTTON)}</Button>
+          <Button onClick={onSave}>{commonT('SAVE.BUTTON_TEXT')}</Button>
         </DialogActions>
       </Dialog>
     </>

@@ -1,18 +1,18 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from "../../../../config/paths";
+import { buildItemPath } from '../../../../config/paths';
 import {
   LANGUAGE_SELECTOR_ID,
   LIBRARY_SETTINGS_LANGUAGES_ID,
   buildDataCyWrapper,
   buildPublishAttrContainer,
   buildPublishButtonId,
-} from "../../../../config/selectors";
-import { PUBLISHED_ITEM } from "../../../fixtures/items";
-import { MEMBERS, SIGNED_OUT_MEMBER } from "../../../fixtures/members";
+} from '../../../../config/selectors';
+import { PUBLISHED_ITEM } from '../../../fixtures/items';
+import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 
 const LANGUAGE_CHIP_SELECTOR = `${buildDataCyWrapper(
-  buildPublishAttrContainer(LIBRARY_SETTINGS_LANGUAGES_ID)
+  buildPublishAttrContainer(LIBRARY_SETTINGS_LANGUAGES_ID),
 )} [role="button"]`;
 
 const openPublishItemTab = (id: string) =>
@@ -27,8 +27,8 @@ const openLanguageModal = () => {
   cy.get(LANGUAGE_CHIP_SELECTOR).click();
 };
 
-describe("Item with language", () => {
-  const item = PackedFolderItemFactory({ lang: "fr" });
+describe('Item with language', () => {
+  const item = PackedFolderItemFactory({ lang: 'fr' });
 
   beforeEach(() => {
     cy.setUpApi({ items: [item] });
@@ -36,29 +36,29 @@ describe("Item with language", () => {
     openPublishItemTab(item.id);
   });
 
-  it("Display item language", () => {
+  it('Display item language', () => {
     // check for displaying value
 
-    cy.get(LANGUAGE_CHIP_SELECTOR).contains("Français");
+    cy.get(LANGUAGE_CHIP_SELECTOR).contains('Français');
   });
 
-  it("Change language", () => {
+  it('Change language', () => {
     openLanguageModal();
-    toggleOption("es");
+    toggleOption('es');
 
-    cy.wait("@editItem").then((data) => {
+    cy.wait('@editItem').then((data) => {
       const {
         request: { url, body },
       } = data;
-      expect(url.split("/")).contains(item.id);
-      expect(body.lang).to.eq("es");
+      expect(url.split('/')).contains(item.id);
+      expect(body.lang).to.eq('es');
     });
   });
 });
 
 // users without permission will not see the sections
-describe("Languages permissions", () => {
-  it("User signed out cannot edit language level", () => {
+describe('Languages permissions', () => {
+  it('User signed out cannot edit language level', () => {
     const item = PUBLISHED_ITEM;
 
     cy.setUpApi({
@@ -68,10 +68,10 @@ describe("Languages permissions", () => {
     cy.visit(buildItemPath(item.id));
 
     // signed out user should not be able to see the publish button
-    cy.get(`#${buildPublishButtonId(item.id)}`).should("not.exist");
+    cy.get(`#${buildPublishButtonId(item.id)}`).should('not.exist');
   });
 
-  it("Read-only user cannot edit language level", () => {
+  it('Read-only user cannot edit language level', () => {
     const item = PUBLISHED_ITEM;
     cy.setUpApi({
       items: [item],
@@ -80,6 +80,6 @@ describe("Languages permissions", () => {
     cy.visit(buildItemPath(item.id));
 
     // signed out user should not be able to see the publish button
-    cy.get(`#${buildPublishButtonId(item.id)}`).should("not.exist");
+    cy.get(`#${buildPublishButtonId(item.id)}`).should('not.exist');
   });
 });

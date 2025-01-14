@@ -1,15 +1,14 @@
 import { MouseEvent, useState } from 'react';
-import { useMatch } from 'react-router';
 
 import { IconButton } from '@mui/material';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 
 import { useButtonColor } from '@graasp/ui';
 
+import { useMatch } from '@tanstack/react-router';
 import { LayoutGridIcon, ListIcon, MapIcon } from 'lucide-react';
 
-import { HOME_PATH, buildItemPath } from '@/config/paths';
+import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { LAYOUT_MODE_BUTTON_ID } from '@/config/selectors';
 
 import { ItemLayoutMode } from '../../../enums';
@@ -29,22 +28,21 @@ const ModeIcon = ({ mode }: { mode: ItemLayoutMode }) => {
 };
 
 const ModeButton = (): JSX.Element | null => {
-  const { mode, setMode } = useLayoutContext();
+  const { mode } = useLayoutContext();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-  const isHomePath = useMatch(HOME_PATH);
-  const isItemPath = useMatch(buildItemPath());
+
+  const isHomePath = useMatch({ from: '/builder', shouldThrow: false });
+  const isItemPath = useMatch({
+    from: '/builder/items/$itemId',
+    shouldThrow: false,
+  });
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleChange = (newMode: ItemLayoutMode) => {
-    setMode(newMode);
-    handleClose();
   };
 
   // show map only for home and path
@@ -60,13 +58,15 @@ const ModeButton = (): JSX.Element | null => {
       </IconButton>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {options.map((value) => (
-          <MenuItem
+          <MenuItemLink
             key={value}
-            onClick={() => handleChange(value)}
+            from="/builder"
+            search={{ mode: value }}
+            onClick={() => handleClose()}
             value={value}
           >
             <ModeIcon mode={value} />
-          </MenuItem>
+          </MenuItemLink>
         ))}
       </Menu>
     </>

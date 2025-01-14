@@ -1,24 +1,26 @@
 import { Dispatch } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ArrowBack } from '@mui/icons-material';
 import { DialogContent, Stack, TextField, Typography } from '@mui/material';
 
 import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { CUSTOM_APP_URL_ID } from '@/config/selectors';
-import { LINK_REGEX } from '@/utils/item';
+
+import { LINK_REGEX } from '~builder/utils/item';
 
 import { BUILDER } from '../../../../langs/constants';
 import { ItemNameField } from '../ItemNameField';
 
 export function CustomAppForm({
   setIsCustomApp,
-}: {
+}: Readonly<{
   setIsCustomApp: Dispatch<boolean>;
-}): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
+}>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const {
     reset,
     register,
@@ -45,6 +47,7 @@ export function CustomAppForm({
           id={CUSTOM_APP_URL_ID}
           fullWidth
           variant="standard"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           slotProps={{
             inputLabel: { shrink: true },
@@ -60,7 +63,11 @@ export function CustomAppForm({
             },
           })}
         />
-        <ItemNameField required autoFocus={false} />
+        <ItemNameField
+          required
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus={false}
+        />
       </Stack>
     </DialogContent>
   );

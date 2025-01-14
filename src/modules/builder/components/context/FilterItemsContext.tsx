@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 import { DiscriminatedItem } from '@graasp/sdk';
+
+import { useLocation } from '@tanstack/react-router';
 
 type ItemTypeConst = DiscriminatedItem['type'];
 type ItemTypes = ItemTypeConst[];

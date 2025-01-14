@@ -1,11 +1,11 @@
-import { PackedRecycledItemDataFactory } from "@graasp/sdk";
+import { PackedRecycledItemDataFactory } from '@graasp/sdk';
 
-import { RECYCLE_BIN_PATH } from "../../../../config/paths";
+import { RECYCLE_BIN_PATH } from '../../../../config/paths';
 import {
   RECYCLE_BIN_RESTORE_MANY_ITEMS_BUTTON_ID,
   RESTORE_ITEMS_BUTTON_CLASS,
   buildItemCard,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const restoreItem = (id: string) => {
   cy.get(`#${buildItemCard(id)} .${RESTORE_ITEMS_BUTTON_CLASS}`).click();
@@ -19,7 +19,7 @@ const recycledItemData = [
   PackedRecycledItemDataFactory(),
 ];
 
-describe("Restore Items", () => {
+describe('Restore Items', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: recycledItemData.map(({ item }) => item),
@@ -28,24 +28,24 @@ describe("Restore Items", () => {
     cy.visit(RECYCLE_BIN_PATH);
   });
 
-  it("restore one item", () => {
+  it('restore one item', () => {
     const { id } = recycledItemData[0].item;
 
     // restore
     restoreItem(id);
-    cy.wait("@restoreItems").then(({ request: { url } }) => {
+    cy.wait('@restoreItems').then(({ request: { url } }) => {
       expect(url).to.contain(id);
     });
   });
 
-  it("restore many items", () => {
+  it('restore many items', () => {
     recycledItemData.forEach(({ item }) => {
       cy.selectItem(item.id);
     });
 
     restoreItems();
 
-    cy.wait("@restoreItems").then(({ request: { url } }) => {
+    cy.wait('@restoreItems').then(({ request: { url } }) => {
       recycledItemData.forEach(({ item }) => {
         expect(url).to.contain(item.id);
       });

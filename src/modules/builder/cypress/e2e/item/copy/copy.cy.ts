@@ -1,15 +1,15 @@
 import {
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   COPY_MANY_ITEMS_BUTTON_SELECTOR,
   ITEM_MENU_COPY_BUTTON_CLASS,
   buildItemCard,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const copyItems = ({
   toItemPath,
@@ -43,22 +43,22 @@ const FOLDER2 = PackedFolderItemFactory();
 
 const items = [IMAGE_ITEM, FOLDER, FOLDER2, IMAGE_ITEM_CHILD];
 
-describe("Copy Item", () => {
-  it("copy item on Home", () => {
+describe('Copy Item', () => {
+  it('copy item on Home', () => {
     cy.setUpApi({ items });
     cy.visit(HOME_PATH);
 
     // copy
     const { id: copyItemId } = FOLDER;
-    copyItem({ id: copyItemId, toItemPath: "" });
+    copyItem({ id: copyItemId, toItemPath: '' });
 
-    cy.wait("@copyItems").then(({ request: { url } }) => {
-      cy.get(`#${buildItemCard(copyItemId)}`).should("be.visible");
+    cy.wait('@copyItems').then(({ request: { url } }) => {
+      cy.get(`#${buildItemCard(copyItemId)}`).should('be.visible');
       expect(url).to.contain(copyItemId);
     });
   });
 
-  it("copy item in item", () => {
+  it('copy item in item', () => {
     cy.setUpApi({ items });
     const { id } = FOLDER;
 
@@ -70,14 +70,14 @@ describe("Copy Item", () => {
     const { id: toItemId, path: toItemPath } = FOLDER2;
     copyItem({ id: copyItemId, toItemPath });
 
-    cy.wait("@copyItems").then(({ request: { url, body } }) => {
-      cy.get(`#${buildItemCard(copyItemId)}`).should("exist");
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
+      cy.get(`#${buildItemCard(copyItemId)}`).should('exist');
       expect(url).to.contain(copyItemId);
       expect(body.parentId).to.equal(toItemId);
     });
   });
 
-  it("copy item to Home", () => {
+  it('copy item to Home', () => {
     cy.setUpApi({ items });
 
     // go to children item
@@ -85,15 +85,15 @@ describe("Copy Item", () => {
 
     // copy
     const { id } = IMAGE_ITEM_CHILD;
-    copyItem({ id, toItemPath: "" });
+    copyItem({ id, toItemPath: '' });
 
-    cy.wait("@copyItems").then(({ request: { url } }) => {
-      cy.get(`#${buildItemCard(id)}`).should("exist");
+    cy.wait('@copyItems').then(({ request: { url } }) => {
+      cy.get(`#${buildItemCard(id)}`).should('exist');
       expect(url).to.contain(id);
     });
   });
 
-  it("copy many items on Home", () => {
+  it('copy many items on Home', () => {
     const folders = [
       PackedFolderItemFactory(),
       PackedFolderItemFactory(),
@@ -104,23 +104,23 @@ describe("Copy Item", () => {
     });
 
     // go to children item
-    cy.visit("/");
+    cy.visit('/');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
     });
 
     // copy on home
-    copyItems({ toItemPath: "" });
+    copyItems({ toItemPath: '' });
 
-    cy.wait("@copyItems").then(({ request: { url } }) => {
+    cy.wait('@copyItems').then(({ request: { url } }) => {
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
       });
     });
   });
 
-  it("copy many items from Home to folder", () => {
+  it('copy many items from Home to folder', () => {
     const folders = [
       PackedFolderItemFactory(),
       PackedFolderItemFactory(),
@@ -132,7 +132,7 @@ describe("Copy Item", () => {
     });
 
     // go to children item
-    cy.visit("/");
+    cy.visit('/');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
@@ -140,7 +140,7 @@ describe("Copy Item", () => {
     // copy on home
     copyItems({ toItemPath: toItem.path });
 
-    cy.wait("@copyItems").then(({ request: { url, body } }) => {
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
       expect(body.parentId).to.eq(toItem.id);
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
@@ -148,7 +148,7 @@ describe("Copy Item", () => {
     });
   });
 
-  it("copy many items from folder to folder", () => {
+  it('copy many items from folder to folder', () => {
     const parentItem = PackedFolderItemFactory();
     const folders = [
       PackedFolderItemFactory({ parentItem }),
@@ -170,7 +170,7 @@ describe("Copy Item", () => {
     // copy on home
     copyItems({ toItemPath: toItem.path });
 
-    cy.wait("@copyItems").then(({ request: { url, body } }) => {
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
       expect(body.parentId).to.eq(toItem.id);
       folders.forEach((item) => {
         expect(url).to.contain(item.id);

@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
-import { MainMenu as GraaspMainMenu, MenuItem } from '@graasp/ui';
+import { MainMenu as GraaspMainMenu } from '@graasp/ui';
 
 import {
   BookOpenTextIcon,
@@ -20,20 +20,15 @@ import {
   TrashIcon,
 } from 'lucide-react';
 
+import { MainMenuItem } from '@/components/ui/MainMenuItem';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 
 import { TUTORIALS_LINK } from '../../config/constants';
-import { useBuilderTranslation } from '../../config/i18n';
-import {
-  BOOKMARKED_ITEMS_PATH,
-  HOME_PATH,
-  PUBLISHED_ITEMS_PATH,
-  RECYCLE_BIN_PATH,
-} from '../../config/paths';
 import { BUILDER } from '../../langs/constants';
 
 const ResourceLinks = () => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   return (
     <ListItem disablePadding>
       <ListItemButton
@@ -51,14 +46,8 @@ const ResourceLinks = () => {
 };
 
 const MainMenu = (): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const { t } = useTranslation(NS.Builder);
   const { data: member } = hooks.useCurrentMember();
-
-  const goTo = (path: string) => {
-    navigate(path);
-  };
 
   if (!member || !member.id) {
     return null;
@@ -67,24 +56,21 @@ const MainMenu = (): JSX.Element | null => {
   const individualMenuItems =
     member.type === AccountType.Individual ? (
       <>
-        <MenuItem
+        <MainMenuItem
           dataUmamiEvent="sidebar-bookmarks"
-          onClick={() => goTo(BOOKMARKED_ITEMS_PATH)}
-          selected={pathname === BOOKMARKED_ITEMS_PATH}
+          to="/builder/bookmarks"
           text={t(BUILDER.BOOKMARKED_ITEMS_TITLE)}
           icon={<BookmarkIcon />}
         />
-        <MenuItem
+        <MainMenuItem
           dataUmamiEvent="sidebar-published"
-          onClick={() => goTo(PUBLISHED_ITEMS_PATH)}
-          selected={pathname === PUBLISHED_ITEMS_PATH}
+          to="/builder/published"
           text={t(BUILDER.NAVIGATION_PUBLISHED_ITEMS_TITLE)}
           icon={<LibraryBigIcon />}
         />
-        <MenuItem
+        <MainMenuItem
           dataUmamiEvent="sidebar-trash"
-          onClick={() => goTo(RECYCLE_BIN_PATH)}
-          selected={pathname === RECYCLE_BIN_PATH}
+          to="/builder/recycled"
           text={t(BUILDER.RECYCLE_BIN_TITLE)}
           icon={<TrashIcon />}
         />
@@ -95,10 +81,9 @@ const MainMenu = (): JSX.Element | null => {
     <GraaspMainMenu fullHeight>
       <Stack direction="column" height="100%" justifyContent="space-between">
         <Box>
-          <MenuItem
+          <MainMenuItem
             dataUmamiEvent="sidebar-home"
-            onClick={() => goTo(HOME_PATH)}
-            selected={pathname === HOME_PATH}
+            to="/builder"
             icon={<HomeIcon />}
             text={t(BUILDER.MY_ITEMS_TITLE)}
           />

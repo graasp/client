@@ -1,24 +1,24 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID,
-} from "../../../../config/selectors";
-import { createFolder } from "../../../support/createUtils";
+} from '../../../../config/selectors';
+import { createFolder } from '../../../support/createUtils';
 
-describe("Create Folder", () => {
-  it("create folder on Home", () => {
+describe('Create Folder', () => {
+  it('create folder on Home', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
     // create
-    createFolder({ name: "created item" });
+    createFolder({ name: 'created item' });
 
-    cy.wait(["@postItem", "@getAccessibleItems"]);
+    cy.wait(['@postItem', '@getAccessibleItems']);
   });
 
-  it("create folder in item", () => {
+  it('create folder in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
     cy.setUpApi({ items: [FOLDER, CHILD] });
@@ -28,34 +28,34 @@ describe("Create Folder", () => {
     cy.visit(buildItemPath(id));
 
     // create
-    createFolder({ name: "created item" });
+    createFolder({ name: 'created item' });
 
-    cy.wait("@postItem").then(({ request: { url } }) => {
+    cy.wait('@postItem').then(({ request: { url } }) => {
       expect(url).to.contain(FOLDER.id);
       // add after child
       expect(url).to.contain(CHILD.id);
     });
   });
 
-  it("cannot create folder with blank name in item", () => {
+  it('cannot create folder with blank name in item', () => {
     // create
     cy.setUpApi();
     cy.visit(HOME_PATH);
-    createFolder({ name: " " }, { confirm: false });
+    createFolder({ name: ' ' }, { confirm: false });
 
     // button is not disabled at beginning
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should("be.disabled");
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
   });
 
-  it("description placement should not exist for folder", () => {
+  it('description placement should not exist for folder', () => {
     // create
     cy.setUpApi();
     cy.visit(HOME_PATH);
-    createFolder({ name: " " }, { confirm: false });
+    createFolder({ name: ' ' }, { confirm: false });
 
     cy.get(`#${ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID}`).should(
-      "not.exist"
+      'not.exist',
     );
   });
 });

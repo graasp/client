@@ -3,45 +3,45 @@ import {
   PackedFolderItemFactory,
   buildDocumentExtra,
   getDocumentExtra,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_MODAL_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   TEXT_EDITOR_CLASS,
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 import {
   CAPTION_EDIT_PAUSE,
   EDIT_ITEM_PAUSE,
-} from "../../../support/constants";
-import { editItem } from "../../../support/editUtils";
+} from '../../../support/constants';
+import { editItem } from '../../../support/editUtils';
 
-const content = "new text";
+const content = 'new text';
 const newFields = {
-  name: "new name",
+  name: 'new name',
   extra: buildDocumentExtra({ content }),
 };
 
 const GRAASP_DOCUMENT_ITEM = PackedDocumentItemFactory({
-  name: "graasp text",
+  name: 'graasp text',
   extra: buildDocumentExtra({
-    content: "<h1>Some Title</h1>",
+    content: '<h1>Some Title</h1>',
   }),
 });
 const GRAASP_FOLDER_PARENT = PackedFolderItemFactory();
 const GRAASP_DOCUMENT_ITEM_CHILD = PackedDocumentItemFactory({
-  name: "graasp text",
+  name: 'graasp text',
   extra: buildDocumentExtra({
-    content: "<h1>Some Title</h1>",
+    content: '<h1>Some Title</h1>',
   }),
   parentItem: GRAASP_FOLDER_PARENT,
 });
 
-describe("Edit Document", () => {
-  it("edit on Home", () => {
+describe('Edit Document', () => {
+  it('edit on Home', () => {
     cy.setUpApi({ items: [GRAASP_DOCUMENT_ITEM] });
     cy.visit(HOME_PATH);
 
@@ -54,7 +54,7 @@ describe("Edit Document", () => {
       ...newFields,
     });
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         response: {
           body: { id, name, extra },
@@ -65,12 +65,12 @@ describe("Edit Document", () => {
         expect(name).to.equal(newFields.name);
         expect(getDocumentExtra(extra)?.content).to.contain(content);
         cy.wait(EDIT_ITEM_PAUSE);
-        cy.wait("@getAccessibleItems");
-      }
+        cy.wait('@getAccessibleItems');
+      },
     );
   });
 
-  it("edit in folder", () => {
+  it('edit in folder', () => {
     const parent = GRAASP_FOLDER_PARENT;
     const itemToEdit = GRAASP_DOCUMENT_ITEM_CHILD;
     cy.setUpApi({ items: [parent, itemToEdit] });
@@ -84,10 +84,10 @@ describe("Edit Document", () => {
         ...itemToEdit,
         ...newFields,
       },
-      "ul"
+      'ul',
     );
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         response: {
           body: { id, name, extra },
@@ -98,22 +98,22 @@ describe("Edit Document", () => {
         expect(id).to.equal(itemToEdit.id);
         expect(name).to.equal(newFields.name);
         expect(getDocumentExtra(extra)?.content).to.contain(content);
-        cy.get("@getItem").its("response.url").should("contain", parent.id);
-      }
+        cy.get('@getItem').its('response.url').should('contain', parent.id);
+      },
     );
   });
 
-  describe("View Page", () => {
-    it("edit text", () => {
+  describe('View Page', () => {
+    it('edit text', () => {
       const { id } = GRAASP_DOCUMENT_ITEM;
       cy.setUpApi({ items: [GRAASP_DOCUMENT_ITEM] });
       cy.visit(buildItemPath(id));
 
-      const caption = "new text";
+      const caption = 'new text';
       cy.wait(CAPTION_EDIT_PAUSE);
       cy.get(`#${buildEditButtonId(id)}`).click();
       cy.get(`#${EDIT_MODAL_ID} .${TEXT_EDITOR_CLASS}`).type(
-        `{selectall}${caption}`
+        `{selectall}${caption}`,
       );
       cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
 

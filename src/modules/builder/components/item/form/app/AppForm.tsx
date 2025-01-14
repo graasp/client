@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogTitle, Stack } from '@mui/material';
 
@@ -9,18 +10,14 @@ import {
   ItemType,
   buildAppExtra,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../../config/i18n';
-import { mutations } from '../../../../config/queryClient';
+import CancelButton from '~builder/components/common/CancelButton';
+
 import AppListForm from './AppListForm';
 import { CustomAppForm } from './CustomAppForm';
 
@@ -42,8 +39,8 @@ const AppForm = ({
   previousItemId,
   onClose,
 }: Props): JSX.Element => {
-  const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const [isCustomApp, setIsCustomApp] = useState<boolean>(false);
 
@@ -84,7 +81,7 @@ const AppForm = ({
       <Box component="form" height="100%" onSubmit={handleSubmit(onSubmit)}>
         <Stack height="100%">
           <DialogTitle>
-            {translateBuilder(BUILDER.CREATE_NEW_ITEM_APP_TITLE)}
+            {translateBuilder('CREATE_NEW_ITEM_APP_TITLE')}
           </DialogTitle>
           <Stack height="100%" justifyContent="space-between">
             <Stack>
@@ -101,7 +98,7 @@ const AppForm = ({
                 type="submit"
                 disabled={isSubmitted && !isValid}
               >
-                {translateCommon(COMMON.SAVE_BUTTON)}
+                {translateCommon('SAVE.BUTTON_TEXT')}
               </Button>
             </DialogActions>
           </Stack>

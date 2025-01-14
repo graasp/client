@@ -1,4 +1,4 @@
-import { DiscriminatedItem, getAppExtra, getDocumentExtra } from "@graasp/sdk";
+import { DiscriminatedItem, getAppExtra, getDocumentExtra } from '@graasp/sdk';
 
 import {
   CUSTOM_APP_CYPRESS_ID,
@@ -23,17 +23,17 @@ import {
   buildNavigationModalItemId,
   buildPermissionOptionId,
   buildTreeItemId,
-} from "../../../config/selectors";
-import { getParentsIdsFromPath } from "../../../utils/item";
+} from '../../../config/selectors';
+import { getParentsIdsFromPath } from '../../../utils/item';
 import {
   APP_NAME,
   CUSTOM_APP_URL,
   NEW_APP_NAME,
-} from "../../fixtures/apps/apps";
+} from '../../fixtures/apps/apps';
 
 Cypress.Commands.add(
-  "fillShareForm",
-  ({ email, permission, submit = true, selector = "" }) => {
+  'fillShareForm',
+  ({ email, permission, submit = true, selector = '' }) => {
     cy.get(buildDataCyWrapper(SHARE_BUTTON_SELECTOR)).click();
 
     // select permission
@@ -46,21 +46,21 @@ Cypress.Commands.add(
     if (submit) {
       cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).click();
     }
-  }
+  },
 );
 
-Cypress.Commands.add("clickTreeMenuItem", (value: string) => {
+Cypress.Commands.add('clickTreeMenuItem', (value: string) => {
   // cy.wrap(tree)
   cy.get(`#${buildNavigationModalItemId(value)}`)
     .get(`#${buildItemRowArrowId(value)}`)
     .first()
     // hack to show button - cannot trigger with cypress
-    .invoke("attr", "style", "visibility: visible")
+    .invoke('attr', 'style', 'visibility: visible')
     .click();
 });
 
 Cypress.Commands.add(
-  "handleTreeMenu",
+  'handleTreeMenu',
   (toItemPath, treeRootId = HOME_MODAL_ITEM_ID) => {
     const ids =
       toItemPath === MY_GRAASP_ITEM_PATH
@@ -87,39 +87,39 @@ Cypress.Commands.add(
     });
 
     cy.get(`#${TREE_MODAL_CONFIRM_BUTTON_ID}`).click();
-  }
+  },
 );
 
 Cypress.Commands.add(
-  "fillBaseItemModal",
-  ({ name = "" }, { confirm = true } = {}) => {
+  'fillBaseItemModal',
+  ({ name = '' }, { confirm = true } = {}) => {
     // first select all the text and then remove it to have a clear field, then type new text
     cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).type(`{selectall}{backspace}${name}`);
 
     if (confirm) {
       cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     }
-  }
+  },
 );
 
 Cypress.Commands.add(
-  "fillFolderModal",
-  ({ name = "", description = "" }, { confirm = true } = {}) => {
+  'fillFolderModal',
+  ({ name = '', description = '' }, { confirm = true } = {}) => {
     cy.fillBaseItemModal({ name }, { confirm: false });
     // first select all the text and then remove it to have a clear field, then type new description
     cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}`).type(
-      `{selectall}{backspace}${description}`
+      `{selectall}{backspace}${description}`,
     );
 
     if (confirm) {
       cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     }
-  }
+  },
 );
 
 Cypress.Commands.add(
-  "fillDocumentModal",
-  ({ name = "", extra }, { confirm = true } = {}) => {
+  'fillDocumentModal',
+  ({ name = '', extra }, { confirm = true } = {}) => {
     cy.fillBaseItemModal({ name }, { confirm: false });
 
     if (extra.document.flavor) {
@@ -141,14 +141,14 @@ Cypress.Commands.add(
     if (confirm) {
       cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).scrollIntoView().click();
     }
-  }
+  },
 );
 
 Cypress.Commands.add(
-  "fillAppModal",
+  'fillAppModal',
   (
-    { name = "", extra },
-    { confirm = true, id, type = false, custom = false } = {}
+    { name = '', extra },
+    { confirm = true, id, type = false, custom = false } = {},
   ) => {
     cy.fillBaseItemModal({ name }, { confirm: false });
 
@@ -162,51 +162,50 @@ Cypress.Commands.add(
     } else {
       cy.get(`#${buildItemFormAppOptionId(id)}`).click();
       // check name get added automatically
-      cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).should("have.value", APP_NAME);
+      cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).should('have.value', APP_NAME);
       // edit the app name
       cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`)
         .type(`{selectall}{backspace}${NEW_APP_NAME}`)
-        .should("have.value", NEW_APP_NAME);
+        .should('have.value', NEW_APP_NAME);
     }
 
     if (confirm) {
       cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     }
-  }
+  },
 );
 
 // This command was based on a solution found on github
 // https://github.com/cypress-io/cypress/issues/3942#issuecomment-485648100
-Cypress.Commands.add("dragAndDrop", (subject, x, y) => {
+Cypress.Commands.add('dragAndDrop', (subject, x, y) => {
   cy.get(subject)
     .first()
-    // eslint-disable-next-line no-shadow
     .then((target) => {
       const coordsDrag = target[0].getBoundingClientRect();
       cy.wrap(target)
-        .trigger("mousedown", {
+        .trigger('mousedown', {
           button: 0,
           clientX: coordsDrag.x,
           clientY: coordsDrag.y,
           force: true,
         })
-        .trigger("mousemove", {
+        .trigger('mousemove', {
           button: 0,
           clientX: coordsDrag.x + 10,
           clientY: coordsDrag.y,
           force: true,
         });
-      cy.get("body")
-        .trigger("mousemove", {
+      cy.get('body')
+        .trigger('mousemove', {
           button: 0,
           clientX: coordsDrag.x + x,
           clientY: coordsDrag.y + y,
           force: true,
         })
-        .trigger("mouseup");
+        .trigger('mouseup');
     });
 });
 
-Cypress.Commands.add("selectItem", (id: DiscriminatedItem["id"]) => {
+Cypress.Commands.add('selectItem', (id: DiscriminatedItem['id']) => {
   cy.get(buildFolderItemCardThumbnail(id)).click();
 });

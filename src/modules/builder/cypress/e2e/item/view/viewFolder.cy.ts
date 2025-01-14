@@ -3,11 +3,11 @@ import {
   ItemLoginSchemaFactory,
   PackedFolderItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { SortingOptionsForFolder } from "../../../../components/table/types";
-import i18n from "../../../../config/i18n";
-import { buildItemPath } from "../../../../config/paths";
+import { SortingOptionsForFolder } from '../../../../components/table/types';
+import i18n from '../../../../config/i18n';
+import { buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_HEADER_ID,
@@ -22,10 +22,10 @@ import {
   buildItemCard,
   buildItemsTableId,
   buildMapViewId,
-} from "../../../../config/selectors";
-import { ItemLayoutMode } from "../../../../enums";
-import { CURRENT_USER } from "../../../fixtures/members";
-import { expectFolderViewScreenLayout } from "../../../support/viewUtils";
+} from '../../../../config/selectors';
+import { ItemLayoutMode } from '../../../../enums';
+import { CURRENT_USER } from '../../../fixtures/members';
+import { expectFolderViewScreenLayout } from '../../../support/viewUtils';
 
 const parentItem = PackedFolderItemFactory();
 const item1 = PackedFolderItemFactory();
@@ -37,11 +37,11 @@ const child4 = PackedFolderItemFactory({ parentItem });
 const children = [child1, child2, child3, child4];
 
 const items = [parentItem, item1, ...children];
-describe("View folder as guest", () => {
-  it("Show limited features", () => {
+describe('View folder as guest', () => {
+  it('Show limited features', () => {
     const item = PackedFolderItemFactory(
       {},
-      { permission: PermissionLevel.Read }
+      { permission: PermissionLevel.Read },
     );
     const guest = GuestFactory({
       itemLoginSchema: ItemLoginSchemaFactory({
@@ -55,20 +55,20 @@ describe("View folder as guest", () => {
     cy.visit(buildItemPath(item.id));
 
     // no add button
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should("not.exist");
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
 
     // menu item only contains flag
     cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).click();
-    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should("be.visible");
-    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should("not.exist");
+    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('not.exist');
   });
 });
 
-describe("View folder as reader", () => {
-  it("Show limited features", () => {
+describe('View folder as reader', () => {
+  it('Show limited features', () => {
     const item = PackedFolderItemFactory(
       {},
-      { permission: PermissionLevel.Read }
+      { permission: PermissionLevel.Read },
     );
     cy.setUpApi({
       items: [item],
@@ -76,17 +76,17 @@ describe("View folder as reader", () => {
     cy.visit(buildItemPath(item.id));
 
     // no add button
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should("not.exist");
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
 
     // menu item contains flag, duplicate, shortcut, bookmark
     cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).click();
-    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should("be.visible");
-    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should("be.visible");
-    cy.get(`.${ITEM_MENU_BOOKMARK_BUTTON_CLASS}`).should("be.visible");
+    cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('be.visible');
+    cy.get(`.${ITEM_MENU_BOOKMARK_BUTTON_CLASS}`).should('be.visible');
   });
 });
 
-describe("view Folder as admin", () => {
+describe('view Folder as admin', () => {
   beforeEach(() => {
     cy.setUpApi({
       items,
@@ -94,7 +94,7 @@ describe("view Folder as admin", () => {
     i18n.changeLanguage(CURRENT_USER.extra.lang as string);
   });
 
-  it("View folder on map by default", () => {
+  it('View folder on map by default', () => {
     cy.setUpApi({
       items,
     });
@@ -102,9 +102,9 @@ describe("view Folder as admin", () => {
     const { id } = parentItem;
     cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Map }));
 
-    cy.get(`#${buildMapViewId(id)}`, { timeout: 10000 }).should("be.visible");
+    cy.get(`#${buildMapViewId(id)}`, { timeout: 10000 }).should('be.visible');
   });
-  it("View empty folder", () => {
+  it('View empty folder', () => {
     cy.setUpApi({
       items: [parentItem],
     });
@@ -112,22 +112,22 @@ describe("view Folder as admin", () => {
     const { id } = parentItem;
     cy.visit(buildItemPath(id));
 
-    cy.get(`[role="dropzone"]`).should("be.visible");
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should("be.visible");
+    cy.get(`[role="dropzone"]`).should('be.visible');
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
   });
 
-  it("visit item by id", () => {
+  it('visit item by id', () => {
     const { id } = parentItem;
     cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Grid }));
 
     // should get current item
-    cy.wait("@getItem");
+    cy.wait('@getItem');
 
     // should get children
-    cy.wait("@getChildren").then(() => {
+    cy.wait('@getChildren').then(() => {
       // check all children are created and displayed
       for (const item of children) {
-        cy.get(`#${buildItemCard(item.id)}`).should("exist");
+        cy.get(`#${buildItemCard(item.id)}`).should('exist');
       }
     });
     expectFolderViewScreenLayout({ item: parentItem });
@@ -136,45 +136,45 @@ describe("view Folder as admin", () => {
     cy.get(`#${NAVIGATION_HOME_ID}`).click();
 
     // should get accessible items
-    cy.wait("@getAccessibleItems").then(({ response: { body } }) => {
+    cy.wait('@getAccessibleItems').then(({ response: { body } }) => {
       // check item is created and displayed
       for (const item of body.data) {
-        cy.get(`#${buildItemCard(item.id)}`).should("exist");
+        cy.get(`#${buildItemCard(item.id)}`).should('exist');
       }
     });
   });
 
-  it("search", () => {
+  it('search', () => {
     const { id } = parentItem;
     const searchText = child1.name;
     cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Grid }));
     // initial call in the page
-    cy.wait(["@getChildren", "@getChildren"]);
+    cy.wait(['@getChildren', '@getChildren']);
 
-    cy.get(`#${buildItemCard(child1.id)}`).should("be.visible");
+    cy.get(`#${buildItemCard(child1.id)}`).should('be.visible');
 
     cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
 
-    cy.wait("@getChildren").then(({ request: { query } }) => {
+    cy.wait('@getChildren').then(({ request: { query } }) => {
       expect(
         (query.keywords as unknown as string[]).every((k) =>
-          searchText.includes(k)
-        )
+          searchText.includes(k),
+        ),
       ).equal(true);
     });
 
-    cy.get(`#${buildItemCard(child1.id)}`).should("be.visible");
+    cy.get(`#${buildItemCard(child1.id)}`).should('be.visible');
   });
 
-  it("Sorting & Ordering", () => {
+  it('Sorting & Ordering', () => {
     const { id } = parentItem;
     cy.visit(buildItemPath(id));
 
     cy.get(`${SORTING_SELECT_SELECTOR} input`).should(
-      "have.value",
-      SortingOptionsForFolder.Order
+      'have.value',
+      SortingOptionsForFolder.Order,
     );
-    cy.get(SORTING_ORDERING_SELECTOR_ASC).should("be.visible");
+    cy.get(SORTING_ORDERING_SELECTOR_ASC).should('be.visible');
 
     cy.get(SORTING_SELECT_SELECTOR).click();
     cy.get('li[data-value="item.name"]').click();
@@ -189,7 +189,7 @@ describe("view Folder as admin", () => {
 
     // change ordering
     cy.get(SORTING_ORDERING_SELECTOR_ASC).click();
-    cy.get(SORTING_ORDERING_SELECTOR_DESC).should("be.visible");
+    cy.get(SORTING_ORDERING_SELECTOR_DESC).should('be.visible');
     cy.get(`#${buildItemsTableId(parentItem.id)} h5`).then(($e) => {
       children.reverse();
       for (let idx = 0; idx < children.length; idx += 1) {
@@ -199,7 +199,7 @@ describe("view Folder as admin", () => {
   });
 });
 
-describe("Folder Layout mode", () => {
+describe('Folder Layout mode', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: [parentItem, child1],
@@ -207,7 +207,7 @@ describe("Folder Layout mode", () => {
     cy.visit(buildItemPath(parentItem.id));
   });
 
-  it("list", () => {
+  it('list', () => {
     // default mode is list
     cy.get(`#${buildItemCard(child1.id)}`);
 
@@ -219,20 +219,20 @@ describe("Folder Layout mode", () => {
     cy.get(`#${buildItemCard(child1.id)}`);
   });
 
-  it("grid", () => {
+  it('grid', () => {
     cy.switchMode(ItemLayoutMode.Grid);
     cy.get(`#${buildItemCard(child1.id)}`);
   });
 
-  it("map", () => {
+  it('map', () => {
     cy.switchMode(ItemLayoutMode.Map);
     cy.get(`#${buildMapViewId(parentItem.id)}`, { timeout: 10000 }).should(
-      "be.visible"
+      'be.visible',
     );
   });
 });
 
-it("visit Home on map by default", () => {
+it('visit Home on map by default', () => {
   cy.setUpApi({
     items: [parentItem, child1],
   });
@@ -240,6 +240,6 @@ it("visit Home on map by default", () => {
   cy.visit(buildItemPath(parentItem.id, { mode: ItemLayoutMode.Map }));
 
   cy.get(`#${buildMapViewId(parentItem.id)}`, { timeout: 10000 }).should(
-    "be.visible"
+    'be.visible',
   );
 });

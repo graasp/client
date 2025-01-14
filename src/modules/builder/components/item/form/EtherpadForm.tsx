@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -9,17 +10,14 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
 
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../config/i18n';
-import { ITEM_FORM_CONFIRM_BUTTON_ID } from '../../../config/selectors';
+import { CancelButton } from '~builder/components/common/CancelButton';
+
 import { BUILDER } from '../../../langs/constants';
 import { ItemNameField } from './ItemNameField';
 
@@ -28,13 +26,13 @@ type Inputs = { name: string };
 export function EtherpadForm({
   parentId,
   onClose,
-}: {
+}: Readonly<{
   parentId?: DiscriminatedItem['id'];
   onClose: () => void;
-}): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
+}>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutateAsync: postEtherpad } = mutations.usePostEtherpad();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
 
   const methods = useForm<Inputs>();
   const {
@@ -66,7 +64,7 @@ export function EtherpadForm({
             type="submit"
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </Box>

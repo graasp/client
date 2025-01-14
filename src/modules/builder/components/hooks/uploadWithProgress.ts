@@ -1,23 +1,23 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Id, toast } from 'react-toastify';
 
 import { AxiosProgressEvent } from 'axios';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 export const useUploadWithProgress = (): {
   update: (p: AxiosProgressEvent) => void;
   close: (e?: Error) => void;
   show: (p?: number) => void;
 } => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   // we need to keep a reference of the toastId to be able to update it
   const toastId = useRef<Id | null>(null);
 
   const show = (progress = 0) => {
-    toastId.current = toast.info(translateBuilder(BUILDER.UPLOADING), {
+    toastId.current = toast.info(translateBuilder('UPLOADING'), {
       progress,
       position: 'bottom-left',
     });

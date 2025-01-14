@@ -1,15 +1,15 @@
 import {
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
   MOVE_MANY_ITEMS_BUTTON_SELECTOR,
   buildItemsGridMoreButtonSelector,
   buildNavigationModalItemId,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const IMAGE_ITEM = PackedLocalFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
@@ -48,8 +48,8 @@ const moveItem = ({
   cy.handleTreeMenu(toItemPath, rootId);
 };
 
-describe("Move Items", () => {
-  it("move item on Home", () => {
+describe('Move Items', () => {
+  it('move item on Home', () => {
     cy.setUpApi({ items });
     cy.visit(HOME_PATH);
 
@@ -58,13 +58,13 @@ describe("Move Items", () => {
     const { id: toItem, path: toItemPath } = FOLDER;
     moveItem({ id: movedItem, toItemPath });
 
-    cy.wait("@moveItems").then(({ request: { url, body } }) => {
+    cy.wait('@moveItems').then(({ request: { url, body } }) => {
       expect(body.parentId).to.equal(toItem);
       expect(url).to.contain(movedItem);
     });
   });
 
-  it("move item in item", () => {
+  it('move item in item', () => {
     cy.setUpApi({ items });
     const { id } = FOLDER;
 
@@ -76,13 +76,13 @@ describe("Move Items", () => {
     const { id: toItem, path: toItemPath } = FOLDER2;
     moveItem({ id: movedItem, toItemPath });
 
-    cy.wait("@moveItems").then(({ request: { body, url } }) => {
+    cy.wait('@moveItems').then(({ request: { body, url } }) => {
       expect(body.parentId).to.equal(toItem);
       expect(url).to.contain(movedItem);
     });
   });
 
-  it("cannot move inside self children", () => {
+  it('cannot move inside self children', () => {
     cy.setUpApi({ items });
     const { id } = FOLDER;
 
@@ -97,23 +97,23 @@ describe("Move Items", () => {
 
     // parent is disabled
     cy.get(`#${buildNavigationModalItemId(parentId)} button`).should(
-      "be.disabled"
+      'be.disabled',
     );
     cy.clickTreeMenuItem(parentId);
 
     // self is disabled
     cy.get(`#${buildNavigationModalItemId(movedItemId)} button`).should(
-      "be.disabled"
+      'be.disabled',
     );
     cy.clickTreeMenuItem(movedItemId);
 
     // inner child is disabled
     cy.get(`#${buildNavigationModalItemId(childId)} button`).should(
-      "be.disabled"
+      'be.disabled',
     );
   });
 
-  it("move item to Home", () => {
+  it('move item to Home', () => {
     cy.setUpApi({ items });
     const { id } = FOLDER;
 
@@ -122,15 +122,15 @@ describe("Move Items", () => {
 
     // move
     const { id: movedItem } = CHILD;
-    moveItem({ id: movedItem, toItemPath: "" });
+    moveItem({ id: movedItem, toItemPath: '' });
 
-    cy.wait("@moveItems").then(({ request: { body, url } }) => {
+    cy.wait('@moveItems').then(({ request: { body, url } }) => {
       expect(body.parentId).to.equal(undefined);
       expect(url).to.contain(movedItem);
     });
   });
 
-  it("move many items from Home to folder", () => {
+  it('move many items from Home to folder', () => {
     const folders = [
       PackedFolderItemFactory(),
       PackedFolderItemFactory(),
@@ -142,7 +142,7 @@ describe("Move Items", () => {
     });
 
     // go to children item
-    cy.visit("/");
+    cy.visit('/');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
@@ -150,7 +150,7 @@ describe("Move Items", () => {
 
     moveItems({ toItemPath: toItem.path });
 
-    cy.wait("@moveItems").then(({ request: { url, body } }) => {
+    cy.wait('@moveItems').then(({ request: { url, body } }) => {
       expect(body.parentId).to.eq(toItem.id);
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
@@ -158,7 +158,7 @@ describe("Move Items", () => {
     });
   });
 
-  it("move many items from folder to folder", () => {
+  it('move many items from folder to folder', () => {
     const parentItem = PackedFolderItemFactory();
     const folders = [
       PackedFolderItemFactory({ parentItem }),
@@ -179,7 +179,7 @@ describe("Move Items", () => {
 
     moveItems({ toItemPath: toItem.path });
 
-    cy.wait("@moveItems").then(({ request: { url, body } }) => {
+    cy.wait('@moveItems').then(({ request: { url, body } }) => {
       expect(body.parentId).to.eq(toItem.id);
       folders.forEach((item) => {
         expect(url).to.contain(item.id);
@@ -187,7 +187,7 @@ describe("Move Items", () => {
     });
   });
 
-  it("move many items from folder to Home", () => {
+  it('move many items from folder to Home', () => {
     const parentItem = PackedFolderItemFactory();
     const folders = [
       PackedFolderItemFactory({ parentItem }),
@@ -205,9 +205,9 @@ describe("Move Items", () => {
       cy.selectItem(item.id);
     });
 
-    moveItems({ toItemPath: "" });
+    moveItems({ toItemPath: '' });
 
-    cy.wait("@moveItems").then(({ request: { url, body } }) => {
+    cy.wait('@moveItems').then(({ request: { url, body } }) => {
       expect(body.parentId).equal(undefined);
       folders.forEach((item) => {
         expect(url).to.contain(item.id);

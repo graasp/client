@@ -1,6 +1,6 @@
 import { MentionButton } from '@graasp/chatbox';
 
-import { hooks, mutations } from '../../config/queryClient';
+import { hooks, mutations } from '@/config/queryClient';
 
 export const NotificationButton = (): JSX.Element | null => {
   const { data: currentMember } = hooks.useCurrentMember();

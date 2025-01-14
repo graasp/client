@@ -1,13 +1,14 @@
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { IconButton, TextField } from '@mui/material';
 
 import { XIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { ITEM_FORM_LINK_INPUT_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { LINK_REGEX } from '@/utils/item';
+
+import { LINK_REGEX } from '~builder/utils/item';
 
 const LinkUrlField = (): JSX.Element => {
   const {
@@ -16,14 +17,15 @@ const LinkUrlField = (): JSX.Element => {
     getValues,
     formState: { errors },
   } = useFormContext<{ url: string }>();
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   return (
     <TextField
       variant="standard"
       id={ITEM_FORM_LINK_INPUT_ID}
+      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       margin="dense"
-      label={t(BUILDER.CREATE_ITEM_LINK_LABEL)}
+      label={t('CREATE_ITEM_LINK_LABEL')}
       slotProps={{
         inputLabel: { shrink: true },
         input: {
@@ -46,7 +48,7 @@ const LinkUrlField = (): JSX.Element => {
       {...register('url', {
         pattern: {
           value: LINK_REGEX,
-          message: t(BUILDER.LINK_INVALID_MESSAGE),
+          message: t('LINK_INVALID_MESSAGE'),
         },
       })}
     />

@@ -1,14 +1,14 @@
-import { PackedDocumentItemFactory } from "@graasp/sdk";
+import { PackedDocumentItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from "../../../../config/paths";
-import { CURRENT_USER } from "../../../fixtures/members";
-import { buildItemMembership } from "../../../fixtures/memberships";
-import { expectDocumentViewScreenLayout } from "../../../support/viewUtils";
+import { buildItemPath } from '../../../../config/paths';
+import { CURRENT_USER } from '../../../fixtures/members';
+import { buildItemMembership } from '../../../fixtures/memberships';
+import { expectDocumentViewScreenLayout } from '../../../support/viewUtils';
 
 const DOCUMENT = PackedDocumentItemFactory();
 
-describe("View Document", () => {
-  describe("Grid", () => {
+describe('View Document', () => {
+  describe('Grid', () => {
     beforeEach(() => {
       cy.setUpApi({
         items: [
@@ -25,7 +25,7 @@ describe("View Document", () => {
       });
     });
 
-    it("visit document", () => {
+    it('visit document', () => {
       cy.visit(buildItemPath(DOCUMENT.id));
 
       expectDocumentViewScreenLayout({ item: DOCUMENT });

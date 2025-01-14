@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -11,22 +11,24 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
-import { mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+import { getRouteApi } from '@tanstack/react-router';
 
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+
+import CancelButton from '~builder/components/common/CancelButton';
+
 import ThumbnailCrop from '../../../thumbnails/ThumbnailCrop';
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionForm } from '../description/DescriptionForm';
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 type Inputs = {
   name: string;
   description: string;
@@ -43,10 +45,10 @@ export function FolderCreateForm({
   onClose,
   geolocation,
   previousItemId,
-}: FolderCreateFormProps): JSX.Element {
-  const { itemId: parentId } = useParams();
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+}: Readonly<FolderCreateFormProps>): JSX.Element {
+  const { itemId: parentId } = itemRoute.useParams();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>();
   const {
     setValue,
@@ -81,7 +83,7 @@ export function FolderCreateForm({
     <FormProvider {...methods}>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogTitle>
-          {translateBuilder(BUILDER.CREATE_ITEM_NEW_FOLDER_TITLE)}
+          {translateBuilder('CREATE_ITEM_NEW_FOLDER_TITLE')}
         </DialogTitle>
         <DialogContent>
           <Stack
@@ -112,7 +114,7 @@ export function FolderCreateForm({
             type="submit"
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </Box>

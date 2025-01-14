@@ -1,23 +1,23 @@
-import { PackedShortcutItemFactory } from "@graasp/sdk";
+import { PackedShortcutItemFactory } from '@graasp/sdk';
 
-import { buildItemsGridMoreButtonSelector } from "@/config/selectors";
+import { buildItemsGridMoreButtonSelector } from '@/config/selectors';
 
-import { HOME_PATH } from "../../../../config/paths";
-import { EDIT_ITEM_PAUSE } from "../../../support/constants";
-import { editItem } from "../../../support/editUtils";
+import { HOME_PATH } from '../../../../config/paths';
+import { EDIT_ITEM_PAUSE } from '../../../support/constants';
+import { editItem } from '../../../support/editUtils';
 
 const EDITED_FIELDS = {
-  name: "new name",
+  name: 'new name',
 };
 
 const SHORTCUT = PackedShortcutItemFactory();
 
-describe("Edit Shortcut", () => {
+describe('Edit Shortcut', () => {
   beforeEach(() => {
     cy.setUpApi({ items: [SHORTCUT] });
   });
 
-  it("edit shortcut on Home", () => {
+  it('edit shortcut on Home', () => {
     cy.visit(HOME_PATH);
 
     const itemToEdit = SHORTCUT;
@@ -29,7 +29,7 @@ describe("Edit Shortcut", () => {
       ...EDITED_FIELDS,
     });
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         response: {
           body: { id, name },
@@ -37,10 +37,10 @@ describe("Edit Shortcut", () => {
       }) => {
         // check item is edited and updated
         cy.wait(EDIT_ITEM_PAUSE);
-        cy.get("@getAccessibleItems");
+        cy.get('@getAccessibleItems');
         expect(id).to.equal(itemToEdit.id);
         expect(name).to.equal(EDITED_FIELDS.name);
-      }
+      },
     );
   });
 });

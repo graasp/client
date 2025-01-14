@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
@@ -9,17 +10,16 @@ import {
   ItemType,
   buildDocumentExtra,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from '../ItemNameField';
 import {
@@ -46,9 +46,9 @@ export function DocumentCreateForm({
   geolocation,
   previousItemId,
   onClose,
-}: Props): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+}: Readonly<Props>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { mutateAsync: createItem } = mutations.usePostItem();
 
   const methods = useForm<Inputs>({
@@ -83,7 +83,7 @@ export function DocumentCreateForm({
   return (
     <Box component="form" height="100%" onSubmit={handleSubmit(onSubmit)}>
       <DialogTitle>
-        {translateBuilder(BUILDER.CREATE_NEW_ITEM_DOCUMENT_TITLE)}
+        {translateBuilder('CREATE_NEW_ITEM_DOCUMENT_TITLE')}
       </DialogTitle>
       <FormProvider {...methods}>
         <DialogContent>
@@ -94,7 +94,7 @@ export function DocumentCreateForm({
             onChange={(v) => {
               setValue('content', v);
             }}
-            placeholder={translateBuilder(BUILDER.TEXT_EDITOR_PLACEHOLDER)}
+            placeholder={translateBuilder('TEXT_EDITOR_PLACEHOLDER')}
           />
         </DialogContent>
         <DialogActions>
@@ -104,7 +104,7 @@ export function DocumentCreateForm({
             type="submit"
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </FormProvider>

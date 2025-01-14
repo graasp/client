@@ -1,30 +1,30 @@
-import { HOME_PATH } from "../../config/paths";
+import { HOME_PATH } from '../../config/paths';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS,
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_MEMBER_MENU_BUTTON_ID,
   HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID,
-} from "../../config/selectors";
-import { SIGN_IN_PATH } from "../support/paths";
+} from '../../config/selectors';
+import { SIGN_IN_PATH } from '../support/paths';
 
-describe("Header", () => {
-  it("App Navigation", () => {
+describe('Header', () => {
+  it('App Navigation', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
     // check navigation and display and interface doesn't crash
     // todo: this is less robust than using the Platform contant from ui, but it was making cypress compile ui which is unnecessary.
     cy.get(`#${APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS.builder}`).click();
-    cy.get(`#${APP_NAVIGATION_PLATFORM_SWITCH_ID}`).should("exist");
+    cy.get(`#${APP_NAVIGATION_PLATFORM_SWITCH_ID}`).should('exist');
   });
 
-  describe("User Menu", () => {
-    it("Sign out", () => {
+  describe('User Menu', () => {
+    it('Sign out', () => {
       cy.setUpApi();
       cy.visit(HOME_PATH);
       // sign out
       cy.get(`#${HEADER_MEMBER_MENU_BUTTON_ID}`).click();
       cy.get(`#${HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID}`).click();
-      cy.url().should("include", SIGN_IN_PATH);
+      cy.url().should('include', SIGN_IN_PATH);
     });
 
     // it('Switch users', () => {

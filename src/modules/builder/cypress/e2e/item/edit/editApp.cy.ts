@@ -2,9 +2,9 @@ import {
   PackedAppItemFactory,
   PackedFolderItemFactory,
   buildAppExtra,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   EDIT_MODAL_ID,
@@ -12,35 +12,35 @@ import {
   TEXT_EDITOR_CLASS,
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
-import { CURRENT_USER } from "../../../fixtures/members";
-import { EDIT_ITEM_PAUSE } from "../../../support/constants";
-import { editCaptionFromViewPage, editItem } from "../../../support/editUtils";
+} from '../../../../config/selectors';
+import { CURRENT_USER } from '../../../fixtures/members';
+import { EDIT_ITEM_PAUSE } from '../../../support/constants';
+import { editCaptionFromViewPage, editItem } from '../../../support/editUtils';
 
-const url = "http://localhost:3334";
+const url = 'http://localhost:3334';
 
 const newFields = {
-  name: "new name",
+  name: 'new name',
   extra: buildAppExtra({ url }),
 };
 
 const GRAASP_APP_ITEM = PackedAppItemFactory({
-  name: "test app",
-  description: "my app description",
+  name: 'test app',
+  description: 'my app description',
   creator: CURRENT_USER,
 });
 
-describe("Edit App", () => {
-  describe("View Page", () => {
+describe('Edit App', () => {
+  describe('View Page', () => {
     beforeEach(() => {
       const { id } = GRAASP_APP_ITEM;
       cy.setUpApi({ items: [GRAASP_APP_ITEM] });
       cy.visit(buildItemPath(id));
     });
 
-    it("edit caption", () => {
+    it('edit caption', () => {
       const { id } = GRAASP_APP_ITEM;
-      const caption = "new caption";
+      const caption = 'new caption';
       editCaptionFromViewPage({ id, caption });
       cy.wait(`@editItem`).then(({ request: { url: endpointUrl, body } }) => {
         expect(endpointUrl).to.contain(id);
@@ -49,22 +49,22 @@ describe("Edit App", () => {
       });
     });
 
-    it("cancel caption", () => {
+    it('cancel caption', () => {
       const { id, description } = GRAASP_APP_ITEM;
       cy.get(`#${buildEditButtonId(id)}`).click();
       cy.get(`#${EDIT_MODAL_ID} .${TEXT_EDITOR_CLASS}`).type(
-        "{selectall}{backspace}"
+        '{selectall}{backspace}',
       );
       cy.get(`#${EDIT_ITEM_MODAL_CANCEL_BUTTON_ID}`).click();
-      cy.get(`#${EDIT_ITEM_MODAL_CANCEL_BUTTON_ID}`).should("not.exist");
+      cy.get(`#${EDIT_ITEM_MODAL_CANCEL_BUTTON_ID}`).should('not.exist');
       cy.get(`.${ITEM_MAIN_CLASS} .${TEXT_EDITOR_CLASS}`)
         .scrollIntoView()
-        .should("be.visible")
-        .and("contain.text", description);
+        .should('be.visible')
+        .and('contain.text', description);
     });
   });
 
-  it("edit app on Home", () => {
+  it('edit app on Home', () => {
     const itemToEdit = GRAASP_APP_ITEM;
     cy.setUpApi({ items: [itemToEdit] });
     cy.visit(HOME_PATH);
@@ -77,7 +77,7 @@ describe("Edit App", () => {
       ...newFields,
     });
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         response: {
           body: { id, name },
@@ -87,12 +87,12 @@ describe("Edit App", () => {
         expect(id).to.equal(itemToEdit.id);
         expect(name).to.equal(newFields.name);
         cy.wait(EDIT_ITEM_PAUSE);
-        cy.wait("@getAccessibleItems");
-      }
+        cy.wait('@getAccessibleItems');
+      },
     );
   });
 
-  it("edit app in item", () => {
+  it('edit app in item', () => {
     const parentItem = PackedFolderItemFactory();
     const itemToEdit = PackedAppItemFactory({ parentItem });
     cy.setUpApi({
@@ -108,10 +108,10 @@ describe("Edit App", () => {
         ...itemToEdit,
         ...newFields,
       },
-      "ul"
+      'ul',
     );
 
-    cy.wait("@editItem").then(
+    cy.wait('@editItem').then(
       ({
         response: {
           body: { id, name },
@@ -121,8 +121,8 @@ describe("Edit App", () => {
         cy.wait(EDIT_ITEM_PAUSE);
         expect(id).to.equal(itemToEdit.id);
         expect(name).to.equal(newFields.name);
-        cy.get("@getItem").its("response.url").should("contain", parentItem.id);
-      }
+        cy.get('@getItem').its('response.url').should('contain', parentItem.id);
+      },
     );
   });
 });

@@ -2,20 +2,20 @@ import {
   ItemMembership,
   PackedFolderItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { v4 } from "uuid";
+import { v4 } from 'uuid';
 
-import { buildItemPath } from "../../../config/paths";
+import { buildItemPath } from '../../../config/paths';
 import {
   CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID,
   buildItemMembershipRowDeleteButtonId,
   buildItemMembershipRowEditButtonId,
   buildShareButtonId,
-} from "../../../config/selectors";
-import { CURRENT_USER, MEMBERS } from "../../fixtures/members";
-import { ITEMS_WITH_MEMBERSHIPS } from "../../fixtures/memberships";
-import { ItemForTest } from "../../support/types";
+} from '../../../config/selectors';
+import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
+import { ITEMS_WITH_MEMBERSHIPS } from '../../fixtures/memberships';
+import { ItemForTest } from '../../support/types';
 
 const deleteItemMembership = ({
   id,
@@ -29,8 +29,8 @@ const deleteItemMembership = ({
   cy.get(`#${CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID}`).click();
 };
 
-describe("Delete Membership", () => {
-  it("delete item membership", () => {
+describe('Delete Membership', () => {
+  it('delete item membership', () => {
     cy.setUpApi({ ...ITEMS_WITH_MEMBERSHIPS });
 
     // go to children item
@@ -41,12 +41,12 @@ describe("Delete Membership", () => {
     const { id: mId } = memberships[1];
     deleteItemMembership({ id: mId, itemId: id });
 
-    cy.wait("@deleteItemMembership").then(({ request: { url } }) => {
+    cy.wait('@deleteItemMembership').then(({ request: { url } }) => {
       expect(url).to.contain(mId);
     });
   });
 
-  it("cannot delete item membership from parent", () => {
+  it('cannot delete item membership from parent', () => {
     cy.setUpApi({ ...ITEMS_WITH_MEMBERSHIPS });
 
     // go to children item
@@ -55,11 +55,11 @@ describe("Delete Membership", () => {
     cy.get(`#${buildShareButtonId(id)}`).click();
 
     const { id: mId } = memberships[1];
-    cy.get(`#${buildItemMembershipRowEditButtonId(mId)}`).should("exist");
-    cy.get(`#${buildItemMembershipRowDeleteButtonId(mId)}`).should("not.exist");
+    cy.get(`#${buildItemMembershipRowEditButtonId(mId)}`).should('exist');
+    cy.get(`#${buildItemMembershipRowDeleteButtonId(mId)}`).should('not.exist');
   });
 
-  it("cannot delete if there is only one admin item membership", () => {
+  it('cannot delete if there is only one admin item membership', () => {
     const item: ItemForTest = PackedFolderItemFactory();
     const items = [
       {
@@ -89,8 +89,8 @@ describe("Delete Membership", () => {
 
     const [m1, m2] = memberships;
     cy.get(`#${buildItemMembershipRowDeleteButtonId(m1.id)}`).should(
-      "not.exist"
+      'not.exist',
     );
-    cy.get(`#${buildItemMembershipRowDeleteButtonId(m2.id)}`).should("exist");
+    cy.get(`#${buildItemMembershipRowDeleteButtonId(m2.id)}`).should('exist');
   });
 });

@@ -1,11 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { ThumbnailSize } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Avatar } from '@graasp/ui';
 
-import { AVATAR_ICON_HEIGHT } from '../../config/constants';
-import { useCommonTranslation } from '../../config/i18n';
-import { hooks } from '../../config/queryClient';
-import { buildMemberAvatarId } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
+import { buildMemberAvatarId } from '@/config/selectors';
+
+import { AVATAR_ICON_HEIGHT } from '~builder/config/constants';
 
 type Props = {
   maxWidth?: number;
@@ -15,8 +17,8 @@ type Props = {
 export function CurrentMemberAvatar({
   maxWidth = AVATAR_ICON_HEIGHT,
   maxHeight = AVATAR_ICON_HEIGHT,
-}: Props): JSX.Element {
-  const { t } = useCommonTranslation();
+}: Readonly<Props>): JSX.Element {
+  const { t } = useTranslation(NS.Builder);
   const { data: member, isLoading } = hooks.useCurrentMember();
   const { data: avatarUrl, isLoading: isLoadingAvatar } = hooks.useAvatarUrl({
     id: member?.id,
@@ -27,7 +29,7 @@ export function CurrentMemberAvatar({
       id={buildMemberAvatarId(member?.id)}
       url={avatarUrl}
       isLoading={isLoading || isLoadingAvatar}
-      alt={member?.name ?? t(COMMON.AVATAR_DEFAULT_ALT)}
+      alt={member?.name ?? t('AVATAR_DEFAULT_ALT')}
       component="avatar"
       maxWidth={maxWidth}
       maxHeight={maxHeight}

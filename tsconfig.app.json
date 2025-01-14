@@ -19,10 +19,11 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "~account/*": ["./src/modules/account/*"],
+      "~analytics/*": ["./src/modules/analytics/*"],
+      "~auth/*": ["./src/modules/auth/*"],
+      "~builder/*": ["./src/modules/builder/*"],
       "~landing/*": ["./src/modules/landing/*"],
       "~player/*": ["./src/modules/player/*"],
-      "~auth/*": ["./src/modules/auth/*"],
-      "~analytics/*": ["./src/modules/analytics/*"],
       "@/*": ["./src/*"]
     }
   },

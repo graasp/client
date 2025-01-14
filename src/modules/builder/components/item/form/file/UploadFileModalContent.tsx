@@ -1,13 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import CancelButton from '@/components/common/CancelButton';
-import FileUploader from '@/components/file/FileUploader';
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+import { EDIT_ITEM_MODAL_CANCEL_BUTTON_ID } from '@/config/selectors';
 
-import { EDIT_ITEM_MODAL_CANCEL_BUTTON_ID } from '../../../../config/selectors';
+import CancelButton from '~builder/components/common/CancelButton';
+import FileUploader from '~builder/components/file/FileUploader';
 
 type UploadFileModalContentProps = {
   previousItemId?: DiscriminatedItem['id'];
@@ -17,12 +18,12 @@ type UploadFileModalContentProps = {
 export function UploadFileModalContent({
   previousItemId,
   onClose,
-}: UploadFileModalContentProps): JSX.Element {
-  const { t: translateBuilder } = useBuilderTranslation();
+}: Readonly<UploadFileModalContentProps>): JSX.Element {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <>
-      <DialogTitle>{translateBuilder(BUILDER.UPLOAD_FILE_TITLE)}</DialogTitle>
+      <DialogTitle>{translateBuilder('UPLOAD_FILE_TITLE')}</DialogTitle>
       <DialogContent>
         <FileUploader previousItemId={previousItemId} onComplete={onClose} />
       </DialogContent>

@@ -4,19 +4,19 @@ import {
   ItemLoginSchemaType,
   PackedFolderItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from "../../../../../config/paths";
+import { buildItemPath, buildItemSharePath } from '../../../../../config/paths';
 import {
   REQUEST_MEMBERSHIP_BUTTON_ID,
   SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID,
   buildDataCyWrapper,
   buildShareButtonId,
-} from "../../../../../config/selectors";
-import { MEMBERS } from "../../../../fixtures/members";
-import { buildItemMembership } from "../../../../fixtures/memberships";
-import { ITEM_LOGIN_PAUSE } from "../../../../support/constants";
-import { addItemLoginSchema } from "./utils";
+} from '../../../../../config/selectors';
+import { MEMBERS } from '../../../../fixtures/members';
+import { buildItemMembership } from '../../../../fixtures/memberships';
+import { ITEM_LOGIN_PAUSE } from '../../../../support/constants';
+import { addItemLoginSchema } from './utils';
 
 const ALERT_BUTTON = `[role="alert"] button`;
 const DIALOG_SELECTOR = `[role="dialog"]`;
@@ -30,13 +30,13 @@ const checkItemLoginSetting = ({
 }) => {
   if (!disabled) {
     cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID} + input`).should(
-      "have.value",
-      mode
+      'have.value',
+      mode,
     );
   } else {
     cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}`).then((el) => {
       // test classnames are 'disabled'
-      expect(el.parent().html()).to.contain("disabled");
+      expect(el.parent().html()).to.contain('disabled');
     });
   }
 };
@@ -44,13 +44,13 @@ const checkItemLoginSetting = ({
 const editItemLoginSetting = (mode: string) => {
   cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}`).click();
   cy.get(`li[data-value="${mode}"]`).click();
-  cy.wait("@putItemLoginSchema").then(({ request: { body } }) => {
+  cy.wait('@putItemLoginSchema').then(({ request: { body } }) => {
     expect(body?.type).to.equal(mode);
   });
 };
 
-describe("Item Login", () => {
-  it("Item Login not allowed", () => {
+describe('Item Login', () => {
+  it('Item Login not allowed', () => {
     const item = PackedFolderItemFactory({}, { permission: null });
     cy.setUpApi({
       items: [item],
@@ -58,14 +58,14 @@ describe("Item Login", () => {
     });
     cy.visit(buildItemPath(item.id));
     cy.wait(ITEM_LOGIN_PAUSE);
-    cy.get(`#${REQUEST_MEMBERSHIP_BUTTON_ID}`).should("exist");
+    cy.get(`#${REQUEST_MEMBERSHIP_BUTTON_ID}`).should('exist');
   });
 
-  describe("Display Item Login Setting", () => {
-    it("edit item login setting", () => {
+  describe('Display Item Login Setting', () => {
+    it('edit item login setting', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory(),
-        ItemLoginSchemaType.Username
+        ItemLoginSchemaType.Username,
       );
       const child = {
         ...PackedFolderItemFactory({ parentItem: item }),
@@ -91,10 +91,10 @@ describe("Item Login", () => {
       });
     });
 
-    it("read permission", () => {
+    it('read permission', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
-        ItemLoginSchemaType.UsernameAndPassword
+        ItemLoginSchemaType.UsernameAndPassword,
       );
       cy.setUpApi({
         items: [item],
@@ -106,13 +106,13 @@ describe("Item Login", () => {
   });
 });
 
-describe("Item Login Delete Button", () => {
-  describe("without guests", () => {
-    it("Delete item login for private item ", () => {
+describe('Item Login Delete Button', () => {
+  describe('without guests', () => {
+    it('Delete item login for private item ', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}),
         ItemLoginSchemaType.UsernameAndPassword,
-        ItemLoginSchemaStatus.Disabled
+        ItemLoginSchemaStatus.Disabled,
       );
       cy.setUpApi({
         items: [item],
@@ -121,16 +121,16 @@ describe("Item Login Delete Button", () => {
 
       // delete
       cy.get(ALERT_BUTTON).click();
-      cy.wait("@deleteItemLoginSchema").then(({ request: { url } }) => {
+      cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });
     });
 
-    it("Delete item login for public item", () => {
+    it('Delete item login for public item', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { publicVisibility: {} }),
         ItemLoginSchemaType.UsernameAndPassword,
-        ItemLoginSchemaStatus.Disabled
+        ItemLoginSchemaStatus.Disabled,
       );
       cy.setUpApi({
         items: [item],
@@ -139,17 +139,17 @@ describe("Item Login Delete Button", () => {
 
       // delete
       cy.get(ALERT_BUTTON).click();
-      cy.wait("@deleteItemLoginSchema").then(({ request: { url } }) => {
+      cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });
     });
   });
-  describe("with guests", () => {
-    it("Delete item login for private item ", () => {
+  describe('with guests', () => {
+    it('Delete item login for private item ', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}),
         ItemLoginSchemaType.UsernameAndPassword,
-        ItemLoginSchemaStatus.Disabled
+        ItemLoginSchemaStatus.Disabled,
       );
       const guest = GuestFactory({ itemLoginSchema: item.itemLoginSchema });
       cy.setUpApi({
@@ -170,20 +170,20 @@ describe("Item Login Delete Button", () => {
 
       // display delete alert
       cy.get(ALERT_BUTTON).click();
-      cy.get(DIALOG_SELECTOR).should("contain", guest.name);
+      cy.get(DIALOG_SELECTOR).should('contain', guest.name);
 
       // click delete
-      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper("delete")}`).click();
-      cy.wait("@deleteItemLoginSchema").then(({ request: { url } }) => {
+      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper('delete')}`).click();
+      cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });
     });
 
-    it("Delete item login for public item", () => {
+    it('Delete item login for public item', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { publicVisibility: {} }),
         ItemLoginSchemaType.UsernameAndPassword,
-        ItemLoginSchemaStatus.Disabled
+        ItemLoginSchemaStatus.Disabled,
       );
       const guest = GuestFactory({ itemLoginSchema: item.itemLoginSchema });
       cy.setUpApi({
@@ -204,11 +204,11 @@ describe("Item Login Delete Button", () => {
 
       // display delete alert
       cy.get(ALERT_BUTTON).click();
-      cy.get(DIALOG_SELECTOR).should("contain", guest.name);
+      cy.get(DIALOG_SELECTOR).should('contain', guest.name);
 
       // click delete
-      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper("delete")}`).click();
-      cy.wait("@deleteItemLoginSchema").then(({ request: { url } }) => {
+      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper('delete')}`).click();
+      cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });
     });

@@ -3,14 +3,14 @@ import {
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
   buildShortcutExtra,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_SHORTCUT_BUTTON_CLASS,
   MY_GRAASP_ITEM_PATH,
   buildItemsGridMoreButtonSelector,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 
 const IMAGE_ITEM = PackedLocalFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
@@ -38,7 +38,7 @@ const checkCreateShortcutRequest = ({
   id: string;
   toItemId?: string;
 }) => {
-  cy.wait("@postItem").then(({ request: { body, url } }) => {
+  cy.wait('@postItem').then(({ request: { body, url } }) => {
     // check post item request is correct
 
     expect(body.extra).to.eql(buildShortcutExtra(id));
@@ -46,17 +46,17 @@ const checkCreateShortcutRequest = ({
 
     if (toItemId) {
       const search = new URLSearchParams();
-      search.set("parentId", toItemId);
+      search.set('parentId', toItemId);
       expect(url).to.include(search.toString());
     } else {
-      expect(url).to.not.include("parentId");
-      cy.wait("@getAccessibleItems");
+      expect(url).to.not.include('parentId');
+      cy.wait('@getAccessibleItems');
     }
   });
 };
 
-describe("Create Shortcut", () => {
-  it("create shortcut from Home to Home", () => {
+describe('Create Shortcut', () => {
+  it('create shortcut from Home to Home', () => {
     cy.setUpApi({ items: [IMAGE_ITEM] });
     cy.visit(HOME_PATH);
 
@@ -66,7 +66,7 @@ describe("Create Shortcut", () => {
     checkCreateShortcutRequest({ id });
   });
 
-  it("create shortcut from Home to Item", () => {
+  it('create shortcut from Home to Item', () => {
     cy.setUpApi({ items: [FOLDER, IMAGE_ITEM] });
     cy.visit(HOME_PATH);
 
@@ -77,7 +77,7 @@ describe("Create Shortcut", () => {
     checkCreateShortcutRequest({ id, toItemId });
   });
 
-  it("create shortcut from Item to Item", () => {
+  it('create shortcut from Item to Item', () => {
     cy.setUpApi({ items: [FOLDER, FOLDER2, IMAGE_ITEM_CHILD] });
     cy.visit(buildItemPath(FOLDER.id));
 

@@ -4,7 +4,6 @@ export const DEFAULT_EMAIL_FREQUENCY = EmailFrequency.Always;
 
 export const emailFrequency = {
   [EmailFrequency.Always]: 'ALWAYS_RECEIVE_EMAILS',
-  // todo: schedule a digest of the notifications
   // daily: 'Receive email notifications once per day',
   [EmailFrequency.Never]: 'DISABLE_EMAILS',
 } as const;
@@ -23,11 +22,12 @@ export const NS = {
   Account: 'account',
   Analytics: 'analytics',
   Auth: 'auth',
-  Landing: 'landing',
-  Player: 'player',
-  Messages: 'messages',
+  Builder: 'builder',
   Common: 'common',
   Enums: 'enums',
+  Landing: 'landing',
+  Messages: 'messages',
+  Player: 'player',
 } as const;
 
 export const PRIVACY_EMAIL = 'privacy@graasp.org';

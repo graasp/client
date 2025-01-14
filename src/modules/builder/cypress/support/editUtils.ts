@@ -1,4 +1,4 @@
-import { DiscriminatedItem, ItemType } from "@graasp/sdk";
+import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import {
   EDIT_ITEM_BUTTON_CLASS,
@@ -6,17 +6,17 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   TEXT_EDITOR_CLASS,
   buildEditButtonId,
-} from "../../config/selectors";
-import { CAPTION_EDIT_PAUSE } from "./constants";
+} from '../../config/selectors';
+import { CAPTION_EDIT_PAUSE } from './constants';
 
 export const editItem = (
   payload: {
     id: string;
-    type: DiscriminatedItem["type"] | string;
+    type: DiscriminatedItem['type'] | string;
     name: string;
     description: string;
   },
-  container: string = ""
+  container: string = '',
 ): void => {
   const { type } = payload;
   cy.get(`${container} .${EDIT_ITEM_BUTTON_CLASS}`).click();
@@ -51,7 +51,7 @@ export const editCaptionFromViewPage = ({
   cy.get(`#${buildEditButtonId(id)}`).click();
   cy.get(`#${EDIT_MODAL_ID} .${TEXT_EDITOR_CLASS}`).type(
     `{selectall}${caption}`,
-    { timeout: 100 }
+    { timeout: 100 },
   );
   cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
 };

@@ -1,6 +1,6 @@
 import { Context } from '@graasp/sdk';
 
-import { DEFAULT_ITEM_LAYOUT_MODE } from '@/enums/itemLayoutMode';
+import { DEFAULT_ITEM_LAYOUT_MODE } from '~builder/enums';
 
 import {
   GRAASP_ANALYZER_HOST,

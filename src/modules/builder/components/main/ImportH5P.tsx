@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   DialogActions,
@@ -14,19 +14,21 @@ import {
   MAX_ZIP_FILE_SIZE,
   formatFileSize,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button, UploadFileButton } from '@graasp/ui';
 
-import { mutations } from '@/config/queryClient';
+import { getRouteApi } from '@tanstack/react-router';
 
-import { useBuilderTranslation, useCommonTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import {
   CREATE_ITEM_CLOSE_BUTTON_ID,
   H5P_DASHBOARD_UPLOADER_ID,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 const ImportH5P = ({
   onClose,
   previousItemId,
@@ -34,12 +36,11 @@ const ImportH5P = ({
   onClose?: () => void;
   previousItemId?: DiscriminatedItem['id'];
 }): JSX.Element => {
-  const { itemId } = useParams();
+  const { itemId } = itemRoute.useParams();
   const { mutateAsync: importH5P, isPending: isLoading } =
     mutations.useImportH5P();
   const { update, close: closeNotification } = useUploadWithProgress();
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const onChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     if (e.target.files?.length) {
@@ -94,7 +95,7 @@ const ImportH5P = ({
           variant="text"
           onClick={onClose}
         >
-          {translateCommon(COMMON.CLOSE_BUTTON)}
+          {translateBuilder('CLOSE_BUTTON')}
         </Button>
       </DialogActions>
     </>

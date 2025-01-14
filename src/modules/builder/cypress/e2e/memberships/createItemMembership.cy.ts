@@ -2,9 +2,9 @@ import {
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from "../../../config/paths";
+import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
@@ -14,8 +14,8 @@ import {
   SHARE_ITEM_SHARE_BUTTON_ID,
   buildDataCyWrapper,
   buildShareButtonId,
-} from "../../../config/selectors";
-import { MEMBERS } from "../../fixtures/members";
+} from '../../../config/selectors';
+import { MEMBERS } from '../../fixtures/members';
 
 const shareItem = ({
   id,
@@ -43,8 +43,8 @@ const FOLDER = PackedFolderItemFactory();
 
 const ITEMS = [IMAGE_ITEM, FOLDER];
 
-describe("Create Membership", () => {
-  it("share item", () => {
+describe('Create Membership', () => {
+  it('share item', () => {
     cy.setUpApi({ items: ITEMS, members: Object.values(MEMBERS) });
 
     // go to children item
@@ -56,7 +56,7 @@ describe("Create Membership", () => {
     const permission = PermissionLevel.Read;
     shareItem({ id, email: member.email, permission });
 
-    cy.wait("@postInvitations").then(
+    cy.wait('@postInvitations').then(
       ({
         request: {
           url,
@@ -66,14 +66,14 @@ describe("Create Membership", () => {
         expect(url).to.contain(id);
         expect(invitations[0].permission).to.equal(permission);
         expect(invitations[0].email).to.equal(member.email);
-      }
+      },
     );
 
     // check that the email field is emptied after sharing completes
-    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should("be.empty");
+    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should('be.empty');
   });
 
-  it("open share modal, cancel and sharing reset content", () => {
+  it('open share modal, cancel and sharing reset content', () => {
     cy.setUpApi({ items: ITEMS, members: Object.values(MEMBERS) });
 
     // go to children item
@@ -83,7 +83,7 @@ describe("Create Membership", () => {
     // open modal and cancel
     cy.get(buildDataCyWrapper(SHARE_BUTTON_SELECTOR)).click();
     cy.get(buildDataCyWrapper(SHARE_ITEM_CANCEL_BUTTON_CY)).click();
-    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should("not.exist");
+    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('not.exist');
 
     // share
     const member = MEMBERS.FANNY;
@@ -96,14 +96,14 @@ describe("Create Membership", () => {
 
     // check that fields are reset if reopen modal
     cy.get(buildDataCyWrapper(SHARE_BUTTON_SELECTOR)).click();
-    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should("be.empty");
+    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should('be.empty');
     cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS} input`).should(
-      "have.value",
-      PermissionLevel.Read
+      'have.value',
+      PermissionLevel.Read,
     );
   });
 
-  it("share item with new admin by pressing enter", () => {
+  it('share item with new admin by pressing enter', () => {
     cy.setUpApi({ items: ITEMS, members: Object.values(MEMBERS) });
 
     // go to children item
@@ -120,7 +120,7 @@ describe("Create Membership", () => {
       submit: false,
     });
 
-    cy.wait("@postInvitations").then(
+    cy.wait('@postInvitations').then(
       ({
         request: {
           url,
@@ -130,14 +130,14 @@ describe("Create Membership", () => {
         expect(url).to.contain(id);
         expect(invitations[0].permission).to.equal(permission);
         expect(invitations[0].email).to.equal(member.email);
-      }
+      },
     );
 
     // check that the email field is emptied after sharing completes
-    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should("be.empty");
+    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should('be.empty');
   });
 
-  it("cannot add membership item twice", () => {
+  it('cannot add membership item twice', () => {
     const ITEM = PackedFolderItemFactory();
     const account = MEMBERS.ANNA;
     cy.setUpApi({
@@ -164,10 +164,10 @@ describe("Create Membership", () => {
     const permission = PermissionLevel.Read;
     shareItem({ id, email: account.email, permission });
 
-    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should("be.disabled");
+    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
   });
 
-  it("cannot invite user twice", () => {
+  it('cannot invite user twice', () => {
     const ITEM = PackedFolderItemFactory();
     const { email } = MEMBERS.CEDRIC;
     cy.setUpApi({
@@ -187,10 +187,10 @@ describe("Create Membership", () => {
     const permission = PermissionLevel.Read;
     shareItem({ id, email, permission });
 
-    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should("be.disabled");
+    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
   });
 
-  it("cannot share item with invalid data", () => {
+  it('cannot share item with invalid data', () => {
     cy.setUpApi({ items: ITEMS, members: Object.values(MEMBERS) });
 
     // go to children item
@@ -199,8 +199,8 @@ describe("Create Membership", () => {
 
     // fill
     const permission = PermissionLevel.Read;
-    shareItem({ id, email: "wrong", permission });
+    shareItem({ id, email: 'wrong', permission });
 
-    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should("be.disabled");
+    cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
   });
 });

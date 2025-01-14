@@ -1,17 +1,18 @@
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import { Box } from '@mui/material';
 
 import { DiscriminatedItem, MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
 import { FileDropper } from '@graasp/ui';
 
+import { getRouteApi } from '@tanstack/react-router';
 import { AxiosProgressEvent } from 'axios';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 type Props = {
   onComplete?: () => void;
   onUpdate?: (e: AxiosProgressEvent) => void;
@@ -32,8 +33,8 @@ const FileUploader = ({
   id,
   previousItemId,
 }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
-  const { itemId: parentItemId } = useParams();
+  const { t } = useTranslation(NS.Builder);
+  const { itemId: parentItemId } = itemRoute.useParams();
   const [error, setError] = useState<string>();
 
   const { mutateAsync: uploadFiles, isPending } = mutations.useUploadFiles();
@@ -54,12 +55,12 @@ const FileUploader = ({
 
     if (files.length > MAX_NUMBER_OF_FILES_UPLOAD) {
       setError(
-        t(BUILDER.CANNOT_UPLOAD_MORE_FILES, {
+        t('CANNOT_UPLOAD_MORE_FILES', {
           count: MAX_NUMBER_OF_FILES_UPLOAD,
         }),
       );
       onError?.({
-        message: t(BUILDER.CANNOT_UPLOAD_MORE_FILES, {
+        message: t('CANNOT_UPLOAD_MORE_FILES', {
           count: MAX_NUMBER_OF_FILES_UPLOAD,
         }),
       } as Error);
@@ -89,7 +90,7 @@ const FileUploader = ({
   return (
     <Box width="100%" id={id} height="100%">
       <FileDropper
-        message={t(BUILDER.DROPZONE_HELPER_TEXT)}
+        message={t('DROPZONE_HELPER_TEXT')}
         onChange={(e) => {
           if (e.target.files) {
             // transform from filelist to file array
@@ -101,8 +102,8 @@ const FileUploader = ({
         multiple
         onDrop={onDrop}
         error={error}
-        buttonText={t(BUILDER.DROPZONE_HELPER_ACTION)}
-        hints={t(BUILDER.DROPZONE_HELPER_LIMIT_REMINDER_TEXT)}
+        buttonText={t('DROPZONE_HELPER_ACTION')}
+        hints={t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT')}
         buttons={buttons}
       />
     </Box>

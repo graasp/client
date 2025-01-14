@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Box, Card, Stack, Typography } from '@mui/material';
 
 import { PackedItem, formatDate } from '@graasp/sdk';
-import { AnalyticsIcon, PlayIcon } from '@graasp/ui';
+import { AnalyticsIcon, BuildIcon, PlayIcon } from '@graasp/ui';
 
 import { Link } from '@tanstack/react-router';
 
@@ -64,6 +64,18 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
           </Stack>
         </CardActionAreaLink>
         <Stack paddingInlineEnd={2}>
+          <Link
+            to="/builder/items/$itemId"
+            params={{ itemId: item.id }}
+            style={{ minHeight: 0 }}
+          >
+            <BuildIcon
+              size={30}
+              secondaryColor="white"
+              disableHover={false}
+              sx={{ display: 'block' }}
+            />
+          </Link>
           <Link
             to="/player/$rootId/$itemId"
             params={{ rootId: item.id, itemId: item.id }}

@@ -8,10 +8,10 @@ import {
   PermissionLevel,
   formatFileSize,
   getFileExtra,
-} from "@graasp/sdk";
-import { langs } from "@graasp/translations";
+} from '@graasp/sdk';
+import { langs } from '@graasp/translations';
 
-import { buildItemPath, buildItemSettingsPath } from "../../../../config/paths";
+import { buildItemPath, buildItemSettingsPath } from '../../../../config/paths';
 import {
   CLEAR_CHAT_CONFIRM_BUTTON_ID,
   CLEAR_CHAT_DIALOG_ID,
@@ -29,16 +29,16 @@ import {
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
   buildItemsGridMoreButtonSelector,
   buildSettingsButtonId,
-} from "../../../../config/selectors";
-import { ITEM_WITH_CHATBOX_MESSAGES } from "../../../fixtures/chatbox";
-import { CURRENT_USER, MEMBERS } from "../../../fixtures/members";
-import { EDIT_ITEM_PAUSE } from "../../../support/constants";
+} from '../../../../config/selectors';
+import { ITEM_WITH_CHATBOX_MESSAGES } from '../../../fixtures/chatbox';
+import { CURRENT_USER, MEMBERS } from '../../../fixtures/members';
+import { EDIT_ITEM_PAUSE } from '../../../support/constants';
 
-describe("Item Settings", () => {
-  describe("read rights", () => {
+describe('Item Settings', () => {
+  describe('read rights', () => {
     const item = PackedFolderItemFactory(
       {},
-      { permission: PermissionLevel.Read }
+      { permission: PermissionLevel.Read },
     );
 
     beforeEach(() => {
@@ -48,33 +48,33 @@ describe("Item Settings", () => {
       });
     });
 
-    it("settings button does not open settings page", () => {
+    it('settings button does not open settings page', () => {
       // manual click to verify settings button works correctly
       cy.visit(buildItemPath(item.id));
-      cy.get(`#${buildSettingsButtonId(item.id)}`).should("not.exist");
+      cy.get(`#${buildSettingsButtonId(item.id)}`).should('not.exist');
     });
 
-    it("settings page redirects to item", () => {
+    it('settings page redirects to item', () => {
       // manual click to verify settings button works correctly
       cy.visit(buildItemSettingsPath(item.id));
       // name could have ellipsis
-      cy.get(`.${ITEM_MAIN_CLASS}`).should("contain", item.name.slice(0, 10));
+      cy.get(`.${ITEM_MAIN_CLASS}`).should('contain', item.name.slice(0, 10));
     });
   });
 
-  describe("admin rights", () => {
-    it("setting button opens settings page", () => {
+  describe('admin rights', () => {
+    it('setting button opens settings page', () => {
       const item = PackedFolderItemFactory({ settings: { showChatbox: true } });
       cy.setUpApi({ items: [item] });
       // manual click to verify settings button works correctly
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildSettingsButtonId(item.id)}`).click();
 
-      cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should("be.checked");
+      cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should('be.checked');
     });
 
-    describe("Metadata table", () => {
-      it("folder", () => {
+    describe('Metadata table', () => {
+      it('folder', () => {
         const item = PackedFolderItemFactory({ creator: MEMBERS.BOB });
         const { id, name, type, creator } = item;
         cy.setUpApi({ items: [item] });
@@ -85,11 +85,11 @@ describe("Item Settings", () => {
         cy.get(`#${ITEM_PANEL_TABLE_ID}`).contains(type);
 
         cy.get(`#${ITEM_PANEL_TABLE_ID}`)
-          .should("exist")
+          .should('exist')
           .contains(creator.name);
       });
 
-      it("file", () => {
+      it('file', () => {
         const FILE = PackedLocalFileItemFactory({ creator: MEMBERS.BOB });
         cy.setUpApi({ items: [FILE] });
 
@@ -100,7 +100,7 @@ describe("Item Settings", () => {
         cy.get(`#${ITEM_PANEL_TABLE_ID}`).contains(extra.file.mimetype);
 
         cy.get(`#${ITEM_PANEL_TABLE_ID}`)
-          .should("exist")
+          .should('exist')
           .contains(creator.name);
 
         if (type === ItemType.LOCAL_FILE || type === ItemType.S3_FILE) {
@@ -112,8 +112,8 @@ describe("Item Settings", () => {
       });
     });
 
-    describe("Language", () => {
-      it("change item language", () => {
+    describe('Language', () => {
+      it('change item language', () => {
         const FILE = PackedLocalFileItemFactory();
         cy.setUpApi({ items: [FILE] });
         const { id, lang } = FILE;
@@ -121,18 +121,18 @@ describe("Item Settings", () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         const langName = langs[lang];
-        cy.get(`#${LANGUAGE_SELECTOR_ID}`).should("contain", langName);
+        cy.get(`#${LANGUAGE_SELECTOR_ID}`).should('contain', langName);
         cy.get(`#${LANGUAGE_SELECTOR_ID}`).click();
         cy.get(`[role="option"][data-value="de"]`).click();
 
-        cy.wait("@editItem").then(({ request: { body } }) => {
-          expect(body.lang).to.equal("de");
+        cy.wait('@editItem').then(({ request: { body } }) => {
+          expect(body.lang).to.equal('de');
         });
       });
     });
 
-    describe("Chatbox Settings", () => {
-      it("Disabling Chatbox", () => {
+    describe('Chatbox Settings', () => {
+      it('Disabling Chatbox', () => {
         const FILE = PackedLocalFileItemFactory({
           settings: { showChatbox: true },
         });
@@ -141,11 +141,11 @@ describe("Item Settings", () => {
 
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should("be.checked");
+        cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should('be.checked');
 
         cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -153,12 +153,12 @@ describe("Item Settings", () => {
           }) => {
             expect(settings?.showChatbox).equals(false);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
 
-      it("Enabling Chatbox", () => {
+      it('Enabling Chatbox', () => {
         const FILE = PackedLocalFileItemFactory({
           settings: { showChatbox: false },
         });
@@ -167,11 +167,11 @@ describe("Item Settings", () => {
 
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should("not.be.checked");
+        cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).should('not.be.checked');
 
         cy.get(`#${SETTINGS_CHATBOX_TOGGLE_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -179,30 +179,30 @@ describe("Item Settings", () => {
           }) => {
             expect(settings?.showChatbox).equals(true);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
 
-      it("Clear Chat", () => {
+      it('Clear Chat', () => {
         const item = PackedFolderItemFactory();
         const ITEM_WITH_CHATBOX_MESSAGES_AND_ADMIN = {
           ...item,
           chat: [
             {
-              id: "78ad2166-3862-4593-a10c-d380e7b66674",
-              body: "message1",
+              id: '78ad2166-3862-4593-a10c-d380e7b66674',
+              body: 'message1',
               item,
-              createdAt: "2021-08-11T12:56:36.834Z",
-              updatedAt: "2021-08-11T12:56:36.834Z",
+              createdAt: '2021-08-11T12:56:36.834Z',
+              updatedAt: '2021-08-11T12:56:36.834Z',
               creator: CURRENT_USER,
             },
             {
-              id: "78ad1166-3862-1593-a10c-d380e7b66674",
-              body: "message2",
+              id: '78ad1166-3862-1593-a10c-d380e7b66674',
+              body: 'message2',
               item,
-              createdAt: "2021-08-11T12:56:36.834Z",
-              updatedAt: "2021-08-11T12:56:36.834Z",
+              createdAt: '2021-08-11T12:56:36.834Z',
+              updatedAt: '2021-08-11T12:56:36.834Z',
               creator: MEMBERS.BOB,
             },
           ],
@@ -214,7 +214,7 @@ describe("Item Settings", () => {
 
         // click on the clear chat button
         cy.get(`#${CLEAR_CHAT_SETTING_ID}`).scrollIntoView();
-        cy.get(`#${CLEAR_CHAT_SETTING_ID}`).should("exist").and("be.visible");
+        cy.get(`#${CLEAR_CHAT_SETTING_ID}`).should('exist').and('be.visible');
         cy.get(`#${CLEAR_CHAT_SETTING_ID}`).click();
 
         // check that the dialog is open
@@ -222,14 +222,14 @@ describe("Item Settings", () => {
 
         // check that the buttons are there
         cy.get(`#${CLEAR_CHAT_CONFIRM_BUTTON_ID}`)
-          .should("exist")
-          .and("be.visible")
+          .should('exist')
+          .and('be.visible')
           .click();
 
-        cy.wait("@clearItemChat");
+        cy.wait('@clearItemChat');
       });
 
-      it("Unauthorized to clear Chat", () => {
+      it('Unauthorized to clear Chat', () => {
         cy.setUpApi({ items: [ITEM_WITH_CHATBOX_MESSAGES] });
 
         const itemId = ITEM_WITH_CHATBOX_MESSAGES.id;
@@ -237,15 +237,15 @@ describe("Item Settings", () => {
         cy.visit(buildItemSettingsPath(itemId));
 
         // check that the clear button is not shown
-        cy.get(`#${CLEAR_CHAT_SETTING_ID}`).should("not.exist");
+        cy.get(`#${CLEAR_CHAT_SETTING_ID}`).should('not.exist');
 
         // check that the download button is not shown
-        cy.get(`#${DOWNLOAD_CHAT_BUTTON_ID}`).should("not.exist");
+        cy.get(`#${DOWNLOAD_CHAT_BUTTON_ID}`).should('not.exist');
       });
     });
 
-    describe("Pinned Settings", () => {
-      it("Unpin items", () => {
+    describe('Pinned Settings', () => {
+      it('Unpin items', () => {
         const FILE = PackedLocalFileItemFactory({
           settings: { isPinned: true },
         });
@@ -254,11 +254,11 @@ describe("Item Settings", () => {
 
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).should("be.checked");
+        cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).should('be.checked');
 
         cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -266,23 +266,23 @@ describe("Item Settings", () => {
           }) => {
             expect(settings.isPinned).equals(false);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
 
-      it("Pin Item", () => {
+      it('Pin Item', () => {
         const FILE = PackedLocalFileItemFactory({
           settings: { isPinned: false },
         });
         cy.setUpApi({ items: [FILE] });
         const { id: itemId } = FILE;
         cy.visit(buildItemSettingsPath(itemId));
-        cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).should("not.be.checked");
+        cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).should('not.be.checked');
 
         cy.get(`#${SETTINGS_PINNED_TOGGLE_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -290,38 +290,38 @@ describe("Item Settings", () => {
           }) => {
             expect(settings.isPinned).equals(true);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
     });
 
-    describe("Analytics Settings", () => {
-      it("Layout", () => {
+    describe('Analytics Settings', () => {
+      it('Layout', () => {
         const FILE = PackedLocalFileItemFactory();
         cy.setUpApi({ items: [FILE] });
         const { id: itemId } = FILE;
         cy.visit(buildItemSettingsPath(itemId));
 
         cy.get(`#${SETTINGS_SAVE_ACTIONS_TOGGLE_ID}`)
-          .should("exist")
-          .should("be.disabled");
+          .should('exist')
+          .should('be.disabled');
       });
     });
 
-    describe("Link Settings", () => {
-      it("Does not show link settings for folder item", () => {
+    describe('Link Settings', () => {
+      it('Does not show link settings for folder item', () => {
         const FILE = PackedFolderItemFactory();
         cy.setUpApi({ items: [FILE] });
         const { id: itemId } = FILE;
 
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_LINK_SHOW_IFRAME_ID}`).should("not.exist");
-        cy.get(`#${SETTINGS_LINK_SHOW_BUTTON_ID}`).should("not.exist");
+        cy.get(`#${SETTINGS_LINK_SHOW_IFRAME_ID}`).should('not.exist');
+        cy.get(`#${SETTINGS_LINK_SHOW_BUTTON_ID}`).should('not.exist');
       });
 
-      it("Toggle Iframe", () => {
+      it('Toggle Iframe', () => {
         const FILE = PackedLinkItemFactory({
           settings: { showLinkIframe: false },
         });
@@ -330,11 +330,11 @@ describe("Item Settings", () => {
 
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_LINK_SHOW_IFRAME_ID}`).should("not.be.checked");
+        cy.get(`#${SETTINGS_LINK_SHOW_IFRAME_ID}`).should('not.be.checked');
 
         cy.get(`#${SETTINGS_LINK_SHOW_IFRAME_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -342,12 +342,12 @@ describe("Item Settings", () => {
           }) => {
             expect(settings.showLinkIframe).equals(true);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
 
-      it("Toggle Button", () => {
+      it('Toggle Button', () => {
         const FILE = PackedLinkItemFactory({
           settings: { showLinkIframe: true },
         });
@@ -355,11 +355,11 @@ describe("Item Settings", () => {
         const { id: itemId } = FILE;
         cy.visit(buildItemSettingsPath(itemId));
 
-        cy.get(`#${SETTINGS_LINK_SHOW_BUTTON_ID}`).should("be.checked");
+        cy.get(`#${SETTINGS_LINK_SHOW_BUTTON_ID}`).should('be.checked');
 
         cy.get(`#${SETTINGS_LINK_SHOW_BUTTON_ID}`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -367,22 +367,22 @@ describe("Item Settings", () => {
           }) => {
             expect(settings.showLinkButton).equals(false);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
     });
 
-    describe("File Settings", () => {
-      it("Change default maximum width", () => {
+    describe('File Settings', () => {
+      it('Change default maximum width', () => {
         const FILE = PackedLocalFileItemFactory({
           extra: {
             [ItemType.LOCAL_FILE]: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
-              name: "name",
-              path: "path",
-              content: "",
+              name: 'name',
+              path: 'path',
+              content: '',
             },
           },
         });
@@ -393,15 +393,15 @@ describe("Item Settings", () => {
 
         // default value
         cy.get(`#${FILE_SETTING_MAX_WIDTH_ID} + input`).should(
-          "have.value",
-          "default"
+          'have.value',
+          'default',
         );
 
         const newMaxWidth = MaxWidth.Small;
         cy.get(`#${FILE_SETTING_MAX_WIDTH_ID}`).click();
         cy.get(`[role="option"][data-value="${newMaxWidth}"]`).click();
 
-        cy.wait("@editItem").then(
+        cy.wait('@editItem').then(
           ({
             response: {
               body: { settings },
@@ -409,20 +409,20 @@ describe("Item Settings", () => {
           }) => {
             expect(settings.maxWidth).equals(newMaxWidth);
             cy.wait(EDIT_ITEM_PAUSE);
-            cy.get("@getItem").its("response.url").should("contain", itemId);
-          }
+            cy.get('@getItem').its('response.url').should('contain', itemId);
+          },
         );
       });
 
-      it("Shows set maximum width for file", () => {
+      it('Shows set maximum width for file', () => {
         const FILE = PackedLocalFileItemFactory({
           extra: {
             [ItemType.LOCAL_FILE]: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
-              name: "name",
-              path: "path",
-              content: "",
+              name: 'name',
+              path: 'path',
+              content: '',
             },
           },
           settings: {
@@ -435,18 +435,18 @@ describe("Item Settings", () => {
         cy.visit(buildItemSettingsPath(itemId));
 
         cy.get(`#${FILE_SETTING_MAX_WIDTH_ID} + input`).should(
-          "have.value",
-          FILE.settings.maxWidth
+          'have.value',
+          FILE.settings.maxWidth,
         );
       });
     });
   });
 
-  describe("in item menu", () => {
-    describe("read", () => {
+  describe('in item menu', () => {
+    describe('read', () => {
       const item = PackedFolderItemFactory(
         {},
-        { permission: PermissionLevel.Read }
+        { permission: PermissionLevel.Read },
       );
       const itemId = item.id;
       beforeEach(() => {
@@ -454,17 +454,17 @@ describe("Item Settings", () => {
           items: [item],
           currentMember: MEMBERS.BOB,
         });
-        cy.visit("/");
+        cy.visit('/');
       });
-      it("does not have access to settings", () => {
+      it('does not have access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
-        cy.get(`#${buildSettingsButtonId(itemId)}`).should("not.exist");
+        cy.get(`#${buildSettingsButtonId(itemId)}`).should('not.exist');
       });
     });
-    describe("write", () => {
+    describe('write', () => {
       const item = PackedFolderItemFactory(
         {},
-        { permission: PermissionLevel.Admin }
+        { permission: PermissionLevel.Admin },
       );
       const itemId = item.id;
       beforeEach(() => {
@@ -472,13 +472,13 @@ describe("Item Settings", () => {
           items: [item],
           currentMember: MEMBERS.ALICE,
         });
-        cy.visit("/");
+        cy.visit('/');
       });
-      it("has access to settings", () => {
+      it('has access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
-        cy.get(`#${buildSettingsButtonId(itemId)}`).should("be.visible");
+        cy.get(`#${buildSettingsButtonId(itemId)}`).should('be.visible');
         cy.get(`#${buildSettingsButtonId(itemId)}`).click();
-        cy.url().should("contain", buildItemSettingsPath(itemId));
+        cy.url().should('contain', buildItemSettingsPath(itemId));
       });
     });
   });

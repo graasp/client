@@ -1,15 +1,15 @@
-import { CookieKeys, PublicationStatus } from "@graasp/sdk";
+import { CookieKeys, PublicationStatus } from '@graasp/sdk';
 
-import "cypress-localstorage-commands";
+import 'cypress-localstorage-commands';
 
-import { ItemLayoutMode } from "@/enums";
+import { ItemLayoutMode } from '@/enums';
 
-import { LAYOUT_MODE_BUTTON_ID } from "../../config/selectors";
-import { APPS_LIST } from "../fixtures/apps/apps";
-import { SAMPLE_MENTIONS } from "../fixtures/chatbox";
-import { CURRENT_USER, MEMBERS } from "../fixtures/members";
-import "./commands/item";
-import "./commands/navigation";
+import { LAYOUT_MODE_BUTTON_ID } from '../../config/selectors';
+import { APPS_LIST } from '../fixtures/apps/apps';
+import { SAMPLE_MENTIONS } from '../fixtures/chatbox';
+import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import './commands/item';
+import './commands/navigation';
 import {
   mockAddFavorite,
   mockAddTag,
@@ -95,10 +95,10 @@ import {
   mockUploadInvitationCSV,
   mockUploadInvitationCSVWithTemplate,
   mockUploadItem,
-} from "./server";
+} from './server';
 
 Cypress.Commands.add(
-  "setUpApi",
+  'setUpApi',
   ({
     items = [],
     recycledItemData = [],
@@ -169,7 +169,7 @@ Cypress.Commands.add(
     const cachedShortLinks = JSON.parse(JSON.stringify(shortLinks));
 
     // hide cookie banner by default
-    cy.setCookie(CookieKeys.AcceptCookies, "true");
+    cy.setCookie(CookieKeys.AcceptCookies, 'true');
 
     mockGetAppListRoute(APPS_LIST);
 
@@ -181,7 +181,7 @@ Cypress.Commands.add(
 
     mockGetItem(
       { items: cachedItems, currentMember },
-      getItemError || getCurrentMemberError
+      getItemError || getCurrentMemberError,
     );
     mockGetParents({ items, currentMember });
     mockGetChildren({ items: cachedItems, currentMember });
@@ -195,7 +195,7 @@ Cypress.Commands.add(
     mockPostItemMembership(cachedItems, shareItemError);
     mockPostManyItemMemberships(
       { items: cachedItems, members },
-      shareItemError
+      shareItemError,
     );
 
     mockGetMember(cachedMembers);
@@ -338,10 +338,10 @@ Cypress.Commands.add(
     mockRejectMembershipRequest();
 
     mockEnroll();
-  }
+  },
 );
 
-Cypress.Commands.add("switchMode", (mode) => {
+Cypress.Commands.add('switchMode', (mode) => {
   cy.get(`#${LAYOUT_MODE_BUTTON_ID}`).click({ force: true });
   switch (mode) {
     case ItemLayoutMode.Grid:
@@ -359,46 +359,46 @@ Cypress.Commands.add("switchMode", (mode) => {
 });
 
 Cypress.Commands.add(
-  "visitAndMockWs",
+  'visitAndMockWs',
   (visitRoute, sampleData, wsClientStub) => {
     cy.setUpApi(sampleData);
     cy.visit(visitRoute, {
       onBeforeLoad: (win) => {
-        cy.stub(win, "WebSocket", () => wsClientStub);
+        cy.stub(win, 'WebSocket', () => wsClientStub);
       },
     });
-  }
+  },
 );
 
 Cypress.Commands.add(
-  "clickElementInIframe",
+  'clickElementInIframe',
   (iframeSelector, elementSelector) =>
     cy
       .get(iframeSelector)
       .then(($iframe) =>
-        cy.wrap($iframe.contents().find(elementSelector)).click()
-      )
+        cy.wrap($iframe.contents().find(elementSelector)).click(),
+      ),
 );
 
 Cypress.Commands.add(
-  "checkContentInElementInIframe",
+  'checkContentInElementInIframe',
   (iframeSelector, elementSelector, text) =>
     cy
       .get(iframeSelector)
       .then(($iframe) =>
         cy
           .wrap($iframe.contents().find(elementSelector))
-          .should("contain", text)
-      )
+          .should('contain', text),
+      ),
 );
 
-Cypress.Commands.add("attachFile", (selector, file, options = {}) => {
+Cypress.Commands.add('attachFile', (selector, file, options = {}) => {
   selector.selectFile(`cypress/fixtures/${file}`, options);
 });
 
-Cypress.Commands.add("attachFiles", (selector, filenames, options = {}) => {
+Cypress.Commands.add('attachFiles', (selector, filenames, options = {}) => {
   const correctFilenames = filenames.map(
-    (filename) => `cypress/fixtures/${filename}`
+    (filename) => `cypress/fixtures/${filename}`,
   );
   selector.selectFile(correctFilenames, options);
 });

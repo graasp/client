@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { IconButton, TextField } from '@mui/material';
 
 import { Undo2Icon, XIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 type LinkDescriptionFieldProps = {
   onRestore: () => void;
@@ -21,11 +21,11 @@ const LinkDescriptionField = ({
     getValues,
     formState: { errors },
   } = useFormContext<{ description: string }>();
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { description } = getValues();
   return (
     <TextField
-      label={t(BUILDER.DESCRIPTION_LABEL)}
+      label={t('DESCRIPTION_LABEL')}
       variant="standard"
       slotProps={{
         inputLabel: { shrink: true },

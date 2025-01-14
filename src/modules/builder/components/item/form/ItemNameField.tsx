@@ -1,16 +1,14 @@
 import { useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton, TextField } from '@mui/material';
 
 import { ItemConstants, MAX_ITEM_NAME_LENGTH } from '@graasp/sdk';
-import { FAILURE_MESSAGES } from '@graasp/translations';
 
-import {
-  useBuilderTranslation,
-  useMessagesTranslation,
-} from '../../../config/i18n';
-import { ITEM_FORM_NAME_INPUT_ID } from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { ITEM_FORM_NAME_INPUT_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 export type ItemNameFieldProps = {
@@ -29,8 +27,8 @@ export const ItemNameField = ({
     reset,
     formState: { errors },
   } = useFormContext<{ name: string }>();
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateMessages } = useMessagesTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessages } = useTranslation(NS.Messages);
 
   const handleClearClick = () => {
     reset({ name: '' });
@@ -39,6 +37,7 @@ export const ItemNameField = ({
   return (
     <TextField
       variant="standard"
+      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus={autoFocus}
       id={ITEM_FORM_NAME_INPUT_ID}
       label={translateBuilder(BUILDER.CREATE_NEW_ITEM_NAME_LABEL)}
@@ -67,15 +66,11 @@ export const ItemNameField = ({
           ? translateBuilder(BUILDER.ITEM_NAME_CANNOT_BE_EMPTY)
           : false,
         pattern: {
-          message: translateMessages(
-            FAILURE_MESSAGES.INVALID_ITEM_NAME_PATTERN_ERROR,
-          ),
+          message: translateMessages('INVALID_ITEM_NAME_PATTERN_ERROR'),
           value: ItemConstants.ITEM_NAME_REGEX,
         },
         maxLength: {
-          message: translateMessages(
-            FAILURE_MESSAGES.INVALID_ITEM_NAME_MAX_LENGTH_ERROR,
-          ),
+          message: translateMessages('INVALID_ITEM_NAME_MAX_LENGTH_ERROR'),
           value: MAX_ITEM_NAME_LENGTH,
         },
       })}

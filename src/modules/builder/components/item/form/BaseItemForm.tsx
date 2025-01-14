@@ -75,7 +75,7 @@ const BaseItemForm = ({
             disabled={!isValid}
             variant="contained"
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </LoadingButton>
         </DialogActions>
       </FormProvider>

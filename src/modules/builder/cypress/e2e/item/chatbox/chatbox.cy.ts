@@ -1,31 +1,31 @@
-import { MockWebSocket } from "@graasp/query-client";
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { MockWebSocket } from '@graasp/query-client';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { v4 } from "uuid";
+import { v4 } from 'uuid';
 
-import { buildItemPath } from "../../../../config/paths";
+import { buildItemPath } from '../../../../config/paths';
 import {
   CHATBOX_ID,
   CHATBOX_INPUT_BOX_ID,
   ITEM_CHATBOX_BUTTON_ID,
-} from "../../../../config/selectors";
-import { ITEM_WITH_CHATBOX_MESSAGES } from "../../../fixtures/chatbox";
-import { CURRENT_USER, MEMBERS } from "../../../fixtures/members";
-import { CHATBOX_TIMEOUT } from "../../../support/constants";
+} from '../../../../config/selectors';
+import { ITEM_WITH_CHATBOX_MESSAGES } from '../../../fixtures/chatbox';
+import { CURRENT_USER, MEMBERS } from '../../../fixtures/members';
+import { CHATBOX_TIMEOUT } from '../../../support/constants';
 
 const openChatbox = () => {
   cy.get(`#${ITEM_CHATBOX_BUTTON_ID}`).click();
-  cy.wait("@getItemChat", { timeout: CHATBOX_TIMEOUT });
+  cy.wait('@getItemChat', { timeout: CHATBOX_TIMEOUT });
 };
 
-describe("Chatbox Scenarios", () => {
+describe('Chatbox Scenarios', () => {
   let client: MockWebSocket;
 
   beforeEach(() => {
     client = new MockWebSocket();
   });
 
-  it("Send messages in chatbox", () => {
+  it('Send messages in chatbox', () => {
     const item = ITEM_WITH_CHATBOX_MESSAGES;
     cy.visitAndMockWs(buildItemPath(item.id), { items: [item] }, client);
 
@@ -33,30 +33,30 @@ describe("Chatbox Scenarios", () => {
     openChatbox();
     // check the chatbox displays the already saved messages
     for (const msg of item.chat) {
-      cy.get(`#${CHATBOX_ID}`).should("contain", msg.body);
+      cy.get(`#${CHATBOX_ID}`).should('contain', msg.body);
     }
 
     // send message
-    const message = "a new message";
+    const message = 'a new message';
     const messageId = v4();
     // get the input field (which is a textarea because it is multiline
     cy.get(`#${CHATBOX_ID} #${CHATBOX_INPUT_BOX_ID} textarea:visible`).type(
-      message
+      message,
     );
     cy.get(`#${CHATBOX_ID} #${CHATBOX_INPUT_BOX_ID} button`).click();
-    cy.wait("@postItemChatMessage").then(({ request: { body } }) => {
+    cy.wait('@postItemChatMessage').then(({ request: { body } }) => {
       expect(body.body).to.equal(message);
       expect(body.mentions).to.deep.equal([]);
 
       // mock websocket response
       client.receive({
-        realm: "notif",
-        type: "update",
-        topic: "chat/item",
+        realm: 'notif',
+        type: 'update',
+        topic: 'chat/item',
         channel: item.id,
         body: {
-          kind: "item",
-          op: "publish",
+          kind: 'item',
+          op: 'publish',
           message: {
             id: messageId,
             creator: CURRENT_USER.id,
@@ -70,34 +70,34 @@ describe("Chatbox Scenarios", () => {
 
       // check the new message is visible
       cy.get(`#${CHATBOX_ID} [data-cy=message-${messageId}]`).should(
-        "contain",
-        message
+        'contain',
+        message,
       );
     });
   });
 
-  it("Receive messages in chatbox from websockets", () => {
+  it('Receive messages in chatbox from websockets', () => {
     const item = PackedFolderItemFactory();
     cy.visitAndMockWs(
       buildItemPath(item.id),
       { items: [item], members: [MEMBERS] },
-      client
+      client,
     );
 
     openChatbox();
 
     const messageId = v4();
     // check websocket: the chatbox displays someone else's message
-    const bobMessage = "a message from bob";
+    const bobMessage = 'a message from bob';
     cy.get(`#${CHATBOX_ID}`).then(() => {
       client.receive({
-        realm: "notif",
-        type: "update",
-        topic: "chat/item",
+        realm: 'notif',
+        type: 'update',
+        topic: 'chat/item',
         channel: item.id,
         body: {
-          kind: "item",
-          op: "publish",
+          kind: 'item',
+          op: 'publish',
           message: {
             id: messageId,
             creator: MEMBERS.BOB.id,
@@ -111,8 +111,8 @@ describe("Chatbox Scenarios", () => {
 
       // check the new message is visible
       cy.get(`#${CHATBOX_ID} [data-cy=message-${messageId}]`).should(
-        "contain",
-        bobMessage
+        'contain',
+        bobMessage,
       );
     });
   });

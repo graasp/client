@@ -10,9 +10,9 @@ import {
   PermissionLevel,
   PublicationStatus,
   PublishableItemTypeChecker,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { buildItemPath } from "../../../../config/paths";
+import { buildItemPath } from '../../../../config/paths';
 import {
   EMAIL_NOTIFICATION_CHECKBOX,
   PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON,
@@ -20,14 +20,14 @@ import {
   buildItemPublicationButton,
   buildPublicationStatus,
   buildPublishButtonId,
-} from "../../../../config/selectors";
+} from '../../../../config/selectors';
 import {
   ItemValidationGroupFactory,
   PublishedItemFactory,
-} from "../../../fixtures/items";
-import { MEMBERS } from "../../../fixtures/members";
-import { createPublicItemByType } from "../../../fixtures/publish/publish";
-import { ItemForTest } from "../../../support/types";
+} from '../../../fixtures/items';
+import { MEMBERS } from '../../../fixtures/members';
+import { createPublicItemByType } from '../../../fixtures/publish/publish';
+import { ItemForTest } from '../../../support/types';
 
 const openPublishItemTab = (id: string) => {
   cy.get(`#${buildPublishButtonId(id)}`).click();
@@ -43,7 +43,7 @@ const setUpAndVisitItemPage = (
     itemPublicationStatus?: PublicationStatus;
     itemValidationGroups?: ItemValidationGroup[];
     currentMember?: Member | null;
-  } = {}
+  } = {},
 ) => {
   cy.setUpApi({
     items: [item],
@@ -74,14 +74,14 @@ const waitOnRequest = (request: string, item: PackedItem) => {
 };
 
 const waitOnItemValidation = (item: PackedItem) => {
-  waitOnRequest("@postItemValidation", item);
+  waitOnRequest('@postItemValidation', item);
 };
 
 const waitOnPublishItem = (
   item: PackedItem,
-  { shouldNotify }: { shouldNotify: boolean } = { shouldNotify: false }
+  { shouldNotify }: { shouldNotify: boolean } = { shouldNotify: false },
 ) => {
-  cy.wait("@publishItem").then((data) => {
+  cy.wait('@publishItem').then((data) => {
     const {
       request: { url, query },
     } = data;
@@ -99,39 +99,39 @@ const waitOnSetItemPublic = (item: PackedItem) => {
 };
 
 const waitOnUnpublishItem = (item: PackedItem) => {
-  waitOnRequest("@unpublishItem", item);
+  waitOnRequest('@unpublishItem', item);
 };
 
-describe("Unauthorized members should not have access to publish tab", () => {
+describe('Unauthorized members should not have access to publish tab', () => {
   let item: PackedItem;
 
   afterEach(() => {
-    cy.get(`#${buildPublishButtonId(item.id)}`).should("not.exist");
+    cy.get(`#${buildPublishButtonId(item.id)}`).should('not.exist');
   });
 
-  it("Unlogged members should not view publish tab", () => {
+  it('Unlogged members should not view publish tab', () => {
     item = PackedFolderItemFactory(
       {},
-      { permission: null, publicVisibility: {} }
+      { permission: null, publicVisibility: {} },
     );
     setUpAndVisitItemPage(item, { currentMember: null });
   });
 
-  it("Readers should not view publish tab", () => {
+  it('Readers should not view publish tab', () => {
     item = PackedFolderItemFactory({}, { permission: PermissionLevel.Read });
     setUpAndVisitItemPage(item, { currentMember: MEMBERS.BOB });
   });
 
-  it("Writers should not view publish tab", () => {
+  it('Writers should not view publish tab', () => {
     item = PackedFolderItemFactory({}, { permission: PermissionLevel.Write });
     setUpAndVisitItemPage(item, { currentMember: MEMBERS.BOB });
   });
 });
 
-describe("Private Item", () => {
+describe('Private Item', () => {
   const privateItem = PackedFolderItemFactory({}, { publicVisibility: null });
 
-  describe("Unpublished Item", () => {
+  describe('Unpublished Item', () => {
     const status = PublicationStatus.Unpublished;
 
     beforeEach(() => {
@@ -139,13 +139,13 @@ describe("Private Item", () => {
       openPublishItemTab(privateItem.id);
     });
 
-    it("Publication status should be Unpublished", () => {
+    it('Publication status should be Unpublished', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Item can be validated", () => {
+    it('Item can be validated', () => {
       getPublicationButton(status).click(); // Click on validate
       // confirming the modal will not send to the backend until the validation is done
       confirmSetItemToPublic();
@@ -153,7 +153,7 @@ describe("Private Item", () => {
     });
   });
 
-  describe("Ready to Publish Item", () => {
+  describe('Ready to Publish Item', () => {
     const status = PublicationStatus.ReadyToPublish;
     const itemValidationGroup = ItemValidationGroupFactory(privateItem);
 
@@ -165,13 +165,13 @@ describe("Private Item", () => {
       openPublishItemTab(privateItem.id);
     });
 
-    it("Publication status should be Ready to publish", () => {
+    it('Publication status should be Ready to publish', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Publishing private item should warn user before changing visibility", () => {
+    it('Publishing private item should warn user before changing visibility', () => {
       getPublicationButton(status).click(); // click on publish
       confirmSetItemToPublic();
       waitOnSetItemPublic(privateItem);
@@ -179,7 +179,7 @@ describe("Private Item", () => {
     });
   });
 
-  describe("Item is not valid", () => {
+  describe('Item is not valid', () => {
     const status = PublicationStatus.Invalid;
     const itemValidationGroup = ItemValidationGroupFactory(privateItem, {
       status: ItemValidationStatus.Failure,
@@ -193,13 +193,13 @@ describe("Private Item", () => {
       openPublishItemTab(privateItem.id);
     });
 
-    it("Publication status should be Invalid", () => {
+    it('Publication status should be Invalid', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Item can be validated again", () => {
+    it('Item can be validated again', () => {
       getPublicationButton(status).click(); // click on retry
       // confirming the modal will not send to the backend until the validation is done
       confirmSetItemToPublic();
@@ -208,10 +208,10 @@ describe("Private Item", () => {
   });
 });
 
-describe("Public Item", () => {
+describe('Public Item', () => {
   const publicItem = PackedFolderItemFactory({}, { publicVisibility: {} });
 
-  describe("Unpublished Item", () => {
+  describe('Unpublished Item', () => {
     const status = PublicationStatus.Unpublished;
 
     beforeEach(() => {
@@ -219,19 +219,19 @@ describe("Public Item", () => {
       openPublishItemTab(publicItem.id);
     });
 
-    it("Publication status should be Unpublished", () => {
+    it('Publication status should be Unpublished', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Item can be validated", () => {
+    it('Item can be validated', () => {
       getPublicationButton(status).click(); // Click on validate
       waitOnItemValidation(publicItem);
     });
   });
 
-  describe("Validation is Pending", () => {
+  describe('Validation is Pending', () => {
     const status = PublicationStatus.Pending;
     const itemValidationGroup = ItemValidationGroupFactory(publicItem, {
       status: ItemValidationStatus.Pending,
@@ -245,20 +245,20 @@ describe("Public Item", () => {
       openPublishItemTab(publicItem.id);
     });
 
-    it("Publication status should be Pending", () => {
+    it('Publication status should be Pending', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("No actions are available during this state", () => {
+    it('No actions are available during this state', () => {
       Object.values(PublicationStatus).forEach((state) => {
-        getPublicationButton(state).should("not.exist");
+        getPublicationButton(state).should('not.exist');
       });
     });
   });
 
-  describe("Ready to Publish Item", () => {
+  describe('Ready to Publish Item', () => {
     const status = PublicationStatus.ReadyToPublish;
     const itemValidationGroup = ItemValidationGroupFactory(publicItem);
 
@@ -270,25 +270,25 @@ describe("Public Item", () => {
       openPublishItemTab(publicItem.id);
     });
 
-    it("Publication status should be Ready to publish", () => {
+    it('Publication status should be Ready to publish', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Publish the item without notification", () => {
+    it('Publish the item without notification', () => {
       getPublicationButton(status).click(); // click on publish
       waitOnPublishItem(publicItem);
     });
 
-    it("Publish the item with notification", () => {
+    it('Publish the item with notification', () => {
       cy.get(buildDataCyWrapper(EMAIL_NOTIFICATION_CHECKBOX)).click();
       getPublicationButton(status).click(); // click on publish
       waitOnPublishItem(publicItem, { shouldNotify: true });
     });
   });
 
-  describe("Published Item", () => {
+  describe('Published Item', () => {
     const status = PublicationStatus.Published;
     const itemValidationGroup = ItemValidationGroupFactory(publicItem);
 
@@ -300,30 +300,30 @@ describe("Public Item", () => {
       openPublishItemTab(publicItem.id);
     });
 
-    it("Publication status should be Published", () => {
+    it('Publication status should be Published', () => {
       getPublicationStatusComponent(status)
-        .should("exist")
-        .should("be.visible");
+        .should('exist')
+        .should('be.visible');
     });
 
-    it("Unpublish the item", () => {
+    it('Unpublish the item', () => {
       getPublicationButton(status).click(); // click on unpublish
       waitOnUnpublishItem(publicItem);
     });
   });
 
-  describe("Only authorized types can be published", () => {
+  describe('Only authorized types can be published', () => {
     const testItemType = (
       testTitle: string,
       item: ItemForTest,
-      statusExpected: PublicationStatus
+      statusExpected: PublicationStatus,
     ) => {
       it(testTitle, () => {
         setUpAndVisitItemPage(item, { itemPublicationStatus: statusExpected });
         openPublishItemTab(item.id);
         getPublicationStatusComponent(statusExpected)
-          .should("exist")
-          .should("be.visible");
+          .should('exist')
+          .should('be.visible');
       });
     };
 
@@ -331,7 +331,7 @@ describe("Public Item", () => {
       testItemType(
         `Publication should be allowed for type "${item.type}"`,
         item,
-        PublicationStatus.Unpublished
+        PublicationStatus.Unpublished,
       );
     };
 
@@ -339,7 +339,7 @@ describe("Public Item", () => {
       testItemType(
         `Publication should NOT be allowed for type "${item.type}"`,
         item,
-        PublicationStatus.ItemTypeNotAllowed
+        PublicationStatus.ItemTypeNotAllowed,
       );
     };
 

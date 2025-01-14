@@ -1,4 +1,5 @@
 import { MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -11,17 +12,17 @@ import {
 
 import { Trash2 as DeleteIcon, ImageUp as ImageUpIcon } from 'lucide-react';
 
-import CropModal, {
-  MODAL_TITLE_ARIA_LABEL_ID,
-} from '@/components/common/CropModal';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   IMAGE_PLACEHOLDER_FOLDER,
   IMAGE_THUMBNAIL_FOLDER,
   IMAGE_THUMBNAIL_UPLOADER,
   REMOVE_THUMBNAIL_BUTTON,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import CropModal, {
+  MODAL_TITLE_ARIA_LABEL_ID,
+} from '~builder/components/common/CropModal';
 
 import useThumbnailCrop from './ThumbnailCrop.hook';
 
@@ -82,7 +83,7 @@ const ThumbnailCrop = ({
   isUploading = false,
   border,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const theme = useTheme();
   const {
     inputRef,
@@ -114,7 +115,7 @@ const ThumbnailCrop = ({
         >
           <IconButton
             data-cy={REMOVE_THUMBNAIL_BUTTON}
-            aria-label={t(BUILDER.THUMBNAIL_UPLOADER_DELETE_ARIA_LABEL)}
+            aria-label={t('THUMBNAIL_UPLOADER_DELETE_ARIA_LABEL')}
             color="error"
             size="medium"
             sx={sxDeleteButton}
@@ -137,7 +138,7 @@ const ThumbnailCrop = ({
             onEdit();
           }
         }}
-        aria-label={t(BUILDER.THUMBNAIL_UPLOADER_UPDATE_ARIA_LABEL)}
+        aria-label={t('THUMBNAIL_UPLOADER_UPDATE_ARIA_LABEL')}
         role="button"
         tabIndex={0}
         minWidth={thumbnailSize}
@@ -163,7 +164,7 @@ const ThumbnailCrop = ({
         {croppedUrl ? (
           <img
             data-cy={IMAGE_THUMBNAIL_FOLDER}
-            alt={t(BUILDER.THUMBNAIL_UPLOADER_IMAGE_ALT)}
+            alt={t('THUMBNAIL_UPLOADER_IMAGE_ALT')}
             src={croppedUrl}
             width="100%"
           />

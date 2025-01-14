@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 import { ButtonProps } from '@mui/material';
 
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import { useCommonTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
 
 type Props = {
   onClick: () => void;
@@ -12,8 +13,13 @@ type Props = {
   disabled?: boolean;
 };
 
-const CancelButton = ({ id, onClick, color, disabled }: Props): JSX.Element => {
-  const { t: translateCommon } = useCommonTranslation();
+export function CancelButton({
+  id,
+  onClick,
+  color,
+  disabled,
+}: Readonly<Props>): JSX.Element {
+  const { t: translateCommon } = useTranslation(NS.Common);
   return (
     <Button
       id={id}
@@ -22,9 +28,9 @@ const CancelButton = ({ id, onClick, color, disabled }: Props): JSX.Element => {
       color={color}
       disabled={disabled}
     >
-      {translateCommon(COMMON.CANCEL_BUTTON)}
+      {translateCommon('CANCEL.BUTTON_TEXT')}
     </Button>
   );
-};
+}
 
 export default CancelButton;

@@ -1,11 +1,11 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { getParentsIdsFromPath } from "@/utils/item";
+import { getParentsIdsFromPath } from '@/utils/item';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
-import duplicateItem from "../../../support/actionsUtils";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import duplicateItem from '../../../support/actionsUtils';
 
-describe("duplicate Item in Home", () => {
+describe('duplicate Item in Home', () => {
   it(`duplicate item on Home`, () => {
     const FOLDER = PackedFolderItemFactory();
     cy.setUpApi({ items: [FOLDER] });
@@ -15,14 +15,14 @@ describe("duplicate Item in Home", () => {
     const { id: duplicateItemId } = FOLDER;
     duplicateItem({ id: duplicateItemId });
 
-    cy.wait("@copyItems").then(({ request: { url, body } }) => {
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
       expect(url).to.contain(duplicateItemId);
       // as we duplicate on home parentId will be undefined
       expect(body.parentId).to.equal(undefined);
     });
   });
 });
-describe("duplicate Item in item", () => {
+describe('duplicate Item in item', () => {
   it(`duplicate item in item`, () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
@@ -37,7 +37,7 @@ describe("duplicate Item in item", () => {
     const { id: duplicateItemId } = CHILD;
     duplicateItem({ id: duplicateItemId });
 
-    cy.wait("@copyItems").then(({ request: { url, body } }) => {
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
       expect(url).to.contain(duplicateItemId);
       expect(body.parentId).to.equal(parentsIds[0]);
     });

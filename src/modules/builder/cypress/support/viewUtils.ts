@@ -6,11 +6,11 @@ import {
   PermissionLevelCompare,
   getDocumentExtra,
   getLinkExtra,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { getHighestPermissionForMemberFromMemberships } from "@/utils/item";
+import { getHighestPermissionForMemberFromMemberships } from '@/utils/item';
 
-import { ITEM_TYPES_WITH_CAPTIONS } from "../../config/constants";
+import { ITEM_TYPES_WITH_CAPTIONS } from '../../config/constants';
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_SELECTOR,
   ITEM_HEADER_ID,
@@ -19,9 +19,9 @@ import {
   buildFileItemId,
   buildSettingsButtonId,
   buildShareButtonId,
-} from "../../config/selectors";
-import { CURRENT_USER } from "../fixtures/members";
-import { ItemForTest, MemberForTest } from "./types";
+} from '../../config/selectors';
+import { CURRENT_USER } from '../fixtures/members';
+import { ItemForTest, MemberForTest } from './types';
 
 const BR_REGEX = /<br(?:\s*\/?)>/g;
 
@@ -34,7 +34,7 @@ export const expectItemHeaderLayout = ({
 }): void => {
   const header = cy.get(`#${ITEM_HEADER_ID}`);
 
-  header.get(`#${buildShareButtonId(id)}`).should("exist");
+  header.get(`#${buildShareButtonId(id)}`).should('exist');
 
   const permission = getHighestPermissionForMemberFromMemberships({
     memberships,
@@ -47,9 +47,9 @@ export const expectItemHeaderLayout = ({
 
   if (canEditSettings) {
     if (ITEM_TYPES_WITH_CAPTIONS.includes(type)) {
-      header.get(`#${buildEditButtonId(id)}`).should("exist");
+      header.get(`#${buildEditButtonId(id)}`).should('exist');
     }
-    header.get(`#${buildSettingsButtonId(id)}`).should("exist");
+    header.get(`#${buildSettingsButtonId(id)}`).should('exist');
   }
 };
 
@@ -75,9 +75,9 @@ export const expectFileViewScreenLayout = ({
   currentMember?: MemberForTest;
 }): void => {
   // embedded element
-  cy.get(`#${buildFileItemId(item.id)}`).should("exist");
+  cy.get(`#${buildFileItemId(item.id)}`).should('exist');
 
-  cy.get(`.${TEXT_EDITOR_CLASS}`).should("contain", item.description);
+  cy.get(`.${TEXT_EDITOR_CLASS}`).should('contain', item.description);
 
   expectItemHeaderLayout({ item, currentMember });
 };
@@ -97,24 +97,24 @@ export const expectLinkViewScreenLayout = ({
     if (html) {
       cy.get(`#${id}`).then((element) => {
         // transform innerhtml content to match provided html
-        const parsedHtml = element.html().replaceAll('=""', "");
+        const parsedHtml = element.html().replaceAll('=""', '');
         expect(parsedHtml).to.contain(html);
       });
     } else {
-      cy.get(`iframe#${id}`).should("have.attr", "src", url);
+      cy.get(`iframe#${id}`).should('have.attr', 'src', url);
     }
   }
 
   if (settings?.showLinkButton) {
     // this data-testid is set in graasp/ui
-    cy.get('[data-testid="fancy-link-card"]').should("be.visible");
+    cy.get('[data-testid="fancy-link-card"]').should('be.visible');
   }
 
   if (description) {
     cy.get(`.${TEXT_EDITOR_CLASS}`).then((element) => {
       // fix a few flacky tests that fail because the element contains br tags,
       // as opposed to the description, which contains \n.
-      const cleanElement = element.html().replace(BR_REGEX, "\n");
+      const cleanElement = element.html().replace(BR_REGEX, '\n');
       expect(cleanElement).to.contain(description);
     });
   }

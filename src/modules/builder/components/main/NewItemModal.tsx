@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Dialog,
@@ -11,11 +11,13 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation, useCommonTranslation } from '../../config/i18n';
-import { CREATE_ITEM_CLOSE_BUTTON_ID } from '../../config/selectors';
+import { getRouteApi } from '@tanstack/react-router';
+
+import { NS } from '@/config/constants';
+import { CREATE_ITEM_CLOSE_BUTTON_ID } from '@/config/selectors';
+
 import { InternalItemType, NewItemTabType } from '../../config/types';
 import { BUILDER } from '../../langs/constants';
 import { EtherpadForm } from '../item/form/EtherpadForm';
@@ -36,6 +38,8 @@ const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   paddingRight: 0,
 }));
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
+
 type Props = {
   open: boolean;
   handleClose: () => void;
@@ -49,44 +53,39 @@ const NewItemModal = ({
   geolocation,
   previousItemId,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const [selectedItemType, setSelectedItemType] = useState<NewItemTabType>(
     ItemType.LOCAL_FILE,
   );
 
-  const { itemId: parentId } = useParams();
+  const { itemId: parentId } = itemRoute.useParams();
 
   // folders, apps, files, documents, etherpad and links are handled beforehand
   const renderContent = () => {
-    switch (selectedItemType) {
-      case InternalItemType.ZIP:
-        return (
-          <>
-            <Typography variant="h6" color="primary">
-              {translateBuilder(BUILDER.IMPORT_ZIP_TITLE)}
-            </Typography>
-            <ImportZip />
-          </>
-        );
-      default:
-        return null;
+    if (selectedItemType === InternalItemType.ZIP) {
+      return (
+        <>
+          <Typography variant="h6" color="primary">
+            {translateBuilder(BUILDER.IMPORT_ZIP_TITLE)}
+          </Typography>
+          <ImportZip />
+        </>
+      );
     }
+    return null;
   };
 
-  // folders, etherpad and links, deocuments are handled before
+  // folders, etherpad and links, documents are handled before
   const renderActions = () => {
-    switch (selectedItemType) {
-      case InternalItemType.ZIP:
-        return (
-          <Button id={CREATE_ITEM_CLOSE_BUTTON_ID} onClick={handleClose}>
-            {translateCommon(COMMON.CLOSE_BUTTON)}
-          </Button>
-        );
-      default:
-        return null;
+    if (selectedItemType === InternalItemType.ZIP) {
+      return (
+        <Button id={CREATE_ITEM_CLOSE_BUTTON_ID} onClick={handleClose}>
+          {translateBuilder('CLOSE_BUTTON')}
+        </Button>
+      );
     }
+    return null;
   };
 
   // temporary solution to wrap content and actions

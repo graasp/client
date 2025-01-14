@@ -1,15 +1,13 @@
 import { createContext, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { routines } from '@graasp/query-client';
 import { FlagType } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { ItemFlagDialog } from '@graasp/ui';
 
-import { BUILDER } from '@/langs/constants';
-
-import { useBuilderTranslation, useCommonTranslation } from '../../config/i18n';
-import notifier from '../../config/notifier';
-import { mutations } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import notifier from '@/config/notifier';
+import { mutations } from '@/config/queryClient';
 
 const { postItemFlagRoutine } = routines;
 
@@ -22,8 +20,8 @@ const FlagItemModalProvider = ({
 }: {
   children: JSX.Element | JSX.Element[];
 }): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { mutate: postItemFlag } = mutations.usePostItemFlag();
   const [open, setOpen] = useState(false);
   const [itemId, setItemId] = useState<string | null>(null);
@@ -62,10 +60,10 @@ const FlagItemModalProvider = ({
         onFlag={onFlag}
         open={open}
         onClose={onClose}
-        descriptionText={translateBuilder(BUILDER.FLAG_REASON_DESCRIPTION)}
-        title={translateBuilder(BUILDER.FLAG_MODAL_TITLE)}
-        cancelButtonText={translateCommon(COMMON.CANCEL_BUTTON)}
-        confirmButtonText={translateBuilder(BUILDER.FLAG_MODAL_CONFIRM)}
+        descriptionText={translateBuilder('FLAG_REASON_DESCRIPTION')}
+        title={translateBuilder('FLAG_MODAL_TITLE')}
+        cancelButtonText={translateCommon('CANCEL.BUTTON_TEXT')}
+        confirmButtonText={translateBuilder('FLAG_MODAL_CONFIRM')}
       />
       {children}
     </FlagItemModalContext.Provider>

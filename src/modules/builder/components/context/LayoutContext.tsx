@@ -1,11 +1,10 @@
 import { Dispatch, createContext, useContext, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 
 import { ChatStatus } from '@graasp/sdk';
 
-import { DEFAULT_ITEM_LAYOUT_MODE } from '@/enums/itemLayoutMode';
+import { useSearch } from '@tanstack/react-router';
 
-import { ItemLayoutMode } from '../../enums';
+import { ItemLayoutMode } from '~builder/enums';
 
 interface LayoutContextInterface {
   mode: ItemLayoutMode;
@@ -42,11 +41,7 @@ export const LayoutContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // layout mode: grid or list
-  const mode =
-    (searchParams.get('mode') as ItemLayoutMode) ?? DEFAULT_ITEM_LAYOUT_MODE;
+  const { mode } = useSearch({ from: '/builder' });
 
   // item screen editing id
   // todo: separate in item specific context
@@ -66,9 +61,6 @@ export const LayoutContextProvider = ({
   const value: LayoutContextInterface = useMemo(
     () => ({
       mode,
-      setMode: (m) => {
-        setSearchParams({ mode: m });
-      },
       editingItemId,
       setEditingItemId,
       openedActionTabId,
@@ -76,13 +68,7 @@ export const LayoutContextProvider = ({
       isChatboxMenuOpen,
       setIsChatboxMenuOpen,
     }),
-    [
-      editingItemId,
-      isChatboxMenuOpen,
-      mode,
-      openedActionTabId,
-      setSearchParams,
-    ],
+    [editingItemId, isChatboxMenuOpen, mode, openedActionTabId],
   );
 
   return (

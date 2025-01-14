@@ -1,4 +1,5 @@
 {
+  "AVATAR_DEFAULT_ALT": "avatar",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "This item has item login enabled. New users can access this item when they authenticate using the item login.",
   "ACCESS_ITEM_LOGIN_TAG": "Anyone authenticated with the link",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "This item is public. Anyone can access this item.",

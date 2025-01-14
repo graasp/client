@@ -1,8 +1,8 @@
-import { HttpMethod, PackedFolderItemFactory } from "@graasp/sdk";
+import { HttpMethod, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from "../../../../config/paths";
-import { buildItemsTableId } from "../../../../config/selectors";
-import { ID_FORMAT } from "../../../support/utils";
+import { buildItemPath } from '../../../../config/paths';
+import { buildItemsTableId } from '../../../../config/selectors';
+import { ID_FORMAT } from '../../../support/utils';
 
 const PARENT = PackedFolderItemFactory();
 const CHILDREN = [
@@ -11,13 +11,13 @@ const CHILDREN = [
   PackedFolderItemFactory({ parentItem: PARENT }),
 ];
 const ITEM_REORDER_ITEMS = [PARENT, ...CHILDREN];
-const API_HOST = Cypress.env("VITE_GRAASP_API_HOST");
+const API_HOST = Cypress.env('VITE_GRAASP_API_HOST');
 
-describe("Order Items", () => {
+describe('Order Items', () => {
   // todo/bug: difficult to test reordering with drag and drop
 
-  describe("Check default order", () => {
-    it("check item order in folder", () => {
+  describe('Check default order', () => {
+    it('check item order in folder', () => {
       cy.setUpApi({
         items: ITEM_REORDER_ITEMS,
       });
@@ -29,8 +29,8 @@ describe("Order Items", () => {
           method: HttpMethod.Get,
           url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/children`),
         },
-        ({ reply }) => reply(orderedItems)
-      ).as("getChildren");
+        ({ reply }) => reply(orderedItems),
+      ).as('getChildren');
 
       cy.visit(buildItemPath(PARENT.id));
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -14,26 +15,23 @@ import {
 
 import { Button } from '@graasp/ui';
 
-import { NewFolderButton } from '@/components/item/form/folder/NewFolderButton';
-import LoadingScreen from '@/components/layout/LoadingScreen';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
+import { ACCESSIBLE_ITEMS_TABLE_ID } from '@/config/selectors';
+
+import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
+import LoadingScreen from '~builder/components/layout/LoadingScreen';
 import {
   SelectionContextProvider,
   useSelectionContext,
-} from '@/components/main/list/SelectionContext';
+} from '~builder/components/main/list/SelectionContext';
 import {
   DragContainerStack,
   useDragSelection,
-} from '@/components/main/list/useDragSelection';
-import { ITEM_PAGE_SIZE } from '@/config/constants';
-import { ShowOnlyMeChangeType } from '@/config/types';
-import { ItemLayoutMode, Ordering } from '@/enums';
+} from '~builder/components/main/list/useDragSelection';
+import { ITEM_PAGE_SIZE } from '~builder/config/constants';
+import { ItemLayoutMode, Ordering } from '~builder/enums';
 
-import {
-  useBuilderTranslation,
-  useEnumsTranslation,
-} from '../../../config/i18n';
-import { hooks } from '../../../config/queryClient';
-import { ACCESSIBLE_ITEMS_TABLE_ID } from '../../../config/selectors';
 import { BUILDER } from '../../../langs/constants';
 import SelectTypes from '../../common/SelectTypes';
 import { useFilterItemsContext } from '../../context/FilterItemsContext';
@@ -54,9 +52,11 @@ import HomeSelectionToolbar from './HomeSelectionToolbar';
 
 const CONTAINER_ID = 'home-items-container';
 
+type ShowOnlyMeChangeType = (checked: boolean) => void;
+
 const HomeScreenContent = ({ searchText }: { searchText: string }) => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateEnums } = useEnumsTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateEnums } = useTranslation(NS.Enums);
   const { data: currentMember } = hooks.useCurrentMember();
   const { itemTypes } = useFilterItemsContext();
   const [showOnlyMe, setShowOnlyMe] = useState(false);
@@ -212,7 +212,7 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
 };
 
 const HomeScreen = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: currentMember } = hooks.useCurrentMember();
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
@@ -253,10 +253,10 @@ const HomeScreen = (): JSX.Element => {
       <Container maxWidth="md">
         <Alert severity="warning">
           <Typography textAlign="right">
-            {translateBuilder(BUILDER.REDIRECTION_TEXT)}
+            {translateBuilder('REDIRECTION_TEXT')}
           </Typography>
           <MuiButton variant="text" sx={{ textTransform: 'none' }}>
-            {translateBuilder(BUILDER.REDIRECTION_BUTTON)}
+            {translateBuilder('REDIRECTION_BUTTON')}
           </MuiButton>
         </Alert>
       </Container>

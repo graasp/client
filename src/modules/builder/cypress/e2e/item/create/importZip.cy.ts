@@ -1,12 +1,12 @@
-import { PackedFolderItemFactory } from "@graasp/sdk";
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from "../../../../config/paths";
-import { ZIP_DASHBOARD_UPLOADER_ID } from "../../../../config/selectors";
-import { ZIP_DEFAULT } from "../../../fixtures/files";
-import { createItem } from "../../../support/createUtils";
+import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { ZIP_DASHBOARD_UPLOADER_ID } from '../../../../config/selectors';
+import { ZIP_DEFAULT } from '../../../fixtures/files';
+import { createItem } from '../../../support/createUtils';
 
-describe("Import Zip", () => {
-  it("import zip on Home", () => {
+describe('Import Zip', () => {
+  it('import zip on Home', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
 
@@ -15,10 +15,10 @@ describe("Import Zip", () => {
 
     // check interface didn't crash
     cy.wait(5000);
-    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should("be.visible");
+    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should('be.visible');
   });
 
-  it("create file in item", () => {
+  it('create file in item', () => {
     const FOLDER = PackedFolderItemFactory();
 
     cy.setUpApi({ items: [FOLDER] });
@@ -30,10 +30,10 @@ describe("Import Zip", () => {
 
     // check interface didn't crash
     cy.wait(5000);
-    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should("be.visible");
+    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should('be.visible');
   });
 
-  it("catch error", () => {
+  it('catch error', () => {
     const FOLDER = PackedFolderItemFactory();
 
     cy.setUpApi({ items: [FOLDER], importZipError: true });
@@ -45,6 +45,6 @@ describe("Import Zip", () => {
 
     // check interface didn't crash
     cy.wait(5000);
-    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should("be.visible");
+    cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`).should('be.visible');
   });
 });

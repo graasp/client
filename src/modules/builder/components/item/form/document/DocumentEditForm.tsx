@@ -95,7 +95,7 @@ export function DocumentEditForm({ item, onClose }: Props): JSX.Element {
             type="submit"
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </FormProvider>

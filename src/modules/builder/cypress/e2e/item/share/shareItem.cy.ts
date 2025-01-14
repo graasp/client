@@ -1,6 +1,6 @@
-import { Context, ShortLink, appendPathToUrl } from "@graasp/sdk";
+import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from "@/config/paths";
+import { buildItemPath, buildItemSharePath } from '@/config/paths';
 
 import {
   SHARE_ITEM_QR_BTN_ID,
@@ -9,41 +9,41 @@ import {
   buildShareButtonId,
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
-} from "../../../../config/selectors";
-import { PUBLISHED_ITEM } from "../../../fixtures/items";
-import { expectNumberOfShortLinks } from "../../../fixtures/shortLinks";
+} from '../../../../config/selectors';
+import { PUBLISHED_ITEM } from '../../../fixtures/items';
+import { expectNumberOfShortLinks } from '../../../fixtures/shortLinks';
 import {
   GRAASP_REDIRECTION_HOST,
   buildGraaspBuilderView,
   buildGraaspLibraryLink,
   buildGraaspPlayerView,
-} from "../../../support/paths";
+} from '../../../support/paths';
 
-type ShortLinkPlatform = ShortLink["platform"];
+type ShortLinkPlatform = ShortLink['platform'];
 
 export const checkContainPlatformText = (platform: ShortLinkPlatform): void => {
   cy.get(`#${buildShortLinkPlatformTextId(platform)}`).should(
-    "contain",
-    platform
+    'contain',
+    platform,
   );
 };
 
 export const checkContainUrlText = (
   platform: ShortLinkPlatform,
-  itemId: string
+  itemId: string,
 ): void => {
   let expectedUrl;
 
   // The client host manager can't be used here because
   // cypress run this before the main.tsx, where the manager is init.
   switch (platform) {
-    case "builder":
+    case 'builder':
       expectedUrl = buildGraaspBuilderView(itemId);
       break;
-    case "player":
+    case 'player':
       expectedUrl = buildGraaspPlayerView(itemId);
       break;
-    case "library":
+    case 'library':
       expectedUrl = buildGraaspLibraryLink(itemId);
       break;
     default:
@@ -51,14 +51,14 @@ export const checkContainUrlText = (
   }
 
   cy.get(`#${buildShortLinkUrlTextId(platform)}`).should(
-    "contain",
-    expectedUrl
+    'contain',
+    expectedUrl,
   );
 };
 
 const checkContainShortLinkText = (
   platform: ShortLinkPlatform,
-  alias: string
+  alias: string,
 ) => {
   const expectedUrl = appendPathToUrl({
     baseURL: GRAASP_REDIRECTION_HOST,
@@ -66,79 +66,79 @@ const checkContainShortLinkText = (
   }).toString();
 
   cy.get(`#${buildShortLinkUrlTextId(platform)}`).should(
-    "contain",
-    expectedUrl
+    'contain',
+    expectedUrl,
   );
 };
 
-describe("Share Item Link", () => {
-  describe("Without short links", () => {
+describe('Share Item Link', () => {
+  describe('Without short links', () => {
     const item = PUBLISHED_ITEM;
 
     beforeEach(() => {
       cy.setUpApi({ items: [PUBLISHED_ITEM] });
     });
 
-    it("Builder link is correctly displayed", () => {
+    it('Builder link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Builder;
       checkContainPlatformText(context);
       checkContainUrlText(context, item.id);
     });
 
-    it("Player link is correctly displayed", () => {
+    it('Player link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Player;
       checkContainPlatformText(context);
       checkContainUrlText(context, item.id);
     });
 
-    it("Library link is correctly displayed", () => {
+    it('Library link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Library;
       checkContainPlatformText(context);
       checkContainUrlText(context, item.id);
     });
 
-    it("Share Item with QR Code", () => {
+    it('Share Item with QR Code', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       cy.get(`#${SHARE_ITEM_QR_BTN_ID}`).click();
-      cy.get(`#${SHARE_ITEM_QR_DIALOG_ID}`).should("exist");
+      cy.get(`#${SHARE_ITEM_QR_DIALOG_ID}`).should('exist');
     });
   });
 
-  describe("With short links", () => {
+  describe('With short links', () => {
     const item = PUBLISHED_ITEM;
 
     const shortLinks: ShortLink[] = [
       {
-        alias: "test-1",
+        alias: 'test-1',
         platform: Context.Builder,
         itemId: item.id,
       },
       {
-        alias: "test-2",
+        alias: 'test-2',
         platform: Context.Player,
         itemId: item.id,
       },
       {
-        alias: "test-3",
+        alias: 'test-3',
         platform: Context.Library,
         itemId: item.id,
       },
@@ -148,65 +148,65 @@ describe("Share Item Link", () => {
       cy.setUpApi({ items: [PUBLISHED_ITEM], shortLinks, itemId: item.id });
     });
 
-    it("Builder link is correctly displayed", () => {
+    it('Builder link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
       expectNumberOfShortLinks(3);
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Builder;
       checkContainPlatformText(context);
       checkContainShortLinkText(context, shortLinks[0].alias);
     });
 
-    it("Player link is correctly displayed", () => {
+    it('Player link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
       expectNumberOfShortLinks(3);
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Player;
       checkContainPlatformText(context);
       checkContainShortLinkText(context, shortLinks[1].alias);
     });
 
-    it("Library link is correctly displayed", () => {
+    it('Library link is correctly displayed', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
       expectNumberOfShortLinks(3);
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Library;
       checkContainPlatformText(context);
       checkContainShortLinkText(context, shortLinks[2].alias);
     });
 
-    it("Share Item with QR Code", () => {
+    it('Share Item with QR Code', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
       expectNumberOfShortLinks(3);
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       cy.get(`#${SHARE_ITEM_QR_BTN_ID}`).click();
-      cy.get(`#${SHARE_ITEM_QR_DIALOG_ID}`).should("exist");
+      cy.get(`#${SHARE_ITEM_QR_DIALOG_ID}`).should('exist');
     });
   });
 
-  describe("Without short links", () => {
+  describe('Without short links', () => {
     const item = PUBLISHED_ITEM;
 
     beforeEach(() => {
       cy.setUpApi({ items: [item] });
     });
 
-    it("Builder link is correctly displayed", () => {
+    it('Builder link is correctly displayed', () => {
       cy.visit(buildItemSharePath(item.id));
 
-      cy.get(`.${SHORT_LINK_COMPONENT}`).should("have.length", 3);
+      cy.get(`.${SHORT_LINK_COMPONENT}`).should('have.length', 3);
 
       const context = Context.Builder;
       checkContainPlatformText(context);

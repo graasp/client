@@ -1,28 +1,28 @@
-import { ItemLoginSchemaType, PackedFolderItemFactory } from "@graasp/sdk";
+import { ItemLoginSchemaType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { SETTINGS_ITEM_LOGIN_DEFAULT } from "../../../../../config/constants";
-import { buildItemPath } from "../../../../../config/paths";
+import { SETTINGS_ITEM_LOGIN_DEFAULT } from '../../../../../config/constants';
+import { buildItemPath } from '../../../../../config/paths';
 import {
   ENROLL_BUTTON_SELECTOR,
   ITEM_LOGIN_SIGN_IN_BUTTON_ID,
   ITEM_LOGIN_SIGN_IN_PASSWORD_ID,
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
   buildDataCyWrapper,
-} from "../../../../../config/selectors";
-import { MEMBERS, SIGNED_OUT_MEMBER } from "../../../../fixtures/members";
-import { ITEM_LOGIN_PAUSE } from "../../../../support/constants";
-import { addItemLoginSchema } from "./utils";
+} from '../../../../../config/selectors';
+import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../../fixtures/members';
+import { ITEM_LOGIN_PAUSE } from '../../../../support/constants';
+import { addItemLoginSchema } from './utils';
 
 const checkItemLoginScreenLayout = (
   itemLoginSchema:
     | ItemLoginSchemaType
-    | `${ItemLoginSchemaType}` = SETTINGS_ITEM_LOGIN_DEFAULT
+    | `${ItemLoginSchemaType}` = SETTINGS_ITEM_LOGIN_DEFAULT,
 ) => {
-  cy.get(`#${ITEM_LOGIN_SIGN_IN_USERNAME_ID}`).should("exist");
+  cy.get(`#${ITEM_LOGIN_SIGN_IN_USERNAME_ID}`).should('exist');
   if (itemLoginSchema === ItemLoginSchemaType.UsernameAndPassword) {
-    cy.get(`#${ITEM_LOGIN_SIGN_IN_PASSWORD_ID}`).should("exist");
+    cy.get(`#${ITEM_LOGIN_SIGN_IN_PASSWORD_ID}`).should('exist');
   }
-  cy.get(`#${ITEM_LOGIN_SIGN_IN_BUTTON_ID}`).should("exist");
+  cy.get(`#${ITEM_LOGIN_SIGN_IN_BUTTON_ID}`).should('exist');
 };
 
 const fillItemLoginScreenLayout = ({
@@ -40,44 +40,44 @@ const fillItemLoginScreenLayout = ({
   cy.get(`#${ITEM_LOGIN_SIGN_IN_BUTTON_ID}`).click();
 };
 
-describe("User is signed out", () => {
-  describe("Display Item Login Screen", () => {
-    it("username", () => {
+describe('User is signed out', () => {
+  describe('Display Item Login Screen', () => {
+    it('username', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { permission: null }),
-        ItemLoginSchemaType.Username
+        ItemLoginSchemaType.Username,
       );
       cy.setUpApi({ items: [item], currentMember: SIGNED_OUT_MEMBER });
 
       cy.visit(buildItemPath(item.id));
       checkItemLoginScreenLayout(item.itemLoginSchema.type);
       fillItemLoginScreenLayout({
-        username: "username",
+        username: 'username',
       });
-      cy.wait("@postItemLogin");
+      cy.wait('@postItemLogin');
     });
-    it("username and password", () => {
+    it('username and password', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { permission: null }),
-        ItemLoginSchemaType.UsernameAndPassword
+        ItemLoginSchemaType.UsernameAndPassword,
       );
       cy.setUpApi({ items: [item], currentMember: SIGNED_OUT_MEMBER });
 
       cy.visit(buildItemPath(item.id));
       checkItemLoginScreenLayout(item.itemLoginSchema.type);
       fillItemLoginScreenLayout({
-        username: "username",
-        password: "password",
+        username: 'username',
+        password: 'password',
       });
-      cy.wait("@postItemLogin");
+      cy.wait('@postItemLogin');
     });
   });
 
-  describe("Error handling", () => {
-    it("error while signing in", () => {
+  describe('Error handling', () => {
+    it('error while signing in', () => {
       const item = addItemLoginSchema(
         PackedFolderItemFactory({}, { permission: null }),
-        ItemLoginSchemaType.UsernameAndPassword
+        ItemLoginSchemaType.UsernameAndPassword,
       );
       cy.setUpApi({
         items: [item],
@@ -89,22 +89,22 @@ describe("User is signed out", () => {
       cy.visit(buildItemPath(item.id));
 
       fillItemLoginScreenLayout({
-        username: "username",
-        password: "password",
+        username: 'username',
+        password: 'password',
       });
 
       cy.wait(ITEM_LOGIN_PAUSE);
 
-      cy.get(`#${ITEM_LOGIN_SIGN_IN_USERNAME_ID}`).should("exist");
+      cy.get(`#${ITEM_LOGIN_SIGN_IN_USERNAME_ID}`).should('exist');
     });
   });
 });
 
-describe("User is signed in as normal user", () => {
-  it("Enroll to item automatically", () => {
+describe('User is signed in as normal user', () => {
+  it('Enroll to item automatically', () => {
     const item = addItemLoginSchema(
       PackedFolderItemFactory({}, { permission: null }),
-      ItemLoginSchemaType.UsernameAndPassword
+      ItemLoginSchemaType.UsernameAndPassword,
     );
     cy.setUpApi({ items: [item], currentMember: MEMBERS.BOB });
     cy.visit(buildItemPath(item.id));
@@ -115,7 +115,7 @@ describe("User is signed in as normal user", () => {
 
     // enroll
     cy.get(buildDataCyWrapper(ENROLL_BUTTON_SELECTOR)).click();
-    cy.wait("@enroll").then(({ request }) => {
+    cy.wait('@enroll').then(({ request }) => {
       expect(request.url).to.contain(item.id);
     });
   });

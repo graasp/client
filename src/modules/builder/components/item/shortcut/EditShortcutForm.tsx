@@ -65,7 +65,7 @@ function EditShortcutForm({
             type="submit"
             disabled={!isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </Box>

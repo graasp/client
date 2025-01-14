@@ -1,33 +1,36 @@
-import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Box, Typography } from '@mui/material';
 
 import { MAX_ZIP_FILE_SIZE, formatFileSize } from '@graasp/sdk';
 import { UploadFileButton } from '@graasp/ui';
 
-import { mutations } from '@/config/queryClient';
+import { getRouteApi } from '@tanstack/react-router';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { ZIP_DASHBOARD_UPLOADER_ID } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { ZIP_DASHBOARD_UPLOADER_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 const ImportZip = (): JSX.Element => {
-  const { itemId } = useParams();
+  const { itemId } = itemRoute.useParams();
   const { mutateAsync: importZip } = mutations.useImportZip();
   const { update, close: closeNotification } = useUploadWithProgress();
 
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Box overflow="auto">
-      <Typography variant="body1" paragraph>
+      <Typography variant="body1">
         {translateBuilder(BUILDER.IMPORT_ZIP_INFORMATION)}
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography variant="body1">
         {translateBuilder(BUILDER.IMPORT_ZIP_WARNING)}
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography variant="body1">
         {translateBuilder(BUILDER.IMPORT_ZIP_LIMITATIONS_TEXT, {
           maxSize: formatFileSize(MAX_ZIP_FILE_SIZE),
         })}

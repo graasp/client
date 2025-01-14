@@ -1,12 +1,12 @@
-/* eslint-disable react/jsx-wrap-multilines */
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Tab, Tabs, styled } from '@mui/material';
 
 import { ItemType, MimeTypes } from '@graasp/sdk';
 import { ItemIcon } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   CREATE_ITEM_APP_ID,
   CREATE_ITEM_DOCUMENT_ID,
@@ -16,7 +16,8 @@ import {
   CREATE_ITEM_H5P_ID,
   CREATE_ITEM_LINK_ID,
   CREATE_ITEM_ZIP_ID,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { InternalItemType, NewItemTabType } from '../../config/types';
 import { BUILDER } from '../../langs/constants';
 
@@ -37,7 +38,7 @@ type Props = {
 };
 
 const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const [value, setValue] = useState<NewItemTabType>(
     initialValue ?? ItemType.FOLDER,

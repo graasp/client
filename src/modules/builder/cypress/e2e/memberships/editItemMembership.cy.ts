@@ -2,24 +2,24 @@ import {
   ItemMembership,
   PackedFolderItemFactory,
   PermissionLevel,
-} from "@graasp/sdk";
+} from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from "../../../config/paths";
+import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   buildItemMembershipRowEditButtonId,
   buildPermissionOptionId,
   buildShareButtonId,
-} from "../../../config/selectors";
-import { CURRENT_USER, MEMBERS } from "../../fixtures/members";
-import { ITEMS_WITH_MEMBERSHIPS } from "../../fixtures/memberships";
-import { ItemForTest } from "../../support/types";
+} from '../../../config/selectors';
+import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
+import { ITEMS_WITH_MEMBERSHIPS } from '../../fixtures/memberships';
+import { ItemForTest } from '../../support/types';
 
 const openPermissionSelect = ({
   id,
   permission,
 }: {
-  id: ItemMembership["id"];
+  id: ItemMembership['id'];
   permission: PermissionLevel;
 }) => {
   cy.get(`#${buildItemMembershipRowEditButtonId(id)}`).click();
@@ -42,8 +42,8 @@ const editItemMembership = ({
   cy.get('button[type="submit"]').click();
 };
 
-describe("Edit Membership", () => {
-  it("edit item membership", () => {
+describe('Edit Membership', () => {
+  it('edit item membership', () => {
     cy.setUpApi(ITEMS_WITH_MEMBERSHIPS);
 
     // go to children item
@@ -55,13 +55,13 @@ describe("Edit Membership", () => {
     const { id: mId } = memberships[1];
     editItemMembership({ itemId: id, id: mId, permission });
 
-    cy.wait("@editItemMembership").then(({ request: { url, body } }) => {
+    cy.wait('@editItemMembership').then(({ request: { url, body } }) => {
       expect(url).to.contain(mId);
       expect(body?.permission).to.equal(permission);
     });
   });
 
-  it("edit children membership should create a new membership", () => {
+  it('edit children membership should create a new membership', () => {
     cy.setUpApi({ ...ITEMS_WITH_MEMBERSHIPS });
 
     // go to children item
@@ -73,24 +73,24 @@ describe("Edit Membership", () => {
     const { id: mId } = memberships[1];
     editItemMembership({ itemId: id, id: mId, permission });
 
-    cy.wait("@postItemMembership").then(({ request: { url, body } }) => {
+    cy.wait('@postItemMembership').then(({ request: { url, body } }) => {
       expect(url).to.contain(id);
       expect(body?.permission).to.equal(permission);
     });
   });
 
-  it("cannot downgrade child membership", () => {
+  it('cannot downgrade child membership', () => {
     const item: ItemForTest = PackedFolderItemFactory();
     const child: ItemForTest = PackedFolderItemFactory();
     const memberships = [
       {
-        id: "membership-0",
+        id: 'membership-0',
         permission: PermissionLevel.Admin,
         account: CURRENT_USER,
         item: child,
       },
       {
-        id: "membership-1",
+        id: 'membership-1',
         permission: PermissionLevel.Write,
         account: MEMBERS.BOB,
         item,
@@ -112,7 +112,7 @@ describe("Edit Membership", () => {
 
     // should not show read
     cy.get(`#${buildPermissionOptionId(PermissionLevel.Read)}`).should(
-      "not.exist"
+      'not.exist',
     );
   });
 });

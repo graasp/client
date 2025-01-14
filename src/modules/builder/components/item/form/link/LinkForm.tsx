@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -28,14 +29,12 @@ import {
 import { COMMON } from '@graasp/translations';
 import { Button, LinkCard, LinkItem } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
 
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../../config/i18n';
+import CancelButton from '~builder/components/common/CancelButton';
+
 import { BUILDER } from '../../../../langs/constants';
 import { isUrlValid } from '../../../../utils/item';
 import { ItemNameField } from '../ItemNameField';
@@ -82,8 +81,8 @@ export const LinkForm = ({
   geolocation,
   previousItemId,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { mutateAsync: createItem } = mutations.usePostItem();
   const methods = useForm<Inputs>();
   const {
@@ -172,7 +171,11 @@ export const LinkForm = ({
         <DialogContent>
           <Stack gap={1} overflow="scroll">
             <LinkUrlField />
-            <ItemNameField required autoFocus={false} />
+            <ItemNameField
+              required
+              // eslint-disable-next-line jsx-a11y/no-autofocus
+              autoFocus={false}
+            />
             <LinkDescriptionField
               onRestore={() =>
                 setValue('description', linkData?.description ?? '')
@@ -204,7 +207,7 @@ export const LinkForm = ({
                             value={LinkType.Fancy}
                             label={
                               <LinkCard
-                                title={linkData?.title || ''}
+                                title={linkData?.title ?? ''}
                                 url={url}
                                 thumbnail={thumbnail}
                                 description={description || ''}
@@ -220,7 +223,6 @@ export const LinkForm = ({
                             <StyledFormControlLabel
                               value={LinkType.Embedded}
                               label={
-                                // eslint-disable-next-line react/no-danger
                                 <StyledDiv
                                   sx={{}}
                                   dangerouslySetInnerHTML={{
@@ -283,7 +285,7 @@ export const LinkForm = ({
             type="submit"
             disabled={isSubmitted && !isValid}
           >
-            {translateCommon(COMMON.SAVE_BUTTON)}
+            {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
       </FormProvider>
