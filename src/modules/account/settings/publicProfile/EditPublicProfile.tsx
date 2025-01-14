@@ -61,7 +61,6 @@ export function EditPublicProfile({
     mode: 'onChange',
     defaultValues: {
       bio: profile?.bio,
-      // TODO: sanitize links
       twitterID: profile?.twitterID,
       facebookID: profile?.facebookID,
       linkedinID: profile?.linkedinID,
