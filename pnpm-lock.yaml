@@ -25,7 +25,7 @@ importers:
         version: 5.1.1
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(l3jw7k53kw6q6vtkil4pxb6faq)
+        version: 3.3.1(fguzi6sbsad3u3emrkqgijsxme)
       '@graasp/query-client':
         specifier: 5.7.1
         version: 5.7.1(@graasp/sdk@5.5.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
@@ -40,7 +40,7 @@ importers:
         version: 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@graasp/ui':
         specifier: 5.4.7
-        version: 5.4.7(wzxri2utad5xuous5chzi3lnlu)
+        version: 5.4.7(kll4v6wfqvqeyggnadjy2pufiq)
       '@mui/icons-material':
         specifier: 6.3.1
         version: 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -96,8 +96,8 @@ importers:
         specifier: 4.4.2
         version: 4.4.2
       lucide-react:
-        specifier: 0.469.0
-        version: 0.469.0(react@18.3.1)
+        specifier: 0.471.1
+        version: 0.471.1(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -4536,8 +4536,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-react@0.469.0:
-    resolution: {integrity: sha512-28vvUnnKQ/dBwiCQtwJw7QauYnE7yd2Cyp4tTTJpvglX4EMpbflcdBgrgToX2j71B3YvugK/NH3BGUk+E/p/Fw==}
+  lucide-react@0.471.1:
+    resolution: {integrity: sha512-syOxwPhf62gg2YOsz72HRn+CIpeudFy67AeKnSR8Hn/fIIF4ubhNbRF+pQ2CaJrl+X9Os4PL87z2DXQi3DVeDA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -7653,7 +7653,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(l3jw7k53kw6q6vtkil4pxb6faq)':
+  '@graasp/chatbox@3.3.1(fguzi6sbsad3u3emrkqgijsxme)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -7661,7 +7661,7 @@ snapshots:
       '@graasp/sdk': 5.5.0(date-fns@4.1.0)(uuid@11.0.4)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.4.7(wzxri2utad5xuous5chzi3lnlu)
+      '@graasp/ui': 5.4.7(kll4v6wfqvqeyggnadjy2pufiq)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7669,7 +7669,7 @@ snapshots:
       date-fns: 4.1.0
       i18next: 24.2.1(typescript@5.7.3)
       lodash.groupby: 4.6.0
-      lucide-react: 0.469.0(react@18.3.1)
+      lucide-react: 0.471.1(react@18.3.1)
       prism-react-renderer: 2.4.1(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
@@ -7711,7 +7711,7 @@ snapshots:
     dependencies:
       i18next: 24.2.1(typescript@5.7.3)
 
-  '@graasp/ui@5.4.7(wzxri2utad5xuous5chzi3lnlu)':
+  '@graasp/ui@5.4.7(kll4v6wfqvqeyggnadjy2pufiq)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
@@ -7727,7 +7727,7 @@ snapshots:
       interweave: 13.1.0(react@18.3.1)
       katex: 0.16.15
       lodash.truncate: 4.4.2
-      lucide-react: 0.469.0(react@18.3.1)
+      lucide-react: 0.471.1(react@18.3.1)
       react: 18.3.1
       react-cookie-consent: 9.0.0(react@18.3.1)
       react-dnd: 16.0.1(@types/node@22.10.5)(@types/react@18.3.18)(react@18.3.1)
@@ -11104,7 +11104,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-react@0.469.0(react@18.3.1):
+  lucide-react@0.471.1(react@18.3.1):
     dependencies:
       react: 18.3.1
 
