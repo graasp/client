@@ -10,8 +10,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {

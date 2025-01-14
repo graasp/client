@@ -10,7 +10,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Popover, Stack, Typography } from '@mui/material';
+import { Popover, Stack, Typography } from '@mui/material';
 
 import { endOfDay } from 'date-fns/endOfDay';
 import { format } from 'date-fns/format';
@@ -18,6 +18,7 @@ import { isSameDay } from 'date-fns/isSameDay';
 import { subMonths } from 'date-fns/subMonths';
 
 import { getLocalForDateFns } from '@/components/langs';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 
 import { DateRange } from '~analytics/config/type';

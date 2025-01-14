@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  Button,
   Checkbox,
   FormControlLabel,
   InputAdornment,
@@ -18,6 +17,7 @@ import { Config, SocialLinks } from 'social-links';
 
 import { useAuth } from '@/AuthContext';
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import {

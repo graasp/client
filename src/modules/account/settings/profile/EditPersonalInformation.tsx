@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Stack, TextField } from '@mui/material';
+import { Stack, TextField } from '@mui/material';
 
 import {
   CompleteMember,
@@ -12,6 +12,7 @@ import {
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {

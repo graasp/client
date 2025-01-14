@@ -2,10 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
 import { CircleUser } from 'lucide-react';
 
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ENROLL_BUTTON_SELECTOR } from '@/config/selectors';

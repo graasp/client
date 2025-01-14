@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Dialog, Stack, Typography } from '@mui/material';
+import { Dialog, Stack, Typography } from '@mui/material';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import {
   DELETE_MEMBER_BUTTON_ID,
@@ -38,7 +39,6 @@ export function DeleteMemberSection(): JSX.Element {
           variant="outlined"
           color="error"
           onClick={() => setOpen(true)}
-          sx={{ textWrap: 'nowrap', maxWidth: 'min-content' }}
         >
           {t('PROFILE_DELETE_ACCOUNT_BUTTON')}
         </Button>
