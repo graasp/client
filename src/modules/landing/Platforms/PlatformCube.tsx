@@ -20,7 +20,7 @@ import {
 
 import { PlatformColorSurface } from './PlatformColorSurface';
 
-function Row({ children }: { children: ReactNode }) {
+function Row({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <Stack direction={{ xs: 'column', sm: 'row' }} gap="2px">
       {children}

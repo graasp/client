@@ -31,6 +31,24 @@ import {
 import { MyAnalyticsDateRangeDataContext } from '~analytics/context/MyAnalyticsDateRangeContext';
 import { groupActions } from '~analytics/utils';
 
+function getFreqFromData(actions: [string, Action[]][]) {
+  const { months, days, years } = intervalToDuration({
+    start: new Date(actions[0]?.[0]),
+    end: new Date(actions[1]?.[0]),
+  });
+
+  // get bar interval
+  if (years && years >= 1) {
+    return GroupByInterval.Year;
+  } else if (days === 1) {
+    return GroupByInterval.Day;
+  } else if (months === 1 && !days) {
+    return GroupByInterval.Month;
+  } else {
+    return 'other';
+  }
+}
+
 export function MemberActionsChart({
   actions,
 }: Readonly<{
@@ -56,24 +74,10 @@ export function MemberActionsChart({
     isLargeScreen ? MAX_BARS_LARGE_SCREEN : MAX_BARS_SMALL_SCREEN,
   );
 
-  const actionsEntires = Object.entries(groupedActionsByInterval);
+  const actionsEntries = Object.entries(groupedActionsByInterval);
+  const freq = getFreqFromData(actionsEntries);
 
-  const { months, days, years } = intervalToDuration({
-    start: new Date(actionsEntires[0]?.[0]),
-    end: new Date(actionsEntires[1]?.[0]),
-  });
-
-  // get bar interval
-  const freq =
-    years && years >= 1
-      ? GroupByInterval.Year
-      : days === 1
-        ? GroupByInterval.Day
-        : months === 1 && !days
-          ? GroupByInterval.Month
-          : 'other';
-
-  const noOfActionTypesOverInterval = actionsEntires.map(
+  const noOfActionTypesOverInterval = actionsEntries.map(
     ([dateString, localActions], index) => {
       const actionsOverIntervalTypeCounts = countBy(localActions, 'type');
 
@@ -81,7 +85,7 @@ export function MemberActionsChart({
       let title = '';
       const date = new Date(dateString);
       const nextDate = new Date(
-        actionsEntires[index + 1]?.[0] || dateRange.endDate,
+        actionsEntries[index + 1]?.[0] || dateRange.endDate,
       );
 
       switch (freq) {
