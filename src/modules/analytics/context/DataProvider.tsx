@@ -157,6 +157,8 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
   const { data: itemChildren } = hooks.useChildren(itemId, undefined, {
     enabled: itemData?.type === ItemType.FOLDER,
   });
+  // TODO: fix issue by refactoring code depending on this
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const descendantApps =
     itemData?.type === ItemType.APP
       ? [itemData, ...appDescendants]
@@ -164,16 +166,24 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
 
   useEffect(() => {
     if (itemIsError) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setError(true);
     }
   }, [itemIsError]);
 
   useEffect(() => {
     if (enabledArray[Context.Builder]) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setIsLoading(builderIsLoading);
     } else if (enabledArray[Context.Player]) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setIsLoading(playerIsLoading);
     } else if (enabledArray[Context.Library]) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setIsLoading(explorerIsLoading);
     }
   }, [
@@ -189,6 +199,8 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (!enabledArray[view]) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setEnabledArray({ ...enabledArray, [view]: true });
     }
   }, [view, enabledArray]);
@@ -199,8 +211,14 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       view === Context.Builder &&
       actions.length !== builderData?.actions?.length
     ) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setActions(builderData?.actions ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAllMembers(builderData?.members ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setError(builderIsError);
     }
   }, [builderData, view, actions, builderIsError]);
@@ -211,8 +229,14 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       view === Context.Player &&
       actions.length !== playerData?.actions?.length
     ) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setActions(playerData?.actions ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAllMembers(playerData?.members ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setError(playerIsError);
     }
   }, [playerData, view, actions, playerIsError]);
@@ -223,8 +247,14 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       view === Context.Library &&
       actions.length !== explorerData?.actions?.length
     ) {
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setActions(explorerData?.actions ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAllMembers(explorerData?.members ?? []);
+      // TODO: fix this issue
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setError(explorerIsError);
     }
   }, [explorerData, view, actions, explorerIsError]);

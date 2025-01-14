@@ -31,8 +31,6 @@
   "MAP_BUTTON_TEXT": "Voir {{name}} sur la Carte",
   "MAP_BUTTON_DISABLED_TEXT": "Cet élément n'a pas de localisation",
   "FROM_SHORTCUT_BUTTON_TEXT": "Retourner vers {{name}}",
-  "GUEST_LIMITATION_TEXT": "Vous utilisez actuellement Graasp avec le compte invité <1>{{name}}</1>. Pour pouvoir utiliser toutes les fonctionnalités de Graasp, vous devez vous déconnecter et créer un compte Graasp.",
-  "GUEST_SIGN_OUT_BUTTON": "Déconnectez-vous et créez un compte Graasp",
   "ENROLL_SCREEN_TITLE": "Inscrivez-vous à {{name}}",
   "ENROLL_BUTTON_TEXT": "S'inscrire",
   "REQUEST_ACCESS_PENDING_TITLE": "Votre demande d'accès est en attente",
