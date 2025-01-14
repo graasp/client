@@ -1,3 +1,0 @@
-yarn type-check
-yarn prettier:check
-yarn lint
