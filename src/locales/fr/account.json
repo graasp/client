@@ -10,6 +10,7 @@
   "CROP_IMAGE_MODAL_UNEXPECTED_ERROR": "Une erreur inattendue s'est produite lors de la tentative de recadrage de l'image. Veuillez réessayer plus tard.",
   "MAIN_MENU": {
     "HOME": "Accueil",
+    "STATS": "Statistiques",
     "SETTINGS": "Paramètres",
     "STORAGE": "Stockage",
     "LANDING": "Page d'accueil"
