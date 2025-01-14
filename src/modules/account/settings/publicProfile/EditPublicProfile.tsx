@@ -109,8 +109,7 @@ export function EditPublicProfile({
         gap={2}
       >
         <TextField
-          {...register('bio', {})}
-          name="bio"
+          {...register('bio')}
           helperText={errors.bio?.message && t('BIO_ERROR_MSG')}
           error={!!errors.bio?.message}
           label={t('BIO_LABEL')}
