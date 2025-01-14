@@ -1,8 +1,9 @@
+import { Stack } from '@mui/material';
+
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
-import CenterAlignWrapper from './common/CenterAlignWrapper.js';
 
 export type CurrentItemProps = {
   item: DiscriminatedItem;
@@ -24,7 +25,7 @@ export function CurrentItemNavigation({
   showArrow,
 }: Readonly<CurrentItemProps>): JSX.Element | null {
   return (
-    <CenterAlignWrapper>
+    <Stack alignItems="center">
       <TypographyLink
         id={buildBreadcrumbsItemLinkId?.(item.id)}
         key={item.id}
@@ -43,6 +44,6 @@ export function CurrentItemNavigation({
           renderArrow={showArrow}
         />
       )}
-    </CenterAlignWrapper>
+    </Stack>
   );
 }
