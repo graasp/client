@@ -46,7 +46,7 @@ export function PersonalInformation(): JSX.Element | null {
     <BorderedSection
       title={t('PERSONAL_INFORMATION_TITLE')}
       id={PERSONAL_INFO_DISPLAY_CONTAINER_ID}
-      topActions={[
+      topAction={
         <Button
           key="edit"
           id={PERSONAL_INFO_EDIT_BUTTON_ID}
@@ -55,8 +55,8 @@ export function PersonalInformation(): JSX.Element | null {
           size="small"
         >
           {t('EDIT_BUTTON_LABEL')}
-        </Button>,
-      ]}
+        </Button>
+      }
     >
       <SettingItem
         key="name"

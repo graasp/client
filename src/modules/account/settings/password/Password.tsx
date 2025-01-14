@@ -45,7 +45,7 @@ export function Password(): JSX.Element {
       <BorderedSection
         id={PASSWORD_DISPLAY_CONTAINER_ID}
         title={t('PASSWORD_TITLE')}
-        topActions={[
+        topAction={
           <Button
             key="edit"
             variant="contained"
@@ -57,8 +57,8 @@ export function Password(): JSX.Element {
             {passwordStatus?.hasPassword
               ? t('EDIT_BUTTON_LABEL')
               : t('CONFIGURE_BUTTON_LABEL')}
-          </Button>,
-        ]}
+          </Button>
+        }
       >
         <Typography
           id={PASSWORD_DISPLAY_INFORMATION_ID}

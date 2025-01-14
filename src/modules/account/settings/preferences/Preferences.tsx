@@ -50,7 +50,7 @@ export const Preferences = (): JSX.Element | null => {
   return (
     <BorderedSection
       title={t('PROFILE_PREFERENCES_TITLE')}
-      topActions={[
+      topAction={
         <Button
           key="edit"
           variant="contained"
@@ -59,8 +59,8 @@ export const Preferences = (): JSX.Element | null => {
           size="small"
         >
           {t('EDIT_BUTTON_LABEL')}
-        </Button>,
-      ]}
+        </Button>
+      }
     >
       <SettingItem
         title={t('PROFILE_LANGUAGE_TITLE')}

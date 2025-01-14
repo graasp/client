@@ -1,39 +1,31 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import { LoadingButton } from '@mui/lab';
 import {
   Button,
   Checkbox,
   FormControlLabel,
+  InputAdornment,
   Stack,
+  TextField,
   Typography,
 } from '@mui/material';
+
+import { PublicProfile } from '@graasp/sdk';
+import { useButtonColor } from '@graasp/ui';
 
 import { Config, SocialLinks } from 'social-links';
 
 import { useAuth } from '@/AuthContext';
 import { BorderedSection } from '@/components/layout/BorderedSection';
-import {
-  FACEBOOK_DOMAIN,
-  LINKEDIN_DOMAIN,
-  NS,
-  TWITTER_DOMAIN,
-} from '@/config/constants';
+import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
-import { hooks, mutations } from '@/config/queryClient';
 import {
   PUBLIC_PROFILE_BIO_ID,
-  PUBLIC_PROFILE_FACEBOOK_ID,
-  PUBLIC_PROFILE_LINKEDIN_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
-  PUBLIC_PROFILE_TWITTER_ID,
 } from '@/config/selectors';
 
-import { CustomTextField } from './CustomTextField';
+import { FacebookIcon, LinkedInIcon, TwitterIcon } from '~landing/footer/icons';
 
 const config: Config = {
   usePredefinedProfiles: true,
@@ -42,215 +34,157 @@ const config: Config = {
 };
 const socialLinks = new SocialLinks(config);
 
-const isValidUrl = (urlString: string) => {
-  const profileName = socialLinks.detectProfile(urlString);
-
-  if (urlString === '') {
-    return true;
-  }
-
-  return socialLinks.isValid(profileName, urlString);
-};
-
-const initialDirtyFieldsState = {
-  bio: false,
-  linkedinID: false,
-  twitterID: false,
-  facebookID: false,
-  visibility: false,
-};
 type EditPublicProfileProps = {
-  readonly onClose: () => void;
+  onClose: (value?: Inputs) => void;
+  profile?: PublicProfile | null;
 };
+
+export type Inputs = Pick<
+  PublicProfile,
+  'bio' | 'visibility' | 'twitterID' | 'facebookID' | 'linkedinID'
+>;
 
 export function EditPublicProfile({
   onClose,
-}: EditPublicProfileProps): JSX.Element {
+  profile,
+}: Readonly<EditPublicProfileProps>): JSX.Element {
   const { user } = useAuth();
-  const { t } = useTranslation(NS.Account);
+  const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
+  const { fill } = useButtonColor('inherit');
 
-  const { data: ownProfile } = hooks.useOwnProfile();
-  const { mutate: postProfile, isPending: isAddLoading } =
-    mutations.usePostPublicProfile();
-  const { mutate: patchProfile, isPending: isEditLoading } =
-    mutations.usePatchPublicProfile();
-
-  const [profileData, setProfileData] = useState({
-    bio: '',
-    linkedinID: '',
-    twitterID: '',
-    facebookID: '',
-    visibility: false,
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<Inputs>({
+    mode: 'onChange',
+    defaultValues: {
+      bio: profile?.bio,
+      // TODO: sanitize links
+      twitterID: profile?.twitterID,
+      facebookID: profile?.facebookID,
+      linkedinID: profile?.linkedinID,
+      visibility: profile?.visibility ?? false,
+    },
   });
-  const [dirtyFields, setDirtyFields] = useState(initialDirtyFieldsState);
 
-  const saveSettings = () => {
-    const { facebookID, linkedinID, twitterID } = profileData;
-    const fbProfile = socialLinks.detectProfile(facebookID);
-    const linkedinProfile = socialLinks.detectProfile(linkedinID);
-    const twitterProfile = socialLinks.detectProfile(twitterID);
+  const socialNetworks = [
+    {
+      fieldName: 'facebookID',
+      socialProfile: 'facebook',
+      Icon: FacebookIcon,
+      label: 'FACEBOOK_LINK',
+    },
+    {
+      fieldName: 'twitterID',
+      socialProfile: 'twitter',
+      Icon: TwitterIcon,
+      label: 'TWITTER_LINK',
+    },
+    {
+      fieldName: 'linkedinID',
+      socialProfile: 'linkedin',
+      Icon: LinkedInIcon,
+      label: 'LINKEDIN_LINK',
+    },
+  ] as const;
 
-    const body = {
-      ...profileData,
-      facebookID: facebookID
-        ? socialLinks.getProfileId(fbProfile, facebookID)
-        : '',
-      twitterID: twitterID
-        ? socialLinks.getProfileId(twitterProfile, twitterID)
-        : '',
-      linkedinID: linkedinID
-        ? socialLinks.getProfileId(linkedinProfile, linkedinID)
-        : '',
-    };
-    if (ownProfile) {
-      patchProfile(body);
-    } else {
-      postProfile(body);
-    }
-    onClose();
-  };
-
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, type } = e.target;
-    setDirtyFields({ ...dirtyFields, [name]: true });
-    if (type === 'checkbox') {
-      const { checked } = e.target;
-      setProfileData({ ...profileData, [name]: checked });
-    } else {
-      const { value } = e.target;
-      setProfileData({ ...profileData, [name]: value });
-    }
-  };
-
-  useEffect(() => {
-    // TODO: remove need for synching state
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-    setProfileData({
-      bio: ownProfile?.bio || '',
-      linkedinID: ownProfile?.linkedinID
-        ? socialLinks.sanitize(LINKEDIN_DOMAIN, ownProfile?.linkedinID)
-        : '',
-      twitterID: ownProfile?.twitterID
-        ? socialLinks.sanitize(TWITTER_DOMAIN, ownProfile?.twitterID)
-        : '',
-      facebookID: ownProfile?.facebookID
-        ? socialLinks.sanitize(FACEBOOK_DOMAIN, ownProfile?.facebookID)
-        : '',
-      visibility: ownProfile?.visibility || false,
-    });
-  }, [ownProfile]);
-
-  // to control button disable as if one of form values changed we can check other fields
-  const formChanged = useMemo(
-    () => Object.values(dirtyFields).some((ele) => ele),
-    [dirtyFields],
-  );
+  // register visibility checkbox manually
+  const visibility = register('visibility');
 
   return (
-    <BorderedSection title={t('PUBLIC_PROFILE_TITLE')}>
-      <Typography variant="body1">{t('PUBLIC_PROFILE_DESCRIPTION')}</Typography>
-      {ownProfile && user && (
+    <BorderedSection title={t('TITLE')}>
+      <Typography variant="body1">{t('DESCRIPTION')}</Typography>
+      {profile && user && (
         <a href={`${GRAASP_LIBRARY_HOST}/members/${user.id}`}>
-          {t('PUBLIC_PROFILE_CHECK_TEXT')}
+          {t('CHECK_TEXT')}
         </a>
       )}
 
-      <Stack direction="column">
-        <CustomTextField
-          name="bio"
-          value={profileData.bio}
-          helperText={
-            dirtyFields.bio &&
-            !profileData.bio.trim() &&
-            t('PUBLIC_PROFILE_BIO_ERROR_MSG')
-          }
-          isError={dirtyFields.bio && !profileData.bio.trim()}
-          label={t('PUBLIC_PROFILE_BIO')}
-          onChange={onInputChange}
-          required
+      <Stack
+        component="form"
+        onSubmit={handleSubmit(onClose)}
+        direction="column"
+        gap={2}
+      >
+        <TextField
+          {...register('bio')}
+          helperText={errors.bio?.message && t('BIO_ERROR_MSG')}
+          error={!!errors.bio?.message}
+          label={t('BIO_LABEL')}
           multiline
+          rows={4}
           id={PUBLIC_PROFILE_BIO_ID}
         />
-        <CustomTextField
-          Icon={<LinkedInIcon />}
-          name="linkedinID"
-          value={profileData.linkedinID}
-          helperText={
-            dirtyFields.linkedinID &&
-            !isValidUrl(profileData.linkedinID) &&
-            t('PUBLIC_PROFILE_LINKEDIN_LINK_ERROR_MSG')
-          }
-          isError={
-            dirtyFields.linkedinID && !isValidUrl(profileData.linkedinID)
-          }
-          label={t('PUBLIC_PROFILE_LINKEDIN_LINK')}
-          onChange={onInputChange}
-          id={PUBLIC_PROFILE_LINKEDIN_ID}
-        />
-        <CustomTextField
-          Icon={<TwitterIcon />}
-          label={t('PUBLIC_PROFILE_TWITTER_LINK')}
-          onChange={onInputChange}
-          name="twitterID"
-          value={profileData.twitterID}
-          helperText={
-            dirtyFields.twitterID &&
-            !isValidUrl(profileData.twitterID) &&
-            t('PUBLIC_PROFILE_TWITTER_LINK_ERROR_MSG')
-          }
-          isError={dirtyFields.twitterID && !isValidUrl(profileData.twitterID)}
-          id={PUBLIC_PROFILE_TWITTER_ID}
-        />
-        <CustomTextField
-          name="facebookID"
-          label={t('PUBLIC_PROFILE_FACEBOOK_LINK')}
-          onChange={onInputChange}
-          Icon={<FacebookIcon />}
-          helperText={
-            dirtyFields.facebookID &&
-            !isValidUrl(profileData.facebookID) &&
-            t('PUBLIC_PROFILE_FACEBOOK_LINK_ERROR_MSG')
-          }
-          isError={
-            dirtyFields.facebookID && !isValidUrl(profileData.facebookID)
-          }
-          value={profileData.facebookID}
-          id={PUBLIC_PROFILE_FACEBOOK_ID}
-        />
+        {socialNetworks.map(({ fieldName, Icon, label, socialProfile }) => (
+          <TextField
+            key={fieldName}
+            {...register(fieldName, {
+              validate: (val) => {
+                if (val) {
+                  return (
+                    socialLinks.isValid(socialProfile, val) ||
+                    t('INVALID_LINK_ERROR')
+                  );
+                }
+              },
+              setValueAs: (val) => {
+                if (val) {
+                  try {
+                    return socialLinks.getProfileId(socialProfile, val);
+                  } catch {
+                    return val;
+                  }
+                } else {
+                  return val;
+                }
+              },
+            })}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Icon size={24} fill={fill} />
+                  </InputAdornment>
+                ),
+              },
+            }}
+            error={!!errors[fieldName]?.message}
+            helperText={errors[fieldName]?.message}
+            label={t(label)}
+            id={fieldName}
+          />
+        ))}
         <FormControlLabel
           control={
             <Checkbox
               color="primary"
-              name="visibility"
-              checked={profileData.visibility}
-              onChange={onInputChange}
+              name={visibility.name}
+              onChange={visibility.onChange}
             />
           }
-          label={t('PUBLIC_PROFILE_VISIBILITY')}
+          label={t('VISIBILITY_LABEL')}
         />
         <Stack direction="row" gap={1} justifyContent="flex-end">
-          <Button onClick={onClose} variant="outlined" size="small">
+          <Button
+            onClick={() => onClose(undefined)}
+            variant="outlined"
+            size="small"
+          >
             {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
 
-          <LoadingButton
+          <Button
+            type="submit"
             variant="contained"
             color="primary"
             size="small"
-            disabled={
-              !formChanged ||
-              !profileData.bio.trim() ||
-              !isValidUrl(profileData.facebookID) ||
-              !isValidUrl(profileData.twitterID) ||
-              !isValidUrl(profileData.linkedinID)
-            }
-            loading={isAddLoading || isEditLoading}
-            onClick={saveSettings}
+            disabled={!isValid}
             id={PUBLIC_PROFILE_SAVE_BUTTON_ID}
           >
             {translateCommon('SAVE.BUTTON_TEXT')}
-          </LoadingButton>
+          </Button>
         </Stack>
       </Stack>
     </BorderedSection>

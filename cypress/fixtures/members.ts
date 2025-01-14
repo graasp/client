@@ -30,16 +30,6 @@ export const MEMBER_PUBLIC_PROFILE: PublicProfile = {
   updatedAt: '2021-04-13 14:56:34.749946',
   visibility: false,
 };
-export const MEMBER_EMPTY_PUBLIC_PROFILE: PublicProfile = {
-  id: 'ecafbd2a-5642-31fb-ae93-0242ac130004',
-  bio: '',
-  twitterID: '',
-  facebookID: '',
-  linkedinID: '',
-  createdAt: '2021-04-13 14:56:34.749946',
-  updatedAt: '2021-04-13 14:56:34.749946',
-  visibility: false,
-};
 
 export const MEMBERS = {
   ANNA: MemberFactory({
