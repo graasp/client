@@ -13,13 +13,6 @@
   "RECENT_ITEMS_TITLE": "Most Recent Items",
   "DRAWER_ARIAL_LABEL": "Open drawer",
   "ERROR_FETCHING_ITEM": "There was an error fetching the requested item",
-  "HOME_CHOOSE_ITEM": {
-    "TITLE": "This page is being deprecated",
-    "TEXT": "Please select an item to view in the player from your items.",
-    "ANONYMOUS_TEXT": "You are not logged in. Please use a link to a specific capsule.",
-    "BUTTON": "Choose an item",
-    "TO_HOME_PAGE": "Graasp home page"
-  },
   "SIGN_IN_BUTTON_TEXT": "Sign In",
   "FALLBACK_TITLE": "Oops",
   "FALLBACK_TEXT": "Something went wrong. Please try again. If the issue persists contact us.",
@@ -38,8 +31,6 @@
   "MAP_BUTTON_TEXT": "See {{name}} on Map",
   "MAP_BUTTON_DISABLED_TEXT": "This item does not have a geolocation",
   "FROM_SHORTCUT_BUTTON_TEXT": "Back to {{name}}",
-  "GUEST_LIMITATION_TEXT": "You are currently using Graasp with the guest account <1>{{name}}</1>. In order to use all features of Graasp, you have to log out and create a Graasp account.",
-  "GUEST_SIGN_OUT_BUTTON": "Log out and Create a Graasp account",
   "ENROLL_SCREEN_TITLE": "Enroll to {{name}}",
   "ENROLL_BUTTON_TEXT": "Enroll",
   "REQUEST_ACCESS_PENDING_TITLE": "Your access request is pending",
