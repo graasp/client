@@ -28,7 +28,7 @@ export const EnrollContent = ({ itemId }: { itemId: string }): JSX.Element => {
         {translatePlayer('ENROLL_DESCRIPTION')}
       </Typography>
       <Button
-        dataCy={ENROLL_BUTTON_SELECTOR}
+        data-cy={ENROLL_BUTTON_SELECTOR}
         onClick={() => {
           enroll({ itemId });
         }}
