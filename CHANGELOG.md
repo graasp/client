@@ -1,5 +1,43 @@
 # Changelog
 
+## [2.19.0](https://github.com/graasp/client/compare/v2.18.0...v2.19.0) (2025-01-14)
+
+
+### Features
+
+* add navigator back in analytics ([#591](https://github.com/graasp/client/issues/591)) ([12f59b1](https://github.com/graasp/client/commit/12f59b185a223431bf1cc638bc383986f6c55bc8))
+* analytics works ([3ef7fe8](https://github.com/graasp/client/commit/3ef7fe87f04bf340e5f92077398a926fb021b685))
+* implement about us page ([#567](https://github.com/graasp/client/issues/567)) ([8555c61](https://github.com/graasp/client/commit/8555c61593baa03ade86a6fef7e0d3f8d6e740ad))
+* implement tutorials page ([#569](https://github.com/graasp/client/issues/569)) ([7a0d4c7](https://github.com/graasp/client/commit/7a0d4c782404100d18c410d55f193440e039b29f))
+
+
+### Bug Fixes
+
+* add redirection page for login from legacy services ([#572](https://github.com/graasp/client/issues/572)) ([4f9754b](https://github.com/graasp/client/commit/4f9754b2ebd7ac9019a12c0379d19676e703b60b))
+* add translations and rename umami script ([5ed782e](https://github.com/graasp/client/commit/5ed782eb0129f40272171bfa63ea4e58ae5f1959))
+* analytics test ([#556](https://github.com/graasp/client/issues/556)) ([529d027](https://github.com/graasp/client/commit/529d02713517ceddf61c6cfc65883469987cd782))
+* code smell ([#602](https://github.com/graasp/client/issues/602)) ([689f89e](https://github.com/graasp/client/commit/689f89e7040e51d75fa5d62d539b9b3f2399a40c))
+* code smells ([#603](https://github.com/graasp/client/issues/603)) ([7298252](https://github.com/graasp/client/commit/7298252945bcccc1c061a89473120be8ca56caaf))
+* **deps:** update dependency @graasp/query-client to v5.7.1 ([#592](https://github.com/graasp/client/issues/592)) ([502a780](https://github.com/graasp/client/commit/502a780aa303c2200375d0fbd48ceb76a3a50ddb))
+* **deps:** update dependency @sentry/react to v8.48.0 ([#548](https://github.com/graasp/client/issues/548)) ([3a7c773](https://github.com/graasp/client/commit/3a7c77357f5751e2f7d34a4d222585e1c9770784))
+* **deps:** update dependency @tanstack/react-query to v5.64.1 ([#601](https://github.com/graasp/client/issues/601)) ([23cdd3c](https://github.com/graasp/client/commit/23cdd3c750d26f8089b7e9bac3e6d68b8e666eea))
+* **deps:** update dependency i18next to v24.1.2 ([#555](https://github.com/graasp/client/issues/555)) ([d7a445d](https://github.com/graasp/client/commit/d7a445d40108aea41e0285464f43c40fd1a77368))
+* **deps:** update dependency lucide-react to v0.471.1 ([#589](https://github.com/graasp/client/issues/589)) ([959e286](https://github.com/graasp/client/commit/959e286bea51eac0a2b8ca4e7592f05fb063983e))
+* **deps:** update dependency react-intersection-observer to v9.15.0 ([#550](https://github.com/graasp/client/issues/550)) ([efeef7a](https://github.com/graasp/client/commit/efeef7a36687a8d8d826a3722f9f096bb02e517b))
+* **deps:** update dependency react-toastify to v11 ([#554](https://github.com/graasp/client/issues/554)) ([e8d5630](https://github.com/graasp/client/commit/e8d5630f075b5db93684f2645654d36831647939))
+* **deps:** update dependency stylis to v4.3.5 ([#595](https://github.com/graasp/client/issues/595)) ([56404fb](https://github.com/graasp/client/commit/56404fbf4a9c4f7cd16fafeae6e14e75c24e8a85))
+* **deps:** update graasp packages ([#588](https://github.com/graasp/client/issues/588)) ([c8d704e](https://github.com/graasp/client/commit/c8d704e1b1f3edaf0fc55eaf7619660c3221a97a))
+* **french:** update translations ([#597](https://github.com/graasp/client/issues/597)) ([d2cfd48](https://github.com/graasp/client/commit/d2cfd483722f0c752b1f737bf2363843891d2cc3))
+* **french:** update translations ([#605](https://github.com/graasp/client/issues/605)) ([87bf4e8](https://github.com/graasp/client/commit/87bf4e8fe427d9b8e3aad0abd25fbaee4841f4fa))
+* issues with date-fns and cypress ([4862b65](https://github.com/graasp/client/commit/4862b65c6cb783c01740bbbf11bb5262f3fdfdc9))
+* link props with tanstack router update ([#577](https://github.com/graasp/client/issues/577)) ([994eaab](https://github.com/graasp/client/commit/994eaab0ec6b0636433734dc177ce0771fcd35e3))
+* make changes for the landing page ([#575](https://github.com/graasp/client/issues/575)) ([4f6aa3c](https://github.com/graasp/client/commit/4f6aa3c9209934c45b4cec8ab4636f71fc4cf0af))
+* mui imports to first level ([#590](https://github.com/graasp/client/issues/590)) ([896be8b](https://github.com/graasp/client/commit/896be8b7d5725f252ec61653c517d9956fca45fa))
+* platform switch in analytics ([#596](https://github.com/graasp/client/issues/596)) ([c4e2d61](https://github.com/graasp/client/commit/c4e2d6153aac9f47d3bd0ecc84d535194b8b40ac))
+* social links to use react hook form ([#593](https://github.com/graasp/client/issues/593)) ([2ff1d4b](https://github.com/graasp/client/commit/2ff1d4baa223b3aab0eed355ff75302efc10549a))
+* update analytics notice text ([#571](https://github.com/graasp/client/issues/571)) ([14ed3fe](https://github.com/graasp/client/commit/14ed3fe3fdda258613547692f846fedf6e2e161c))
+* update landing page images with our own ([#570](https://github.com/graasp/client/issues/570)) ([d405814](https://github.com/graasp/client/commit/d4058147a44409003cbf675940aeaad53e244e85))
+
 ## [2.18.0](https://github.com/graasp/client/compare/v2.16.0...v2.18.0) (2024-12-13)
 
 
