@@ -16,7 +16,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
-import { GRAASP_BUILDER_HOST } from '@/config/env';
+import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
 
 import { AnalyticsSidebar } from './AnalyticsSidebar';
 
@@ -49,7 +49,7 @@ export function PageWrapper({
       href: `/player/${itemId}/${itemId}`,
     },
     [Platform.Library]: {
-      disabled: true,
+      href: GRAASP_LIBRARY_HOST,
     },
     [Platform.Analytics]: {
       disabled: true,
