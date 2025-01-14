@@ -40,6 +40,7 @@ import { Route as LandingContactUsImport } from './routes/_landing/contact-us'
 import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
 import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
 import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
+import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
 import { Route as PlayerRootIdItemIdIndexImport } from './routes/player/$rootId/$itemId/index'
 import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
 import { Route as PlayerRootIdItemIdAutoLoginImport } from './routes/player/$rootId/$itemId/autoLogin'
@@ -51,9 +52,6 @@ import { Route as AnalyticsItemsItemIdAppsImport } from './routes/analytics/item
 // Create Virtual Routes
 
 const LandingIndexLazyImport = createFileRoute('/_landing/')()
-const AnalyticsItemsItemIdLazyImport = createFileRoute(
-  '/analytics/items/$itemId',
-)()
 
 // Create/Update Routes
 
@@ -220,18 +218,16 @@ const PlayerRootIdIndexRoute = PlayerRootIdIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AnalyticsItemsItemIdLazyRoute = AnalyticsItemsItemIdLazyImport.update({
-  id: '/items/$itemId',
-  path: '/items/$itemId',
-  getParentRoute: () => AnalyticsRoute,
-} as any).lazy(() =>
-  import('./routes/analytics/items/$itemId.lazy').then((d) => d.Route),
-)
-
 const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
   id: '/player/$rootId/$itemId',
   path: '/player/$rootId/$itemId',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdImport.update({
+  id: '/items/$itemId',
+  path: '/items/$itemId',
+  getParentRoute: () => AnalyticsRoute,
 } as any)
 
 const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
@@ -243,7 +239,7 @@ const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
 const AnalyticsItemsItemIdIndexRoute = AnalyticsItemsItemIdIndexImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => AnalyticsItemsItemIdLazyRoute,
+  getParentRoute: () => AnalyticsItemsItemIdRoute,
 } as any)
 
 const PlayerRootIdItemIdAutoLoginRoute =
@@ -256,27 +252,27 @@ const PlayerRootIdItemIdAutoLoginRoute =
 const AnalyticsItemsItemIdUsersRoute = AnalyticsItemsItemIdUsersImport.update({
   id: '/users',
   path: '/users',
-  getParentRoute: () => AnalyticsItemsItemIdLazyRoute,
+  getParentRoute: () => AnalyticsItemsItemIdRoute,
 } as any)
 
 const AnalyticsItemsItemIdItemsRoute = AnalyticsItemsItemIdItemsImport.update({
   id: '/items',
   path: '/items',
-  getParentRoute: () => AnalyticsItemsItemIdLazyRoute,
+  getParentRoute: () => AnalyticsItemsItemIdRoute,
 } as any)
 
 const AnalyticsItemsItemIdExportRoute = AnalyticsItemsItemIdExportImport.update(
   {
     id: '/export',
     path: '/export',
-    getParentRoute: () => AnalyticsItemsItemIdLazyRoute,
+    getParentRoute: () => AnalyticsItemsItemIdRoute,
   } as any,
 )
 
 const AnalyticsItemsItemIdAppsRoute = AnalyticsItemsItemIdAppsImport.update({
   id: '/apps',
   path: '/apps',
-  getParentRoute: () => AnalyticsItemsItemIdLazyRoute,
+  getParentRoute: () => AnalyticsItemsItemIdRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -465,19 +461,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingIndexLazyImport
       parentRoute: typeof LandingImport
     }
+    '/analytics/items/$itemId': {
+      id: '/analytics/items/$itemId'
+      path: '/items/$itemId'
+      fullPath: '/analytics/items/$itemId'
+      preLoaderRoute: typeof AnalyticsItemsItemIdImport
+      parentRoute: typeof AnalyticsImport
+    }
     '/player/$rootId/$itemId': {
       id: '/player/$rootId/$itemId'
       path: '/player/$rootId/$itemId'
       fullPath: '/player/$rootId/$itemId'
       preLoaderRoute: typeof PlayerRootIdItemIdImport
       parentRoute: typeof rootRoute
-    }
-    '/analytics/items/$itemId': {
-      id: '/analytics/items/$itemId'
-      path: '/items/$itemId'
-      fullPath: '/analytics/items/$itemId'
-      preLoaderRoute: typeof AnalyticsItemsItemIdLazyImport
-      parentRoute: typeof AnalyticsImport
     }
     '/player/$rootId/': {
       id: '/player/$rootId/'
@@ -491,28 +487,28 @@ declare module '@tanstack/react-router' {
       path: '/apps'
       fullPath: '/analytics/items/$itemId/apps'
       preLoaderRoute: typeof AnalyticsItemsItemIdAppsImport
-      parentRoute: typeof AnalyticsItemsItemIdLazyImport
+      parentRoute: typeof AnalyticsItemsItemIdImport
     }
     '/analytics/items/$itemId/export': {
       id: '/analytics/items/$itemId/export'
       path: '/export'
       fullPath: '/analytics/items/$itemId/export'
       preLoaderRoute: typeof AnalyticsItemsItemIdExportImport
-      parentRoute: typeof AnalyticsItemsItemIdLazyImport
+      parentRoute: typeof AnalyticsItemsItemIdImport
     }
     '/analytics/items/$itemId/items': {
       id: '/analytics/items/$itemId/items'
       path: '/items'
       fullPath: '/analytics/items/$itemId/items'
       preLoaderRoute: typeof AnalyticsItemsItemIdItemsImport
-      parentRoute: typeof AnalyticsItemsItemIdLazyImport
+      parentRoute: typeof AnalyticsItemsItemIdImport
     }
     '/analytics/items/$itemId/users': {
       id: '/analytics/items/$itemId/users'
       path: '/users'
       fullPath: '/analytics/items/$itemId/users'
       preLoaderRoute: typeof AnalyticsItemsItemIdUsersImport
-      parentRoute: typeof AnalyticsItemsItemIdLazyImport
+      parentRoute: typeof AnalyticsItemsItemIdImport
     }
     '/player/$rootId/$itemId/autoLogin': {
       id: '/player/$rootId/$itemId/autoLogin'
@@ -526,7 +522,7 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/analytics/items/$itemId/'
       preLoaderRoute: typeof AnalyticsItemsItemIdIndexImport
-      parentRoute: typeof AnalyticsItemsItemIdLazyImport
+      parentRoute: typeof AnalyticsItemsItemIdImport
     }
     '/player/$rootId/$itemId/': {
       id: '/player/$rootId/$itemId/'
@@ -582,7 +578,7 @@ const AccountRouteChildren: AccountRouteChildren = {
 const AccountRouteWithChildren =
   AccountRoute._addFileChildren(AccountRouteChildren)
 
-interface AnalyticsItemsItemIdLazyRouteChildren {
+interface AnalyticsItemsItemIdRouteChildren {
   AnalyticsItemsItemIdAppsRoute: typeof AnalyticsItemsItemIdAppsRoute
   AnalyticsItemsItemIdExportRoute: typeof AnalyticsItemsItemIdExportRoute
   AnalyticsItemsItemIdItemsRoute: typeof AnalyticsItemsItemIdItemsRoute
@@ -590,28 +586,25 @@ interface AnalyticsItemsItemIdLazyRouteChildren {
   AnalyticsItemsItemIdIndexRoute: typeof AnalyticsItemsItemIdIndexRoute
 }
 
-const AnalyticsItemsItemIdLazyRouteChildren: AnalyticsItemsItemIdLazyRouteChildren =
-  {
-    AnalyticsItemsItemIdAppsRoute: AnalyticsItemsItemIdAppsRoute,
-    AnalyticsItemsItemIdExportRoute: AnalyticsItemsItemIdExportRoute,
-    AnalyticsItemsItemIdItemsRoute: AnalyticsItemsItemIdItemsRoute,
-    AnalyticsItemsItemIdUsersRoute: AnalyticsItemsItemIdUsersRoute,
-    AnalyticsItemsItemIdIndexRoute: AnalyticsItemsItemIdIndexRoute,
-  }
+const AnalyticsItemsItemIdRouteChildren: AnalyticsItemsItemIdRouteChildren = {
+  AnalyticsItemsItemIdAppsRoute: AnalyticsItemsItemIdAppsRoute,
+  AnalyticsItemsItemIdExportRoute: AnalyticsItemsItemIdExportRoute,
+  AnalyticsItemsItemIdItemsRoute: AnalyticsItemsItemIdItemsRoute,
+  AnalyticsItemsItemIdUsersRoute: AnalyticsItemsItemIdUsersRoute,
+  AnalyticsItemsItemIdIndexRoute: AnalyticsItemsItemIdIndexRoute,
+}
 
-const AnalyticsItemsItemIdLazyRouteWithChildren =
-  AnalyticsItemsItemIdLazyRoute._addFileChildren(
-    AnalyticsItemsItemIdLazyRouteChildren,
-  )
+const AnalyticsItemsItemIdRouteWithChildren =
+  AnalyticsItemsItemIdRoute._addFileChildren(AnalyticsItemsItemIdRouteChildren)
 
 interface AnalyticsRouteChildren {
   AnalyticsIndexRoute: typeof AnalyticsIndexRoute
-  AnalyticsItemsItemIdLazyRoute: typeof AnalyticsItemsItemIdLazyRouteWithChildren
+  AnalyticsItemsItemIdRoute: typeof AnalyticsItemsItemIdRouteWithChildren
 }
 
 const AnalyticsRouteChildren: AnalyticsRouteChildren = {
   AnalyticsIndexRoute: AnalyticsIndexRoute,
-  AnalyticsItemsItemIdLazyRoute: AnalyticsItemsItemIdLazyRouteWithChildren,
+  AnalyticsItemsItemIdRoute: AnalyticsItemsItemIdRouteWithChildren,
 }
 
 const AnalyticsRouteWithChildren = AnalyticsRoute._addFileChildren(
@@ -678,8 +671,8 @@ export interface FileRoutesByFullPath {
   '/analytics/': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
   '/': typeof LandingIndexLazyRoute
+  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdLazyRouteWithChildren
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -752,8 +745,8 @@ export interface FileRoutesById {
   '/analytics/': typeof AnalyticsIndexRoute
   '/player/': typeof PlayerIndexRoute
   '/_landing/': typeof LandingIndexLazyRoute
+  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdLazyRouteWithChildren
   '/player/$rootId/': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -793,8 +786,8 @@ export interface FileRouteTypes {
     | '/analytics/'
     | '/player'
     | '/'
-    | '/player/$rootId/$itemId'
     | '/analytics/items/$itemId'
+    | '/player/$rootId/$itemId'
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -864,8 +857,8 @@ export interface FileRouteTypes {
     | '/analytics/'
     | '/player/'
     | '/_landing/'
-    | '/player/$rootId/$itemId'
     | '/analytics/items/$itemId'
+    | '/player/$rootId/$itemId'
     | '/player/$rootId/'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -1047,15 +1040,8 @@ export const routeTree = rootRoute
       "filePath": "_landing/index.lazy.tsx",
       "parent": "/_landing"
     },
-    "/player/$rootId/$itemId": {
-      "filePath": "player/$rootId/$itemId.tsx",
-      "children": [
-        "/player/$rootId/$itemId/autoLogin",
-        "/player/$rootId/$itemId/"
-      ]
-    },
     "/analytics/items/$itemId": {
-      "filePath": "analytics/items/$itemId.lazy.tsx",
+      "filePath": "analytics/items/$itemId.tsx",
       "parent": "/analytics",
       "children": [
         "/analytics/items/$itemId/apps",
@@ -1063,6 +1049,13 @@ export const routeTree = rootRoute
         "/analytics/items/$itemId/items",
         "/analytics/items/$itemId/users",
         "/analytics/items/$itemId/"
+      ]
+    },
+    "/player/$rootId/$itemId": {
+      "filePath": "player/$rootId/$itemId.tsx",
+      "children": [
+        "/player/$rootId/$itemId/autoLogin",
+        "/player/$rootId/$itemId/"
       ]
     },
     "/player/$rootId/": {
