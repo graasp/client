@@ -58,11 +58,12 @@ export const useThumbnailUploader = ({
     }));
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setItemThumbnail((prev) => ({
       url: thumbnailUrl,
       // As we set hasThumbnail = true during the upload,
       // we only update it if the previous state is false,
-      // meaning that no upload occured and the item doesn't have a thumbnail.
+      // meaning that no upload occurred and the item doesn't have a thumbnail.
       // This solve some flickering of the warning tooltip after the upload.
       hasThumbnail: prev.hasThumbnail || Boolean(thumbnailUrl),
     }));

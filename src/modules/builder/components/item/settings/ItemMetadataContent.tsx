@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,23 +15,22 @@ import {
   getFileExtra,
   getS3FileExtra,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 
-import { hooks } from '../../../config/queryClient';
-import {
-  ITEM_PANEL_NAME_ID,
-  ITEM_PANEL_TABLE_ID,
-} from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
+import { ITEM_PANEL_NAME_ID, ITEM_PANEL_TABLE_ID } from '@/config/selectors';
+
+import { useOutletContext } from '~builder/contexts/OutletContext';
+
 import { BUILDER } from '../../../langs/constants';
-import { OutletType } from '../../pages/item/type';
 import LanguageSelect from './LanguageSelect';
 
 const { useMember } = hooks;
 
 const ItemMetadataContent = (): JSX.Element => {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { t: translateCommon } = useCommonTranslation();
-  const { item } = useOutletContext<OutletType>();
+  const { t: translateBuilder, i18n } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { item } = useOutletContext();
 
   const { data: creator } = useMember(item?.creator?.id);
 
@@ -102,7 +103,7 @@ const ItemMetadataContent = (): JSX.Element => {
               <TableCell align="right">
                 {formatDate(item.createdAt, {
                   locale: i18n.language,
-                  defaultValue: translateCommon(COMMON.UNKNOWN_DATE),
+                  defaultValue: translateCommon('UNKNOWN_DATE'),
                 })}
               </TableCell>
             </TableRow>
@@ -113,7 +114,7 @@ const ItemMetadataContent = (): JSX.Element => {
               <TableCell align="right">
                 {formatDate(item.updatedAt, {
                   locale: i18n.language,
-                  defaultValue: translateCommon(COMMON.UNKNOWN_DATE),
+                  defaultValue: translateCommon('UNKNOWN_DATE'),
                 })}
               </TableCell>
             </TableRow>

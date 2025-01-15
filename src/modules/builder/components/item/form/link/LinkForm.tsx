@@ -26,7 +26,6 @@ import {
   buildLinkExtra,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button, LinkCard, LinkItem } from '@graasp/ui';
 
 import { NS } from '@/config/constants';

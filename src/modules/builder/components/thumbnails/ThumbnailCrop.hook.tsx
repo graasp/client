@@ -27,6 +27,7 @@ export const useThumbnailCrop = ({
   const [croppedUrl, setCroppedUrl] = useState<string>();
   const [fileSource, setFileSource] = useState<string>();
 
+  // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
   useEffect(() => setCroppedUrl(currentThumbnail), [currentThumbnail]);
 
   const resetCroppedUrl = () => setCroppedUrl(undefined);

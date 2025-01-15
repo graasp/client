@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
+import { useButtonColor } from '@graasp/ui';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
-import { WARNING_COLOR } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
+import { BUILDER } from '~builder/langs/constants';
 
 import CustomizedTags from './CustomizedTags';
 import { useTagsManager } from './useTagsManager';
@@ -33,6 +35,7 @@ export const PublishCustomizedTags = ({
   });
   const { computeStatusFor } = useDataSyncContext();
   const showWarning = !tags?.length;
+  const { color } = useButtonColor('warning');
 
   useEffect(
     () => computeStatusFor(SYNC_STATUS_KEY, { isLoading, isSuccess, isError }),
@@ -45,7 +48,7 @@ export const PublishCustomizedTags = ({
 
       {showWarning && (
         <Tooltip title={t(BUILDER.ITEM_TAGS_MISSING_WARNING)}>
-          <WarningIcon htmlColor={WARNING_COLOR} />
+          <WarningIcon htmlColor={color} />
         </Tooltip>
       )}
     </>

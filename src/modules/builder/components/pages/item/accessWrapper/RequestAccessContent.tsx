@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { LoadingButton } from '@mui/lab';
 import { Stack, Typography } from '@mui/material';
 
@@ -9,13 +11,14 @@ import {
 
 import { Check, Lock } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 type Props = {
   member: Member;

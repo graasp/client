@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Button,
   Dialog,
@@ -9,10 +11,11 @@ import {
 
 import { PackedItem } from '@graasp/sdk';
 
-import { SETTINGS } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { SETTINGS } from '~builder/config/constants';
+import { BUILDER } from '~builder/langs/constants';
 
 import useVisibility from '../../hooks/useVisibility';
 

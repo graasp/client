@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem, Tag, TagCategory } from '@graasp/sdk';
 
 import groupBy from 'lodash.groupby';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
 
 const EMPTY_STRING = '';
 type Props = {
@@ -65,7 +65,7 @@ export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
 
   const validateData = (tag: Pick<Tag, 'category' | 'name'>) => {
     if (valueExist(tag)) {
-      setError(t(BUILDER.CHIPS_ALREADY_EXIST, { element: tag.name }));
+      setError(t('CHIPS_ALREADY_EXIST', { element: tag.name }));
       return false;
     }
     setError(undefined);

@@ -106,7 +106,6 @@ const checkMembership = ({
 }: {
   item: ItemForTest;
   currentMember: Member;
-  // eslint-disable-next-line arrow-body-style
 }) => {
   // todo: public
   // TODO!!!

@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, Stack } from '@mui/material';
 
-import { Ordering } from '@/enums';
-
-import { useBuilderTranslation } from '../../config/i18n';
-import { hooks } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import {
   BOOKMARKED_ITEMS_ERROR_ALERT_ID,
   BOOKMARKED_ITEMS_ID,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
+import { Ordering } from '~builder/enums';
+
 import { BUILDER } from '../../langs/constants';
 import ErrorAlert from '../common/ErrorAlert';
 import SelectTypes from '../common/SelectTypes';
@@ -17,11 +20,11 @@ import ModeButton from '../item/header/ModeButton';
 import LoadingScreen from '../layout/LoadingScreen';
 import ItemsTable from '../main/list/ItemsTable';
 import SortingSelect from '../table/SortingSelect';
-import { SortingOptions } from '../table/types';
+import { SortingOptions, SortingOptionsType } from '../table/types';
 import { useSorting, useTranslatedSortingOptions } from '../table/useSorting';
-import PageWrapper from './BuilderPageLayout';
+import { BuilderPageLayout } from './BuilderPageLayout';
 
-const BookmarkedItems = ({
+const BookmarkedItemsContent = ({
   searchText,
 }: {
   searchText: string;
@@ -35,7 +38,7 @@ const BookmarkedItems = ({
   const { shouldDisplayItem } = useFilterItemsContext();
 
   const { sortBy, setSortBy, ordering, setOrdering, sortFn } =
-    useSorting<SortingOptions>({
+    useSorting<SortingOptionsType>({
       sortBy: SortingOptions.ItemUpdatedAt,
       ordering: Ordering.DESC,
     });
@@ -111,12 +114,12 @@ const BookmarkedItems = ({
   );
 };
 
-const BookmarkedItemsWrapper = (): JSX.Element => {
+export function BookmarkedItemsScreen() {
   const { t } = useTranslation(NS.Builder);
   const itemSearch = useItemSearch();
 
   return (
-    <PageWrapper
+    <BuilderPageLayout
       title={t(BUILDER.BOOKMARKED_ITEMS_TITLE)}
       id={BOOKMARKED_ITEMS_ID}
       options={
@@ -130,9 +133,7 @@ const BookmarkedItemsWrapper = (): JSX.Element => {
         </Stack>
       }
     >
-      <BookmarkedItems searchText={itemSearch.text} />
-    </PageWrapper>
+      <BookmarkedItemsContent searchText={itemSearch.text} />
+    </BuilderPageLayout>
   );
-};
-
-export default BookmarkedItemsWrapper;
+}

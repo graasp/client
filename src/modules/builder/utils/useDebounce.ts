@@ -18,9 +18,11 @@ export const useDebouncedCallback = (
   const [isDebounced, setIsDebounced] = useState<boolean>(false);
 
   const debounceSetSend = useMemo(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsDebounced(true);
     return debounce(() => {
       callback();
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setIsDebounced(false);
     }, debounceDelayMS);
   }, [callback, debounceDelayMS]);

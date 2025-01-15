@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, Stack } from '@mui/material';
 
-import { Ordering } from '@/enums';
-
-import { useBuilderTranslation } from '../../config/i18n';
-import { hooks } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import {
   PUBLISHED_ITEMS_ERROR_ALERT_ID,
   PUBLISHED_ITEMS_ID,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
+import { Ordering } from '~builder/enums';
+
 import { BUILDER } from '../../langs/constants';
 import ErrorAlert from '../common/ErrorAlert';
 import SelectTypes from '../common/SelectTypes';
@@ -17,9 +20,9 @@ import ModeButton from '../item/header/ModeButton';
 import LoadingScreen from '../layout/LoadingScreen';
 import ItemsTable from '../main/list/ItemsTable';
 import SortingSelect from '../table/SortingSelect';
-import { SortingOptions } from '../table/types';
+import { SortingOptions, SortingOptionsType } from '../table/types';
 import { useSorting, useTranslatedSortingOptions } from '../table/useSorting';
-import PageWrapper from './BuilderPageLayout';
+import { BuilderPageLayout } from './BuilderPageLayout';
 
 const PublishedItemsScreenContent = ({
   searchText,
@@ -36,7 +39,7 @@ const PublishedItemsScreenContent = ({
   const options = useTranslatedSortingOptions();
   const { shouldDisplayItem } = useFilterItemsContext();
   const { sortBy, setSortBy, ordering, setOrdering, sortFn } =
-    useSorting<SortingOptions>({
+    useSorting<SortingOptionsType>({
       sortBy: SortingOptions.ItemUpdatedAt,
       ordering: Ordering.DESC,
     });
@@ -112,7 +115,7 @@ const PublishedItemsScreen = (): JSX.Element | null => {
   const { input, text } = useItemSearch();
 
   return (
-    <PageWrapper
+    <BuilderPageLayout
       id={PUBLISHED_ITEMS_ID}
       title={translateBuilder(BUILDER.PUBLISHED_ITEMS_TITLE)}
       options={
@@ -127,7 +130,7 @@ const PublishedItemsScreen = (): JSX.Element | null => {
       }
     >
       <PublishedItemsScreenContent searchText={text} />
-    </PageWrapper>
+    </BuilderPageLayout>
   );
 };
 

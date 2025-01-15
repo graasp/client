@@ -1,14 +1,15 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 export const PublishedChildrenButton = (): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
 
   return (
     <Alert severity="success">
-      {t(BUILDER.LIBRARY_SETTINGS_CHILD_PUBLISHED_STATUS)}
+      {t('LIBRARY_SETTINGS_CHILD_PUBLISHED_STATUS')}
     </Alert>
   );
 };

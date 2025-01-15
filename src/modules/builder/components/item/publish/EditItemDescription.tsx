@@ -1,19 +1,20 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import EditIcon from '@mui/icons-material/Edit';
 import WarningIcon from '@mui/icons-material/Warning';
 import { IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { TextDisplay } from '@graasp/ui';
+import { TextDisplay, useButtonColor } from '@graasp/ui';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
-import useModalStatus from '@/components/hooks/useModalStatus';
-import DebouncedTextEditor from '@/components/input/DebouncedTextEditor';
-import { WARNING_COLOR } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import DebouncedTextEditor from '~builder/components/input/DebouncedTextEditor';
+import { BUILDER } from '~builder/langs/constants';
 
 import PublicationModal from './PublicationModal';
 
@@ -28,6 +29,7 @@ export const EditItemDescription = ({ item }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { isOpen, openModal, closeModal } = useModalStatus();
+  const { color } = useButtonColor('warning');
 
   const {
     mutate: updateItem,
@@ -69,7 +71,7 @@ export const EditItemDescription = ({ item }: Props): JSX.Element => {
     <Tooltip
       title={t(BUILDER.LIBRARY_SETTINGS_ITEM_DESCRIPTION_MISSING_WARNING)}
     >
-      <WarningIcon htmlColor={WARNING_COLOR} />
+      <WarningIcon htmlColor={color} />
     </Tooltip>
   ) : null;
 
@@ -85,7 +87,7 @@ export const EditItemDescription = ({ item }: Props): JSX.Element => {
   const descriptionContent = (
     <Stack direction="row" alignItems="center" spacing={1} pb={1}>
       <TextDisplay
-        content={description || t(BUILDER.LIBRARY_SETTINGS_ITEM_NO_DESCRIPTION)}
+        content={description ?? t(BUILDER.LIBRARY_SETTINGS_ITEM_NO_DESCRIPTION)}
       />
       {noDescriptionToolTip}
     </Stack>

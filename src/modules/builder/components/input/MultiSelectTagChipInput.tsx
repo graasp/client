@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Autocomplete,
   AutocompleteRenderGetTagProps,
@@ -12,7 +14,7 @@ import {
 
 import { DiscriminatedItem, TagCategory } from '@graasp/sdk';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   MULTI_SELECT_CHIP_CONTAINER_ID,
@@ -34,7 +36,7 @@ export const MultiSelectTagChipInput = ({
   helpertext,
 }: Props): JSX.Element | null => {
   const { t } = useTranslation(NS.Builder);
-  const { t: translateEnums } = useEnumsTranslation();
+  const { t: translateEnums } = useTranslation(NS.Enums);
   const {
     currentValue,
     error,
@@ -62,7 +64,6 @@ export const MultiSelectTagChipInput = ({
           data-cy={buildMultiSelectChipsSelector(index)}
           variant="outlined"
           label={option}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...getTagProps({ index })}
           onDelete={() => {
             const tagId = tagsPerCategory?.[tagCategory].find(
@@ -80,7 +81,6 @@ export const MultiSelectTagChipInput = ({
 
   const renderInput = (params: AutocompleteRenderInputParams) => (
     <TextField
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...params}
       variant="outlined"
       // show plural version
