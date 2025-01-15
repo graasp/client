@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Box,
-  Button,
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
+  Stack,
   Typography,
 } from '@mui/material';
 
@@ -16,6 +16,7 @@ import { ExportActionsFormatting } from '@graasp/sdk';
 import { getRouteApi } from '@tanstack/react-router';
 import { Braces, Grid3X3 } from 'lucide-react';
 
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 
@@ -83,7 +84,7 @@ export function ExportData(): JSX.Element {
   ];
 
   return (
-    <>
+    <Stack gap={1}>
       <FormControl sx={{ display: 'block' }}>
         <Typography variant="h6">{t('SELECT_FORMAT_TITLE')}</Typography>
         <Typography variant="body1">
@@ -115,12 +116,11 @@ export function ExportData(): JSX.Element {
         variant="contained"
         disabled={isFormatExported[format]}
         id={EXPORT_ACTIONS_BUTTON_ID}
-        sx={{ marginTop: 1 }}
       >
         {isFormatExported[format]
           ? t('EXPORTING_DONE', { format: format.toUpperCase() })
           : t('START_EXPORTING', { format: format.toUpperCase() })}
       </Button>
-    </>
+    </Stack>
   );
 }

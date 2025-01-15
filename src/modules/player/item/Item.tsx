@@ -31,7 +31,6 @@ import {
 } from '@graasp/sdk';
 import {
   AppItem,
-  Button,
   EtherpadItem,
   FileItem,
   H5PItem,
@@ -45,6 +44,7 @@ import { DocumentItem } from '@graasp/ui/text-editor';
 import { getRouteApi } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
+import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
 import { axios, hooks } from '@/config/queryClient';
