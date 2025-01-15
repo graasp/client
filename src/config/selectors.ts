@@ -34,7 +34,6 @@ export const MEMBER_STORAGE_PARENT_FOLDER_ID = 'storage-parent-folder';
 export const getCellId = (cellName: string, fileId: string): string =>
   `${cellName}-${fileId}`;
 
-export const CARD_TIP_ID = 'tip-card';
 export const MEMBER_AVATAR_WRAPPER_ID = 'member-avatar';
 export const MEMBER_AVATAR_IMAGE_ID = 'member-avatar-image';
 export const MEMBER_CREATED_AT_ID = 'member-created-at';
