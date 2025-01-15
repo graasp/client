@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { Link } from '@tanstack/react-router';
 import { RadarIcon } from 'lucide-react';
 
@@ -14,6 +12,7 @@ import {
   NOT_FOUND_MESSAGE_ID,
   NOT_FOUND_TEXT_ID,
 } from '@/config/selectors';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 export function NotFoundComponent(): JSX.Element {
   const { t } = useTranslation(NS.Account);

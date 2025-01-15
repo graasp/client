@@ -8,9 +8,10 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import { useMainMenuOpenContext, useMobileView } from '@graasp/ui';
-
 import { LinkComponent, createLink } from '@tanstack/react-router';
+
+import { useMainMenuOpenContext } from '@/ui/MainMenu/hooks';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 /**
  * MUI integration with `@tanstack/router`

@@ -17,10 +17,10 @@ import {
   getParentFromPath,
   getS3FileExtra,
 } from '@graasp/sdk';
-import { DEFAULT_LINK_SHOW_BUTTON } from '@graasp/ui';
 
 import { StatusCodes } from 'http-status-codes';
 
+import { DEFAULT_LINK_SHOW_BUTTON } from '../../../src/config/constants';
 import {
   MAIN_MENU_ID,
   buildAppId,

@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FormControlLabel, FormGroup, Switch, Typography } from '@mui/material';
 
@@ -7,13 +8,14 @@ import { LinkItemType } from '@graasp/sdk';
 import {
   DEFAULT_LINK_SHOW_BUTTON,
   DEFAULT_LINK_SHOW_IFRAME,
-} from '../../../config/constants';
-import { useBuilderTranslation } from '../../../config/i18n';
-import { mutations } from '../../../config/queryClient';
+  NS,
+} from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import {
   SETTINGS_LINK_SHOW_BUTTON_ID,
   SETTINGS_LINK_SHOW_IFRAME_ID,
-} from '../../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 type Props = {

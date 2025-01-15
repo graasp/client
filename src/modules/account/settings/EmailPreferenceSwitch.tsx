@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { SelectChangeEvent } from '@mui/material';
 
 import { CompleteMember, EmailFrequency } from '@graasp/sdk';
-import { Select } from '@graasp/ui';
 
 import { NS, emailFrequency } from '@/config/constants';
+import Select from '@/ui/Select/Select';
 
 type EmailPreferenceSwitchProps = {
   id?: string;

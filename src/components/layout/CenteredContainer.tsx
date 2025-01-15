@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { Container, Stack } from '@mui/material';
 
-import { DEFAULT_BACKGROUND_COLOR } from '@graasp/ui';
+import { DEFAULT_BACKGROUND_COLOR } from '@/ui/theme';
 
 export function CenteredContainer({
   children,

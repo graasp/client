@@ -1,3 +1,5 @@
+import type React from 'react';
+
 import {
   Direction,
   Theme,
@@ -310,10 +312,4 @@ export const createGraaspTheme = ({
   });
 };
 
-/**
- * @deprecated use buildTheme
- */
 export const theme = createGraaspTheme({});
-
-export const buildTheme = (direction: Direction = 'ltr'): Theme =>
-  createGraaspTheme({ direction });

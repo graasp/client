@@ -12,7 +12,6 @@ import {
 
 import { BUILDER_ITEMS_PREFIX, ClientHostManager, Context } from '@graasp/sdk';
 import rtlPlugin from '@graasp/stylis-plugin-rtl';
-import { theme } from '@graasp/ui';
 
 import createCache from '@emotion/cache';
 import { CacheProvider, EmotionCache } from '@emotion/react';
@@ -25,6 +24,7 @@ import { RouterProvider, createRouter } from '@tanstack/react-router';
 import { prefixer } from 'stylis';
 
 import '@/config/i18n';
+import { theme } from '@/ui/theme';
 
 import pkg from '../package.json';
 import { AuthProvider, useAuth } from './AuthContext';

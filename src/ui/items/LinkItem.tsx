@@ -1,13 +1,13 @@
-import { Alert, Box, Link as MUILink, styled } from '@mui/material';
-
 import { Fragment, memo, useEffect, useState } from 'react';
+
+import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 
 import { LinkItemType, getLinkExtra } from '@graasp/sdk';
 
-import LinkCard from '@/Card/LinkCard.js';
+import { DEFAULT_LINK_SHOW_BUTTON } from '@/config/constants.js';
+import LinkCard from '@/ui/Card/LinkCard.js';
 
 import withCollapse from '../Collapse/withCollapse.js';
-import { DEFAULT_LINK_SHOW_BUTTON } from '../constants.js';
 import { ITEM_MAX_HEIGHT } from './constants.js';
 import { iframeCommonStyles } from './iframeStyles.js';
 import withCaption from './withCaption.js';
@@ -114,7 +114,7 @@ const LinkIframe = ({
     <StyledIFrame
       sx={{ display: isLoading ? 'unset' : 'block' }}
       height={height}
-      width='100%'
+      width="100%"
       id={id}
       isResizable={isResizable}
       onLoad={onDoneLoading}
@@ -168,16 +168,18 @@ const LinkItem = ({
 
   useEffect(() => {
     if (!isLoading) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setIsLoading(true);
     }
   }, [url]);
+
   const CaptionWrapper = withCaption({
     item,
   });
 
   const getComponent = (): JSX.Element => {
     if (!url) {
-      return <Alert severity='error'>{errorMessage}</Alert>;
+      return <Alert severity="error">{errorMessage}</Alert>;
     }
 
     const isExternal = isURLExternal(url);
@@ -201,7 +203,7 @@ const LinkItem = ({
           <Box
             // this is allows for the box to not really exist and instead display the children box
             // we can not get rid of this div as we need a way to attach the onClick handler for registering actions
-            display='contents'
+            display="contents"
             id={id}
             onClick={onClick}
             dangerouslySetInnerHTML={{ __html: html }}

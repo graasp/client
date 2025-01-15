@@ -3,8 +3,6 @@ import { I18nextProvider } from 'react-i18next';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-import { theme } from '@graasp/ui';
-
 import type { Preview, StoryContext } from '@storybook/react';
 import {
   RouterProvider,
@@ -16,6 +14,7 @@ import {
 import type { PartialStoryFn } from 'storybook/internal/types';
 
 import '../src/app.css';
+import { theme } from '../src/ui/theme';
 import i18n from './i18nTestInstance';
 
 // All stories will be decorated with a fake router instance that supports dynamic routes

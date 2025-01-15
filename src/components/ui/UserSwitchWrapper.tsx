@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
-import { UserSwitchWrapper as GraaspUserSwitch } from '@graasp/ui';
-
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import { hooks, mutations } from '@/config/queryClient';
+import { UserSwitchWrapper as GraaspUserSwitch } from '@/ui/UserSwitch/UserSwitchWrapper';
 
 import LanguageSwitch from './LanguageSwitch';
 import MemberAvatar from './MemberAvatar';

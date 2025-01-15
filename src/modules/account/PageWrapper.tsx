@@ -4,21 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { styled, useTheme } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
-import {
-  Main,
-  Platform,
-  PlatformSwitch,
-  PlatformSwitchProps,
-  useMobileView,
-} from '@graasp/ui';
 
 import { Link } from '@tanstack/react-router';
 import { UserRoundIcon } from 'lucide-react';
 
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
-import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
+import Main from '@/ui/Main/Main';
+import PlatformSwitch, {
+  PlatformSwitchProps,
+} from '@/ui/PlatformSwitch/PlatformSwitch';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { MainMenu } from './MainMenu';
 

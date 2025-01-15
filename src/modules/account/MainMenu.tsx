@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { List, Stack } from '@mui/material';
 
-import { DRAWER_WIDTH } from '@graasp/ui';
-
 import {
   ArrowLeftIcon,
   ChartColumnIcon,
@@ -20,6 +18,7 @@ import {
   ACCOUNT_STATS_PATH,
   ACCOUNT_STORAGE_PATH,
 } from '@/config/paths';
+import { DRAWER_WIDTH } from '@/ui/constants';
 
 export function MainMenu(): JSX.Element {
   const { t } = useTranslation(NS.Account, { keyPrefix: 'MAIN_MENU' });

@@ -11,7 +11,6 @@ import {
 } from '@mui/material';
 
 import { PublicProfile } from '@graasp/sdk';
-import { useButtonColor } from '@graasp/ui';
 
 import { Config, SocialLinks } from 'social-links';
 
@@ -24,6 +23,7 @@ import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '~landing/footer/icons';
 

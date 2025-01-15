@@ -2,12 +2,11 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { ArrowLeftIcon, ConstructionIcon, HomeIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { ConstructionAnimation } from './ConstructionTruck';
 import { ButtonLink } from './ui/ButtonLink';

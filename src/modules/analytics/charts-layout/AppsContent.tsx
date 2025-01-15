@@ -2,11 +2,11 @@ import { Box, Typography } from '@mui/material';
 
 import { Api } from '@graasp/query-client';
 import { Context, ItemType, PackedItem, PermissionLevel } from '@graasp/sdk';
-import { AppItem } from '@graasp/ui';
 
 import { AuthenticatedMember } from '@/AuthContext';
 import { API_HOST } from '@/config/env';
 import { axios } from '@/config/queryClient';
+import AppItem from '@/ui/items/AppItem';
 
 import {
   APP_ITEM_CLASS_NAME,

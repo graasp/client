@@ -77,8 +77,6 @@ export const DISPLAY_CO_EDITORS_OPTIONS = {
 
 export const ITEM_HEADER_ICON_HEIGHT = 24;
 export const AVATAR_ICON_HEIGHT = 30;
-export const DEFAULT_LINK_SHOW_IFRAME = false;
-export const DEFAULT_LINK_SHOW_BUTTON = true;
 
 // TODO: refer from specific endpoint /tutorials?
 export const TUTORIALS_LINK =

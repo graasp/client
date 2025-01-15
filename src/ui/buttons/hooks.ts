@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material';
 
-import { DEFAULT_TEXT_SECONDARY_COLOR } from '@/theme.js';
-import { ColorVariants, ColorVariantsType } from '@/types.js';
+import { DEFAULT_TEXT_SECONDARY_COLOR } from '@/ui/theme.js';
+import { ColorVariants, ColorVariantsType } from '@/ui/types.js';
 
 export const useButtonColor = (
   color: ColorVariantsType | undefined,

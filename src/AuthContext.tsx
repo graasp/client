@@ -10,9 +10,9 @@ import {
 
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 import { DEFAULT_LANG } from '@graasp/translations';
-import { CustomInitialLoader } from '@graasp/ui';
 
 import { hooks, mutations } from './config/queryClient';
+import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 
 type LoginInput = {
   email: string;

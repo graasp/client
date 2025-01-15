@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Stack, Typography } from '@mui/material';
 
-import { Loader } from '@graasp/ui';
-
 import { format } from 'date-fns/format';
 import { formatISO } from 'date-fns/formatISO';
 import groupBy from 'lodash/groupBy';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import Loader from '@/ui/Loader/Loader';
 
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
 import DateRange from '~analytics/common/DateRangeInput';
