@@ -16,7 +16,7 @@ import { BUILDER } from '@/langs/constants';
 import { getErrorFromPayload } from '@/utils/errorMessages';
 
 const ErrorDisplay = ({ errorMessage }: { errorMessage: string }): string => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: translateMessages } = useMessagesTranslation();
   switch (errorMessage) {
     case 'MODIFY_EXISTING': {
@@ -53,7 +53,7 @@ const DisplayInvitationSummary = ({
   userCsvDataWithTemplate,
   error,
 }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   if (error) {
     const additionalMessage = getErrorFromPayload(error);
 

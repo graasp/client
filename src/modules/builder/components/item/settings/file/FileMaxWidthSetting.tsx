@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { SelectChangeEvent } from '@mui/material';
 
 import { LocalFileItemType, MaxWidth, S3FileItemType } from '@graasp/sdk';
@@ -5,10 +7,9 @@ import { Select } from '@graasp/ui';
 
 import { ExpandIcon } from 'lucide-react';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { FILE_SETTING_MAX_WIDTH_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 import ItemSettingProperty from '../ItemSettingProperty';
 import { SettingVariant, SettingVariantType } from '../settingTypes';
@@ -22,7 +23,7 @@ export const FileMaxWidthSetting = ({
   variant: SettingVariantType;
   item: S3FileItemType | LocalFileItemType;
 }): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useEnumsTranslation();
 
   const { mutate: editItem } = mutations.useEditItem();

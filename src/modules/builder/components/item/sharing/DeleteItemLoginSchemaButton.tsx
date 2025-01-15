@@ -31,7 +31,7 @@ function DeleteItemLoginSchemaButton({
 
   const { isOpen, closeModal, openModal } = useModalStatus();
   const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const onSubmit = () => {
     deleteItemLoginSchema({ itemId });

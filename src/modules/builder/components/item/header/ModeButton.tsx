@@ -11,8 +11,8 @@ import { LayoutGridIcon, ListIcon, MapIcon } from 'lucide-react';
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { LAYOUT_MODE_BUTTON_ID } from '@/config/selectors';
 
-import { ItemLayoutMode } from '../../../enums';
-import { useLayoutContext } from '../../context/LayoutContext';
+import { useLayoutContext } from '~builder/components/context/LayoutContext';
+import { ItemLayoutMode } from '~builder/enums';
 
 const ModeIcon = ({ mode }: { mode: ItemLayoutMode }) => {
   const { color } = useButtonColor('primary');

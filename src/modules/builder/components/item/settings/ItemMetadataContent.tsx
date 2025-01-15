@@ -1,5 +1,3 @@
-import { useOutletContext } from 'react-router-dom';
-
 import { Box } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -17,10 +15,6 @@ import {
 } from '@graasp/sdk';
 import { COMMON } from '@graasp/translations';
 
-import i18n, {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../config/i18n';
 import { hooks } from '../../../config/queryClient';
 import {
   ITEM_PANEL_NAME_ID,
@@ -33,7 +27,7 @@ import LanguageSelect from './LanguageSelect';
 const { useMember } = hooks;
 
 const ItemMetadataContent = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useCommonTranslation();
   const { item } = useOutletContext<OutletType>();
 

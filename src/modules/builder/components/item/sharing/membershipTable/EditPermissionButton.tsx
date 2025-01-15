@@ -45,7 +45,7 @@ const EditPermissionButton = ({
   const [currentPermission, setCurrentPermission] = useState(permission);
 
   const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   if (!allowDowngrade && permission === PermissionLevel.Admin) {
     return null;

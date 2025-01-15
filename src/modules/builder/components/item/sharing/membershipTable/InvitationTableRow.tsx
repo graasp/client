@@ -23,7 +23,7 @@ const InvitationTableRow = ({
   data: Invitation;
 }): JSX.Element => {
   const { t: translateEnums } = useEnumsTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: editInvitation } = mutations.usePatchInvitation();
   const { mutate: postInvitations } = mutations.usePostInvitations();

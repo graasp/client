@@ -19,7 +19,7 @@ type Props = {
 };
 
 const AliasInput = ({ alias, onChange, hasError }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleAliasChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,

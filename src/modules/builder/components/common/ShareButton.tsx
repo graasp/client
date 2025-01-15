@@ -1,14 +1,15 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ShareButton as GraaspShareButton } from '@graasp/ui';
 
-import { buildItemSharePath } from '@/config/paths';
+import { Link } from '@tanstack/react-router';
 
-import { useBuilderTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   SHARE_ITEM_BUTTON_CLASS,
   buildShareButtonId,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -16,16 +17,10 @@ type Props = {
 };
 
 const ShareButton = ({ itemId }: Props): JSX.Element => {
-  const [searchParams] = useSearchParams();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
-    <Link
-      to={{
-        pathname: buildItemSharePath(itemId),
-        search: searchParams.toString(),
-      }}
-    >
+    <Link to="/builder/items/$itemId/share" params={{ itemId }}>
       <GraaspShareButton
         tooltip={translateBuilder(BUILDER.SHARE_ITEM_BUTTON)}
         ariaLabel={translateBuilder(BUILDER.SHARE_ITEM_BUTTON)}

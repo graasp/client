@@ -28,7 +28,7 @@ export const PublicationThumbnail = ({
   thumbnailSize = THUMBNAIL_SIZE,
   fullWidth = false,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const [showWarning, setShowWarning] = useState(false);
 
   const handleChange = (e: EventChanges) => {

@@ -1,11 +1,12 @@
-import { useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import { Alert, Stack } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { useParams } from '@tanstack/react-router';
 
-import { ITEM_HEADER_ID } from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { ITEM_HEADER_ID } from '@/config/selectors';
+
 import Navigation from '../../layout/Navigation';
 import ItemHeaderActions from './ItemHeaderActions';
 
@@ -14,8 +15,8 @@ type Props = {
 };
 
 const ItemHeader = ({ showNavigation = true }: Props): JSX.Element | null => {
-  const { itemId } = useParams();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { itemId } = useParams({ strict: false });
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   return (
     <Stack
       direction="row"
@@ -29,9 +30,7 @@ const ItemHeader = ({ showNavigation = true }: Props): JSX.Element | null => {
       {itemId ? (
         <ItemHeaderActions itemId={itemId} />
       ) : (
-        <Alert severity="error">
-          {translateBuilder(BUILDER.ERROR_MESSAGE)}
-        </Alert>
+        <Alert severity="error">{translateBuilder('ERROR_MESSAGE')}</Alert>
       )}
     </Stack>
   );

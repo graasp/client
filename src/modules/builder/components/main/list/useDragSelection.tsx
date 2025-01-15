@@ -25,7 +25,7 @@ export const DragContainerStack = ({
 }): JSX.Element => (
   <Stack
     // this is a hack to allow selection dragging from margin
-    // 100 is artbitrary big
+    // 100 is arbitrary big
     mx={-100}
     px={100}
     height="100%"

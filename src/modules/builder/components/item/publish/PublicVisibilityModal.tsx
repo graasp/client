@@ -33,7 +33,7 @@ export const PublicVisibilityModal = ({
   onClose,
   onValidate,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { updateVisibility } = useVisibility(item);
 
   const handleValidate = async () => {

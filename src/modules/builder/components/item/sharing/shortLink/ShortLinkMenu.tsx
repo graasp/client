@@ -47,7 +47,7 @@ const ShortLinkMenu = ({
   onUpdate,
   onDelete,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateMessages } = useMessagesTranslation();
 
   const { alias, platform, itemId } = shortLink;

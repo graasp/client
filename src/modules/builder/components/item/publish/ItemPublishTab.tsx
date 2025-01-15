@@ -1,27 +1,28 @@
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Container, Stack, Typography, useMediaQuery } from '@mui/material';
 
 import { PublicationStatus } from '@graasp/sdk';
 import { Loader, theme } from '@graasp/ui';
 
-import SyncIcon from '@/components/common/SyncIcon';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
+
+import SyncIcon from '~builder/components/common/SyncIcon';
 import {
   DataSyncContextProvider,
   useDataSyncContext,
-} from '@/components/context/DataSyncContext';
-import CoEditorsContainer from '@/components/item/publish/CoEditorsContainer';
-import EditItemDescription from '@/components/item/publish/EditItemDescription';
-import { LanguageContainer } from '@/components/item/publish/LanguageContainer';
-import LicenseContainer from '@/components/item/publish/LicenseContainer';
-import PublicationStatusComponent from '@/components/item/publish/PublicationStatusComponent';
-import PublicationThumbnail from '@/components/item/publish/PublicationThumbnail';
-import { OutletType } from '@/components/pages/item/type';
-import { useBuilderTranslation } from '@/config/i18n';
-import { hooks } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
-import { SomeBreakPoints } from '@/types/breakpoint';
+} from '~builder/components/context/DataSyncContext';
+import CoEditorsContainer from '~builder/components/item/publish/CoEditorsContainer';
+import EditItemDescription from '~builder/components/item/publish/EditItemDescription';
+import { LanguageContainer } from '~builder/components/item/publish/LanguageContainer';
+import LicenseContainer from '~builder/components/item/publish/LicenseContainer';
+import PublicationStatusComponent from '~builder/components/item/publish/PublicationStatusComponent';
+import PublicationThumbnail from '~builder/components/item/publish/PublicationThumbnail';
+import { useOutletContext } from '~builder/contexts/OutletContext';
+import { BUILDER } from '~builder/langs/constants';
+import { SomeBreakPoints } from '~builder/types/breakpoint';
 
 import EditItemName from './EditItemName';
 import { PublishCustomizedTags } from './customizedTags/PublishCustomizedTags';
@@ -31,16 +32,20 @@ type StackOrder = { order?: number | SomeBreakPoints<number> };
 
 const { usePublicationStatus } = hooks;
 
-const ItemPublishTab = (): JSX.Element => {
-  const { t } = useBuilderTranslation();
-  const { item, canAdmin } = useOutletContext<OutletType>();
+const ItemPublishTab = (): JSX.Element | null => {
+  const { t } = useTranslation(NS.Builder);
+  const { item, canAdmin } = useOutletContext();
   const { isLoading: isMemberLoading } = hooks.useCurrentMember();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { status } = useDataSyncContext();
   const { data: publicationStatus, isLoading: isPublicationStatusLoading } =
-    usePublicationStatus(item.id);
+    usePublicationStatus(item?.id ?? '');
 
   const [notifyCoEditors, setNotifyCoEditors] = useState<boolean>(false);
+
+  if (!item) {
+    return null;
+  }
 
   if (isMemberLoading || isPublicationStatusLoading) {
     return (

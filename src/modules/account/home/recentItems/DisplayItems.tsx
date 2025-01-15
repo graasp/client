@@ -1,10 +1,19 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Grid2 as Grid } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Grid2 as Grid,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 
+import { GhostIcon } from 'lucide-react';
+
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
 import ItemCard from '~player/common/ItemCard';
@@ -35,9 +44,19 @@ export function DisplayItems({
   if (items) {
     if (!items.length) {
       return (
-        <Alert severity="info" sx={{ m: 1, width: '100%' }}>
-          {t('HOME_EMPTY')}
-        </Alert>
+        <Stack
+          sx={{ backgroundColor: 'secondary.light', borderRadius: 2, p: 1 }}
+          width="100%"
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Stack direction="row" gap={1}>
+            <GhostIcon />
+            <Typography>{t('HOME_EMPTY')}</Typography>
+          </Stack>
+          <ButtonLink to="/builder">Start Creating</ButtonLink>
+        </Stack>
       );
     }
 

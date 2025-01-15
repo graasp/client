@@ -25,7 +25,7 @@ type Props = {
 
 export const EditItemDescription = ({ item }: Props): JSX.Element => {
   const { description, id: itemId } = item;
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { isOpen, openModal, closeModal } = useModalStatus();
 

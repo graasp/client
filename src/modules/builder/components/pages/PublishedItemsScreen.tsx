@@ -26,7 +26,7 @@ const PublishedItemsScreenContent = ({
 }: {
   searchText: string;
 }) => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: member } = hooks.useCurrentMember();
   const {
     data: publishedItems,
@@ -108,7 +108,7 @@ const PublishedItemsScreenContent = ({
 };
 
 const PublishedItemsScreen = (): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { input, text } = useItemSearch();
 
   return (

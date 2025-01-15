@@ -1,4 +1,4 @@
-import { BUILDER } from '@/langs/constants';
+import { BuilderKeys } from '@/@types/i18next';
 
 export const MIN_SHORT_LINK_LENGTH = 6;
 export const MAX_SHORT_LINK_LENGTH = 255;
@@ -29,7 +29,7 @@ interface InvalidAliasCause {
   /**
    * The key of the builder used to translate the invalid cause message.
    */
-  messageKey?: keyof typeof BUILDER;
+  messageKey?: BuilderKeys;
   /**
    * Allow to add information in the message about the invalid cause.
    */
@@ -55,7 +55,7 @@ export function isValidAlias(alias: string): InvalidAliasCause {
 
   if (aliasLength < MIN_SHORT_LINK_LENGTH) {
     return {
-      messageKey: 'SHORT_LINK_MIN_CHARS_ERROR',
+      messageKey: 'SHORT_LINK_MIN_CHARS_ERROR' as const,
       data: MIN_SHORT_LINK_LENGTH,
       isValid: false,
     };
@@ -63,14 +63,14 @@ export function isValidAlias(alias: string): InvalidAliasCause {
 
   if (aliasLength > MAX_SHORT_LINK_LENGTH) {
     return {
-      messageKey: 'SHORT_LINK_MIN_CHARS_ERROR',
+      messageKey: 'SHORT_LINK_MIN_CHARS_ERROR' as const,
       data: MAX_SHORT_LINK_LENGTH,
       isValid: false,
     };
   }
   if (!regex.test(alias)) {
     return {
-      messageKey: 'SHORT_LINK_INVALID_CHARS_ERROR',
+      messageKey: 'SHORT_LINK_INVALID_CHARS_ERROR' as const,
       data: invalidCharacters,
       isValid: false,
     };

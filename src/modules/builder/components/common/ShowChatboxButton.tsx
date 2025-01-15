@@ -1,23 +1,18 @@
+import { useTranslation } from 'react-i18next';
+
 import { DiscriminatedItem } from '@graasp/sdk';
 import { ActionButtonVariant, ChatboxButton } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 
 type Props = {
   type?: ActionButtonVariant;
   item: DiscriminatedItem;
-  showChatTextKey?: string;
-  hideChatTextKey?: string;
 };
 
-const ShowChatboxButton = ({
-  item,
-  type,
-  showChatTextKey = 'Show Chat',
-  hideChatTextKey = 'Hide Chat',
-}: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+const ShowChatboxButton = ({ item, type }: Props): JSX.Element => {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const editItem = mutations.useEditItem();
   const showChatbox = item?.settings?.showChatbox;
@@ -38,8 +33,8 @@ const ShowChatboxButton = ({
       showChat={showChatbox ?? false}
       type={type}
       onClick={onClick}
-      showChatText={translateBuilder(showChatTextKey)}
-      hideChatText={translateBuilder(hideChatTextKey)}
+      showChatText={translateBuilder('CHAT.SHOW')}
+      hideChatText={translateBuilder('CHAT.HIDE')}
     />
   );
 };

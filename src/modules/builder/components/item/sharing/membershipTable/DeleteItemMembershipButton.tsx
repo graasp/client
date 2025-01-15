@@ -16,7 +16,7 @@ const DeleteItemMembershipButton = ({
   itemId: DiscriminatedItem['id'];
 }): JSX.Element => {
   const { isOpen, closeModal, openModal } = useModalStatus();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <>

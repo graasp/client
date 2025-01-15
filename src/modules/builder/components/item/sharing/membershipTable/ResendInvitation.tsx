@@ -18,7 +18,7 @@ const ResendInvitation = ({
   invitationId,
   disabled = false,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: resendInvitation } = mutations.useResendInvitation();
 
   const [clicked, setClicked] = useState(false);

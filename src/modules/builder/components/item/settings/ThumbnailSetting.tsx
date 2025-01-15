@@ -17,7 +17,7 @@ const SYNC_STATUS_KEY = 'ThumbnailSetting';
 type Props = { item: PackedItem };
 
 const ThumbnailSetting = ({ item }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const [hasThumbnail, setHasThumbnail] = useState(Boolean(item.thumbnails));
 
   const handleChange = (e: EventChanges) => {

@@ -27,4 +27,4 @@ declare module 'i18next' {
   }
 }
 export type MessageKeys = typeof messages;
-export type BuilderKeys = typeof builder;
+export type BuilderKeys = keyof typeof builder;

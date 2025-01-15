@@ -22,7 +22,7 @@ const ItemLoginSchemaSelect = ({
   isDisabled,
   edit = false,
 }: Props): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: putItemLoginSchema } = usePutItemLoginSchema();
 
   const handleLoginSchemaChange = (event: SelectChangeEvent) => {

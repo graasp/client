@@ -30,7 +30,7 @@ type Props = {
 };
 
 const ItemHeaderActions = ({ itemId }: Props): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { editingItemId, isChatboxMenuOpen, setIsChatboxMenuOpen } =
     useLayoutContext();
   const { data: item } = useItem(itemId);

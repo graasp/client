@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { IconButton, Tooltip } from '@mui/material';
 
+import { Link } from '@tanstack/react-router';
 import { LibraryBigIcon } from 'lucide-react';
 
-import { buildItemPublishPath } from '@/config/paths';
-
-import { useBuilderTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   PUBLISH_ITEM_BUTTON_CLASS,
   buildPublishButtonId,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -18,21 +18,21 @@ type Props = {
 };
 
 const PublishButton = ({ itemId }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const title = translateBuilder(BUILDER.LIBRARY_SETTINGS_BUTTON_TITLE);
 
   return (
     <Tooltip title={title}>
-      <IconButton
-        aria-label={title}
-        className={PUBLISH_ITEM_BUTTON_CLASS}
-        id={buildPublishButtonId(itemId)}
-        to={buildItemPublishPath(itemId)}
-        component={Link}
-      >
-        <LibraryBigIcon />
-      </IconButton>
+      <Link to="/builder/items/$itemId/publish" params={{ itemId }}>
+        <IconButton
+          aria-label={title}
+          className={PUBLISH_ITEM_BUTTON_CLASS}
+          id={buildPublishButtonId(itemId)}
+        >
+          <LibraryBigIcon />
+        </IconButton>
+      </Link>
     </Tooltip>
   );
 };

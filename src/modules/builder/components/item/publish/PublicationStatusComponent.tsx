@@ -27,7 +27,7 @@ type Props = {
 };
 const { usePublicationStatus } = hooks;
 export const PublicationStatusComponent = ({ item }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useEnumsTranslation();
   const { data: status, isLoading } = usePublicationStatus(item.id);
   const translatedType = capitalizeFirstLetter(translateEnum(item.type));

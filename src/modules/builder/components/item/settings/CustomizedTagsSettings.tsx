@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const CustomizedTagsSettings = ({ item }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   return (
     <Stack spacing={1}>

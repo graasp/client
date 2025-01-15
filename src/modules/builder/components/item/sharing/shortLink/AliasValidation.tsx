@@ -31,7 +31,7 @@ const AliasValidation = ({
   onValidAlias,
   onError,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const ALIAS_VALID_MSG = translateBuilder(BUILDER.ALIAS_VALID_MSG);
   const ALIAS_UNCHANGED_MSG = translateBuilder(BUILDER.ALIAS_UNCHANGED_MSG);
   const ALIAS_ALREADY_EXIST = translateBuilder(BUILDER.ALIAS_ALREADY_EXIST);

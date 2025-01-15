@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -16,9 +16,12 @@ import {
 } from '@graasp/sdk';
 import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
-import { hooks, mutations } from '../../../../config/queryClient';
-import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '../../../../config/selectors';
+import { useNavigate } from '@tanstack/react-router';
+
+import { NS } from '@/config/constants';
+import { hooks, mutations } from '@/config/queryClient';
+import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../../../langs/constants';
 import CancelButton from '../../../common/CancelButton';
 
@@ -43,7 +46,7 @@ const DeleteItemMembershipDialog = ({
   membershipToDelete,
   hasOnlyOneAdmin = false,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: member } = hooks.useCurrentMember();
   const { mutateAsync: deleteItemMembership } =
     mutations.useDeleteItemMembership();
@@ -58,7 +61,7 @@ const DeleteItemMembershipDialog = ({
       }).then(() => {
         // if current user deleted their own membership navigate them to the home
         if (membershipToDelete.account.id === member?.id) {
-          navigate('/');
+          navigate({ to: '/builder' });
         }
       });
 
@@ -103,7 +106,12 @@ const DeleteItemMembershipDialog = ({
 
       <DialogActions>
         {isDeletingLastAdmin ? (
-          <Button onClick={handleClose} autoFocus variant="text">
+          <Button
+            onClick={handleClose}
+            // eslint-disable-next-line jsx-a11y/no-autofocus
+            autoFocus
+            variant="text"
+          >
             {translateBuilder(BUILDER.APPROVE_BUTTON_TEXT)}
           </Button>
         ) : (
@@ -113,6 +121,7 @@ const DeleteItemMembershipDialog = ({
               id={CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID}
               onClick={onDelete}
               color="error"
+              // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus
               variant="text"
             >

@@ -3,7 +3,7 @@ import { CCLicenseAdaptions } from '@graasp/sdk';
 import {
   CCLicenseChoice,
   CCSharingLicenseChoice,
-} from '@/components/item/publish/type';
+} from '~builder/components/item/publish/type';
 
 interface LicenseOptions {
   requireAttributionValue: CCLicenseChoice;

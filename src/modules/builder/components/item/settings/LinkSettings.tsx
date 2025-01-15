@@ -21,7 +21,7 @@ type Props = {
 };
 
 const LinkSettings = ({ item }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: editItem } = mutations.useEditItem();
 

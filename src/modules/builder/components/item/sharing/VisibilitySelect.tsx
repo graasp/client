@@ -19,7 +19,7 @@ type Props = {
 };
 
 const VisibilitySelect = ({ item, edit }: Props): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const {
     visibility,

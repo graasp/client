@@ -12,7 +12,7 @@ import ItemSettingCheckBoxProperty from '../settings/ItemSettingCheckBoxProperty
 const HideSettingCheckbox = ({ item }: { item: PackedItem }): JSX.Element => {
   const { mutate: postItemVisibility } = mutations.usePostItemVisibility();
   const { mutate: deleteItemVisibility } = mutations.useDeleteItemVisibility();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const isDisabled = item.hidden && item.hidden.item.id !== item.id;
 

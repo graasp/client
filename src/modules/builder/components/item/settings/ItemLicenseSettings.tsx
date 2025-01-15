@@ -1,70 +1,77 @@
 import { useMemo, useState } from 'react';
-import { Link, useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Button, CCSharingVariant, CreativeCommons } from '@graasp/ui';
 
 import { CreativeCommons as CCLicenseIcon } from 'lucide-react';
 
-import { OutletType } from '@/components/pages/item/type';
-import { CC_LICENSE_ABOUT_URL } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
-import { convertLicense } from '@/utils/itemLicense';
+import { NS } from '@/config/constants';
+
+import { CC_LICENSE_ABOUT_URL } from '~builder/config/constants';
+import { useOutletContext } from '~builder/contexts/OutletContext';
+import { BUILDER } from '~builder/langs/constants';
+import { convertLicense } from '~builder/utils/itemLicense';
 
 import ItemSettingProperty from './ItemSettingProperty';
 import UpdateLicenseDialog from './UpdateLicenseDialog';
 
-const ItemLicenseSettings = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+const ItemLicenseSettings = (): JSX.Element | null => {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const [licenseDialogOpen, setLicenseDialogOpen] = useState(false);
 
-  const { item } = useOutletContext<OutletType>();
+  const { item } = useOutletContext();
 
   const { allowSharing, allowCommercialUse, requireAccreditation } = useMemo(
-    () => convertLicense(item.settings.ccLicenseAdaption ?? ''),
-    [item.settings.ccLicenseAdaption],
+    () => convertLicense(item?.settings.ccLicenseAdaption ?? ''),
+    [item?.settings.ccLicenseAdaption],
   );
 
-  return (
-    <>
-      <ItemSettingProperty
-        title={translateBuilder(BUILDER.ITEM_SETTINGS_CC_LICENSE_TITLE)}
-        icon={<CCLicenseIcon />}
-        inputSetting={
-          <Button variant="outlined" onClick={() => setLicenseDialogOpen(true)}>
-            {translateBuilder(BUILDER.UPDATE_LICENSE)}
-          </Button>
-        }
-        valueText={
-          <Link to={CC_LICENSE_ABOUT_URL}>
-            {translateBuilder(
-              BUILDER.ITEM_SETTINGS_CC_LICENSE_MORE_INFORMATIONS,
-            )}
-          </Link>
-        }
-        additionalInfo={
-          item.settings?.ccLicenseAdaption ? (
-            <CreativeCommons
-              sx={{
-                border: '1px solid #bbb',
-                borderRadius: 2,
-                backgroundColor: 'white',
-              }}
-              requireAccreditation={requireAccreditation}
-              allowSharedAdaptation={allowSharing as CCSharingVariant}
-              allowCommercialUse={allowCommercialUse}
-              iconSize={30}
-            />
-          ) : undefined
-        }
-      />
-      <UpdateLicenseDialog
-        open={licenseDialogOpen}
-        setOpen={setLicenseDialogOpen}
-        item={item}
-      />
-    </>
-  );
+  if (item) {
+    return (
+      <>
+        <ItemSettingProperty
+          title={translateBuilder(BUILDER.ITEM_SETTINGS_CC_LICENSE_TITLE)}
+          icon={<CCLicenseIcon />}
+          inputSetting={
+            <Button
+              variant="outlined"
+              onClick={() => setLicenseDialogOpen(true)}
+            >
+              {translateBuilder(BUILDER.UPDATE_LICENSE)}
+            </Button>
+          }
+          valueText={
+            <a href={CC_LICENSE_ABOUT_URL}>
+              {translateBuilder(
+                BUILDER.ITEM_SETTINGS_CC_LICENSE_MORE_INFORMATIONS,
+              )}
+            </a>
+          }
+          additionalInfo={
+            item?.settings?.ccLicenseAdaption ? (
+              <CreativeCommons
+                sx={{
+                  border: '1px solid #bbb',
+                  borderRadius: 2,
+                  backgroundColor: 'white',
+                }}
+                requireAccreditation={requireAccreditation}
+                allowSharedAdaptation={allowSharing as CCSharingVariant}
+                allowCommercialUse={allowCommercialUse}
+                iconSize={30}
+              />
+            ) : undefined
+          }
+        />
+        <UpdateLicenseDialog
+          open={licenseDialogOpen}
+          setOpen={setLicenseDialogOpen}
+          item={item}
+        />
+      </>
+    );
+  }
+  return null;
 };
 
 export default ItemLicenseSettings;

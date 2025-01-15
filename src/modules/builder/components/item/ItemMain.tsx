@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
 import { Container, Divider, Stack, Typography, styled } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 import { DrawerHeader } from '@graasp/ui';
 
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+import { ITEM_MAIN_CLASS } from '@/config/selectors';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { ITEM_MAIN_CLASS } from '../../config/selectors';
 import Chatbox from '../common/Chatbox';
 import { useLayoutContext } from '../context/LayoutContext';
 import ItemPanel from './ItemPanel';
@@ -44,19 +44,19 @@ const StyledContainer = styled(Container)<{ open: boolean }>(({
 
 type Props = {
   children: JSX.Element | JSX.Element[];
-  item: PackedItem;
+  item?: PackedItem;
   id?: string;
 };
 
 const ItemMain = ({ id, children, item }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { isChatboxMenuOpen, setIsChatboxMenuOpen } = useLayoutContext();
 
   return (
     <>
       <Helmet>
-        <title>{item.name}</title>
+        <title>{item?.name}</title>
       </Helmet>
       <Stack id={id} pt={2} className={ITEM_MAIN_CLASS} height="100%">
         {isChatboxMenuOpen && (
@@ -68,13 +68,13 @@ const ItemMain = ({ id, children, item }: Props): JSX.Element => {
               direction="rtl"
             >
               <Typography variant="h6">
-                {translateBuilder(BUILDER.ITEM_CHATBOX_TITLE, {
-                  name: item.name,
+                {translateBuilder('ITEM_CHATBOX_TITLE', {
+                  name: item?.name,
                 })}
               </Typography>
             </DrawerHeader>
             <Divider />
-            <Chatbox item={item} />
+            {item && <Chatbox item={item} />}
           </ItemPanel>
         )}
         <StyledContainer open={isChatboxMenuOpen}>

@@ -22,7 +22,7 @@ type Props = {
 
 export const EditItemName = ({ item }: Props): JSX.Element => {
   const { name, id: itemId } = item;
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { isOpen, openModal, closeModal } = useModalStatus();
 

@@ -1,16 +1,17 @@
 import { ReactNode, SyntheticEvent, useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { Badge, Box, Stack, Tab, Tabs, Typography } from '@mui/material';
 
-import { OutletType } from '@/components/pages/item/type';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import {
   MEMBERSHIPS_TAB_SELECTOR,
   MEMBERSHIP_REQUESTS_TAB_SELECTOR,
 } from '@/config/selectors';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
-import { hooks } from '../../../../config/queryClient';
+import { useOutletContext } from '~builder/contexts/OutletContext';
+
 import { BUILDER } from '../../../../langs/constants';
 import ShareButton from '../shareButton/ShareButton';
 import ItemMembershipsTable from './ItemMembershipsTable';
@@ -33,8 +34,8 @@ const CustomTabPanel = ({ children, value, selectedTabId }: TabPanelProps) => (
 );
 
 const MembershipTabs = (): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { item, canAdmin } = useOutletContext<OutletType>();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { item, canAdmin } = useOutletContext();
   const [selectedTabId, setSelectedTabId] = useState(0);
 
   const { data: requests } = hooks.useMembershipRequests(item.id);

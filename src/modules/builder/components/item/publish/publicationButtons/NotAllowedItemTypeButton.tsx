@@ -6,7 +6,7 @@ import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
 import { BUILDER } from '@/langs/constants';
 
 export const NotAllowedItemTypeButton = (): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useEnumsTranslation();
 
   const allowedTypes = PublishableItemTypeChecker.getAllowedTypes();

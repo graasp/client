@@ -30,7 +30,7 @@ const TemplateSelectionButton = ({
   selectedItemId,
   onTemplateSelected,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { data: selectedItem } = hooks.useItem(selectedItemId);
   const [open, setOpen] = useState<boolean>(false);
 

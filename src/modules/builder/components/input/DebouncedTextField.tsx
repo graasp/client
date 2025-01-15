@@ -30,7 +30,7 @@ export const DebouncedTextField = ({
   emptyValueError,
   onUpdate,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   // prevent to call onUpdate when initialValue changed
   const [startDebounce, setStartDebounce] = useState(false);
   const [value, setValue] = useState(initialValue);

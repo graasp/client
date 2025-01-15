@@ -31,7 +31,7 @@ type Props = {
 };
 
 export const LicenseContainer = ({ item }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { isOpen, openModal, closeModal } = useModalStatus();
   const { creativeCommons } = useItemLicense({

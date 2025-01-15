@@ -1,35 +1,19 @@
-import {
-  Navigate,
-  useOutletContext,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { Navigate, getRouteApi } from '@tanstack/react-router';
 
-import { PermissionLevel } from '@graasp/sdk';
-
-import { buildItemPath } from '@/config/paths';
+import { useOutletContext } from '~builder/contexts/OutletContext';
 
 import ItemPublishTab from '../../item/publish/ItemPublishTab';
-import { OutletType } from './type';
 
-const LibrarySettingsPage = (): JSX.Element => {
-  const [searchParams] = useSearchParams();
-  const { itemId } = useParams();
-  const { permission } = useOutletContext<OutletType>();
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 
-  const isAdmin = permission === PermissionLevel.Admin;
+export function LibrarySettingsPage() {
+  const { itemId } = itemRoute.useParams();
+  const { canAdmin } = useOutletContext();
 
-  if (isAdmin) {
+  if (canAdmin) {
     return <ItemPublishTab />;
   }
 
   // redirect the user to the item if he doesn't have the permission to access this page
-  return (
-    <Navigate
-      to={{ pathname: buildItemPath(itemId), search: searchParams.toString() }}
-      replace
-    />
-  );
-};
-
-export default LibrarySettingsPage;
+  return <Navigate to="/builder/items/$itemId" params={{ itemId }} replace />;
+}

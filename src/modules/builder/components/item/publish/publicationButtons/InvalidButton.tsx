@@ -20,7 +20,7 @@ type Props = {
 const { usePostItemValidation } = mutations;
 
 export const InvalidButton = ({ item, isLoading }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { id: itemId, public: isPublic } = item;
   const { isOpen, openModal, closeModal } = useModalStatus();
 

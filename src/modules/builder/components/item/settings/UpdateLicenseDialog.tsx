@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -11,8 +12,7 @@ import {
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 import ConfirmLicenseDialogContent from '../../common/ConfirmLicenseDialogContent';
 import useItemLicense from '../../hooks/useItemLicense';
@@ -30,7 +30,7 @@ const commonsSx = {
   alignItems: 'center',
 };
 const UpdateLicenseDialog = ({ open, setOpen, item }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const [confirmationStep, setConfirmationStep] = useState(false);
 
@@ -55,6 +55,7 @@ const UpdateLicenseDialog = ({ open, setOpen, item }: Props): JSX.Element => {
 
   useEffect(() => {
     if (!open) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setConfirmationStep(false);
     }
   }, [open]);
@@ -62,7 +63,7 @@ const UpdateLicenseDialog = ({ open, setOpen, item }: Props): JSX.Element => {
   return (
     <Dialog open={open} transitionDuration={0} onClose={handleClose}>
       <DialogTitle>
-        {translateBuilder(BUILDER.ITEM_SETTINGS_LICENSE_TITLE)}
+        {translateBuilder('ITEM_SETTINGS_LICENSE_TITLE')}
       </DialogTitle>
 
       {!confirmationStep ? (
@@ -75,7 +76,7 @@ const UpdateLicenseDialog = ({ open, setOpen, item }: Props): JSX.Element => {
           )}
           <DialogActions>
             <Button variant="text" onClick={handleClose}>
-              {translateBuilder(BUILDER.CANCEL_BUTTON)}
+              {translateBuilder('CANCEL_BUTTON')}
             </Button>
 
             <Button
@@ -83,7 +84,7 @@ const UpdateLicenseDialog = ({ open, setOpen, item }: Props): JSX.Element => {
               disabled={!requireAttributionValue}
               onClick={() => setConfirmationStep(true)}
             >
-              {translateBuilder(BUILDER.SAVE_BTN)}
+              {translateBuilder('SAVE_BTN')}
             </Button>
           </DialogActions>
         </>

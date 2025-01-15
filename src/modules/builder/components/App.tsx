@@ -24,7 +24,6 @@ import {
 import { hooks, mutations } from '../config/queryClient';
 import BookmarkedItemsScreen from './pages/BookmarkedItemsScreen';
 import PublishedItemsScreen from './pages/PublishedItemsScreen';
-import HomeScreen from './pages/home/HomeScreenContent';
 import ItemPageLayout from './pages/item/ItemPageLayout';
 import ItemScreen from './pages/item/ItemScreen';
 import ItemSettingsPage from './pages/item/ItemSettingsPage';
@@ -35,7 +34,7 @@ import ItemAccessWrapper from './pages/item/accessWrapper/ItemAccessWrapper';
 const { useItemFeedbackUpdates, useCurrentMember } = hooks;
 
 const App = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: signOut } = mutations.useSignOut();
   const { pathname } = useLocation();
   const { data: currentAccount, isLoading } = useCurrentMember();
@@ -86,7 +85,6 @@ const App = (): JSX.Element => {
           </SignedInWrapper>
         }
       >
-        <Route path={HOME_PATH} element={<HomeScreen />} />
         <Route
           path={BOOKMARKED_ITEMS_PATH}
           element={<BookmarkedItemsScreen />}

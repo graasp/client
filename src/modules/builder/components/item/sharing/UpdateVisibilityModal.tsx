@@ -32,7 +32,7 @@ export const UpdateVisibilityModal = ({
   onClose,
   onValidate,
 }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   if (!newVisibility) {
     return null;

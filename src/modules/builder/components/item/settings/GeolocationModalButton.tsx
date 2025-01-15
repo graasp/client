@@ -24,7 +24,7 @@ type Props = {
 };
 
 export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: commonT } = useCommonTranslation();
   const [open, setOpen] = useState(false);
   const { data: geoloc } = hooks.useItemGeolocation(item.id);

@@ -33,7 +33,7 @@ export const MultiSelectTagChipInput = ({
   tagCategory,
   helpertext,
 }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { t: translateEnums } = useEnumsTranslation();
   const {
     currentValue,

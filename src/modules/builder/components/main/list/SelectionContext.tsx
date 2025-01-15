@@ -1,4 +1,5 @@
 import {
+  ReactNode,
   createContext,
   useCallback,
   useContext,
@@ -26,7 +27,7 @@ export const SelectionContext = createContext<SelectionContextValue>({
 export const SelectionContextProvider = ({
   children,
 }: {
-  children: JSX.Element;
+  children: ReactNode;
 }): JSX.Element => {
   const [selection, setSelection] = useState(new Set<string>());
   const elementsContainerRef = useRef<HTMLDivElement | null>(null);

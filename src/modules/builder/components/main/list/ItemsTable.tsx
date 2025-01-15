@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { DialogActions, DialogContent, Skeleton } from '@mui/material';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Skeleton,
+} from '@mui/material';
 
 import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
 import { Button, DraggingWrapper } from '@graasp/ui';

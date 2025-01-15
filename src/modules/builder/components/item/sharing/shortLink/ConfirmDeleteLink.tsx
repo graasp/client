@@ -30,7 +30,7 @@ const ConfirmDeleteLink = ({
   setOpen,
   handleDelete,
 }: DeleteLinkProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleClose = () => setOpen(false);
 

@@ -1,4 +1,5 @@
 import { type MouseEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   ToggleButton as MuiToggleButton,
@@ -23,9 +24,8 @@ import {
   AlignRightIcon,
 } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
 
 import ItemSettingProperty from '../ItemSettingProperty';
 import { SettingVariant, SettingVariantType } from '../settingTypes';
@@ -61,7 +61,7 @@ export const FileAlignmentSetting = ({
   variant: SettingVariantType;
   item: S3FileItemType | LocalFileItemType;
 }): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: editItem } = mutations.useEditItem();
 
   const onChangeAlignment = (
@@ -84,30 +84,24 @@ export const FileAlignmentSetting = ({
         value={alignment}
         exclusive
         onChange={onChangeAlignment}
-        aria-label={translateBuilder(BUILDER.SETTINGS_ALIGNMENT_ARIA_LABEL)}
+        aria-label={translateBuilder('SETTINGS_ALIGNMENT_ARIA_LABEL')}
         size="small"
       >
         <ToggleButton
           value={Alignment.Left}
-          aria-label={translateBuilder(
-            BUILDER.SETTINGS_ALIGNMENT_LEFT_ARIA_LABEL,
-          )}
+          aria-label={translateBuilder('SETTINGS_ALIGNMENT_LEFT_ARIA_LABEL')}
         >
           <AlignLeftIcon />
         </ToggleButton>
         <ToggleButton
           value={Alignment.Center}
-          aria-label={translateBuilder(
-            BUILDER.SETTINGS_ALIGNMENT_CENTER_ARIA_LABEL,
-          )}
+          aria-label={translateBuilder('SETTINGS_ALIGNMENT_CENTER_ARIA_LABEL')}
         >
           <AlignCenterIcon />
         </ToggleButton>
         <ToggleButton
           value={Alignment.Right}
-          aria-label={translateBuilder(
-            BUILDER.SETTINGS_ALIGNMENT_RIGHT_ARIA_LABEL,
-          )}
+          aria-label={translateBuilder('SETTINGS_ALIGNMENT_RIGHT_ARIA_LABEL')}
         >
           <AlignRightIcon />
         </ToggleButton>
@@ -118,8 +112,8 @@ export const FileAlignmentSetting = ({
     case SettingVariant.List:
       return (
         <ItemSettingProperty
-          title={translateBuilder(BUILDER.SETTINGS_ALIGNMENT_LABEL)}
-          valueText={translateBuilder(BUILDER.SETTINGS_ALIGNMENT_HELPER)}
+          title={translateBuilder('SETTINGS_ALIGNMENT_LABEL')}
+          valueText={translateBuilder('SETTINGS_ALIGNMENT_HELPER')}
           icon={<AlignCenterVerticalIcon />}
           inputSetting={control}
         />

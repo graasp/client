@@ -35,7 +35,7 @@ type Props = {
 const ClearChatButton = ({ chatId }: Props): JSX.Element | null => {
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const { t } = useChatboxTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: clearChat } = mutations.useClearItemChat();
 
   const handleClearChat = () => {

@@ -15,7 +15,7 @@ type Props = {
 
 const AdminChatSettings = ({ item }: Props): JSX.Element | null => {
   const itemId = item.id;
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { data: currentMember } = hooks.useCurrentMember();
   // only show export chat when user has admin right on the item
   const isAdmin = currentMember

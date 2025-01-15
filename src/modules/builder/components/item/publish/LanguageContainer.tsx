@@ -17,7 +17,7 @@ type Props = {
 };
 
 export function LanguageContainer({ item }: Props): JSX.Element {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { isOpen, openModal, closeModal } = useModalStatus();
 
   const title = t(BUILDER.ITEM_LANGUAGE_CONTAINER_TITLE);

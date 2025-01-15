@@ -26,7 +26,7 @@ const BookmarkedItems = ({
 }: {
   searchText: string;
 }): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const {
     data: bookmarkedItems,
     isLoading,
@@ -112,7 +112,7 @@ const BookmarkedItems = ({
 };
 
 const BookmarkedItemsWrapper = (): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const itemSearch = useItemSearch();
 
   return (

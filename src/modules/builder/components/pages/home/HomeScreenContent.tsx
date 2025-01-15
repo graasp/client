@@ -3,7 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Box, LinearProgress, Stack } from '@mui/material';
 
+import { PackedItem, Paginated } from '@graasp/sdk';
 import { Button } from '@graasp/ui';
+
+import { InfiniteData } from '@tanstack/react-query';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
@@ -44,20 +47,21 @@ type ShowOnlyMeChangeType = (checked: boolean) => void;
 export function HomeScreenContent({
   searchText,
 }: Readonly<{ searchText: string }>) {
-  const { user } = useAuth();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateEnums } = useTranslation(NS.Enums);
-  const { itemTypes } = useFilterItemsContext();
+
   const [showOnlyMe, setShowOnlyMe] = useState(false);
 
-  const { selectedIds, toggleSelection, clearSelection } =
-    useSelectionContext();
+  const { selectedIds } = useSelectionContext();
   const { mode } = useLayoutContext();
   const { sortBy, setSortBy, ordering, setOrdering } =
     useSorting<SortingOptionsType>({
       sortBy: SortingOptions.ItemUpdatedAt,
       ordering: Ordering.DESC,
     });
+
+  const { user } = useAuth();
+  const { itemTypes } = useFilterItemsContext();
   const { data, fetchNextPage, isLoading, isFetching } =
     hooks.useInfiniteAccessibleItems(
       {
@@ -90,47 +94,6 @@ export function HomeScreenContent({
   }
 
   if (data?.pages?.length) {
-    // default show upload zone
-    let content = (
-      <Box mt={2}>
-        <FileUploader buttons={<NewItemButton />} />
-      </Box>
-    );
-
-    if (data.pages[0].data.length) {
-      const totalFetchedItems = data
-        ? data.pages.map(({ data: d }) => d.length).reduce((a, b) => a + b, 0)
-        : 0;
-      content = (
-        <DragContainerStack id={CONTAINER_ID}>
-          <ItemsTable
-            canMove={!searchText}
-            id={ACCESSIBLE_ITEMS_TABLE_ID}
-            items={data.pages.flatMap(({ data: i }) => i)}
-            enableMoveInBetween={false}
-            onCardClick={toggleSelection}
-            selectedIds={selectedIds}
-            onMove={clearSelection}
-          />
-          {!isFetching && data.pages[0].totalCount > totalFetchedItems && (
-            <Stack textAlign="center" alignItems="center">
-              <Button variant="outlined" onClick={fetchNextPage} role="feed">
-                {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
-              </Button>
-            </Stack>
-          )}
-          {!isFetching && data.pages[0].totalCount === totalFetchedItems && (
-            // avoids button fullwidth
-            <Stack alignItems="center" mb={2}>
-              <NewItemButton type="icon" />
-            </Stack>
-          )}
-        </DragContainerStack>
-      );
-    } else if (itemTypes.length || searchText) {
-      content = <NoItemFilters searchText={searchText} />;
-    }
-
     const sortingOptions = Object.values(SortingOptions).sort((t1, t2) =>
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
@@ -182,7 +145,11 @@ export function HomeScreenContent({
           )}
         </Stack>
         <Stack height="100%">
-          {content}
+          <Content
+            data={data}
+            fetchNextPage={fetchNextPage}
+            searchText={searchText}
+          />
           {data && isFetching && (
             <Box sx={{ width: '100%' }}>
               <LinearProgress />
@@ -198,4 +165,59 @@ export function HomeScreenContent({
   }
 
   return <Alert severity="error">{translateBuilder('ERROR_MESSAGE')}</Alert>;
+}
+
+type ContentProps = {
+  data: InfiniteData<Paginated<PackedItem>>;
+  fetchNextPage: () => void;
+  searchText: string;
+};
+function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { itemTypes } = useFilterItemsContext();
+
+  const { selectedIds, toggleSelection, clearSelection } =
+    useSelectionContext();
+
+  if (data.pages[0].data.length) {
+    const totalFetchedItems = data
+      ? data.pages.map(({ data: d }) => d.length).reduce((a, b) => a + b, 0)
+      : 0;
+
+    return (
+      <DragContainerStack id={CONTAINER_ID}>
+        <ItemsTable
+          canMove={!searchText}
+          id={ACCESSIBLE_ITEMS_TABLE_ID}
+          items={data.pages.flatMap(({ data: i }) => i)}
+          enableMoveInBetween={false}
+          onCardClick={toggleSelection}
+          selectedIds={selectedIds}
+          onMove={clearSelection}
+        />
+        {data.pages[0].totalCount > totalFetchedItems && (
+          <Stack textAlign="center" alignItems="center">
+            <Button variant="outlined" onClick={fetchNextPage} role="feed">
+              {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
+            </Button>
+          </Stack>
+        )}
+        {data.pages[0].totalCount === totalFetchedItems && (
+          // avoids button fullwidth
+          <Stack alignItems="center" mb={2}>
+            <NewItemButton type="icon" />
+          </Stack>
+        )}
+      </DragContainerStack>
+    );
+  } else if (itemTypes.length || searchText) {
+    return <NoItemFilters searchText={searchText} />;
+  }
+
+  // default show upload zone
+  return (
+    <Box mt={2}>
+      <FileUploader buttons={<NewItemButton />} />
+    </Box>
+  );
 }

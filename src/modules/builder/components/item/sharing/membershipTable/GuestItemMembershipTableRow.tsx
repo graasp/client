@@ -23,7 +23,7 @@ const GuestItemMembershipTableRow = ({
   isDisabled?: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useEnumsTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Tooltip

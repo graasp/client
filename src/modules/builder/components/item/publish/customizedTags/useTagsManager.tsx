@@ -32,7 +32,7 @@ type UseMultiSelectChipInput = {
 };
 
 export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const [currentValue, setCurrentValue] = useState<string>(EMPTY_STRING);
   const [error, setError] = useState<string | undefined>();
   const debouncedCurrentValue = hooks.useDebounce(currentValue, 500);

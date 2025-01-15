@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { Drawer, Toolbar, styled } from '@mui/material';
 
 import { ITEM_PANEL_ID } from '@/config/selectors';
@@ -15,7 +17,7 @@ const StyledDrawer = styled(Drawer)(({ theme, open }) => ({
   },
 }));
 
-type Props = { open: boolean; children: JSX.Element | JSX.Element[] };
+type Props = { open: boolean; children: ReactNode };
 
 const ItemPanel = ({ open, children }: Props): JSX.Element => (
   <StyledDrawer

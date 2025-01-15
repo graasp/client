@@ -30,7 +30,7 @@ const useVisibilitySelect = ({
   visibility,
   updateVisibility,
 }: Props): UseVisibilitySelect => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: publicationStatus } = usePublicationStatus(itemId);
 
   // The visibility value is temporary and awaits user confirmation through the dialog.

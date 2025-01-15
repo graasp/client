@@ -23,7 +23,7 @@ type Props = {
 };
 
 const RequestAccessContent = ({ member, itemId }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const {
     mutateAsync: requestMembership,
     isSuccess,

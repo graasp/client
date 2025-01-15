@@ -468,6 +468,10 @@
     "name": "Name",
     "order": "Order"
   },
+  "CHAT": {
+    "SHOW": "Show chat",
+    "HIDE": "Hide chat"
+  },
   "TRASH_NO_ITEM": "You trash is empty.",
   "BOOKMARKS_NO_ITEM": "No bookmarked item",
   "BOOKMARKS_NO_ITEM_SEARCH": "No bookmarked item for {{search}}",

@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { useOutletContext } from 'react-router-dom';
 
 import {
   Skeleton,
@@ -21,24 +20,24 @@ import { Button } from '@graasp/ui';
 
 import { Check } from 'lucide-react';
 
-import ErrorAlert from '@/components/common/ErrorAlert';
-import { OutletType } from '@/components/pages/item/type';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
-
 import {
   MEMBERSHIP_REQUESTS_EMPTY_SELECTOR,
   MEMBERSHIP_REQUEST_ACCEPT_BUTTON_SELECTOR,
   MEMBERSHIP_REQUEST_REJECT_BUTTON_SELECTOR,
   buildMembershipRequestRowSelector,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+
+import ErrorAlert from '~builder/components/common/ErrorAlert';
+import { useOutletContext } from '~builder/contexts/OutletContext';
+import { BUILDER } from '~builder/langs/constants';
+
 import { StyledTableRow } from './StyledTableRow';
 
 const MembershipRequestTable = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { i18n } = useTranslation();
-  const { item, canAdmin } = useOutletContext<OutletType>();
+  const { t: translateBuilder, i18n } = useTranslation(NS.Builder);
+  const { item, canAdmin } = useOutletContext();
   const { data: requests, isLoading } = hooks.useMembershipRequests(item.id, {
     enabled: canAdmin,
   });

@@ -2,8 +2,8 @@ import { Chatbox as GraaspChatbox } from '@graasp/chatbox';
 import { PackedItem, PermissionLevel } from '@graasp/sdk';
 import { Loader } from '@graasp/ui';
 
-import { hooks, mutations } from '../../config/queryClient';
-import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '../../config/selectors';
+import { hooks, mutations } from '@/config/queryClient';
+import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
 
 const { useItemChat, useAvatarUrl, useItemMemberships } = hooks;
 const {

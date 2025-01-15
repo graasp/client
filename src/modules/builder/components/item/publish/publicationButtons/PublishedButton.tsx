@@ -24,7 +24,7 @@ type Props = {
 const { useUnpublishItem } = mutations;
 
 export const PublishedButton = ({ item, isLoading }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { id: itemId } = item;
 
   const { mutate: unpublish, isPending: isUnPublishing } = useUnpublishItem();

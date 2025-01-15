@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import Clear from '@mui/icons-material/Clear';
 import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
@@ -7,9 +9,10 @@ import {
 } from '@graasp/map';
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 import GeolocationModalButton from './GeolocationModalButton';
 
@@ -18,7 +21,7 @@ const GeolocationPicker = ({
 }: {
   item: DiscriminatedItem;
 }): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { data: geoloc } = hooks.useItemGeolocation(item.id);
   const { mutate: putGeoloc } = mutations.usePutItemGeolocation();
   const { mutate: deleteGeoloc } = mutations.useDeleteItemGeolocation();

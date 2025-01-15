@@ -4,7 +4,7 @@ import { useBuilderTranslation } from '@/config/i18n';
 import { BUILDER } from '@/langs/constants';
 
 export const PublishedChildrenButton = (): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   return (
     <Alert severity="success">

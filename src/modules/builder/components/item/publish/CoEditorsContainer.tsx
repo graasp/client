@@ -28,7 +28,7 @@ export const CoEditorsContainer = ({
   notifyCoEditors,
   onNotificationChanged,
 }: Props): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { data: status } = usePublicationStatus(item.id);
   const { settings, id: itemId, name: itemName } = item;

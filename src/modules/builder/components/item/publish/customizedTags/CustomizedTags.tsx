@@ -23,7 +23,7 @@ type Props = {
 };
 
 export const CustomizedTags = ({ item }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { deleteValue } = useTagsManager({ itemId: item.id });
   const { isOpen, openModal, closeModal } = useModalStatus();
   const { tags } = useTagsManager({

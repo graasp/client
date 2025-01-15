@@ -28,10 +28,10 @@ importers:
         version: 5.1.1
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(w6l7ubrsegdoliqto6dgioimga)
+        version: 3.3.1(fipkstm3pklqztooeci37yharu)
       '@graasp/map':
         specifier: 1.19.0
-        version: 1.19.0(ldeka4qsuoix5t4jjyl5sdena4)
+        version: 1.19.0(ndjhxhlnsr6nnzcef5izgnci2y)
       '@graasp/query-client':
         specifier: 5.7.1
         version: 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
@@ -46,7 +46,7 @@ importers:
         version: 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@graasp/ui':
         specifier: 5.5.1
-        version: 5.5.1(3dds2khlcrqt2ydi7e2xwied3u)
+        version: 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
       '@mui/icons-material':
         specifier: 6.3.1
         version: 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -101,9 +101,18 @@ importers:
       jwt-decode:
         specifier: 4.0.0
         version: 4.0.0
+      katex:
+        specifier: 0.16.20
+        version: 0.16.20
       lodash:
         specifier: 4.17.21
         version: 4.17.21
+      lodash.debounce:
+        specifier: 4.0.8
+        version: 4.0.8
+      lodash.groupby:
+        specifier: 4.6.0
+        version: 4.6.0
       lodash.truncate:
         specifier: 4.4.2
         version: 4.4.2
@@ -143,6 +152,12 @@ importers:
       react-intersection-observer:
         specifier: 9.15.0
         version: 9.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-qr-code:
+        specifier: 2.0.15
+        version: 2.0.15(react@18.3.1)
+      react-quill:
+        specifier: 2.0.0
+        version: 2.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-toastify:
         specifier: 11.0.2
         version: 11.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -222,6 +237,12 @@ importers:
       '@types/lodash':
         specifier: 4.17.14
         version: 4.17.14
+      '@types/lodash.debounce':
+        specifier: 4.0.9
+        version: 4.0.9
+      '@types/lodash.groupby':
+        specifier: 4.6.9
+        version: 4.6.9
       '@types/lodash.truncate':
         specifier: 4.4.9
         version: 4.4.9
@@ -2435,6 +2456,12 @@ packages:
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
 
+  '@types/lodash.debounce@4.0.9':
+    resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
+
+  '@types/lodash.groupby@4.6.9':
+    resolution: {integrity: sha512-z2xtCX2ko7GrqORnnYea4+ksT7jZNAvaOcLd6mP9M7J09RHvJs06W8BGdQQAX8ARef09VQLdeRilSOcfHlDQJQ==}
+
   '@types/lodash.truncate@4.4.9':
     resolution: {integrity: sha512-pR5sV0zOomdGgh5nAv5nLlnU0iHX8IJuVqIdACQjO1I6sKsB1v4tFR6HySu8peoHg74RItfvTihDUYax0fB9Kg==}
 
@@ -4481,8 +4508,8 @@ packages:
     resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
     engines: {node: '>=18'}
 
-  katex@0.16.15:
-    resolution: {integrity: sha512-yE9YJIEAk2aZ+FL/G8r+UGw0CTUzEA8ZFy6E+8tc3spHUKq3qBnzCkI1CQwGoI9atJhVyFPEypQsTY7mJ1Pi9w==}
+  katex@0.16.20:
+    resolution: {integrity: sha512-jjuLaMGD/7P8jUTpdKhA9IoqnH+yMFB3sdAFtq5QdAqeP2PjiSbnC3EaguKPNtv6dXXanHxp1ckwvF4a86LBig==}
     hasBin: true
 
   kdbush@4.0.2:
@@ -5147,6 +5174,9 @@ packages:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
 
+  qr.js@0.0.0:
+    resolution: {integrity: sha512-c4iYnWb+k2E+vYpRimHqSu575b1/wKl4XFeJGpFmrJQz5I88v9aY2czh7s0w36srfCM1sXgC/xpoJz5dJfq+OQ==}
+
   qs@6.13.1:
     resolution: {integrity: sha512-EJPeIn0CYrGu+hli1xilKAPXODtJ12T0sP63Ijx2/khC2JtuaN3JyNIpvmnkmaEtha9ocbG4A4cMcr+TvqvwQg==}
     engines: {node: '>=0.6'}
@@ -5318,6 +5348,11 @@ packages:
     peerDependencies:
       react: '>=16.8.3'
       react-dom: '>=16.8.3'
+
+  react-qr-code@2.0.15:
+    resolution: {integrity: sha512-MkZcjEXqVKqXEIMVE0mbcGgDpkfSdd8zhuzXEl9QzYeNcw8Hq2oVIzDLWuZN2PQBwM5PWjc2S31K8Q1UbcFMfw==}
+    peerDependencies:
+      react: '*'
 
   react-quill@2.0.0:
     resolution: {integrity: sha512-4qQtv1FtCfLgoD3PXAur5RyxuUbPXQGOHgTlFie3jtxp43mXDtzCKaOgQ3mLyZfi1PUlyjycfivKelFhy13QUg==}
@@ -7772,7 +7807,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(w6l7ubrsegdoliqto6dgioimga)':
+  '@graasp/chatbox@3.3.1(fipkstm3pklqztooeci37yharu)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -7780,7 +7815,7 @@ snapshots:
       '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.5.1(3dds2khlcrqt2ydi7e2xwied3u)
+      '@graasp/ui': 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7801,7 +7836,7 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@graasp/map@1.19.0(ldeka4qsuoix5t4jjyl5sdena4)':
+  '@graasp/map@1.19.0(ndjhxhlnsr6nnzcef5izgnci2y)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -7809,7 +7844,7 @@ snapshots:
       '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.5.1(3dds2khlcrqt2ydi7e2xwied3u)
+      '@graasp/ui': 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7854,7 +7889,7 @@ snapshots:
     dependencies:
       i18next: 24.2.1(typescript@5.7.3)
 
-  '@graasp/ui@5.5.1(3dds2khlcrqt2ydi7e2xwied3u)':
+  '@graasp/ui@5.5.1(6lz5tiea2ptlwdtldehwouyofi)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
@@ -7868,7 +7903,7 @@ snapshots:
       http-status-codes: 2.3.0
       i18next: 24.2.1(typescript@5.7.3)
       interweave: 13.1.0(react@18.3.1)
-      katex: 0.16.15
+      katex: 0.16.20
       lodash.truncate: 4.4.2
       lucide-react: 0.471.1(react@18.3.1)
       react: 18.3.1
@@ -8713,6 +8748,14 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
+
+  '@types/lodash.debounce@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.14
+
+  '@types/lodash.groupby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.14
 
   '@types/lodash.truncate@4.4.9':
     dependencies:
@@ -11161,7 +11204,7 @@ snapshots:
 
   jwt-decode@4.0.0: {}
 
-  katex@0.16.15:
+  katex@0.16.20:
     dependencies:
       commander: 8.3.0
 
@@ -12068,6 +12111,8 @@ snapshots:
 
   punycode@2.3.1: {}
 
+  qr.js@0.0.0: {}
+
   qs@6.13.1:
     dependencies:
       side-channel: 1.1.0
@@ -12255,6 +12300,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       substyle: 9.4.1(react@18.3.1)
+
+  react-qr-code@2.0.15(react@18.3.1):
+    dependencies:
+      prop-types: 15.8.1
+      qr.js: 0.0.0
+      react: 18.3.1
 
   react-quill@2.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

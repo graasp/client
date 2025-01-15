@@ -5,6 +5,7 @@ import {
   Grid2 as Grid,
   Pagination,
   PaginationItem,
+  Skeleton,
   Stack,
   Typography,
 } from '@mui/material';
@@ -31,31 +32,42 @@ export function RecentItems() {
     { page, pageSize: PAGE_SIZE },
   );
 
-  return (
-    <Stack direction="column" alignItems="center" gap={2} width="100%">
-      <Stack direction="column" width="100%" gap={2}>
-        <Typography variant="h4" component="h1">
-          {t('RECENT_ITEMS_TITLE')}
-        </Typography>
-        <Grid
-          container
-          // needs to be "spacing" because with gap it does not fill the whole line
-          spacing={2}
-          justifyItems="center"
-        >
-          <DisplayItems items={accessibleItems?.data} isLoading={isLoading} />
-        </Grid>
+  if (accessibleItems) {
+    return (
+      <Stack direction="column" alignItems="center" gap={2} width="100%">
+        <Stack direction="column" width="100%" gap={2}>
+          <Typography variant="h4" component="h1">
+            {t('RECENT_ITEMS_TITLE')}
+          </Typography>
+          <Grid
+            width="100%"
+            container
+            // needs to be "spacing" because with gap it does not fill the whole line
+            spacing={2}
+            justifyItems="center"
+          >
+            <DisplayItems items={accessibleItems.data} isLoading={isLoading} />
+          </Grid>
+          <Pagination
+            sx={{ alignSelf: 'center' }}
+            id={HOME_PAGE_PAGINATION_ID}
+            count={Math.ceil((accessibleItems.totalCount ?? 0) / PAGE_SIZE)}
+            page={page}
+            // use the render prop to add a unique id that we can use for tests
+            renderItem={(props) => (
+              <PaginationItem
+                {...props}
+                id={buildHomePaginationId(props.page)}
+              />
+            )}
+            onChange={(_, newPage) => setPage(newPage)}
+          />
+        </Stack>
       </Stack>
-      <Pagination
-        id={HOME_PAGE_PAGINATION_ID}
-        count={Math.ceil((accessibleItems?.totalCount ?? 0) / PAGE_SIZE)}
-        page={page}
-        // use the render prop to add a unique id that we can use for tests
-        renderItem={(props) => (
-          <PaginationItem {...props} id={buildHomePaginationId(props.page)} />
-        )}
-        onChange={(_, newPage) => setPage(newPage)}
-      />
-    </Stack>
-  );
+    );
+  }
+
+  if (isLoading) {
+    return <Skeleton />;
+  }
 }

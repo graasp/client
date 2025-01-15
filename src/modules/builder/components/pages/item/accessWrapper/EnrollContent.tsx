@@ -13,7 +13,7 @@ import { BUILDER } from '@/langs/constants';
 type Props = { itemId: DiscriminatedItem['id'] };
 
 const EnrollContent = ({ itemId }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: enroll } = mutations.useEnroll();
 

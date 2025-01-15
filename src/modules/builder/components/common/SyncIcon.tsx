@@ -17,7 +17,7 @@ type Props = {
 const ICON_COLOR = '#BBB';
 
 const SyncIcon = ({ syncStatus }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   const buildStatus = () => {
     switch (syncStatus) {

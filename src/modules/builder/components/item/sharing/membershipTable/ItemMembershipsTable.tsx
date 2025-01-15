@@ -1,4 +1,4 @@
-import { useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Skeleton,
@@ -19,11 +19,12 @@ import {
 
 import groupby from 'lodash.groupby';
 
-import ErrorAlert from '@/components/common/ErrorAlert';
-import { OutletType } from '@/components/pages/item/type';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
-import { hooks } from '../../../../config/queryClient';
+import ErrorAlert from '~builder/components/common/ErrorAlert';
+import { useOutletContext } from '~builder/contexts/OutletContext';
+
 import { BUILDER } from '../../../../langs/constants';
 import GuestItemMembershipTableRow from './GuestItemMembershipTableRow';
 import InvitationTableRow from './InvitationTableRow';
@@ -56,9 +57,9 @@ const sortByNameAndEmail = (
 };
 
 const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const { item, canAdmin } = useOutletContext<OutletType>();
+  const { item, canAdmin } = useOutletContext();
   const { data: invitations, isLoading: isInvitationsLoading } =
     hooks.useItemInvitations(item.id, {
       enabled: canAdmin,

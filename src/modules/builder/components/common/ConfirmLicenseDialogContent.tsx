@@ -1,11 +1,10 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DialogActions, DialogContent, DialogContentText } from '@mui/material';
 
 import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 type Props = {
   handleSubmit: () => void;
@@ -18,21 +17,21 @@ const ConfirmLicenseDialogContent = ({
   disableSubmission,
   handleBack,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <>
       <DialogContent sx={{ paddingX: 3 }}>
         <DialogContentText>
-          {translateBuilder(BUILDER.ITEM_SETTINGS_CC_LICENSE_MODAL_CONTENT)}
+          {translateBuilder('ITEM_SETTINGS_CC_LICENSE_MODAL_CONTENT')}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button variant="text" onClick={handleBack}>
-          {translateBuilder(BUILDER.BACK)}
+          {translateBuilder('BACK')}
         </Button>
         <Button onClick={handleSubmit} disabled={disableSubmission}>
-          {translateBuilder(BUILDER.CONFIRM_BUTTON)}
+          {translateBuilder('CONFIRM_BUTTON')}
         </Button>
       </DialogActions>
     </>

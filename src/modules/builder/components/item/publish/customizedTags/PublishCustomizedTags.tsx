@@ -27,7 +27,7 @@ export const PublishCustomizedTags = ({
   item,
   onChange,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { tags, isLoading, isSuccess, isError } = useTagsManager({
     itemId: item.id,
   });

@@ -25,7 +25,7 @@ export const PublicationModal = ({
   dialogActions,
   handleOnClose,
 }: Props): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   return (
     <Dialog open={isOpen} onClose={handleOnClose}>

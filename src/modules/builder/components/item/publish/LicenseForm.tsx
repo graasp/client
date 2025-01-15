@@ -41,7 +41,7 @@ const LicenseForm = ({
   allowSharingValue,
   disabled,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleAttributionChange = (event: ChangeEvent<{ value: string }>) => {
     setRequireAttributionValue(event.target.value as CCLicenseChoice);
