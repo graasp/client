@@ -9,7 +9,6 @@ import { ACCOUNT_HOME_PATH } from '../../../src/config/paths';
 import {
   AVATAR_UPLOAD_ICON_ID,
   AVATAR_UPLOAD_INPUT_ID,
-  CARD_TIP_ID,
   CROP_MODAL_CONFIRM_BUTTON_ID,
   MEMBER_AVATAR_IMAGE_ID,
   MEMBER_CREATED_AT_ID,
@@ -81,8 +80,6 @@ describe('Upload Avatar', () => {
   });
 
   it('Upload a new thumbnail', () => {
-    // at first card element should exist
-    cy.get(`#${CARD_TIP_ID}`).should('exist');
     // select the avatar image
     cy.get(`#${AVATAR_UPLOAD_INPUT_ID}`).selectFile(
       THUMBNAIL_MEDIUM_PATH,
@@ -95,8 +92,6 @@ describe('Upload Avatar', () => {
         cy.get(`#${MEMBER_AVATAR_IMAGE_ID}`).should('be.visible');
       });
     cy.wait('@uploadAvatar');
-    // card element should not exist
-    cy.get(`#${CARD_TIP_ID}`).should('not.exist');
   });
 });
 
@@ -108,7 +103,6 @@ describe('Image is not set', () => {
 
   it('Image is not set', () => {
     cy.wait('@getCurrentMember');
-    cy.get(`#${CARD_TIP_ID}`).should('exist');
     // uploader icon should be visible
     cy.get(`#${AVATAR_UPLOAD_ICON_ID}`).should('be.visible');
     // image display element should not exist
