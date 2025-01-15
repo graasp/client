@@ -1,5 +1,3 @@
-import { useOutletContext } from 'react-router-dom';
-
 import { Container, Skeleton, Stack, styled } from '@mui/material';
 
 import { Api } from '@graasp/query-client';
@@ -31,21 +29,23 @@ import {
 } from '@graasp/ui';
 import { DocumentItem } from '@graasp/ui/text-editor';
 
-import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
+import { getRouteApi } from '@tanstack/react-router';
 
-import { ITEM_DEFAULT_HEIGHT } from '../../config/constants';
-import { axios, hooks } from '../../config/queryClient';
+import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
+import { axios, hooks } from '@/config/queryClient';
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_ID,
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import ErrorAlert from '../common/ErrorAlert';
-import { OutletType } from '../pages/item/type';
 import FolderContent from './FolderContent';
 import FileAlignmentSetting from './settings/file/FileAlignmentSetting';
 import FileMaxWidthSetting from './settings/file/FileMaxWidthSetting';
 import { SettingVariant } from './settings/settingTypes';
+
+const ITEM_DEFAULT_HEIGHT = '70vh';
 
 const { useFileContentUrl, useEtherpad } = hooks;
 
@@ -152,7 +152,7 @@ const AppContent = ({
       permission,
       settings: item.settings,
       lang:
-        item.settings?.lang ||
+        item.lang ||
         (member?.type === AccountType.Individual && member?.extra?.lang) ||
         DEFAULT_LANG,
       context: Context.Builder,
@@ -210,12 +210,16 @@ const EtherpadContent = ({ item }: { item: EtherpadItemType }): JSX.Element => {
   );
 };
 
+const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 /**
  * Main item renderer component
  */
 const ItemContent = (): JSX.Element => {
   const { data: member, isLoading, isError } = hooks.useCurrentMember();
-  const { item, permission } = useOutletContext<OutletType>();
+  // const { item, permission } = useOutletContext<OutletType>();
+  const { itemId } = itemRoute.useParams();
+  const { data: item } = hooks.useItem(itemId);
+  const permission = item?.permission ?? undefined;
 
   if (isLoading) {
     return <Loader />;

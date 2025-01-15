@@ -1,17 +1,20 @@
 import { Dispatch, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { Ordering } from '@/enums';
+import { NS } from '@/config/constants';
+
+import { Ordering } from '~builder/enums';
 
 import {
   AllSortingOptions,
   SortingOptions,
   SortingOptionsForFolder,
+  SortingOptionsType,
 } from './types';
 
-export const useSorting = <T extends AllSortingOptions = SortingOptions>({
+export const useSorting = <T extends AllSortingOptions = SortingOptionsType>({
   sortBy: s,
   ordering: o = Ordering.DESC,
 }: {
@@ -65,10 +68,12 @@ export const useSorting = <T extends AllSortingOptions = SortingOptions>({
   return { sortBy, ordering, setSortBy, setOrdering, sortFn };
 };
 
-export const useTranslatedSortingOptions = (): SortingOptions[] => {
-  const { t } = useBuilderTranslation();
+export const useTranslatedSortingOptions = (): SortingOptionsType[] => {
+  const { t } = useTranslation(NS.Builder);
 
-  return Object.values(SortingOptions).sort((t1, t2) =>
-    t(t1).localeCompare(t(t2)),
-  );
+  return Object.values(SortingOptions).sort((t1, t2) => {
+    const tt1 = t(t1);
+    const tt2 = t(t2);
+    return tt1.localeCompare(tt2);
+  });
 };

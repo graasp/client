@@ -1,20 +1,21 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+
+import CancelButton from '~builder/components/common/CancelButton';
+
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionForm } from '../description/DescriptionForm';
 
@@ -31,8 +32,8 @@ type Inputs = {
 export function FolderEditForm({
   item,
   onClose,
-}: FolderEditFormProps): JSX.Element {
-  const { t: translateCommon } = useCommonTranslation();
+}: Readonly<FolderEditFormProps>): JSX.Element {
+  const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item.name,

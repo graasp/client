@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
@@ -7,27 +8,24 @@ import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
 import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
-import { COLLAPSE_ITEM_BUTTON_CLASS } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { COLLAPSE_ITEM_BUTTON_CLASS } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
   item: DiscriminatedItem;
   type?: ActionButtonVariant;
   onClick?: () => void;
-  isCollapsedTextKey?: string;
-  notCollapsedTextKey?: string;
 };
 
 const CollapseButton = ({
   item,
   type = ActionButton.ICON_BUTTON,
   onClick,
-  isCollapsedTextKey = BUILDER.COLLAPSE_ITEM_UNCOLLAPSE_TEXT,
-  notCollapsedTextKey = BUILDER.COLLAPSE_ITEM_COLLAPSE_TEXT,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: editItem } = mutations.useEditItem();
   const [isCollapsible, setIsCollapsible] = useState(
@@ -35,6 +33,7 @@ const CollapseButton = ({
   );
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsCollapsible(item?.settings?.isCollapsible ?? false);
   }, [item]);
 
@@ -56,9 +55,9 @@ const CollapseButton = ({
   if (disabled) {
     text = translateBuilder(BUILDER.SETTINGS_COLLAPSE_FOLDER_INFORMATION);
   } else {
-    text = translateBuilder(
-      isCollapsible ? isCollapsedTextKey : notCollapsedTextKey,
-    );
+    text = isCollapsible
+      ? translateBuilder(BUILDER.COLLAPSE_ITEM_UNCOLLAPSE_TEXT)
+      : translateBuilder(BUILDER.COLLAPSE_ITEM_COLLAPSE_TEXT);
   }
 
   switch (type) {

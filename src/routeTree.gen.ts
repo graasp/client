@@ -8,8 +8,6 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
@@ -22,8 +20,9 @@ import { Route as LandingImport } from './routes/_landing'
 import { Route as PlayerIndexImport } from './routes/player/index'
 import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as AccountIndexImport } from './routes/account/index'
+import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
-import { Route as BuilderMapImport } from './routes/builder/map'
+import { Route as BuilderMapImport } from './routes/builder.map'
 import { Route as BuilderLayoutImport } from './routes/builder/_layout'
 import { Route as AuthSuccessImport } from './routes/auth/success'
 import { Route as AuthSigninImport } from './routes/auth/signin'
@@ -56,10 +55,6 @@ import { Route as AnalyticsItemsItemIdUsersImport } from './routes/analytics/ite
 import { Route as AnalyticsItemsItemIdItemsImport } from './routes/analytics/items/$itemId/items'
 import { Route as AnalyticsItemsItemIdExportImport } from './routes/analytics/items/$itemId/export'
 import { Route as AnalyticsItemsItemIdAppsImport } from './routes/analytics/items/$itemId/apps'
-
-// Create Virtual Routes
-
-const LandingIndexLazyImport = createFileRoute('/_landing/')()
 
 // Create/Update Routes
 
@@ -98,14 +93,6 @@ const LandingRoute = LandingImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const LandingIndexLazyRoute = LandingIndexLazyImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => LandingRoute,
-} as any).lazy(() =>
-  import('./routes/_landing/index.lazy').then((d) => d.Route),
-)
-
 const PlayerIndexRoute = PlayerIndexImport.update({
   id: '/player/',
   path: '/player/',
@@ -122,6 +109,12 @@ const AccountIndexRoute = AccountIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AccountRoute,
+} as any)
+
+const LandingIndexRoute = LandingIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => LandingRoute,
 } as any)
 
 const EmailChangeRoute = EmailChangeImport.update({
@@ -509,6 +502,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailChangeImport
       parentRoute: typeof rootRoute
     }
+    '/_landing/': {
+      id: '/_landing/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LandingIndexImport
+      parentRoute: typeof LandingImport
+    }
     '/account/': {
       id: '/account/'
       path: '/'
@@ -529,13 +529,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/player'
       preLoaderRoute: typeof PlayerIndexImport
       parentRoute: typeof rootRoute
-    }
-    '/_landing/': {
-      id: '/_landing/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof LandingIndexLazyImport
-      parentRoute: typeof LandingImport
     }
     '/analytics/items/$itemId': {
       id: '/analytics/items/$itemId'
@@ -655,7 +648,7 @@ interface LandingRouteChildren {
   LandingPolicyRoute: typeof LandingPolicyRoute
   LandingSupportRoute: typeof LandingSupportRoute
   LandingTermsRoute: typeof LandingTermsRoute
-  LandingIndexLazyRoute: typeof LandingIndexLazyRoute
+  LandingIndexRoute: typeof LandingIndexRoute
 }
 
 const LandingRouteChildren: LandingRouteChildren = {
@@ -666,7 +659,7 @@ const LandingRouteChildren: LandingRouteChildren = {
   LandingPolicyRoute: LandingPolicyRoute,
   LandingSupportRoute: LandingSupportRoute,
   LandingTermsRoute: LandingTermsRoute,
-  LandingIndexLazyRoute: LandingIndexLazyRoute,
+  LandingIndexRoute: LandingIndexRoute,
 }
 
 const LandingRouteWithChildren =
@@ -813,10 +806,10 @@ export interface FileRoutesByFullPath {
   '/auth/success': typeof AuthSuccessRoute
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
+  '/': typeof LandingIndexRoute
   '/account/': typeof AccountIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
-  '/': typeof LandingIndexLazyRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/published': typeof BuilderLayoutPublishedRoute
@@ -856,10 +849,10 @@ export interface FileRoutesByTo {
   '/auth/success': typeof AuthSuccessRoute
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
+  '/': typeof LandingIndexRoute
   '/account': typeof AccountIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
-  '/': typeof LandingIndexLazyRoute
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/published': typeof BuilderLayoutPublishedRoute
   '/builder/recycled': typeof BuilderLayoutRecycledRoute
@@ -901,10 +894,10 @@ export interface FileRoutesById {
   '/builder/_layout': typeof BuilderLayoutRouteWithChildren
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
+  '/_landing/': typeof LandingIndexRoute
   '/account/': typeof AccountIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player/': typeof PlayerIndexRoute
-  '/_landing/': typeof LandingIndexLazyRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/builder/_layout/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/_layout/published': typeof BuilderLayoutPublishedRoute
@@ -949,10 +942,10 @@ export interface FileRouteTypes {
     | '/auth/success'
     | '/builder/map'
     | '/email/change'
+    | '/'
     | '/account/'
     | '/analytics/'
     | '/player'
-    | '/'
     | '/analytics/items/$itemId'
     | '/builder/bookmarks'
     | '/builder/published'
@@ -991,10 +984,10 @@ export interface FileRouteTypes {
     | '/auth/success'
     | '/builder/map'
     | '/email/change'
+    | '/'
     | '/account'
     | '/analytics'
     | '/player'
-    | '/'
     | '/builder/bookmarks'
     | '/builder/published'
     | '/builder/recycled'
@@ -1034,10 +1027,10 @@ export interface FileRouteTypes {
     | '/builder/_layout'
     | '/builder/map'
     | '/email/change'
+    | '/_landing/'
     | '/account/'
     | '/analytics/'
     | '/player/'
-    | '/_landing/'
     | '/analytics/items/$itemId'
     | '/builder/_layout/bookmarks'
     | '/builder/_layout/published'
@@ -1230,11 +1223,15 @@ export const routeTree = rootRoute
       ]
     },
     "/builder/map": {
-      "filePath": "builder/map.tsx",
+      "filePath": "builder.map.tsx",
       "parent": "/builder"
     },
     "/email/change": {
       "filePath": "email.change.tsx"
+    },
+    "/_landing/": {
+      "filePath": "_landing/index.tsx",
+      "parent": "/_landing"
     },
     "/account/": {
       "filePath": "account/index.tsx",
@@ -1246,10 +1243,6 @@ export const routeTree = rootRoute
     },
     "/player/": {
       "filePath": "player/index.tsx"
-    },
-    "/_landing/": {
-      "filePath": "_landing/index.lazy.tsx",
-      "parent": "/_landing"
     },
     "/analytics/items/$itemId": {
       "filePath": "analytics/items/$itemId.tsx",

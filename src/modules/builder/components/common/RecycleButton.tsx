@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   IconButton,
   IconButtonProps,
@@ -10,12 +12,13 @@ import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
 import { TrashIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import {
   ITEM_MENU_RECYCLE_BUTTON_CLASS,
   ITEM_RECYCLE_BUTTON_CLASS,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -33,7 +36,7 @@ const RecycleButton = ({
   type = ActionButton.ICON_BUTTON,
   onClick,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: recycleItems } = mutations.useRecycleItems();
 
   const handleClick = () => {

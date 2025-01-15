@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Home as HomeIcon } from '@mui/icons-material';
 import {
@@ -14,20 +15,22 @@ import {
 import { DiscriminatedItem } from '@graasp/sdk';
 import { Breadcrumbs, type NavigationElement } from '@graasp/ui';
 
-import { computeTitle } from '@/utils/itemSelection';
-
-import { useBuilderTranslation } from '../../../config/i18n';
-import { hooks } from '../../../config/queryClient';
+import { BuilderKeys } from '@/@types/i18next';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import {
   HOME_MODAL_ITEM_ID,
   MY_GRAASP_ITEM_PATH,
   TREE_MODAL_CONFIRM_BUTTON_ID,
-} from '../../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 import CancelButton from '../../common/CancelButton';
 import AccessibleNavigationTree from './AccessibleNavigationTree';
 import ChildrenNavigationTree from './ChildrenNavigationTree';
 import RootNavigationTree from './RootNavigationTree';
+
+export const ITEM_SELECT_MODAL_TITLE_MAX_NAME_LENGTH = 15;
 
 const dialogId = 'items-tree-modal';
 
@@ -45,9 +48,8 @@ export type ItemSelectionModalProps = {
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;
-  titleKey: string;
+  titleKey: keyof BuilderKeys;
 };
-
 const ItemSelectionModal = ({
   buttonText = () => 'Submit',
   isDisabled = () => false,
@@ -55,20 +57,12 @@ const ItemSelectionModal = ({
   onClose,
   onConfirm,
   open = false,
-  titleKey,
+  // titleKey,
 }: ItemSelectionModalProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: items, isLoading } = hooks.useItems(itemIds);
-  const title = items ? (
-    computeTitle({
-      items,
-      count: itemIds.length - 1,
-      translateBuilder,
-      translateKey: titleKey,
-    })
-  ) : (
-    <Skeleton height={50} />
-  );
+  // todo: title is broken because of translations
+  // const title = items ? translateBuilder(titleKey) : <Skeleton height={50} />;
 
   // special elements for breadcrumbs
   // root displays specific paths
@@ -128,7 +122,12 @@ const ItemSelectionModal = ({
       open={open}
       scroll="paper"
     >
-      <DialogTitle id={dialogId}>{title}</DialogTitle>
+      <DialogTitle id={dialogId}>
+        {
+          'Fix me title'
+          // title
+        }
+      </DialogTitle>
       <DialogContent>
         <Stack
           direction="column"

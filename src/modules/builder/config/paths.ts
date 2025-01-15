@@ -1,4 +1,4 @@
-import { ItemLayoutMode } from '@/enums';
+import { ItemLayoutMode } from '~builder/enums';
 
 export const HOME_PATH = '/';
 export const BOOKMARKED_ITEMS_PATH = '/bookmarks';
@@ -18,7 +18,6 @@ export const buildItemPath = (
 };
 export const REDIRECT_PATH = '/redirect';
 export const MEMBER_PROFILE_PATH = '/profile';
-export const RECYCLE_BIN_PATH = '/recycle-bin';
 export const ITEM_ID_PARAMS = 'itemId';
 export const ITEM_SHARE_PATH = 'share';
 export const ITEM_PUBLISH_PATH = 'publish';

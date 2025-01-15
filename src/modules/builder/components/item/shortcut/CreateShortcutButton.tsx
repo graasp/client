@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 import { ListItemIcon, MenuItem } from '@mui/material';
 
 import { CableIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../../config/i18n';
-import { ITEM_MENU_SHORTCUT_BUTTON_CLASS } from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { ITEM_MENU_SHORTCUT_BUTTON_CLASS } from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 export type Props = {
@@ -11,7 +14,7 @@ export type Props = {
 };
 
 const CreateShortcutButton = ({ onClick }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <MenuItem onClick={onClick} className={ITEM_MENU_SHORTCUT_BUTTON_CLASS}>

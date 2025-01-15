@@ -1,18 +1,19 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { LoadingButton } from '@mui/lab';
 import { Box, DialogActions, DialogContent } from '@mui/material';
 
 import { DescriptionPlacementType, DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+
+import CancelButton from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from './ItemNameField';
 import { DescriptionAndPlacementForm } from './description/DescriptionAndPlacementForm';
@@ -30,7 +31,7 @@ const BaseItemForm = ({
   item: DiscriminatedItem;
   onClose: () => void;
 }): JSX.Element => {
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>({ defaultValues: { name: item.name } });
   const { mutateAsync: editItem, isPending } = mutations.useEditItem();
   const {

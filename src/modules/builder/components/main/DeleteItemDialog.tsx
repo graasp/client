@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Dialog,
   DialogActions,
@@ -9,9 +11,10 @@ import {
 import { DiscriminatedItem } from '@graasp/sdk';
 import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
-import { CONFIRM_DELETE_BUTTON_ID } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { CONFIRM_DELETE_BUTTON_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import CancelButton from '../common/CancelButton';
 
@@ -31,7 +34,7 @@ const DeleteItemDialog = ({
   handleClose,
   onConfirm,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: deleteItems } = mutations.useDeleteItems();
 
@@ -44,8 +47,8 @@ const DeleteItemDialog = ({
   };
 
   const names = items
-    .sort((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
-    .map(({ name }) => <li>{name}</li>);
+    .toSorted((a, b) => (a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1))
+    .map(({ name }) => <li key={name}>{name}</li>);
 
   return (
     <Dialog
@@ -71,6 +74,7 @@ const DeleteItemDialog = ({
           id={CONFIRM_DELETE_BUTTON_ID}
           onClick={onDelete}
           color="error"
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           variant="text"
         >

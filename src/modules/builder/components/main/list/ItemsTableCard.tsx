@@ -1,12 +1,14 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box, Stack } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 import type { DroppedFile } from '@graasp/ui';
 
-import SmallUploadFile from '@/components/file/SmallUploadFile';
-import { useBuilderTranslation } from '@/config/i18n';
-import { ItemLayoutMode } from '@/enums';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import SmallUploadFile from '~builder/components/file/SmallUploadFile';
+import { ItemLayoutMode } from '~builder/enums';
 
 import { useLayoutContext } from '../../context/LayoutContext';
 import Badges, { ItemsStatuses } from '../../table/Badges';
@@ -41,14 +43,12 @@ const ItemsTableCard = ({
 }: Props): JSX.Element => {
   const { mode } = useLayoutContext();
 
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const dense = mode === ItemLayoutMode.List;
 
   if ('files' in item) {
-    return (
-      <SmallUploadFile text={translateBuilder(BUILDER.UPLOAD_BETWEEN_FILES)} />
-    );
+    return <SmallUploadFile text={translateBuilder('UPLOAD_BETWEEN_FILES')} />;
   }
 
   const thumbnailUrl = showThumbnail ? item.thumbnails?.medium : undefined;

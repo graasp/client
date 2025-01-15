@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   FormControl,
@@ -13,12 +14,12 @@ import {
 
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { SORTING_SELECT_SELECTOR_TEST_ID } from '@/config/selectors';
-import { Ordering } from '@/enums';
-import { BUILDER } from '@/langs/constants';
 
-import { AllSortingOptions, SortingOptions } from './types';
+import { Ordering } from '~builder/enums';
+
+import { AllSortingOptions, SortingOptions, SortingOptionsType } from './types';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -32,7 +33,9 @@ const MenuProps = {
 
 const LABEL_ID = 'sort-by-filter-label';
 
-export type SortingSelectProps<T extends AllSortingOptions = SortingOptions> = {
+export type SortingSelectProps<
+  T extends AllSortingOptions = SortingOptionsType,
+> = {
   sortBy: T;
   setSortBy: Dispatch<T>;
   ordering: Ordering;
@@ -40,14 +43,16 @@ export type SortingSelectProps<T extends AllSortingOptions = SortingOptions> = {
   options: T[];
 };
 
-export const SortingSelect = <T extends AllSortingOptions = SortingOptions>({
+export const SortingSelect = <
+  T extends AllSortingOptions = SortingOptionsType,
+>({
   sortBy,
   setSortBy,
   ordering,
   setOrdering,
   options,
 }: SortingSelectProps<T>): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleChange = (event: SelectChangeEvent) => {
     const {
@@ -56,7 +61,7 @@ export const SortingSelect = <T extends AllSortingOptions = SortingOptions>({
     setSortBy(v as T);
   };
 
-  const label = translateBuilder(BUILDER.SORT_BY_LABEL);
+  const label = translateBuilder('SORT_BY_LABEL');
 
   const sortedOptions = options
     .map((o) => [o, translateBuilder(o)])

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box, Grid2 as Grid, Typography } from '@mui/material';
 
 import {
@@ -6,11 +8,9 @@ import {
   formatDate,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Card, TextDisplay } from '@graasp/ui';
 
-import i18n, { useCommonTranslation } from '@/config/i18n';
-import { buildItemPath } from '@/config/paths';
+import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
 
 type Props = {
@@ -40,18 +40,18 @@ const ItemCard = ({
   thumbnailUrl,
   onThumbnailClick,
 }: Props): JSX.Element => {
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon, i18n } = useTranslation(NS.Common);
 
   const dateColumnFormatter = (value: string) =>
     formatDate(value, {
       locale: i18n.language,
-      defaultValue: translateCommon(COMMON.UNKNOWN_DATE),
+      defaultValue: translateCommon('UNKNOWN_DATE'),
     });
 
   const to =
     item.type === ItemType.SHORTCUT
-      ? buildItemPath(item.extra.shortcut.target)
-      : buildItemPath(item.id);
+      ? `/builder/items/${item.extra.shortcut.target}`
+      : `/builder/items/${item.id}`;
 
   const content = (
     <Grid

@@ -1,15 +1,13 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorOutline } from '@mui/icons-material';
-import { Box, Button, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { HOME_PATH } from '@/config/paths';
-
-import { BUILDER } from '../langs/constants';
+import { ButtonLink } from '@/components/ui/ButtonLink';
+import { NS } from '@/config/constants';
 
 const FallbackComponent = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Stack
@@ -21,18 +19,12 @@ const FallbackComponent = (): JSX.Element => {
     >
       <Box>
         <Typography variant="h1" fontSize="6em">
-          {translateBuilder(BUILDER.FALLBACK_TITLE)}
+          {translateBuilder('FALLBACK_TITLE')}
         </Typography>
-        <Typography>{translateBuilder(BUILDER.FALLBACK_TEXT)}</Typography>
-        <Button
-          component={Link}
-          to={HOME_PATH}
-          sx={{ mt: 3 }}
-          reloadDocument
-          variant="contained"
-        >
-          {translateBuilder(BUILDER.FALLBACK_BACK_TO_HOME)}
-        </Button>
+        <Typography>{translateBuilder('FALLBACK_TEXT')}</Typography>
+        <ButtonLink to="/" sx={{ mt: 3 }} reloadDocument variant="contained">
+          {translateBuilder('FALLBACK_BACK_TO_HOME')}
+        </ButtonLink>
       </Box>
       <ErrorOutline
         fontSize="large"

@@ -7,7 +7,7 @@ import { z } from 'zod';
 import MapView from '~builder/components/item/MapView';
 
 const schema = z.object({
-  isMobileApp: z.boolean(),
+  isMobileApp: z.boolean().default(false),
   enableGeolocation: z.boolean().default(true),
   parentId: z.string().optional(),
 });

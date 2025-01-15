@@ -1,14 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 import { ListItemIcon, MenuItem } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
 import { CopyIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_MENU_DUPLICATE_BUTTON_CLASS } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { getParentsIdsFromPath } from '@/utils/item';
+
+import { BUILDER } from '~builder/langs/constants';
+import { getParentsIdsFromPath } from '~builder/utils/item';
 
 const DuplicateButton = ({
   item,
@@ -16,7 +19,7 @@ const DuplicateButton = ({
   item: DiscriminatedItem;
 }): JSX.Element => {
   const { mutate: copyItems } = mutations.useCopyItems();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleDuplicate = () => {
     const parentsIds = getParentsIdsFromPath(item.path, { ignoreSelf: true });

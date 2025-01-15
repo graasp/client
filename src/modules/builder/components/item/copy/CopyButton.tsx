@@ -1,14 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ActionButtonVariant,
   ColorVariantsType,
   CopyButton as GraaspCopyButton,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEM_COPY_BUTTON_CLASS,
   ITEM_MENU_COPY_BUTTON_CLASS,
-} from '../../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 export type Props = {
@@ -19,7 +22,7 @@ export type Props = {
 };
 
 const CopyButton = ({ color, id, type, onClick }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <GraaspCopyButton

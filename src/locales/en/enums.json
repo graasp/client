@@ -11,6 +11,7 @@
   "h5p": "h5p",
   "s3File": "file",
   "shortcut": "shortcut",
+  "etherpad": "etherpad",
 
   "builder": "builder",
   "player": "player",

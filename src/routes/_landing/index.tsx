@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { PlatformCube } from '~landing/Platforms/PlatformCube';
 import { NewsLetter } from '~landing/home/NewsLetter';
@@ -8,7 +8,7 @@ import { UserStorySection } from '~landing/home/UserStorySection';
 import { UserTestimoniesSection } from '~landing/home/UserTestimoniesSection';
 import { Preview } from '~landing/preview/PreviewModeContext';
 
-export const Route = createLazyFileRoute('/_landing/')({
+export const Route = createFileRoute('/_landing/')({
   component: Index,
 });
 

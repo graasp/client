@@ -47,7 +47,7 @@ export function PageWrapper({
   const { isMobile } = useMobileView();
   const platformProps = {
     [Platform.Builder]: {
-      href: GRAASP_BUILDER_HOST,
+      href: '/builder',
     },
     [Platform.Player]: {
       href: '/player',

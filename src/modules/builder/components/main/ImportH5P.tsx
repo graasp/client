@@ -16,7 +16,7 @@ import {
 } from '@graasp/sdk';
 import { Button, UploadFileButton } from '@graasp/ui';
 
-import { getRouteApi } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -28,7 +28,6 @@ import {
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 const ImportH5P = ({
   onClose,
   previousItemId,
@@ -36,7 +35,7 @@ const ImportH5P = ({
   onClose?: () => void;
   previousItemId?: DiscriminatedItem['id'];
 }): JSX.Element => {
-  const { itemId } = itemRoute.useParams();
+  const { itemId } = useParams({ strict: false });
   const { mutateAsync: importH5P, isPending: isLoading } =
     mutations.useImportH5P();
   const { update, close: closeNotification } = useUploadWithProgress();

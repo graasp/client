@@ -1,12 +1,14 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Alert } from '@mui/material';
 
-import AppCard from '@/components/main/AppCard';
-import { sortByName } from '@/utils/item';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
-import { hooks } from '../../../../config/queryClient';
+import AppCard from '~builder/components/main/AppCard';
+import { sortByName } from '~builder/utils/item';
+
 import { BUILDER } from '../../../../langs/constants';
 
 type AppGridProps = {
@@ -15,7 +17,7 @@ type AppGridProps = {
 
 export function AppGrid({
   searchQuery,
-}: AppGridProps): JSX.Element | JSX.Element[] {
+}: Readonly<AppGridProps>): JSX.Element | JSX.Element[] {
   const { useApps } = hooks;
   const { data, isLoading } = useApps();
   const { control, reset } = useFormContext<{
@@ -23,7 +25,7 @@ export function AppGrid({
     name: string;
   }>();
 
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   if (data) {
     // filter out with search query
@@ -69,7 +71,7 @@ export function AppGrid({
   if (isLoading) {
     return Array(7)
       .fill(0)
-      .map((i) => <AppCard id={i} />);
+      .map((i) => <AppCard key={i} id={i} />);
   }
 
   return (

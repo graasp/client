@@ -1,4 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Tab, TextField, Typography } from '@mui/material';
@@ -7,8 +8,7 @@ import { DocumentItemExtraFlavor } from '@graasp/sdk';
 import { withFlavor } from '@graasp/ui';
 import TextEditor from '@graasp/ui/text-editor';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 import { EditorMode } from './EditorMode.enum';
 
@@ -27,7 +27,7 @@ export const DocumentContentForm = ({
   onChange: (v: string) => void;
   placeholder?: string;
 }): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const {
     register,
     watch,
@@ -56,16 +56,16 @@ export const DocumentContentForm = ({
               onChange={(_, mode) => {
                 field.onChange(mode === EditorMode.Raw.toString());
               }}
-              aria-label={t(BUILDER.DOCUMENT_EDITOR_MODE_ARIA_LABEL)}
+              aria-label={t('DOCUMENT_EDITOR_MODE_ARIA_LABEL')}
               centered
               variant="fullWidth"
             >
               <Tab
-                label={t(BUILDER.DOCUMENT_EDITOR_MODE_RICH_TEXT)}
+                label={t('DOCUMENT_EDITOR_MODE_RICH_TEXT')}
                 value={EditorMode.Rich.toString()}
               />
               <Tab
-                label={t(BUILDER.DOCUMENT_EDITOR_MODE_RAW)}
+                label={t('DOCUMENT_EDITOR_MODE_RAW')}
                 value={EditorMode.Raw.toString()}
               />
             </TabList>
@@ -96,7 +96,7 @@ export const DocumentContentForm = ({
               minRows={5}
               maxRows={25}
               {...register('content', {
-                required: t(BUILDER.DOCUMENT_EMPTY_MESSAGE),
+                required: t('DOCUMENT_EMPTY_MESSAGE'),
                 minLength: 1,
               })}
             />

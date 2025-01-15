@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent } from '@mui/material';
 
@@ -8,17 +9,17 @@ import {
   ItemType,
   buildDocumentExtra,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import CancelButton from '~builder/components/common/CancelButton';
+import { BUILDER } from '~builder/langs/constants';
 
 import { ItemNameField } from '../ItemNameField';
 import {
@@ -38,9 +39,12 @@ type Inputs = {
   isRaw: boolean;
 } & DocumentExtraFormInputs;
 
-export function DocumentEditForm({ item, onClose }: Props): JSX.Element {
-  const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+export function DocumentEditForm({
+  item,
+  onClose,
+}: Readonly<Props>): JSX.Element {
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutateAsync: editItem } = mutations.useEditItem();
 
   const methods = useForm<Inputs>({

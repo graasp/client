@@ -1,11 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
 import { type NavigationElement } from '@graasp/ui';
 
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { getDirectParentId } from '@/utils/item';
-import { computeButtonText } from '@/utils/itemSelection';
 
-import { useBuilderTranslation } from '../../../config/i18n';
+import { getDirectParentId } from '~builder/utils/item';
+
 import { BUILDER } from '../../../langs/constants';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
@@ -22,7 +24,7 @@ export const MoveModal = ({
   items,
   open,
 }: MoveButtonProps): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: moveItems } = mutations.useMoveItems();
 
   const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
@@ -59,11 +61,7 @@ export const MoveModal = ({
   };
 
   const buttonText = (name?: string) =>
-    computeButtonText({
-      translateBuilder,
-      translateKey: BUILDER.MOVE_BUTTON,
-      name,
-    });
+    translateBuilder('MOVE_BUTTON', { name, count: name ? 1 : 0 });
 
   // prevent loading if not opened
   if (!open) {

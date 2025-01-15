@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Stack } from '@mui/material';
 
 import { ItemType, PackedItem } from '@graasp/sdk';
@@ -5,12 +7,7 @@ import { ActionButton, PinButton } from '@graasp/ui';
 
 import { BarChart3, MessageSquareOff, MessageSquareText } from 'lucide-react';
 
-import CollapseButton from '@/components/common/CollapseButton';
-import {
-  DEFAULT_RESIZE_SETTING,
-  DEFAULT_SAVE_ACTIONS_SETTING,
-} from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   SETTINGS_CHATBOX_TOGGLE_ID,
@@ -18,7 +15,8 @@ import {
   SETTINGS_RESIZE_TOGGLE_ID,
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import CollapseButton from '~builder/components/common/CollapseButton';
 
 import HideSettingCheckbox from '../sharing/HideSettingCheckbox';
 import ItemSettingCheckBoxProperty from './ItemSettingCheckBoxProperty';
@@ -27,6 +25,9 @@ import FileAlignmentSetting from './file/FileAlignmentSetting';
 import FileMaxWidthSetting from './file/FileMaxWidthSetting';
 import { SettingVariant } from './settingTypes';
 
+const DEFAULT_RESIZE_SETTING = false;
+const DEFAULT_SAVE_ACTIONS_SETTING = true;
+
 type Props = {
   item: PackedItem;
 };
@@ -34,14 +35,13 @@ type Props = {
 type ItemSetting = PackedItem['settings'];
 
 const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: editItem } = mutations.useEditItem();
 
   const { settings } = item;
 
-  // TODO: remove | string in settingKey when enableAnalytics is added to settings in SDK...
   const handleSettingChanged = <K extends keyof ItemSetting>(
-    settingKey: K | string,
+    settingKey: K,
     newValue: unknown,
   ) => {
     editItem({
@@ -55,7 +55,7 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
 
   const handleOnToggle = <K extends keyof ItemSetting>(
     event: { target: { checked: boolean } },
-    settingKey: K | string,
+    settingKey: K,
   ): void => {
     handleSettingChanged(settingKey, event.target.checked);
   };
@@ -77,19 +77,15 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
         return (
           <ItemSettingCheckBoxProperty
             id={SETTINGS_RESIZE_TOGGLE_ID}
-            title={translateBuilder(
-              BUILDER.ITEM_SETTINGS_RESIZABLE_ENABLED_TEXT,
-            )}
+            title={translateBuilder('ITEM_SETTINGS_RESIZABLE_ENABLED_TEXT')}
             checked={Boolean(settings?.isResizable || DEFAULT_RESIZE_SETTING)}
             onClick={(checked: boolean): void => {
               handleOnToggle({ target: { checked } }, 'isResizable');
             }}
             valueText={
               settings?.isResizable
-                ? translateBuilder(BUILDER.ITEM_SETTINGS_RESIZABLE_ENABLED_TEXT)
-                : translateBuilder(
-                    BUILDER.ITEM_SETTINGS_RESIZABLE_DISABLED_TEXT,
-                  )
+                ? translateBuilder('ITEM_SETTINGS_RESIZABLE_ENABLED_TEXT')
+                : translateBuilder('ITEM_SETTINGS_RESIZABLE_DISABLED_TEXT')
             }
           />
         );
@@ -101,7 +97,7 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
   return (
     <Stack direction="column" gap={2}>
       <ItemSettingCheckBoxProperty
-        title={translateBuilder(BUILDER.ITEM_SETTINGS_IS_COLLAPSED_TITLE)}
+        title={translateBuilder('ITEM_SETTINGS_IS_COLLAPSED_TITLE')}
         icon={<CollapseButton type={ActionButton.ICON} item={item} />}
         checked={Boolean(settings.isCollapsible)}
         disabled={item.type === ItemType.FOLDER}
@@ -110,15 +106,11 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
         }}
         valueText={(() => {
           if (item.type === ItemType.FOLDER) {
-            return translateBuilder(
-              BUILDER.SETTINGS_COLLAPSE_FOLDER_INFORMATION,
-            );
+            return translateBuilder('SETTINGS_COLLAPSE_FOLDER_INFORMATION');
           }
           return settings.isCollapsible
-            ? translateBuilder(BUILDER.ITEM_SETTINGS_IS_COLLAPSED_ENABLED_TEXT)
-            : translateBuilder(
-                BUILDER.ITEM_SETTINGS_IS_COLLAPSED_DISABLED_TEXT,
-              );
+            ? translateBuilder('ITEM_SETTINGS_IS_COLLAPSED_ENABLED_TEXT')
+            : translateBuilder('ITEM_SETTINGS_IS_COLLAPSED_DISABLED_TEXT');
         })()}
       />
 
@@ -130,15 +122,15 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
             type={ActionButton.ICON}
           />
         }
-        title={translateBuilder(BUILDER.ITEM_SETTINGS_IS_PINNED_TITLE)}
+        title={translateBuilder('ITEM_SETTINGS_IS_PINNED_TITLE')}
         checked={Boolean(settings.isPinned)}
         onClick={(checked: boolean): void => {
           handleOnToggle({ target: { checked } }, 'isPinned');
         }}
         valueText={
           settings.isPinned
-            ? translateBuilder(BUILDER.ITEM_SETTINGS_IS_PINNED_ENABLED_TEXT)
-            : translateBuilder(BUILDER.ITEM_SETTINGS_IS_PINNED_DISABLED_TEXT)
+            ? translateBuilder('ITEM_SETTINGS_IS_PINNED_ENABLED_TEXT')
+            : translateBuilder('ITEM_SETTINGS_IS_PINNED_DISABLED_TEXT')
         }
       />
 
@@ -146,7 +138,7 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
 
       <ItemSettingCheckBoxProperty
         id={SETTINGS_CHATBOX_TOGGLE_ID}
-        title={translateBuilder(BUILDER.ITEM_SETTINGS_SHOW_CHAT_TITLE)}
+        title={translateBuilder('ITEM_SETTINGS_SHOW_CHAT_TITLE')}
         icon={
           settings.showChatbox ? <MessageSquareText /> : <MessageSquareOff />
         }
@@ -156,20 +148,19 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
         }}
         valueText={
           settings.showChatbox
-            ? translateBuilder(BUILDER.ITEM_SETTINGS_SHOW_CHAT_ENABLED_TEXT)
-            : translateBuilder(BUILDER.ITEM_SETTINGS_SHOW_CHAT_DISABLED_TEXT)
+            ? translateBuilder('ITEM_SETTINGS_SHOW_CHAT_ENABLED_TEXT')
+            : translateBuilder('ITEM_SETTINGS_SHOW_CHAT_DISABLED_TEXT')
         }
       />
       <ItemSettingCheckBoxProperty
         id={SETTINGS_SAVE_ACTIONS_TOGGLE_ID}
-        title={translateBuilder(BUILDER.SETTINGS_SAVE_ACTIONS)}
+        title={translateBuilder('SETTINGS_SAVE_ACTIONS')}
         icon={<BarChart3 />}
         checked={Boolean(
           settings?.enableSaveActions ?? DEFAULT_SAVE_ACTIONS_SETTING,
         )}
         onClick={(checked: boolean): void => {
-          // TODO: add enableAnalytics in the ItemSettings type
-          handleOnToggle({ target: { checked } }, 'enableAnalytics');
+          handleOnToggle({ target: { checked } }, 'enableSaveActions');
         }}
         valueText="Coming soon"
         disabled

@@ -1,4 +1,5 @@
 import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -13,16 +14,11 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 
 import { Table2 } from 'lucide-react';
 import Papa from 'papaparse';
 
-import {
-  CSV_EMAIL_COLUMN_NAME,
-  CSV_GROUP_COLUMN_NAME,
-} from '@/config/constants';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   CSV_FILE_SELECTION_DELETE_BUTTON_ID,
@@ -31,13 +27,14 @@ import {
   SHARE_ITEM_FROM_CSV_CANCEL_BUTTON_ID,
   SHARE_ITEM_FROM_CSV_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 import ChoiceDisplay from './ChoiceDisplay';
 import DisplayInvitationSummary from './DisplayInvitationSummary';
 import TemplateSelectionButton from './TemplateSelectionButton';
 
 export const DIALOG_ID_LABEL = 'shareItemFromCsvLabel';
+const CSV_GROUP_COLUMN_NAME = 'group_name';
+const CSV_EMAIL_COLUMN_NAME = 'email';
 
 const allowedExtensions = ['.csv'].join(',');
 
@@ -51,7 +48,7 @@ const CSVFileSelectionButton = ({
   removeFile,
   handleFileChange,
 }: CSVFileSelectionButtonProps) => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   if (csvFile) {
     return (
       <ChoiceDisplay
@@ -69,7 +66,7 @@ const CSVFileSelectionButton = ({
       component="label"
       sx={{ width: 'max-content', textTransform: 'none' }}
     >
-      {t(BUILDER.SHARE_ITEM_CSV_IMPORT_INPUT_BUTTON)}
+      {t('SHARE_ITEM_CSV_IMPORT_INPUT_BUTTON')}
       <input
         type="file"
         hidden
@@ -91,14 +88,14 @@ const ImportUsersDialogContent = ({
   isFolder,
   handleClose,
 }: ImportUsersDialogContentProps): JSX.Element => {
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { t } = useTranslation(NS.Builder);
   const [csvFile, setCsvFile] = useState<File>();
   const [csvFileErrors, setCsvFileErrors] = useState<string>();
   const [showTemplateSelectionButton, setShowTemplateSelectionButton] =
     useState(false);
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>();
   const [isConfirmButtonEnabled, setIsConfirmButtonEnabled] = useState(false);
-  const { t } = useBuilderTranslation();
   const { mutate: postUserCsv, isSuccess: isSuccessPostingCSV } =
     mutations.useCSVUserImport();
   const {
@@ -130,7 +127,7 @@ const ImportUsersDialogContent = ({
             // check for errors in the column names
             if (!headers?.includes(CSV_EMAIL_COLUMN_NAME.toLowerCase())) {
               setCsvFileErrors(
-                t(BUILDER.SHARE_ITEM_CSV_IMPORT_ERROR_MISSING_COLUMN, {
+                t('SHARE_ITEM_CSV_IMPORT_ERROR_MISSING_COLUMN', {
                   column: CSV_EMAIL_COLUMN_NAME,
                 }),
               );
@@ -147,7 +144,7 @@ const ImportUsersDialogContent = ({
         });
       } else {
         // TODO: this should be displayed somewhere
-        console.error(t('Please select a file to upload.'));
+        console.error('Please select a file to upload.');
       }
     }
   };
@@ -184,12 +181,12 @@ const ImportUsersDialogContent = ({
   return (
     <>
       <DialogTitle id={DIALOG_ID_LABEL}>
-        {t(BUILDER.SHARE_ITEM_CSV_IMPORT_MODAL_TITLE)}
+        {t('SHARE_ITEM_CSV_IMPORT_MODAL_TITLE')}
       </DialogTitle>
       <DialogContent dividers>
         <Stack direction="column" alignItems="center" spacing={2}>
           <DialogContentText>
-            {t(BUILDER.SHARE_ITEM_CSV_IMPORT_MODAL_CONTENT)}
+            {t('SHARE_ITEM_CSV_IMPORT_MODAL_CONTENT')}
           </DialogContentText>
           <CSVFileSelectionButton
             csvFile={csvFile}
@@ -214,8 +211,8 @@ const ImportUsersDialogContent = ({
           />
           {isSuccess && (
             <Alert severity="success">
-              <AlertTitle>{t(BUILDER.IMPORT_CSV_SUCCESS_TITLE)}</AlertTitle>
-              <Typography>{t(BUILDER.IMPORT_CSV_SUCCESS_TEXT)}</Typography>
+              <AlertTitle>{t('IMPORT_CSV_SUCCESS_TITLE')}</AlertTitle>
+              <Typography>{t('IMPORT_CSV_SUCCESS_TEXT')}</Typography>
             </Alert>
           )}
         </Stack>
@@ -227,7 +224,7 @@ const ImportUsersDialogContent = ({
           onClick={handleClose}
           disabled={isSuccess}
         >
-          {translateCommon(COMMON.CANCEL_BUTTON)}
+          {translateCommon('CANCEL.BUTTON_TEXT')}
         </Button>
 
         <Button
@@ -238,8 +235,8 @@ const ImportUsersDialogContent = ({
           disabled={!isConfirmButtonEnabled}
         >
           {isSuccess
-            ? translateCommon(COMMON.CLOSE_BUTTON)
-            : translateCommon(COMMON.CONFIRM_BUTTON)}
+            ? t('CLOSE_BUTTON')
+            : translateCommon('CONFIRM.BUTTON_TEXT')}
         </Button>
       </DialogActions>
     </>

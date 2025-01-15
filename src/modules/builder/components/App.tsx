@@ -19,14 +19,12 @@ import {
   ITEM_SETTINGS_PATH,
   ITEM_SHARE_PATH,
   PUBLISHED_ITEMS_PATH,
-  RECYCLE_BIN_PATH,
   buildItemPath,
 } from '../config/paths';
 import { hooks, mutations } from '../config/queryClient';
 import BookmarkedItemsScreen from './pages/BookmarkedItemsScreen';
 import PublishedItemsScreen from './pages/PublishedItemsScreen';
-import RecycledItemsScreen from './pages/RecycledItemsScreen';
-import HomeScreen from './pages/home/HomeScreen';
+import HomeScreen from './pages/home/HomeScreenContent';
 import ItemPageLayout from './pages/item/ItemPageLayout';
 import ItemScreen from './pages/item/ItemScreen';
 import ItemSettingsPage from './pages/item/ItemSettingsPage';
@@ -94,7 +92,6 @@ const App = (): JSX.Element => {
           element={<BookmarkedItemsScreen />}
         />
         <Route path={PUBLISHED_ITEMS_PATH} element={<PublishedItemsScreen />} />
-        <Route path={RECYCLE_BIN_PATH} element={<RecycledItemsScreen />} />
       </Route>
 
       {/* item pages - can be public */}

@@ -1,18 +1,20 @@
 import { ChangeEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';
 
 import { SearchInput } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEMS_GRID_NO_SEARCH_RESULT_ID,
   ITEM_SEARCH_INPUT_ID,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 export const NoItemSearchResult = (): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Typography
@@ -34,7 +36,7 @@ export const useItemSearch = ({
   text: string;
   input: JSX.Element;
 } => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const [searchText, setSearchText] = useState<string>('');
 
   const handleSearchInput = (event: ChangeEvent<{ value: string }>) => {

@@ -1,15 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, Box, Skeleton } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
 import { NavigationElement, type RowMenuProps, RowMenus } from '@graasp/ui';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 interface ChildrenNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];
@@ -26,7 +27,7 @@ const ChildrenNavigationTree = ({
   onNavigate,
   isDisabled,
 }: ChildrenNavigationTreeProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: children, isLoading } = hooks.useChildren(
     selectedNavigationItem.id,
     { types: [ItemType.FOLDER] },
@@ -46,7 +47,7 @@ const ChildrenNavigationTree = ({
         />
         {!children?.length && (
           <Box sx={{ color: 'darkgrey', pt: 1 }}>
-            {translateBuilder(BUILDER.EMPTY_FOLDER_CHILDREN_FOR_THIS_ITEM)}
+            {translateBuilder('EMPTY_FOLDER_CHILDREN_FOR_THIS_ITEM')}
           </Box>
         )}
       </>

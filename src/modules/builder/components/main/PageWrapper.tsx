@@ -8,28 +8,23 @@ import {
   Main as GraaspMain,
   Platform,
   PlatformSwitch,
-  defaultHostsMapper,
   useMobileView,
-  usePlatformNavigation,
 } from '@graasp/ui';
 
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { Link, useParams } from '@tanstack/react-router';
 
+import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import {
-  APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS,
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_APP_BAR_ID,
 } from '@/config/selectors';
 
-import { HOST_MAP } from '~builder/config/externalPaths';
-
 import { HOME_PATH } from '../../config/paths';
 import { MemberValidationBanner } from '../alerts/MemberValidationBanner';
-import CookiesBanner from '../common/CookiesBanner';
-import UserSwitchWrapper from '../common/UserSwitchWrapper';
-import MainMenu from './MainMenu';
+import { MainMenu } from './MainMenu';
 import NotificationButton from './NotificationButton';
 
 const StyledLink = styled(Link)(() => ({
@@ -48,15 +43,6 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
   </StyledLink>
 );
 
-// small converter for HOST_MAP into a usePlatformNavigation mapper
-export const platformsHostsMap = defaultHostsMapper({
-  [Platform.Player]: HOST_MAP.player,
-  [Platform.Library]: HOST_MAP.library,
-  [Platform.Analytics]: HOST_MAP.analytics,
-});
-
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
-
 type Props = { children: ReactNode };
 
 export function PageWrapper({ children }: Readonly<Props>): JSX.Element {
@@ -65,25 +51,20 @@ export function PageWrapper({ children }: Readonly<Props>): JSX.Element {
   const { isMobile } = useMobileView();
   const { data: currentMember } = hooks.useCurrentMember();
 
-  const { itemId } = itemRoute.useParams();
+  const { itemId } = useParams({ strict: false });
 
-  const getNavigationEvents = usePlatformNavigation(platformsHostsMap, itemId);
   const platformProps = {
     [Platform.Builder]: {
-      id: APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS[Platform.Builder],
       href: '/',
     },
     [Platform.Player]: {
-      id: APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS[Platform.Player],
-      ...getNavigationEvents(Platform.Player),
+      href: `/player/${itemId}/${itemId}`,
     },
     [Platform.Library]: {
-      id: APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS[Platform.Library],
-      ...getNavigationEvents(Platform.Library),
+      href: GRAASP_LIBRARY_HOST,
     },
     [Platform.Analytics]: {
-      id: APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS[Platform.Analytics],
-      ...getNavigationEvents(Platform.Analytics),
+      href: `/analytics/items/${itemId}`,
     },
   };
 
@@ -120,7 +101,6 @@ export function PageWrapper({ children }: Readonly<Props>): JSX.Element {
       }
     >
       <MemberValidationBanner />
-      <CookiesBanner />
       {children}
     </GraaspMain>
   );

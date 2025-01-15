@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { ItemVisibilityType, PackedItem } from '@graasp/sdk';
@@ -5,12 +7,13 @@ import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import {
   HIDDEN_ITEM_BUTTON_CLASS,
   buildHideButtonId,
-} from '../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type HideButtonProps = {
@@ -24,7 +27,7 @@ const HideButton = ({
   type = ActionButton.ICON_BUTTON,
   onClick,
 }: HideButtonProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const postVisibility = mutations.usePostItemVisibility();
   const deleteVisibility = mutations.useDeleteItemVisibility();

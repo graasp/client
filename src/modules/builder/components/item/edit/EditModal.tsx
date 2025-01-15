@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { Dialog, DialogTitle } from '@mui/material';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
-import { FAILURE_MESSAGES } from '@graasp/translations';
 
-import { useBuilderTranslation, useMessagesTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { EDIT_MODAL_ID } from '@/config/selectors';
 
 import { BUILDER } from '../../../langs/constants';
@@ -23,8 +23,8 @@ type Props = {
 };
 
 const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateMessage } = useMessagesTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
 
   // updated properties are separated from the original item
   // so only necessary properties are sent when editing
@@ -59,7 +59,7 @@ const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
       return <BaseItemForm onClose={onClose} item={item} />;
     }
 
-    toast.error(translateMessage(FAILURE_MESSAGES.UNEXPECTED_ERROR));
+    toast.error(translateMessage('UNEXPECTED_ERROR'));
 
     return null;
   };

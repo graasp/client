@@ -12,8 +12,6 @@ import {
   MEMBER_VALIDATION_BANNER_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
-
 import useModalStatus from '../hooks/useModalStatus';
 
 const DOCUMENTATION_ORIGIN = 'https://graasp.github.io/docs';
@@ -53,11 +51,11 @@ export function MemberValidationBanner(): JSX.Element | null {
           </IconButton>
         }
       >
-        <AlertTitle>{t(BUILDER.MEMBER_VALIDATION_TITLE)}</AlertTitle>
+        <AlertTitle>{t('MEMBER_VALIDATION_TITLE')}</AlertTitle>
         <Stack gap={1}>
-          {t(BUILDER.MEMBER_VALIDATION_DESCRIPTION)}
+          {t('MEMBER_VALIDATION_DESCRIPTION')}
           <Link to={buildLocalizedDocumentationLink(i18n.language)}>
-            {t(BUILDER.MEMBER_VALIDATION_LINK_TEXT)}
+            {t('MEMBER_VALIDATION_LINK_TEXT')}
           </Link>
         </Stack>
       </Alert>

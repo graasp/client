@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 import { DownloadButton as Button } from '@graasp/ui';
 
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
 import { buildDownloadButtonId } from '@/config/selectors';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 };
 
 export const DownloadButton = ({ item }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const {
     mutate: downloadItem,
@@ -33,7 +34,6 @@ export const DownloadButton = ({ item }: Props): JSX.Element => {
       document.body.appendChild(link);
       link.click();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isSuccess, item]);
 
   const handleDownload = () => {

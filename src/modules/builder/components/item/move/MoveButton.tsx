@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   ActionButton,
   ActionButtonVariant,
@@ -5,11 +7,12 @@ import {
   MoveButton as GraaspMoveButton,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
   ITEM_MOVE_BUTTON_CLASS,
-} from '../../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 type MoveButtonProps = {
@@ -25,7 +28,7 @@ const MoveButton = ({
   type = ActionButton.ICON_BUTTON,
   onClick,
 }: MoveButtonProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <GraaspMoveButton

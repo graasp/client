@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { ButtonProps, Dialog, IconButton, useTheme } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
@@ -5,10 +7,10 @@ import { Button } from '@graasp/ui';
 
 import { FolderPlus } from 'lucide-react';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { ADD_FOLDER_BUTTON_CY } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
 
 import { FolderCreateForm } from './FolderCreateForm';
 
@@ -27,7 +29,7 @@ export const NewFolderButton = ({
   size = 'medium',
   type = 'button',
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const theme = useTheme();
   const { isOpen, openModal, closeModal } = useModalStatus();
 
@@ -59,7 +61,7 @@ export const NewFolderButton = ({
           size={size}
           data-umami-event="new-folder-button"
         >
-          {translateBuilder(BUILDER.CREATE_FOLDER_BUTTON_TEXT)}
+          {translateBuilder('CREATE_FOLDER_BUTTON_TEXT')}
         </Button>
       )}
       <Dialog open={isOpen} onClose={closeModal} maxWidth="md" fullWidth>

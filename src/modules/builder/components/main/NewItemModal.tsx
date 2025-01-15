@@ -13,7 +13,7 @@ import {
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
 import { Button } from '@graasp/ui';
 
-import { getRouteApi } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { CREATE_ITEM_CLOSE_BUTTON_ID } from '@/config/selectors';
@@ -38,8 +38,6 @@ const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
   paddingRight: 0,
 }));
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
-
 type Props = {
   open: boolean;
   handleClose: () => void;
@@ -59,7 +57,7 @@ const NewItemModal = ({
     ItemType.LOCAL_FILE,
   );
 
-  const { itemId: parentId } = itemRoute.useParams();
+  const { itemId: parentId } = useParams({ strict: false });
 
   // folders, apps, files, documents, etherpad and links are handled beforehand
   const renderContent = () => {

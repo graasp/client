@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   DiscriminatedItem,
@@ -7,10 +8,9 @@ import {
   buildShortcutExtra,
 } from '@graasp/sdk';
 
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { computeButtonText } from '@/utils/itemSelection';
 
-import { useBuilderTranslation } from '../../../config/i18n';
 import { BUILDER } from '../../../langs/constants';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
@@ -27,7 +27,7 @@ const CreateShortcutModal = ({
   onClose,
   open,
 }: Props): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: createShortcut } = mutations.usePostItem();
   const [item] = useState<DiscriminatedItem>(defaultItem);
 
@@ -51,11 +51,7 @@ const CreateShortcutModal = ({
   };
 
   const buttonText = (name?: string) =>
-    computeButtonText({
-      translateBuilder,
-      translateKey: BUILDER.CREATE_SHORTCUT_BUTTON,
-      name,
-    });
+    translateBuilder('CREATE_SHORTCUT_BUTTON', { name, count: name ? 1 : 0 });
 
   if (item && open) {
     return (

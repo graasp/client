@@ -1,7 +1,8 @@
 import { Drawer, Toolbar, styled } from '@mui/material';
 
-import { RIGHT_MENU_WIDTH } from '../../config/constants';
-import { ITEM_PANEL_ID } from '../../config/selectors';
+import { ITEM_PANEL_ID } from '@/config/selectors';
+
+export const RIGHT_MENU_WIDTH = 300;
 
 const StyledDrawer = styled(Drawer)(({ theme, open }) => ({
   width: open ? RIGHT_MENU_WIDTH : 0,

@@ -49,5 +49,6 @@
     "USERNAME_MAX_LENGTH": "User name must be less than {{max}} characters",
     "USERNAME_SPECIAL_CHARACTERS": "User name must not contain quotes, anti-slash, <, >, ^, %",
     "INVALID_EMAIL": "This does not look like a valid email address"
-  }
+  },
+  "UNKNOWN_DATE": "Unknown"
 }

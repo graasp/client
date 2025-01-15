@@ -1,9 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 import { DiscriminatedItem } from '@graasp/sdk';
 
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { computeButtonText } from '@/utils/itemSelection';
 
-import { useBuilderTranslation } from '../../../config/i18n';
 import { BUILDER } from '../../../langs/constants';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
@@ -19,7 +20,7 @@ export const CopyModal = ({
   itemIds: DiscriminatedItem['id'][];
 }): JSX.Element | null => {
   const { mutate: copyItems } = mutations.useCopyItems();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
     copyItems({
@@ -30,11 +31,7 @@ export const CopyModal = ({
   };
 
   const buttonText = (name?: string) =>
-    computeButtonText({
-      translateBuilder,
-      translateKey: BUILDER.COPY_BUTTON,
-      name,
-    });
+    translateBuilder('COPY_BUTTON', { name, count: name ? 1 : 0 });
 
   // prevent loading if not opened
   if (!open) {

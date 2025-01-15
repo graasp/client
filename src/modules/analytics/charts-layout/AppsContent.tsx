@@ -13,7 +13,7 @@ import {
   buildAppItemSelector,
 } from '~analytics/config/selectors';
 
-export const ITEM_DEFAULT_HEIGHT = '70vh';
+const APP_ITEM_DEFAULT_HEIGHT = '70vh';
 
 const AppContent = ({
   item,
@@ -34,7 +34,7 @@ const AppContent = ({
           <AppItem
             isResizable={false}
             item={item}
-            height={ITEM_DEFAULT_HEIGHT}
+            height={APP_ITEM_DEFAULT_HEIGHT}
             requestApiAccessToken={(payload: {
               id: string;
               key: string;

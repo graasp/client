@@ -19,7 +19,7 @@ import ItemsTable from '../main/list/ItemsTable';
 import SortingSelect from '../table/SortingSelect';
 import { SortingOptions } from '../table/types';
 import { useSorting, useTranslatedSortingOptions } from '../table/useSorting';
-import PageWrapper from './PageWrapper';
+import PageWrapper from './BuilderPageLayout';
 
 const BookmarkedItems = ({
   searchText,

@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
 import { ItemBadges } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { BUILDER } from '../../langs/constants';
+import { NS } from '@/config/constants';
 
 type ItemStatuses = {
   showChatbox: boolean;
@@ -53,7 +54,7 @@ export const useItemsStatuses = ({
   }, {} as ItemsStatuses);
 
 const Badges = ({ itemsStatuses, data: item }: ChildCompProps): JSX.Element => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   // this is useful because the item.id we are looking for may not be present and the itemStatuses will be undefined
   const itemStatuses = itemsStatuses?.[item.id] || DEFAULT_ITEM_STATUSES;
   const { showChatbox, isPinned, isHidden, isPublic, isCollapsible } =
@@ -61,16 +62,16 @@ const Badges = ({ itemsStatuses, data: item }: ChildCompProps): JSX.Element => {
   return (
     <ItemBadges
       isPinned={isPinned}
-      isPinnedTooltip={t(BUILDER.STATUS_TOOLTIP_IS_PINNED)}
+      isPinnedTooltip={t('STATUS_TOOLTIP_IS_PINNED')}
       isHidden={isHidden}
-      isHiddenTooltip={t(BUILDER.STATUS_TOOLTIP_IS_HIDDEN)}
+      isHiddenTooltip={t('STATUS_TOOLTIP_IS_HIDDEN')}
       isPublic={isPublic}
-      isPublicTooltip={t(BUILDER.STATUS_TOOLTIP_IS_PUBLIC)}
-      isPublishedTooltip={t(BUILDER.STATUS_TOOLTIP_IS_PUBLISHED)}
+      isPublicTooltip={t('STATUS_TOOLTIP_IS_PUBLIC')}
+      isPublishedTooltip={t('STATUS_TOOLTIP_IS_PUBLISHED')}
       isCollapsible={isCollapsible}
-      isCollapsibleTooltip={t(BUILDER.STATUS_TOOLTIP_IS_COLLAPSIBLE)}
+      isCollapsibleTooltip={t('STATUS_TOOLTIP_IS_COLLAPSIBLE')}
       showChatbox={showChatbox}
-      showChatboxTooltip={t(BUILDER.STATUS_TOOLTIP_SHOW_CHATBOX)}
+      showChatboxTooltip={t('STATUS_TOOLTIP_SHOW_CHATBOX')}
     />
   );
 };

@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -10,19 +11,20 @@ import {
 
 import { ShortLink } from '@graasp/sdk';
 
-import CancelButton from '@/components/common/CancelButton';
-import { SHORT_LINK_API_CALL_DEBOUNCE_MS } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   SHORT_LINK_SAVE_BUTTON_ID,
   buildShortLinkCancelBtnId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { useDebouncedCallback } from '@/utils/useDebounce';
+
+import CancelButton from '~builder/components/common/CancelButton';
+import { useDebouncedCallback } from '~builder/utils/useDebounce';
 
 import AliasInput from './AliasInput';
 import AliasValidation from './AliasValidation';
+
+const SHORT_LINK_API_CALL_DEBOUNCE_MS = 500;
 
 const { usePostShortLink, usePatchShortLink } = mutations;
 const { useShortLinkAvailable } = hooks;
@@ -42,16 +44,16 @@ const ShortLinkDialogContent = ({
   handleClose,
   isNew,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutateAsync: postShortLink, isPending: loadingPost } =
     usePostShortLink();
   const { mutateAsync: patchShortLink, isPending: loadingDelete } =
     usePatchShortLink();
 
-  const DIALOG_TITLE = translateBuilder(
-    isNew ? BUILDER.CREATE_SHORT_LINK_TITLE : BUILDER.EDIT_SHORT_LINK_TITLE,
-  );
+  const DIALOG_TITLE = isNew
+    ? translateBuilder('CREATE_SHORT_LINK_TITLE')
+    : translateBuilder('EDIT_SHORT_LINK_TITLE');
 
   const [alias, setAlias] = useState<string>(initialAlias);
   const [search, setSearch] = useState<string | undefined>();
@@ -141,7 +143,7 @@ const ShortLinkDialogContent = ({
           disabled={!enableSaveBtn}
           id={SHORT_LINK_SAVE_BUTTON_ID}
         >
-          {translateBuilder(BUILDER.SAVE_BTN)}
+          {translateBuilder('SAVE_BTN')}
         </Button>
       </DialogActions>
     </>

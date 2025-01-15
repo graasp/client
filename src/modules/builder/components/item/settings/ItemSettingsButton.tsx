@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
+import { IconButton, ListItemIcon, Tooltip } from '@mui/material';
 
 import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
+import { Link } from '@tanstack/react-router';
 import { SettingsIcon } from 'lucide-react';
 
-import { buildItemSettingsPath } from '@/config/paths';
+import { MenuItemLink } from '@/components/ui/MenuItemLink';
+import { NS } from '@/config/constants';
+import { buildSettingsButtonId } from '@/config/selectors';
 
-import { useBuilderTranslation } from '../../../config/i18n';
-import { buildSettingsButtonId } from '../../../config/selectors';
+import { buildItemSettingsPath } from '~builder/config/paths';
+
 import { BUILDER } from '../../../langs/constants';
 
 type Props = {
@@ -21,7 +24,7 @@ const ItemSettingsButton = ({
   itemId,
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const text = translateBuilder(BUILDER.SETTINGS_TITLE);
   const to = buildItemSettingsPath(itemId);
@@ -30,20 +33,22 @@ const ItemSettingsButton = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem component={Link} to={to} key={text} id={id}>
+        <MenuItemLink to={to} key={text} id={id}>
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
           {text}
-        </MenuItem>
+        </MenuItemLink>
       );
     case ActionButton.ICON_BUTTON:
     default:
       return (
         <Tooltip title={text}>
-          <IconButton id={id} component={Link} to={to}>
-            <SettingsIcon />
-          </IconButton>
+          <Link to={to}>
+            <IconButton id={id}>
+              <SettingsIcon />
+            </IconButton>
+          </Link>
         </Tooltip>
       );
   }

@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -12,25 +13,22 @@ import {
 } from '@mui/material';
 
 import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 import { Button } from '@graasp/ui';
 
 import truncate from 'lodash.truncate';
 import validator from 'validator';
 
-import { ITEM_NAME_MAX_LENGTH } from '@/config/constants';
-
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../../config/i18n';
-import { hooks, mutations } from '../../../../config/queryClient';
+import { NS } from '@/config/constants';
+import { hooks, mutations } from '@/config/queryClient';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   SHARE_ITEM_CANCEL_BUTTON_CY,
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+
+import { ITEM_NAME_MAX_LENGTH } from '~builder/config/constants';
+
 import { BUILDER } from '../../../../langs/constants';
 import ItemMembershipSelect from '../ItemMembershipSelect';
 
@@ -51,8 +49,8 @@ const Content = ({ handleClose, item }: ContentProps) => {
   const { data: memberships } = hooks.useItemMemberships(item.id);
   const { data: invitations } = hooks.useItemInvitations(item.id);
 
-  const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const {
     register,
@@ -147,7 +145,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
           onClick={handleClose}
           dataCy={SHARE_ITEM_CANCEL_BUTTON_CY}
         >
-          {translateCommon(COMMON.CANCEL_BUTTON)}
+          {translateCommon('CANCEL.BUTTON_TEXT')}
         </Button>
         <Button
           disabled={Boolean(errors.email)}
@@ -172,7 +170,7 @@ const CreateItemMembershipForm = ({
   open,
   handleClose,
 }: CreateItemMembershipFormProps): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <Dialog onClose={handleClose} open={open}>

@@ -1,6 +1,4 @@
 // synchronous functions to manage items from redux
-import { useEffect, useState } from 'react';
-
 import {
   DiscriminatedItem,
   ItemMembership,
@@ -106,25 +104,6 @@ export const sortByName = (
   if (a.name > b.name) return 1;
   return 0;
 };
-
-// todo: use typescript to precise data is one of Invitation or Membership
-export function useIsParentInstance({
-  instance,
-  item,
-}: {
-  instance: { item: DiscriminatedItem };
-  item: DiscriminatedItem;
-}): boolean {
-  const [isParentMembership, setIsParentMembership] = useState(false);
-  useEffect(() => {
-    setIsParentMembership(instance.item.path !== item.path);
-    return () => {
-      setIsParentMembership(false);
-    };
-  }, [instance, item]);
-
-  return isParentMembership;
-}
 
 // todo: to remove
 // get highest permission a member have over an item,

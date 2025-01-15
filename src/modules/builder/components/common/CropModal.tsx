@@ -1,4 +1,5 @@
 import { ReactEventHandler, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ReactCrop, {
   Crop,
   PixelCrop,
@@ -17,11 +18,13 @@ import {
 
 import { Button } from '@graasp/ui';
 
-import { THUMBNAIL_ASPECT } from '../../config/constants';
-import { useBuilderTranslation } from '../../config/i18n';
-import { CROP_MODAL_CONFIRM_BUTTON_ID } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { CROP_MODAL_CONFIRM_BUTTON_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import CancelButton from './CancelButton';
+
+const THUMBNAIL_ASPECT = 1;
 
 export const MODAL_TITLE_ARIA_LABEL_ID = 'crop-modal-title';
 
@@ -56,7 +59,7 @@ const CropModal = ({ onConfirm, onClose, src }: CropProps): JSX.Element => {
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
   const [isError, setIsError] = useState(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
 
   const handleOnConfirm = async () => {
     // get the image html element

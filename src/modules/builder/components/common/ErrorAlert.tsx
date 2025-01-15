@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@mui/material';
 
-import { useBuilderTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -8,7 +11,7 @@ type Props = {
 };
 
 const ErrorAlert = ({ id }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   return (
     <Alert id={id} severity="error">
       {translateBuilder(BUILDER.ERROR_MESSAGE)}

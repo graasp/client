@@ -45,37 +45,13 @@ const ResourceLinks = () => {
   );
 };
 
-const MainMenu = (): JSX.Element | null => {
-  const { t } = useTranslation(NS.Builder);
+export function MainMenu(): JSX.Element | null {
+  const { t } = useTranslation(NS.Builder, { keyPrefix: 'MENU' });
   const { data: member } = hooks.useCurrentMember();
 
   if (!member || !member.id) {
     return null;
   }
-
-  const individualMenuItems =
-    member.type === AccountType.Individual ? (
-      <>
-        <MainMenuItem
-          dataUmamiEvent="sidebar-bookmarks"
-          to="/builder/bookmarks"
-          text={t(BUILDER.BOOKMARKED_ITEMS_TITLE)}
-          icon={<BookmarkIcon />}
-        />
-        <MainMenuItem
-          dataUmamiEvent="sidebar-published"
-          to="/builder/published"
-          text={t(BUILDER.NAVIGATION_PUBLISHED_ITEMS_TITLE)}
-          icon={<LibraryBigIcon />}
-        />
-        <MainMenuItem
-          dataUmamiEvent="sidebar-trash"
-          to="/builder/recycled"
-          text={t(BUILDER.RECYCLE_BIN_TITLE)}
-          icon={<TrashIcon />}
-        />
-      </>
-    ) : null;
 
   return (
     <GraaspMainMenu fullHeight>
@@ -85,9 +61,30 @@ const MainMenu = (): JSX.Element | null => {
             dataUmamiEvent="sidebar-home"
             to="/builder"
             icon={<HomeIcon />}
-            text={t(BUILDER.MY_ITEMS_TITLE)}
+            text={t('MY_ITEMS')}
           />
-          {individualMenuItems}
+          {member.type === AccountType.Individual ? (
+            <>
+              <MainMenuItem
+                dataUmamiEvent="sidebar-bookmarks"
+                to="/builder/bookmarks"
+                text={t('BOOKMARKED_ITEMS')}
+                icon={<BookmarkIcon />}
+              />
+              <MainMenuItem
+                dataUmamiEvent="sidebar-published"
+                to="/builder/published"
+                text={t('PUBLISHED_ITEMS')}
+                icon={<LibraryBigIcon />}
+              />
+              <MainMenuItem
+                dataUmamiEvent="sidebar-trash"
+                to="/builder/recycled"
+                text={t('RECYCLED_ITEMS')}
+                icon={<TrashIcon />}
+              />
+            </>
+          ) : null}
         </Box>
         <Box>
           <ResourceLinks />
@@ -95,6 +92,4 @@ const MainMenu = (): JSX.Element | null => {
       </Stack>
     </GraaspMainMenu>
   );
-};
-
-export default MainMenu;
+}

@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 import { MAX_ZIP_FILE_SIZE, formatFileSize } from '@graasp/sdk';
 import { UploadFileButton } from '@graasp/ui';
 
-import { getRouteApi } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -14,9 +14,8 @@ import { ZIP_DASHBOARD_UPLOADER_ID } from '@/config/selectors';
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 const ImportZip = (): JSX.Element => {
-  const { itemId } = itemRoute.useParams();
+  const { itemId } = useParams({ strict: false });
   const { mutateAsync: importZip } = mutations.useImportZip();
   const { update, close: closeNotification } = useUploadWithProgress();
 

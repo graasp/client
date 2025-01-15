@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ButtonProps, IconButton, useTheme } from '@mui/material';
 
@@ -7,8 +8,9 @@ import { Button } from '@graasp/ui';
 
 import { PlusIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { CREATE_ITEM_BUTTON_ID } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { CREATE_ITEM_BUTTON_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import NewItemModal from './NewItemModal';
 
@@ -24,7 +26,7 @@ const NewItemButton = ({
   type = 'button',
 }: Props): JSX.Element => {
   const [open, setOpen] = useState(false);
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const theme = useTheme();
 
   const handleClickOpen = () => {

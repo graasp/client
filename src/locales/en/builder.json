@@ -1,4 +1,12 @@
 {
+  "MENU": {
+    "MY_ITEMS": "My Graasp",
+    "BOOKMARKED_ITEMS": "Bookmarks",
+    "PUBLISHED_ITEMS": "Published",
+    "RECYCLED_ITEMS": "Recycled"
+  },
+  "REDIRECTION_TEXT": "Redirection",
+  "REDIRECTION_BUTTON": "Navigate to redirection",
   "AVATAR_DEFAULT_ALT": "avatar",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "This item has item login enabled. New users can access this item when they authenticate using the item login.",
   "ACCESS_ITEM_LOGIN_TAG": "Anyone authenticated with the link",
@@ -453,11 +461,13 @@
   "UPLOAD_NOTIFICATION_LOADING": "Uploading...",
   "UPLOAD_NOTIFICATION_COMPLETE": "Upload complete!",
   "SORT_BY_LABEL": "Sort by",
-  "item.updated_at": "Updated At",
-  "item.creator.name": "Creator",
-  "item.type": "Type",
-  "item.name": "Name",
-  "order": "Order",
+  "item": {
+    "updated_at": "Updated At",
+    "creator": { "name": "Creator" },
+    "type": "Type",
+    "name": "Name",
+    "order": "Order"
+  },
   "TRASH_NO_ITEM": "You trash is empty.",
   "BOOKMARKS_NO_ITEM": "No bookmarked item",
   "BOOKMARKS_NO_ITEM_SEARCH": "No bookmarked item for {{search}}",

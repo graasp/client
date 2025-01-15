@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { IconButtonProps } from '@mui/material';
 
 import { DiscriminatedItem, ItemBookmark } from '@graasp/sdk';
@@ -6,8 +8,9 @@ import {
   BookmarkButton as GraaspBookmarkButton,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { hooks, mutations } from '../../config/queryClient';
+import { NS } from '@/config/constants';
+import { hooks, mutations } from '@/config/queryClient';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -31,7 +34,7 @@ const BookmarkButton = ({
   className,
 }: Props): JSX.Element | null => {
   const { data: bookmarks } = hooks.useBookmarkedItems();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const addFavorite = mutations.useAddBookmarkedItem();
   const deleteFavorite = mutations.useRemoveBookmarkedItem();
 

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -18,17 +19,17 @@ import {
   S3FileItemExtra,
   S3FileItemType,
 } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_IMAGE_ALT_TEXT_EDIT_FIELD_ID,
 } from '@/config/selectors';
-import { getExtraFromPartial } from '@/utils/itemExtra';
+
+import CancelButton from '~builder/components/common/CancelButton';
+import { getExtraFromPartial } from '~builder/utils/itemExtra';
 
 import { BUILDER } from '../../../../langs/constants';
 import { ItemNameField } from '../ItemNameField';
@@ -48,8 +49,8 @@ const FileForm = ({
   item: LocalFileItemType | S3FileItemType;
   onClose: () => void;
 }): ReactNode => {
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>({ defaultValues: { name: item.name } });
   const {
     register,

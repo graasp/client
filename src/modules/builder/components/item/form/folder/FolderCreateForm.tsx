@@ -13,7 +13,7 @@ import {
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
 import { Button } from '@graasp/ui';
 
-import { getRouteApi } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -28,7 +28,6 @@ import ThumbnailCrop from '../../../thumbnails/ThumbnailCrop';
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionForm } from '../description/DescriptionForm';
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 type Inputs = {
   name: string;
   description: string;
@@ -46,7 +45,7 @@ export function FolderCreateForm({
   geolocation,
   previousItemId,
 }: Readonly<FolderCreateFormProps>): JSX.Element {
-  const { itemId: parentId } = itemRoute.useParams();
+  const { itemId: parentId } = useParams({ strict: false });
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>();

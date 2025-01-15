@@ -1,9 +1,6 @@
-import { useNavigate } from 'react-router';
-
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { buildGraaspPlayerView } from '@/config/externalPaths';
-import { buildItemPath } from '@/config/paths';
+import { useNavigate } from '@tanstack/react-router';
 
 import MapView from '../item/MapView';
 
@@ -15,11 +12,17 @@ export const DesktopMap = ({ parentId }: Props): JSX.Element => {
   const navigate = useNavigate();
 
   const viewItem = (item: DiscriminatedItem) => {
-    navigate(buildGraaspPlayerView(item.id));
+    navigate({
+      to: '/player/$rootId/$itemId',
+      params: { rootId: item.id, itemId: item.id },
+    });
   };
 
   const viewItemInBuilder = (item: DiscriminatedItem) => {
-    navigate(buildItemPath(item.id));
+    navigate({
+      to: '/builder/items/$itemId',
+      params: { itemId: item.id },
+    });
   };
 
   // todo: improve height

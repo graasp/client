@@ -1,4 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { MenuItem, Select } from '@mui/material';
 
@@ -6,17 +7,16 @@ import { DescriptionPlacement, DescriptionPlacementType } from '@graasp/sdk';
 
 import { CornerDownRightIcon, CornerUpRightIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID,
   buildDescriptionPlacementId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 import ItemSettingProperty from '../../settings/ItemSettingProperty';
 
 const DescriptionPlacementForm = (): JSX.Element | null => {
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const { watch, control } = useFormContext<{
     descriptionPlacement: DescriptionPlacementType;
   }>();
@@ -25,7 +25,7 @@ const DescriptionPlacementForm = (): JSX.Element | null => {
 
   return (
     <ItemSettingProperty
-      title={t(BUILDER.ITEM_SETTINGS_DESCRIPTION_PLACEMENT_TITLE)}
+      title={t('ITEM_SETTINGS_DESCRIPTION_PLACEMENT_TITLE')}
       icon={
         descriptionPlacement === DescriptionPlacement.ABOVE ? (
           <CornerUpRightIcon />
@@ -33,7 +33,7 @@ const DescriptionPlacementForm = (): JSX.Element | null => {
           <CornerDownRightIcon />
         )
       }
-      valueText={t(BUILDER.ITEM_SETTINGS_DESCRIPTION_PLACEMENT_HELPER, {
+      valueText={t('ITEM_SETTINGS_DESCRIPTION_PLACEMENT_HELPER', {
         placement: t(descriptionPlacement).toLowerCase(),
       })}
       inputSetting={
@@ -51,6 +51,7 @@ const DescriptionPlacementForm = (): JSX.Element | null => {
             >
               {Object.values(DescriptionPlacement).map((placement) => (
                 <MenuItem
+                  key={placement}
                   id={buildDescriptionPlacementId(placement)}
                   value={placement}
                 >

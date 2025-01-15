@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useOutletContext } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -17,20 +17,20 @@ import {
 } from '@graasp/sdk';
 import { Loader } from '@graasp/ui';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildItemsTableId,
 } from '@/config/selectors';
-import { ItemLayoutMode, Ordering } from '@/enums';
-import { BUILDER } from '@/langs/constants';
+
+import { ItemLayoutMode, Ordering } from '~builder/enums';
 
 import ErrorAlert from '../common/ErrorAlert';
 import SelectTypes from '../common/SelectTypes';
 import { useFilterItemsContext } from '../context/FilterItemsContext';
 import { useLayoutContext } from '../context/LayoutContext';
-import FileUploader from '../file/FileUploader';
+import { FileUploader } from '../file/FileUploader';
 import NewItemButton from '../main/NewItemButton';
 import ItemsTable from '../main/list/ItemsTable';
 import {
@@ -43,9 +43,11 @@ import {
 } from '../main/list/useDragSelection';
 import { DesktopMap } from '../map/DesktopMap';
 import NoItemFilters from '../pages/NoItemFilters';
-import { OutletType } from '../pages/item/type';
 import SortingSelect from '../table/SortingSelect';
-import { SortingOptionsForFolder } from '../table/types';
+import {
+  SortingOptionsForFolder,
+  SortingOptionsForFolderType,
+} from '../table/types';
 import { useSorting } from '../table/useSorting';
 import FolderDescription from './FolderDescription';
 import FolderToolbar from './FolderSelectionToolbar';
@@ -57,7 +59,7 @@ type Props = {
   item: PackedItem;
   searchText: string;
   items?: PackedItem[];
-  sortBy: SortingOptionsForFolder;
+  sortBy: SortingOptionsForFolderType;
   canWrite?: boolean;
 };
 
@@ -142,12 +144,13 @@ const Content = ({
 const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
-  const { t: translateEnums } = useEnumsTranslation();
   const { itemTypes } = useFilterItemsContext();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { selectedIds } = useSelectionContext();
   const itemSearch = useItemSearch();
-  const { canWrite } = useOutletContext<OutletType>();
+  // const { canWrite } = useOutletContext<OutletType>();
+  // FIX: fix this !!!
+  const canWrite = false;
 
   const {
     data: children,
@@ -160,13 +163,13 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
   });
 
   const { ordering, setOrdering, setSortBy, sortBy, sortFn } =
-    useSorting<SortingOptionsForFolder>({
+    useSorting<SortingOptionsForFolderType>({
       sortBy: SortingOptionsForFolder.Order,
       ordering: Ordering.ASC,
     });
 
   const sortingOptions = Object.values(SortingOptionsForFolder).sort((t1, t2) =>
-    translateEnums(t1).localeCompare(translateEnums(t2)),
+    translateBuilder(t1).localeCompare(translateBuilder(t2)),
   );
 
   if (children) {
@@ -252,7 +255,7 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
         {/* reader empty message */}
         {!sortedChildren.length && !canWrite ? (
           <Alert severity="info" sx={{ mt: 2 }}>
-            {translateBuilder(BUILDER.EMPTY_FOLDER_MESSAGE)}
+            {translateBuilder('EMPTY_FOLDER_MESSAGE')}
           </Alert>
         ) : null}
 
@@ -277,7 +280,7 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
 
   return (
     <Alert severity="info">
-      {translateBuilder(BUILDER.ITEMS_TABLE_EMPTY_MESSAGE)}
+      {translateBuilder('ITEMS_TABLE_EMPTY_MESSAGE')}
     </Alert>
   );
 };

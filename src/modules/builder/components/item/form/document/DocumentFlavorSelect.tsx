@@ -1,4 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
@@ -19,9 +20,8 @@ import {
 
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { FLAVOR_SELECT_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 const getIcon = (flavor: `${DocumentItemExtraFlavor}`) => {
   switch (flavor) {
@@ -59,17 +59,15 @@ export const DocumentFlavorSelect = (): JSX.Element => {
   const { control, register } = useFormContext<{
     flavor: `${DocumentItemExtraFlavor}`;
   }>();
-  const { t } = useBuilderTranslation();
+  const { t } = useTranslation(NS.Builder);
   const theme = useTheme();
   const flavorsTranslations = Object.values(DocumentItemExtraFlavor).map(
     (f) => [
       f,
       t(
-        BUILDER[
-          `DOCUMENT_FLAVOR_${
-            f.toUpperCase() as Uppercase<`${DocumentItemExtraFlavor}`>
-          }`
-        ],
+        `DOCUMENT_FLAVOR_${
+          f.toUpperCase() as Uppercase<`${DocumentItemExtraFlavor}`>
+        }`,
       ),
     ],
   ) as [DocumentItemExtraFlavor, string][];
@@ -93,7 +91,7 @@ export const DocumentFlavorSelect = (): JSX.Element => {
     <Box sx={{ width: '100%' }}>
       <FormControl variant="standard" sx={{ width: '100%', my: 1 }}>
         <InputLabel shrink id={FLAVOR_SELECT_ID}>
-          {t(BUILDER.DOCUMENT_FLAVOR_SELECT_LABEL)}
+          {t('DOCUMENT_FLAVOR_SELECT_LABEL')}
         </InputLabel>
         <Controller
           name="flavor"
@@ -114,7 +112,7 @@ export const DocumentFlavorSelect = (): JSX.Element => {
                   }}
                   name={
                     flavorsTranslations.find(([f]) => f === field.value)?.[1] ??
-                    t(BUILDER.DOCUMENT_FLAVOR_INFO)
+                    t('DOCUMENT_FLAVOR_INFO')
                   }
                   flavor={field.value}
                 />

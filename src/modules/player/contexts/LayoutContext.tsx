@@ -54,6 +54,7 @@ export const LayoutContextProvider = ({ children }: Props): JSX.Element => {
   const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsPinnedOpen(!isMobile);
   }, [isMobile]);
 

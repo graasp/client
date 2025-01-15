@@ -1,35 +1,29 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 import { ActionButtonVariant, PinButton as GraaspPinButton } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
-import { PIN_ITEM_BUTTON_CLASS } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { PIN_ITEM_BUTTON_CLASS } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
   type?: ActionButtonVariant;
   item: DiscriminatedItem;
   onClick?: () => void;
-  pinTextKey?: string;
-  unPinTextKey?: string;
 };
 
-const PinButton = ({
-  item,
-  type,
-  onClick,
-  pinTextKey = BUILDER.PIN_ITEM_PIN_TEXT,
-  unPinTextKey = BUILDER.PIN_ITEM_UNPIN_TEXT,
-}: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+const PinButton = ({ item, type, onClick }: Props): JSX.Element => {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const editItem = mutations.useEditItem();
-  const [isPinned, setPinned] = useState(item?.settings?.isPinned);
+  const [isPinned, setIsPinned] = useState(item?.settings?.isPinned);
 
   const handlePin = () => {
-    setPinned(!isPinned);
+    setIsPinned(!isPinned);
 
     editItem.mutate({
       id: item.id,
@@ -41,8 +35,8 @@ const PinButton = ({
     onClick?.();
   };
 
-  const pinText = translateBuilder(pinTextKey);
-  const unPinText = translateBuilder(unPinTextKey);
+  const pinText = translateBuilder(BUILDER.PIN_ITEM_PIN_TEXT);
+  const unPinText = translateBuilder(BUILDER.PIN_ITEM_UNPIN_TEXT);
 
   return (
     <GraaspPinButton

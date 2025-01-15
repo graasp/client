@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Checkbox,
   FormControl,
@@ -13,8 +15,7 @@ import {
 import { ItemType } from '@graasp/sdk';
 import { ItemIcon } from '@graasp/ui';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
 
 import { useFilterItemsContext } from '../context/FilterItemsContext';
 
@@ -35,8 +36,8 @@ const LABEL_ID = 'select-types-filter-label';
 
 export const SelectTypes = (): JSX.Element => {
   const { itemTypes, setItemTypes } = useFilterItemsContext();
-  const { t: translateEnums } = useEnumsTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateEnums } = useTranslation(NS.Enums);
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const types = Object.values(BUILDER_ITEM_TYPES).sort((t1, t2) =>
     translateEnums(t1).localeCompare(translateEnums(t2)),
@@ -49,7 +50,7 @@ export const SelectTypes = (): JSX.Element => {
     setItemTypes(value as typeof itemTypes);
   };
 
-  const label = translateBuilder(BUILDER.FILTER_BY_TYPES_LABEL);
+  const label = translateBuilder('FILTER_BY_TYPES_LABEL');
 
   const renderValues = (value: typeof itemTypes) => (
     <Stack direction="row" spacing={1} flexWrap="wrap">

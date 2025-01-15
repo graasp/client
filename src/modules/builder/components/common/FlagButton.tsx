@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ListItemIcon, MenuItem } from '@mui/material';
 
@@ -6,14 +7,13 @@ import { PackedItem } from '@graasp/sdk';
 
 import { FlagIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { ITEM_MENU_FLAG_BUTTON_CLASS } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 import { FlagItemModalContext } from '../context/FlagItemModalContext';
 
 const FlagButton = ({ item }: { item: PackedItem }): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { openModal: openFlagModal } = useContext(FlagItemModalContext);
   const handleFlag = () => {
@@ -25,7 +25,7 @@ const FlagButton = ({ item }: { item: PackedItem }): JSX.Element => {
       <ListItemIcon>
         <FlagIcon />
       </ListItemIcon>
-      {translateBuilder(BUILDER.ITEM_MENU_FLAG_MENU_ITEM)}
+      {translateBuilder('ITEM_MENU_FLAG_MENU_ITEM')}
     </MenuItem>
   );
 };

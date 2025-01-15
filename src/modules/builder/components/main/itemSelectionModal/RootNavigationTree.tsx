@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, Skeleton, Typography } from '@mui/material';
 
 import { DiscriminatedItem, ItemType, PermissionLevel } from '@graasp/sdk';
@@ -8,13 +10,12 @@ import {
   RowMenus,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
 
 interface RootNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];
@@ -33,7 +34,7 @@ const RootNavigationTree = ({
   rootMenuItems,
   selectedId,
 }: RootNavigationTreeProps): JSX.Element | null => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   // TODO: to change with real recent items (most used)
   const {
@@ -58,7 +59,7 @@ const RootNavigationTree = ({
     return (
       <>
         <Typography color="darkgrey" variant="subtitle2">
-          {translateBuilder(BUILDER.HOME_TITLE)}
+          {translateBuilder('HOME_TITLE')}
         </Typography>
         <RowMenus
           elements={rootMenuItems}
@@ -71,7 +72,7 @@ const RootNavigationTree = ({
         {Boolean(recentItems.data.length) && (
           <>
             <Typography color="darkgrey" variant="subtitle2">
-              {translateBuilder(BUILDER.ITEM_SELECTION_NAVIGATION_RECENT_ITEMS)}
+              {translateBuilder('ITEM_SELECTION_NAVIGATION_RECENT_ITEMS')}
             </Typography>
             <RowMenus
               elements={recentItems.data}
@@ -88,7 +89,7 @@ const RootNavigationTree = ({
         {parents && parents.length > 1 && (
           <>
             <Typography color="darkgrey" variant="subtitle2">
-              {translateBuilder(BUILDER.ITEM_SELECTION_NAVIGATION_PARENT)}
+              {translateBuilder('ITEM_SELECTION_NAVIGATION_PARENT')}
             </Typography>
             <RowMenu
               item={parents[parents.length - 2]}

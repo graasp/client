@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Trans } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 import { DialogActions, DialogContent, Skeleton } from '@mui/material';
@@ -8,18 +7,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
-import { COMMON, FAILURE_MESSAGES } from '@graasp/translations';
 import { Button, DraggingWrapper } from '@graasp/ui';
 
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-  useEnumsTranslation,
-  useMessagesTranslation,
-} from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { useParams } from '@tanstack/react-router';
 
-import { hooks, mutations } from '../../../config/queryClient';
+import { NS } from '@/config/constants';
+import { hooks, mutations } from '@/config/queryClient';
+
 import { useUploadWithProgress } from '../../hooks/uploadWithProgress';
 import { useItemsStatuses } from '../../table/Badges';
 import ItemsTableCard from './ItemsTableCard';
@@ -48,12 +42,12 @@ const ItemsTable = ({
   onMove,
 }: ItemsTableProps): JSX.Element => {
   const [open, setOpen] = useState(false);
-  const { t: translateCommon } = useCommonTranslation();
-  const { t: translateBuilder } = useBuilderTranslation();
-  const { t: translateMessage } = useMessagesTranslation();
-  const { t: translateEnums } = useEnumsTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
+  const { t: translateEnums } = useTranslation(NS.Enums);
 
-  const { itemId } = useParams();
+  const { itemId } = useParams({ strict: false });
 
   const { data: parentItem } = useItem(itemId);
 
@@ -82,7 +76,7 @@ const ItemsTable = ({
     // prevent drop in non-folder item
     if (targetItem.type !== ItemType.FOLDER) {
       toast.error(
-        translateBuilder(BUILDER.MOVE_IN_NON_FOLDER_ERROR_MESSAGE, {
+        translateBuilder('MOVE_IN_NON_FOLDER_ERROR_MESSAGE', {
           type: translateEnums(targetItem.type),
         }),
       );
@@ -116,7 +110,7 @@ const ItemsTable = ({
       selectedIds.includes(movedItem?.id) &&
       selectedIds.includes(targetItem.id)
     ) {
-      toast.error(translateMessage(FAILURE_MESSAGES.INVALID_MOVE_TARGET));
+      toast.error(translateMessage('INVALID_MOVE_TARGET'));
       return;
     }
 
@@ -152,7 +146,7 @@ const ItemsTable = ({
         });
     } else if (!itemId || !parentItem) {
       console.error('cannot move in root');
-      toast.error(BUILDER.ERROR_MESSAGE);
+      toast.error(translateBuilder('ERROR_MESSAGE'));
     } else {
       const { id } = el;
       setMovingId(id);
@@ -212,7 +206,7 @@ const ItemsTable = ({
             <DialogTitle>
               <Trans
                 t={translateBuilder}
-                i18nKey={BUILDER.MOVE_CONFIRM_TITLE}
+                i18nKey="MOVE_CONFIRM_TITLE"
                 values={{
                   count: moveData.movedItems.length,
                   targetName: moveData.to.name,
@@ -222,7 +216,7 @@ const ItemsTable = ({
             </DialogTitle>
 
             <DialogContent>
-              {translateBuilder(BUILDER.MOVE_WARNING)}
+              {translateBuilder('MOVE_WARNING')}
               <ul>
                 {moveData.movedItems.map(({ name, id }) => (
                   <li key={id}>{name}</li>
@@ -236,10 +230,10 @@ const ItemsTable = ({
 
         <DialogActions>
           <Button variant="text" onClick={handleClose}>
-            {translateCommon(COMMON.CANCEL_BUTTON)}
+            {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
           <Button onClick={handleMoveItems}>
-            {translateBuilder(BUILDER.MOVE_BUTTON)}
+            {translateBuilder('MOVE_BUTTON')}
           </Button>
         </DialogActions>
       </Dialog>

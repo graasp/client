@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
+
 import { Chip } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { ACCESSIBLE_ITEMS_ONLY_ME_ID } from '@/config/selectors';
 
 import { BUILDER } from '../../langs/constants';
@@ -12,7 +14,7 @@ const ShowOnlyMeButton = ({
   onClick?: (value: boolean) => void;
   enabled?: boolean;
 }): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   return (
     <Chip
       color="primary"

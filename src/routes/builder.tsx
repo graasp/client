@@ -2,6 +2,7 @@ import { Outlet, createFileRoute, redirect } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
+import { useAuth } from '@/AuthContext';
 import { hooks } from '@/config/queryClient';
 
 import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
@@ -29,8 +30,9 @@ export const Route = createFileRoute('/builder')({
 });
 
 function RouteComponent() {
+  const { user } = useAuth();
   // registers the item updates through websockets
-  hooks.useItemFeedbackUpdates?.(currentAccount?.id);
+  hooks.useItemFeedbackUpdates?.(user?.id);
 
   return (
     <ModalProviders>

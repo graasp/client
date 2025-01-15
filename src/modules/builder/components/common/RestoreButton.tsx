@@ -1,10 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { IconButton, IconButtonProps, Tooltip } from '@mui/material';
 
 import { Undo2Icon } from 'lucide-react';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { mutations } from '../../config/queryClient';
-import { RESTORE_ITEMS_BUTTON_CLASS } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { RESTORE_ITEMS_BUTTON_CLASS } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 
 type Props = {
@@ -20,7 +23,7 @@ const RestoreButton = ({
   id,
   onClick: onClickFn,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: restoreItems } = mutations.useRestoreItems();
 
   const onClick = () => {

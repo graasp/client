@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 import {
@@ -7,8 +8,9 @@ import {
   DeleteButton as GraaspDeleteButton,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../config/i18n';
-import { ITEM_DELETE_BUTTON_CLASS } from '../../config/selectors';
+import { NS } from '@/config/constants';
+import { ITEM_DELETE_BUTTON_CLASS } from '@/config/selectors';
+
 import { BUILDER } from '../../langs/constants';
 import DeleteItemDialog from '../main/DeleteItemDialog';
 
@@ -33,7 +35,7 @@ const DeleteButton = ({
   onConfirm,
   onClose,
 }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const [open, setOpen] = useState(false);
 

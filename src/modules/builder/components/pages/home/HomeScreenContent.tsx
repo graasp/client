@@ -1,63 +1,52 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Alert,
-  Box,
-  Container,
-  LinearProgress,
-  Button as MuiButton,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Alert, Box, LinearProgress, Stack } from '@mui/material';
 
 import { Button } from '@graasp/ui';
 
+import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ACCESSIBLE_ITEMS_TABLE_ID } from '@/config/selectors';
 
-import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
+import SelectTypes from '~builder/components/common/SelectTypes';
+import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';
+import { useLayoutContext } from '~builder/components/context/LayoutContext';
+import { FileUploader } from '~builder/components/file/FileUploader';
+import ModeButton from '~builder/components/item/header/ModeButton';
 import LoadingScreen from '~builder/components/layout/LoadingScreen';
-import {
-  SelectionContextProvider,
-  useSelectionContext,
-} from '~builder/components/main/list/SelectionContext';
+import NewItemButton from '~builder/components/main/NewItemButton';
+import ItemsTable from '~builder/components/main/list/ItemsTable';
+import { useSelectionContext } from '~builder/components/main/list/SelectionContext';
 import {
   DragContainerStack,
   useDragSelection,
 } from '~builder/components/main/list/useDragSelection';
+import { DesktopMap } from '~builder/components/map/DesktopMap';
+import ShowOnlyMeButton from '~builder/components/table/ShowOnlyMeButton';
+import SortingSelect from '~builder/components/table/SortingSelect';
+import {
+  SortingOptions,
+  SortingOptionsType,
+} from '~builder/components/table/types';
+import { useSorting } from '~builder/components/table/useSorting';
 import { ITEM_PAGE_SIZE } from '~builder/config/constants';
 import { ItemLayoutMode, Ordering } from '~builder/enums';
 
-import { BUILDER } from '../../../langs/constants';
-import SelectTypes from '../../common/SelectTypes';
-import { useFilterItemsContext } from '../../context/FilterItemsContext';
-import { useLayoutContext } from '../../context/LayoutContext';
-import FileUploader from '../../file/FileUploader';
-import { useItemSearch } from '../../item/ItemSearch';
-import ModeButton from '../../item/header/ModeButton';
-import NewItemButton from '../../main/NewItemButton';
-import ItemsTable from '../../main/list/ItemsTable';
-import { DesktopMap } from '../../map/DesktopMap';
-import ShowOnlyMeButton from '../../table/ShowOnlyMeButton';
-import SortingSelect from '../../table/SortingSelect';
-import { SortingOptions } from '../../table/types';
-import { useSorting } from '../../table/useSorting';
 import NoItemFilters from '../NoItemFilters';
-import PageWrapper from '../PageWrapper';
 import HomeSelectionToolbar from './HomeSelectionToolbar';
 
 const CONTAINER_ID = 'home-items-container';
 
 type ShowOnlyMeChangeType = (checked: boolean) => void;
 
-const HomeScreenContent = ({ searchText }: { searchText: string }) => {
+export function HomeScreenContent({
+  searchText,
+}: Readonly<{ searchText: string }>) {
+  const { user } = useAuth();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateEnums } = useTranslation(NS.Enums);
-  const { data: currentMember } = hooks.useCurrentMember();
   const { itemTypes } = useFilterItemsContext();
   const [showOnlyMe, setShowOnlyMe] = useState(false);
 
@@ -65,7 +54,7 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
     useSelectionContext();
   const { mode } = useLayoutContext();
   const { sortBy, setSortBy, ordering, setOrdering } =
-    useSorting<SortingOptions>({
+    useSorting<SortingOptionsType>({
       sortBy: SortingOptions.ItemUpdatedAt,
       ordering: Ordering.DESC,
     });
@@ -73,7 +62,7 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
     hooks.useInfiniteAccessibleItems(
       {
         // todo: in the future this can be any member from creators
-        creatorId: showOnlyMe ? currentMember?.id : undefined,
+        creatorId: showOnlyMe ? user?.id : undefined,
         sortBy,
         ordering,
         types: itemTypes,
@@ -126,7 +115,7 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
           {!isFetching && data.pages[0].totalCount > totalFetchedItems && (
             <Stack textAlign="center" alignItems="center">
               <Button variant="outlined" onClick={fetchNextPage} role="feed">
-                {translateBuilder(BUILDER.HOME_SCREEN_LOAD_MORE_BUTTON)}
+                {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
               </Button>
             </Stack>
           )}
@@ -143,6 +132,8 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
     }
 
     const sortingOptions = Object.values(SortingOptions).sort((t1, t2) =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       translateEnums(t1).localeCompare(translateEnums(t2)),
     );
 
@@ -177,7 +168,7 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
               <SelectTypes />
               <Stack direction="row" gap={1}>
                 {sortBy && setSortBy && (
-                  <SortingSelect<SortingOptions>
+                  <SortingSelect<SortingOptionsType>
                     sortBy={sortBy}
                     setSortBy={setSortBy}
                     ordering={ordering}
@@ -206,62 +197,5 @@ const HomeScreenContent = ({ searchText }: { searchText: string }) => {
     return <LoadingScreen chipsPlaceholder />;
   }
 
-  return (
-    <Alert severity="error">{translateBuilder(BUILDER.ERROR_MESSAGE)}</Alert>
-  );
-};
-
-const HomeScreen = (): JSX.Element => {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { data: currentMember } = hooks.useCurrentMember();
-  const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'));
-
-  const itemSearch = useItemSearch();
-
-  if (currentMember) {
-    return (
-      <PageWrapper
-        title={translateBuilder(BUILDER.MY_ITEMS_TITLE)}
-        options={
-          <Stack
-            direction="row"
-            alignItems="center"
-            justifyContent="flex-end"
-            spacing={1}
-          >
-            {itemSearch.input}
-            <NewFolderButton type={isMd ? 'button' : 'icon'} />
-            <NewItemButton
-              key="newButton"
-              size="medium"
-              type={isMd ? 'button' : 'icon'}
-            />
-          </Stack>
-        }
-      >
-        <SelectionContextProvider>
-          <HomeScreenContent searchText={itemSearch.text} />
-        </SelectionContextProvider>
-      </PageWrapper>
-    );
-  }
-
-  // not logged in - redirection
-  return (
-    <Stack height="100%" justifyContent="center" alignItems="center">
-      <Container maxWidth="md">
-        <Alert severity="warning">
-          <Typography textAlign="right">
-            {translateBuilder('REDIRECTION_TEXT')}
-          </Typography>
-          <MuiButton variant="text" sx={{ textTransform: 'none' }}>
-            {translateBuilder('REDIRECTION_BUTTON')}
-          </MuiButton>
-        </Alert>
-      </Container>
-    </Stack>
-  );
-};
-
-export default HomeScreen;
+  return <Alert severity="error">{translateBuilder('ERROR_MESSAGE')}</Alert>;
+}

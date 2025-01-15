@@ -6,13 +6,12 @@ import { Box } from '@mui/material';
 import { DiscriminatedItem, MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
 import { FileDropper } from '@graasp/ui';
 
-import { getRouteApi } from '@tanstack/react-router';
+import { useParams } from '@tanstack/react-router';
 import { AxiosProgressEvent } from 'axios';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
 type Props = {
   onComplete?: () => void;
   onUpdate?: (e: AxiosProgressEvent) => void;
@@ -24,7 +23,7 @@ type Props = {
   previousItemId?: DiscriminatedItem['id'];
 };
 
-const FileUploader = ({
+export function FileUploader({
   onError,
   onUpdate,
   onComplete,
@@ -32,9 +31,9 @@ const FileUploader = ({
   buttons,
   id,
   previousItemId,
-}: Props): JSX.Element | null => {
+}: Readonly<Props>): JSX.Element | null {
   const { t } = useTranslation(NS.Builder);
-  const { itemId: parentItemId } = itemRoute.useParams();
+  const { itemId: parentItemId } = useParams({ strict: false });
   const [error, setError] = useState<string>();
 
   const { mutateAsync: uploadFiles, isPending } = mutations.useUploadFiles();
@@ -70,10 +69,8 @@ const FileUploader = ({
 
     onStart?.();
 
-    // eslint-disable-next-line no-restricted-syntax
     for (let idx = 0; idx < files.length; idx += 1) {
       try {
-        // eslint-disable-next-line no-await-in-loop
         await uploadFiles({
           files: [files[idx]],
           id: parentItemId,
@@ -108,6 +105,4 @@ const FileUploader = ({
       />
     </Box>
   );
-};
-
-export default FileUploader;
+}

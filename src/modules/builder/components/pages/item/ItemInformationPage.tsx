@@ -1,4 +1,4 @@
-import ItemMetadataContent from '@/components/item/settings/ItemMetadataContent';
+import ItemMetadataContent from '~builder/components/item/settings/ItemMetadataContent';
 
 // eslint-disable-next-line arrow-body-style
 const ItemInformationPage = (): JSX.Element => {

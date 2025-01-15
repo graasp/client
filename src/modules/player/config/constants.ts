@@ -19,7 +19,6 @@ export const HOST_MAP = {
   [Context.Player]: '/',
 };
 
-export const GRAASP_LOGO_HEADER_HEIGHT = 40;
 export const FLOATING_BUTTON_Z_INDEX = 10;
 
 export const buildBuilderTabName = (id: string): string => `builder-tab-${id}`;

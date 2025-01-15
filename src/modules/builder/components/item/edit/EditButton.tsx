@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 import {
@@ -6,11 +7,9 @@ import {
   EditButton as GraaspEditButton,
 } from '@graasp/ui';
 
-import { useBuilderTranslation } from '../../../config/i18n';
-import {
-  EDIT_ITEM_BUTTON_CLASS,
-  buildEditButtonId,
-} from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { EDIT_ITEM_BUTTON_CLASS, buildEditButtonId } from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 type Props = {
@@ -20,7 +19,7 @@ type Props = {
 };
 
 const EditButton = ({ itemId, onClick, type = 'icon' }: Props): JSX.Element => {
-  const { t: translateBuilder } = useBuilderTranslation();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
 
   return (
     <GraaspEditButton
