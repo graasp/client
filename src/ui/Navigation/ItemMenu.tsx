@@ -1,26 +1,21 @@
-import type { UseQueryResult } from '@tanstack/react-query';
-import { ChevronRightIcon } from 'lucide-react';
-
-import {
-  IconButton,
-  IconButtonProps,
-  Menu,
-  MenuItem,
-  Typography,
-} from '@mui/material';
-
 import { useState } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+
+import { IconButton, IconButtonProps, Menu, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-export const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
+import type { UseQueryResult } from '@tanstack/react-query';
+import { ChevronRightIcon } from 'lucide-react';
+
+import { MenuItemLink } from '@/components/ui/MenuItemLink';
+
+export const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
 export type ItemMenuProps = {
   buildIconId?: (id: string) => string;
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
-  buildToItemPath: (itemId: string) => LinkProps['to'];
+  buildToItemPath: (itemId: string) => string;
   icon?: JSX.Element;
   itemId: string;
   useChildren: (...args: unknown[]) => UseQueryResult<DiscriminatedItem[]>;
@@ -63,7 +58,7 @@ const ItemMenu = ({
         onClick={handleClick}
         id={buildIconId?.(itemId)}
         aria-controls={open ? buildMenuId?.(itemId) : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? true : undefined}
       >
         {icon}
@@ -84,14 +79,13 @@ const ItemMenu = ({
         }}
       >
         {items?.map(({ name, id }) => (
-          <MenuItem
+          <MenuItemLink
             id={buildMenuItemId?.(id)}
             key={id}
-            component={Link}
             to={buildToItemPath(id)}
           >
             <Typography>{name}</Typography>
-          </MenuItem>
+          </MenuItemLink>
         ))}
       </Menu>
     </>

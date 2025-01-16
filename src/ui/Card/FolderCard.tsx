@@ -1,5 +1,3 @@
-import { ChevronRight } from 'lucide-react';
-
 import {
   Card,
   CardActionArea,
@@ -8,9 +6,10 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { Link, LinkProps } from 'react-router-dom';
-
 import { ItemType } from '@graasp/sdk';
+
+import { Link } from '@tanstack/react-router';
+import { ChevronRight } from 'lucide-react';
 
 import CardThumbnail from './CardThumbnail.js';
 
@@ -22,10 +21,7 @@ type Props = {
   name: string;
   description?: string | null | JSX.Element;
   thumbnail?: string;
-  /**
-   * React Router Link target
-   */
-  to: LinkProps['to'];
+  to: string;
 };
 const FolderCard = ({
   id,
@@ -49,7 +45,7 @@ const FolderCard = ({
       }}
     >
       <CardActionArea component={Link} to={to} sx={{ height: '100%' }}>
-        <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
+        <Stack direction="row" alignItems="center" height="100%" minWidth={0}>
           <CardThumbnail
             width={CARD_HEIGHT}
             minHeight={CARD_HEIGHT}

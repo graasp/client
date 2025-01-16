@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import SaveButton from './SaveButton.js';
 

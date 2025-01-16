@@ -1,9 +1,9 @@
+import { Typography } from '@mui/material';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { CirclePlus, Snowflake, Sparkles } from 'lucide-react';
 
-import { Typography } from '@mui/material';
-
-import { MenuItem } from '@/MainMenu/MenuItem/MenuItem.js';
+import { MenuItem } from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Sidebar from './Sidebar.js';
@@ -17,7 +17,7 @@ const meta: Meta<typeof Sidebar> = {
       return (
         <>
           {story()}
-          <img src='https://picsum.photos/500' />
+          <img alt="cover" src="https://picsum.photos/500" />
         </>
       );
     },
@@ -48,9 +48,9 @@ export const Default: Story = {
     drawerHeaderContent: <Typography>My Title</Typography>,
     children: (
       <>
-        <MenuItem text='Item 1' icon={<Snowflake />} />
-        <MenuItem text='Item 2' icon={<CirclePlus />} />
-        <MenuItem text='Item 3' icon={<Sparkles />} />
+        <MenuItem text="Item 1" icon={<Snowflake />} />
+        <MenuItem text="Item 2" icon={<CirclePlus />} />
+        <MenuItem text="Item 3" icon={<Sparkles />} />
       </>
     ),
   },

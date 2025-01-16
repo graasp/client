@@ -1,4 +1,5 @@
-// import { MentionButton } from '@graasp/chatbox';
+import { MentionButton } from '@graasp/chatbox';
+
 import { hooks, mutations } from '@/config/queryClient';
 
 export function NotificationButton(): JSX.Element | null {
@@ -27,13 +28,13 @@ export function NotificationButton(): JSX.Element | null {
   const clearAllMentionsFunction = () => clearAllMentionsMutate();
 
   return (
-    // <MentionButton
-    //   color="white"
-    //   badgeColor="primary"
-    //   useMentions={hooks.useMentions}
-    //   patchMentionFunction={patchMentionFunction}
-    //   deleteMentionFunction={deleteMentionFunction}
-    //   clearAllMentionsFunction={clearAllMentionsFunction}
-    // />
+    <MentionButton
+      color="white"
+      badgeColor="primary"
+      useMentions={hooks.useMentions}
+      patchMentionFunction={patchMentionFunction}
+      deleteMentionFunction={deleteMentionFunction}
+      clearAllMentionsFunction={clearAllMentionsFunction}
+    />
   );
 }

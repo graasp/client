@@ -7,20 +7,8 @@ import {
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 
+import { MOCK_USE_SUGGESTIONS } from '../fixture';
 import MapComponent from './Map';
-
-const MOCK_USE_SUGGESTIONS = ({ address }: { address: string }) => {
-  if (address) {
-    return {
-      data: [
-        { addressLabel: 'suggestion 1' },
-        { addressLabel: 'suggestion 2' },
-        { addressLabel: 'suggestion 3' },
-      ],
-    };
-  }
-  return { data: undefined };
-};
 
 const meta = {
   title: 'Map',

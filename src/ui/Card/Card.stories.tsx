@@ -1,10 +1,8 @@
+import { Box, IconButton, Stack } from '@mui/material';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
 import { Grip, Snowflake } from 'lucide-react';
-
-import { Box, IconButton, Stack } from '@mui/material';
-
-import { BrowserRouter } from 'react-router-dom';
 
 import ItemBadges from '../ItemBadges/ItemBadges.js';
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
@@ -40,10 +38,10 @@ export const Example: Story = {
     creator: 'graasp',
     footer: (
       <Stack
-        width='100%'
-        alignItems='end'
-        direction='row'
-        justifyContent='space-between'
+        width="100%"
+        alignItems="end"
+        direction="row"
+        justifyContent="space-between"
       >
         <Box>
           <IconButton>
@@ -93,11 +91,6 @@ export const Dense: Story = {
       </IconButton>
     ),
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 } satisfies Story;
 
 export const FullWidth = {
@@ -116,10 +109,10 @@ export const FullWidth = {
 
     footer: (
       <Stack
-        width='100%'
-        alignItems='center'
-        direction='row'
-        justifyContent='space-between'
+        width="100%"
+        alignItems="center"
+        direction="row"
+        justifyContent="space-between"
       >
         <ItemBadges isHidden isPublic isPublished isPinned />
         <Box>
@@ -168,10 +161,10 @@ export const TallCard: Story = {
     height: 300,
     footer: (
       <Stack
-        width='100%'
-        alignItems='center'
-        direction='row'
-        justifyContent='space-between'
+        width="100%"
+        alignItems="center"
+        direction="row"
+        justifyContent="space-between"
       >
         <ItemBadges isHidden isPublic isPublished isPinned />
         <Box>
@@ -206,11 +199,6 @@ export const DenseMobile: Story = {
     alt: 'graasp',
     footer: 'myfooter',
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 } satisfies Story;
 
 export const Selected: Story = {
@@ -227,9 +215,4 @@ export const Selected: Story = {
     className: 'class-card',
     onThumbnailClick: fn(),
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 } satisfies Story;

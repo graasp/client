@@ -1,7 +1,5 @@
 import { Meta, StoryObj, composeStories } from '@storybook/react';
 
-import { BrowserRouter } from 'react-router-dom';
-
 import TextDisplay from '../TextDisplay/TextDisplay.js';
 import * as TextDisplayStories from '../TextDisplay/TextDisplay.stories.js';
 import FolderCard from './FolderCard.js';
@@ -19,11 +17,6 @@ const meta = {
       },
     },
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
   args: {
     name: 'Example folder',
     description: 'Optional description',
@@ -55,7 +48,7 @@ export const LongHtmlDescription = {
   args: {
     thumbnail: undefined,
     description: (
-      <TextDisplay content='<p>Hello wefh uwhf uqhw hqwkjehr jkqwher jkqwhej khqwefhj hwkjefh jwhef jahwefj khawjkf hawjkf hajkwefh ajk hajkhf wkej </p><p>World</p>' />
+      <TextDisplay content="<p>Hello wefh uwhf uqhw hqwkjehr jkqwher jkqwhej khqwefhj hwkjefh jwhef jahwefj khawjkf hawjkf hajkwefh ajk hajkhf wkej </p><p>World</p>" />
     ),
   },
 } satisfies Story;

@@ -1,14 +1,12 @@
-import { type Meta, type StoryObj } from '@storybook/react';
-
 import { Box } from '@mui/material';
-
-import { BrowserRouter } from 'react-router-dom';
 
 import { FolderItemFactory, FolderItemType } from '@graasp/sdk';
 
-import Card from '@/Card/Card.js';
-import ItemBadges from '@/ItemBadges/ItemBadges.js';
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import { type Meta, type StoryObj } from '@storybook/react';
+
+import Card from '@/ui/Card/Card.js';
+import ItemBadges from '@/ui/ItemBadges/ItemBadges.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import DraggingWrapper from './DraggingWrapper.js';
 
@@ -19,11 +17,6 @@ const makeData = (len: number): FolderItemType[] => {
 const meta: Meta<typeof DraggingWrapper> = {
   title: 'Common/Draggable',
   component: DraggingWrapper,
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 
   argTypes: {
     onDropInRow: {

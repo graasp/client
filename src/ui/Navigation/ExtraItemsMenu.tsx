@@ -1,15 +1,10 @@
+import { useState } from 'react';
+
+import { IconButton, IconButtonProps, Menu, Typography } from '@mui/material';
+
 import { ChevronRightIcon } from 'lucide-react';
 
-import {
-  IconButton,
-  IconButtonProps,
-  Menu,
-  MenuItem,
-  Typography,
-} from '@mui/material';
-
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 
 import { MenuItemType } from './Navigation.js';
 
@@ -21,7 +16,7 @@ export type ExtraItemsMenuProps = {
   name: string;
 };
 
-const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
+const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
 const ExtraItemsMenu = ({
   icon = Separator,
@@ -44,7 +39,7 @@ const ExtraItemsMenu = ({
     <>
       <IconButton
         onClick={handleClick}
-        aria-haspopup='true'
+        aria-haspopup="true"
         id={buildIconId?.(name)}
         aria-expanded={open ? true : undefined}
       >
@@ -66,9 +61,9 @@ const ExtraItemsMenu = ({
         }}
       >
         {menuItems?.map(({ name, path }) => (
-          <MenuItem key={name} component={Link} to={path}>
+          <MenuItemLink key={name} to={path}>
             <Typography>{name}</Typography>
-          </MenuItem>
+          </MenuItemLink>
         ))}
       </Menu>
     </>

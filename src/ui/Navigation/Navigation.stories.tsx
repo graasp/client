@@ -1,9 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
-import { CogIcon } from 'lucide-react';
-
-import { BrowserRouter } from 'react-router-dom';
-
 import {
   FolderItemFactory,
   ItemType,
@@ -11,6 +5,10 @@ import {
   LocalFileItemType,
   MimeTypes,
 } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from '@storybook/test';
+import { CogIcon } from 'lucide-react';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import HomeMenu from './HomeMenu.js';
@@ -43,11 +41,6 @@ const meta = {
       },
     },
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 
   render: (args) => {
     return <Navigation {...args} />;

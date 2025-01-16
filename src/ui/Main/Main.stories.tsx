@@ -1,15 +1,14 @@
-import { Meta, type StoryObj, composeStories } from '@storybook/react';
-import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
+import { ReactNode } from 'react';
 
 import { Avatar, Box, Link, Typography } from '@mui/material';
 
-import { ReactNode } from 'react';
-
 import { Context } from '@graasp/sdk';
 
-import CookiesBanner from '@/CookiesBanner/CookiesBanner.js';
-import MainMenu from '@/MainMenu/MainMenu.js';
-import MenuItem from '@/MainMenu/MenuItem/MenuItem.js';
+import { Meta, type StoryObj, composeStories } from '@storybook/react';
+import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
+
+import MainMenu from '@/ui/MainMenu/MainMenu.js';
+import MenuItem from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories.js';
 import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories.js';
@@ -36,8 +35,8 @@ type Story = StoryObj<typeof meta>;
 const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
   <Link
     sx={{ textDecoration: 'none' }}
-    color='inherit'
-    href='https://graasp.org'
+    color="inherit"
+    href="https://graasp.org"
   >
     {children}
   </Link>
@@ -53,7 +52,11 @@ const mainContent = (
       imperdiet. Semp risus in hendrerit gravida rutrum quisque non tellus.
       Convallis co
     </p>
-    <img src='https://picsum.photos/500' style={{ maxWidth: '100%' }} />
+    <img
+      alt="cover"
+      src="https://picsum.photos/500"
+      style={{ maxWidth: '100%' }}
+    />
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus
@@ -86,7 +89,7 @@ const mainContent = (
 );
 
 const headerLeftContent = (
-  <Typography variant='h6' component='div'>
+  <Typography variant="h6" component="div">
     Header
   </Typography>
 );
@@ -94,15 +97,15 @@ const headerLeftContent = (
 const defaultArgs = {
   drawerOpenAriaLabel: 'open drawer',
   headerLeftContent: (
-    <Typography variant='h6' component='div'>
+    <Typography variant="h6" component="div">
       Header
     </Typography>
   ),
   drawerContent: (
     <MainMenu>
-      <MenuItem text='Item 1' icon={<SnowflakeIcon />} />
-      <MenuItem text='Item 2' icon={<CirclePlusIcon />} />
-      <MenuItem text='Item 3' icon={<SparklesIcon />} />
+      <MenuItem text="Item 1" icon={<SnowflakeIcon />} />
+      <MenuItem text="Item 2" icon={<CirclePlusIcon />} />
+      <MenuItem text="Item 3" icon={<SparklesIcon />} />
     </MainMenu>
   ),
   children: mainContent,
@@ -125,12 +128,11 @@ export const WithFooter = {
     footerContent: (
       <Box
         p={2}
-        bgcolor='gray'
-        height='150px'
-        boxShadow='0px -2px 4px -1px rgba(0,0,0,0.2)'
+        bgcolor="gray"
+        height="150px"
+        boxShadow="0px -2px 4px -1px rgba(0,0,0,0.2)"
       >
         Footer
-        <CookiesBanner cookieName='toto' />
       </Box>
     ),
   },
@@ -158,7 +160,7 @@ export const Desktop = {
   args: {
     ...defaultArgs,
     headerLeftContent: (
-      <Typography variant='h6' noWrap component='div'>
+      <Typography variant="h6" noWrap component="div">
         Header with a quite long text is in the header
       </Typography>
     ),

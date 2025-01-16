@@ -1,3 +1,5 @@
+import { ReactElement, SyntheticEvent } from 'react';
+
 import {
   ListItem,
   ListItemButton,
@@ -5,9 +7,7 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import { ReactElement, SyntheticEvent } from 'react';
-
-import { useMobileView } from '@/hooks/useMobileView.js';
+import { useMobileView } from '@/ui/hooks/useMobileView.js';
 
 import { useMainMenuOpenContext } from '../hooks.js';
 

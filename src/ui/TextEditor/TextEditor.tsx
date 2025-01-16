@@ -13,6 +13,8 @@ declare const window: Window &
     katex: typeof katex;
   };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 window.katex = katex;
 
 const TEXT_EDITOR_TOOLBAR = [

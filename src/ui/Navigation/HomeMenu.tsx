@@ -1,20 +1,20 @@
-import { ChevronRightIcon, HomeIcon } from 'lucide-react';
+import React from 'react';
 
 import {
   IconButton,
   IconButtonProps,
   Menu,
-  MenuItem,
   MenuProps,
   Typography,
 } from '@mui/material';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { ChevronRightIcon, HomeIcon } from 'lucide-react';
+
+import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 
 import NavigationLink from './common/NavigationLink.js';
 
-const Separator = <ChevronRightIcon data-testid='NavigateNextIcon' />;
+const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
 type Props = {
   selected: { name: string; id: string; to: string };
@@ -57,7 +57,7 @@ const HomeMenu = ({
         onClick={handleClick}
         id={homeDropdownId}
         aria-controls={open ? 'root' : undefined}
-        aria-haspopup='true'
+        aria-haspopup="true"
         aria-expanded={open ? true : undefined}
       >
         {Separator}
@@ -78,14 +78,9 @@ const HomeMenu = ({
         }}
       >
         {elements.map(({ name, id, to }) => (
-          <MenuItem
-            key={id}
-            component={Link}
-            to={to}
-            id={buildMenuItemId?.(id)}
-          >
+          <MenuItemLink key={id} to={to} id={buildMenuItemId?.(id)}>
             <Typography>{name}</Typography>
-          </MenuItem>
+          </MenuItemLink>
         ))}
       </Menu>
       <NavigationLink to={selected.to} key={selected.id}>

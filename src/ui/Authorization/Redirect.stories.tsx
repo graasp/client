@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { BrowserRouter } from 'react-router-dom';
-
 import SignedInWrapper from './SignedInWrapper.js';
 
 // this story is separated from the others
@@ -19,15 +17,10 @@ const meta: Meta<typeof SignedInWrapper> = {
     },
   },
   render: () => (
-    <SignedInWrapper redirectionLink=''>
+    <SignedInWrapper redirectionLink="">
       <div />
     </SignedInWrapper>
   ),
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
 };
 export default meta;
 

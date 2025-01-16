@@ -1,17 +1,10 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { BrowserRouter } from 'react-router-dom';
-
 import FancyLink from './LinkCard.js';
 
 const meta = {
   title: 'Card/Link',
   component: FancyLink,
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
   args: {
     title: 'Default link name',
     url: 'https://graasp.org',

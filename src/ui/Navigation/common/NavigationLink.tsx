@@ -1,12 +1,13 @@
+import { ReactNode } from 'react';
+
 import { styled } from '@mui/material';
 
-import { ReactNode } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
 const NavigationLink: (props: {
   id?: string;
   children: ReactNode;
-  to: LinkProps['to'];
+  to: string;
 }) => ReactNode = styled(Link)(({ theme }) => ({
   textDecoration: 'none',
   color: theme.palette.text.primary,

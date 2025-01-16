@@ -1,9 +1,7 @@
+import { ItemType, LinkItemFactory } from '@graasp/sdk';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
-
-import { BrowserRouter } from 'react-router-dom';
-
-import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import LinkItem from './LinkItem.js';
@@ -69,11 +67,6 @@ const meta = {
       },
     },
   },
-  decorators: [
-    (story) => {
-      return <BrowserRouter>{story()}</BrowserRouter>;
-    },
-  ],
   args: {
     onClick: fn(),
   },

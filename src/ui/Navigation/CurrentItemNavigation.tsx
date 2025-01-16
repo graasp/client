@@ -1,10 +1,8 @@
-import truncate from 'lodash.truncate';
-
 import { Typography } from '@mui/material';
 
-import { LinkProps } from 'react-router-dom';
-
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+
+import truncate from 'lodash.truncate';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 import CenterAlignWrapper from './common/CenterAlignWrapper.js';
@@ -18,7 +16,7 @@ export type CurrentItemProps = {
   buildMenuId?: (id: string) => string;
   buildMenuItemId?: (id: string) => string;
   useChildren: ItemMenuProps['useChildren'];
-  buildToItemPath: (id: string) => LinkProps['to'];
+  buildToItemPath: (id: string) => string;
   showArrow: boolean;
 };
 const CurrentItemNavigation = ({

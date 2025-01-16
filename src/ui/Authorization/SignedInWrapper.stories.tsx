@@ -1,9 +1,9 @@
+import { CompleteMember } from '@graasp/sdk';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { CompleteMember } from '@graasp/sdk';
-
-import BuildIcon from '@/icons/BuildIcon.js';
+import BuildIcon from '@/ui/icons/BuildIcon.js';
 
 import SignedInWrapper from './SignedInWrapper.js';
 
@@ -19,7 +19,7 @@ const meta: Meta<typeof SignedInWrapper> = {
   args: {
     redirectionLink,
     children: (
-      <div data-testid='content'>
+      <div data-testid="content">
         <BuildIcon />
         <BuildIcon />
         <BuildIcon />

@@ -1,9 +1,9 @@
+import { AccountType, CompleteGuest, CompleteMember } from '@graasp/sdk';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { AccountType, CompleteGuest, CompleteMember } from '@graasp/sdk';
-
-import BuildIcon from '@/icons/BuildIcon.js';
+import BuildIcon from '@/ui/icons/BuildIcon.js';
 
 import PreventGuestWrapper from './PreventGuestWrapper.js';
 
@@ -17,7 +17,7 @@ const meta = {
     errorText: 'An error occured.',
     text: 'You are currently using Graasp with a guest account. In order to use all features of Graasp, you have to log out and create a Graasp account.',
     children: (
-      <div data-testid='content'>
+      <div data-testid="content">
         <BuildIcon />
         <BuildIcon />
         <BuildIcon />

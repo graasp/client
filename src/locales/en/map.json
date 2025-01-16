@@ -20,5 +20,6 @@
   "Select a country": "Select a country",
   "VIEW_ITEM_BUILDER_TOOLTIP": "View item in Graasp Builder",
   "VIEW_ITEM_PLAYER_TOOLTIP": "View item in Graasp Player",
-  "FUNCTIONALITIES_REDUCED_FOR_LOGGED_OUT_MESSAGE": "Some functionalities are disabled for logged out users."
+  "FUNCTIONALITIES_REDUCED_FOR_LOGGED_OUT_MESSAGE": "Some functionalities are disabled for logged out users.",
+  "Add a new item at this location": "Add a new item at this location"
 }

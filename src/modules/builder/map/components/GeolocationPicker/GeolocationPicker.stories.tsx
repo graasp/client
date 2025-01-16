@@ -1,12 +1,11 @@
 import { TextField } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/test';
 import type { BoundFunctions } from '@testing-library/dom';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { queries } from '@testing-library/dom';
 
-import { MOCK_USE_SUGGESTIONS } from '../../../.storybook/fixtures';
+import { MOCK_USE_SUGGESTIONS } from '../../fixture';
 import GeolocationPicker from './GeolocationPicker';
 
 const meta = {
@@ -79,8 +78,8 @@ export const Background = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    await expect(canvas.getByLabelText('Geolocation')).toHaveTextContent(
-      args.initialValue!,
+    expect(canvas.getByLabelText('Geolocation')).toHaveTextContent(
+      'initial value',
     );
 
     await checkSuggestions(canvas);

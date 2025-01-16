@@ -1,11 +1,11 @@
-import { Meta, StoryObj, composeStories } from '@storybook/react';
-import { v4 } from 'uuid';
-
 import { Grid2 as Grid } from '@mui/material';
 
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import ItemBadges from '@/ItemBadges/ItemBadges.js';
+import { Meta, StoryObj, composeStories } from '@storybook/react';
+import { v4 } from 'uuid';
+
+import ItemBadges from '@/ui/ItemBadges/ItemBadges.js';
 
 import * as CardStories from './Card.stories.js';
 
