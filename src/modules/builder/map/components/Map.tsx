@@ -1,22 +1,18 @@
-import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
-import { AccountType } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+import "leaflet-easybutton/src/easy-button.css";
+import "leaflet-geosearch/assets/css/leaflet.css";
+import "leaflet/dist/leaflet.css";
 
-import 'leaflet-easybutton/src/easy-button.css';
-import 'leaflet-geosearch/assets/css/leaflet.css';
-import 'leaflet/dist/leaflet.css';
-
-import i18n from '../config/i18n';
-import LoggedOutWarning from './common/LoggedOutWarning';
+import LoggedOutWarning from "./common/LoggedOutWarning";
 import {
   QueryClientContextInterface,
   QueryClientContextProvider,
-} from './context/QueryClientContext';
-import CountryContent from './map/CountryContent';
-import InitialSetup from './map/InitialSetup';
-import MapContent from './map/MapContent';
+} from "./context/QueryClientContext";
+import CountryContent from "./map/CountryContent";
+import InitialSetup from "./map/InitialSetup";
+import MapContent from "./map/MapContent";
 
 type Props = QueryClientContextInterface;
 
@@ -36,14 +32,6 @@ const MapComponent = ({
 }: Props): JSX.Element => {
   const [showMap, setShowMap] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (currentMember?.type === AccountType.Individual) {
-      i18n.changeLanguage(currentMember.extra.lang ?? DEFAULT_LANG);
-    } else {
-      i18n.changeLanguage(navigator.language ?? DEFAULT_LANG);
-    }
-  }, [currentMember]);
-
   return (
     <QueryClientContextProvider
       currentMember={currentMember}
@@ -61,9 +49,9 @@ const MapComponent = ({
     >
       <div
         style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
+          width: "100%",
+          height: "100%",
+          position: "relative",
         }}
       >
         {/* the properties set here are the initial ones */}
@@ -73,7 +61,7 @@ const MapComponent = ({
           zoom={4}
           dragging={false}
           scrollWheelZoom={false}
-          style={{ width: '100%', height: '100%' }}
+          style={{ width: "100%", height: "100%" }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

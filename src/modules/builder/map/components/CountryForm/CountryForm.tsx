@@ -1,16 +1,16 @@
-import { Autocomplete, Popper, PopperProps, TextField } from '@mui/material';
+import { Autocomplete, Popper, PopperProps, TextField } from "@mui/material";
 
-import countriesISO from 'i18n-iso-countries';
-import arTrans from 'i18n-iso-countries/langs/ar.json';
-import deTrans from 'i18n-iso-countries/langs/de.json';
-import enTrans from 'i18n-iso-countries/langs/en.json';
-import esTrans from 'i18n-iso-countries/langs/es.json';
-import frTrans from 'i18n-iso-countries/langs/fr.json';
-import itTrans from 'i18n-iso-countries/langs/it.json';
+import countriesISO from "i18n-iso-countries";
+import arTrans from "i18n-iso-countries/langs/ar.json";
+import deTrans from "i18n-iso-countries/langs/de.json";
+import enTrans from "i18n-iso-countries/langs/en.json";
+import esTrans from "i18n-iso-countries/langs/es.json";
+import frTrans from "i18n-iso-countries/langs/fr.json";
+import itTrans from "i18n-iso-countries/langs/it.json";
 
-import { useMapTranslation } from '../../config/i18n';
-import countries from '../../data/countries.json';
-import { Country } from '../../types';
+import { useMapTranslation } from "../../config/i18n";
+import countries from "../../data/countries.json";
+import { Country } from "../../types/types";
 
 countriesISO.registerLocale(enTrans);
 countriesISO.registerLocale(frTrans);
@@ -20,9 +20,9 @@ countriesISO.registerLocale(deTrans);
 countriesISO.registerLocale(itTrans);
 
 const CustomPopper = ({
-  placement = 'auto',
+  placement = "auto",
 }: {
-  placement: PopperProps['placement'];
+  placement: PopperProps["placement"];
 }) =>
   // eslint-disable-next-line func-names
   function (props: PopperProps): JSX.Element {
@@ -30,7 +30,7 @@ const CustomPopper = ({
       <Popper
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...props}
-        style={{ width: '100%' }}
+        style={{ width: "100%" }}
         popperOptions={{ placement }}
       />
     );
@@ -39,17 +39,17 @@ const CustomPopper = ({
 export type CountryFormProps = {
   onChange: (newValue: Country) => void;
   label?: string;
-  placement?: PopperProps['placement'];
+  placement?: PopperProps["placement"];
   initialValue?: string;
   lang?: string;
 };
 
 const CountryForm = ({
   onChange,
-  label = 'Select a country',
-  placement = 'auto',
+  label = "Select a country",
+  placement = "auto",
   initialValue,
-  lang = 'en',
+  lang = "en",
 }: CountryFormProps): JSX.Element => {
   const { t } = useMapTranslation();
 
@@ -67,7 +67,7 @@ const CountryForm = ({
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: "relative" }}>
       <Autocomplete
         autoSelect
         onChange={handleOnChange as any}
@@ -80,16 +80,16 @@ const CountryForm = ({
         // set custom popper to force placement
         PopperComponent={CustomPopper({ placement })}
         componentsProps={
-          placement !== 'auto'
+          placement !== "auto"
             ? {
                 popper: {
                   modifiers: [
                     {
-                      name: 'flip',
+                      name: "flip",
                       enabled: false,
                     },
                     {
-                      name: 'preventOverflow',
+                      name: "preventOverflow",
                       enabled: false,
                     },
                   ],
@@ -101,10 +101,10 @@ const CountryForm = ({
           <TextField
             // eslint-disable-next-line react/jsx-props-no-spreading
             {...params}
-            sx={{ background: 'transparent' }}
+            sx={{ background: "transparent" }}
             InputProps={{
               ...params.InputProps,
-              sx: { borderRadius: '15px' },
+              sx: { borderRadius: "15px" },
             }}
             label={t(label)}
           />
