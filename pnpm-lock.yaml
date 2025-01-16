@@ -28,13 +28,13 @@ importers:
         version: 5.1.1
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(fipkstm3pklqztooeci37yharu)
+        version: 3.3.1(m7rgfmrygkteoqcq2m2mzdvuky)
       '@graasp/query-client':
         specifier: 5.7.1
-        version: 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
+        version: 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
       '@graasp/sdk':
         specifier: 5.6.0
-        version: 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
+        version: 5.6.0(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.5)
@@ -198,8 +198,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(react@18.3.1)(supercluster@8.0.1)
       uuid:
-        specifier: 11.0.4
-        version: 11.0.4
+        specifier: 11.0.5
+        version: 11.0.5
       validator:
         specifier: 13.12.0
         version: 13.12.0
@@ -6153,8 +6153,8 @@ packages:
     resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
     hasBin: true
 
-  uuid@11.0.4:
-    resolution: {integrity: sha512-IzL6VtTTYcAhA/oghbFJ1Dkmqev+FpQWnCBaKq/gUluLxliWvO8DPFWfIviRmYbtaavtSQe4WBL++rFjdcGWEg==}
+  uuid@11.0.5:
+    resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
     hasBin: true
 
   uuid@8.3.2:
@@ -7831,15 +7831,15 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(fipkstm3pklqztooeci37yharu)':
+  '@graasp/chatbox@3.3.1(m7rgfmrygkteoqcq2m2mzdvuky)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
-      '@graasp/query-client': 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
-      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
+      '@graasp/query-client': 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
+      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
+      '@graasp/ui': 5.5.1(ff65hkrhvouxuq4wpxjlagoc2a)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7860,9 +7860,9 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@graasp/query-client@5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)':
+  '@graasp/query-client@5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)':
     dependencies:
-      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
+      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@tanstack/react-query': 5.61.5(react@18.3.1)
       '@tanstack/react-query-devtools': 5.61.5(@tanstack/react-query@5.61.5(react@18.3.1))(react@18.3.1)
@@ -7872,13 +7872,13 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4)':
+  '@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.5)':
     dependencies:
       '@faker-js/faker': 9.2.0
       date-fns: 4.1.0
       filesize: 10.1.6
       js-cookie: 3.0.5
-      uuid: 11.0.4
+      uuid: 11.0.5
 
   '@graasp/stylis-plugin-rtl@2.2.0(stylis@4.3.5)':
     dependencies:
@@ -7889,12 +7889,12 @@ snapshots:
     dependencies:
       i18next: 24.2.1(typescript@5.7.3)
 
-  '@graasp/ui@5.5.1(6lz5tiea2ptlwdtldehwouyofi)':
+  '@graasp/ui@5.5.1(ff65hkrhvouxuq4wpxjlagoc2a)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
-      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
+      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -13193,7 +13193,7 @@ snapshots:
 
   uuid@11.0.3: {}
 
-  uuid@11.0.4: {}
+  uuid@11.0.5: {}
 
   uuid@8.3.2: {}
 
