@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.19.1](https://github.com/graasp/client/compare/v2.19.0...v2.19.1) (2025-01-16)
+
+
+### Bug Fixes
+
+* harmonize button to be imported from a single file ([#604](https://github.com/graasp/client/issues/604)) ([c50c409](https://github.com/graasp/client/commit/c50c4090b7f424403648ef59c7b0d2c2bd1ce356))
+* player home ([#606](https://github.com/graasp/client/issues/606)) ([c866e5a](https://github.com/graasp/client/commit/c866e5a199fac54a7e693446931255d88fc5fa45))
+
 ## [2.19.0](https://github.com/graasp/client/compare/v2.18.0...v2.19.0) (2025-01-14)
 
 
