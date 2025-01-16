@@ -31,7 +31,7 @@ function RouteComponent() {
           <ItemSettingsProperties item={item} />
           <AdminChatSettings item={item} />
           <ItemLicenseSettings />
-          <GeolocationPicker item={item} />
+          {/* <GeolocationPicker item={item} /> */}
         </Stack>
       </Container>
     );

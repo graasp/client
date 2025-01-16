@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Skeleton, Stack, Typography } from '@mui/material';
 
-import { Map } from '@graasp/map';
+// import { Map } from '@graasp/map';
 import { type DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
 
 import { hooks, mutations } from '@/config/queryClient';
@@ -68,24 +68,23 @@ const MapView = ({
             {(parentId && isLoadingParent) ||
             (enableGeolocation && !hasFetchedCurrentLocation) ? (
               <Skeleton width="100%" height="100%" />
-            ) : (
-              <Map
-                currentPosition={currentPosition}
-                useDeleteItemGeolocation={mutations.useDeleteItemGeolocation}
-                usePostItem={mutations.usePostItem}
-                useRecycleItems={mutations.useRecycleItems}
-                useAddressFromGeolocation={hooks.useAddressFromGeolocation}
-                useSuggestionsForAddress={hooks.useSuggestionsForAddress}
-                useItemsInMap={hooks.useItemsInMap}
-                viewItem={viewItem}
-                viewItemInBuilder={viewItemInBuilder}
-                currentMember={currentMember}
-                item={parent}
-                // use builder modal to add new item if the screen is big enough
-                // todo: always use builder modal when it is responsive
-                handleAddOnClick={isMobile ? undefined : handleAddOnClick}
-              />
-            )}
+            ) : // <Map
+            //   currentPosition={currentPosition}
+            //   useDeleteItemGeolocation={mutations.useDeleteItemGeolocation}
+            //   usePostItem={mutations.usePostItem}
+            //   useRecycleItems={mutations.useRecycleItems}
+            //   useAddressFromGeolocation={hooks.useAddressFromGeolocation}
+            //   useSuggestionsForAddress={hooks.useSuggestionsForAddress}
+            //   useItemsInMap={hooks.useItemsInMap}
+            //   viewItem={viewItem}
+            //   viewItemInBuilder={viewItemInBuilder}
+            //   currentMember={currentMember}
+            //   item={parent}
+            //   // use builder modal to add new item if the screen is big enough
+            //   // todo: always use builder modal when it is responsive
+            //   handleAddOnClick={isMobile ? undefined : handleAddOnClick}
+            // />
+            null}
           </div>
         </Stack>
       </Stack>

@@ -5,6 +5,7 @@ import LangDetector from 'i18next-browser-languagedetector';
 import Fetch from 'i18next-fetch-backend';
 
 i18n
+  .createInstance()
   .use(Fetch)
   .use(LangDetector)
   .use(initReactI18next)
