@@ -1,14 +1,14 @@
-import { BookmarkIcon } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import { IconButton, SvgIconProps, SxProps, Tooltip } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { BookmarkIcon } from 'lucide-react';
 
 import {
   ActionButton,
   ActionButtonVariant,
   ColorVariantsType,
-} from '@/types.js';
+} from '@/ui/types.js';
 
 import MenuItemButton from '../MenuItemButton.js';
 import { useButtonColor } from '../hooks.js';

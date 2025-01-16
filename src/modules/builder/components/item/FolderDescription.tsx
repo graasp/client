@@ -1,6 +1,5 @@
-import { TextDisplay } from '@graasp/ui';
-
-import { hooks } from '../../config/queryClient';
+import { hooks } from '@/config/queryClient';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 
 type Props = {
   itemId?: string;

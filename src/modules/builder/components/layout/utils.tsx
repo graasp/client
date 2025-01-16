@@ -1,17 +1,9 @@
 import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-import { LibraryIcon } from '@graasp/ui';
+import LibraryIcon from '@/ui/icons/LibraryIcon';
 
-import {
-  ITEM_PUBLISH_PATH,
-  ITEM_SETTINGS_PATH,
-  ITEM_SHARE_PATH,
-  buildItemPublishPath,
-  buildItemSettingsPath,
-  buildItemSharePath,
-} from '@/config/paths';
-import { BUILDER } from '@/langs/constants';
+import { BUILDER } from '~builder/langs/constants';
 
 export interface MenuItemType {
   name: string;
@@ -60,25 +52,25 @@ export const buildExtraItems = ({
   // ];
 
   switch (true) {
-    case page.includes(ITEM_SETTINGS_PATH):
+    case page.includes('settings'):
       return [
         {
           name: translate(BUILDER.SETTINGS_TITLE),
           icon: <SettingsIcon />,
-          path: buildItemSettingsPath(itemId),
+          path: `/builder/items/${itemId}/settings`,
           menuItems: [],
         },
       ];
-    case page.includes(ITEM_SHARE_PATH):
+    case page.includes('share'):
       return [
         {
           name: translate(BUILDER.SHARE_ITEM_BUTTON),
           icon: <GroupsIcon />,
-          path: buildItemSharePath(itemId),
+          path: `/builder/items/${itemId}/share`,
           menuItems: [],
         },
       ];
-    case page.includes(ITEM_PUBLISH_PATH):
+    case page.includes('publish'):
       return [
         {
           name: translate(BUILDER.LIBRARY_SETTINGS_PUBLISH_BUTTON),
@@ -92,7 +84,7 @@ export const buildExtraItems = ({
               selected
             />
           ),
-          path: buildItemPublishPath(itemId),
+          path: `/builder/items/${itemId}/publish`,
           menuItems: [],
         },
       ];

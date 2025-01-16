@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   CO_EDITOR_SETTINGS_CHECKBOX_ID,
   EMAIL_NOTIFICATION_CHECKBOX,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
+import { BUILDER } from '~builder/langs/constants';
 
 const SYNC_STATUS_KEY = 'PublishCoEditors';
 

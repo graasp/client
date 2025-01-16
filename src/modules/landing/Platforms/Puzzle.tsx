@@ -2,9 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Grid2, Stack, Typography } from '@mui/material';
 
-import { Platform } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
 
 import { BuilderPuzzle } from './BuilderPuzzle';
 import { PlatformButton } from './PlatformButton';

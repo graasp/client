@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { CircleUser } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ENROLL_BUTTON_SELECTOR } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '~builder/langs/constants';
 

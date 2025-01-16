@@ -2,8 +2,6 @@ import { ReactNode, useState } from 'react';
 
 import { Stack } from '@mui/material';
 
-import { PRIMARY_COLOR } from '@graasp/ui';
-
 import {
   Box,
   boxesIntersect,
@@ -11,6 +9,7 @@ import {
 } from '@air/react-drag-to-select';
 
 import { ITEM_CARD_CLASS } from '@/config/selectors';
+import { PRIMARY_COLOR } from '@/ui/theme';
 
 import { useSelectionContext } from './SelectionContext';
 

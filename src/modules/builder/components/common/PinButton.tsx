@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { ActionButtonVariant, PinButton as GraaspPinButton } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { PIN_ITEM_BUTTON_CLASS } from '@/config/selectors';
+import GraaspPinButton from '@/ui/buttons/PinButton/PinButton';
+import { ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 

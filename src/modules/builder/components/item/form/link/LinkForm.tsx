@@ -26,11 +26,13 @@ import {
   buildLinkExtra,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
-import { Button, LinkCard, LinkItem } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import LinkCard from '@/ui/Card/LinkCard';
+import Button from '@/ui/buttons/Button/Button';
+import LinkItem from '@/ui/items/LinkItem';
 
 import CancelButton from '~builder/components/common/CancelButton';
 

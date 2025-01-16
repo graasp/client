@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Stack, Typography } from '@mui/material';
 
-import { GraaspLogo, PRIMARY_COLOR } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
+import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
+import { PRIMARY_COLOR } from '@/ui/theme';
 
 import { GithubIcon } from '~landing/footer/icons';
 

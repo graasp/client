@@ -1,9 +1,9 @@
+import { Box } from '@mui/material';
+
 import { Meta, type StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
 
-import { Box } from '@mui/material';
-
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import RowMenus from './RowMenus.js';
 

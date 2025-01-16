@@ -9,9 +9,9 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { BuildIcon, Platform } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import BuildIcon from '@/ui/icons/BuildIcon';
 
 type PlatformButtonProps = {
   platform: Platform;

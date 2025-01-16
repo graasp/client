@@ -1,23 +1,31 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import HelpIcon from '@mui/icons-material/Help';
-import { Alert, Box, Button, IconButton, Stack, Tooltip } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Button,
+  IconButton,
+  Stack,
+  Tooltip,
+  useTheme,
+} from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { theme } from '@graasp/ui';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
-import { CC_LICENSE_ABOUT_URL } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   CC_DELETE_BUTTON_HEADER,
   CC_EDIT_BUTTON_HEADER,
   CC_SAVE_BUTTON,
   LIBRARY_SETTINGS_CC_SETTINGS_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
+import { CC_LICENSE_ABOUT_URL } from '~builder/config/constants';
 
 import useItemLicense from '../../hooks/useItemLicense';
 import useModalStatus from '../../hooks/useModalStatus';
@@ -31,6 +39,7 @@ type Props = {
 };
 
 export const LicenseContainer = ({ item }: Props): JSX.Element => {
+  const theme = useTheme();
   const { t } = useTranslation(NS.Builder);
   const { computeStatusFor } = useDataSyncContext();
   const { isOpen, openModal, closeModal } = useModalStatus();
@@ -65,9 +74,9 @@ export const LicenseContainer = ({ item }: Props): JSX.Element => {
     <Box data-cy={LIBRARY_SETTINGS_CC_SETTINGS_ID}>{creativeCommons}</Box>
   ) : undefined;
 
-  const containerTitle = t(BUILDER.ITEM_LICENSE_CONTAINER_TITLE);
-  const description = t(BUILDER.ITEM_LICENSE_CONTAINER_MISSING_WARNING);
-  const emptyMessage = t(BUILDER.ITEM_LICENSE_CONTAINER_EMPTY_BUTTON);
+  const containerTitle = t('ITEM_LICENSE_CONTAINER_TITLE');
+  const description = t('ITEM_LICENSE_CONTAINER_MISSING_WARNING');
+  const emptyMessage = t('ITEM_LICENSE_CONTAINER_EMPTY_BUTTON');
 
   const onSubmit = () => {
     tmpItemLicense.handleSubmit();
@@ -77,16 +86,16 @@ export const LicenseContainer = ({ item }: Props): JSX.Element => {
   const computeKey = (id: string) => `license-${id}`;
 
   const modalActions = [
-    <Button key={computeKey(BUILDER.CANCEL_BUTTON)} onClick={closeModal}>
-      {t(BUILDER.CANCEL_BUTTON)}
+    <Button key={computeKey('CANCEL_BUTTON')} onClick={closeModal}>
+      {t('CANCEL_BUTTON')}
     </Button>,
     <Button
       data-cy={CC_SAVE_BUTTON}
-      key={computeKey(BUILDER.CONFIRM_BUTTON)}
+      key={computeKey('CONFIRM_BUTTON')}
       onClick={onSubmit}
       variant="contained"
     >
-      {t(BUILDER.CONFIRM_BUTTON)}
+      {t('CONFIRM_BUTTON')}
     </Button>,
   ];
 
@@ -94,7 +103,7 @@ export const LicenseContainer = ({ item }: Props): JSX.Element => {
     <Stack spacing={2}>
       {licenseContent && (
         <Alert severity="warning">
-          {t(BUILDER.ITEM_SETTINGS_CC_LICENSE_MODAL_CONTENT)}
+          {t('ITEM_SETTINGS_CC_LICENSE_MODAL_CONTENT')}
         </Alert>
       )}
       <Stack mx={3} spacing={2}>
@@ -107,10 +116,7 @@ export const LicenseContainer = ({ item }: Props): JSX.Element => {
   );
 
   const titleHelp = (
-    <Tooltip
-      title={t(BUILDER.ITEM_SETTINGS_CC_LICENSE_MORE_INFORMATIONS)}
-      arrow
-    >
+    <Tooltip title={t('ITEM_SETTINGS_CC_LICENSE_MORE_INFORMATIONS')} arrow>
       <IconButton aria-label="info" href={CC_LICENSE_ABOUT_URL} target="_blank">
         <HelpIcon />
       </IconButton>

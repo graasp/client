@@ -1,7 +1,5 @@
 import { useTranslation } from 'react-i18next';
 
-import { ShareButton as GraaspShareButton } from '@graasp/ui';
-
 import { Link } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
@@ -9,6 +7,7 @@ import {
   SHARE_ITEM_BUTTON_CLASS,
   buildShareButtonId,
 } from '@/config/selectors';
+import GraaspShareButton from '@/ui/buttons/ShareButton/ShareButton';
 
 import { BUILDER } from '../../langs/constants';
 

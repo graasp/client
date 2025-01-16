@@ -3,19 +3,20 @@ import { useState } from 'react';
 import { Link, Stack, styled } from '@mui/material';
 
 import { ShortLink } from '@graasp/sdk';
-import { AccentColors } from '@graasp/ui';
 
-import {
-  SHORT_LINK_COLOR,
-  SHORT_LINK_CONTAINER_BORDER_STYLE,
-  SHORT_LINK_CONTAINER_BORDER_WIDTH,
-} from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   SHORT_LINK_COMPONENT,
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
 } from '@/config/selectors';
+import { AccentColors } from '@/ui/theme';
+
+import {
+  SHORT_LINK_COLOR,
+  SHORT_LINK_CONTAINER_BORDER_STYLE,
+  SHORT_LINK_CONTAINER_BORDER_WIDTH,
+} from '~builder/config/constants';
 
 import ConfirmDeleteLink from './ConfirmDeleteLink';
 import PlatformIcon from './PlatformIcon';

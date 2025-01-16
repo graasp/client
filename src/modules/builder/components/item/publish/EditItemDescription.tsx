@@ -6,10 +6,11 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { TextDisplay, useButtonColor } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import useModalStatus from '~builder/components/hooks/useModalStatus';

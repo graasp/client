@@ -1,18 +1,19 @@
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { Chip, Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem, TagCategory } from '@graasp/sdk';
 
-import { MultiSelectTagChipInput } from '@/components/input/MultiSelectTagChipInput';
-import { TAGS_DOCUMENTATION } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
   buildCustomizedTagsSelector,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { MultiSelectTagChipInput } from '~builder/components/input/MultiSelectTagChipInput';
+import { TAGS_DOCUMENTATION } from '~builder/config/constants';
+import { BUILDER } from '~builder/langs/constants';
 
 import { useModalStatus } from '../../../hooks/useModalStatus';
 import PublicationModal from '../PublicationModal';

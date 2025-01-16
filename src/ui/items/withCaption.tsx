@@ -1,6 +1,6 @@
-import { Stack } from '@mui/material';
-
 import { ReactNode } from 'react';
+
+import { Stack } from '@mui/material';
 
 import {
   Alignment,
@@ -12,7 +12,7 @@ import {
   getMimetype,
 } from '@graasp/sdk';
 
-import TextDisplay from '@/TextDisplay/TextDisplay.js';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay.js';
 
 export const getDefaultFileAlignmentSetting = (
   mimetype?: string,
@@ -93,7 +93,7 @@ export const CaptionWrapper = <T extends WithCaptionItem>({
   const description = normalizeDescription(item.description);
 
   return (
-    <Stack direction={direction} gap={0.5} alignItems={alignItems} width='100%'>
+    <Stack direction={direction} gap={0.5} alignItems={alignItems} width="100%">
       {children}
       <TextDisplay content={description} />
     </Stack>

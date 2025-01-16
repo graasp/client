@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   DialogActions,
@@ -11,13 +12,13 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
-import { Button } from '@graasp/ui';
 
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import { hooks, mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+import Button from '@/ui/buttons/Button/Button';
+
+import { BUILDER } from '~builder/langs/constants';
 
 type Props = {
   item: DiscriminatedItem;
@@ -25,7 +26,7 @@ type Props = {
 
 export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { t: commonT } = useCommonTranslation();
+  const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
   const { data: geoloc } = hooks.useItemGeolocation(item.id);
   const { mutate: saveGeoloc } = mutations.usePutItemGeolocation();
@@ -140,7 +141,7 @@ export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} variant="text">
-            {commonT(COMMON.CANCEL_BUTTON)}
+            {commonT('CANCEL.BUTTON_TEXT')}
           </Button>
           <Button onClick={onSave}>{commonT('SAVE.BUTTON_TEXT')}</Button>
         </DialogActions>

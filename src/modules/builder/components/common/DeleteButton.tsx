@@ -2,14 +2,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import {
-  ActionButtonVariant,
-  ColorVariantsType,
-  DeleteButton as GraaspDeleteButton,
-} from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { ITEM_DELETE_BUTTON_CLASS } from '@/config/selectors';
+import GraaspDeleteButton from '@/ui/buttons/DeleteButton/DeleteButton';
+import { ActionButtonVariant, ColorVariantsType } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 import DeleteItemDialog from '../main/DeleteItemDialog';

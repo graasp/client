@@ -5,7 +5,6 @@ import {
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
-import { ForbiddenContent, ItemLoginWrapper } from '@graasp/ui';
 
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 import axios from 'axios';
@@ -17,6 +16,8 @@ import {
   ITEM_LOGIN_SIGN_IN_PASSWORD_ID,
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
 } from '@/config/selectors';
+import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';
+import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
 import Redirect from '~builder/components/main/Redirect';
 import { OutletContext } from '~builder/contexts/OutletContext';

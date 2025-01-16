@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Stack, Typography } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
 import { createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
@@ -12,6 +10,7 @@ import {
   RECYCLED_ITEMS_ERROR_ALERT_ID,
   RECYCLED_ITEMS_ROOT_CONTAINER,
 } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { ITEM_PAGE_SIZE } from '~builder/config/constants';
 

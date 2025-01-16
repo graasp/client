@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { IconButtonProps } from '@mui/material';
 
 import { DiscriminatedItem, ItemBookmark } from '@graasp/sdk';
-import {
-  ActionButtonVariant,
-  BookmarkButton as GraaspBookmarkButton,
-} from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import GraaspBookmarkButton from '@/ui/buttons/BookmarkButton/BookmarkButton';
+import { ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 

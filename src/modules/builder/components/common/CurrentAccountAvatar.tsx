@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
 import { ThumbnailSize } from '@graasp/sdk';
-import { Avatar } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { buildMemberAvatarId } from '@/config/selectors';
+import Avatar from '@/ui/Avatar/Avatar';
 
 import { AVATAR_ICON_HEIGHT } from '~builder/config/constants';
 

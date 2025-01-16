@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { KeyboardArrowRight } from '@mui/icons-material';
 import {
   Button,
@@ -8,11 +10,9 @@ import {
   styled,
 } from '@mui/material';
 
-import { useState } from 'react';
-
 import { ItemType } from '@graasp/sdk';
 
-import ItemIcon from '@/icons/ItemIcon.js';
+import ItemIcon from '@/ui/icons/ItemIcon.js';
 
 import type { NavigationElement } from './types.js';
 
@@ -50,8 +50,8 @@ const RowMenu = ({
 
   return (
     <Stack
-      direction='row'
-      justifyContent='space-between'
+      direction="row"
+      justifyContent="space-between"
       id={id}
       sx={{
         '& .arrow': {
@@ -62,7 +62,7 @@ const RowMenu = ({
         },
       }}
     >
-      <Stack direction='row' alignItems='center' width='100%'>
+      <Stack direction="row" alignItems="center" width="100%">
         <StyledButton
           onClick={() => {
             onClick(item);
@@ -71,7 +71,7 @@ const RowMenu = ({
           disabled={isDisabled?.(item)}
           startIcon={
             <ItemIcon
-              size='20px'
+              size="20px"
               alt={`${item.name} icon`}
               type={ItemType.FOLDER}
             />
@@ -83,7 +83,7 @@ const RowMenu = ({
               overflow: 'hidden',
               whiteSpace: 'nowrap',
             }}
-            variant='body1'
+            variant="body1"
           >
             {item.name}
           </Typography>
@@ -91,13 +91,13 @@ const RowMenu = ({
         {isLoading && <CircularProgress size={20} />}
         {!isLoading && (
           <IconButton
-            className='arrow'
+            className="arrow"
             onClick={() => {
               setIsLoading(true);
               onNavigate(item);
             }}
             id={arrowId}
-            size='small'
+            size="small"
           >
             <KeyboardArrowRight />
           </IconButton>

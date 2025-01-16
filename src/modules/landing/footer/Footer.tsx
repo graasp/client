@@ -2,11 +2,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography } from '@mui/material';
 
-import { PRIMARY_COLOR } from '@graasp/ui';
-
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
 import { GRAASP_BLOG_URL, NS } from '@/config/constants';
 import { OnChangeLangProp } from '@/types';
+import { PRIMARY_COLOR } from '@/ui/theme';
 
 import { CopyrightText } from './CopyrightText';
 import { FooterSection } from './FooterSection';

@@ -16,7 +16,6 @@ import {
   PermissionLevel,
   formatDate,
 } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { Check } from 'lucide-react';
 
@@ -28,6 +27,7 @@ import {
   MEMBERSHIP_REQUEST_REJECT_BUTTON_SELECTOR,
   buildMembershipRequestRowSelector,
 } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import ErrorAlert from '~builder/components/common/ErrorAlert';
 import { useOutletContext } from '~builder/contexts/OutletContext';

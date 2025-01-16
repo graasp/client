@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
-import { MainMenu } from '@graasp/ui';
 
 import { getRouteApi, useNavigate } from '@tanstack/react-router';
 
@@ -11,6 +10,7 @@ import { useAuth } from '@/AuthContext.tsx';
 import { NS } from '@/config/constants.ts';
 import { axios, hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
+import MainMenu from '@/ui/MainMenu/MainMenu';
 
 import { LoadingTree } from './tree/LoadingTree';
 import { TreeView } from './tree/TreeView';

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { TextField } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { DEBOUNCED_TEXT_FIELD_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 const { useDebounce } = hooks;
 

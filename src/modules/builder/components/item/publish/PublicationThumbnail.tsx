@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
@@ -7,13 +8,14 @@ import { PackedItem } from '@graasp/sdk';
 
 import { title } from 'process';
 
+import { NS } from '@/config/constants';
+import { buildPublishWarningIcon } from '@/config/selectors';
+import { useButtonColor } from '@/ui/buttons/hooks';
+
 import ThumbnailUploader, {
   EventChanges,
-} from '@/components/thumbnails/ThumbnailUploader';
-import { WARNING_COLOR } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
-import { buildPublishWarningIcon } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+} from '~builder/components/thumbnails/ThumbnailUploader';
+import { BUILDER } from '~builder/langs/constants';
 
 const THUMBNAIL_SIZE = 150;
 const SYNC_STATUS_KEY = 'PublicationThumbnail';
@@ -28,6 +30,7 @@ export const PublicationThumbnail = ({
   thumbnailSize = THUMBNAIL_SIZE,
   fullWidth = false,
 }: Props): JSX.Element => {
+  const { color } = useButtonColor('warning');
   const { t } = useTranslation(NS.Builder);
   const [showWarning, setShowWarning] = useState(false);
 
@@ -47,10 +50,7 @@ export const PublicationThumbnail = ({
 
   const warningTooltip = showWarning ? (
     <Tooltip title={t(BUILDER.LIBRARY_SETTINGS_THUMBNAIL_MISSING_WARNING)}>
-      <WarningIcon
-        htmlColor={WARNING_COLOR}
-        data-cy={buildPublishWarningIcon(title)}
-      />
+      <WarningIcon htmlColor={color} data-cy={buildPublishWarningIcon(title)} />
     </Tooltip>
   ) : undefined;
 

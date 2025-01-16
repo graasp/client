@@ -1,9 +1,9 @@
+import { AccountType } from '@graasp/sdk';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, screen, userEvent, within } from '@storybook/test';
 
-import { AccountType } from '@graasp/sdk';
-
-import { SMALL_AVATAR_SIZE } from '@/constants.js';
+import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from '../Avatar/Avatar.js';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
@@ -28,7 +28,7 @@ export const SignedIn = {
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt='avatar picture'
+        alt="avatar picture"
         component={'avatar'}
         sx={{ mx: 1 }}
       />
@@ -59,12 +59,12 @@ export const SignedOut = {
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt='default profile image'
+        alt="default profile image"
         component={'avatar'}
         sx={{ mx: 1 }}
       />
     ),
-    Actions: [<h3 key='content'>some content</h3>],
+    Actions: [<h3 key="content">some content</h3>],
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

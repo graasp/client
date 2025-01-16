@@ -5,9 +5,9 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { useButtonColor } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import { BUILDER } from '~builder/langs/constants';

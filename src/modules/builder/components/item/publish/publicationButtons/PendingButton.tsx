@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 export const PendingButton = (): JSX.Element => {
   const { t } = useTranslation(NS.Builder);

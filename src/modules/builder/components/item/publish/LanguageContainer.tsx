@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next';
+
 import { Button, Chip, Stack, Typography } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 import { DEFAULT_LANG, langs } from '@graasp/translations';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { LIBRARY_SETTINGS_LANGUAGES_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
 
 import LanguageSelect from '../settings/LanguageSelect';
 import PublicationAttributeContainer from './PublicationAttributeContainer';
@@ -16,7 +19,7 @@ type Props = {
   item: PackedItem;
 };
 
-export function LanguageContainer({ item }: Props): JSX.Element {
+export function LanguageContainer({ item }: Readonly<Props>): JSX.Element {
   const { t } = useTranslation(NS.Builder);
   const { isOpen, openModal, closeModal } = useModalStatus();
 

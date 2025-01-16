@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { PublicationStatus } from '@graasp/sdk';
 
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 
 import { SETTINGS } from '../../../config/constants';
-import { useBuilderTranslation } from '../../../config/i18n';
 import { BUILDER } from '../../../langs/constants';
 import { Visibility } from './UpdateVisibilityModal';
 

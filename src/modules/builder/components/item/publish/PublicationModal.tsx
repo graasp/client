@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Button,
   Dialog,
@@ -6,9 +8,10 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { DIALOG_CONTENT_WIDTH } from '@/config/constants';
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import { DIALOG_CONTENT_WIDTH } from '~builder/config/constants';
+import { BUILDER } from '~builder/langs/constants';
 
 type Props = {
   title?: string;

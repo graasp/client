@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, AlertTitle, Stack, Typography } from '@mui/material';
 
 import {
@@ -6,26 +8,23 @@ import {
   ItemMembership,
   PermissionLevel,
 } from '@graasp/sdk';
-import { FAILURE_MESSAGES } from '@graasp/translations';
 
 import { AxiosError } from 'axios';
 
-import { useBuilderTranslation, useMessagesTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { SHARE_CSV_TEMPLATE_SUMMARY_CONTAINER_ID } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { getErrorFromPayload } from '@/utils/errorMessages';
+
+import { BUILDER } from '~builder/langs/constants';
+import { getErrorFromPayload } from '~builder/utils/errorMessages';
 
 const ErrorDisplay = ({ errorMessage }: { errorMessage: string }): string => {
   const { t } = useTranslation(NS.Builder);
-  const { t: translateMessages } = useMessagesTranslation();
-  switch (errorMessage) {
-    case 'MODIFY_EXISTING': {
-      return t(BUILDER.SHARE_ITEM_CSV_SUMMARY_MODIFYING_EXISTING);
-    }
-    default: {
-      return translateMessages(FAILURE_MESSAGES.UNEXPECTED_ERROR);
-    }
+  const { t: translateMessages } = useTranslation(NS.Messages);
+  if (errorMessage === 'MODIFY_EXISTING') {
+    return t(BUILDER.SHARE_ITEM_CSV_SUMMARY_MODIFYING_EXISTING);
   }
+
+  return translateMessages('UNEXPECTED_ERROR');
 };
 
 const LineDisplay = ({

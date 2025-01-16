@@ -1,8 +1,9 @@
 import { Stack, SxProps, Typography, styled } from '@mui/material';
 
-import { Platform, useButtonColor } from '@graasp/ui';
-
 import { ReactNode } from '@tanstack/react-router';
+
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 const StyledStack = styled(Stack)(({ theme }) => ({
   flexDirection: 'row',

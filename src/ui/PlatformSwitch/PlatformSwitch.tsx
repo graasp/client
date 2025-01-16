@@ -9,12 +9,10 @@ import {
   useTheme,
 } from '@mui/material';
 
-import {
-  AnalyticsIcon,
-  BuildIcon,
-  LibraryIcon,
-  PlayIcon,
-} from '../icons/index.js';
+import AnalyticsIcon from '../icons/AnalyticsIcon.js';
+import BuildIcon from '../icons/BuildIcon.js';
+import LibraryIcon from '../icons/LibraryIcon.js';
+import PlayIcon from '../icons/PlayIcon.js';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
 import { Platform } from './hooks.js';
 
@@ -185,9 +183,9 @@ export const PlatformSwitch = ({
               sx={sxProps}
             />
           }
-          role='navigation'
+          role="navigation"
           direction={'down'}
-          ariaLabel='platform switch dial'
+          ariaLabel="platform switch dial"
         >
           {Object.values(Platform).map((platform, index) => {
             const Icon = PlatformIcons[platform];
@@ -224,7 +222,7 @@ export const PlatformSwitch = ({
   }
   return (
     <Box
-      component='nav'
+      component="nav"
       id={id}
       sx={{
         p: spacing,

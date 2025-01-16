@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Box, Stack } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
-import type { DroppedFile } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
+import type { DroppedFile } from '@/ui/draggable/types';
 
 import SmallUploadFile from '~builder/components/file/SmallUploadFile';
 import { ItemLayoutMode } from '~builder/enums';

@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { ButtonProps, Dialog, IconButton, useTheme } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { FolderPlus } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { ADD_FOLDER_BUTTON_CY } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import TextEditor from '@graasp/ui/text-editor';
-
 import { hooks } from '@/config/queryClient';
-import { stripHtml } from '@/utils/item';
+import TextEditor from '@/ui/TextEditor/TextEditor';
+
+import { stripHtml } from '~builder/utils/item';
 
 const { useDebounce } = hooks;
 

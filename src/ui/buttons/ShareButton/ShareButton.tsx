@@ -1,4 +1,4 @@
-import { UsersRound } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import {
   IconButton,
@@ -9,9 +9,9 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { UsersRound } from 'lucide-react';
 
-import { ActionButton, ActionButtonVariant } from '@/types.js';
+import { ActionButton, ActionButtonVariant } from '@/ui/types.js';
 
 export type Props = {
   tooltip?: string;

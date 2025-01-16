@@ -14,7 +14,6 @@ import {
   MAX_ZIP_FILE_SIZE,
   formatFileSize,
 } from '@graasp/sdk';
-import { Button, UploadFileButton } from '@graasp/ui';
 
 import { useParams } from '@tanstack/react-router';
 
@@ -24,6 +23,8 @@ import {
   CREATE_ITEM_CLOSE_BUTTON_ID,
   H5P_DASHBOARD_UPLOADER_ID,
 } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
+import UploadFileButton from '@/ui/upload/UploadFileButton/UploadFileButton';
 
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';

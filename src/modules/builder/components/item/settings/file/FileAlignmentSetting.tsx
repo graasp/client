@@ -15,7 +15,6 @@ import {
   LocalFileItemType,
   S3FileItemType,
 } from '@graasp/sdk';
-import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@graasp/ui';
 
 import {
   AlignCenterIcon,
@@ -26,6 +25,7 @@ import {
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
 
 import ItemSettingProperty from '../ItemSettingProperty';
 import { SettingVariant, SettingVariantType } from '../settingTypes';

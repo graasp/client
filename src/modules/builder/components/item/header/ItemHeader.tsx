@@ -7,7 +7,6 @@ import { useParams } from '@tanstack/react-router';
 import { NS } from '@/config/constants';
 import { ITEM_HEADER_ID } from '@/config/selectors';
 
-import Navigation from '../../layout/Navigation';
 import ItemHeaderActions from './ItemHeaderActions';
 
 type Props = {
@@ -26,7 +25,7 @@ const ItemHeader = ({ showNavigation = true }: Props): JSX.Element | null => {
       id={ITEM_HEADER_ID}
     >
       {/* display empty div to render actions on the right */}
-      {showNavigation ? <Navigation /> : <div />}
+      {/* {showNavigation ? <Navigation /> : <div />} */}
       {itemId ? (
         <ItemHeaderActions itemId={itemId} />
       ) : (

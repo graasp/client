@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Container, Divider, Stack, Typography, styled } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
-import { DrawerHeader } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { ITEM_MAIN_CLASS } from '@/config/selectors';
+import { DrawerHeader } from '@/ui/DrawerHeader/DrawerHeader';
 
 import Chatbox from '../common/Chatbox';
 import { useLayoutContext } from '../context/LayoutContext';

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { TableCell, Typography } from '@mui/material';
 
 import {
@@ -7,15 +9,15 @@ import {
   ItemMembership,
   PermissionLevel,
 } from '@graasp/sdk';
-import { DEFAULT_TEXT_DISABLED_COLOR } from '@graasp/ui';
 
-import { useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-
 import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
+
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
 import EditPermissionButton from './EditPermissionButton';
 import { StyledTableRow } from './StyledTableRow';
@@ -33,7 +35,7 @@ const ItemMembershipTableRow = ({
   isOnlyAdmin?: boolean;
   isDisabled: boolean;
 }): JSX.Element => {
-  const { t: translateEnums } = useEnumsTranslation();
+  const { t: translateEnums } = useTranslation(NS.Enums);
 
   const { mutate: editItemMembership } = mutations.useEditItemMembership();
   const { mutate: shareItem } = mutations.usePostItemMembership();
@@ -76,7 +78,11 @@ const ItemMembershipTableRow = ({
         <Typography>
           {isDisabled ? (
             <Typography sx={{ color: DEFAULT_TEXT_DISABLED_COLOR }}>
-              {translateEnums(ItemLoginSchemaStatus.Disabled)}
+              {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                translateEnums(ItemLoginSchemaStatus.Disabled)
+              }
             </Typography>
           ) : (
             translateEnums(data.permission)

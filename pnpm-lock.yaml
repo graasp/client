@@ -44,9 +44,6 @@ importers:
       '@graasp/translations':
         specifier: 1.43.0
         version: 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui':
-        specifier: 5.5.1
-        version: 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
       '@mui/icons-material':
         specifier: 6.3.1
         version: 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -98,6 +95,9 @@ importers:
       i18next-fetch-backend:
         specifier: 6.0.0
         version: 6.0.0
+      interweave:
+        specifier: 13.1.0
+        version: 13.1.0(react@18.3.1)
       jwt-decode:
         specifier: 4.0.0
         version: 4.0.0
@@ -131,6 +131,12 @@ importers:
       react-date-range:
         specifier: 2.0.1
         version: 2.0.1(date-fns@4.1.0)(react@18.3.1)
+      react-dnd:
+        specifier: 16.0.1
+        version: 16.0.1(@types/node@22.10.5)(@types/react@18.3.18)(react@18.3.1)
+      react-dnd-html5-backend:
+        specifier: 16.0.1
+        version: 16.0.1
       react-dom:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
@@ -158,6 +164,9 @@ importers:
       react-quill:
         specifier: 2.0.0
         version: 2.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-rnd:
+        specifier: 10.4.14
+        version: 10.4.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-toastify:
         specifier: 11.0.2
         version: 11.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -5203,6 +5212,12 @@ packages:
       react: ^16.13.1 || ^17.0.0 || ^18.0.0
       react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
 
+  re-resizable@6.10.3:
+    resolution: {integrity: sha512-zvWb7X3RJMA4cuSrqoxgs3KR+D+pEXnGrD2FAD6BMYAULnZsSF4b7AOVyG6pC3VVNVOtlagGDCDmZSwWLjjBBw==}
+    peerDependencies:
+      react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   react-accessible-treeview@2.10.0:
     resolution: {integrity: sha512-EJadKn+fkL1doftJOvAgN9XYLS6iluVtGuW2ok/eWEBTG80GkpIBxCzKNucGLMHaYQoBMyHe8jfz3h93xDd4UA==}
     peerDependencies:
@@ -5366,6 +5381,12 @@ packages:
 
   react-rnd@10.4.13:
     resolution: {integrity: sha512-Vgbf0iihspcQ6nkaFhpOGWfmnuVbhkhoB0hBbYl8aRDA4horsQHESc4E1z7O/P27kFFjK2aqM0u5CGzfr9gEZA==}
+    peerDependencies:
+      react: '>=16.3.0'
+      react-dom: '>=16.3.0'
+
+  react-rnd@10.4.14:
+    resolution: {integrity: sha512-NLGc3IymymumPfHy3DXiHNIMOiTlj6xBNb2boHqrtwCgYDasNarpg8tdUY36JlJbrs0E4BvjYBkfEGqUPBsukg==}
     peerDependencies:
       react: '>=16.3.0'
       react-dom: '>=16.3.0'
@@ -12145,6 +12166,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
+  re-resizable@6.10.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   react-accessible-treeview@2.10.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       classnames: 2.5.1
@@ -12320,6 +12346,14 @@ snapshots:
   react-rnd@10.4.13(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       re-resizable: 6.10.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-draggable: 4.4.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tslib: 2.6.2
+
+  react-rnd@10.4.14(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      re-resizable: 6.10.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-draggable: 4.4.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -12874,7 +12908,7 @@ snapshots:
 
   substyle@9.4.1(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.4.5
+      '@babel/runtime': 7.26.0
       invariant: 2.2.4
       react: 18.3.1
 

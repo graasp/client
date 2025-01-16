@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
@@ -13,14 +14,15 @@ import { DiscriminatedItem } from '@graasp/sdk';
 
 import { ChevronDown } from 'lucide-react';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   SHARE_BUTTON_MORE_ID,
   SHARE_BUTTON_SELECTOR,
   SHARE_ITEM_CSV_PARSER_BUTTON_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
 
 import ImportUsersWithCSVDialog from '../csvImport/ImportUsersWithCSVDialog';
 import CreateItemMembershipForm from './CreateItemMembershipForm';
@@ -90,7 +92,6 @@ const ShareButton = ({ item }: Props): JSX.Element => {
         placement="bottom-start"
       >
         {({ TransitionProps }) => (
-          // eslint-disable-next-line react/jsx-props-no-spreading
           <Grow {...TransitionProps}>
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>

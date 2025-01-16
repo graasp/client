@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { FormHelperText, styled } from '@mui/material';
 
 import { ShortLinkAvailable } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
-import { isValidAlias } from '@/utils/shortLink';
+import { NS } from '@/config/constants';
+
+import { BUILDER } from '~builder/langs/constants';
+import { isValidAlias } from '~builder/utils/shortLink';
 
 const WrapHelper = styled(FormHelperText)(() => ({
   overflowWrap: 'anywhere',
@@ -45,19 +47,26 @@ const AliasValidation = ({
   // check for the validity and availability of the alias
   useEffect(() => {
     const { isValid, messageKey, data } = isValidAlias(alias);
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setValid(isValid);
 
     if (!isValid) {
       const msgKey = messageKey ?? BUILDER.SHORT_LINK_UNKNOWN_ERROR;
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setMessage(translateBuilder(msgKey, { data }));
     } else if (!hasAliasChanged) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setMessage(ALIAS_UNCHANGED_MSG);
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAvailable(true);
     } else if (isAvailableLoading) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setMessage(translateBuilder(BUILDER.ALIAS_CHECKING_MSG));
     } else {
       const aliasAvailable = Boolean(shortLinkAvailable?.available);
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setMessage(aliasAvailable ? ALIAS_VALID_MSG : ALIAS_ALREADY_EXIST);
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAvailable(aliasAvailable);
     }
 

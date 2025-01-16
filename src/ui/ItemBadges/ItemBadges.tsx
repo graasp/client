@@ -1,3 +1,5 @@
+import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
+
 import {
   EyeOff,
   FoldVertical,
@@ -6,9 +8,7 @@ import {
   PinIcon,
 } from 'lucide-react';
 
-import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
-
-import { LibraryIcon } from '../icons/index.js';
+import LibraryIcon from '../icons/LibraryIcon';
 
 const BADGE_SIZE = '18px';
 
@@ -78,7 +78,7 @@ const ItemBadges = ({
           backgroundColor={backgroundColor}
           tooltip={isPublishedTooltip}
         >
-          <LibraryIcon primaryOpacity={1} primaryColor='white' disableHover />
+          <LibraryIcon primaryOpacity={1} primaryColor="white" disableHover />
         </ItemBadge>
       )}
       {isPublic && (

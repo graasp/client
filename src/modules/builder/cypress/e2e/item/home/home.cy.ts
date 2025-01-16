@@ -8,7 +8,7 @@ import {
 import { SortingOptions } from '@/components/table/types';
 import { ITEM_PAGE_SIZE } from '@/config/constants';
 
-import i18n from '../../../../config/i18n';
+// import i18n from '../../../../config/i18n';
 import { HOME_PATH } from '../../../../config/paths';
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,

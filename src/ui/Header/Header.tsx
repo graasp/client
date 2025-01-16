@@ -1,5 +1,3 @@
-import { SidebarClose, SidebarOpen } from 'lucide-react';
-
 import '@mui/material';
 import {
   AppBar,
@@ -11,7 +9,9 @@ import {
   styled,
 } from '@mui/material';
 
-import { AllowedContext } from '@/types.js';
+import { SidebarClose, SidebarOpen } from 'lucide-react';
+
+import { AllowedContext } from '@/ui/types.js';
 
 import { AccentColors, PRIMARY_COLOR } from '../theme.js';
 
@@ -54,7 +54,7 @@ const HeaderMenuIcon = ({
     return (
       <StyledIconButton
         id={buttonId}
-        color='inherit'
+        color="inherit"
         aria-label={openAriaLabel}
         onClick={handleClose}
       >
@@ -65,7 +65,7 @@ const HeaderMenuIcon = ({
   return (
     <StyledIconButton
       id={buttonId}
-      color='inherit'
+      color="inherit"
       aria-label={closedAriaLabel}
       onClick={handleOpen}
     >
@@ -109,7 +109,7 @@ export const Header = ({
     <>
       <AppBar
         id={id}
-        position='sticky'
+        position="sticky"
         sx={{
           background: context
             ? buildHeaderGradient(AccentColors[context])
@@ -129,10 +129,10 @@ export const Header = ({
             />
           )}
           <Stack
-            width='100%'
-            direction='row'
-            justifyContent='space-between'
-            alignItems='center'
+            width="100%"
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
           >
             {leftContent}
             {centerContent}

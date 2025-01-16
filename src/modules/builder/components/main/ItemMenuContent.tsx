@@ -10,10 +10,10 @@ import {
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
-import { ActionButton } from '@graasp/ui';
 
 import { hooks } from '@/config/queryClient';
 import { buildItemMenuId } from '@/config/selectors';
+import { ActionButton } from '@/ui/types';
 
 import BookmarkButton from '../common/BookmarkButton';
 import CollapseButton from '../common/CollapseButton';

@@ -2,8 +2,8 @@ import { Typography } from '@mui/material';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
 
-import TextDisplay from '@/TextDisplay/TextDisplay.js';
-import { withFlavor } from '@/TextDisplay/withFlavor.js';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay.js';
+import { withFlavor } from '@/ui/TextDisplay/withFlavor.js';
 
 import withCollapse from '../Collapse/withCollapse.js';
 
@@ -36,7 +36,7 @@ const DocumentItem = ({
   if (!extra?.content && showEmpty) {
     component = (
       <Typography
-        variant='body2'
+        variant="body2"
         sx={{ fontStyle: 'italic', color: 'lightgrey' }}
       >
         {emptyMessage}

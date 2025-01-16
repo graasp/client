@@ -1,17 +1,16 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  ActionButton,
-  ActionButtonVariant,
-  ColorVariantsType,
-  MoveButton as GraaspMoveButton,
-} from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
   ITEM_MOVE_BUTTON_CLASS,
 } from '@/config/selectors';
+import GraaspMoveButton from '@/ui/buttons/MoveButton/MoveButton';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  ColorVariantsType,
+} from '@/ui/types';
 
 import { BUILDER } from '../../../langs/constants';
 

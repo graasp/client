@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 import { Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 import CustomizedTags from '../publish/customizedTags/CustomizedTags';
 

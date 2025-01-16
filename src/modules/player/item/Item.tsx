@@ -29,17 +29,6 @@ import {
   ShortcutItemType,
   buildPdfViewerURL,
 } from '@graasp/sdk';
-import {
-  AppItem,
-  EtherpadItem,
-  FileItem,
-  H5PItem,
-  ItemSkeleton,
-  LinkItem,
-  TextDisplay,
-  withCollapse,
-} from '@graasp/ui';
-import { DocumentItem } from '@graasp/ui/text-editor';
 
 import { getRouteApi } from '@tanstack/react-router';
 
@@ -56,6 +45,15 @@ import {
   buildFolderButtonId,
   buildLinkItemId,
 } from '@/config/selectors';
+import withCollapse from '@/ui/Collapse/withCollapse';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay';
+import AppItem from '@/ui/items/AppItem';
+import DocumentItem from '@/ui/items/DocumentItem';
+import EtherpadItem from '@/ui/items/EtherpadItem';
+import FileItem from '@/ui/items/FileItem';
+import H5PItem from '@/ui/items/H5PItem';
+import ItemSkeleton from '@/ui/items/ItemSkeleton/ItemSkeleton';
+import LinkItem from '@/ui/items/LinkItem';
 
 import NavigationIsland from '~player/navigationIsland/NavigationIsland';
 import { FolderCard } from '~player/ui/FolderCard';

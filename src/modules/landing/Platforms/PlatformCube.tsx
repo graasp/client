@@ -3,20 +3,17 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import {
-  AnalyticsIcon,
-  BuildIcon,
-  LibraryIcon,
-  Platform,
-  PlayIcon,
-} from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import {
   GRAASP_BUILDER_HOST,
   GRAASP_LIBRARY_HOST,
   GRAASP_PLAYER_HOST,
 } from '@/config/env';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
+import BuildIcon from '@/ui/icons/BuildIcon';
+import LibraryIcon from '@/ui/icons/LibraryIcon';
+import PlayIcon from '@/ui/icons/PlayIcon';
 
 import { PlatformColorSurface } from './PlatformColorSurface';
 

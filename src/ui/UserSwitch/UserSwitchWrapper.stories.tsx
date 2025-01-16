@@ -1,6 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, screen, userEvent, within } from '@storybook/test';
-
 import {
   GuestFactory,
   ItemLoginSchemaFactory,
@@ -8,7 +5,10 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { SMALL_AVATAR_SIZE } from '@/constants.js';
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, screen, userEvent, within } from '@storybook/test';
+
+import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from '../Avatar/Avatar.js';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';

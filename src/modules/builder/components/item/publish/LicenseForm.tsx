@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -8,7 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   CC_ALLOW_COMMERCIAL_CONTROL_ID,
   CC_CC0_CONTROL_ID,
@@ -18,7 +19,8 @@ import {
   CC_REQUIRE_ATTRIBUTION_CONTROL_ID,
   CC_SHARE_ALIKE_CONTROL_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 import { CCLicenseChoice, CCSharingLicenseChoice } from './type';
 

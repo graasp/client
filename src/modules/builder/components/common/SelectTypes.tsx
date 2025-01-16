@@ -13,9 +13,9 @@ import {
 } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
-import { ItemIcon } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
+import ItemIcon from '@/ui/icons/ItemIcon';
 
 import { useFilterItemsContext } from '../context/FilterItemsContext';
 

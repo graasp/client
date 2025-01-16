@@ -2,9 +2,9 @@ import { Box, useTheme } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
 
-import Thumbnail from '@/Thumbnail/Thumbnail.js';
-import ItemIcon, { ItemIconProps } from '@/icons/ItemIcon.js';
-import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/theme.js';
+import Thumbnail from '@/ui/Thumbnail/Thumbnail.js';
+import ItemIcon, { ItemIconProps } from '@/ui/icons/ItemIcon.js';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme.js';
 
 import { CARD_HEIGHT } from '../constants.js';
 
@@ -32,12 +32,12 @@ const CardThumbnail = ({
 
   return (
     <Box
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
       bgcolor={DEFAULT_LIGHT_PRIMARY_COLOR.main}
       width={CARD_HEIGHT}
-      height='100%'
+      height="100%"
       flexShrink={0}
       minHeight={CARD_HEIGHT}
       minWidth={0}

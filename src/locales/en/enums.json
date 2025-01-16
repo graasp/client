@@ -32,6 +32,7 @@
   "md": "Medium",
   "lg": "Large",
   "xl": "Extra Large",
+  "default": "Default",
 
   "guest": "guest",
   "individual": "member",
@@ -62,5 +63,7 @@
 
   "level": "Level",
   "discipline": "Discipline",
-  "resource-type": "Resource Type"
+  "resource-type": "Resource Type",
+
+  "disabled": "Disabled"
 }

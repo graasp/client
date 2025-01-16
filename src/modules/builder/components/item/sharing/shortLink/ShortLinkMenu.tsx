@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   IconButton,
@@ -11,12 +12,10 @@ import {
 } from '@mui/material';
 
 import { ShortLink } from '@graasp/sdk';
-import { FAILURE_MESSAGES, SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { CopyIcon, MoreVerticalIcon, PenIcon, TrashIcon } from 'lucide-react';
 
-import QRCode from '@/components/common/QRCode';
-import { useBuilderTranslation, useMessagesTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import {
   buildShortLinkDeleteBtnId,
@@ -24,9 +23,11 @@ import {
   buildShortLinkMenuBtnId,
   buildShortLinkShortenBtnId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { COPY_ITEM_LINK_TO_CLIPBOARD } from '@/types/clipboard';
-import { copyToClipboard } from '@/utils/clipboard';
+
+import QRCode from '~builder/components/common/QRCode';
+import { BUILDER } from '~builder/langs/constants';
+import { COPY_ITEM_LINK_TO_CLIPBOARD } from '~builder/types/clipboard';
+import { copyToClipboard } from '~builder/utils/clipboard';
 
 type Props = {
   shortLink: ShortLink;
@@ -48,7 +49,7 @@ const ShortLinkMenu = ({
   onDelete,
 }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { t: translateMessages } = useMessagesTranslation();
+  const { t: translateMessages } = useTranslation(NS.Messages);
 
   const { alias, platform, itemId } = shortLink;
 
@@ -75,9 +76,7 @@ const ShortLinkMenu = ({
           notifier({
             type: COPY_ITEM_LINK_TO_CLIPBOARD.SUCCESS,
             payload: {
-              message: translateMessages(
-                SUCCESS_MESSAGES.COPY_LINK_TO_CLIPBOARD,
-              ),
+              message: translateMessages('COPY_LINK_TO_CLIPBOARD'),
             },
           });
         },
@@ -85,9 +84,7 @@ const ShortLinkMenu = ({
           notifier({
             type: COPY_ITEM_LINK_TO_CLIPBOARD.FAILURE,
             payload: {
-              message: translateMessages(
-                FAILURE_MESSAGES.COPY_LINK_TO_CLIPBOARD_ERROR,
-              ),
+              message: translateMessages('COPY_LINK_TO_CLIPBOARD_ERROR'),
             },
           });
         },

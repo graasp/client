@@ -6,7 +6,7 @@ import {
 } from '@graasp/sdk';
 
 import { SortingOptionsForFolder } from '../../../../components/table/types';
-import i18n from '../../../../config/i18n';
+// import i18n from '../../../../config/i18n';
 import { buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,

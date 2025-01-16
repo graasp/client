@@ -2,9 +2,8 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { Box, Button, Stack, Typography, styled } from '@mui/material';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 const BUTTON_CONTAINER = 'button-container';
 const TEXT_CONTAINER = 'text-container';

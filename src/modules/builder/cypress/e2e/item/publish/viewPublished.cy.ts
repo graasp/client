@@ -7,7 +7,7 @@ import {
 import { SortingOptions } from '@/components/table/types';
 import { BUILDER } from '@/langs/constants';
 
-import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
 import { PUBLISHED_ITEMS_PATH } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,

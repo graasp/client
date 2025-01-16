@@ -1,10 +1,9 @@
-// formula dependencies
-import katex from 'katex';
+import { useEffect, useRef, useState } from 'react';
+import ReactQuill from 'react-quill';
 
 import { Stack, styled } from '@mui/material';
 
-import { useEffect, useRef, useState } from 'react';
-import ReactQuill from 'react-quill';
+import katex from 'katex';
 
 import Button from '../buttons/Button/Button.js';
 import SaveButton from '../buttons/SaveButton/SaveButton.js';
@@ -111,13 +110,13 @@ const TextEditor = ({
   }, [placeholderText]);
 
   return (
-    <Stack direction='column' spacing={1} alignItems='flex-end'>
+    <Stack direction="column" spacing={1} alignItems="flex-end">
       <Div>
         <ReactQuill
           ref={editorRef}
           id={id}
           placeholder={placeholderText}
-          theme='snow'
+          theme="snow"
           value={content}
           onChange={onTextChange}
           modules={{
@@ -129,8 +128,8 @@ const TextEditor = ({
         />
       </Div>
       {showActions && (
-        <Stack spacing={1} direction='row'>
-          <Button variant='text' id={cancelButtonId} onClick={onCancelClick}>
+        <Stack spacing={1} direction="row">
+          <Button variant="text" id={cancelButtonId} onClick={onCancelClick}>
             {cancelButtonText}
           </Button>
           <SaveButton

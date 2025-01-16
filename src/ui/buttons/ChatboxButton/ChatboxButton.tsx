@@ -1,8 +1,12 @@
-import { MessageSquareIcon, MessageSquareOffIcon } from 'lucide-react';
-
 import { IconButton, Tooltip } from '@mui/material';
 
-import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types.js';
+import { MessageSquareIcon, MessageSquareOffIcon } from 'lucide-react';
+
+import {
+  ActionButton,
+  ActionButtonVariant,
+  IconSizeVariant,
+} from '@/ui/types.js';
 
 import MenuItemButton from '../MenuItemButton.js';
 import { useButtonColor } from '../hooks.js';

@@ -10,8 +10,9 @@ import {
   PackedItem,
 } from '@graasp/sdk';
 
-import { SETTINGS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+
+import { SETTINGS } from '~builder/config/constants';
 
 import { useGuestMemberships } from './useGuestMemberships';
 
@@ -68,6 +69,7 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
     const shouldPublicBeDisabled =
       item?.public && item?.public?.item?.path !== item?.path;
 
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsDisabled(Boolean(shouldItemLoginBeDisabled || shouldPublicBeDisabled));
   }, [itemLoginSchema, item]);
 
@@ -82,6 +84,7 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
   useEffect(() => {
     switch (true) {
       case Boolean(item.public): {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setVisibility(SETTINGS.ITEM_PUBLIC.name);
         break;
       }
@@ -89,10 +92,12 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
         itemLoginSchema?.id &&
           itemLoginSchema.status !== ItemLoginSchemaStatus.Disabled,
       ): {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setVisibility(SETTINGS.ITEM_LOGIN.name);
         break;
       }
       default:
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setVisibility(SETTINGS.ITEM_PRIVATE.name);
     }
   }, [itemPublishEntry, item, itemLoginSchema]);

@@ -1,5 +1,4 @@
 import { AccountType } from '@graasp/sdk';
-import { ItemLoginWrapper } from '@graasp/ui';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
@@ -11,6 +10,7 @@ import {
   ITEM_LOGIN_SIGN_IN_BUTTON_ID,
   ITEM_LOGIN_USERNAME_INPUT_ID,
 } from '@/config/selectors';
+import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
 import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';

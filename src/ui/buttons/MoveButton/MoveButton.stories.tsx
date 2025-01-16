@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ActionButton, ColorVariants } from '@/types.js';
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import { ActionButton, ColorVariants } from '@/ui/types.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import MoveButton from './MoveButton.js';
 

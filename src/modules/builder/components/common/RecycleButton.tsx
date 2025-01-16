@@ -8,8 +8,6 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { ActionButton, ActionButtonVariant } from '@graasp/ui';
-
 import { TrashIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -18,6 +16,7 @@ import {
   ITEM_MENU_RECYCLE_BUTTON_CLASS,
   ITEM_RECYCLE_BUTTON_CLASS,
 } from '@/config/selectors';
+import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 

@@ -6,10 +6,10 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 import { langs } from '@graasp/translations';
-import { Select } from '@graasp/ui';
 
 import { mutations } from '@/config/queryClient';
 import { LANGUAGE_SELECTOR_ID } from '@/config/selectors';
+import Select from '@/ui/Select/Select';
 
 const LanguageSelect = ({ item }: { item: PackedItem }): JSX.Element => {
   const { mutate: changeLang } = mutations.useEditItem();

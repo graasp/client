@@ -1,10 +1,11 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Button } from '@graasp/ui';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { ITEM_RESEND_INVITATION_BUTTON_CLASS } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
-import { useBuilderTranslation } from '../../../../config/i18n';
-import { mutations } from '../../../../config/queryClient';
-import { ITEM_RESEND_INVITATION_BUTTON_CLASS } from '../../../../config/selectors';
 import { BUILDER } from '../../../../langs/constants';
 
 type Props = {

@@ -1,10 +1,10 @@
-import { Heart } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import { IconButton, SxProps, Tooltip } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { Heart } from 'lucide-react';
 
-import { ColorVariantsType, IconSizeVariant } from '@/types.js';
+import { ColorVariantsType, IconSizeVariant } from '@/ui/types.js';
 
 import { useButtonColor } from '../hooks.js';
 

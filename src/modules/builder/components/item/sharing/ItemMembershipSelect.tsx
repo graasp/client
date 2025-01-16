@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { SelectProps } from '@mui/material';
 
 import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
-import { Select } from '@graasp/ui';
 
-import {
-  useBuilderTranslation,
-  useEnumsTranslation,
-} from '../../../config/i18n';
+import { NS } from '@/config/constants';
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   buildPermissionOptionId,
-} from '../../../config/selectors';
+} from '@/config/selectors';
+import Select from '@/ui/Select/Select';
+
 import { BUILDER } from '../../../langs/constants';
 
 /**
@@ -55,7 +54,7 @@ const ItemMembershipSelect = ({
   size = 'small',
 }: ItemMembershipSelectProps): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { t: enumT } = useEnumsTranslation();
+  const { t: enumT } = useTranslation(NS.Enums);
   const [permission, setPermission] = useState(value);
   const label = showLabel
     ? translateBuilder(BUILDER.ITEM_MEMBERSHIP_PERMISSION_LABEL)
@@ -64,6 +63,7 @@ const ItemMembershipSelect = ({
     typeof disabled === 'boolean' ? defaultDisabledMap : disabled;
   useEffect(() => {
     if (permission !== value) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setPermission(value);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

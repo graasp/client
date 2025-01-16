@@ -10,11 +10,12 @@ import {
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
-import { ActionButton } from '@graasp/ui';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
 import { hooks } from '@/config/queryClient';
 import { ITEM_MENU_BOOKMARK_BUTTON_CLASS } from '@/config/selectors';
+import { ActionButton } from '@/ui/types';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
 
 import BookmarkButton from '../../common/BookmarkButton';
 import CollapseButton from '../../common/CollapseButton';

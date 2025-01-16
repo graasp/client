@@ -1,16 +1,18 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
-import useModalStatus from '@/components/hooks/useModalStatus';
-import DebouncedTextField from '@/components/input/DebouncedTextField';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import DebouncedTextField from '~builder/components/input/DebouncedTextField';
+import { BUILDER } from '~builder/langs/constants';
 
 import PublicationModal from './PublicationModal';
 

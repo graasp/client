@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Box, Typography, useTheme } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
-import { Main, Platform, PlatformSwitch, useMobileView } from '@graasp/ui';
 
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 import { fallback, zodValidator } from '@tanstack/zod-adapter';
@@ -15,6 +14,10 @@ import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
 import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
+import Main from '@/ui/Main/Main';
+import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import ItemNavigation from '~player/ItemNavigation';
 

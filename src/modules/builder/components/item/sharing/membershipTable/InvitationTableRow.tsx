@@ -1,14 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 import { TableCell, Typography } from '@mui/material';
 
 import { DiscriminatedItem, Invitation, PermissionLevel } from '@graasp/sdk';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   buildInvitationTableRowId,
   buildItemInvitationRowDeleteButtonId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 import EditPermissionButton from './EditPermissionButton';
 import ResendInvitation from './ResendInvitation';
@@ -22,7 +25,7 @@ const InvitationTableRow = ({
   item: DiscriminatedItem;
   data: Invitation;
 }): JSX.Element => {
-  const { t: translateEnums } = useEnumsTranslation();
+  const { t: translateEnums } = useTranslation(NS.Enums);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { mutate: editInvitation } = mutations.usePatchInvitation();

@@ -2,8 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import { ForbiddenContent } from '@graasp/ui';
-
 import { useNavigate } from '@tanstack/react-router';
 import { ArrowLeftRightIcon } from 'lucide-react';
 
@@ -15,6 +13,7 @@ import {
   FORBIDDEN_CONTENT_CONTAINER_ID,
   FORBIDDEN_CONTENT_ID,
 } from '@/config/selectors';
+import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';
 
 export function ItemForbiddenScreen(): JSX.Element {
   const { user, logout, isAuthenticated } = useAuth();

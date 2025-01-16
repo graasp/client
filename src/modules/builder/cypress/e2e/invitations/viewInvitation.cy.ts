@@ -1,8 +1,6 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 import { namespaces } from '@graasp/translations';
 
-import i18n from '@/config/i18n';
-
 import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,

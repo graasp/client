@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
-import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
 import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { COLLAPSE_ITEM_BUTTON_CLASS } from '@/config/selectors';
+import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 

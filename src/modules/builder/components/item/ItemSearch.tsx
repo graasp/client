@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';
 
-import { SearchInput } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import {
   ITEMS_GRID_NO_SEARCH_RESULT_ID,
   ITEM_SEARCH_INPUT_ID,
 } from '@/config/selectors';
+import { SearchInput } from '@/ui/SearchInput/SearchInput';
 
 import { BUILDER } from '../../langs/constants';
 

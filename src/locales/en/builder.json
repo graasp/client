@@ -470,7 +470,11 @@
   },
   "CHAT": {
     "SHOW": "Show chat",
-    "HIDE": "Hide chat"
+    "HIDE": "Hide chat",
+    "CLEAR_BUTTON_TEXT": "Clear",
+    "CLEAR_ALL": "Clear chat",
+    "CLEAR_ALL_TITLE": "Clear chat content",
+    "CLEAR_ALL_CONTENT": "You can delete all messages from the chat. Ensure you have downloaded a copy if you want to keep the messages. You can not undo this action."
   },
   "TRASH_NO_ITEM": "You trash is empty.",
   "BOOKMARKS_NO_ITEM": "No bookmarked item",

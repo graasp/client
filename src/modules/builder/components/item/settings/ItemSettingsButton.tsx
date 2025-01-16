@@ -2,14 +2,13 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, Tooltip } from '@mui/material';
 
-import { ActionButton, ActionButtonVariant } from '@graasp/ui';
-
 import { Link } from '@tanstack/react-router';
 import { SettingsIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { NS } from '@/config/constants';
 import { buildSettingsButtonId } from '@/config/selectors';
+import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { buildItemSettingsPath } from '~builder/config/paths';
 

@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Box, Typography } from '@mui/material';
 
 import { MAX_ZIP_FILE_SIZE, formatFileSize } from '@graasp/sdk';
-import { UploadFileButton } from '@graasp/ui';
 
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ZIP_DASHBOARD_UPLOADER_ID } from '@/config/selectors';
+import UploadFileButton from '@/ui/upload/UploadFileButton/UploadFileButton';
 
 import { BUILDER } from '../../langs/constants';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';

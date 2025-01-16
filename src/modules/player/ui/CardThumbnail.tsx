@@ -1,7 +1,10 @@
 import { Box, useTheme } from '@mui/material';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
-import { DEFAULT_LIGHT_PRIMARY_COLOR, ItemIcon, Thumbnail } from '@graasp/ui';
+
+import Thumbnail from '@/ui/Thumbnail/Thumbnail';
+import ItemIcon from '@/ui/icons/ItemIcon';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
 
 export type CardThumbnailProps = {
   thumbnail?: string;

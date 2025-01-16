@@ -1,16 +1,18 @@
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { IconButton, Stack, TextField, Tooltip } from '@mui/material';
 
 import { RefreshCcwIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   SHORT_LINK_ALIAS_INPUT_ID,
   SHORT_LINK_RANDOMIZE_BUTTON_ID,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
-import { randomAlias } from '@/utils/shortLink';
+
+import { BUILDER } from '~builder/langs/constants';
+import { randomAlias } from '~builder/utils/shortLink';
 
 type Props = {
   alias: string;

@@ -13,9 +13,7 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { Breadcrumbs, type NavigationElement } from '@graasp/ui';
 
-import { BuilderKeys } from '@/@types/i18next';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
@@ -23,6 +21,8 @@ import {
   MY_GRAASP_ITEM_PATH,
   TREE_MODAL_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
+import type { NavigationElement } from '@/ui/Tree/types';
 
 import { BUILDER } from '../../../langs/constants';
 import CancelButton from '../../common/CancelButton';
@@ -48,7 +48,7 @@ export type ItemSelectionModalProps = {
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;
-  titleKey: keyof BuilderKeys;
+  titleKey: string;
 };
 const ItemSelectionModal = ({
   buttonText = () => 'Submit',

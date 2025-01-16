@@ -1,6 +1,6 @@
-import { BuildIcon } from '@graasp/ui';
-
 import { Meta, StoryObj } from '@storybook/react';
+
+import BuildIcon from '@/ui/icons/BuildIcon';
 
 import { PlatformColorSurface } from './PlatformColorSurface';
 

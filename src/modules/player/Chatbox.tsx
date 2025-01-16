@@ -1,8 +1,8 @@
 import { Chatbox as GraaspChatbox } from '@graasp/chatbox';
 import { DiscriminatedItem } from '@graasp/sdk';
-import { Loader } from '@graasp/ui';
 
 import { hooks, mutations } from '@/config/queryClient';
+import Loader from '@/ui/Loader/Loader';
 
 import { ITEM_CHATBOX_ID } from '../../config/selectors';
 

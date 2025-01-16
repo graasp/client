@@ -1,4 +1,4 @@
-import { MenuIcon } from 'lucide-react';
+import { ReactNode, useEffect } from 'react';
 
 import { MenuOpen } from '@mui/icons-material';
 import {
@@ -13,9 +13,9 @@ import {
   styled,
 } from '@mui/material';
 
-import { ReactNode, useEffect } from 'react';
+import { MenuIcon } from 'lucide-react';
 
-import { AllowedContext } from '@/types.js';
+import { AllowedContext } from '@/ui/types.js';
 
 import {
   MainMenuOpenContextProvider,
@@ -158,7 +158,7 @@ const MainWithDrawerContent = ({
       <CssBaseline />
       <AppBar
         id={headerId}
-        position='fixed'
+        position="fixed"
         sx={{
           background: context
             ? buildHeaderGradient(AccentColors[context])
@@ -167,27 +167,27 @@ const MainWithDrawerContent = ({
       >
         <Toolbar>
           <Stack
-            width='100%'
-            direction='row'
-            alignItems='center'
-            justifyContent='space-between'
+            width="100%"
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
             spacing={2}
             flex={1}
             minWidth={0}
           >
             <Stack
-              direction='row'
-              alignItems='center'
+              direction="row"
+              alignItems="center"
               flex={1}
               minWidth={0}
               spacing={1}
             >
               <IconButton
-                color='inherit'
+                color="inherit"
                 aria-label={drawerOpenAriaLabel}
                 onClick={handleDrawerToggle}
-                edge='start'
-                data-umami-event='header-drawer-toggle'
+                edge="start"
+                data-umami-event="header-drawer-toggle"
                 data-umami-event-context={context}
                 data-umami-event-open={open}
               >
@@ -201,9 +201,9 @@ const MainWithDrawerContent = ({
           </Stack>
         </Toolbar>
       </AppBar>
-      <Box component='nav' aria-label='navigation'>
+      <Box component="nav" aria-label="navigation">
         <Drawer
-          variant='temporary'
+          variant="temporary"
           open={open}
           onClose={handleDrawerClose}
           ModalProps={{
@@ -222,7 +222,7 @@ const MainWithDrawerContent = ({
           {drawerContent}
         </Drawer>
         <Drawer
-          variant='persistent'
+          variant="persistent"
           sx={{
             display: { xs: 'none', sm: 'block' },
             '& .MuiDrawer-paper': {
@@ -249,7 +249,7 @@ const MainWithDrawerContent = ({
 // this wrapper is necessary because we use the `useMainMenuOpenContext` in the
 // Content and we need to define the provider before using the hook.
 const MainWithDrawerWrapper = (props: Props): JSX.Element => (
-  <Box height='100vh' overflow='auto' display='flex' flexDirection='column'>
+  <Box height="100vh" overflow="auto" display="flex" flexDirection="column">
     <MainMenuOpenContextProvider open={props.open}>
       <MainWithDrawerContent {...props} />
     </MainMenuOpenContextProvider>

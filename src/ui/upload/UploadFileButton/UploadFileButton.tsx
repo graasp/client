@@ -1,11 +1,11 @@
-import { CloudUploadIcon } from 'lucide-react';
+import { ChangeEventHandler } from 'react';
 
 import { LoadingButton } from '@mui/lab';
 import { styled } from '@mui/material';
 
-import { ChangeEventHandler } from 'react';
+import { CloudUploadIcon } from 'lucide-react';
 
-import { GraaspButtonProps } from '@/buttons/Button/Button.js';
+import { GraaspButtonProps } from '@/ui/buttons/Button/Button.js';
 
 export type UploadFileButtonProps = {
   id?: string;
@@ -67,7 +67,7 @@ const UploadFileButton = ({
 }: UploadFileButtonProps): JSX.Element => (
   <LoadingButton
     id={id}
-    component='label'
+    component="label"
     variant={variant}
     color={color}
     startIcon={icon}
@@ -79,7 +79,7 @@ const UploadFileButton = ({
     <VisuallyHiddenInput
       multiple={multiple}
       onChange={onChange}
-      type='file'
+      type="file"
       accept={accept}
     />
   </LoadingButton>

@@ -1,14 +1,13 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { IconButton, Tooltip, Typography } from '@mui/material';
 
-import { theme } from '@graasp/ui';
-
 import {
   buildDataCyWrapper,
   buildPublishAttrContainer,
   buildPublishTitleAction,
   buildPublishWarningIcon,
 } from '@/config/selectors';
+import { theme } from '@/ui/theme';
 
 import PublicationAttributeContainer from '../../../../components/item/publish/PublicationAttributeContainer';
 

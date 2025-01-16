@@ -2,17 +2,22 @@ import { MouseEvent } from 'react';
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import WarningIcon from '@mui/icons-material/Warning';
-import { Box, Stack, SxProps, Tooltip, Typography } from '@mui/material';
+import {
+  Box,
+  Stack,
+  SxProps,
+  Tooltip,
+  Typography,
+  useTheme,
+} from '@mui/material';
 
-import { theme } from '@graasp/ui';
-
-import { WARNING_COLOR } from '@/config/constants';
 import {
   buildPublishAttrContainer,
   buildPublishAttrEmptyContainer,
   buildPublishTitleAction,
   buildPublishWarningIcon,
 } from '@/config/selectors';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import ContentLoader from '../../common/ContentLoader';
 
@@ -55,6 +60,8 @@ export const PublicationAttributeContainer = ({
   isLoading = false,
   onEmptyClick,
 }: Props): JSX.Element => {
+  const theme = useTheme();
+  const { color } = useButtonColor('warning');
   const hasNoData =
     content === undefined || (Array.isArray(content) && content.length === 0);
   const hasData = !hasNoData;
@@ -124,7 +131,7 @@ export const PublicationAttributeContainer = ({
           {hasNoData && (
             <Tooltip title={attributeDescription}>
               <WarningIcon
-                htmlColor={WARNING_COLOR}
+                htmlColor={color}
                 data-cy={buildPublishWarningIcon(dataTestId)}
               />
             </Tooltip>

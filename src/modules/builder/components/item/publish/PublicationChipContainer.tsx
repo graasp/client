@@ -1,7 +1,12 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Chip, IconButton, Stack, Tooltip, styled } from '@mui/material';
-
-import { theme } from '@graasp/ui';
+import {
+  Chip,
+  IconButton,
+  Stack,
+  Tooltip,
+  styled,
+  useTheme,
+} from '@mui/material';
 
 import {
   buildLibraryAddButtonHeader,
@@ -74,6 +79,7 @@ export const PublicationChipContainer = ({
   onChipDelete,
   onAddClicked,
 }: Props): JSX.Element => {
+  const theme = useTheme();
   const chips = (data ?? []).map((d, idx) => (
     <StyledChip
       key={d}

@@ -1,5 +1,3 @@
-import { BuilderKeys } from '@/@types/i18next';
-
 export const MIN_SHORT_LINK_LENGTH = 6;
 export const MAX_SHORT_LINK_LENGTH = 255;
 
@@ -23,24 +21,6 @@ export function randomAlias(length: number = MIN_SHORT_LINK_LENGTH): string {
 }
 
 /**
- * Contains information to describe why an alias is invalid.
- */
-interface InvalidAliasCause {
-  /**
-   * The key of the builder used to translate the invalid cause message.
-   */
-  messageKey?: BuilderKeys;
-  /**
-   * Allow to add information in the message about the invalid cause.
-   */
-  data?: unknown;
-  /**
-   * Indicates if the alias is valid or not.
-   */
-  isValid: boolean;
-}
-
-/**
  * Check that the given alias is valid.
  * If valid, it return an InvalidAliasCause interface with isValid = true.
  * Otherwise, it return the translation key of the cause of invalidation.
@@ -48,7 +28,7 @@ interface InvalidAliasCause {
  * @param alias The alias validate
  * @returns InvalidAliasCause interface containing informations about the invalidation.
  */
-export function isValidAlias(alias: string): InvalidAliasCause {
+export function isValidAlias(alias: string) {
   const regex = /^[a-zA-Z0-9-]*$/;
   const aliasLength = alias.length;
   const invalidCharacters = alias.match(/[^a-zA-Z0-9-]/g);

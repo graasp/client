@@ -5,10 +5,9 @@ import { useTranslation } from 'react-i18next';
 import { ArrowBack } from '@mui/icons-material';
 import { DialogContent, Stack, TextField, Typography } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import { CUSTOM_APP_URL_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { LINK_REGEX } from '~builder/utils/item';
 

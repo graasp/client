@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
 
-import { ActionButton, ColorVariants } from '@/types.js';
+import { ActionButton, ColorVariants } from '@/ui/types.js';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
 import BookmarkButton from './BookmarkButton.js';

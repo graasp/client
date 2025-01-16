@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Container, Stack, Typography, useMediaQuery } from '@mui/material';
+import {
+  Container,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 import { PublicationStatus } from '@graasp/sdk';
-import { Loader, theme } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import { Loader } from '@/ui/Loader/Loader';
 
 import SyncIcon from '~builder/components/common/SyncIcon';
 import {
@@ -34,6 +40,7 @@ const { usePublicationStatus } = hooks;
 
 const ItemPublishTab = (): JSX.Element | null => {
   const { t } = useTranslation(NS.Builder);
+  const theme = useTheme();
   const { item, canAdmin } = useOutletContext();
   const { isLoading: isMemberLoading } = hooks.useCurrentMember();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));

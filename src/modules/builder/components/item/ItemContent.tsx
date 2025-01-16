@@ -19,15 +19,6 @@ import {
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
 import { DEFAULT_LANG } from '@graasp/translations';
-import {
-  AppItem,
-  EtherpadItem,
-  FileItem,
-  H5PItem,
-  LinkItem,
-  Loader,
-} from '@graasp/ui';
-import { DocumentItem } from '@graasp/ui/text-editor';
 
 import { getRouteApi } from '@tanstack/react-router';
 
@@ -38,6 +29,13 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
+import Loader from '@/ui/Loader/Loader';
+import AppItem from '@/ui/items/AppItem';
+import DocumentItem from '@/ui/items/DocumentItem';
+import EtherpadItem from '@/ui/items/EtherpadItem';
+import FileItem from '@/ui/items/FileItem';
+import H5PItem from '@/ui/items/H5PItem';
+import LinkItem from '@/ui/items/LinkItem';
 
 import ErrorAlert from '../common/ErrorAlert';
 import FolderContent from './FolderContent';

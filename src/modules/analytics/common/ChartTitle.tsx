@@ -1,8 +1,8 @@
 import { Stack, Tooltip, Typography } from '@mui/material';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { Info } from 'lucide-react';
+
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 const ChartTitle = ({
   title,

@@ -1,5 +1,9 @@
 import { Context, ShortLink } from '@graasp/sdk';
-import { BuildIcon, GraaspLogo, LibraryIcon, PlayIcon } from '@graasp/ui';
+
+import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
+import BuildIcon from '@/ui/icons/BuildIcon';
+import LibraryIcon from '@/ui/icons/LibraryIcon';
+import PlayIcon from '@/ui/icons/PlayIcon';
 
 const DEFAULT_ICON_SIZE = 25;
 

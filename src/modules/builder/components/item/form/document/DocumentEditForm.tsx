@@ -9,7 +9,6 @@ import {
   ItemType,
   buildDocumentExtra,
 } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -17,6 +16,7 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
 import { BUILDER } from '~builder/langs/constants';

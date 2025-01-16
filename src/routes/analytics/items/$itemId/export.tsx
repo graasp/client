@@ -11,12 +11,12 @@ import {
 } from '@mui/material';
 
 import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
-import { Loader } from '@graasp/ui';
 
 import { Navigate, createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import { Loader } from '@/ui/Loader/Loader';
 
 import { ExportData } from '~analytics/ExportData';
 import SectionTitle from '~analytics/common/SectionTitle';

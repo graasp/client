@@ -3,13 +3,12 @@ import { MouseEvent, useState } from 'react';
 import { IconButton } from '@mui/material';
 import Menu from '@mui/material/Menu';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { useMatch } from '@tanstack/react-router';
 import { LayoutGridIcon, ListIcon, MapIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { LAYOUT_MODE_BUTTON_ID } from '@/config/selectors';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { ItemLayoutMode } from '~builder/enums';

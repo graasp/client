@@ -3,13 +3,14 @@ import { useState } from 'react';
 import { Alert, Pagination, Skeleton, Stack } from '@mui/material';
 
 import { ItemType, PermissionLevel } from '@graasp/sdk';
-import { type RowMenuProps, RowMenus } from '@graasp/ui';
 
 import { hooks } from '@/config/queryClient';
 import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
+import type { RowMenuProps } from '@/ui/Tree/RowMenu';
+import RowMenus from '@/ui/Tree/RowMenus';
 
 interface AccessibleNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];

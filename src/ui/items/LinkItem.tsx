@@ -166,12 +166,16 @@ const LinkItem = ({
   // default case is an iframe with given link
   const url = extra?.url;
 
-  useEffect(() => {
-    if (!isLoading) {
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setIsLoading(true);
-    }
-  }, [url]);
+  useEffect(
+    () => {
+      if (!isLoading) {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
+        setIsLoading(true);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [url],
+  );
 
   const CaptionWrapper = withCaption({
     item,

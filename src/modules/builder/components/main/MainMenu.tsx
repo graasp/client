@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
-import { MainMenu as GraaspMainMenu } from '@graasp/ui';
 
 import {
   BookOpenTextIcon,
@@ -23,6 +22,7 @@ import {
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import GraaspMainMenu from '@/ui/MainMenu/MainMenu';
 
 import { TUTORIALS_LINK } from '../../config/constants';
 import { BUILDER } from '../../langs/constants';

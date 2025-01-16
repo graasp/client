@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 import { DiscriminatedItem, ItemMembership } from '@graasp/sdk';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { buildItemMembershipRowDeleteButtonId } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
 
 import DeleteItemMembershipDialog from './DeleteItemMembershipDialog';
 import TableRowDeleteButton from './TableRowDeleteButton';

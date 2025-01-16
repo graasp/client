@@ -1,5 +1,3 @@
-import { Move } from 'lucide-react';
-
 import {
   IconButton,
   ListItemIcon,
@@ -8,13 +6,15 @@ import {
   Typography,
 } from '@mui/material';
 
+import { Move } from 'lucide-react';
+
 import {
   ActionButton,
   ActionButtonVariant,
   ColorVariants,
   ColorVariantsType,
   IconSizeVariant,
-} from '@/types.js';
+} from '@/ui/types.js';
 
 import { useButtonColor } from '../hooks.js';
 
@@ -48,7 +48,7 @@ const MoveButton = ({
       return (
         <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
           <ListItemIcon>{icon}</ListItemIcon>
-          <Typography component='span' color={color}>
+          <Typography component="span" color={color}>
             {text}
           </Typography>
         </MenuItem>

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Tab, Tabs, styled } from '@mui/material';
 
 import { ItemType, MimeTypes } from '@graasp/sdk';
-import { ItemIcon } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import {
@@ -17,6 +16,7 @@ import {
   CREATE_ITEM_LINK_ID,
   CREATE_ITEM_ZIP_ID,
 } from '@/config/selectors';
+import ItemIcon from '@/ui/icons/ItemIcon';
 
 import { InternalItemType, NewItemTabType } from '../../config/types';
 import { BUILDER } from '../../langs/constants';

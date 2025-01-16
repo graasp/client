@@ -11,12 +11,12 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { CREATE_ITEM_CLOSE_BUTTON_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { InternalItemType, NewItemTabType } from '../../config/types';
 import { BUILDER } from '../../langs/constants';

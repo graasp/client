@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert } from '@mui/material';
 
 import { PublishableItemTypeChecker } from '@graasp/sdk';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 export const NotAllowedItemTypeButton = (): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { t: translateEnum } = useEnumsTranslation();
+  const { t: translateEnum } = useTranslation(NS.Enums);
 
   const allowedTypes = PublishableItemTypeChecker.getAllowedTypes();
   const translatedAllowedTypes = allowedTypes

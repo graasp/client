@@ -2,7 +2,7 @@ import { Meta, type StoryObj } from '@storybook/react';
 import { expect, fn, userEvent, within } from '@storybook/test';
 import { Home } from 'lucide-react';
 
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import Breadcrumbs from './Breadcrumbs.js';
 

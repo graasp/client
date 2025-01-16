@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import {
   Box,
   CardActions,
@@ -9,10 +11,9 @@ import {
   styled,
 } from '@mui/material';
 
-import { ReactElement } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
-import { PRIMARY_COLOR } from '@/theme.js';
+import { PRIMARY_COLOR } from '@/ui/theme.js';
 
 import type { DraggableAndDroppableProps } from '../draggable/types.js';
 import CardThumbnail, { CardThumbnailProps } from './CardThumbnail.js';
@@ -133,12 +134,12 @@ const Card = ({
       >
         <Stack
           sx={{ height, boxSizing: 'border-box' }}
-          direction='row'
+          direction="row"
           gap={1}
-          alignItems='center'
+          alignItems="center"
           mr={1}
         >
-          <Box onClick={onThumbnailClick} height='100%'>
+          <Box onClick={onThumbnailClick} height="100%">
             <CardThumbnail
               width={height}
               minHeight={height}
@@ -151,13 +152,13 @@ const Card = ({
             container
             // necessary to respect flex layout, otherwise it does not compress
             minWidth={0}
-            width='100%'
+            width="100%"
             sx={{ mt: 0 }}
             // ensure that if there is no description the element still goes edge to edge
-            boxSizing='border-box'
+            boxSizing="border-box"
             marginTop={1}
-            justifyContent='space-between'
-            alignItems='center'
+            justifyContent="space-between"
+            alignItems="center"
           >
             <Grid
               size={{
@@ -165,10 +166,10 @@ const Card = ({
                 sm: 5,
                 md: 5,
               }}
-              justifyContent='space-between'
+              justifyContent="space-between"
               // align to the top so the button does not move when there is no creator
-              alignItems='start'
-              boxSizing='border-box'
+              alignItems="start"
+              boxSizing="border-box"
             >
               <Wrapper to={to}>
                 <Stack minWidth={0}>
@@ -179,7 +180,7 @@ const Card = ({
                     <Typography
                       noWrap
                       variant={dense ? 'caption' : 'body1'}
-                      color='text.secondary'
+                      color="text.secondary"
                     >
                       {creator}
                     </Typography>
@@ -193,14 +194,14 @@ const Card = ({
             >
               <Wrapper to={to}>{content}</Wrapper>
             </Grid>
-            <Grid size={{ xs: 3, sm: 3, md: 2 }} justifyContent='flex-end'>
+            <Grid size={{ xs: 3, sm: 3, md: 2 }} justifyContent="flex-end">
               <CardActions sx={{ p: 0, justifyContent: 'flex-end' }}>
                 <Stack
-                  width='100%'
-                  alignItems='end'
-                  direction='row'
-                  justifyContent='flex-end'
-                  alignContent='center'
+                  width="100%"
+                  alignItems="end"
+                  direction="row"
+                  justifyContent="flex-end"
+                  alignContent="center"
                   display={{ xs: 'none', sm: 'block' }}
                 >
                   {footer}
@@ -222,7 +223,7 @@ const Card = ({
       fullWidth={fullWidth}
       className={className}
     >
-      <Stack sx={{ height, boxSizing: 'border-box' }} direction='row' gap={2}>
+      <Stack sx={{ height, boxSizing: 'border-box' }} direction="row" gap={2}>
         <CardThumbnail
           width={height}
           minHeight={height}
@@ -231,23 +232,23 @@ const Card = ({
         />
 
         <Stack
-          direction='column'
+          direction="column"
           // necessary to respect flex layout, otherwise it does not compress
           minWidth={0}
           // ensure that if there is no description the element still goes edge to edge
-          width='100%'
-          boxSizing='border-box'
+          width="100%"
+          boxSizing="border-box"
           marginTop={1}
         >
           <Stack
-            direction='row'
-            justifyContent='space-between'
+            direction="row"
+            justifyContent="space-between"
             // align to the top so the button does not move when there is no creator
-            alignItems='start'
-            boxSizing='border-box'
+            alignItems="start"
+            boxSizing="border-box"
           >
             <Wrapper to={to}>
-              <Stack minWidth={0} direction='column'>
+              <Stack minWidth={0} direction="column">
                 <Typography noWrap variant={dense ? 'h5' : 'h3'}>
                   {name}
                 </Typography>
@@ -255,7 +256,7 @@ const Card = ({
                   <Typography
                     noWrap
                     variant={dense ? 'caption' : 'body1'}
-                    color='text.secondary'
+                    color="text.secondary"
                   >
                     {creator}
                   </Typography>
@@ -265,16 +266,16 @@ const Card = ({
             {menu}
           </Stack>
           <Typography
-            justifySelf='start'
+            justifySelf="start"
             // necessary for the `position: absolute` on the :before to work
-            position='relative'
+            position="relative"
             // allow compression in flex layout
             minHeight={0}
             flexShrink={1}
             // this element will take all available space
             flexGrow={1}
-            variant='caption'
-            color='textSecondary'
+            variant="caption"
+            color="textSecondary"
             sx={{
               // margin to the right
               mr: 1,

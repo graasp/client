@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
-import { ItemBadges } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
+import ItemBadges from '@/ui/ItemBadges/ItemBadges';
 
 type ItemStatuses = {
   showChatbox: boolean;

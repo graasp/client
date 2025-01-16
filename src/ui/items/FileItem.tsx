@@ -1,6 +1,6 @@
-import { Alert, Box, Skeleton } from '@mui/material';
-
 import { memo, useEffect, useState } from 'react';
+
+import { Alert, Box, Skeleton } from '@mui/material';
 
 import {
   ItemType,
@@ -12,7 +12,7 @@ import {
   getS3FileExtra,
 } from '@graasp/sdk';
 
-import { Errors } from '@/enums/errors.js';
+import { Errors } from '@/ui/enums/errors.js';
 
 import withCollapse from '../Collapse/withCollapse.js';
 import { SCREEN_MAX_HEIGHT, UNEXPECTED_ERROR_MESSAGE } from '../constants.js';
@@ -88,7 +88,7 @@ const FileItem = ({
   if (!url) {
     return (
       <Skeleton
-        variant='rectangular'
+        variant="rectangular"
         width={'100%'}
         height={maxHeight || SCREEN_MAX_HEIGHT}
       />
@@ -96,7 +96,7 @@ const FileItem = ({
   }
 
   if (url === Errors.BlobURL) {
-    return <Alert severity='error'>{errorMessage}</Alert>;
+    return <Alert severity="error">{errorMessage}</Alert>;
   }
 
   const getComponent = (): JSX.Element => {

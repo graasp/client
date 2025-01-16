@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Box, Skeleton } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
-import { NavigationElement, type RowMenuProps, RowMenus } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -11,6 +10,9 @@ import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
+import type { RowMenuProps } from '@/ui/Tree/RowMenu';
+import RowMenus from '@/ui/Tree/RowMenus';
+import type { NavigationElement } from '@/ui/Tree/types';
 
 interface ChildrenNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];

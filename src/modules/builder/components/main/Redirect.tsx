@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 
 import { redirectToSavedUrl } from '@graasp/sdk';
-import { RedirectionContent } from '@graasp/ui';
+
+import RedirectionContent from '@/ui/Authorization/RedirectionContent';
 
 import { HOME_PATH } from '../../config/paths';
 

@@ -9,8 +9,6 @@ import {
 } from '@graasp/sdk';
 import { namespaces } from '@graasp/translations';
 
-import i18n from '@/config/i18n';
-
 import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   buildDataCyWrapper,

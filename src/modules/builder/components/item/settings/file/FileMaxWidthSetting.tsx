@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { SelectChangeEvent } from '@mui/material';
 
 import { LocalFileItemType, MaxWidth, S3FileItemType } from '@graasp/sdk';
-import { Select } from '@graasp/ui';
 
 import { ExpandIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { FILE_SETTING_MAX_WIDTH_ID } from '@/config/selectors';
+import Select from '@/ui/Select/Select';
 
 import ItemSettingProperty from '../ItemSettingProperty';
 import { SettingVariant, SettingVariantType } from '../settingTypes';
@@ -24,7 +24,7 @@ export const FileMaxWidthSetting = ({
   item: S3FileItemType | LocalFileItemType;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { t: translateEnum } = useEnumsTranslation();
+  const { t: translateEnum } = useTranslation(NS.Enums);
 
   const { mutate: editItem } = mutations.useEditItem();
 
@@ -65,8 +65,8 @@ export const FileMaxWidthSetting = ({
     case SettingVariant.List:
       return (
         <ItemSettingProperty
-          title={t(BUILDER.SETTINGS_MAX_WIDTH_LABEL)}
-          valueText={t(BUILDER.SETTINGS_MAX_WIDTH_LABEL)}
+          title={t('SETTINGS_MAX_WIDTH_LABEL')}
+          valueText={t('SETTINGS_MAX_WIDTH_LABEL')}
           icon={<ExpandIcon />}
           inputSetting={control}
         />

@@ -4,7 +4,8 @@ import {
   ThumbnailsBySize,
   getMimetype,
 } from '@graasp/sdk';
-import { ItemIcon } from '@graasp/ui';
+
+import ItemIcon from '@/ui/icons/ItemIcon';
 
 type Props = {
   item: PackedItem;

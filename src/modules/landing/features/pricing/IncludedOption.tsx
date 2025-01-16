@@ -1,8 +1,8 @@
 import { Stack, Typography } from '@mui/material';
 
-import { useButtonColor } from '@graasp/ui';
-
 import { CheckIcon } from 'lucide-react';
+
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 export function IncludedOption({ text }: Readonly<{ text: string }>) {
   const { color } = useButtonColor('success');

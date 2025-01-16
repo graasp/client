@@ -2,9 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { DialogActions, DialogContent, DialogContentText } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
+import Button from '@/ui/buttons/Button/Button';
 
 type Props = {
   handleSubmit: () => void;

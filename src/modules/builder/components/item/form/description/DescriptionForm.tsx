@@ -2,9 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, FormLabel, Typography } from '@mui/material';
 
-import TextEditor from '@graasp/ui/text-editor';
-
 import { NS } from '@/config/constants';
+import TextEditor from '@/ui/TextEditor/TextEditor';
 
 export type DescriptionFormProps = {
   id?: string;

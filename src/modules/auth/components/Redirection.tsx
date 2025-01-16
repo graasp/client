@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Container, Stack, Typography, useTheme } from '@mui/material';
 
-import { GraaspLogo } from '@graasp/ui';
-
 import { ArrowRightIcon } from 'lucide-react';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { REDIRECTION_CONTENT_CONTAINER_ID } from '@/config/selectors';
+import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 
 import { AUTH } from '~auth/langs';
 

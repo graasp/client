@@ -1,4 +1,4 @@
-import { DownloadIcon } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import {
   CircularProgress,
@@ -9,14 +9,14 @@ import {
   Typography,
 } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { DownloadIcon } from 'lucide-react';
 
 import {
   ActionButton,
   ActionButtonVariant,
   ColorVariantsType,
   TooltipPlacement,
-} from '@/types.js';
+} from '@/ui/types.js';
 
 import { useButtonColor } from '../hooks.js';
 
@@ -67,7 +67,7 @@ const DownloadButton = ({
       return (
         <MenuItem key={title} onClick={handleDownload}>
           <ListItemIcon>{icon}</ListItemIcon>
-          <Typography component='span' color={color}>
+          <Typography component="span" color={color}>
             {title}
           </Typography>
         </MenuItem>

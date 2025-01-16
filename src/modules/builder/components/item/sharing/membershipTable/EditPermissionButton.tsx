@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   Dialog,
@@ -11,16 +11,14 @@ import {
 } from '@mui/material';
 
 import { PermissionLevel } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
-import { Button, EditButton } from '@graasp/ui';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { BUILDER } from '@/langs/constants';
+import { NS } from '@/config/constants';
+import Button from '@/ui/buttons/Button/Button';
+import EditButton from '@/ui/buttons/EditButton/EditButton';
 
-import {
-  useBuilderTranslation,
-  useCommonTranslation,
-} from '../../../../config/i18n';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
+
 import ItemMembershipSelect from '../ItemMembershipSelect';
 
 type Props = {
@@ -44,7 +42,7 @@ const EditPermissionButton = ({
 
   const [currentPermission, setCurrentPermission] = useState(permission);
 
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   if (!allowDowngrade && permission === PermissionLevel.Admin) {
@@ -98,7 +96,7 @@ const EditPermissionButton = ({
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={closeModal}>
-            {translateCommon(COMMON.CANCEL_BUTTON)}
+            {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
           <Button
             type="submit"

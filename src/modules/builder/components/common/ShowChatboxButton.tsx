@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { ActionButtonVariant, ChatboxButton } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
+import { ActionButtonVariant } from '@/ui/types';
 
 type Props = {
   type?: ActionButtonVariant;

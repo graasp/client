@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -9,13 +10,14 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import CancelButton from '@/components/common/CancelButton';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   buildShortLinkCancelBtnId,
   buildShortLinkConfirmDeleteBtnId,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import CancelButton from '~builder/components/common/CancelButton';
+import { BUILDER } from '~builder/langs/constants';
 
 interface DeleteLinkProps {
   shortLink: string;

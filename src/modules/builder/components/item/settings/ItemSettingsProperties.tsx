@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Stack } from '@mui/material';
 
 import { ItemType, PackedItem } from '@graasp/sdk';
-import { ActionButton, PinButton } from '@graasp/ui';
 
 import { BarChart3, MessageSquareOff, MessageSquareText } from 'lucide-react';
 
@@ -15,6 +14,8 @@ import {
   SETTINGS_RESIZE_TOGGLE_ID,
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
 } from '@/config/selectors';
+import PinButton from '@/ui/buttons/PinButton/PinButton';
+import { ActionButton } from '@/ui/types';
 
 import CollapseButton from '~builder/components/common/CollapseButton';
 

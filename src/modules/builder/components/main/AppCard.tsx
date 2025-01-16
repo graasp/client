@@ -104,10 +104,7 @@ const AppCard = ({
 );
 const AppCardWrapper = (props: Props): JSX.Element => (
   <Grid size={12} display="flex">
-    <AppCard
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      {...props}
-    />
+    <AppCard {...props} />
   </Grid>
 );
 

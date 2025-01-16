@@ -1,6 +1,6 @@
-import { Platform } from '@graasp/ui';
-
 import { Meta, StoryObj } from '@storybook/react';
+
+import { Platform } from '@/ui/PlatformSwitch/hooks';
 
 import { PlatformButton } from './PlatformButton';
 

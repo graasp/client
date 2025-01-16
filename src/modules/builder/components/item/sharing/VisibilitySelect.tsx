@@ -1,13 +1,16 @@
+import { useTranslation } from 'react-i18next';
+
 import { Alert, MenuItem, Select, Stack } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
-import { Loader } from '@graasp/ui';
 
-import useVisibility from '@/components/hooks/useVisibility';
+import { NS } from '@/config/constants';
+import { SHARE_ITEM_VISIBILITY_SELECT_ID } from '@/config/selectors';
+import Loader from '@/ui/Loader/Loader';
+
+import useVisibility from '~builder/components/hooks/useVisibility';
 
 import { SETTINGS } from '../../../config/constants';
-import { useBuilderTranslation } from '../../../config/i18n';
-import { SHARE_ITEM_VISIBILITY_SELECT_ID } from '../../../config/selectors';
 import { BUILDER } from '../../../langs/constants';
 import ItemLoginSchemaSelect from './ItemLoginSchemaSelect';
 import UpdateVisibilityModal from './UpdateVisibilityModal';

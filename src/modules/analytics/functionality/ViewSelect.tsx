@@ -11,11 +11,11 @@ import {
 } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
-import { useButtonColor } from '@graasp/ui';
 
 import { Info } from 'lucide-react';
 
 import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 import {
   SELECT_VIEW_ID,

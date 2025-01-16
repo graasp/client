@@ -5,10 +5,10 @@ import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box, Tab, TextField, Typography } from '@mui/material';
 
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
-import { withFlavor } from '@graasp/ui';
-import TextEditor from '@graasp/ui/text-editor';
 
 import { NS } from '@/config/constants';
+import { withFlavor } from '@/ui/TextDisplay/withFlavor';
+import TextEditor from '@/ui/TextEditor/TextEditor';
 
 import { EditorMode } from './EditorMode.enum';
 

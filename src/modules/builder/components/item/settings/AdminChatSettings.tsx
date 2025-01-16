@@ -1,10 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { PackedItem, PermissionLevel } from '@graasp/sdk';
 
 import { MessageSquareTextIcon } from 'lucide-react';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 import ClearChatButton from './ClearChatButton';
 import ItemSettingProperty from './ItemSettingProperty';

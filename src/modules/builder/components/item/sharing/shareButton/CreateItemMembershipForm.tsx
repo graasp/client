@@ -13,7 +13,6 @@ import {
 } from '@mui/material';
 
 import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import truncate from 'lodash.truncate';
 import validator from 'validator';
@@ -26,6 +25,7 @@ import {
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { ITEM_NAME_MAX_LENGTH } from '~builder/config/constants';
 

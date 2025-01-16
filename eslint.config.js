@@ -88,6 +88,9 @@ export default [
     rules: {
       'import/order': 'off',
 
+      // disable temporarily this rule, re-enable when we have all instances fixed
+      '@eslint-react/hooks-extra/no-direct-set-state-in-use-effect': 'off',
+
       '@typescript-eslint/no-namespace': 'off',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',

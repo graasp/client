@@ -3,10 +3,15 @@ import { useEffect, useState } from 'react';
 import { SxProps } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { CCSharingVariant, CreativeCommons } from '@graasp/ui';
 
 import { mutations } from '@/config/queryClient';
-import { convertLicense, convertSelectionToLicense } from '@/utils/itemLicense';
+import CreativeCommons from '@/ui/CreativeCommons/CreativeCommons';
+import { CCSharingVariant } from '@/ui/types';
+
+import {
+  convertLicense,
+  convertSelectionToLicense,
+} from '~builder/utils/itemLicense';
 
 import LicenseForm from '../item/publish/LicenseForm';
 import { CCLicenseChoice, CCSharingLicenseChoice } from '../item/publish/type';
@@ -65,8 +70,11 @@ const useItemLicense = ({
     if (settings?.ccLicenseAdaption) {
       const { allowCommercialUse, allowSharing, requireAccreditation } =
         convertLicense(settings.ccLicenseAdaption);
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAllowSharingValue(allowSharing);
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setAllowCommercialValue(allowCommercialUse ? 'yes' : 'no');
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setRequireAttributionValue(requireAccreditation ? 'yes' : 'no');
     }
   }, [settings]);

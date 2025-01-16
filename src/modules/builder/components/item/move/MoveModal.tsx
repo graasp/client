@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
-import { type NavigationElement } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { NavigationElement } from '@/ui/Tree/types';
 
 import { getDirectParentId } from '~builder/utils/item';
 

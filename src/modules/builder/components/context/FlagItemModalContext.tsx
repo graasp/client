@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { routines } from '@graasp/query-client';
 import { FlagType } from '@graasp/sdk';
-import { ItemFlagDialog } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
+import { ItemFlagDialog } from '@/ui/ItemFlag/ItemFlagDialog';
 
 const { postItemFlagRoutine } = routines;
 

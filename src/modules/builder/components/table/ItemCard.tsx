@@ -8,10 +8,11 @@ import {
   formatDate,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
-import { Card, TextDisplay } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
+import Card from '@/ui/Card/Card';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 
 type Props = {
   item: DiscriminatedItem;

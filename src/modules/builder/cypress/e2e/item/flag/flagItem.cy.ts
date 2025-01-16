@@ -1,6 +1,6 @@
 import { FlagType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
 import { HOME_PATH } from '../../../../config/paths';
 import {
   ITEM_MENU_FLAG_BUTTON_CLASS,

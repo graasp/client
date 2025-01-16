@@ -1,11 +1,11 @@
 import { Container, Typography, styled, useTheme } from '@mui/material';
 
-import { Link, LinkProps } from 'react-router-dom';
+import { TypographyLink } from '@/components/ui/TypographyLink.js';
 
 import GraaspLogo from '../GraaspLogo/GraaspLogo.js';
 
 type Props = {
-  link: LinkProps['to'];
+  link: string;
   id?: string;
   redirectionLinkText?: string;
   redirectionText?: string;
@@ -23,12 +23,6 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const StyledLink = styled(Link)<LinkProps>(() => ({
-  textDecoration: 'none',
-  fontStyle: 'italic',
-  color: 'black',
-}));
-
 const RedirectionContent = ({
   link,
   redirectionText,
@@ -41,15 +35,13 @@ const RedirectionContent = ({
     <StyledContainer id={id}>
       <GraaspLogo height={100} sx={{ fill: theme.palette.primary.main }} />
       <div>
-        <StyledTypography variant='h4' align='center'>
+        <StyledTypography variant="h4" align="center">
           {redirectionText ?? 'You are being redirected…'}
         </StyledTypography>
-        <StyledLink to={link}>
-          <Typography align='center'>
-            {redirectionLinkText ??
-              'Click here if you are not automatically redirected'}
-          </Typography>
-        </StyledLink>
+        <TypographyLink align="center" to={link}>
+          {redirectionLinkText ??
+            'Click here if you are not automatically redirected'}
+        </TypographyLink>
       </div>
     </StyledContainer>
   );

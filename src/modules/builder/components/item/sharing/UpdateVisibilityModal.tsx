@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   Button,
   Dialog,
@@ -7,12 +9,13 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import {
   UPDATE_VISIBILITY_MODAL_CANCEL_BUTTON,
   UPDATE_VISIBILITY_MODAL_VALIDATE_BUTTON,
 } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 export type Visibility = {
   name: string;

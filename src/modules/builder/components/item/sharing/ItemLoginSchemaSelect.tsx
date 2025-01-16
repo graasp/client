@@ -1,10 +1,13 @@
+import { useTranslation } from 'react-i18next';
+
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 import { ItemLoginSchema, ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
-import { useBuilderTranslation } from '../../../config/i18n';
-import { mutations } from '../../../config/queryClient';
-import { SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID } from '../../../config/selectors';
+import { NS } from '@/config/constants';
+import { mutations } from '@/config/queryClient';
+import { SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID } from '@/config/selectors';
+
 import { BUILDER } from '../../../langs/constants';
 
 const { usePutItemLoginSchema } = mutations;

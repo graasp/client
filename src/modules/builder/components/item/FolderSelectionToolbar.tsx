@@ -1,13 +1,13 @@
 import { PackedItem } from '@graasp/sdk';
 
-import RecycleButton from '@/components/common/RecycleButton';
-import useModalStatus from '@/components/hooks/useModalStatus';
-import CopyButton from '@/components/item/copy/CopyButton';
-import { CopyModal } from '@/components/item/copy/CopyModal';
-import MoveButton from '@/components/item/move/MoveButton';
-import { MoveModal } from '@/components/item/move/MoveModal';
-import { useSelectionContext } from '@/components/main/list/SelectionContext';
-import SelectionToolbar from '@/components/main/list/SelectionToolbar';
+import RecycleButton from '~builder/components/common/RecycleButton';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import CopyButton from '~builder/components/item/copy/CopyButton';
+import { CopyModal } from '~builder/components/item/copy/CopyModal';
+import MoveButton from '~builder/components/item/move/MoveButton';
+import { MoveModal } from '~builder/components/item/move/MoveModal';
+import { useSelectionContext } from '~builder/components/main/list/SelectionContext';
+import SelectionToolbar from '~builder/components/main/list/SelectionToolbar';
 
 const FolderSelectionToolbar = ({
   items,

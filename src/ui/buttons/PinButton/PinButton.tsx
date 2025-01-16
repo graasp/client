@@ -1,13 +1,13 @@
-import { Pin, PinOff } from 'lucide-react';
-
 import { IconButton, Tooltip } from '@mui/material';
+
+import { Pin, PinOff } from 'lucide-react';
 
 import {
   ActionButton,
   ActionButtonVariant,
   ColorVariantsType,
   IconSizeVariant,
-} from '@/types.js';
+} from '@/ui/types.js';
 
 import MenuItemButton from '../MenuItemButton.js';
 import { useButtonColor } from '../hooks.js';

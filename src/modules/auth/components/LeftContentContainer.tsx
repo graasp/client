@@ -2,16 +2,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack } from '@mui/material';
 
-import {
-  AccentColors,
-  AnalyticsIcon,
-  BuildIcon,
-  LibraryIcon,
-  PlayIcon,
-} from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import { PLATFORM_ADVERTISEMENT_CONTAINER_ID } from '@/config/selectors';
+import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
+import BuildIcon from '@/ui/icons/BuildIcon';
+import LibraryIcon from '@/ui/icons/LibraryIcon';
+import PlayIcon from '@/ui/icons/PlayIcon';
+import { AccentColors } from '@/ui/theme';
 
 import { AUTH } from '~auth/langs';
 

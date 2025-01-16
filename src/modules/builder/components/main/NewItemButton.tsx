@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { ButtonProps, IconButton, useTheme } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { PlusIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { CREATE_ITEM_BUTTON_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../langs/constants';
 import NewItemModal from './NewItemModal';

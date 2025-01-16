@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Box } from '@mui/material';
 
 import { DiscriminatedItem, MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
-import { FileDropper } from '@graasp/ui';
 
 import { useParams } from '@tanstack/react-router';
 import { AxiosProgressEvent } from 'axios';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import FileDropper from '@/ui/upload/FileDropper/FileDropper';
 
 type Props = {
   onComplete?: () => void;

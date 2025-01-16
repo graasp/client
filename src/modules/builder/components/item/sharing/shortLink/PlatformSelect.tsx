@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next';
+
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 
 import { Context, ItemPublished, ShortLink } from '@graasp/sdk';
 
-import { useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { SHORT_LINK_PLATFORM_SELECT_ID } from '@/config/selectors';
 
 type ShortLinkPlatform = ShortLink['platform'];
@@ -17,7 +19,7 @@ const PlatformSelect = ({
   publishedEntry,
   onChange,
 }: Props): JSX.Element => {
-  const { t: enumT } = useEnumsTranslation();
+  const { t: enumT } = useTranslation(NS.Enums);
 
   const handlePlatformChange = (event: SelectChangeEvent<ShortLinkPlatform>) =>
     onChange(event.target.value as ShortLinkPlatform);

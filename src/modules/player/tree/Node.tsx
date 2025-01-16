@@ -3,9 +3,9 @@ import type { IBranchProps, INode, LeafProps } from 'react-accessible-treeview';
 import { Box, IconButton, Typography, colors } from '@mui/material';
 
 import { UUID } from '@graasp/sdk';
-import { ItemIcon } from '@graasp/ui';
 
 import { buildTreeItemClass } from '@/config/selectors';
+import ItemIcon from '@/ui/icons/ItemIcon';
 
 import { ItemMetaData } from './utils';
 

@@ -2,9 +2,9 @@ import { KeyboardEvent, MouseEvent, useContext, useState } from 'react';
 
 import { Badge, IconButton, Stack, SwipeableDrawer } from '@mui/material';
 
-import { useMobileView } from '@graasp/ui';
-
 import { Filter } from 'lucide-react';
+
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import DateRangeInput from '~analytics/common/DateRangeInput';
 import { TOGGLE_FILTERS_DRAWER_BUTTON_ID } from '~analytics/config/selectors';

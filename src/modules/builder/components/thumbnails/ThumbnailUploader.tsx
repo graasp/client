@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, useTheme } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
-import { theme } from '@graasp/ui';
 
-import { useDataSyncContext } from '@/components/context/DataSyncContext';
+import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 
 import ThumbnailCrop from './ThumbnailCrop';
 import useThumbnailUploader from './ThumbnailUploader.hook';
@@ -39,6 +38,7 @@ export const ThumbnailUploader = ({
   onChange,
 }: Props): JSX.Element => {
   const { computeStatusFor } = useDataSyncContext();
+  const theme = useTheme();
   const {
     uploadingProgress,
     isThumbnailUploading,

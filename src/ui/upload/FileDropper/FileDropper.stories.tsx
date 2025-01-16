@@ -1,10 +1,10 @@
+import { Box } from '@mui/material';
+
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from '@storybook/test';
 
-import { Box } from '@mui/material';
-
-import Button from '@/buttons/Button/Button.js';
-import { TABLE_CATEGORIES } from '@/utils/storybook.js';
+import Button from '@/ui/buttons/Button/Button.js';
+import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 
 import FileDropper from './FileDropper.js';
 
@@ -45,11 +45,11 @@ export const Container = {
   args: {
     buttonText: 'my button text',
     message: 'my text',
-    buttons: <Button data-testid='button-test'>my button</Button>,
+    buttons: <Button data-testid="button-test">my button</Button>,
   },
   decorators: [
     (story) => {
-      return <Box height='400px'>{story()}</Box>;
+      return <Box height="400px">{story()}</Box>;
     },
   ],
   play: ({ canvasElement, args }) => {
@@ -70,7 +70,7 @@ export const WithError = {
   },
   decorators: [
     (story) => {
-      return <Box height='400px'>{story()}</Box>;
+      return <Box height="400px">{story()}</Box>;
     },
   ],
   play: ({ canvasElement, args }) => {
@@ -90,7 +90,7 @@ export const Loading = {
   },
   decorators: [
     (story) => {
-      return <Box height='400px'>{story()}</Box>;
+      return <Box height="400px">{story()}</Box>;
     },
   ],
   play: ({ canvasElement, args }) => {
@@ -108,7 +108,7 @@ export const ZeroLoading = {
   },
   decorators: [
     (story) => {
-      return <Box height='400px'>{story()}</Box>;
+      return <Box height="400px">{story()}</Box>;
     },
   ],
   play: ({ canvasElement }) => {

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import CloudDoneIcon from '@mui/icons-material/CloudDone';
 import CloudOffIcon from '@mui/icons-material/CloudOff';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -7,10 +9,11 @@ import { Chip, ChipProps, CircularProgress } from '@mui/material';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
-import { useBuilderTranslation, useEnumsTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { buildPublicationStatus } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import { BUILDER } from '~builder/langs/constants';
 
 function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
@@ -28,7 +31,7 @@ type Props = {
 const { usePublicationStatus } = hooks;
 export const PublicationStatusComponent = ({ item }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { t: translateEnum } = useEnumsTranslation();
+  const { t: translateEnum } = useTranslation(NS.Enums);
   const { data: status, isLoading } = usePublicationStatus(item.id);
   const translatedType = capitalizeFirstLetter(translateEnum(item.type));
 

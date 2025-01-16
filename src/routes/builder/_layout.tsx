@@ -4,12 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Stack, styled, useTheme } from '@mui/material';
 
 import { AccountType, Context } from '@graasp/sdk';
-import {
-  Main as GraaspMain,
-  Platform,
-  PlatformSwitch,
-  useMobileView,
-} from '@graasp/ui';
 
 import {
   Link,
@@ -27,10 +21,13 @@ import {
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_APP_BAR_ID,
 } from '@/config/selectors';
+import GraaspMain from '@/ui/Main/Main';
+import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
+import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { MemberValidationBanner } from '~builder/components/alerts/MemberValidationBanner';
 import { MainMenu } from '~builder/components/main/MainMenu';
-import { NotificationButton } from '~builder/components/main/NotificationButton';
 
 export const Route = createFileRoute('/builder/_layout')({
   beforeLoad({ context }) {
@@ -85,7 +82,7 @@ function RouteComponent() {
 
   const rightContent = (
     <Stack direction="row" alignItems="center">
-      <NotificationButton />
+      {/* <NotificationButton /> */}
       <UserSwitchWrapper />
     </Stack>
   );

@@ -3,12 +3,14 @@ import { useTranslation } from 'react-i18next';
 import { Box, Card, Stack, Typography } from '@mui/material';
 
 import { PackedItem, formatDate } from '@graasp/sdk';
-import { AnalyticsIcon, BuildIcon, PlayIcon } from '@graasp/ui';
 
 import { Link } from '@tanstack/react-router';
 
 import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
+import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
+import BuildIcon from '@/ui/icons/BuildIcon';
+import PlayIcon from '@/ui/icons/PlayIcon';
 
 import ItemThumbnail from './ItemThumbnail';
 

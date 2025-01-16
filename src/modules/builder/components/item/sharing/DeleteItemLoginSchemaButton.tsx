@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -10,27 +10,27 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem, ItemLoginSchemaStatus } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
-import { Button } from '@graasp/ui';
 
-import { useGuestMemberships } from '@/components/hooks/useGuestMemberships';
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation, useCommonTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import { BUILDER } from '@/langs/constants';
+import Button from '@/ui/buttons/Button/Button';
+
+import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
 
 function DeleteItemLoginSchemaButton({
   itemId,
-}: {
+}: Readonly<{
   itemId: DiscriminatedItem['id'];
-}): JSX.Element | null {
+}>): JSX.Element | null {
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({ itemId });
   const { mutate: deleteItemLoginSchema } =
     mutations.useDeleteItemLoginSchema();
   const { data: guestMemberships } = useGuestMemberships(itemId);
 
   const { isOpen, closeModal, openModal } = useModalStatus();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const onSubmit = () => {
@@ -88,13 +88,13 @@ function DeleteItemLoginSchemaButton({
             </Typography>
             <ul>
               {guestMemberships.map(({ account }) => (
-                <li>{account.name}</li>
+                <li key={account.id}>{account.name}</li>
               ))}
             </ul>
           </DialogContent>
           <DialogActions>
             <Button size="small" variant="text" onClick={closeModal}>
-              {translateCommon(COMMON.CANCEL_BUTTON)}
+              {translateCommon('CANCEL.BUTTON_TEXT')}
             </Button>
             <Button
               dataCy="delete"

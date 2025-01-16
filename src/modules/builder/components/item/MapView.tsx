@@ -4,10 +4,10 @@ import { Skeleton, Stack, Typography } from '@mui/material';
 
 import { Map } from '@graasp/map';
 import { type DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
-import { useMobileView } from '@graasp/ui';
 
 import { hooks, mutations } from '@/config/queryClient';
 import { buildMapViewId } from '@/config/selectors';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import NewItemModal from '../main/NewItemModal';
 import { useCurrentLocation } from '../map/useCurrentLocation';

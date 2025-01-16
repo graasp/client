@@ -11,12 +11,13 @@ import {
 } from '@mui/material';
 
 import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
-import { Button, DraggingWrapper } from '@graasp/ui';
 
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import Button from '@/ui/buttons/Button/Button';
+import DraggingWrapper from '@/ui/draggable/DraggingWrapper';
 
 import { useUploadWithProgress } from '../../hooks/uploadWithProgress';
 import { useItemsStatuses } from '../../table/Badges';

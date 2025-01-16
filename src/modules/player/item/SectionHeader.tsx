@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 
 import { PackedItem, formatDate } from '@graasp/sdk';
-import { TextDisplay, Thumbnail } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { FOLDER_NAME_TITLE_CLASS } from '@/config/selectors';
+import TextDisplay from '@/ui/TextDisplay/TextDisplay';
+import Thumbnail from '@/ui/Thumbnail/Thumbnail';
 
 type SectionHeaderProps = {
   item: PackedItem;

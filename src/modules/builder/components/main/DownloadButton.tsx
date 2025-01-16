@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { DownloadButton as Button } from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildDownloadButtonId } from '@/config/selectors';
+import GraaspDownloadButton from '@/ui/buttons/DownloadButton/DownloadButton';
 
 import { BUILDER } from '../../langs/constants';
 
@@ -41,7 +41,7 @@ export const DownloadButton = ({ item }: Props): JSX.Element => {
   };
   return (
     <span id={buildDownloadButtonId(item.id)}>
-      <Button
+      <GraaspDownloadButton
         handleDownload={handleDownload}
         isLoading={isDownloading}
         title={translateBuilder(BUILDER.DOWNLOAD_ITEM_BUTTON)}

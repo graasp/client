@@ -1,16 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  ActionButtonVariant,
-  ColorVariantsType,
-  CopyButton as GraaspCopyButton,
-} from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import {
   ITEM_COPY_BUTTON_CLASS,
   ITEM_MENU_COPY_BUTTON_CLASS,
 } from '@/config/selectors';
+import GraaspCopyButton from '@/ui/buttons/CopyButton/CopyButton';
+import { ActionButtonVariant, ColorVariantsType } from '@/ui/types';
 
 import { BUILDER } from '../../../langs/constants';
 

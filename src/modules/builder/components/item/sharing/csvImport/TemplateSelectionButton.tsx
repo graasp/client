@@ -1,18 +1,18 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Button, DialogContentText, Typography } from '@mui/material';
 
 import { FolderIcon } from 'lucide-react';
 
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
-import { computeButtonText } from '@/utils/itemSelection';
-
-import { useBuilderTranslation } from '../../../../config/i18n';
 import {
   SHARE_CSV_TEMPLATE_SELECTION_BUTTON_ID,
   SHARE_CSV_TEMPLATE_SELECTION_DELETE_BUTTON_ID,
   SHARE_ITEM_FROM_CSV_WITH_GROUP_COLUMN_TEXT_ID,
-} from '../../../../config/selectors';
+} from '@/config/selectors';
+
 import { BUILDER } from '../../../../langs/constants';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
@@ -56,11 +56,7 @@ const TemplateSelectionButton = ({
   };
 
   const buttonText = (name?: string) =>
-    computeButtonText({
-      translateBuilder: t,
-      translateKey: BUILDER.ITEM_TEMPLATE_SELECTION_BUTTON,
-      name,
-    });
+    t(BUILDER.ITEM_TEMPLATE_SELECTION_BUTTON, { name });
 
   return (
     <>

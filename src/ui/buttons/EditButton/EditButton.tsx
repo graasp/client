@@ -1,4 +1,4 @@
-import { Edit2 } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import {
   IconButton,
@@ -8,9 +8,13 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { Edit2 } from 'lucide-react';
 
-import { ActionButton, ActionButtonVariant, IconSizeVariant } from '@/types.js';
+import {
+  ActionButton,
+  ActionButtonVariant,
+  IconSizeVariant,
+} from '@/ui/types.js';
 
 export type Props = {
   id?: string;

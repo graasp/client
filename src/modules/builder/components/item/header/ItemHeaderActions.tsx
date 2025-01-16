@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Stack } from '@mui/material';
 
 import {
@@ -5,15 +7,17 @@ import {
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
-import { ActionButton, ChatboxButton } from '@graasp/ui';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import DownloadButton from '@/components/main/DownloadButton';
+import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
+import { ITEM_CHATBOX_BUTTON_ID } from '@/config/selectors';
+import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
+import { ActionButton } from '@/ui/types';
 
-import { ITEM_TYPES_WITH_CAPTIONS } from '../../../config/constants';
-import { useBuilderTranslation } from '../../../config/i18n';
-import { hooks } from '../../../config/queryClient';
-import { ITEM_CHATBOX_BUTTON_ID } from '../../../config/selectors';
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import DownloadButton from '~builder/components/main/DownloadButton';
+import { ITEM_TYPES_WITH_CAPTIONS } from '~builder/config/constants';
+
 import { BUILDER } from '../../../langs/constants';
 import PublishButton from '../../common/PublishButton';
 import ShareButton from '../../common/ShareButton';

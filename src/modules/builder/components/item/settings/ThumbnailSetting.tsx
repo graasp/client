@@ -1,15 +1,16 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 
+import { NS } from '@/config/constants';
+
 import ThumbnailUploader, {
   EventChanges,
-} from '@/components/thumbnails/ThumbnailUploader';
-
-import { useBuilderTranslation } from '../../../config/i18n';
-import { BUILDER } from '../../../langs/constants';
+} from '~builder/components/thumbnails/ThumbnailUploader';
+import { BUILDER } from '~builder/langs/constants';
 
 const THUMBNAIL_SIZE = 120;
 const SYNC_STATUS_KEY = 'ThumbnailSetting';

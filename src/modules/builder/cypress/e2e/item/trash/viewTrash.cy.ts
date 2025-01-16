@@ -7,7 +7,7 @@ import {
 
 import { BUILDER } from '@/langs/constants';
 
-import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
 import { RECYCLE_BIN_PATH } from '../../../../config/paths';
 import {
   PREVENT_GUEST_MESSAGE_ID,

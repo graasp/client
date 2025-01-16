@@ -3,12 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Skeleton, Typography } from '@mui/material';
 
 import { DiscriminatedItem, ItemType, PermissionLevel } from '@graasp/sdk';
-import {
-  type NavigationElement,
-  RowMenu,
-  type RowMenuProps,
-  RowMenus,
-} from '@graasp/ui';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -16,6 +10,10 @@ import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
+import type { RowMenuProps } from '@/ui/Tree/RowMenu';
+import RowMenu from '@/ui/Tree/RowMenu';
+import RowMenus from '@/ui/Tree/RowMenus';
+import type { NavigationElement } from '@/ui/Tree/types';
 
 interface RootNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];

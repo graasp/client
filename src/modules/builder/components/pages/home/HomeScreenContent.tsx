@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Box, LinearProgress, Stack } from '@mui/material';
 
 import { PackedItem, Paginated } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { InfiniteData } from '@tanstack/react-query';
 
@@ -12,6 +11,7 @@ import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ACCESSIBLE_ITEMS_TABLE_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import SelectTypes from '~builder/components/common/SelectTypes';
 import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';

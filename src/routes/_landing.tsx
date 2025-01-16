@@ -2,13 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import {
-  DEFAULT_BACKGROUND_COLOR,
-  GraaspLogo,
-  useButtonColor,
-  useMobileView,
-} from '@graasp/ui';
-
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
@@ -18,6 +11,10 @@ import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { LANDING_PAGE_PATH } from '@/config/paths';
 import { mutations } from '@/config/queryClient';
 import { OnChangeLangProp } from '@/types';
+import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
+import { useButtonColor } from '@/ui/buttons/hooks';
+import { useMobileView } from '@/ui/hooks/useMobileView';
+import { DEFAULT_BACKGROUND_COLOR } from '@/ui/theme';
 
 import { Footer } from '~landing/footer/Footer';
 import { RightHeader } from '~landing/header/RightHeader';

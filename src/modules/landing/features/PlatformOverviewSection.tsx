@@ -2,17 +2,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import {
-  AnalyticsIcon,
-  BuildIcon,
-  LibraryIcon,
-  PlayIcon,
-  useButtonColor,
-} from '@graasp/ui';
-
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
+import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
+import BuildIcon from '@/ui/icons/BuildIcon';
+import LibraryIcon from '@/ui/icons/LibraryIcon';
+import PlayIcon from '@/ui/icons/PlayIcon';
 
 function PlatformDisplayGlass({
   Icon,

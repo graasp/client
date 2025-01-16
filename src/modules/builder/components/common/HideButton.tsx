@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
 import { ItemVisibilityType, PackedItem } from '@graasp/sdk';
-import { ActionButton, ActionButtonVariant } from '@graasp/ui';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
@@ -13,6 +12,7 @@ import {
   HIDDEN_ITEM_BUTTON_CLASS,
   buildHideButtonId,
 } from '@/config/selectors';
+import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs/constants';
 

@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import { IconButton, Stack, Tooltip, styled } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { useMobileView } from '@graasp/ui';
 
 import { useParams, useSearch } from '@tanstack/react-router';
 import { ExpandIcon, ShrinkIcon } from 'lucide-react';
@@ -16,6 +15,7 @@ import {
   ITEM_FULLSCREEN_BUTTON_ID,
   ITEM_PINNED_ID,
 } from '@/config/selectors';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import Chatbox from '~player/Chatbox';
 import {

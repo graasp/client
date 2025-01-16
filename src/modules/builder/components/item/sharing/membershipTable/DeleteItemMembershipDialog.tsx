@@ -14,13 +14,13 @@ import {
   ItemMembership,
   PermissionLevel,
 } from '@graasp/sdk';
-import { Button } from '@graasp/ui';
 
 import { useNavigate } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../../../langs/constants';
 import CancelButton from '../../../common/CancelButton';

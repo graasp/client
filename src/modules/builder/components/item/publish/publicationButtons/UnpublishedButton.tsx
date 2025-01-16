@@ -1,12 +1,15 @@
+import { useTranslation } from 'react-i18next';
+
 import { LoadingButton } from '@mui/lab';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
-import useModalStatus from '@/components/hooks/useModalStatus';
-import { useBuilderTranslation } from '@/config/i18n';
+import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
-import { BUILDER } from '@/langs/constants';
+
+import useModalStatus from '~builder/components/hooks/useModalStatus';
+import { BUILDER } from '~builder/langs/constants';
 
 import PublicVisibilityModal from '../PublicVisibilityModal';
 import PublicationButton from './PublicationButton';

@@ -16,10 +16,9 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { Button } from '@graasp/ui';
-
 import { NS } from '@/config/constants';
 import { CROP_MODAL_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../langs/constants';
 import CancelButton from './CancelButton';
