@@ -1,0 +1,26 @@
+/* Drop Down menu style*/
+
+.text-start {
+  text-align: start;
+  width: 100%;
+  font-size: 14px;
+}
+.dropdown-item {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  cursor: pointer;
+}
+.dropdown-item:not(first-child) {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.dropdown-item:not(last-child) {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.dropdown__link {
+  background: none;
+  border: none;
+  outline: none !important;
+}
