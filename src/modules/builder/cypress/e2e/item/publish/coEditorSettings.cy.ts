@@ -1,7 +1,5 @@
 import { ItemVisibilityType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { DISPLAY_CO_EDITORS_OPTIONS } from '../../../../config/constants';
-import { buildItemPath } from '../../../../config/paths';
 import {
   CO_EDITOR_SETTINGS_CHECKBOX_ID,
   CO_EDITOR_SETTINGS_RADIO_GROUP_ID,
@@ -9,6 +7,8 @@ import {
   buildDataCyWrapper,
   buildPublishButtonId,
 } from '../../../../config/selectors';
+import { DISPLAY_CO_EDITORS_OPTIONS } from '../../../../constants';
+import { buildItemPath } from '../../../../paths';
 import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 import { ITEM_WITH_TAGS_CONTEXT } from '../../../fixtures/tags';
 import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../support/constants';

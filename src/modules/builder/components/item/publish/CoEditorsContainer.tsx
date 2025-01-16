@@ -13,7 +13,7 @@ import {
 } from '@/config/selectors';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 const SYNC_STATUS_KEY = 'PublishCoEditors';
 

@@ -19,7 +19,7 @@ import {
   ZIP_DASHBOARD_UPLOADER_ID,
   buildDataCyWrapper,
 } from '../../config/selectors';
-import { InternalItemType } from '../../config/types';
+import { InternalItemType } from '../../types';
 import { ZIPInternalItem } from '../fixtures/files';
 import { FileItemForTest } from './types';
 

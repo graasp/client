@@ -12,7 +12,7 @@ import {
 } from '@/config/selectors';
 import Select from '@/ui/Select/Select';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 /**
  * Type of the `disabled` prop which allows to disable a subset of the options.

@@ -3,12 +3,12 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   CHATBOX_ID,
   CHATBOX_INPUT_BOX_ID,
   ITEM_CHATBOX_BUTTON_ID,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../../fixtures/chatbox';
 import { CURRENT_USER, MEMBERS } from '../../../fixtures/members';
 import { CHATBOX_TIMEOUT } from '../../../support/constants';

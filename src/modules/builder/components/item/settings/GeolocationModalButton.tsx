@@ -18,7 +18,7 @@ import notifier from '@/config/notifier';
 import { hooks, mutations } from '@/config/queryClient';
 import Button from '@/ui/buttons/Button/Button';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 type Props = {
   item: DiscriminatedItem;

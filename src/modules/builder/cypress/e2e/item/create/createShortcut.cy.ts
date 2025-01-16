@@ -5,12 +5,12 @@ import {
   buildShortcutExtra,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_SHORTCUT_BUTTON_CLASS,
   MY_GRAASP_ITEM_PATH,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 
 const IMAGE_ITEM = PackedLocalFileItemFactory();
 const FOLDER = PackedFolderItemFactory();

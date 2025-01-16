@@ -10,7 +10,6 @@ import {
 
 import { getHighestPermissionForMemberFromMemberships } from '@/utils/item';
 
-import { ITEM_TYPES_WITH_CAPTIONS } from '../../config/constants';
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_SELECTOR,
   ITEM_HEADER_ID,
@@ -20,6 +19,7 @@ import {
   buildSettingsButtonId,
   buildShareButtonId,
 } from '../../config/selectors';
+import { ITEM_TYPES_WITH_CAPTIONS } from '../../constants';
 import { CURRENT_USER } from '../fixtures/members';
 import { ItemForTest, MemberForTest } from './types';
 

@@ -1,4 +1,4 @@
-import { buildItemPath } from '../../../../config/paths';
+import { buildItemPath } from '../../../../paths';
 import {
   GRAASP_LINK_ITEM,
   GRAASP_LINK_ITEM_IFRAME_ONLY,

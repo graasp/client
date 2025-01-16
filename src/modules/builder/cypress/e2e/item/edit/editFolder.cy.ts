@@ -1,6 +1,5 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_ITEM_BUTTON_CLASS,
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
@@ -9,6 +8,7 @@ import {
   ITEM_FORM_NAME_INPUT_ID,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { EDIT_ITEM_PAUSE } from '../../../support/constants';
 import { editItem } from '../../../support/editUtils';
 

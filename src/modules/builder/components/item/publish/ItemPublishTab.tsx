@@ -27,7 +27,7 @@ import LicenseContainer from '~builder/components/item/publish/LicenseContainer'
 import PublicationStatusComponent from '~builder/components/item/publish/PublicationStatusComponent';
 import PublicationThumbnail from '~builder/components/item/publish/PublicationThumbnail';
 import { useOutletContext } from '~builder/contexts/OutletContext';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { SomeBreakPoints } from '~builder/types/breakpoint';
 
 import EditItemName from './EditItemName';

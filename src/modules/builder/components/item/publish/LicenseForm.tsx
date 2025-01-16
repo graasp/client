@@ -20,7 +20,7 @@ import {
   CC_SHARE_ALIKE_CONTROL_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import { CCLicenseChoice, CCSharingLicenseChoice } from './type';
 

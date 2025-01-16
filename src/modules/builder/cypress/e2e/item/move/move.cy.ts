@@ -3,13 +3,13 @@ import {
   PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
   MOVE_MANY_ITEMS_BUTTON_SELECTOR,
   buildItemsGridMoreButtonSelector,
   buildNavigationModalItemId,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 
 const IMAGE_ITEM = PackedLocalFileItemFactory();
 const FOLDER = PackedFolderItemFactory();

@@ -2,11 +2,11 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import { SAMPLE_PUBLIC_ITEMS } from '../../../fixtures/items';
 import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 import { expectFolderViewScreenLayout } from '../../../support/viewUtils';

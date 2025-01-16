@@ -9,7 +9,7 @@ import {
   buildS3FileExtra,
 } from '@graasp/sdk';
 
-import { InternalItemType } from '../../config/types';
+import { InternalItemType } from '../../types';
 import { LocalFileItemForTest, S3FileItemForTest } from '../support/types';
 import { MOCK_IMAGE_URL, MOCK_PDF_URL, MOCK_VIDEO_URL } from './fileLinks';
 import { CURRENT_USER } from './members';

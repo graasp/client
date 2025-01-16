@@ -17,7 +17,7 @@ import {
 } from '@/config/selectors';
 
 import CancelButton from '~builder/components/common/CancelButton';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 interface DeleteLinkProps {
   shortLink: string;

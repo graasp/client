@@ -4,7 +4,6 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
@@ -15,6 +14,7 @@ import {
   buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath, buildItemSharePath } from '../../../paths';
 import { MEMBERS } from '../../fixtures/members';
 
 const shareItem = ({

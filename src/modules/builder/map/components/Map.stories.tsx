@@ -1,18 +1,35 @@
 import {
-  DiscriminatedItem,
   MemberFactory,
   PackedFolderItemFactory,
   PermissionLevel,
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
+import { fn } from '@storybook/test';
 
-import { MOCK_USE_SUGGESTIONS } from '../../.storybook/fixtures';
 import MapComponent from './Map';
+
+const MOCK_USE_SUGGESTIONS = ({ address }: { address: string }) => {
+  if (address) {
+    return {
+      data: [
+        { addressLabel: 'suggestion 1' },
+        { addressLabel: 'suggestion 2' },
+        { addressLabel: 'suggestion 3' },
+      ],
+    };
+  }
+  return { data: undefined };
+};
 
 const meta = {
   title: 'Map',
   component: MapComponent,
+  args: {
+    viewItem: fn(),
+    viewItemInBuilder: fn(),
+    useDeleteItemGeolocation: fn(),
+  },
 } satisfies Meta<typeof MapComponent>;
 export default meta;
 
@@ -20,12 +37,10 @@ type Story = StoryObj<typeof meta>;
 
 const item = PackedFolderItemFactory();
 
-export const Map = {
+export const DefaultMap = {
   args: {
     item,
-    viewItem: () => ({}) as any,
     currentMember: MemberFactory(),
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () =>
       ({
         data: [
@@ -349,7 +364,6 @@ export const Map = {
     useRecycleItems: () => ({}) as any,
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     handleAddOnClick({ location }) {
-      // eslint-disable-next-line no-alert
       alert(JSON.stringify(location));
     },
   },
@@ -368,9 +382,7 @@ export const Map = {
 export const MapSignedOut = {
   args: {
     item: PackedFolderItemFactory(),
-    viewItem: () => ({}) as any,
     currentMember: null,
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () => ({ data: [] }) as any,
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     usePostItem: () => ({}) as any,
@@ -391,9 +403,7 @@ export const MapMobile = {
   parameters: { viewport: { defaultViewport: 'mobile1' } },
   args: {
     item,
-    viewItem: () => ({}) as any,
     currentMember: MemberFactory(),
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () =>
       ({
         data: [
@@ -426,9 +436,7 @@ export const MapSignOutMobile = {
   parameters: { viewport: { defaultViewport: 'mobile1' } },
   args: {
     item: PackedFolderItemFactory(),
-    viewItem: () => ({}) as any,
     currentMember: null,
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () => ({ data: [] }) as any,
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     usePostItem: () => ({}) as any,
@@ -448,9 +456,7 @@ export const MapSignOutMobile = {
 export const MapFrench = {
   args: {
     item: PackedFolderItemFactory(),
-    viewItem: () => ({}) as any,
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () => ({ data: [] }) as any,
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     usePostItem: () => ({}) as any,
@@ -470,13 +476,7 @@ export const MapFrench = {
 export const MapRead = {
   args: {
     item: PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
-    viewItem: () => ({}) as any,
-    viewItemInBuilder: (it: DiscriminatedItem) => {
-      // eslint-disable-next-line no-console
-      console.log(it.id);
-    },
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
-    useDeleteItemGeolocation: () => ({}) as any,
     useItemsInMap: () =>
       ({
         data: [

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Popup } from 'react-leaflet';
 
 import { Box, Chip, Link, Stack, Tooltip, Typography } from '@mui/material';
@@ -8,7 +9,8 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import { useMapTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+
 import { useQueryClientContext } from '../context/QueryClientContext';
 import DeleteItemButton from './DeleteItemButton';
 import DeleteLocationButton from './DeleteLocationButton';
@@ -21,7 +23,7 @@ const MarkerPopup = ({
 }): JSX.Element => {
   const { item } = geolocation;
   const { viewItemInBuilder } = useQueryClientContext();
-  const { t } = useMapTranslation();
+  const { t } = useTranslation(NS.Map);
   const thumbnailUrl = geolocation.item.thumbnails?.small;
 
   return (
@@ -59,9 +61,8 @@ const MarkerPopup = ({
         {geolocation.helperLabel}
       </Typography>
       <Box>
-        {item.settings.tags?.map((tag: string, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Chip key={idx} label={tag} sx={{ mx: 0.5 }} />
+        {item.settings.tags?.map((tag: string) => (
+          <Chip key={tag} label={tag} sx={{ mx: 0.5 }} />
         ))}
       </Box>
       <Stack direction="row">

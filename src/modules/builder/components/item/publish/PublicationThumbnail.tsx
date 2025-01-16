@@ -15,7 +15,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 import ThumbnailUploader, {
   EventChanges,
 } from '~builder/components/thumbnails/ThumbnailUploader';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 const THUMBNAIL_SIZE = 150;
 const SYNC_STATUS_KEY = 'PublicationThumbnail';

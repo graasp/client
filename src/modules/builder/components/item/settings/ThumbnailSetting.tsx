@@ -10,7 +10,7 @@ import { NS } from '@/config/constants';
 import ThumbnailUploader, {
   EventChanges,
 } from '~builder/components/thumbnails/ThumbnailUploader';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 const THUMBNAIL_SIZE = 120;
 const SYNC_STATUS_KEY = 'ThumbnailSetting';

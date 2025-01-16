@@ -24,8 +24,8 @@ import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import GraaspMainMenu from '@/ui/MainMenu/MainMenu';
 
-import { TUTORIALS_LINK } from '../../config/constants';
-import { BUILDER } from '../../langs/constants';
+import { TUTORIALS_LINK } from '../../constants';
+import { BUILDER } from '../../langs';
 
 const ResourceLinks = () => {
   const { t } = useTranslation(NS.Builder);

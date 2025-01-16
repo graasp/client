@@ -1,12 +1,12 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../config/paths';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath } from '../../../paths';
 import { MEMBERS } from '../../fixtures/members';
 
 const inviteItem = ({

@@ -1,6 +1,5 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemSharePath } from '../../../../config/paths';
 import {
   CSV_FILE_SELECTION_DELETE_BUTTON_ID,
   SHARE_BUTTON_MORE_ID,
@@ -16,6 +15,7 @@ import {
   TREE_MODAL_CONFIRM_BUTTON_ID,
   buildNavigationModalItemId,
 } from '../../../../config/selectors';
+import { buildItemSharePath } from '../../../../paths';
 import { MEMBERS } from '../../../fixtures/members';
 
 const shareItem = ({ fixture }: { id: string; fixture: string }) => {

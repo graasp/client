@@ -1,11 +1,11 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_MENU_RECYCLE_BUTTON_CLASS,
   ITEM_RECYCLE_BUTTON_CLASS,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 
 const recycleItem = (id: string) => {
   cy.get(buildItemsGridMoreButtonSelector(id)).click();

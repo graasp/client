@@ -1,7 +1,7 @@
 import { CookieKeys, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, REDIRECT_PATH, buildItemPath } from '../../config/paths';
 import { HEADER_APP_BAR_ID, ITEM_MAIN_CLASS } from '../../config/selectors';
+import { HOME_PATH, REDIRECT_PATH, buildItemPath } from '../../paths';
 import { REQUEST_FAILURE_LOADING_TIME } from '../support/constants';
 import { SIGN_IN_PATH } from '../support/paths';
 

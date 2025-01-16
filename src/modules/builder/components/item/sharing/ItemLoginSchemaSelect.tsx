@@ -8,7 +8,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID } from '@/config/selectors';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 const { usePutItemLoginSchema } = mutations;
 

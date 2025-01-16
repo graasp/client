@@ -10,7 +10,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_MENU_DUPLICATE_BUTTON_CLASS } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { getParentsIdsFromPath } from '~builder/utils/item';
 
 const DuplicateButton = ({

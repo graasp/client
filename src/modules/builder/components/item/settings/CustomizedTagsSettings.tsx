@@ -6,7 +6,7 @@ import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import CustomizedTags from '../publish/customizedTags/CustomizedTags';
 

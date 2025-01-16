@@ -8,7 +8,7 @@ import { EDIT_ITEM_BUTTON_CLASS, buildEditButtonId } from '@/config/selectors';
 import GraaspEditButton from '@/ui/buttons/EditButton/EditButton';
 import { ActionButtonVariant } from '@/ui/types';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 type Props = {
   itemId: DiscriminatedItem['id'];

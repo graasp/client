@@ -1,12 +1,12 @@
 import { PermissionLevel } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../config/paths';
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   buildInvitationTableRowId,
   buildPermissionOptionId,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath } from '../../../paths';
 import { ITEMS_WITH_INVITATIONS } from '../../fixtures/invitations';
 
 const editInvitation = ({

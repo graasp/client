@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import WrongLocationIcon from '@mui/icons-material/WrongLocation';
 import {
@@ -11,11 +12,11 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
-import { Button } from '@graasp/ui';
 
-import { useCommonTranslation, useMapTranslation } from '../../config/i18n';
-import { MAP } from '../../langs/constants';
+import { NS } from '@/config/constants';
+import Button from '@/ui/buttons/Button/Button';
+
+import { MAP } from '../../constants';
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 export interface Props {
@@ -23,8 +24,8 @@ export interface Props {
 }
 
 const DeleteLocationButton = ({ item }: Props): JSX.Element => {
-  const { t } = useMapTranslation();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t } = useTranslation(NS.Map);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const { useDeleteItemGeolocation } = useQueryClientContext();
   const { mutate: deleteLocation } = useDeleteItemGeolocation();
   const [open, setOpen] = useState(false);
@@ -39,9 +40,7 @@ const DeleteLocationButton = ({ item }: Props): JSX.Element => {
   };
 
   const handleClose = () => {
-    // onClose(selectedValue);
     setOpen(false);
-    // setSelectedValue(selectedValue);
   };
 
   return (
@@ -58,7 +57,7 @@ const DeleteLocationButton = ({ item }: Props): JSX.Element => {
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={() => setOpen(false)}>
-            {translateCommon(COMMON.CANCEL_BUTTON)}
+            {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
           <Button color="error" onClick={onDelete}>
             {t(MAP.DELETE_ITEM_LOCATION_BUTTON)}

@@ -11,7 +11,7 @@ import { mutations } from '@/config/queryClient';
 import { ENROLL_BUTTON_SELECTOR } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 type Props = { itemId: DiscriminatedItem['id'] };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMap } from 'react-leaflet';
 
 import SearchIcon from '@mui/icons-material/Search';
@@ -9,22 +10,21 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Fab from '@mui/material/Fab';
 
-import { COMMON } from '@graasp/translations';
+import { NS } from '@/config/constants';
 
-import { useCommonTranslation, useMapTranslation } from '../../config/i18n';
 import GeolocationPicker, {
   GeolocationPickerProps,
 } from '../GeolocationPicker/GeolocationPicker';
 import { useQueryClientContext } from '../context/QueryClientContext';
 import Search from './Search';
 
-type Props = { onChange: () => void; tags: string[] };
+type Props = { onChange: (tags: string[]) => void; tags: string[] };
 
 const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
   const map = useMap();
   const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
-  const { t } = useMapTranslation();
-  const { t: commonT } = useCommonTranslation();
+  const { t } = useTranslation(NS.Map);
+  const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -71,7 +71,7 @@ const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
           <br />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>{commonT(COMMON.CLOSE_BUTTON)}</Button>
+          <Button onClick={handleClose}>{commonT('CLOSE.BUTTON_TEXT')}</Button>
         </DialogActions>
       </Dialog>
     </>

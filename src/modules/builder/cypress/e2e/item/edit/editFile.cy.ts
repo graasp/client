@@ -4,7 +4,6 @@ import {
   PackedS3FileItemFactory,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
@@ -14,6 +13,7 @@ import {
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { MOCK_IMAGE_URL, MOCK_VIDEO_URL } from '../../../fixtures/fileLinks';
 import { ICON_FILEPATH, VIDEO_FILEPATH } from '../../../fixtures/files';
 import { EDIT_ITEM_PAUSE } from '../../../support/constants';

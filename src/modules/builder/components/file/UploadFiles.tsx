@@ -7,7 +7,7 @@ import { MAX_FILE_SIZE, formatFileSize } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { DASHBOARD_UPLOADER_ID } from '@/config/selectors';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import { FileUploader } from './FileUploader';
 
 const FILE_UPLOAD_MAX_FILES = 15;

@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { DialogActions, DialogContent } from '@mui/material';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
-import { Button, DeleteButton } from '@graasp/ui';
 
-import { useCommonTranslation, useMapTranslation } from '../../config/i18n';
-import { MAP } from '../../langs/constants';
+import { NS } from '@/config/constants';
+import Button from '@/ui/buttons/Button/Button';
+import DeleteButton from '@/ui/buttons/DeleteButton/DeleteButton';
+
+import { MAP } from '../../constants';
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 type Props = {
@@ -17,10 +19,10 @@ type Props = {
 };
 
 const DeleteItemButton = ({ item }: Props): JSX.Element => {
-  const { t } = useMapTranslation();
+  const { t } = useTranslation(NS.Map);
   const { useRecycleItems } = useQueryClientContext();
   const { mutate: recycleItems } = useRecycleItems();
-  const { t: translateCommon } = useCommonTranslation();
+  const { t: translateCommon } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
 
   const { name, id } = item;
@@ -47,7 +49,7 @@ const DeleteItemButton = ({ item }: Props): JSX.Element => {
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={handleClose}>
-            {translateCommon(COMMON.CANCEL_BUTTON)}
+            {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
           <Button color="error" onClick={onDelete}>
             {t(MAP.DELETE_ITEM_BUTTON)}

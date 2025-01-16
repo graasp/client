@@ -18,7 +18,7 @@ import {
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 type Props = {
   member: Member;

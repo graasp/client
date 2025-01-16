@@ -11,7 +11,7 @@ import Button from '@/ui/buttons/Button/Button';
 
 import { LINK_REGEX } from '~builder/utils/item';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';
 
 export function CustomAppForm({

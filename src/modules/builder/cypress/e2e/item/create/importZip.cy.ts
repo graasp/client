@@ -1,7 +1,7 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import { ZIP_DASHBOARD_UPLOADER_ID } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { ZIP_DEFAULT } from '../../../fixtures/files';
 import { createItem } from '../../../support/createUtils';
 

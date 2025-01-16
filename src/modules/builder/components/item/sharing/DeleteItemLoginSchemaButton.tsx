@@ -17,7 +17,7 @@ import Button from '@/ui/buttons/Button/Button';
 
 import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 function DeleteItemLoginSchemaButton({
   itemId,

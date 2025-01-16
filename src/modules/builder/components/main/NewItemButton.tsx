@@ -11,7 +11,7 @@ import { NS } from '@/config/constants';
 import { CREATE_ITEM_BUTTON_ID } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import NewItemModal from './NewItemModal';
 
 type Props = {

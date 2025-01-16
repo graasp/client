@@ -6,8 +6,8 @@ import { PublicationStatus } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 
-import { SETTINGS } from '../../../config/constants';
-import { BUILDER } from '../../../langs/constants';
+import { SETTINGS } from '../../../constants';
+import { BUILDER } from '../../../langs';
 import { Visibility } from './UpdateVisibilityModal';
 
 const { usePublicationStatus } = hooks;

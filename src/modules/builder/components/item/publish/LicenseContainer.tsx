@@ -25,7 +25,7 @@ import {
 } from '@/config/selectors';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
-import { CC_LICENSE_ABOUT_URL } from '~builder/config/constants';
+import { CC_LICENSE_ABOUT_URL } from '~builder/constants';
 
 import useItemLicense from '../../hooks/useItemLicense';
 import useModalStatus from '../../hooks/useModalStatus';

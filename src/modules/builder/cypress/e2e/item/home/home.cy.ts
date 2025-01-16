@@ -8,8 +8,6 @@ import {
 import { SortingOptions } from '@/components/table/types';
 import { ITEM_PAGE_SIZE } from '@/config/constants';
 
-// import i18n from '../../../../config/i18n';
-import { HOME_PATH } from '../../../../config/paths';
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
   CREATE_ITEM_BUTTON_ID,
@@ -23,6 +21,8 @@ import {
   buildItemCard,
   buildMapViewId,
 } from '../../../../config/selectors';
+// import i18n from '../../../../config/i18n';
+import { HOME_PATH } from '../../../../paths';
 import { generateOwnItems } from '../../../fixtures/items';
 import { CURRENT_USER } from '../../../fixtures/members';
 import { NAVIGATION_LOAD_PAUSE } from '../../../support/constants';

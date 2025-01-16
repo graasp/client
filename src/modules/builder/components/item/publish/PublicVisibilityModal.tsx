@@ -14,8 +14,8 @@ import { PackedItem } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON } from '@/config/selectors';
 
-import { SETTINGS } from '~builder/config/constants';
-import { BUILDER } from '~builder/langs/constants';
+import { SETTINGS } from '~builder/constants';
+import { BUILDER } from '~builder/langs';
 
 import useVisibility from '../../hooks/useVisibility';
 

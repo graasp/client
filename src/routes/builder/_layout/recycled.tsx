@@ -12,7 +12,7 @@ import {
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import { ITEM_PAGE_SIZE } from '~builder/config/constants';
+import { ITEM_PAGE_SIZE } from '~builder/constants';
 
 import DeleteButton from '../../../modules/builder/components/common/DeleteButton';
 import ErrorAlert from '../../../modules/builder/components/common/ErrorAlert';
@@ -29,7 +29,7 @@ import {
 import { BuilderPageLayout } from '../../../modules/builder/components/pages/BuilderPageLayout';
 import RecycleBinToolbar from '../../../modules/builder/components/pages/recycleBin/RecycleBinSelectionToolbar';
 import ItemCard from '../../../modules/builder/components/table/ItemCard';
-import { BUILDER } from '../../../modules/builder/langs/constants';
+import { BUILDER } from '../../../modules/builder/langs';
 
 const CONTAINER_ID = 'recycle-items-container';
 

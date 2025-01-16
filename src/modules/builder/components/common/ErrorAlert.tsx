@@ -4,7 +4,7 @@ import { Alert } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   id?: string;

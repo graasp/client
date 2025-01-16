@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { Marker, Popup } from 'react-leaflet';
 
-import { useMapTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+
 import { currentLocationMarker } from '../icons/icons';
 
 const CurrentLocationMarker = ({
@@ -8,7 +10,7 @@ const CurrentLocationMarker = ({
 }: {
   position?: { lat: number; lng: number };
 }): JSX.Element | null => {
-  const { t } = useMapTranslation();
+  const { t } = useTranslation(NS.Map);
 
   if (!position) {
     return null;

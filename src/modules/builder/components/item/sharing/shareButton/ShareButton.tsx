@@ -22,7 +22,7 @@ import {
 } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import ImportUsersWithCSVDialog from '../csvImport/ImportUsersWithCSVDialog';
 import CreateItemMembershipForm from './CreateItemMembershipForm';

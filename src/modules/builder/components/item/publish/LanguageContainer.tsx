@@ -9,7 +9,7 @@ import { NS } from '@/config/constants';
 import { LIBRARY_SETTINGS_LANGUAGES_ID } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import LanguageSelect from '../settings/LanguageSelect';
 import PublicationAttributeContainer from './PublicationAttributeContainer';

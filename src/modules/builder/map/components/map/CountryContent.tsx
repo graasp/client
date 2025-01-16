@@ -1,11 +1,13 @@
-import { Dispatch } from "react";
-import { useMap } from "react-leaflet";
+import { Dispatch } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useMap } from 'react-leaflet';
 
-import { Paper } from "@mui/material";
+import { Paper } from '@mui/material';
 
-import i18n from "../../config/i18n";
-import { Country } from "../../types/types";
-import CountryForm from "../CountryForm/CountryForm";
+import { NS } from '@/config/constants';
+
+import { Country } from '../../types';
+import CountryForm from '../CountryForm/CountryForm';
 
 const CountryContent = ({
   setShowMap,
@@ -13,6 +15,7 @@ const CountryContent = ({
   setShowMap: Dispatch<boolean>;
 }): JSX.Element => {
   const map = useMap();
+  const { i18n } = useTranslation(NS.Map);
   const onChange = (newValue: Country) => {
     // necessary to move map
     setShowMap(true);
@@ -23,21 +26,21 @@ const CountryContent = ({
     <div>
       <div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          height: "100vh",
-          width: "100vw",
-          background: "rgba(0,0,0,0.5)",
+          height: '100vh',
+          width: '100vw',
+          background: 'rgba(0,0,0,0.5)',
           zIndex: 450,
         }}
       />
       <Paper
         style={{
-          top: "40%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          position: "absolute",
+          top: '40%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          position: 'absolute',
           zIndex: 450,
           borderRadius: 15,
         }}

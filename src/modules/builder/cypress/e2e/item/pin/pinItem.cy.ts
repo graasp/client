@@ -1,12 +1,12 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_HEADER_ID,
   PIN_ITEM_BUTTON_CLASS,
   buildDownloadButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 
 const togglePinButton = (itemId: string) => {
   cy.get(buildItemsGridMoreButtonSelector(itemId)).click();

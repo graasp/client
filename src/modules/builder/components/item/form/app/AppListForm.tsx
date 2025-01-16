@@ -15,7 +15,7 @@ import { CUSTOM_APP_CYPRESS_ID } from '@/config/selectors';
 
 import AppCard from '~builder/components/main/AppCard';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import addNewImage from '../../../../resources/addNew.png';
 import { ItemNameField } from '../ItemNameField';
 import { AppGrid } from './AppGrid';

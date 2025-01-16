@@ -9,7 +9,7 @@ import { hooks } from '@/config/queryClient';
 import AppCard from '~builder/components/main/AppCard';
 import { sortByName } from '~builder/utils/item';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 
 type AppGridProps = {
   searchQuery?: string;

@@ -5,7 +5,6 @@ import {
   getDocumentExtra,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_MODAL_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
@@ -13,6 +12,7 @@ import {
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import {
   CAPTION_EDIT_PAUSE,
   EDIT_ITEM_PAUSE,

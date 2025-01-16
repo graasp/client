@@ -9,7 +9,7 @@ import { ItemConstants, MAX_ITEM_NAME_LENGTH } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { ITEM_FORM_NAME_INPUT_ID } from '@/config/selectors';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 export type ItemNameFieldProps = {
   required?: boolean;

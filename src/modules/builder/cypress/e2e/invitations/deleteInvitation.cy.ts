@@ -1,8 +1,8 @@
-import { buildItemPath } from '../../../config/paths';
 import {
   buildItemInvitationRowDeleteButtonId,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath } from '../../../paths';
 import { ITEMS_WITH_INVITATIONS } from '../../fixtures/invitations';
 
 const deleteInvitation = ({ id, itemId }: { id: string; itemId: string }) => {

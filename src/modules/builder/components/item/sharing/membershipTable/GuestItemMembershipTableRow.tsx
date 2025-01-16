@@ -11,7 +11,7 @@ import {
 import { NS } from '@/config/constants';
 import { buildItemMembershipRowId } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
 import { StyledTableRow } from './StyledTableRow';

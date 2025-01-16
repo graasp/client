@@ -10,9 +10,9 @@ import { NS } from '@/config/constants';
 import { buildSettingsButtonId } from '@/config/selectors';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
-import { buildItemSettingsPath } from '~builder/config/paths';
+import { buildItemSettingsPath } from '~builder/paths';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 type Props = {
   itemId: string;

@@ -9,7 +9,6 @@ import {
 } from '@graasp/sdk';
 import { namespaces } from '@graasp/translations';
 
-import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   buildDataCyWrapper,
   buildItemMembershipRowDeleteButtonId,
@@ -18,6 +17,7 @@ import {
   buildItemMembershipRowSelector,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath, buildItemSharePath } from '../../../paths';
 import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
 import { buildItemMembership } from '../../fixtures/memberships';
 

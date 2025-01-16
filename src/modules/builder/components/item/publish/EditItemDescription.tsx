@@ -15,7 +15,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DebouncedTextEditor from '~builder/components/input/DebouncedTextEditor';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import PublicationModal from './PublicationModal';
 

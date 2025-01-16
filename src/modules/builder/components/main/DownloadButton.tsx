@@ -8,7 +8,7 @@ import { mutations } from '@/config/queryClient';
 import { buildDownloadButtonId } from '@/config/selectors';
 import GraaspDownloadButton from '@/ui/buttons/DownloadButton/DownloadButton';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   item: DiscriminatedItem;

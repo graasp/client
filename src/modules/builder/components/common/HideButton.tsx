@@ -14,7 +14,7 @@ import {
 } from '@/config/selectors';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type HideButtonProps = {
   item: PackedItem;

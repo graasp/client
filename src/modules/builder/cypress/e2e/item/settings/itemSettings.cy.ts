@@ -11,7 +11,6 @@ import {
 } from '@graasp/sdk';
 import { langs } from '@graasp/translations';
 
-import { buildItemPath, buildItemSettingsPath } from '../../../../config/paths';
 import {
   CLEAR_CHAT_CONFIRM_BUTTON_ID,
   CLEAR_CHAT_DIALOG_ID,
@@ -30,6 +29,7 @@ import {
   buildItemsGridMoreButtonSelector,
   buildSettingsButtonId,
 } from '../../../../config/selectors';
+import { buildItemPath, buildItemSettingsPath } from '../../../../paths';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../../fixtures/chatbox';
 import { CURRENT_USER, MEMBERS } from '../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../support/constants';

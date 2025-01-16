@@ -1,5 +1,5 @@
-import { HOME_PATH } from '../../../../config/paths';
 import { buildItemCard } from '../../../../config/selectors';
+import { HOME_PATH } from '../../../../paths';
 import {
   IMAGE_ITEM_DEFAULT,
   IMAGE_ITEM_S3,

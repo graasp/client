@@ -18,8 +18,8 @@ import {
 } from '@/config/selectors';
 import ItemIcon from '@/ui/icons/ItemIcon';
 
-import { InternalItemType, NewItemTabType } from '../../config/types';
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
+import { InternalItemType, NewItemTabType } from '../../types';
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   borderRight: `1px solid ${theme.palette.divider}`,

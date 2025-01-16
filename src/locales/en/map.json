@@ -19,5 +19,6 @@
   "This location does not match a specific address.": "This location does not match a specific address.",
   "Select a country": "Select a country",
   "VIEW_ITEM_BUILDER_TOOLTIP": "View item in Graasp Builder",
-  "VIEW_ITEM_PLAYER_TOOLTIP": "View item in Graasp Player"
+  "VIEW_ITEM_PLAYER_TOOLTIP": "View item in Graasp Player",
+  "FUNCTIONALITIES_REDUCED_FOR_LOGGED_OUT_MESSAGE": "Some functionalities are disabled for logged out users."
 }

@@ -1,6 +1,6 @@
 import { ItemType, PackedAppItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
+import { buildItemPath } from '../../../../paths';
 import { buildAppItemLinkForTest } from '../../../fixtures/apps';
 
 const APP = PackedAppItemFactory({

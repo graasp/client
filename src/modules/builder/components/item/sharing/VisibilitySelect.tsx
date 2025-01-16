@@ -10,8 +10,8 @@ import Loader from '@/ui/Loader/Loader';
 
 import useVisibility from '~builder/components/hooks/useVisibility';
 
-import { SETTINGS } from '../../../config/constants';
-import { BUILDER } from '../../../langs/constants';
+import { SETTINGS } from '../../../constants';
+import { BUILDER } from '../../../langs';
 import ItemLoginSchemaSelect from './ItemLoginSchemaSelect';
 import UpdateVisibilityModal from './UpdateVisibilityModal';
 import useVisibilitySelect from './VisibilitySelect.hook';

@@ -1,13 +1,13 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 import { namespaces } from '@graasp/translations';
 
-import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
   buildInvitationTableRowId,
   buildItemInvitationRowDeleteButtonId,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath, buildItemSharePath } from '../../../paths';
 import { ITEMS_WITH_INVITATIONS } from '../../fixtures/invitations';
 import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
 

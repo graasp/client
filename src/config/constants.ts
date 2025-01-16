@@ -26,6 +26,7 @@ export const NS = {
   Common: 'common',
   Enums: 'enums',
   Landing: 'landing',
+  Map: 'map',
   Messages: 'messages',
   Player: 'player',
 } as const;

@@ -8,7 +8,7 @@ import { ITEM_DELETE_BUTTON_CLASS } from '@/config/selectors';
 import GraaspDeleteButton from '@/ui/buttons/DeleteButton/DeleteButton';
 import { ActionButtonVariant, ColorVariantsType } from '@/ui/types';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import DeleteItemDialog from '../main/DeleteItemDialog';
 
 type Props = {

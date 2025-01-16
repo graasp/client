@@ -8,9 +8,9 @@ import CreativeCommons from '@/ui/CreativeCommons/CreativeCommons';
 import Button from '@/ui/buttons/Button/Button';
 import { CCSharingVariant } from '@/ui/types';
 
-import { CC_LICENSE_ABOUT_URL } from '~builder/config/constants';
+import { CC_LICENSE_ABOUT_URL } from '~builder/constants';
 import { useOutletContext } from '~builder/contexts/OutletContext';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { convertLicense } from '~builder/utils/itemLicense';
 
 import ItemSettingProperty from './ItemSettingProperty';

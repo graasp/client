@@ -6,7 +6,7 @@ import { NS } from '@/config/constants';
 import { buildItemMembershipRowDeleteButtonId } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import DeleteItemMembershipDialog from './DeleteItemMembershipDialog';
 import TableRowDeleteButton from './TableRowDeleteButton';

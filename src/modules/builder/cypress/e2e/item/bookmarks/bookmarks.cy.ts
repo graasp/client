@@ -8,8 +8,6 @@ import {
 import { SortingOptions } from '@/components/table/types';
 import { BUILDER } from '@/langs/constants';
 
-// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
-import { BOOKMARKED_ITEMS_PATH, HOME_PATH } from '../../../../config/paths';
 import {
   BOOKMARKED_ITEMS_ERROR_ALERT_ID,
   BOOKMARKED_ITEMS_ID,
@@ -23,6 +21,8 @@ import {
   UNBOOKMARK_ICON_SELECTOR,
   buildItemCard,
 } from '../../../../config/selectors';
+// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+import { BOOKMARKED_ITEMS_PATH, HOME_PATH } from '../../../../paths';
 import { CURRENT_USER } from '../../../fixtures/members';
 
 const BOOKMARKED_ITEMS = [

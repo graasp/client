@@ -25,7 +25,7 @@ import { hooks } from '@/config/queryClient';
 import ErrorAlert from '~builder/components/common/ErrorAlert';
 import { useOutletContext } from '~builder/contexts/OutletContext';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import GuestItemMembershipTableRow from './GuestItemMembershipTableRow';
 import InvitationTableRow from './InvitationTableRow';
 import ItemMembershipTableRow from './ItemMembershipTableRow';

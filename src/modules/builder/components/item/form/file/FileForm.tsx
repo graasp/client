@@ -31,7 +31,7 @@ import {
 import CancelButton from '~builder/components/common/CancelButton';
 import { getExtraFromPartial } from '~builder/utils/itemExtra';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
 

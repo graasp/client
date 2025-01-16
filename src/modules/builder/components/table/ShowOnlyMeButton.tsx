@@ -5,7 +5,7 @@ import { Chip } from '@mui/material';
 import { NS } from '@/config/constants';
 import { ACCESSIBLE_ITEMS_ONLY_ME_ID } from '@/config/selectors';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 const ShowOnlyMeButton = ({
   onClick,

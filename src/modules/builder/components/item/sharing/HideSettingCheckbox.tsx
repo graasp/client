@@ -8,7 +8,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { SETTINGS_HIDE_ITEM_ID } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import ItemSettingCheckBoxProperty from '../settings/ItemSettingCheckBoxProperty';
 

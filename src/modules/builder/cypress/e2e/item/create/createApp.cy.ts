@@ -1,6 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import {
   GRAASP_APP_ITEM,
   GRAASP_CUSTOM_APP_ITEM,

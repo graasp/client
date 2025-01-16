@@ -2,7 +2,7 @@ import { PackedEtherpadItemFactory } from '@graasp/sdk';
 
 import { buildItemsGridMoreButtonSelector } from '@/config/selectors';
 
-import { HOME_PATH } from '../../../../config/paths';
+import { HOME_PATH } from '../../../../paths';
 import { EDIT_ITEM_PAUSE } from '../../../support/constants';
 import { editItem } from '../../../support/editUtils';
 

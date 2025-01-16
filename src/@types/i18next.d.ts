@@ -8,6 +8,7 @@ import builder from '../locales/en/builder.json';
 import common from '../locales/en/common.json';
 import enums from '../locales/en/enums.json';
 import landing from '../locales/en/landing.json';
+import map from '../locales/en/map.json';
 import messages from '../locales/en/messages.json';
 import player from '../locales/en/player.json';
 
@@ -21,6 +22,7 @@ declare module 'i18next' {
       common: typeof common;
       enums: typeof enums;
       landing: typeof landing;
+      map: typeof map;
       messages: typeof messages;
       player: typeof player;
     };

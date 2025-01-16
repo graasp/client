@@ -11,7 +11,7 @@ import {
 
 import { Ordering } from '~builder/enums';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import ErrorAlert from '../common/ErrorAlert';
 import SelectTypes from '../common/SelectTypes';
 import { useFilterItemsContext } from '../context/FilterItemsContext';

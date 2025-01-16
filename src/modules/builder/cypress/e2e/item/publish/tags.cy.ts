@@ -5,7 +5,6 @@ import {
   TagCategory,
 } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   ITEM_HEADER_ID,
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
@@ -16,6 +15,7 @@ import {
   buildMultiSelectChipInputId,
   buildPublishButtonId,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import { PUBLISHED_ITEM_NO_TAGS } from '../../../fixtures/items';
 import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 import { SAMPLE_TAGS } from '../../../fixtures/tags';

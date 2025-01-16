@@ -12,7 +12,7 @@ import {
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import ShareButton from '../shareButton/ShareButton';
 import ItemMembershipsTable from './ItemMembershipsTable';
 import MembershipRequestTable from './MembershipRequestTable';

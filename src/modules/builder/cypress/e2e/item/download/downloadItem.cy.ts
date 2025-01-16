@@ -2,7 +2,7 @@ import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
 import { buildDownloadButtonId } from '@/config/selectors';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { SAMPLE_PUBLIC_ITEMS } from '../../../fixtures/items';
 import { SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 

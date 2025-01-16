@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {
@@ -14,9 +15,9 @@ import {
 } from '@mui/material';
 
 import { ItemGeolocation, ItemType } from '@graasp/sdk';
-import { COMMON } from '@graasp/translations';
 
-import { useCommonTranslation, useMapTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 type Props = {
@@ -29,9 +30,9 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
     usePostItem,
     item: parent,
   } = useQueryClientContext();
-  const { t: commonT } = useCommonTranslation();
+  const { t: commonT } = useTranslation(NS.Common);
   const { mutate: postItem } = usePostItem();
-  const { t } = useMapTranslation();
+  const { t } = useTranslation(NS.Map);
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -72,6 +73,7 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
           <form onSubmit={handleSubmit}>
             <DialogContent>
               <TextField
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
                 margin="dense"
                 id="name"
@@ -82,6 +84,7 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
                 required
               />
               <TextField
+                // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
                 margin="dense"
                 id="description"
@@ -94,11 +97,15 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
               <p>{location.addressLabel}</p>
             </DialogContent>
             <DialogActions>
-              <Button autoFocus onClick={() => setOpen(false)}>
-                {commonT(COMMON.CANCEL_BUTTON)}
+              <Button
+                // eslint-disable-next-line jsx-a11y/no-autofocus
+                autoFocus
+                onClick={() => setOpen(false)}
+              >
+                {commonT('CANCEL.BUTTON_TEXT')}
               </Button>
               <Button type="submit" variant="contained">
-                {commonT(COMMON.SAVE_BUTTON)}
+                {commonT('SAVE.BUTTON_TEXT')}
               </Button>
             </DialogActions>
           </form>

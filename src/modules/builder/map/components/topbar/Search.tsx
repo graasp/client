@@ -1,8 +1,10 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Autocomplete, TextField } from '@mui/material';
 
-import { useMapTranslation } from '../../config/i18n';
+import { NS } from '@/config/constants';
+
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 const Search = ({
@@ -16,7 +18,7 @@ const Search = ({
 }): JSX.Element => {
   const ref = useRef();
   const { currentMember } = useQueryClientContext();
-  const { t } = useMapTranslation();
+  const { t } = useTranslation(NS.Map);
 
   const onChangeTags = (_e: unknown, newValue: string[]) => {
     onChange(newValue);
@@ -39,7 +41,6 @@ const Search = ({
             }
           }}
           inputRef={ref}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...params}
           placeholder={t('Enter keywords here')}
           label={t('Keywords')}
@@ -47,7 +48,6 @@ const Search = ({
             minWidth: currentMember ? '30vw' : '70vw',
             maxWidth: '100%',
           }}
-          // eslint-disable-next-line react/jsx-props-no-spreading
           {...(invisible
             ? {
                 variant: 'standard',

@@ -1,6 +1,5 @@
 import { TextField } from '@mui/material';
 
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import type { BoundFunctions } from '@testing-library/dom';

@@ -4,13 +4,13 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from '../../../config/paths';
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   buildItemMembershipRowEditButtonId,
   buildPermissionOptionId,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath, buildItemSharePath } from '../../../paths';
 import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
 import { ITEMS_WITH_MEMBERSHIPS } from '../../fixtures/memberships';
 import { ItemForTest } from '../../support/types';

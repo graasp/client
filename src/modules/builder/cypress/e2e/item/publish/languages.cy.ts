@@ -1,6 +1,5 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   LANGUAGE_SELECTOR_ID,
   LIBRARY_SETTINGS_LANGUAGES_ID,
@@ -8,6 +7,7 @@ import {
   buildPublishAttrContainer,
   buildPublishButtonId,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import { PUBLISHED_ITEM } from '../../../fixtures/items';
 import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 

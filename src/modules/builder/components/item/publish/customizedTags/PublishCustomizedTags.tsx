@@ -10,7 +10,7 @@ import { NS } from '@/config/constants';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import CustomizedTags from './CustomizedTags';
 import { useTagsManager } from './useTagsManager';

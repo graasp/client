@@ -16,7 +16,7 @@ import {
   SHORT_LINK_COLOR,
   SHORT_LINK_CONTAINER_BORDER_STYLE,
   SHORT_LINK_CONTAINER_BORDER_WIDTH,
-} from '~builder/config/constants';
+} from '~builder/constants';
 
 import ConfirmDeleteLink from './ConfirmDeleteLink';
 import PlatformIcon from './PlatformIcon';

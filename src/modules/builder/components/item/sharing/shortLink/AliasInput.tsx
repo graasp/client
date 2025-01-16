@@ -11,7 +11,7 @@ import {
   SHORT_LINK_RANDOMIZE_BUTTON_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { randomAlias } from '~builder/utils/shortLink';
 
 type Props = {

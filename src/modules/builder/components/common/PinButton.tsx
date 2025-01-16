@@ -9,7 +9,7 @@ import { PIN_ITEM_BUTTON_CLASS } from '@/config/selectors';
 import GraaspPinButton from '@/ui/buttons/PinButton/PinButton';
 import { ActionButtonVariant } from '@/ui/types';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   type?: ActionButtonVariant;

@@ -7,7 +7,7 @@ import { MessageSquareTextIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import ClearChatButton from './ClearChatButton';
 import ItemSettingProperty from './ItemSettingProperty';

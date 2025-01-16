@@ -5,17 +5,17 @@ import {
 } from '@graasp/sdk';
 
 import {
-  HOME_PATH,
-  buildItemPath,
-  buildItemSettingsPath,
-  buildItemSharePath,
-} from '../../../../config/paths';
-import {
   HIDDEN_ITEM_BUTTON_CLASS,
   SETTINGS_HIDE_ITEM_ID,
   buildHideButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import {
+  HOME_PATH,
+  buildItemPath,
+  buildItemSettingsPath,
+  buildItemSharePath,
+} from '../../../../paths';
 import { MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
 

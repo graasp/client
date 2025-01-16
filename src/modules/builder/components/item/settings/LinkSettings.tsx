@@ -16,7 +16,7 @@ import {
   SETTINGS_LINK_SHOW_IFRAME_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 type Props = {
   item: LinkItemType;

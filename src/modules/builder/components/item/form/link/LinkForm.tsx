@@ -36,7 +36,7 @@ import LinkItem from '@/ui/items/LinkItem';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import { isUrlValid } from '../../../../utils/item';
 import { ItemNameField } from '../ItemNameField';
 import LinkDescriptionField from './LinkDescriptionField';

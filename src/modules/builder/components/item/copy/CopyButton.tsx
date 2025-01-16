@@ -8,7 +8,7 @@ import {
 import GraaspCopyButton from '@/ui/buttons/CopyButton/CopyButton';
 import { ActionButtonVariant, ColorVariantsType } from '@/ui/types';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 export type Props = {
   color?: ColorVariantsType;

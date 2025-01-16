@@ -12,7 +12,6 @@ import {
   PublishableItemTypeChecker,
 } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   EMAIL_NOTIFICATION_CHECKBOX,
   PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON,
@@ -21,6 +20,7 @@ import {
   buildPublicationStatus,
   buildPublishButtonId,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import {
   ItemValidationGroupFactory,
   PublishedItemFactory,

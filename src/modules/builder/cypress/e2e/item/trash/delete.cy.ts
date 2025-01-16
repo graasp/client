@@ -1,12 +1,12 @@
 import { PackedRecycledItemDataFactory } from '@graasp/sdk';
 
-import { RECYCLE_BIN_PATH } from '../../../../config/paths';
 import {
   CONFIRM_DELETE_BUTTON_ID,
   DELETE_SINGLE_ITEM_BUTTON_SELECTOR,
   RECYCLE_BIN_DELETE_MANY_ITEMS_BUTTON_ID,
   buildItemCard,
 } from '../../../../config/selectors';
+import { RECYCLE_BIN_PATH } from '../../../../paths';
 
 const deleteItem = (id: string) => {
   cy.get(`#${buildItemCard(id)} ${DELETE_SINGLE_ITEM_BUTTON_SELECTOR}`).click();

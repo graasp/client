@@ -4,7 +4,7 @@ import { redirectToSavedUrl } from '@graasp/sdk';
 
 import RedirectionContent from '@/ui/Authorization/RedirectionContent';
 
-import { HOME_PATH } from '../../config/paths';
+import { HOME_PATH } from '../../paths';
 
 const Redirect = (): JSX.Element => {
   useEffect(() => {

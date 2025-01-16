@@ -3,7 +3,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import LibraryIcon from '@/ui/icons/LibraryIcon';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 export interface MenuItemType {
   name: string;

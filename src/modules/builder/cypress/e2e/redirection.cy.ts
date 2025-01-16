@@ -1,7 +1,7 @@
 import { PackedFolderItemFactory, saveUrlForRedirection } from '@graasp/sdk';
 
-import { REDIRECT_PATH } from '../../config/paths';
 import { ACCESSIBLE_ITEMS_TABLE_ID } from '../../config/selectors';
+import { REDIRECT_PATH } from '../../paths';
 
 const DOMAIN = Cypress.env('VITE_GRAASP_DOMAIN');
 

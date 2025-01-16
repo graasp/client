@@ -27,7 +27,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { v4 as uuidv4, v4 } from 'uuid';
 
-import { ITEM_PAGE_SIZE, SETTINGS } from '../../config/constants';
+import { ITEM_PAGE_SIZE, SETTINGS } from '../../constants';
 import { getMemberById } from '../../utils/member';
 import {
   buildAppApiAccessTokenRoute,

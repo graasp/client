@@ -6,8 +6,6 @@ import {
 } from '@graasp/sdk';
 
 import { SortingOptionsForFolder } from '../../../../components/table/types';
-// import i18n from '../../../../config/i18n';
-import { buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_HEADER_ID,
@@ -24,6 +22,8 @@ import {
   buildMapViewId,
 } from '../../../../config/selectors';
 import { ItemLayoutMode } from '../../../../enums';
+// import i18n from '../../../../config/i18n';
+import { buildItemPath } from '../../../../paths';
 import { CURRENT_USER } from '../../../fixtures/members';
 import { expectFolderViewScreenLayout } from '../../../support/viewUtils';
 

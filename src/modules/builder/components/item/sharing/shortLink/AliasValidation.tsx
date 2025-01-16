@@ -7,7 +7,7 @@ import { ShortLinkAvailable } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { isValidAlias } from '~builder/utils/shortLink';
 
 const WrapHelper = styled(FormHelperText)(() => ({

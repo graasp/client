@@ -25,7 +25,7 @@ import {
 } from '@/config/selectors';
 
 import QRCode from '~builder/components/common/QRCode';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { COPY_ITEM_LINK_TO_CLIPBOARD } from '~builder/types/clipboard';
 import { copyToClipboard } from '~builder/utils/clipboard';
 

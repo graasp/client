@@ -26,7 +26,7 @@ import {
 import Button from '@/ui/buttons/Button/Button';
 import UploadFileButton from '@/ui/upload/UploadFileButton/UploadFileButton';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
 const ImportH5P = ({

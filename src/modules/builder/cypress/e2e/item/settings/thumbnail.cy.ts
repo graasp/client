@@ -1,12 +1,12 @@
 import { PackedFolderItemFactory, PackedItem } from '@graasp/sdk';
 
-import { buildItemSettingsPath } from '../../../../config/paths';
 import {
   CROP_MODAL_CONFIRM_BUTTON_ID,
   IMAGE_THUMBNAIL_UPLOADER,
   REMOVE_THUMBNAIL_BUTTON,
   buildDataCyWrapper,
 } from '../../../../config/selectors';
+import { buildItemSettingsPath } from '../../../../paths';
 import {
   ITEM_THUMBNAIL_LINK,
   THUMBNAIL_MEDIUM_PATH,

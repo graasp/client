@@ -1,10 +1,10 @@
 import { ItemType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,
   H5P_DASHBOARD_UPLOADER_ID,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { createItem } from '../../../support/createUtils';
 
 const NEW_H5P_ITEM = {

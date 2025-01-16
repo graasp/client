@@ -23,7 +23,7 @@ const MapContent = ({
   }>();
   const [tags, setTags] = useState<string[]>([]);
 
-  const onChangeTags = (newTags: any) => {
+  const onChangeTags = (newTags: string[]) => {
     setTags(newTags);
   };
 

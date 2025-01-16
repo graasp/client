@@ -1,6 +1,5 @@
 import { ItemType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   CREATE_ITEM_BUTTON_ID,
   CREATE_ITEM_LINK_ID,
@@ -8,6 +7,7 @@ import {
   ITEM_FORM_LINK_INPUT_ID,
   ITEM_FORM_NAME_INPUT_ID,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { CREATE_ITEM_PAUSE } from '../../../support/constants';
 
 const openLinkModal = () => {

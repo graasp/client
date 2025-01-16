@@ -10,8 +10,8 @@ import {
 
 import { NS } from '@/config/constants';
 
-import { DIALOG_CONTENT_WIDTH } from '~builder/config/constants';
-import { BUILDER } from '~builder/langs/constants';
+import { DIALOG_CONTENT_WIDTH } from '~builder/constants';
+import { BUILDER } from '~builder/langs';
 
 type Props = {
   title?: string;

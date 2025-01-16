@@ -18,8 +18,8 @@ import { NS } from '@/config/constants';
 import { CREATE_ITEM_CLOSE_BUTTON_ID } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import { InternalItemType, NewItemTabType } from '../../config/types';
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
+import { InternalItemType, NewItemTabType } from '../../types';
 import { EtherpadForm } from '../item/form/EtherpadForm';
 import AppForm from '../item/form/app/AppForm';
 import { DocumentCreateForm } from '../item/form/document/DocumentCreateForm';

@@ -1,6 +1,6 @@
 import { PackedDocumentItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
+import { buildItemPath } from '../../../../paths';
 import { CURRENT_USER } from '../../../fixtures/members';
 import { buildItemMembership } from '../../../fixtures/memberships';
 import { expectDocumentViewScreenLayout } from '../../../support/viewUtils';

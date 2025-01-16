@@ -3,13 +3,13 @@ import {
   PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   COPY_MANY_ITEMS_BUTTON_SELECTOR,
   ITEM_MENU_COPY_BUTTON_CLASS,
   buildItemCard,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 
 const copyItems = ({
   toItemPath,

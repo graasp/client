@@ -2,7 +2,7 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { getParentsIdsFromPath } from '@/utils/item';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import duplicateItem from '../../../support/actionsUtils';
 
 describe('duplicate Item in Home', () => {

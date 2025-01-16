@@ -31,7 +31,7 @@ import Button from '@/ui/buttons/Button/Button';
 
 import ErrorAlert from '~builder/components/common/ErrorAlert';
 import { useOutletContext } from '~builder/contexts/OutletContext';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import { StyledTableRow } from './StyledTableRow';
 

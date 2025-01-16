@@ -12,8 +12,8 @@ import {
 } from '@/config/selectors';
 
 import { MultiSelectTagChipInput } from '~builder/components/input/MultiSelectTagChipInput';
-import { TAGS_DOCUMENTATION } from '~builder/config/constants';
-import { BUILDER } from '~builder/langs/constants';
+import { TAGS_DOCUMENTATION } from '~builder/constants';
+import { BUILDER } from '~builder/langs';
 
 import { useModalStatus } from '../../../hooks/useModalStatus';
 import PublicationModal from '../PublicationModal';

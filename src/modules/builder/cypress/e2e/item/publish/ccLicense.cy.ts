@@ -4,7 +4,6 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../config/paths';
 import {
   CC_ALLOW_COMMERCIAL_CONTROL_ID,
   CC_CC0_CONTROL_ID,
@@ -21,6 +20,7 @@ import {
   buildPublishAttrContainer,
   buildPublishButtonId,
 } from '../../../../config/selectors';
+import { buildItemPath } from '../../../../paths';
 import { MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
 

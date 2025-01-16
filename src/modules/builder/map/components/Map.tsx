@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { useState } from 'react';
+import { MapContainer, TileLayer } from 'react-leaflet';
 
-import "leaflet-easybutton/src/easy-button.css";
-import "leaflet-geosearch/assets/css/leaflet.css";
-import "leaflet/dist/leaflet.css";
+import 'leaflet-easybutton/src/easy-button.css';
+import 'leaflet-geosearch/assets/css/leaflet.css';
+import 'leaflet/dist/leaflet.css';
 
-import LoggedOutWarning from "./common/LoggedOutWarning";
+import LoggedOutWarning from './common/LoggedOutWarning';
 import {
   QueryClientContextInterface,
   QueryClientContextProvider,
-} from "./context/QueryClientContext";
-import CountryContent from "./map/CountryContent";
-import InitialSetup from "./map/InitialSetup";
-import MapContent from "./map/MapContent";
+} from './context/QueryClientContext';
+import CountryContent from './map/CountryContent';
+import InitialSetup from './map/InitialSetup';
+import MapContent from './map/MapContent';
 
 type Props = QueryClientContextInterface;
 
@@ -49,9 +49,9 @@ const MapComponent = ({
     >
       <div
         style={{
-          width: "100%",
-          height: "100%",
-          position: "relative",
+          width: '100%',
+          height: '100%',
+          position: 'relative',
         }}
       >
         {/* the properties set here are the initial ones */}
@@ -61,7 +61,7 @@ const MapComponent = ({
           zoom={4}
           dragging={false}
           scrollWheelZoom={false}
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: '100%', height: '100%' }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

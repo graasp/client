@@ -2,7 +2,7 @@ import { useMap } from 'react-leaflet';
 
 import { Box, Divider, Stack } from '@mui/material';
 
-import { useMobileView } from '@graasp/ui';
+import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import GeolocationPicker, {
   GeolocationPickerProps,
@@ -11,8 +11,13 @@ import { useQueryClientContext } from '../context/QueryClientContext';
 import MobileTopBar from './MobileTopBar';
 import Search from './Search';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-const TopBar = ({ onChange, tags }: any): JSX.Element => {
+const TopBar = ({
+  onChange,
+  tags,
+}: {
+  tags: string[];
+  onChange: (tags: string[]) => void;
+}): JSX.Element => {
   const map = useMap();
   const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
 

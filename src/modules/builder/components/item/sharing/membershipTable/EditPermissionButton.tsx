@@ -17,7 +17,7 @@ import Button from '@/ui/buttons/Button/Button';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import ItemMembershipSelect from '../ItemMembershipSelect';
 

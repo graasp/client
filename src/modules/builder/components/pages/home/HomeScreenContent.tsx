@@ -34,7 +34,7 @@ import {
   SortingOptionsType,
 } from '~builder/components/table/types';
 import { useSorting } from '~builder/components/table/useSorting';
-import { ITEM_PAGE_SIZE } from '~builder/config/constants';
+import { ITEM_PAGE_SIZE } from '~builder/constants';
 import { ItemLayoutMode, Ordering } from '~builder/enums';
 
 import NoItemFilters from '../NoItemFilters';

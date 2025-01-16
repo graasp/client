@@ -1,4 +1,5 @@
 import { ChangeEventHandler, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -10,8 +11,9 @@ import {
 
 import { DEFAULT_LANG } from '@graasp/translations';
 
-import i18n, { useMapTranslation } from '../../config/i18n';
-import { MAP } from '../../langs/constants';
+import { NS } from '@/config/constants';
+
+import { MAP } from '../../constants';
 import { QueryClientContextInterface } from '../context/QueryClientContext';
 import { useOutsideClick } from './hook';
 
@@ -38,7 +40,7 @@ const GeolocationPicker = ({
   initialValue = '',
   label,
 }: GeolocationPickerProps): JSX.Element => {
-  const { t } = useMapTranslation();
+  const { t, i18n } = useTranslation(NS.Map);
 
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState<string | undefined>(initialValue);
@@ -87,7 +89,6 @@ const GeolocationPicker = ({
         onFocus={() => setShowSuggestions(true)}
         value={selectedAddress ?? query}
         sx={{ minWidth: '30vw' }}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...(invisible
           ? {
               variant: 'standard',

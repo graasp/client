@@ -9,7 +9,7 @@ import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import PublicVisibilityModal from '../PublicVisibilityModal';
 import PublicationButton from './PublicationButton';

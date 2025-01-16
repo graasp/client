@@ -23,6 +23,9 @@
   "EDIT": {
     "BUTTON_TEXT": "Edit"
   },
+  "CLOSE": {
+    "BUTTON_TEXT": "Close"
+  },
   "CONFIRM": {
     "BUTTON_TEXT": "Confirm"
   },

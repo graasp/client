@@ -15,7 +15,7 @@ import {
   UPDATE_VISIBILITY_MODAL_VALIDATE_BUTTON,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 export type Visibility = {
   name: string;

@@ -13,7 +13,7 @@ import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { buildPublicationStatus } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 function capitalizeFirstLetter(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);

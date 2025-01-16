@@ -22,7 +22,7 @@ import { ITEM_PANEL_NAME_ID, ITEM_PANEL_TABLE_ID } from '@/config/selectors';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 import LanguageSelect from './LanguageSelect';
 
 const { useMember } = hooks;

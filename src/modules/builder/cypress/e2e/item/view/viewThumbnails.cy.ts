@@ -1,10 +1,10 @@
 import { PackedFolderItemFactory, PackedItem } from '@graasp/sdk';
 
-import { HOME_PATH } from '../../../../config/paths';
 import {
   HEADER_MEMBER_MENU_BUTTON_ID,
   buildItemCard,
 } from '../../../../config/selectors';
+import { HOME_PATH } from '../../../../paths';
 import { MEMBERS } from '../../../fixtures/members';
 import { ITEM_THUMBNAIL_LINK } from '../../../fixtures/thumbnails/links';
 

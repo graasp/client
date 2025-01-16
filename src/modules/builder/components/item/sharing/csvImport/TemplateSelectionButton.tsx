@@ -13,7 +13,7 @@ import {
   SHARE_ITEM_FROM_CSV_WITH_GROUP_COLUMN_TEXT_ID,
 } from '@/config/selectors';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
 } from '../../../main/itemSelectionModal/ItemSelectionModal';

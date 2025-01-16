@@ -8,7 +8,7 @@ import type { NavigationElement } from '@/ui/Tree/types';
 
 import { getDirectParentId } from '~builder/utils/item';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
 } from '../../main/itemSelectionModal/ItemSelectionModal';

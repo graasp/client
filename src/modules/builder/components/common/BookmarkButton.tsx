@@ -9,7 +9,7 @@ import { hooks, mutations } from '@/config/queryClient';
 import GraaspBookmarkButton from '@/ui/buttons/BookmarkButton/BookmarkButton';
 import { ActionButtonVariant } from '@/ui/types';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   item: DiscriminatedItem;

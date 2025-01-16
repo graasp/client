@@ -7,7 +7,7 @@ import { CableIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { ITEM_MENU_SHORTCUT_BUTTON_CLASS } from '@/config/selectors';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 export type Props = {
   onClick?: () => void;

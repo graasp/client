@@ -6,13 +6,13 @@ import {
 
 import { v4 } from 'uuid';
 
-import { buildItemPath } from '../../../config/paths';
 import {
   CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID,
   buildItemMembershipRowDeleteButtonId,
   buildItemMembershipRowEditButtonId,
   buildShareButtonId,
 } from '../../../config/selectors';
+import { buildItemPath } from '../../../paths';
 import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
 import { ITEMS_WITH_MEMBERSHIPS } from '../../fixtures/memberships';
 import { ItemForTest } from '../../support/types';

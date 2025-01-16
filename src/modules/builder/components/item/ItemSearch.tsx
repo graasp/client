@@ -10,7 +10,7 @@ import {
 } from '@/config/selectors';
 import { SearchInput } from '@/ui/SearchInput/SearchInput';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 export const NoItemSearchResult = (): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);

@@ -14,7 +14,7 @@ import { AxiosError } from 'axios';
 import { NS } from '@/config/constants';
 import { SHARE_CSV_TEMPLATE_SUMMARY_CONTAINER_ID } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 import { getErrorFromPayload } from '~builder/utils/errorMessages';
 
 const ErrorDisplay = ({ errorMessage }: { errorMessage: string }): string => {

@@ -12,7 +12,7 @@ import {
 
 import { hooks, mutations } from '@/config/queryClient';
 
-import { SETTINGS } from '~builder/config/constants';
+import { SETTINGS } from '~builder/constants';
 
 import { useGuestMemberships } from './useGuestMemberships';
 

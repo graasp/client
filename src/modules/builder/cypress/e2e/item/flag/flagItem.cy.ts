@@ -1,13 +1,13 @@
 import { FlagType, PackedFolderItemFactory } from '@graasp/sdk';
 
-// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
-import { HOME_PATH } from '../../../../config/paths';
 import {
   ITEM_MENU_FLAG_BUTTON_CLASS,
   buildFlagListItemId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
+// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
+import { HOME_PATH } from '../../../../paths';
 import { CURRENT_USER } from '../../../fixtures/members';
 
 const openFlagItemModal = (itemId: string) => {

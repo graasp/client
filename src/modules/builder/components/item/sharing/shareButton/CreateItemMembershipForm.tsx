@@ -27,9 +27,9 @@ import {
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import { ITEM_NAME_MAX_LENGTH } from '~builder/config/constants';
+import { ITEM_NAME_MAX_LENGTH } from '~builder/constants';
 
-import { BUILDER } from '../../../../langs/constants';
+import { BUILDER } from '../../../../langs';
 import ItemMembershipSelect from '../ItemMembershipSelect';
 
 type ContentProps = {

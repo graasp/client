@@ -6,7 +6,7 @@ import { PublishableItemTypeChecker } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 export const NotAllowedItemTypeButton = (): JSX.Element => {
   const { t } = useTranslation(NS.Builder);

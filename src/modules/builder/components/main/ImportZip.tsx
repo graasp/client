@@ -11,7 +11,7 @@ import { mutations } from '@/config/queryClient';
 import { ZIP_DASHBOARD_UPLOADER_ID } from '@/config/selectors';
 import UploadFileButton from '@/ui/upload/UploadFileButton/UploadFileButton';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 
 const ImportZip = (): JSX.Element => {

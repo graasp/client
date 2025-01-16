@@ -18,7 +18,7 @@ import Button from '@/ui/buttons/Button/Button';
 
 import { CancelButton } from '~builder/components/common/CancelButton';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 import { ItemNameField } from './ItemNameField';
 
 type Inputs = { name: string };

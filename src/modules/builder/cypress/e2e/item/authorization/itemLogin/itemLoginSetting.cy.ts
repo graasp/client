@@ -6,13 +6,13 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from '../../../../../config/paths';
 import {
   REQUEST_MEMBERSHIP_BUTTON_ID,
   SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID,
   buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../../../config/selectors';
+import { buildItemPath, buildItemSharePath } from '../../../../../paths';
 import { MEMBERS } from '../../../../fixtures/members';
 import { buildItemMembership } from '../../../../fixtures/memberships';
 import { ITEM_LOGIN_PAUSE } from '../../../../support/constants';

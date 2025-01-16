@@ -7,7 +7,7 @@ import {
 
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { createDocument } from '../../../support/createUtils';
 
 describe('Create Document', () => {

@@ -12,7 +12,7 @@ import { mutations } from '@/config/queryClient';
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DebouncedTextField from '~builder/components/input/DebouncedTextField';
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import PublicationModal from './PublicationModal';
 

@@ -11,7 +11,7 @@ import {
   buildPublishButtonId,
 } from '@/config/selectors';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   itemId: string;

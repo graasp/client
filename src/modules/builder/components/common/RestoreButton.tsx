@@ -8,7 +8,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { RESTORE_ITEMS_BUTTON_CLASS } from '@/config/selectors';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   itemIds: string[];

@@ -1,10 +1,10 @@
-import { HOME_PATH } from '../../config/paths';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS,
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_MEMBER_MENU_BUTTON_ID,
   HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID,
 } from '../../config/selectors';
+import { HOME_PATH } from '../../paths';
 import { SIGN_IN_PATH } from '../support/paths';
 
 describe('Header', () => {

@@ -10,7 +10,6 @@ import {
 
 import { buildItemPath } from '@/config/paths';
 
-import { SETTINGS } from '../../../../config/constants';
 import {
   SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID,
   SHARE_ITEM_VISIBILITY_SELECT_ID,
@@ -19,6 +18,7 @@ import {
   buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../../config/selectors';
+import { SETTINGS } from '../../../../constants';
 import { PublishedItemFactory } from '../../../fixtures/items';
 import { buildItemMembership } from '../../../fixtures/memberships';
 import { addItemLoginSchema } from '../authorization/itemLogin/utils';

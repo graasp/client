@@ -12,7 +12,7 @@ import {
   ColorVariantsType,
 } from '@/ui/types';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 
 type MoveButtonProps = {
   color?: ColorVariantsType;

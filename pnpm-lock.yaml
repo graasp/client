@@ -29,9 +29,6 @@ importers:
       '@graasp/chatbox':
         specifier: 3.3.1
         version: 3.3.1(fipkstm3pklqztooeci37yharu)
-      '@graasp/map':
-        specifier: 1.19.0
-        version: 1.19.0(ndjhxhlnsr6nnzcef5izgnci2y)
       '@graasp/query-client':
         specifier: 5.7.1
         version: 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
@@ -86,6 +83,9 @@ importers:
       http-status-codes:
         specifier: 2.3.0
         version: 2.3.0
+      i18n-iso-countries:
+        specifier: 7.11.2
+        version: 7.11.2
       i18next:
         specifier: 24.2.1
         version: 24.2.1(typescript@5.7.3)
@@ -104,6 +104,15 @@ importers:
       katex:
         specifier: 0.16.20
         version: 0.16.20
+      leaflet:
+        specifier: 1.9.4
+        version: 1.9.4
+      leaflet-easybutton:
+        specifier: 2.4.0
+        version: 2.4.0
+      leaflet-geosearch:
+        specifier: 3.11.1
+        version: 3.11.1
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -158,6 +167,12 @@ importers:
       react-intersection-observer:
         specifier: 9.15.0
         version: 9.15.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-leaflet:
+        specifier: 4.2.1
+        version: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-leaflet-cluster:
+        specifier: 2.1.0
+        version: 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       react-qr-code:
         specifier: 2.0.15
         version: 2.0.15(react@18.3.1)
@@ -243,6 +258,9 @@ importers:
       '@types/google-map-react':
         specifier: 2.1.10
         version: 2.1.10
+      '@types/leaflet':
+        specifier: 1.9.16
+        version: 1.9.16
       '@types/lodash':
         specifier: 4.17.14
         version: 4.17.14
@@ -1610,24 +1628,6 @@ packages:
       react-dom: '*'
       react-i18next: ^13.0.0 || ^14.0.0 || ^15.0.0
 
-  '@graasp/map@1.19.0':
-    resolution: {integrity: sha512-r+lly1A3+FKPj5QolwGdCAWvA0B8+kM1FDniZ69B2Y8lWoWlA3su5Lkk9Hf2gLlj3k0sU87WD0Axwn2z3G6aXw==}
-    peerDependencies:
-      '@emotion/react': ^11.11.4
-      '@emotion/styled': ^11.11.5
-      '@graasp/query-client': '*'
-      '@graasp/sdk': '*'
-      '@graasp/stylis-plugin-rtl': '*'
-      '@graasp/translations': '*'
-      '@graasp/ui': '*'
-      '@mui/icons-material': ^5.15.20
-      '@mui/lab': ^5.0.0-alpha.170
-      '@mui/material': ^5.15.20
-      lucide-react: '*'
-      react: '*'
-      react-dom: '*'
-      react-i18next: ^14.0.0
-
   '@graasp/query-client@5.7.1':
     resolution: {integrity: sha512-GARwmHf227nH5s8Mie0n5WEA4Anv1+LTp3SPsJerXjWqwgNuqLya6/h6OAvhMIyDNmhGypr+yXl2g4ZSqmBsgQ==}
     peerDependencies:
@@ -2453,6 +2453,9 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
+  '@types/geojson@7946.0.15':
+    resolution: {integrity: sha512-9oSxFzDCT2Rj6DfcHF8G++jxBKS7mBqXl5xrRW+Kbvjry6Uduya2iiwqHPhVXpasAVMBYKkEPGgKhd3+/HZ6xA==}
+
   '@types/google-map-react@2.1.10':
     resolution: {integrity: sha512-8/0UllZS7tF08WNBRPQlSJCkETvz3e3sZoPxzDaWkj2iV5dmFSnOKXVtoeKo8dLZSe+RkLn479t1wj6nXmLLSA==}
 
@@ -2464,6 +2467,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/leaflet@1.9.16':
+    resolution: {integrity: sha512-wzZoyySUxkgMZ0ihJ7IaUIblG8Rdc8AbbZKLneyn+QjYsj5q1QU7TEKYqwTr10BGSzY5LI7tJk9Ifo+mEjdFRw==}
 
   '@types/lodash.debounce@4.0.9':
     resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
@@ -5413,12 +5419,6 @@ packages:
   react-style-object-to-css@1.1.2:
     resolution: {integrity: sha512-+5MFULqCCj7wwJJ/ISKFP91ZlHVF1Rv8o0neiTKvt21XDTU5e34tc8hy+XPLeYWYOupdHt25HxxwocvYm3HM6A==}
 
-  react-toastify@10.0.5:
-    resolution: {integrity: sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==}
-    peerDependencies:
-      react: '>=18'
-      react-dom: '>=18'
-
   react-toastify@11.0.2:
     resolution: {integrity: sha512-GjHuGaiXMvbls3ywqv8XdWONwrcO4DXCJIY1zVLkHU73gEElKvTTXNI5Vom3s/k/M8hnkrfsqgBSX3OwmlonbA==}
     peerDependencies:
@@ -7857,30 +7857,6 @@ snapshots:
       - '@types/react'
       - supports-color
 
-  '@graasp/map@1.19.0(ndjhxhlnsr6nnzcef5izgnci2y)':
-    dependencies:
-      '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
-      '@graasp/query-client': 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
-      '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
-      '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
-      '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
-      '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
-      '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      i18n-iso-countries: 7.11.2
-      leaflet: 1.9.4
-      leaflet-easybutton: 2.4.0
-      leaflet-geosearch: 3.11.1
-      lucide-react: 0.471.1(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 15.4.0(i18next@24.2.1(typescript@5.7.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-leaflet: 4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-leaflet-cluster: 2.1.0(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react-leaflet@4.2.1(leaflet@1.9.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
-      react-toastify: 10.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-
   '@graasp/query-client@5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)':
     dependencies:
       '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
@@ -8758,6 +8734,8 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
+  '@types/geojson@7946.0.15': {}
+
   '@types/google-map-react@2.1.10':
     dependencies:
       '@types/react': 18.3.18
@@ -8769,6 +8747,10 @@ snapshots:
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
+
+  '@types/leaflet@1.9.16':
+    dependencies:
+      '@types/geojson': 7946.0.15
 
   '@types/lodash.debounce@4.0.9':
     dependencies:
@@ -12380,12 +12362,6 @@ snapshots:
       react-transition-group: 4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   react-style-object-to-css@1.1.2: {}
-
-  react-toastify@10.0.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
-    dependencies:
-      clsx: 2.1.1
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
 
   react-toastify@11.0.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:

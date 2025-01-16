@@ -11,7 +11,7 @@ import {
   buildItemInvitationRowDeleteButtonId,
 } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 import EditPermissionButton from './EditPermissionButton';
 import ResendInvitation from './ResendInvitation';

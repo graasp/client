@@ -9,7 +9,7 @@ import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { EDIT_MODAL_ID } from '@/config/selectors';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 import BaseItemForm from '../form/BaseItemForm';
 import { DocumentEditForm } from '../form/document/DocumentEditForm';
 import FileForm from '../form/file/FileForm';

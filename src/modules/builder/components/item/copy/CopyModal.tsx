@@ -5,7 +5,7 @@ import { DiscriminatedItem } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 
-import { BUILDER } from '../../../langs/constants';
+import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
   ItemSelectionModalProps,
 } from '../../main/itemSelectionModal/ItemSelectionModal';

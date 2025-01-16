@@ -4,7 +4,6 @@ import {
   buildAppExtra,
 } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   EDIT_MODAL_ID,
@@ -13,6 +12,7 @@ import {
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { CURRENT_USER } from '../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../support/constants';
 import { editCaptionFromViewPage, editItem } from '../../../support/editUtils';

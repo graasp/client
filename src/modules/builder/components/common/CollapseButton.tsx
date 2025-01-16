@@ -12,7 +12,7 @@ import { mutations } from '@/config/queryClient';
 import { COLLAPSE_ITEM_BUTTON_CLASS } from '@/config/selectors';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   item: DiscriminatedItem;

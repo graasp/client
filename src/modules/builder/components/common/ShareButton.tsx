@@ -9,7 +9,7 @@ import {
 } from '@/config/selectors';
 import GraaspShareButton from '@/ui/buttons/ShareButton/ShareButton';
 
-import { BUILDER } from '../../langs/constants';
+import { BUILDER } from '../../langs';
 
 type Props = {
   itemId: string;

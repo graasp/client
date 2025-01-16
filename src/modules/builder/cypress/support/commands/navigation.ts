@@ -1,8 +1,8 @@
-import { buildItemPath } from '../../../config/paths';
 import {
   NAVIGATION_HOME_LINK_ID,
   buildItemCard,
 } from '../../../config/selectors';
+import { buildItemPath } from '../../../paths';
 
 Cypress.Commands.add('goToItemInCard', (id) => {
   // card component might have many click zone

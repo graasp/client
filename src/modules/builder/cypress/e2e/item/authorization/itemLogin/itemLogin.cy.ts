@@ -1,7 +1,5 @@
 import { ItemLoginSchemaType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { SETTINGS_ITEM_LOGIN_DEFAULT } from '../../../../../config/constants';
-import { buildItemPath } from '../../../../../config/paths';
 import {
   ENROLL_BUTTON_SELECTOR,
   ITEM_LOGIN_SIGN_IN_BUTTON_ID,
@@ -9,6 +7,8 @@ import {
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
   buildDataCyWrapper,
 } from '../../../../../config/selectors';
+import { SETTINGS_ITEM_LOGIN_DEFAULT } from '../../../../../constants';
+import { buildItemPath } from '../../../../../paths';
 import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../../fixtures/members';
 import { ITEM_LOGIN_PAUSE } from '../../../../support/constants';
 import { addItemLoginSchema } from './utils';

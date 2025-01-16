@@ -1,10 +1,10 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { HOME_PATH, buildItemPath } from '../../../../config/paths';
 import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID,
 } from '../../../../config/selectors';
+import { HOME_PATH, buildItemPath } from '../../../../paths';
 import { createFolder } from '../../../support/createUtils';
 
 describe('Create Folder', () => {

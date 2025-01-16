@@ -4,7 +4,7 @@ import { Alert } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 export const PendingButton = (): JSX.Element => {
   const { t } = useTranslation(NS.Builder);

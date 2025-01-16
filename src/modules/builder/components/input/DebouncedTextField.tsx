@@ -7,7 +7,7 @@ import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { DEBOUNCED_TEXT_FIELD_ID } from '@/config/selectors';
 
-import { BUILDER } from '~builder/langs/constants';
+import { BUILDER } from '~builder/langs';
 
 const { useDebounce } = hooks;
 
