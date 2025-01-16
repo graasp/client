@@ -1,4 +1,7 @@
 # Graasp Account
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
 ![typescript version](https://img.shields.io/github/package-json/dependency-version/graasp/graasp-library/dev/typescript)
@@ -47,6 +50,20 @@ VITE_GRAASP_ANALYZER_HOST=http://localhost:3005
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ReidyT"><img src="https://avatars.githubusercontent.com/u/147397675?v=4?s=100" width="100px;" alt="Thibault Reidy"/><br /><sub><b>Thibault Reidy</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=ReidyT" title="Tests">⚠️</a> <a href="https://github.com/graasp/client/commits?author=ReidyT" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
