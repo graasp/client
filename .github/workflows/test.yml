@@ -89,7 +89,7 @@ jobs:
       - name: Cypress run components
         uses: cypress-io/github-action@v6
         with:
-          install: false
+          install: true
           component: true
           # we launch the app in preview mode to avoid issues with hmr websockets from vite polluting the mocks
           start: pnpm preview:test
@@ -110,7 +110,7 @@ jobs:
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
-          install: true
+          install: false
           build: pnpm build:test
           # we launch the app in preview mode to avoid issues with hmr websockets from vite polluting the mocks
           start: pnpm preview:test
