@@ -12,6 +12,7 @@ interface ImportMetaEnv {
   readonly VITE_GA_MEASUREMENT_ID: string;
   readonly VITE_SHOW_NOTIFICATIONS: string;
   readonly VITE_GRAASP_H5P_INTEGRATION_URL: string;
+  readonly VITE_GRAASP_REDIRECTION_HOST: string;
   readonly VITE_GOOGLE_KEY: string;
 }
 

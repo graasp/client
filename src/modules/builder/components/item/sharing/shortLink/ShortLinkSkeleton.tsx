@@ -3,7 +3,7 @@ import { Skeleton, Stack, styled } from '@mui/material';
 import {
   SHORT_LINK_CONTAINER_BORDER_STYLE,
   SHORT_LINK_CONTAINER_BORDER_WIDTH,
-} from '@/config/constants';
+} from '~builder/constants';
 
 const StyledBox = styled(Stack)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,

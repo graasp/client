@@ -1,4 +1,4 @@
-import { Dispatch, createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 import { ChatStatus } from '@graasp/sdk';
 
@@ -8,7 +8,6 @@ import { ItemLayoutMode } from '~builder/enums';
 
 interface LayoutContextInterface {
   mode: ItemLayoutMode;
-  setMode: Dispatch<ItemLayoutMode>;
   editingItemId: string | null;
   setEditingItemId: (itemId: string | null) => void;
   openedActionTabId: string | null;
@@ -19,9 +18,6 @@ interface LayoutContextInterface {
 
 export const LayoutContext = createContext<LayoutContextInterface>({
   mode: ItemLayoutMode.List,
-  setMode: () => {
-    // do nothing
-  },
   editingItemId: null,
   setEditingItemId: () => {
     // do nothing

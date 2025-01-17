@@ -9,7 +9,7 @@ import { Link, getRouteApi } from '@tanstack/react-router';
 
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
-import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -41,7 +41,7 @@ export function PageWrapper({
   const theme = useTheme();
   const platformProps = {
     [Platform.Builder]: {
-      href: `${GRAASP_BUILDER_HOST}/items/${itemId}`,
+      href: `/builder/items/${itemId}`,
     },
     [Platform.Player]: {
       href: `/player/${itemId}/${itemId}`,

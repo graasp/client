@@ -6,7 +6,8 @@ import {
 } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import { selectHighestMemberships } from '@/utils/membership';
+
+import { selectHighestMemberships } from '~builder/utils/membership';
 
 export const useHighestMemberships = ({
   canAdmin,

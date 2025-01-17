@@ -1,6 +1,6 @@
 import { Skeleton } from '@mui/material';
 
-import { SomeBreakPoints } from '@/types/breakpoint';
+import { SomeBreakPoints } from '~builder/types/breakpoint';
 
 const DEFAULT_WIDTH = '100%';
 

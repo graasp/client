@@ -9,11 +9,13 @@ import { ITEM_HEADER_ID } from '@/config/selectors';
 
 import ItemHeaderActions from './ItemHeaderActions';
 
+// todo: re-enable when navigation is fixed
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type Props = {
   showNavigation?: boolean;
 };
 
-const ItemHeader = ({ showNavigation = true }: Props): JSX.Element | null => {
+const ItemHeader = (): JSX.Element | null => {
   const { itemId } = useParams({ strict: false });
   const { t: translateBuilder } = useTranslation(NS.Builder);
   return (

@@ -78,11 +78,7 @@ const ItemMembershipTableRow = ({
         <Typography>
           {isDisabled ? (
             <Typography sx={{ color: DEFAULT_TEXT_DISABLED_COLOR }}>
-              {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                translateEnums(ItemLoginSchemaStatus.Disabled)
-              }
+              {translateEnums(ItemLoginSchemaStatus.Disabled)}
             </Typography>
           ) : (
             translateEnums(data.permission)
