@@ -6,12 +6,12 @@ import {
   ITEM_HEADER_ID,
   buildDataCyWrapper,
   buildPublishButtonId,
-} from '../../../../config/selectors';
-import { DISPLAY_CO_EDITORS_OPTIONS } from '../../../../constants';
-import { buildItemPath } from '../../../../paths';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
-import { ITEM_WITH_TAGS_CONTEXT } from '../../../fixtures/tags';
-import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../support/constants';
+} from '../../../../../src/config/selectors';
+import { DISPLAY_CO_EDITORS_OPTIONS } from '../../../../../src/modules/builder/constants';
+import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../../support/constants';
+import { MEMBERS, SIGNED_OUT_MEMBER } from '../../fixtures/members';
+import { ITEM_WITH_TAGS_CONTEXT } from '../../fixtures/tags';
+import { buildItemPath } from '../../utils';
 
 const openPublishItemTab = (id: string) => {
   cy.get(`#${buildPublishButtonId(id)}`).click();

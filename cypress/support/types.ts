@@ -31,7 +31,7 @@ export type ItemForTest = DiscriminatedItem & {
   memberships?: ItemMembership[];
   invitations?: Invitation[];
   published?: ItemPublished;
-  permission?: PermissionLevel;
+  permission?: PermissionLevel | null;
   public?: ItemVisibility;
 };
 

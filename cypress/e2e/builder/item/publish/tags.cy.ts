@@ -14,13 +14,13 @@ import {
   buildDataTestIdWrapper,
   buildMultiSelectChipInputId,
   buildPublishButtonId,
-} from '../../../../config/selectors';
-import { buildItemPath } from '../../../../paths';
-import { PUBLISHED_ITEM_NO_TAGS } from '../../../fixtures/items';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
-import { SAMPLE_TAGS } from '../../../fixtures/tags';
-import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../support/constants';
-import { ItemForTest } from '../../../support/types';
+} from '../../../../../src/config/selectors';
+import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../../support/constants';
+import { ItemForTest } from '../../../../support/types';
+import { PUBLISHED_ITEM_NO_TAGS } from '../../fixtures/items';
+import { MEMBERS, SIGNED_OUT_MEMBER } from '../../fixtures/members';
+import { SAMPLE_TAGS } from '../../fixtures/tags';
+import { buildItemPath } from '../../utils';
 
 const ITEM_WITH_TAGS = {
   ...PackedFolderItemFactory(

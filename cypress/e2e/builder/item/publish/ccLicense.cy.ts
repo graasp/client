@@ -19,10 +19,10 @@ import {
   buildDataCyWrapper,
   buildPublishAttrContainer,
   buildPublishButtonId,
-} from '../../../../config/selectors';
-import { buildItemPath } from '../../../../paths';
-import { MEMBERS } from '../../../fixtures/members';
-import { ItemForTest } from '../../../support/types';
+} from '../../../../../src/config/selectors';
+import { ItemForTest } from '../../../../support/types';
+import { MEMBERS } from '../../fixtures/members';
+import { buildItemPath } from '../../utils';
 
 // Set empty description to avoid having issue
 const EMPTY_DESCRIPTION = '';
@@ -216,10 +216,10 @@ describe('Creative Commons License', () => {
 
       const getLicenseAdaptations = (publishedItem: ItemForTest) => ({
         requireAttribution:
-          publishedItem.settings.ccLicenseAdaption.includes('BY'),
-        noncommercial: publishedItem.settings.ccLicenseAdaption.includes('NC'),
-        shareAlike: publishedItem.settings.ccLicenseAdaption.includes('SA'),
-        noDerivative: publishedItem.settings.ccLicenseAdaption.includes('ND'),
+          publishedItem.settings.ccLicenseAdaption?.includes('BY'),
+        noncommercial: publishedItem.settings.ccLicenseAdaption?.includes('NC'),
+        shareAlike: publishedItem.settings.ccLicenseAdaption?.includes('SA'),
+        noDerivative: publishedItem.settings.ccLicenseAdaption?.includes('ND'),
       });
 
       const ensureState = (publishedItem: ItemForTest) => {

@@ -19,15 +19,15 @@ import {
   buildItemPublicationButton,
   buildPublicationStatus,
   buildPublishButtonId,
-} from '../../../../config/selectors';
-import { buildItemPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { ItemForTest } from '../../../../support/types';
 import {
   ItemValidationGroupFactory,
   PublishedItemFactory,
-} from '../../../fixtures/items';
-import { MEMBERS } from '../../../fixtures/members';
-import { createPublicItemByType } from '../../../fixtures/publish/publish';
-import { ItemForTest } from '../../../support/types';
+} from '../../fixtures/items';
+import { MEMBERS } from '../../fixtures/members';
+import { createPublicItemByType } from '../../fixtures/publish/publish';
+import { buildItemPath } from '../../utils';
 
 const openPublishItemTab = (id: string) => {
   cy.get(`#${buildPublishButtonId(id)}`).click();

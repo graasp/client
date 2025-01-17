@@ -8,8 +8,8 @@ import {
   MOVE_MANY_ITEMS_BUTTON_SELECTOR,
   buildItemsGridMoreButtonSelector,
   buildNavigationModalItemId,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const IMAGE_ITEM = PackedLocalFileItemFactory();
 const FOLDER = PackedFolderItemFactory();

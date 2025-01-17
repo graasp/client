@@ -9,15 +9,15 @@ import {
   SETTINGS_HIDE_ITEM_ID,
   buildHideButtonId,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
+} from '../../../../../src/config/selectors';
+import { ItemForTest } from '../../../../support/types';
+import { MEMBERS } from '../../fixtures/members';
 import {
   HOME_PATH,
   buildItemPath,
   buildItemSettingsPath,
   buildItemSharePath,
-} from '../../../../paths';
-import { MEMBERS } from '../../../fixtures/members';
-import { ItemForTest } from '../../../support/types';
+} from '../../utils';
 
 const hiddenItem = PackedFolderItemFactory(
   {},

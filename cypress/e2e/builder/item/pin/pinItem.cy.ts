@@ -5,8 +5,8 @@ import {
   PIN_ITEM_BUTTON_CLASS,
   buildDownloadButtonId,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const togglePinButton = (itemId: string) => {
   cy.get(buildItemsGridMoreButtonSelector(itemId)).click();

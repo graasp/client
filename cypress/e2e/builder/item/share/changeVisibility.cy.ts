@@ -8,8 +8,6 @@ import {
   PublicationStatus,
 } from '@graasp/sdk';
 
-import { buildItemPath } from '@/config/paths';
-
 import {
   SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID,
   SHARE_ITEM_VISIBILITY_SELECT_ID,
@@ -17,10 +15,11 @@ import {
   VISIBILITY_HIDDEN_ALERT_ID,
   buildDataCyWrapper,
   buildShareButtonId,
-} from '../../../../config/selectors';
-import { SETTINGS } from '../../../../constants';
-import { PublishedItemFactory } from '../../../fixtures/items';
-import { buildItemMembership } from '../../../fixtures/memberships';
+} from '../../../../../src/config/selectors';
+import { SETTINGS } from '../../../../../src/modules/builder/constants';
+import { PublishedItemFactory } from '../../fixtures/items';
+import { buildItemMembership } from '../../fixtures/memberships';
+import { buildItemPath } from '../../utils';
 import { addItemLoginSchema } from '../authorization/itemLogin/utils';
 
 const changeVisibility = (value: string): void => {

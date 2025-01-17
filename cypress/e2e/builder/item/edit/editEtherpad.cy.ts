@@ -2,9 +2,9 @@ import { PackedEtherpadItemFactory } from '@graasp/sdk';
 
 import { buildItemsGridMoreButtonSelector } from '@/config/selectors';
 
-import { HOME_PATH } from '../../../../paths';
-import { EDIT_ITEM_PAUSE } from '../../../support/constants';
-import { editItem } from '../../../support/editUtils';
+import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
+import { editItem } from '../../../../support/editUtils';
+import { HOME_PATH } from '../../utils';
 
 const EDITED_FIELDS = {
   name: 'new name',

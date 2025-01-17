@@ -9,11 +9,11 @@ import {
   buildItemMembershipRowEditButtonId,
   buildPermissionOptionId,
   buildShareButtonId,
-} from '../../../config/selectors';
-import { buildItemPath, buildItemSharePath } from '../../../paths';
-import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
-import { ITEMS_WITH_MEMBERSHIPS } from '../../fixtures/memberships';
-import { ItemForTest } from '../../support/types';
+} from '../../../../src/config/selectors';
+import { ItemForTest } from '../../../support/types';
+import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { ITEMS_WITH_MEMBERSHIPS } from '../fixtures/memberships';
+import { buildItemPath, buildItemSharePath } from '../utils';
 
 const openPermissionSelect = ({
   id,

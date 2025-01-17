@@ -12,16 +12,19 @@ import {
   buildDescriptionPlacementId,
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
-import { MOCK_IMAGE_URL, MOCK_VIDEO_URL } from '../../../fixtures/fileLinks';
-import { ICON_FILEPATH, VIDEO_FILEPATH } from '../../../fixtures/files';
-import { EDIT_ITEM_PAUSE } from '../../../support/constants';
-import { editCaptionFromViewPage, editItem } from '../../../support/editUtils';
+} from '../../../../../src/config/selectors';
+import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
+import {
+  editCaptionFromViewPage,
+  editItem,
+} from '../../../../support/editUtils';
 import {
   LocalFileItemForTest,
   S3FileItemForTest,
-} from '../../../support/types';
+} from '../../../../support/types';
+import { MOCK_IMAGE_URL, MOCK_VIDEO_URL } from '../../fixtures/fileLinks';
+import { ICON_FILEPATH, VIDEO_FILEPATH } from '../../fixtures/files';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const EDITED_FIELDS = {
   name: 'new name',

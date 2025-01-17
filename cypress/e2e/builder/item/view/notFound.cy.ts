@@ -1,10 +1,11 @@
 import { v4 } from 'uuid';
 
-import { buildItemPath } from '@/config/paths';
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
+
+import { buildItemPath } from '../../utils';
 
 describe('Item does not exist', () => {
   it('Show forbidden message and cannot request membership', () => {

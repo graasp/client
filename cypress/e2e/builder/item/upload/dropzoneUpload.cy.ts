@@ -1,9 +1,9 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from '@/config/paths';
 import { DROPZONE_SELECTOR } from '@/config/selectors';
 
-import { SAMPLE_PUBLIC_ITEMS } from '../../../fixtures/items';
+import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
+import { buildItemPath } from '../../utils';
 
 describe('Dropzone Helper Visibility', () => {
   describe('Home screen', () => {

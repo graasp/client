@@ -5,7 +5,7 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { SortingOptionsForFolder } from '../../../../components/table/types';
+import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_HEADER_ID,
@@ -20,12 +20,12 @@ import {
   buildItemCard,
   buildItemsTableId,
   buildMapViewId,
-} from '../../../../config/selectors';
-import { ItemLayoutMode } from '../../../../enums';
-// import i18n from '../../../../config/i18n';
-import { buildItemPath } from '../../../../paths';
-import { CURRENT_USER } from '../../../fixtures/members';
-import { expectFolderViewScreenLayout } from '../../../support/viewUtils';
+} from '../../../../../src/config/selectors';
+import { SortingOptionsForFolder } from '../../../../../src/modules/builder/components/table/types';
+import { ItemLayoutMode } from '../../../../../src/modules/builder/enums';
+import { expectFolderViewScreenLayout } from '../../../../support/viewUtils';
+import { CURRENT_USER } from '../../fixtures/members';
+import { buildItemPath } from '../../utils';
 
 const parentItem = PackedFolderItemFactory();
 const item1 = PackedFolderItemFactory();

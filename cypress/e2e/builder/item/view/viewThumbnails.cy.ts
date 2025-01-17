@@ -3,10 +3,10 @@ import { PackedFolderItemFactory, PackedItem } from '@graasp/sdk';
 import {
   HEADER_MEMBER_MENU_BUTTON_ID,
   buildItemCard,
-} from '../../../../config/selectors';
-import { HOME_PATH } from '../../../../paths';
-import { MEMBERS } from '../../../fixtures/members';
-import { ITEM_THUMBNAIL_LINK } from '../../../fixtures/thumbnails/links';
+} from '../../../../../src/config/selectors';
+import { MEMBERS } from '../../fixtures/members';
+import { ITEM_THUMBNAIL_LINK } from '../../fixtures/thumbnails/links';
+import { HOME_PATH } from '../../utils';
 
 const ITEM_WITHOUT_THUMBNAIL = PackedFolderItemFactory({
   name: 'own_item_name1',
@@ -34,7 +34,7 @@ describe('View Thumbnails', () => {
 
     cy.get(`#${buildItemCard(ITEM_WITH_THUMBNAIL.id)} img`)
       .should('have.attr', 'src')
-      .and('contain', ITEM_WITH_THUMBNAIL.thumbnails.medium);
+      .and('contain', ITEM_WITH_THUMBNAIL.thumbnails?.medium);
   });
 
   it(`display member avatar`, () => {

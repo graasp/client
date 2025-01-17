@@ -9,6 +9,7 @@ import {
 } from '@graasp/sdk';
 import { namespaces } from '@graasp/translations';
 
+import i18n from '../../../../.storybook/i18nTestInstance';
 import {
   buildDataCyWrapper,
   buildItemMembershipRowDeleteButtonId,
@@ -16,10 +17,10 @@ import {
   buildItemMembershipRowId,
   buildItemMembershipRowSelector,
   buildShareButtonId,
-} from '../../../config/selectors';
-import { buildItemPath, buildItemSharePath } from '../../../paths';
-import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
-import { buildItemMembership } from '../../fixtures/memberships';
+} from '../../../../src/config/selectors';
+import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { buildItemMembership } from '../fixtures/memberships';
+import { buildItemPath, buildItemSharePath } from '../utils';
 
 const itemWithAdmin = { ...PackedFolderItemFactory() };
 const adminMembership = buildItemMembership({
@@ -189,7 +190,7 @@ describe('View Memberships - Hidden item', () => {
     for (const { account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       checkItemMembershipRow({
@@ -241,7 +242,7 @@ describe('View Memberships - Hidden item', () => {
     for (const { permission, account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
@@ -293,7 +294,7 @@ describe('View Memberships - Hidden item', () => {
     for (const { permission, account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
@@ -350,7 +351,7 @@ describe('View Memberships - Guest', () => {
     for (const { permission, account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
@@ -401,7 +402,7 @@ describe('View Memberships - Guest', () => {
     for (const { permission, account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
@@ -453,7 +454,7 @@ describe('View Memberships - Guest', () => {
     for (const { permission, account, id } of guestMemberships) {
       const { name } = Object.values(
         guestMemberships.map((m) => m.account),
-      ).find(({ id: mId }) => mId === account.id);
+      ).find(({ id: mId }) => mId === account.id)!;
 
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))

@@ -1,5 +1,5 @@
-import { buildItemCard } from '../../../../config/selectors';
-import { HOME_PATH } from '../../../../paths';
+import { buildItemCard } from '../../../../../src/config/selectors';
+import { expectFileViewScreenLayout } from '../../../../support/viewUtils';
 import {
   IMAGE_ITEM_DEFAULT,
   IMAGE_ITEM_S3,
@@ -7,8 +7,8 @@ import {
   PDF_ITEM_S3,
   VIDEO_ITEM_DEFAULT,
   VIDEO_ITEM_S3,
-} from '../../../fixtures/files';
-import { expectFileViewScreenLayout } from '../../../support/viewUtils';
+} from '../../fixtures/files';
+import { HOME_PATH } from '../../utils';
 
 describe('View Files', () => {
   describe('default server', () => {

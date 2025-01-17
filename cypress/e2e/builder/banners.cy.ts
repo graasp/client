@@ -7,7 +7,7 @@ import {
   LEGACY_NOT_VALIDATED_MEMBER,
   NOT_VALIDATED_MEMBER,
   VALIDATED_MEMBER,
-} from '../fixtures/members';
+} from './fixtures/members';
 
 describe('Member validation banner', () => {
   it('Shows banner when member is not validated', () => {

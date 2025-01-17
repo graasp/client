@@ -2,9 +2,9 @@ import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
 import { buildDownloadButtonId } from '@/config/selectors';
 
-import { HOME_PATH, buildItemPath } from '../../../../paths';
-import { SAMPLE_PUBLIC_ITEMS } from '../../../fixtures/items';
-import { SIGNED_OUT_MEMBER } from '../../../fixtures/members';
+import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
+import { SIGNED_OUT_MEMBER } from '../../fixtures/members';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const SHARED_ITEM = PackedFolderItemFactory(
   {},

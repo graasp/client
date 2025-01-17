@@ -1,8 +1,8 @@
-import { HOME_PATH } from '@/config/paths';
 import { buildItemCard, buildMapViewId } from '@/config/selectors';
-import { ItemLayoutMode } from '@/enums';
 
-import { generateOwnItems } from '../../../fixtures/items';
+import { ItemLayoutMode } from '../../../../../src/modules/builder/enums';
+import { generateOwnItems } from '../../fixtures/items';
+import { HOME_PATH } from '../../utils';
 
 const ITEMS = generateOwnItems(30);
 

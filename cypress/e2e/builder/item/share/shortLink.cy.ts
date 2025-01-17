@@ -7,7 +7,6 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 
-import { buildItemPath } from '@/config/paths';
 import {
   SHORT_LINK_ALIAS_INPUT_ID,
   SHORT_LINK_COMPONENT,
@@ -23,11 +22,12 @@ import {
   buildShortLinkShortenBtnId,
 } from '@/config/selectors';
 
-import { PUBLISHED_ITEM } from '../../../fixtures/items';
+import { PUBLISHED_ITEM } from '../../fixtures/items';
 import {
   expectNumberOfShortLinks,
   expectShortLinksEquals,
-} from '../../../fixtures/shortLinks';
+} from '../../fixtures/shortLinks';
+import { buildItemPath } from '../../utils';
 
 const items = [PackedFolderItemFactory(), PackedFolderItemFactory()];
 

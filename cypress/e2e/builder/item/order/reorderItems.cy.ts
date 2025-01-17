@@ -1,8 +1,8 @@
 import { HttpMethod, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { buildItemsTableId } from '../../../../config/selectors';
-import { buildItemPath } from '../../../../paths';
-import { ID_FORMAT } from '../../../support/utils';
+import { buildItemsTableId } from '../../../../../src/config/selectors';
+import { ID_FORMAT } from '../../../../support/utils';
+import { buildItemPath } from '../../utils';
 
 const PARENT = PackedFolderItemFactory();
 const CHILDREN = [

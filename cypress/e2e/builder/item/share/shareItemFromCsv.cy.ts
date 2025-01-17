@@ -14,9 +14,9 @@ import {
   SHARE_ITEM_FROM_CSV_CONFIRM_BUTTON_ID,
   TREE_MODAL_CONFIRM_BUTTON_ID,
   buildNavigationModalItemId,
-} from '../../../../config/selectors';
-import { buildItemSharePath } from '../../../../paths';
-import { MEMBERS } from '../../../fixtures/members';
+} from '../../../../../src/config/selectors';
+import { MEMBERS } from '../../fixtures/members';
+import { buildItemSharePath } from '../../utils';
 
 const shareItem = ({ fixture }: { id: string; fixture: string }) => {
   cy.get(`#${SHARE_BUTTON_MORE_ID}`).click();

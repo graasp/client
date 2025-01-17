@@ -7,11 +7,14 @@ import {
   TEXT_EDITOR_CLASS,
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
-import { CURRENT_USER } from '../../../fixtures/members';
-import { EDIT_ITEM_PAUSE } from '../../../support/constants';
-import { editCaptionFromViewPage, editItem } from '../../../support/editUtils';
+} from '../../../../../src/config/selectors';
+import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
+import {
+  editCaptionFromViewPage,
+  editItem,
+} from '../../../../support/editUtils';
+import { CURRENT_USER } from '../../fixtures/members';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const EDITED_FIELDS = {
   name: 'new name',

@@ -5,13 +5,13 @@ import {
   IMAGE_THUMBNAIL_UPLOADER,
   REMOVE_THUMBNAIL_BUTTON,
   buildDataCyWrapper,
-} from '../../../../config/selectors';
-import { buildItemSettingsPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { FILE_LOADING_PAUSE } from '../../../../support/constants';
 import {
   ITEM_THUMBNAIL_LINK,
   THUMBNAIL_MEDIUM_PATH,
-} from '../../../fixtures/thumbnails/links';
-import { FILE_LOADING_PAUSE } from '../../../support/constants';
+} from '../../fixtures/thumbnails/links';
+import { buildItemSettingsPath } from '../../utils';
 
 describe('Item Thumbnail', () => {
   const item = PackedFolderItemFactory();

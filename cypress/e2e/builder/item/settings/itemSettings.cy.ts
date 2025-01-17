@@ -28,11 +28,11 @@ import {
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
   buildItemsGridMoreButtonSelector,
   buildSettingsButtonId,
-} from '../../../../config/selectors';
-import { buildItemPath, buildItemSettingsPath } from '../../../../paths';
-import { ITEM_WITH_CHATBOX_MESSAGES } from '../../../fixtures/chatbox';
-import { CURRENT_USER, MEMBERS } from '../../../fixtures/members';
-import { EDIT_ITEM_PAUSE } from '../../../support/constants';
+} from '../../../../../src/config/selectors';
+import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
+import { ITEM_WITH_CHATBOX_MESSAGES } from '../../fixtures/chatbox';
+import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
+import { buildItemPath, buildItemSettingsPath } from '../../utils';
 
 describe('Item Settings', () => {
   describe('read rights', () => {

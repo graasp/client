@@ -1,7 +1,5 @@
 import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 
-import { buildItemPath, buildItemSharePath } from '@/config/paths';
-
 import {
   SHARE_ITEM_QR_BTN_ID,
   SHARE_ITEM_QR_DIALOG_ID,
@@ -9,15 +7,16 @@ import {
   buildShareButtonId,
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
-} from '../../../../config/selectors';
-import { PUBLISHED_ITEM } from '../../../fixtures/items';
-import { expectNumberOfShortLinks } from '../../../fixtures/shortLinks';
+} from '../../../../../src/config/selectors';
 import {
   GRAASP_REDIRECTION_HOST,
   buildGraaspBuilderView,
   buildGraaspLibraryLink,
   buildGraaspPlayerView,
-} from '../../../support/paths';
+} from '../../../../support/paths';
+import { PUBLISHED_ITEM } from '../../fixtures/items';
+import { expectNumberOfShortLinks } from '../../fixtures/shortLinks';
+import { buildItemPath, buildItemSharePath } from '../../utils';
 
 type ShortLinkPlatform = ShortLink['platform'];
 

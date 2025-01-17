@@ -4,9 +4,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { SortingOptions } from '@/components/table/types';
-import { BUILDER } from '@/langs/constants';
-
+import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_SEARCH_INPUT_ID,
@@ -17,11 +15,12 @@ import {
   SORTING_ORDERING_SELECTOR_DESC,
   SORTING_SELECT_SELECTOR,
   buildItemCard,
-} from '../../../../config/selectors';
-// import i18n, { BUILDER_NAMESPACE } from '../../../../config/i18n';
-import { PUBLISHED_ITEMS_PATH } from '../../../../paths';
-import { PublishedItemFactory } from '../../../fixtures/items';
-import { CURRENT_USER } from '../../../fixtures/members';
+} from '../../../../../src/config/selectors';
+import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
+import { BUILDER } from '../../../../../src/modules/builder/langs';
+import { PublishedItemFactory } from '../../fixtures/items';
+import { CURRENT_USER } from '../../fixtures/members';
+import { PUBLISHED_ITEMS_PATH } from '../../utils';
 
 const items = [
   PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_USER })),
@@ -49,7 +48,7 @@ describe('Published Items', () => {
       cy.visit(PUBLISHED_ITEMS_PATH);
       i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       const text = i18n.t(BUILDER.PUBLISHED_ITEMS_EMPTY, {
-        ns: BUILDER_NAMESPACE,
+        ns: 'builder',
       });
       cy.get(`#${PUBLISHED_ITEMS_ID}`).should('contain', text);
     });
@@ -71,7 +70,7 @@ describe('Published Items', () => {
       cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
       const text = i18n.t(BUILDER.PUBLISHED_ITEMS_NOT_FOUND_SEARCH, {
         search: searchText,
-        ns: BUILDER_NAMESPACE,
+        ns: 'builder',
       });
       cy.get(`#${PUBLISHED_ITEMS_ID}`).should('contain', text);
     });

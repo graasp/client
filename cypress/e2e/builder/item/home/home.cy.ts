@@ -5,9 +5,7 @@ import {
   PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
-import { SortingOptions } from '@/components/table/types';
-import { ITEM_PAGE_SIZE } from '@/config/constants';
-
+import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
   CREATE_ITEM_BUTTON_ID,
@@ -20,13 +18,14 @@ import {
   SORTING_SELECT_SELECTOR,
   buildItemCard,
   buildMapViewId,
-} from '../../../../config/selectors';
-// import i18n from '../../../../config/i18n';
-import { HOME_PATH } from '../../../../paths';
-import { generateOwnItems } from '../../../fixtures/items';
-import { CURRENT_USER } from '../../../fixtures/members';
-import { NAVIGATION_LOAD_PAUSE } from '../../../support/constants';
-import { ItemForTest } from '../../../support/types';
+} from '../../../../../src/config/selectors';
+import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
+import { ITEM_PAGE_SIZE } from '../../../../../src/modules/builder/constants';
+import { NAVIGATION_LOAD_PAUSE } from '../../../../support/constants';
+import { ItemForTest } from '../../../../support/types';
+import { generateOwnItems } from '../../fixtures/items';
+import { CURRENT_USER } from '../../fixtures/members';
+import { HOME_PATH } from '../../utils';
 
 const ownItems = generateOwnItems(30);
 

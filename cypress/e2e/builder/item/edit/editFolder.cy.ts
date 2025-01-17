@@ -7,10 +7,10 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_NAME_INPUT_ID,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
-import { EDIT_ITEM_PAUSE } from '../../../support/constants';
-import { editItem } from '../../../support/editUtils';
+} from '../../../../../src/config/selectors';
+import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
+import { editItem } from '../../../../support/editUtils';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const EDITED_FIELDS = {
   name: 'new name',

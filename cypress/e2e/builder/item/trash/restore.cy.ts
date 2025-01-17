@@ -4,8 +4,8 @@ import {
   RECYCLE_BIN_RESTORE_MANY_ITEMS_BUTTON_ID,
   RESTORE_ITEMS_BUTTON_CLASS,
   buildItemCard,
-} from '../../../../config/selectors';
-import { RECYCLE_BIN_PATH } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { RECYCLE_BIN_PATH } from '../../utils';
 
 const restoreItem = (id: string) => {
   cy.get(`#${buildItemCard(id)} .${RESTORE_ITEMS_BUTTON_CLASS}`).click();

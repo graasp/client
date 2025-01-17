@@ -13,9 +13,9 @@ import {
   SHARE_ITEM_SHARE_BUTTON_ID,
   buildDataCyWrapper,
   buildShareButtonId,
-} from '../../../config/selectors';
-import { buildItemPath, buildItemSharePath } from '../../../paths';
-import { MEMBERS } from '../../fixtures/members';
+} from '../../../../src/config/selectors';
+import { MEMBERS } from '../fixtures/members';
+import { buildItemPath, buildItemSharePath } from '../utils';
 
 const shareItem = ({
   id,

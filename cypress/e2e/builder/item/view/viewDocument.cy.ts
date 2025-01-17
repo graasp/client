@@ -1,9 +1,9 @@
 import { PackedDocumentItemFactory } from '@graasp/sdk';
 
-import { buildItemPath } from '../../../../paths';
-import { CURRENT_USER } from '../../../fixtures/members';
-import { buildItemMembership } from '../../../fixtures/memberships';
-import { expectDocumentViewScreenLayout } from '../../../support/viewUtils';
+import { expectDocumentViewScreenLayout } from '../../../../support/viewUtils';
+import { CURRENT_USER } from '../../fixtures/members';
+import { buildItemMembership } from '../../fixtures/memberships';
+import { buildItemPath } from '../../utils';
 
 const DOCUMENT = PackedDocumentItemFactory();
 

@@ -11,13 +11,13 @@ import {
   TEXT_EDITOR_CLASS,
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
 import {
   CAPTION_EDIT_PAUSE,
   EDIT_ITEM_PAUSE,
-} from '../../../support/constants';
-import { editItem } from '../../../support/editUtils';
+} from '../../../../support/constants';
+import { editItem } from '../../../../support/editUtils';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const content = 'new text';
 const newFields = {

@@ -6,10 +6,10 @@ import {
   buildDataCyWrapper,
   buildPublishAttrContainer,
   buildPublishButtonId,
-} from '../../../../config/selectors';
-import { buildItemPath } from '../../../../paths';
-import { PUBLISHED_ITEM } from '../../../fixtures/items';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
+} from '../../../../../src/config/selectors';
+import { PUBLISHED_ITEM } from '../../fixtures/items';
+import { MEMBERS, SIGNED_OUT_MEMBER } from '../../fixtures/members';
+import { buildItemPath } from '../../utils';
 
 const LANGUAGE_CHIP_SELECTOR = `${buildDataCyWrapper(
   buildPublishAttrContainer(LIBRARY_SETTINGS_LANGUAGES_ID),

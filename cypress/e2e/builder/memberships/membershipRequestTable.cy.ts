@@ -14,7 +14,7 @@ import {
   buildMembershipRequestRowSelector,
 } from '@/config/selectors';
 
-import { CURRENT_USER } from '../../fixtures/members';
+import { CURRENT_USER } from '../fixtures/members';
 
 const itemWithRequests = PackedFolderItemFactory();
 const membershipRequests = [

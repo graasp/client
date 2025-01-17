@@ -4,8 +4,8 @@ import {
   ITEM_MENU_RECYCLE_BUTTON_CLASS,
   ITEM_RECYCLE_BUTTON_CLASS,
   buildItemsGridMoreButtonSelector,
-} from '../../../../config/selectors';
-import { HOME_PATH, buildItemPath } from '../../../../paths';
+} from '../../../../../src/config/selectors';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const recycleItem = (id: string) => {
   cy.get(buildItemsGridMoreButtonSelector(id)).click();
