@@ -44,7 +44,7 @@
     "i18next-fetch-backend": "6.0.0",
     "interweave": "13.1.0",
     "jwt-decode": "4.0.0",
-    "katex": "0.16.20",
+    "katex": "0.16.21",
     "leaflet": "1.9.4",
     "leaflet-easybutton": "2.4.0",
     "leaflet-geosearch": "3.11.1",

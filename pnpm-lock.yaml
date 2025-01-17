@@ -28,7 +28,7 @@ importers:
         version: 5.1.1
       '@graasp/chatbox':
         specifier: 3.3.1
-        version: 3.3.1(fipkstm3pklqztooeci37yharu)
+        version: 3.3.1(xdasql46mcar5ldq6fimt2zhsu)
       '@graasp/query-client':
         specifier: 5.7.1
         version: 5.7.1(@graasp/sdk@5.6.0(date-fns@4.1.0)(uuid@11.0.4))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@18.3.1)
@@ -102,8 +102,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       katex:
-        specifier: 0.16.20
-        version: 0.16.20
+        specifier: 0.16.21
+        version: 0.16.21
       leaflet:
         specifier: 1.9.4
         version: 1.9.4
@@ -4526,8 +4526,8 @@ packages:
     resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
     engines: {node: '>=18'}
 
-  katex@0.16.20:
-    resolution: {integrity: sha512-jjuLaMGD/7P8jUTpdKhA9IoqnH+yMFB3sdAFtq5QdAqeP2PjiSbnC3EaguKPNtv6dXXanHxp1ckwvF4a86LBig==}
+  katex@0.16.21:
+    resolution: {integrity: sha512-XvqR7FgOHtWupfMiigNzmh+MgUVmDGU2kXZm899ZkPfcuoPuFxyHmXsgATDpFZDAXCI8tvinaVcDo8PIIJSo4A==}
     hasBin: true
 
   kdbush@4.0.2:
@@ -7831,7 +7831,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/chatbox@3.3.1(fipkstm3pklqztooeci37yharu)':
+  '@graasp/chatbox@3.3.1(xdasql46mcar5ldq6fimt2zhsu)':
     dependencies:
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
       '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
@@ -7839,7 +7839,7 @@ snapshots:
       '@graasp/sdk': 5.6.0(date-fns@4.1.0)(uuid@11.0.4)
       '@graasp/stylis-plugin-rtl': 2.2.0(stylis@4.3.5)
       '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
-      '@graasp/ui': 5.5.1(6lz5tiea2ptlwdtldehwouyofi)
+      '@graasp/ui': 5.5.1(q7gfgauo5vhakxu6fetiuuilea)
       '@mui/icons-material': 6.3.1(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react@18.3.1)
       '@mui/lab': 6.0.0-beta.22(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@mui/material@6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mui/material': 6.3.1(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react@18.3.1))(@types/react@18.3.18)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7889,7 +7889,7 @@ snapshots:
     dependencies:
       i18next: 24.2.1(typescript@5.7.3)
 
-  '@graasp/ui@5.5.1(6lz5tiea2ptlwdtldehwouyofi)':
+  '@graasp/ui@5.5.1(q7gfgauo5vhakxu6fetiuuilea)':
     dependencies:
       '@emotion/cache': 11.14.0
       '@emotion/react': 11.14.0(@types/react@18.3.18)(react@18.3.1)
@@ -7903,7 +7903,7 @@ snapshots:
       http-status-codes: 2.3.0
       i18next: 24.2.1(typescript@5.7.3)
       interweave: 13.1.0(react@18.3.1)
-      katex: 0.16.20
+      katex: 0.16.21
       lodash.truncate: 4.4.2
       lucide-react: 0.471.1(react@18.3.1)
       react: 18.3.1
@@ -11210,7 +11210,7 @@ snapshots:
 
   jwt-decode@4.0.0: {}
 
-  katex@0.16.20:
+  katex@0.16.21:
     dependencies:
       commander: 8.3.0
 
