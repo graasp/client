@@ -11,7 +11,7 @@ import {
   PackedShortcutItemFactory,
 } from '@graasp/sdk';
 
-import { ItemForTest } from '../../support/types';
+import { ItemForTest } from '../../../../support/types';
 
 export const createPublicItemByType = (
   itemType: ItemTypeUnion,

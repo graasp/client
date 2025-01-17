@@ -150,9 +150,6 @@ declare global {
       handleTreeMenu(path: string, rootId?: string): void;
       switchMode(mode: string): void;
       goToItemInCard(path: string): void;
-      goToItemWithNavigation(id: string): void;
-
-      goToHome(): void;
 
       fillDocumentModal(
         payload: {

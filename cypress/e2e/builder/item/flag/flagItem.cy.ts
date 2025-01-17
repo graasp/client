@@ -1,6 +1,6 @@
 import { FlagType, PackedFolderItemFactory } from '@graasp/sdk';
 
-import i18n from '../../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   ITEM_MENU_FLAG_BUTTON_CLASS,
   buildFlagListItemId,

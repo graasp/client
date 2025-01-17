@@ -1,11 +1,11 @@
-import truncate from 'lodash.truncate';
-
 import {
   Button,
   Breadcrumbs as MuiBreadcrumbs,
   Stack,
   Tooltip,
 } from '@mui/material';
+
+import truncate from 'lodash.truncate';
 
 import type { NavigationElement } from './types.js';
 
@@ -46,12 +46,12 @@ const Breadcrumbs = ({
   ];
 
   return (
-    <MuiBreadcrumbs separator='›' aria-label='breadcrumb'>
+    <MuiBreadcrumbs separator="›" aria-label="breadcrumb">
       {allElements.map((ele) => (
         <Tooltip title={ele.name}>
           <Button
-            variant='text'
-            color='inherit'
+            variant="text"
+            color="inherit"
             sx={{
               textTransform: 'none',
               p: 0,
@@ -66,7 +66,7 @@ const Breadcrumbs = ({
               onSelect(ele);
             }}
           >
-            <Stack direction='row' gap={1}>
+            <Stack direction="row" gap={1}>
               {ele.icon}
               {truncate(ele.name, { length: maxLength })}
             </Stack>

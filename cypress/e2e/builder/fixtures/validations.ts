@@ -6,7 +6,7 @@ import {
   ItemValidationStatus,
 } from '@graasp/sdk';
 
-import { ApiConfig } from '../support/types';
+import { ApiConfig } from '../../../support/types';
 import { SAMPLE_PUBLIC_ITEMS } from './items';
 
 export const VALIDATED_ITEM: DiscriminatedItem = {

@@ -5,7 +5,7 @@ import {
   PackedRecycledItemDataFactory,
 } from '@graasp/sdk';
 
-import i18n from '../../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   PREVENT_GUEST_MESSAGE_ID,
   RECYCLED_ITEMS_ERROR_ALERT_ID,

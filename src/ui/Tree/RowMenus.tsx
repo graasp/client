@@ -34,10 +34,10 @@ const RowMenus = ({
 }: RowMenusProps): JSX.Element => {
   return (
     <Stack
-      height='100%'
+      height="100%"
       flex={1}
-      direction='column'
-      justifyContent='space-between'
+      direction="column"
+      justifyContent="space-between"
     >
       <Stack>
         {elements?.map((ele) => (
@@ -55,11 +55,11 @@ const RowMenus = ({
         {!elements?.length && emptyContent}
       </Stack>
       {nbPages && (
-        <Stack direction='row' justifyContent='end'>
+        <Stack direction="row" justifyContent="end">
           {nbPages > 1 && (
             <Pagination
               sx={{ justifyContent: 'end' }}
-              size='small'
+              size="small"
               count={nbPages}
               page={page}
               onChange={(_, p) => setPage?.(p)}

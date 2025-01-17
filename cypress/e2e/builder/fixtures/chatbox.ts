@@ -8,7 +8,7 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { ItemForTest } from '../support/types';
+import { ItemForTest } from '../../../support/types';
 import { DEFAULT_FOLDER_ITEM } from './items';
 import { CURRENT_USER, MEMBERS } from './members';
 

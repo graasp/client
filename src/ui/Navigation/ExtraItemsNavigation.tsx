@@ -1,6 +1,6 @@
-import truncate from 'lodash.truncate';
-
 import { Box, Typography } from '@mui/material';
+
+import truncate from 'lodash.truncate';
 
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { MenuItemType } from './Navigation.js';
@@ -22,7 +22,7 @@ const ExtraItemsNavigation = ({
 }): JSX.Element[] | null => {
   return extraItems.map(({ icon, name, path, menuItems }) => (
     <CenterAlignWrapper>
-      <Box display='flex' gap={1}>
+      <Box display="flex" gap={1}>
         {icon}
         <NavigationLink to={path}>
           <Typography>

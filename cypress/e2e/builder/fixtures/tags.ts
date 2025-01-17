@@ -6,7 +6,7 @@ import {
   TagCategory,
 } from '@graasp/sdk';
 
-import { ItemForTest } from '../support/types';
+import { ItemForTest } from '../../../support/types';
 import { PUBLISHED_ITEM } from './items';
 
 export const SAMPLE_TAGS: Tag[] = [

@@ -1,6 +1,6 @@
-import { FlagIcon } from 'lucide-react';
-
 import { IconButton, Tooltip } from '@mui/material';
+
+import { FlagIcon } from 'lucide-react';
 
 import { ColorVariants, ColorVariantsType, IconSizeVariant } from '../types.js';
 

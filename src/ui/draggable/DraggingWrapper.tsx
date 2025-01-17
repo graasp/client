@@ -1,8 +1,8 @@
 // we could replace dnd with this https://docs.dndkit.com
-import { Grid2 as Grid } from '@mui/material';
-
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+
+import { Grid2 as Grid } from '@mui/material';
 
 import DraggableElement, { DraggableElementProps } from './DraggableElement.js';
 import InBetween, { InBetweenProps } from './InBetween.js';
@@ -34,7 +34,7 @@ export type DraggingWrapperProps<T> = {
   nbColumns?: number;
 };
 
-const DraggingWrapper = <T extends object>({
+const DraggingWrapper = <T extends { id: string }>({
   id,
   rows = [],
   getRowId,
@@ -62,7 +62,7 @@ const DraggingWrapper = <T extends object>({
     // we need context={window} to use multiple times in the document
     // https://github.com/react-dnd/react-dnd/issues/3257#issuecomment-1239254032
     <DndProvider backend={HTML5Backend} context={window}>
-      <Grid container id={id} width='100%'>
+      <Grid container id={id} width="100%">
         <Grid size={12}>
           <InBetween<T>
             onDrop={onDropBetweenRow}
@@ -71,7 +71,7 @@ const DraggingWrapper = <T extends object>({
           />
         </Grid>
         {rows.map((row) => (
-          <Grid size={Math.floor(12 / nbColumns)}>
+          <Grid key={row.id} size={Math.floor(12 / nbColumns)}>
             <DraggableElement<T>
               canDrop={canDrop}
               allowFiles={allowFiles}

@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   Alignment,
   AlignmentType,
   DescriptionPlacement,
   DescriptionPlacementType,
 } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import withCaption from './withCaption.js';
 
@@ -23,7 +23,7 @@ const renderComponent = ({
       description,
       settings: { descriptionPlacement, alignment },
     },
-  })(<img src='https://picsum.photos/500' height='100%' />);
+  })(<img src="https://picsum.photos/500" height="100%" />);
 
 const meta: Meta<typeof renderComponent> = {
   title: 'Common/withCaption',

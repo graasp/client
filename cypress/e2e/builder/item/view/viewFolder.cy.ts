@@ -5,7 +5,7 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import i18n from '../../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_HEADER_ID,

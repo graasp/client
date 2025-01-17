@@ -12,7 +12,7 @@ import { z } from 'zod';
 import { CustomLink } from '@/components/ui/CustomLink';
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
-import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
@@ -55,7 +55,7 @@ function PlayerWrapper(): JSX.Element {
 
   const platformProps = {
     [Platform.Builder]: {
-      href: `${GRAASP_BUILDER_HOST}/items/${itemId}`,
+      href: `/builder/items/${itemId}`,
     },
     [Platform.Player]: {
       href: '/player',

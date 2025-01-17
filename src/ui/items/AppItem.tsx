@@ -1,6 +1,6 @@
-import { Skeleton, styled } from '@mui/material';
-
 import { memo, useMemo, useRef, useState } from 'react';
+
+import { Skeleton, styled } from '@mui/material';
 
 import {
   AppItemType,
@@ -134,7 +134,7 @@ const AppItem = ({
       sx={{ visibility: isIFrameLoading ? 'hidden' : 'visible' }}
       title={item?.name}
       width={APP_ITEM_WIDTH}
-      allow='fullscreen'
+      allow="fullscreen"
     />
   );
 
@@ -149,7 +149,7 @@ const AppItem = ({
     <>
       {isIFrameLoading && (
         <Skeleton
-          variant='rectangular'
+          variant="rectangular"
           width={'100%'}
           height={SCREEN_MAX_HEIGHT}
         />

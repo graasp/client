@@ -1,6 +1,6 @@
-import { SxProps, styled } from '@mui/material';
-
 import { ReactNode } from 'react';
+
+import { SxProps, styled } from '@mui/material';
 
 type SVGWrapperProps = {
   children: ReactNode;

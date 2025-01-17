@@ -5,7 +5,7 @@ import {
   PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
-import i18n from '../../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
   CREATE_ITEM_BUTTON_ID,
@@ -25,7 +25,7 @@ import { NAVIGATION_LOAD_PAUSE } from '../../../../support/constants';
 import { ItemForTest } from '../../../../support/types';
 import { generateOwnItems } from '../../fixtures/items';
 import { CURRENT_USER } from '../../fixtures/members';
-import { HOME_PATH } from '../../utils';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 const ownItems = generateOwnItems(30);
 
@@ -203,7 +203,7 @@ describe('Home', () => {
 
       // return parent with navigation and should display children
       cy.wait(NAVIGATION_LOAD_PAUSE);
-      cy.goToItemWithNavigation(childId);
+      cy.get(`[href^="${buildItemPath(childId)}"]`).click();
       // should get children
       cy.wait('@getChildren').then(() => {
         // check item is created and displayed

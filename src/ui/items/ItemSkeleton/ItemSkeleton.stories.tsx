@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { ItemType } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import ItemSkeleton from './ItemSkeleton.js';
 

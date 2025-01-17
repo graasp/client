@@ -1,8 +1,8 @@
-import { CopyIcon } from 'lucide-react';
+import { MouseEventHandler } from 'react';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { MouseEventHandler } from 'react';
+import { CopyIcon } from 'lucide-react';
 
 import {
   ActionButton,

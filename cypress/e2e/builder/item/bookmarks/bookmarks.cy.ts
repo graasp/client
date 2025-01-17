@@ -5,7 +5,7 @@ import {
   PackedItemBookmarkFactory,
 } from '@graasp/sdk';
 
-import i18n from '../../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   BOOKMARKED_ITEMS_ERROR_ALERT_ID,
   BOOKMARKED_ITEMS_ID,

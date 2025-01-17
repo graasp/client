@@ -10,7 +10,7 @@ import {
 
 import { v4 } from 'uuid';
 
-import { ApiConfig } from '../support/types';
+import { ApiConfig } from '../../../support/types';
 import { MEMBERS } from './members';
 
 export const buildItemMembership = (args: {

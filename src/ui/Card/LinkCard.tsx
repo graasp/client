@@ -1,5 +1,3 @@
-import { ExternalLink } from 'lucide-react';
-
 import {
   Card,
   CardActionArea,
@@ -10,6 +8,8 @@ import {
 } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';
+
+import { ExternalLink } from 'lucide-react';
 
 import CardThumbnail from './components/CardThumbnail.js';
 import { CARD_HEIGHT } from './constants.js';
@@ -49,10 +49,10 @@ const FancyLink = ({
       data-testid={FANCY_LINK_CARD_TEST_ID}
     >
       <CardActionArea href={url} sx={{ height: '100%' }} onClick={onClick}>
-        <Stack direction='row' alignItems='center' height='100%' minWidth={0}>
+        <Stack direction="row" alignItems="center" height="100%" minWidth={0}>
           <CardThumbnail
             thumbnail={thumbnail}
-            alt='Link thumbnail'
+            alt="Link thumbnail"
             itemType={ItemType.LINK}
           />
           <CardHeader
@@ -66,12 +66,12 @@ const FancyLink = ({
             }}
             title={
               <Stack>
-                <Stack direction='row' gap={1} alignItems='center'>
+                <Stack direction="row" gap={1} alignItems="center">
                   <Typography
-                    variant='h5'
+                    variant="h5"
                     noWrap
-                    fontWeight='bold'
-                    color='primary'
+                    fontWeight="bold"
+                    color="primary"
                   >
                     {title}
                   </Typography>
@@ -79,13 +79,13 @@ const FancyLink = ({
                     <ExternalLink
                       // the icon should not get smaller
                       style={{ flexShrink: 0 }}
-                      size='1rem'
+                      size="1rem"
                       color={theme.palette.primary.main}
                     />
                   )}
                 </Stack>
                 {isExternal && (
-                  <Typography color='text.secondary' noWrap variant='caption'>
+                  <Typography color="text.secondary" noWrap variant="caption">
                     ({url})
                   </Typography>
                 )}

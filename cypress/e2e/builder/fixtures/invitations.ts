@@ -7,7 +7,7 @@ import {
 
 import { v4 } from 'uuid';
 
-import { ApiConfig } from '../support/types';
+import { ApiConfig } from '../../../support/types';
 import { MEMBERS } from './members';
 
 export const buildInvitation = (args: {
@@ -43,7 +43,7 @@ const itemsWithInvitations: DiscriminatedItem[] = [
   }),
 ];
 
-export const ITEMS_WITH_INVITATIONS: ApiConfig = {
+export const ITEMS_WITH_INVITATIONS = {
   items: [
     itemsWithInvitations[0],
     {
@@ -97,11 +97,11 @@ export const ITEMS_WITH_INVITATIONS: ApiConfig = {
           updatedAt: '2021-08-11T12:56:36.834Z',
           creator: MEMBERS.ANNA,
         },
-      ],
+      ] as const,
     },
   ],
   members: [MEMBERS.FANNY, MEMBERS.ANNA, MEMBERS.EVAN],
-};
+} as const satisfies ApiConfig;
 
 // warning: default permission admin
 const itemsWithInvitationsWriteAccess: DiscriminatedItem[] = [

@@ -1,5 +1,3 @@
-import { StatusCodes } from 'http-status-codes';
-
 import { ReactElement, ReactNode } from 'react';
 
 import {
@@ -9,6 +7,8 @@ import {
   ItemLoginSchemaType,
   UUID,
 } from '@graasp/sdk';
+
+import { StatusCodes } from 'http-status-codes';
 
 import CustomInitialLoader from '../CustomInitialLoader/CustomInitialLoader.js';
 import ForbiddenText from './ForbiddenText.js';

@@ -1,4 +1,5 @@
-import { CloudUploadIcon } from 'lucide-react';
+import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
+import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 
 import {
   Alert,
@@ -9,8 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
-import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
+import { CloudUploadIcon } from 'lucide-react';
 
 import UploadFileButton, {
   UploadFileButtonProps,
@@ -104,12 +104,12 @@ const FileDropperComponent = ({
 
   return (
     <Stack
-      role='dropzone'
+      role="dropzone"
       id={id}
-      height='100%'
-      width='100%'
-      justifyContent='center'
-      alignItems='center'
+      height="100%"
+      width="100%"
+      justifyContent="center"
+      alignItems="center"
       bgcolor={error ? '#ffbaba' : bgColor}
       borderRadius={5}
       ref={drop}
@@ -120,42 +120,42 @@ const FileDropperComponent = ({
         borderColor: error ? 'red' : 'lightgrey',
       }}
       py={4}
-      boxSizing='border-box'
+      boxSizing="border-box"
     >
       <CloudUploadIcon
         size={80}
         color={error ? 'red' : theme.palette.primary.main}
       />
       {isLoading ? (
-        <Box width='100%' px={5}>
+        <Box width="100%" px={5}>
           <LinearProgress
             variant={uploadProgress ? 'determinate' : 'indeterminate'}
-            color='primary'
+            color="primary"
             value={uploadProgress}
           />
           {uploadProgress && (
-            <Typography textAlign='center'>{uploadProgress}%</Typography>
+            <Typography textAlign="center">{uploadProgress}%</Typography>
           )}
         </Box>
       ) : (
         <>
-          <Typography variant='label' color={error ? 'error' : 'primary'}>
+          <Typography variant="label" color={error ? 'error' : 'primary'}>
             {isActive ? releaseText : message}
           </Typography>
-          <Stack direction='row' gap={2}>
+          <Stack direction="row" gap={2}>
             {buttonText && (
               <UploadFileButton
                 icon={null}
                 text={buttonText}
                 onChange={onChange}
-                size='small'
+                size="small"
                 multiple={multiple}
               />
             )}
             {buttons}
           </Stack>
-          {hints && <Typography variant='caption'>{hints}</Typography>}
-          {error && <Alert severity='error'>{error}</Alert>}
+          {hints && <Typography variant="caption">{hints}</Typography>}
+          {error && <Alert severity="error">{error}</Alert>}
         </>
       )}
     </Stack>

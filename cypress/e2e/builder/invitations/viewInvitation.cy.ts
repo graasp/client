@@ -1,7 +1,6 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
-import { namespaces } from '@graasp/translations';
 
-import i18n from '../../../../.storybook/i18nTestInstance';
+// import i18n from '../../../../.storybook/i18nTestInstance';
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
   buildInvitationTableRowId,
@@ -32,7 +31,7 @@ describe('View Invitations', () => {
         }
         cy.get(`#${buildInvitationTableRowId(id)}`)
           .should('contain', email)
-          .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+          .should('contain', i18n.t(permission, { ns: 'enums' }));
 
         cy.get(
           `#${buildInvitationTableRowId(

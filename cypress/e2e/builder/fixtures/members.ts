@@ -1,6 +1,6 @@
 import { AccountType, CompleteMember, MemberFactory } from '@graasp/sdk';
 
-import { MemberForTest } from '../support/types';
+import { MemberForTest } from '../../../support/types';
 import { AVATAR_LINK } from './thumbnails/links';
 
 export const SIGNED_OUT_MEMBER: CompleteMember | null = null;

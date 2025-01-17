@@ -1,8 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState } from 'react';
 
 import { DiscriminatedItem } from '@graasp/sdk';
-
-import { useLocation } from '@tanstack/react-router';
 
 type ItemTypeConst = DiscriminatedItem['type'];
 type ItemTypes = ItemTypeConst[];
@@ -37,10 +35,10 @@ type Props = {
 export const FilterItemsContextProvider = ({
   children,
 }: Props): JSX.Element => {
-  const location = useLocation();
+  // const location = useLocation();
   const [itemTypes, setItemTypes] = useState<ItemTypes>([]);
 
-  useEffect(() => setItemTypes([]), [location]);
+  // useEffect(() => setItemTypes([]), [location]);
 
   const value = useMemo(
     () => ({

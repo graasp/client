@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
-
 import { useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
+
+import { Box } from '@mui/material';
 
 import {
   UUID,
@@ -49,7 +49,7 @@ const withResizing =
 
     return (
       <Box
-        width='100%'
+        width="100%"
         sx={{
           paddingBottom: '35px',
           WebkitUserSelect: 'none',

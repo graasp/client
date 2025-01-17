@@ -44,7 +44,7 @@ const EtherpadItem = ({
       id={iframeId}
       src={src.href}
       frameBorder={0}
-      sandbox='allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts allow-same-origin'
+      sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-presentation allow-scripts allow-same-origin"
       style={{
         width: '100%',
         height: '100%',

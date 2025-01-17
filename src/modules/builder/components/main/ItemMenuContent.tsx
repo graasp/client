@@ -197,7 +197,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ]
     // remove empty arrays
     .filter((e) => e.length > 0)
-    .flatMap((e) => [<Divider />, ...e])
+    .flatMap((e) => [<Divider key={e.toString()} />, ...e])
     .slice(1);
 
   return (

@@ -1,6 +1,6 @@
-import type { StoryObj } from '@storybook/react';
-
 import { MimeTypes } from '@graasp/sdk';
+
+import type { StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import FileAudio from './FileAudio.js';

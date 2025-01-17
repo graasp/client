@@ -1,6 +1,6 @@
-import { Interweave } from 'interweave';
-
 import { styled } from '@mui/material';
+
+import { Interweave } from 'interweave';
 
 const StyledDiv = styled('div')(({ theme }) => ({
   '& .ql-editor': {
@@ -26,9 +26,9 @@ const TextDisplay = ({
 }): JSX.Element | null => {
   if (content) {
     return (
-      <StyledDiv className='quill' id={id}>
-        <div className='ql-snow ql-disabled'>
-          <div className='ql-editor'>
+      <StyledDiv className="quill" id={id}>
+        <div className="ql-snow ql-disabled">
+          <div className="ql-editor">
             <Interweave content={content} noWrap />
           </div>
         </div>

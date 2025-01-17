@@ -11,7 +11,7 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-import { ApiConfig, ItemForTest } from '../support/types';
+import { ApiConfig, ItemForTest } from '../../../support/types';
 import { CURRENT_USER, MEMBERS } from './members';
 
 export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
@@ -370,7 +370,6 @@ export const PUBLISHED_ITEM_VALIDATIONS = [
         updatedAt: new Date(),
         createdAt: new Date(),
       },
-      // todo: fix this issue with circular types
-    ] as unknown as ItemValidation[],
+    ],
   },
 ];

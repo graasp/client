@@ -1,8 +1,8 @@
-import truncate from 'lodash.truncate';
-
 import { Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';
+
+import truncate from 'lodash.truncate';
 
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 import NavigationLink from './common/NavigationLink.js';
@@ -20,13 +20,13 @@ const ParentsNavigation = ({
   buildBreadcrumbsItemLinkId,
   buildToItemPath,
 }: ParentsProps): JSX.Element => (
-  <Stack direction='row'>
+  <Stack direction="row">
     {parents.map(({ name, id }) => (
       <Stack
         key={id}
-        direction='row'
-        alignItems='center'
-        justifyContent='center'
+        direction="row"
+        alignItems="center"
+        justifyContent="center"
       >
         <NavigationLink
           id={buildBreadcrumbsItemLinkId?.(id)}

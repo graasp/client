@@ -451,7 +451,7 @@
   "CHIPS_ALREADY_EXIST": "The element \"{{element}}\" already exists",
   "ITEM_STATUS_SYNCHRONIZING": "Updating...",
   "ITEM_STATUS_SYNCHRONIZED": "Saved",
-  "ITEM_STATUS_ERROR": "An error occured",
+  "ITEM_STATUS_ERROR": "An error occurred",
   "THUMBNAIL_UPLOADER_DELETE_ARIA_LABEL": "Delete the thumbnail",
   "THUMBNAIL_UPLOADER_IMAGE_ALT": "Item's thumbnail",
   "THUMBNAIL_UPLOADER_UPDATE_ARIA_LABEL": "Change the item's thumbnail",

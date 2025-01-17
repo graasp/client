@@ -6,7 +6,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { APPS_LIST } from './apps/apps';
+import { APPS_LIST } from '../../../fixtures/apps/apps';
 import { CURRENT_USER } from './members';
 
 export const buildAppApiAccessTokenRoute = (id: string): string =>
