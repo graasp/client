@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
-
 import { ReactNode } from 'react';
+
+import { Box } from '@mui/material';
 
 import { MaxWidth } from '@graasp/sdk';
 
@@ -30,7 +30,7 @@ export const SizingWrapper = ({
 }): JSX.Element => {
   const width = getWidthFromSizing(size);
   return (
-    <Box maxWidth='100%' width={width}>
+    <Box maxWidth="100%" width={width}>
       {children}
     </Box>
   );

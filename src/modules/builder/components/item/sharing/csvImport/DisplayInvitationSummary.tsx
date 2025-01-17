@@ -58,7 +58,13 @@ const DisplayInvitationSummary = ({
 
     return (
       <Alert severity="error">
-        <AlertTitle>{t(additionalMessage.name)}</AlertTitle>
+        <AlertTitle>
+          {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            t(additionalMessage.name)
+          }
+        </AlertTitle>
         <Typography>
           <ErrorDisplay errorMessage={additionalMessage.message} />
         </Typography>

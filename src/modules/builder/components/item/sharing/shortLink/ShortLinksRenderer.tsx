@@ -9,10 +9,11 @@ import {
   appendPathToUrl,
 } from '@graasp/sdk';
 
-import { useLayoutContext } from '@/components/context/LayoutContext';
 import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
-import { randomAlias } from '@/utils/shortLink';
+
+import { useLayoutContext } from '~builder/components/context/LayoutContext';
+import { randomAlias } from '~builder/utils/shortLink';
 
 import ShortLinkDialogContent from './ShortLinkDialogContent';
 import ShortLinkDisplay from './ShortLinkDisplay';

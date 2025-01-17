@@ -75,9 +75,6 @@ export const DISPLAY_CO_EDITORS_OPTIONS = {
   },
 };
 
-export const ITEM_HEADER_ICON_HEIGHT = 24;
-export const AVATAR_ICON_HEIGHT = 30;
-
 // TODO: refer from specific endpoint /tutorials?
 export const TUTORIALS_LINK =
   'https://player.graasp.org/9d80d81f-ec9d-4bfb-836a-1c6b125aef2f';

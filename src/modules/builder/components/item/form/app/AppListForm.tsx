@@ -80,9 +80,7 @@ function AppListForm({
         autoFocus={false}
       />
       {errors.url?.type === 'required' && (
-        <Alert severity="error">
-          {translateBuilder('You have to choose an app to add.')}
-        </Alert>
+        <Alert severity="error">{translateBuilder('APP_REQUIRED_ERROR')}</Alert>
       )}
     </DialogContent>
   );

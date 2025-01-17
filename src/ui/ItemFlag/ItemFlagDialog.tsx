@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import {
   Dialog,
   DialogActions,
@@ -9,8 +11,6 @@ import {
   Typography,
   styled,
 } from '@mui/material';
-
-import { useState } from 'react';
 
 import { FlagType } from '@graasp/sdk';
 
@@ -61,10 +61,10 @@ export const ItemFlagDialog = ({
   };
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>
-        <ListTitle variant='h6'>{descriptionText}</ListTitle>
+        <ListTitle variant="h6">{descriptionText}</ListTitle>
         <StyledList>
           {flags?.map((flag) => (
             <ListItemButton
@@ -79,11 +79,11 @@ export const ItemFlagDialog = ({
         </StyledList>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} variant='text'>
+        <Button onClick={onClose} variant="text">
           {cancelButtonText}
         </Button>
         <Button
-          color='error'
+          color="error"
           onClick={() => onFlag(selectedFlag)}
           disabled={!selectedFlag}
         >

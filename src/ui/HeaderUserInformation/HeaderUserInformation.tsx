@@ -1,6 +1,6 @@
-import { Avatar, Skeleton, Tooltip, Typography, styled } from '@mui/material';
-
 import { AriaAttributes, MouseEventHandler } from 'react';
+
+import { Avatar, Skeleton, Tooltip, Typography, styled } from '@mui/material';
 
 import { UUID } from '@graasp/sdk';
 
@@ -56,11 +56,11 @@ const HeaderUserInformation = ({
     return (
       <WrapperDiv>
         <Skeleton
-          variant='circular'
+          variant="circular"
           width={SMALL_AVATAR_SIZE}
           height={SMALL_AVATAR_SIZE}
         />
-        <StyledSkeleton variant='text' width={SHORT_TEXT_WIDTH} />
+        <StyledSkeleton variant="text" width={SHORT_TEXT_WIDTH} />
       </WrapperDiv>
     );
   }
@@ -80,7 +80,7 @@ const HeaderUserInformation = ({
         <Avatar alt={username} src={avatar} />
       </Tooltip>
       {username && (
-        <StyledTypography variant='subtitle1'>{username}</StyledTypography>
+        <StyledTypography variant="subtitle1">{username}</StyledTypography>
       )}
     </WrapperDiv>
   );

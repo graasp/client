@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from '@storybook/react';
-
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
+
+import { Meta, StoryObj } from '@storybook/react';
 
 import TextDisplay from './TextDisplay.js';
 import { HTML_CONTENT } from './fixtures.js';
@@ -46,7 +46,7 @@ export const WithTitle = {
 export const SimpleHtml = {
   args: {
     content: (
-      <TextDisplay content='<p>Hello<br/>Next line</p><p>Nice to meet you !</p>' />
+      <TextDisplay content="<p>Hello<br/>Next line</p><p>Nice to meet you !</p>" />
     ),
     flavor: DocumentItemExtraFlavor.Info,
   },

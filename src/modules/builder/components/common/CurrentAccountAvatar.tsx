@@ -7,7 +7,7 @@ import { hooks } from '@/config/queryClient';
 import { buildMemberAvatarId } from '@/config/selectors';
 import Avatar from '@/ui/Avatar/Avatar';
 
-import { AVATAR_ICON_HEIGHT } from '~builder/constants';
+const AVATAR_ICON_HEIGHT = 30;
 
 type Props = {
   maxWidth?: number;

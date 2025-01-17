@@ -56,8 +56,8 @@ const Navigation = ({
       sx={sx}
       id={id}
       maxItems={maxItems}
-      separator=''
-      aria-label='breadcrumb'
+      separator=""
+      aria-label="breadcrumb"
       style={{ backgroundColor }}
     >
       <CenterAlignWrapper>{renderRoot?.(item)}</CenterAlignWrapper>

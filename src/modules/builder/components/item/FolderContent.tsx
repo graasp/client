@@ -24,6 +24,7 @@ import {
 } from '@/config/selectors';
 import Loader from '@/ui/Loader/Loader';
 
+import { useOutletContext } from '~builder/contexts/OutletContext';
 import { ItemLayoutMode, Ordering } from '~builder/enums';
 
 import ErrorAlert from '../common/ErrorAlert';
@@ -148,9 +149,7 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { selectedIds } = useSelectionContext();
   const itemSearch = useItemSearch();
-  // const { canWrite } = useOutletContext<OutletType>();
-  // FIX: fix this !!!
-  const canWrite = false;
+  const { canWrite } = useOutletContext();
 
   const {
     data: children,

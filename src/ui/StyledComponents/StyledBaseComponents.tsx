@@ -1,6 +1,6 @@
-import { SxProps, styled } from '@mui/material';
-
 import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from 'react';
+
+import { SxProps, styled } from '@mui/material';
 
 type ImageProps = {
   sx?: SxProps;

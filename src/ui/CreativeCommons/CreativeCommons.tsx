@@ -84,11 +84,11 @@ const getLicenseName = (
 
 const CCIcon = ({ icon, title, description }: CCIconProps): JSX.Element => {
   const tooltip = (
-    <Stack direction='column' spacing={1}>
-      <Typography fontWeight='bold' variant='note'>
+    <Stack direction="column" spacing={1}>
+      <Typography fontWeight="bold" variant="note">
         {title}
       </Typography>
-      {description && <Typography variant='caption'>{description}</Typography>}
+      {description && <Typography variant="caption">{description}</Typography>}
     </Stack>
   );
 
@@ -144,19 +144,19 @@ const CreativeCommons = (props: CreativeCommonsProps): JSX.Element => {
   );
 
   return (
-    <Stack paddingX={3} paddingY={2} sx={sx} width='min-content' spacing={2}>
-      <Stack direction='row' spacing={2}>
+    <Stack paddingX={3} paddingY={2} sx={sx} width="min-content" spacing={2}>
+      <Stack direction="row" spacing={2}>
         <CCIcon {...iconData.cc} />
         {additionalIcons}
       </Stack>
       {withLicenseName && (
         <Typography
-          alignSelf='center'
-          variant='caption'
+          alignSelf="center"
+          variant="caption"
           color={textColor}
           fontSize={textSize}
-          fontWeight='bold'
-          textAlign='center'
+          fontWeight="bold"
+          textAlign="center"
         >
           {license}
         </Typography>

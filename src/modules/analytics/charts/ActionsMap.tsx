@@ -28,12 +28,15 @@ import {
 } from '../utils';
 
 const Marker = ({ children }: { children: JSX.Element }) => children;
-
+// type from "geojson" library
+type BBox =
+  | [number, number, number, number]
+  | [number, number, number, number, number, number];
 const ActionsMap = (): JSX.Element | null => {
   const theme = useTheme();
   const { t } = useTranslation(NS.Analytics);
   const mapRef = useRef<any>();
-  const [bounds, setBounds] = useState<number[]>();
+  const [bounds, setBounds] = useState<BBox>();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const { actions, selectedUsers } = useContext(DataContext);
 

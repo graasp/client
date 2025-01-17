@@ -29,7 +29,7 @@ export const Default: Story = {
   args: {
     maxWidth: 100,
     alt: 'myname',
-    defaultComponent: <img src='https://picsum.photos/100' />,
+    defaultComponent: <img src="https://picsum.photos/100" />,
   },
 };
 

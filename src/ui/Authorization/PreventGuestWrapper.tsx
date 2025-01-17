@@ -1,4 +1,4 @@
-import { ClipboardPen } from 'lucide-react';
+import { ReactNode } from 'react';
 
 import {
   Alert,
@@ -9,9 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import { ReactNode } from 'react';
-
 import { AccountType, CurrentAccount } from '@graasp/sdk';
+
+import { ClipboardPen } from 'lucide-react';
 
 type Props = {
   buttonText: string;
@@ -44,14 +44,14 @@ const PreventGuestWrapper = ({
     // guest - should not have access to children
     if (currentAccount.type === AccountType.Guest) {
       return (
-        <Stack height='100%' justifyContent='center' alignItems='center'>
-          <Container maxWidth='md'>
-            <Alert severity='info' id={id}>
+        <Stack height="100%" justifyContent="center" alignItems="center">
+          <Container maxWidth="md">
+            <Alert severity="info" id={id}>
               <Typography>{text}</Typography>
-              <Box mt={2} textAlign='center'>
+              <Box mt={2} textAlign="center">
                 <MuiButton
                   startIcon={startIcon}
-                  variant='contained'
+                  variant="contained"
                   sx={{ textTransform: 'none' }}
                   onClick={onButtonClick}
                 >
@@ -67,7 +67,7 @@ const PreventGuestWrapper = ({
     return children;
   }
 
-  return error ?? <Alert severity='error'>{errorText}</Alert>;
+  return error ?? <Alert severity="error">{errorText}</Alert>;
 };
 
 export default PreventGuestWrapper;

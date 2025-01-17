@@ -1,8 +1,8 @@
-import { SearchIcon } from 'lucide-react';
+import { ChangeEvent } from 'react';
 
 import { InputAdornment, TextField, type TextFieldProps } from '@mui/material';
 
-import { ChangeEvent } from 'react';
+import { SearchIcon } from 'lucide-react';
 
 export type Props = {
   ariaLabel?: string;
@@ -35,8 +35,8 @@ export const SearchInput = ({
     <TextField
       InputProps={{
         endAdornment: (
-          <InputAdornment position='end'>
-            <SearchIcon aria-label='search' />
+          <InputAdornment position="end">
+            <SearchIcon aria-label="search" />
           </InputAdornment>
         ),
       }}

@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Badge, Box, Stack, Tab, Tabs, Typography } from '@mui/material';
@@ -51,7 +51,7 @@ const MembershipTabs = (): JSX.Element | null => {
       <Box borderBottom={1} borderColor="divider">
         <Tabs
           value={selectedTabId}
-          onChange={(event: SyntheticEvent, newValue: number) => {
+          onChange={(_, newValue: number) => {
             setSelectedTabId(newValue);
           }}
           aria-label={translateBuilder(BUILDER.ACCESS_MANAGEMENT_TITLE)}

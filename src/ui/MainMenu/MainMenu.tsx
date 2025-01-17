@@ -1,6 +1,6 @@
-import { List } from '@mui/material';
-
 import { ReactNode } from 'react';
+
+import { List } from '@mui/material';
 
 export type MainMenuProps = {
   id?: string;

@@ -1,6 +1,6 @@
-import { UnfoldVerticalIcon } from 'lucide-react';
-
 import { Box, Theme, styled, useTheme } from '@mui/material';
+
+import { UnfoldVerticalIcon } from 'lucide-react';
 
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR = 300;
 const RESIZING_ICON_LEVEL_BACKGROUND_COLOR_FOCUS = 500;
@@ -24,7 +24,7 @@ const StyledIcon = styled(UnfoldVerticalIcon)(
 const ResizingIcon = (): JSX.Element => {
   const theme = useTheme();
   return (
-    <Box display='flex' justifyContent='center' alignItems='center'>
+    <Box display="flex" justifyContent="center" alignItems="center">
       <StyledIcon color={theme.palette.primary.main} />
     </Box>
   );

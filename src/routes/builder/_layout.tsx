@@ -13,10 +13,10 @@ import {
   useParams,
 } from '@tanstack/react-router';
 
+import { useAuth } from '@/AuthContext';
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
-import { hooks } from '@/config/queryClient';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_APP_BAR_ID,
@@ -27,7 +27,9 @@ import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { MemberValidationBanner } from '~builder/components/alerts/MemberValidationBanner';
+import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import { MainMenu } from '~builder/components/main/MainMenu';
+import { NotificationButton } from '~builder/components/main/NotificationButton';
 
 export const Route = createFileRoute('/builder/_layout')({
   beforeLoad({ context }) {
@@ -58,10 +60,10 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
 );
 
 function RouteComponent() {
+  const { user } = useAuth();
   const { t } = useTranslation(NS.Builder);
   const theme = useTheme();
   const { isMobile } = useMobileView();
-  const { data: currentMember } = hooks.useCurrentMember();
 
   const { itemId } = useParams({ strict: false });
 
@@ -82,7 +84,7 @@ function RouteComponent() {
 
   const rightContent = (
     <Stack direction="row" alignItems="center">
-      {/* <NotificationButton /> */}
+      <NotificationButton />
       <UserSwitchWrapper />
     </Stack>
   );
@@ -94,7 +96,7 @@ function RouteComponent() {
          * we want to keep the default behavior when the user is logged in
          * we close the drawer if the user is a guest
          */
-        currentMember?.type === AccountType.Individual ? undefined : false
+        user?.type === AccountType.Individual ? undefined : false
       }
       context={Context.Builder}
       headerId={HEADER_APP_BAR_ID}
@@ -113,7 +115,9 @@ function RouteComponent() {
       }
     >
       <MemberValidationBanner />
-      <Outlet />
+      <FilterItemsContextProvider>
+        <Outlet />
+      </FilterItemsContextProvider>
     </GraaspMain>
   );
 }

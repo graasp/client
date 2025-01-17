@@ -1,11 +1,11 @@
+import { MouseEventHandler } from 'react';
+
 import {
   ListItemIcon,
   ListItemIconProps,
   ListItemText,
   MenuItem,
 } from '@mui/material';
-
-import { MouseEventHandler } from 'react';
 
 export type MenuItemButtonProps = {
   className?: string;

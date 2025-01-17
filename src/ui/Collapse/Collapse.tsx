@@ -1,9 +1,9 @@
-import { ChevronDown } from 'lucide-react';
+import { ReactNode, useState } from 'react';
 
 import { SxProps, Typography, styled } from '@mui/material';
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 
-import { ReactNode, useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 const COLLAPSE_MIN_HEIGHT = 56;
 

@@ -1,6 +1,6 @@
-import { Drawer, SxProps, styled } from '@mui/material';
-
 import React, { ReactNode } from 'react';
+
+import { Drawer, SxProps, styled } from '@mui/material';
 
 import DrawerHeader from '../DrawerHeader/DrawerHeader.js';
 import { DRAWER_WIDTH } from '../constants.js';
@@ -41,8 +41,8 @@ export const Sidebar = ({
   return (
     <StyledDrawer
       sx={sx}
-      variant='persistent'
-      anchor='left'
+      variant="persistent"
+      anchor="left"
       open={isSidebarOpen}
     >
       <>

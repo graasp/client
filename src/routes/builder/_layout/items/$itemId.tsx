@@ -7,7 +7,9 @@ import {
 } from '@graasp/sdk';
 
 import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { zodValidator } from '@tanstack/zod-adapter';
 import axios from 'axios';
+import { z } from 'zod';
 
 import { hooks, mutations } from '@/config/queryClient';
 import {
@@ -24,7 +26,12 @@ import { OutletContext } from '~builder/contexts/OutletContext';
 import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
 
+const schema = z.object({
+  chat: z.boolean().optional(),
+});
+
 export const Route = createFileRoute('/builder/_layout/items/$itemId')({
+  validateSearch: zodValidator(schema),
   component: RouteComponent,
 });
 

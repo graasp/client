@@ -47,7 +47,7 @@ const Select = <T extends string | number>({
     <FormControl
       sx={{ mt: label ? 1 : 0, height: 'fit-content' }}
       size={size}
-      data-testid='select-test-id'
+      data-testid="select-test-id"
       disabled={disabled || values.every(({ disabled }) => disabled)}
     >
       {showLabel && <InputLabel id={labelId}>{label}</InputLabel>}

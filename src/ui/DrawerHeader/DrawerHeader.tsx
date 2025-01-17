@@ -1,5 +1,3 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
 import {
   IconButton,
   ListItem,
@@ -7,6 +5,8 @@ import {
   styled,
   useTheme,
 } from '@mui/material';
+
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { DEFAULT_DIRECTION, DRAWER_HEADER_HEIGHT } from '../constants.js';
 
@@ -33,14 +33,14 @@ export const DrawerHeader = ({
   const theme = useTheme();
   const dir = direction ?? theme?.direction ?? DEFAULT_DIRECTION;
   return (
-    <StyledListItem divider ContainerComponent='div'>
+    <StyledListItem divider ContainerComponent="div">
       {children}
       <StyledListItemSecondaryAction>
         <IconButton onClick={handleDrawerClose}>
           {dir === 'ltr' ? (
-            <ChevronLeft data-testid='ChevronLeftIcon' />
+            <ChevronLeft data-testid="ChevronLeftIcon" />
           ) : (
-            <ChevronRight data-testid='ChevronRightIcon' />
+            <ChevronRight data-testid="ChevronRightIcon" />
           )}
         </IconButton>
       </StyledListItemSecondaryAction>

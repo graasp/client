@@ -10,7 +10,6 @@ import {
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material';
 
-import { BUILDER_ITEMS_PREFIX, ClientHostManager, Context } from '@graasp/sdk';
 import rtlPlugin from '@graasp/stylis-plugin-rtl';
 
 import createCache from '@emotion/cache';
@@ -29,12 +28,7 @@ import { theme } from '@/ui/theme';
 import pkg from '../package.json';
 import { AuthProvider, useAuth } from './AuthContext';
 import './app.css';
-import {
-  APP_VERSION,
-  GRAASP_BUILDER_HOST,
-  SENTRY_DSN,
-  SENTRY_ENV,
-} from './config/env';
+import { APP_VERSION, SENTRY_DSN, SENTRY_ENV } from './config/env';
 import { QueryClientProvider, queryClient } from './config/queryClient';
 import { routeTree } from './routeTree.gen';
 
@@ -59,10 +53,6 @@ SentryInit({
   // sessions when an error occurs.
   replaysOnErrorSampleRate: 0.5,
 });
-
-ClientHostManager.getInstance()
-  .addPrefix(Context.Builder, BUILDER_ITEMS_PREFIX)
-  .addHost(Context.Builder, new URL(GRAASP_BUILDER_HOST));
 
 // Set up a Router instance
 const router = createRouter({

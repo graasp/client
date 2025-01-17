@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { Box, Stack } from '@mui/material';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { getColorFromId } from './stringToColor.js';
 
@@ -14,11 +14,11 @@ const ColorGrid = ({ cols, rows, size }: Props): JSX.Element => {
   const columnFactor = 256 / cols;
   const rowsFactor = 16 / rows;
   return (
-    <Stack direction='row' gap='4px' flexWrap='wrap'>
+    <Stack direction="row" gap="4px" flexWrap="wrap">
       {Array.from(Array(cols)).map((_, idx) => {
         const color = `${(idx * columnFactor).toString(16).padStart(2, '0')}`;
         return (
-          <Stack direction='column' gap='4px'>
+          <Stack direction="column" gap="4px">
             {Array.from(Array(rows)).map((_, sat) => {
               const saturation = (sat * rowsFactor).toString(16);
               return (

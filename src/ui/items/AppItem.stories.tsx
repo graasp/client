@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
-
 import {
   AppItemFactory,
   Context,
   ItemType,
   PermissionLevel,
 } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
+import { expect, within } from '@storybook/test';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem.js';

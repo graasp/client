@@ -4,11 +4,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import {
-  GRAASP_BUILDER_HOST,
-  GRAASP_LIBRARY_HOST,
-  GRAASP_PLAYER_HOST,
-} from '@/config/env';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
 import BuildIcon from '@/ui/icons/BuildIcon';
@@ -34,7 +29,7 @@ export function PlatformCube() {
       text: <Trans t={t} i18nKey="BUILDER.DESCRIPTION" />,
       button: {
         text: t('BUILDER.BUTTON_TEXT'),
-        href: GRAASP_BUILDER_HOST,
+        href: '/features/#builder',
       },
     },
     [Platform.Player]: {
@@ -43,7 +38,7 @@ export function PlatformCube() {
       text: <Trans t={t} i18nKey="PLAYER.DESCRIPTION" />,
       button: {
         text: t('PLAYER.BUTTON_TEXT'),
-        href: GRAASP_PLAYER_HOST,
+        href: '/features/#player',
       },
     },
     [Platform.Library]: {
@@ -52,7 +47,7 @@ export function PlatformCube() {
       text: <Trans t={t} i18nKey="LIBRARY.DESCRIPTION" />,
       button: {
         text: t('LIBRARY.BUTTON_TEXT'),
-        href: GRAASP_LIBRARY_HOST,
+        href: '/features/#library',
       },
     },
     [Platform.Analytics]: {

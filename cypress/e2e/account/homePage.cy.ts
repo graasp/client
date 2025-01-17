@@ -20,7 +20,8 @@ import {
   THUMBNAIL_MEDIUM_PATH,
 } from '../../fixtures/thumbnails/links';
 import { API_HOST } from '../../support/env';
-import { ID_FORMAT, MemberForTest } from '../../support/utils';
+import { MemberForTest } from '../../support/types';
+import { ID_FORMAT } from '../../support/utils';
 
 const { buildGetCurrentMemberRoute, buildUploadAvatarRoute } = API_ROUTES;
 
@@ -50,7 +51,7 @@ class TestHelper {
       },
       ({ reply }) => {
         if (this.currentMember.extra.hasAvatar) {
-          return reply({ body: this.currentMember.thumbnail });
+          return reply({ body: this.currentMember.thumbnails });
         }
         return reply({ statusCode: StatusCodes.NOT_FOUND });
       },
@@ -64,7 +65,7 @@ class TestHelper {
         // update avatar
         this.currentMember.extra.hasAvatar = true;
         // use default avatar link as thumbnail, we discard the uploaded thumbnail
-        this.currentMember.thumbnail = AVATAR_LINK;
+        this.currentMember.thumbnails = AVATAR_LINK;
         return reply({ statusCode: StatusCodes.OK });
       },
     ).as('uploadAvatar');

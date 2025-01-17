@@ -1,6 +1,6 @@
-import { Button, ButtonProps } from '@mui/material';
-
 import { AnchorHTMLAttributes, ElementType, ReactNode } from 'react';
+
+import { Button, ButtonProps } from '@mui/material';
 
 export type GraaspButtonProps = {
   autoFocus?: boolean;

@@ -8,7 +8,6 @@ import { z } from 'zod';
 import { useAuth } from '@/AuthContext';
 import { hooks } from '@/config/queryClient';
 
-import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import ModalProviders from '~builder/components/context/ModalProviders';
 import { DEFAULT_ITEM_LAYOUT_MODE, ItemLayoutMode } from '~builder/enums';
 
@@ -39,9 +38,7 @@ function RouteComponent() {
 
   return (
     <ModalProviders>
-      <FilterItemsContextProvider>
-        <Outlet />
-      </FilterItemsContextProvider>
+      <Outlet />
     </ModalProviders>
   );
 }

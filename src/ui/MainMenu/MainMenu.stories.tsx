@@ -26,9 +26,9 @@ export const Example: Story = {
   args: {
     children: (
       <>
-        <MenuItem text='Item 1' icon={<SnowflakeIcon />} />
-        <MenuItem text='Item 2' icon={<CirclePlusIcon />} />
-        <MenuItem text='Item 3' icon={<SparklesIcon />} />
+        <MenuItem text="Item 1" icon={<SnowflakeIcon />} />
+        <MenuItem text="Item 2" icon={<CirclePlusIcon />} />
+        <MenuItem text="Item 3" icon={<SparklesIcon />} />
       </>
     ),
   },

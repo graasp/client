@@ -1,3 +1,5 @@
+import { MouseEventHandler, ReactElement, useState } from 'react';
+
 import {
   Box,
   Divider,
@@ -10,8 +12,6 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-
-import { MouseEventHandler, ReactElement, useState } from 'react';
 
 import { AccountType, CurrentAccount } from '@graasp/sdk';
 
@@ -81,7 +81,7 @@ export const UserSwitch = ({
         {avatar}
 
         <div>
-          <Typography variant='h6' noWrap>
+          <Typography variant="h6" noWrap>
             {memberName}
           </Typography>
 
@@ -89,7 +89,7 @@ export const UserSwitch = ({
           {/* todo: show which item a pseudonymized member as access to */}
           {currentMember.type === AccountType.Individual && (
             <>
-              <Typography variant='subtitle2' noWrap>
+              <Typography variant="subtitle2" noWrap>
                 {currentMember.email}
               </Typography>
             </>
@@ -114,7 +114,7 @@ export const UserSwitch = ({
             width={SMALL_AVATAR_SIZE}
             height={SMALL_AVATAR_SIZE}
           />
-          <Skeleton variant='text' width={SHORT_TEXT_WIDTH} sx={{ mx: 2 }} />
+          <Skeleton variant="text" width={SHORT_TEXT_WIDTH} sx={{ mx: 2 }} />
         </StyledWrapper>
       );
     }
@@ -126,7 +126,7 @@ export const UserSwitch = ({
         </Tooltip>
         {memberName && !isMobile && (
           <Typography
-            variant='subtitle1'
+            variant="subtitle1"
             sx={{ mx: 2, maxWidth: HEADER_USERNAME_MAX_WIDTH }}
             noWrap
           >
@@ -144,7 +144,7 @@ export const UserSwitch = ({
       <StyledWrapper
         onClick={handleClick}
         id={buttonId}
-        role='button'
+        role="button"
         aria-haspopup={'menu'}
         aria-controls={menuId}
         aria-expanded={Boolean(anchorEl)}

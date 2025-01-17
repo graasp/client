@@ -1,6 +1,6 @@
-import { validate, version } from 'uuid';
-
 import { useEffect, useRef } from 'react';
+
+import { validate, version } from 'uuid';
 
 import withCollapse from '../Collapse/withCollapse.js';
 
@@ -103,7 +103,7 @@ const H5PItem = ({
       id={iframeId}
       src={integrationUrl.href}
       allowFullScreen
-      scrolling='no'
+      scrolling="no"
       style={{
         width: '100%',
         border: 'none',
