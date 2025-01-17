@@ -12,7 +12,9 @@ import {
   ItemValidationGroup,
   ItemVisibility,
   LocalFileItemType,
+  MemberStorageItem,
   PermissionLevel,
+  PublicProfile,
   PublicationStatus,
   RecycledItemData,
   S3FileItemType,
@@ -48,6 +50,10 @@ export type S3FileItemForTest = S3FileItemType & {
 export type FileItemForTest = LocalFileItemForTest | S3FileItemForTest;
 
 export type ApiConfig = {
+  hasPassword?: boolean;
+  currentProfile?: PublicProfile | null;
+  getCurrentProfileError?: boolean;
+  editPublicProfileError?: boolean;
   items?: ItemForTest[];
   recycledItems?: DiscriminatedItem[];
   members?: MemberForTest[];
@@ -96,6 +102,17 @@ export type ApiConfig = {
   patchInvitationError?: boolean;
   deleteInvitationError?: boolean;
   updatePasswordError?: boolean;
+  createPasswordError?: boolean;
+  updateEmailError?: boolean;
+  exportDataError?: boolean;
+  storageAmountInBytes?: number;
+  files?: MemberStorageItem[];
+  getMemberStorageFilesError?: boolean;
+  shouldFailRequestPasswordReset?: boolean;
+  shouldFailResetPassword?: boolean;
+  shouldFailLogin?: boolean;
+  itemLogins?: { [key: string]: string };
+  chatMessages?: ChatMessage[];
   postItemChatMessageError?: boolean;
   clearItemChatError?: boolean;
   getMemberMentionsError?: boolean;

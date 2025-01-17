@@ -23,9 +23,9 @@ import { CURRENT_MEMBER, MEMBER_PUBLIC_PROFILE } from '../fixtures/members';
 import { MockItem } from '../fixtures/mockTypes';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
 import { ANALYTICS_HOST, API_HOST, BUILDER_HOST } from './env';
+import { MemberForTest } from './types';
 import {
   ID_FORMAT,
-  MemberForTest,
   checkMemberHasAccess,
   getChatMessagesById,
   getChildren,
@@ -184,11 +184,11 @@ export const mockGetCurrentMemberAvatar = (
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      const { thumbnail } = currentMember;
-      if (!thumbnail) {
+      const { thumbnails } = currentMember;
+      if (!thumbnails) {
         return reply({ statusCode: StatusCodes.NOT_FOUND });
       }
-      return reply(thumbnail);
+      return reply(thumbnails);
     },
   ).as('getCurrentMemberAvatarUrl');
 };

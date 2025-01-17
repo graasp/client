@@ -1,6 +1,5 @@
 import {
   ChatMessage,
-  CompleteMember,
   Member,
   PermissionLevel,
   PermissionLevelCompare,
@@ -62,7 +61,6 @@ export const extractItemIdOrThrow = (
   return itemId;
 };
 
-export type MemberForTest = CompleteMember & { thumbnail?: string };
 export const getDataCy = (dataCy: string): string => `[data-cy="${dataCy}"]`;
 export const buildDataCySelector = (
   dataCy: string,

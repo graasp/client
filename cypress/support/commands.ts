@@ -1,18 +1,31 @@
 import {
-  ChatMessage,
+  AppItemExtra,
   CookieKeys,
+  DiscriminatedItem,
+  DocumentItemExtra,
   Member,
-  MemberStorageItem,
-  PublicProfile,
+  PermissionLevel,
+  getAppExtra,
+  getDocumentExtra,
 } from '@graasp/sdk';
 
 import {
+  CUSTOM_APP_CYPRESS_ID,
+  CUSTOM_APP_URL_ID,
   EMAIL_SIGN_IN_FIELD_ID,
   EMAIL_SIGN_UP_FIELD_ID,
+  FLAVOR_SELECT_ID,
+  FOLDER_FORM_DESCRIPTION_ID,
+  ITEM_FORM_APP_URL_ID,
+  ITEM_FORM_CONFIRM_BUTTON_ID,
+  ITEM_FORM_DOCUMENT_TEXT_SELECTOR,
+  ITEM_FORM_NAME_INPUT_ID,
   MAGIC_LINK_EMAIL_FIELD_ID,
   NAME_SIGN_UP_FIELD_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
   REGISTER_AGREEMENTS_CHECKBOX_ID,
+  buildFolderItemCardThumbnail,
+  buildItemFormAppOptionId,
 } from '../../src/config/selectors';
 import {
   fillPasswordSignInLayout,
@@ -22,8 +35,8 @@ import {
   submitRegister,
   submitSignIn,
 } from '../e2e/auth/util';
+import { APP_NAME, CUSTOM_APP_URL, NEW_APP_NAME } from '../fixtures/apps/apps';
 import { CURRENT_MEMBER, MEMBER_PUBLIC_PROFILE } from '../fixtures/members';
-import { MockItem } from '../fixtures/mockTypes';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
 import {
   mockAnalytics,
@@ -64,39 +77,11 @@ import {
   mockUpdateEmail,
   mockUpdatePassword,
 } from './server';
-import { MemberForTest } from './utils';
+import { ApiConfig } from './types';
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      setUpApi(args: {
-        currentMember?: MemberForTest | null;
-        hasPassword?: boolean;
-        currentProfile?: PublicProfile | null;
-        storageAmountInBytes?: number;
-        getCurrentMemberError?: boolean;
-        getCurrentProfileError?: boolean;
-        editMemberError?: boolean;
-        editPublicProfileError?: boolean;
-        getAvatarUrlError?: boolean;
-        postAvatarError?: boolean;
-        updatePasswordError?: boolean;
-        createPasswordError?: boolean;
-        updateEmailError?: boolean;
-        files?: MemberStorageItem[];
-        getMemberStorageFilesError?: boolean;
-        exportDataError?: boolean;
-        shouldFailRequestPasswordReset?: boolean;
-        shouldFailResetPassword?: boolean;
-        shouldFailLogin?: boolean;
-        items?: MockItem[];
-        itemLogins?: { [key: string]: string };
-        chatMessages?: ChatMessage[];
-        storedSessions?: { id: string; token: string; createdAt: number }[];
-        getItemError?: boolean;
-        getAppLinkError?: boolean;
-      }): Chainable;
-
       checkErrorTextField(id: string, flag: unknown): Chainable;
 
       signUpAndCheck(
@@ -135,6 +120,71 @@ declare global {
         elementSelector: string,
         text: string,
       ): Chainable;
+
+      fillShareForm(args: {
+        email: string;
+        permission: PermissionLevel;
+        submit?: boolean;
+        selector?: string;
+      }): void;
+
+      clickElementInIframe(
+        iframeSelector: string,
+        elementSelector: string,
+      ): void;
+
+      checkContentInElementInIframe(
+        iframeSelector: string,
+        elementSelector: string,
+        text: string,
+      ): void;
+
+      attachFile(selector: Chainable, file: string, options?: object): void;
+      attachFiles(
+        selector: Chainable,
+        filenames: string[],
+        options?: object,
+      ): void;
+
+      clickTreeMenuItem(value: string): void;
+      handleTreeMenu(path: string, rootId?: string): void;
+      switchMode(mode: string): void;
+      goToItemInCard(path: string): void;
+      goToItemWithNavigation(id: string): void;
+
+      goToHome(): void;
+
+      fillDocumentModal(
+        payload: {
+          name: string;
+          extra?: DocumentItemExtra;
+        },
+        options?: { confirm?: boolean },
+      ): void;
+      fillAppModal(
+        payload: { name: string; extra?: AppItemExtra },
+        options?: {
+          type?: boolean;
+          id?: string;
+          confirm?: boolean;
+          custom?: boolean;
+        },
+      ): void;
+      fillFolderModal(
+        arg1: { name?: string; description?: string },
+        arg2?: { confirm?: boolean },
+      ): void;
+
+      dragAndDrop(subject: string, x: number, y: number): void;
+
+      selectItem(id: DiscriminatedItem['id']): void;
+
+      setUpApi(args?: ApiConfig): void;
+
+      fillBaseItemModal(
+        item: { name?: string },
+        options?: { confirm?: boolean },
+      ): void;
     }
   }
 }
@@ -152,8 +202,6 @@ Cypress.Commands.add(
     getAvatarUrlError = false,
     postAvatarError = false,
     updatePasswordError = false,
-    createPasswordError = false,
-    updateEmailError = false,
     exportDataError = false,
     storageAmountInBytes = 10000,
     files = MEMBER_STORAGE_ITEM_RESPONSE,
@@ -299,3 +347,123 @@ Cypress.Commands.add(
           .should('contain', text),
       ),
 );
+
+Cypress.Commands.add(
+  'fillBaseItemModal',
+  ({ name = '' }, { confirm = true } = {}) => {
+    // first select all the text and then remove it to have a clear field, then type new text
+    cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).type(`{selectall}{backspace}${name}`);
+
+    if (confirm) {
+      cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    }
+  },
+);
+
+Cypress.Commands.add(
+  'fillFolderModal',
+  ({ name = '', description = '' }, { confirm = true } = {}) => {
+    cy.fillBaseItemModal({ name }, { confirm: false });
+    // first select all the text and then remove it to have a clear field, then type new description
+    cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}`).type(
+      `{selectall}{backspace}${description}`,
+    );
+
+    if (confirm) {
+      cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    }
+  },
+);
+
+Cypress.Commands.add(
+  'fillDocumentModal',
+  ({ name = '', extra }, { confirm = true } = {}) => {
+    cy.fillBaseItemModal({ name }, { confirm: false });
+
+    if (extra.document.flavor) {
+      cy.get(`#${FLAVOR_SELECT_ID} div`).click();
+      cy.get(`li[data-value="${extra.document.flavor}"]`).click();
+    }
+
+    const content =
+      // first select all the text and then remove it to have a clear field, then type new text
+      `{selectall}{backspace}${getDocumentExtra(extra)?.content}`;
+
+    if (extra.document.isRaw) {
+      cy.get(`[role="tab"]:contains("HTML")`).click();
+      cy.get('[role="tabpanel"] textarea[name="content"]').type(content);
+    } else {
+      cy.get(ITEM_FORM_DOCUMENT_TEXT_SELECTOR).type(content);
+    }
+
+    if (confirm) {
+      cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).scrollIntoView().click();
+    }
+  },
+);
+
+Cypress.Commands.add(
+  'fillAppModal',
+  (
+    { name = '', extra },
+    { confirm = true, id, type = false, custom = false } = {},
+  ) => {
+    cy.fillBaseItemModal({ name }, { confirm: false });
+
+    if (type) {
+      cy.get(`#${ITEM_FORM_APP_URL_ID}`).type(getAppExtra(extra)?.url);
+    } else if (custom) {
+      cy.get(`#${buildItemFormAppOptionId(CUSTOM_APP_CYPRESS_ID)}`).click();
+      // check name get added automatically
+      cy.fillBaseItemModal({ name }, { confirm: false });
+      cy.get(`#${CUSTOM_APP_URL_ID}`).type(CUSTOM_APP_URL);
+    } else {
+      cy.get(`#${buildItemFormAppOptionId(id)}`).click();
+      // check name get added automatically
+      cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).should('have.value', APP_NAME);
+      // edit the app name
+      cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`)
+        .type(`{selectall}{backspace}${NEW_APP_NAME}`)
+        .should('have.value', NEW_APP_NAME);
+    }
+
+    if (confirm) {
+      cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    }
+  },
+);
+
+// This command was based on a solution found on github
+// https://github.com/cypress-io/cypress/issues/3942#issuecomment-485648100
+Cypress.Commands.add('dragAndDrop', (subject, x, y) => {
+  cy.get(subject)
+    .first()
+    .then((target) => {
+      const coordsDrag = target[0].getBoundingClientRect();
+      cy.wrap(target)
+        .trigger('mousedown', {
+          button: 0,
+          clientX: coordsDrag.x,
+          clientY: coordsDrag.y,
+          force: true,
+        })
+        .trigger('mousemove', {
+          button: 0,
+          clientX: coordsDrag.x + 10,
+          clientY: coordsDrag.y,
+          force: true,
+        });
+      cy.get('body')
+        .trigger('mousemove', {
+          button: 0,
+          clientX: coordsDrag.x + x,
+          clientY: coordsDrag.y + y,
+          force: true,
+        })
+        .trigger('mouseup');
+    });
+});
+
+Cypress.Commands.add('selectItem', (id: DiscriminatedItem['id']) => {
+  cy.get(buildFolderItemCardThumbnail(id)).click();
+});

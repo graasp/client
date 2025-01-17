@@ -1,4 +1,3 @@
-import ThumbnailCrop from '@/components/thumbnails/ThumbnailCrop';
 import {
   CROP_MODAL_CONFIRM_BUTTON_ID,
   IMAGE_PLACEHOLDER_FOLDER,
@@ -6,12 +5,12 @@ import {
   IMAGE_THUMBNAIL_UPLOADER,
   REMOVE_THUMBNAIL_BUTTON,
   buildDataCyWrapper,
-} from '@/config/selectors';
-
+} from '../../../src/config/selectors';
+import ThumbnailCrop from '../../../src/modules/builder/components/thumbnails/ThumbnailCrop';
 import {
   THUMBNAIL_MEDIUM_PATH,
   THUMBNAIL_SMALL_PATH,
-} from '../../fixtures/thumbnails/links';
+} from '../../e2e/builder/fixtures/thumbnails/links';
 
 const ON_DELETE_SPY = 'onDelete';
 const ON_UPLOAD_SPY = 'onUpload';

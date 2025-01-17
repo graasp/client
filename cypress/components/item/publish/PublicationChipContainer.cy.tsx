@@ -3,9 +3,8 @@ import {
   buildLibraryAddButtonHeader,
   buildPublishAttrContainer,
   buildPublishChip,
-} from '@/config/selectors';
-
-import PublicationChipContainer from '../../../../components/item/publish/PublicationChipContainer';
+} from '../../../../src/config/selectors';
+import PublicationChipContainer from '../../../../src/modules/builder/components/item/publish/PublicationChipContainer';
 
 const ON_ADD_SPY = 'onAddClicked';
 const ON_DELETE_SPY = 'onChipDelete';

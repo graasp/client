@@ -6,10 +6,9 @@ import {
   buildPublishAttrContainer,
   buildPublishTitleAction,
   buildPublishWarningIcon,
-} from '@/config/selectors';
-import { theme } from '@/ui/theme';
-
-import PublicationAttributeContainer from '../../../../components/item/publish/PublicationAttributeContainer';
+} from '../../../../src/config/selectors';
+import PublicationAttributeContainer from '../../../../src/modules/builder/components/item/publish/PublicationAttributeContainer';
+import { theme } from '../../../../src/ui/theme';
 
 const ON_EMPTY_SPY = 'onEmptyClick';
 const ON_ICON_BTN_SPY = 'onIconBtnClick';

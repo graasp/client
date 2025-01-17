@@ -18,6 +18,20 @@ const openChatbox = () => {
   cy.wait('@getItemChat', { timeout: CHATBOX_TIMEOUT });
 };
 
+const visitAndMockWs = (
+  visitRoute: string,
+  // todo: improve this type
+  sampleData: object,
+  wsClientStub: MockWebSocket,
+) => {
+  cy.setUpApi(sampleData);
+  cy.visit(visitRoute, {
+    onBeforeLoad: (win) => {
+      cy.stub(win, 'WebSocket', () => wsClientStub);
+    },
+  });
+};
+
 describe('Chatbox Scenarios', () => {
   let client: MockWebSocket;
 
@@ -27,7 +41,7 @@ describe('Chatbox Scenarios', () => {
 
   it('Send messages in chatbox', () => {
     const item = ITEM_WITH_CHATBOX_MESSAGES;
-    cy.visitAndMockWs(buildItemPath(item.id), { items: [item] }, client);
+    visitAndMockWs(buildItemPath(item.id), { items: [item] }, client);
 
     // open chatbox
     openChatbox();
@@ -78,7 +92,7 @@ describe('Chatbox Scenarios', () => {
 
   it('Receive messages in chatbox from websockets', () => {
     const item = PackedFolderItemFactory();
-    cy.visitAndMockWs(
+    visitAndMockWs(
       buildItemPath(item.id),
       { items: [item], members: [MEMBERS] },
       client,

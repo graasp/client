@@ -2,9 +2,8 @@ import { CookieKeys, PublicationStatus } from '@graasp/sdk';
 
 import 'cypress-localstorage-commands';
 
-import { ItemLayoutMode } from '@/enums';
-
-import { LAYOUT_MODE_BUTTON_ID } from '../../config/selectors';
+import { LAYOUT_MODE_BUTTON_ID } from '../../../src/config/selectors';
+import { ItemLayoutMode } from '../../../src/modules/builder/enums';
 import { APPS_LIST } from '../fixtures/apps/apps';
 import { SAMPLE_MENTIONS } from '../fixtures/chatbox';
 import { CURRENT_USER, MEMBERS } from '../fixtures/members';
@@ -357,18 +356,6 @@ Cypress.Commands.add('switchMode', (mode) => {
       throw new Error(`invalid mode ${mode} provided`);
   }
 });
-
-Cypress.Commands.add(
-  'visitAndMockWs',
-  (visitRoute, sampleData, wsClientStub) => {
-    cy.setUpApi(sampleData);
-    cy.visit(visitRoute, {
-      onBeforeLoad: (win) => {
-        cy.stub(win, 'WebSocket', () => wsClientStub);
-      },
-    });
-  },
-);
 
 Cypress.Commands.add(
   'clickElementInIframe',

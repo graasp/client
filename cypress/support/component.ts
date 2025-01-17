@@ -17,7 +17,7 @@
 // require('./commands')
 import { mount } from 'cypress/react18';
 
-import './support_builder/commands';
+import './commands';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.

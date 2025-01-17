@@ -1,7 +1,7 @@
+import { DEBOUNCED_TEXT_FIELD_ID } from '../../../src/config/selectors';
 import DebouncedTextField, {
   DEBOUNCE_MS,
-} from '@/components/input/DebouncedTextField';
-import { DEBOUNCED_TEXT_FIELD_ID } from '@/config/selectors';
+} from '../../../src/modules/builder/components/input/DebouncedTextField';
 
 const ON_UPDATE_SPY = 'onUpdate';
 const getSpyOnUpdate = () => `@${ON_UPDATE_SPY}`;

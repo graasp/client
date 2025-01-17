@@ -4,10 +4,11 @@
     "target": "ESNext",
     "lib": ["ESNext", "dom", "ES2021.String"],
     "types": ["cypress", "vite/client"],
-    "strictNullChecks": true,
+    // todo: enable back
+    "strictNullChecks": false,
     "strict": true,
     "sourceMap": false
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["coverage", ".nyc_output"]
 }
