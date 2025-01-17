@@ -91,8 +91,6 @@ jobs:
         with:
           install: true
           component: true
-          # we launch the app in preview mode to avoid issues with hmr websockets from vite polluting the mocks
-          start: pnpm preview:test
           browser: chrome
           quiet: true
           config-file: cypress.config.ts
