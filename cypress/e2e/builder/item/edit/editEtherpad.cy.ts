@@ -1,7 +1,6 @@
 import { PackedEtherpadItemFactory } from '@graasp/sdk';
 
-import { buildItemsGridMoreButtonSelector } from '@/config/selectors';
-
+import { buildItemsGridMoreButtonSelector } from '../../../../../src/config/selectors';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import { editItem } from '../../../../support/editUtils';
 import { HOME_PATH } from '../../utils';

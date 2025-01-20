@@ -1,5 +1,7 @@
-import { buildItemCard, buildMapViewId } from '@/config/selectors';
-
+import {
+  buildItemCard,
+  buildMapViewId,
+} from '../../../../../src/config/selectors';
 import { ItemLayoutMode } from '../../../../../src/modules/builder/enums';
 import { generateOwnItems } from '../../fixtures/items';
 import { HOME_PATH } from '../../utils';

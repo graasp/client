@@ -3,8 +3,7 @@ import {
   CREATE_ITEM_FOLDER_ID,
   FOLDER_FORM_DESCRIPTION_ID,
   buildMapViewId,
-} from '@/config/selectors';
-
+} from '../../../../src/config/selectors';
 import { MAP_ITEMS_PATH } from '../utils';
 
 describe('Map', () => {

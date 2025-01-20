@@ -1,8 +1,16 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import {
+  ITEM_MENU_DUPLICATE_BUTTON_CLASS,
+  buildItemsGridMoreButtonSelector,
+} from '../../../../../src/config/selectors';
 import { getParentsIdsFromPath } from '../../../../../src/modules/builder/utils/item';
-import duplicateItem from '../../../../support/actionsUtils';
 import { HOME_PATH, buildItemPath } from '../../utils';
+
+const duplicateItem = ({ id }: { id: string }): void => {
+  cy.get(buildItemsGridMoreButtonSelector(id)).click();
+  cy.get(`.${ITEM_MENU_DUPLICATE_BUTTON_CLASS}`).click();
+};
 
 describe('duplicate Item in Home', () => {
   it(`duplicate item on Home`, () => {

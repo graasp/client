@@ -12,8 +12,7 @@ import {
   MEMBERSHIP_REQUEST_REJECT_BUTTON_SELECTOR,
   buildDataCyWrapper,
   buildMembershipRequestRowSelector,
-} from '@/config/selectors';
-
+} from '../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../fixtures/members';
 
 const itemWithRequests = PackedFolderItemFactory();

@@ -3,8 +3,7 @@ import { v4 } from 'uuid';
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
   REQUEST_MEMBERSHIP_BUTTON_ID,
-} from '@/config/selectors';
-
+} from '../../../../../src/config/selectors';
 import { buildItemPath } from '../../utils';
 
 describe('Item does not exist', () => {

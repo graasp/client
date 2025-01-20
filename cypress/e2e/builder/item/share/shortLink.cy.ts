@@ -20,8 +20,7 @@ import {
   buildShortLinkEditBtnId,
   buildShortLinkMenuBtnId,
   buildShortLinkShortenBtnId,
-} from '@/config/selectors';
-
+} from '../../../../../src/config/selectors';
 import { PUBLISHED_ITEM } from '../../fixtures/items';
 import {
   expectNumberOfShortLinks,

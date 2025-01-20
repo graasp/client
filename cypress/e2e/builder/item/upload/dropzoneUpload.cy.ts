@@ -1,7 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { DROPZONE_SELECTOR } from '@/config/selectors';
-
+import { DROPZONE_SELECTOR } from '../../../../../src/config/selectors';
 import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
 import { buildItemPath } from '../../utils';
 

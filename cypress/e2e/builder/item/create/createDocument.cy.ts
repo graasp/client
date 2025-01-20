@@ -5,8 +5,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
-
+import { ITEM_FORM_CONFIRM_BUTTON_ID } from '../../../../../src/config/selectors';
 import { createDocument } from '../../../../support/createUtils';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
