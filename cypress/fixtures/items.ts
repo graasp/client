@@ -2,14 +2,17 @@ import {
   DocumentItemFactory,
   FolderItemFactory,
   ItemType,
+  PackedFolderItemFactory,
   PermissionLevel,
   ShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+import '@graasp/translations';
 
 import { v4 } from 'uuid';
 
+import { DEFAULT_LANG } from '../../src/config/constants';
+import { ItemForTest } from '../support/types';
 import {
   GRAASP_DOCUMENT_ITEM,
   GRAASP_DOCUMENT_ITEM_HIDDEN,
@@ -18,33 +21,15 @@ import {
   GRAASP_DOCUMENT_ITEM_VISIBLE,
 } from './documents';
 import { CURRENT_MEMBER, MEMBERS } from './members';
-import { MockItem } from './mockTypes';
 import { mockHiddenTag, mockPublicTag } from './tags';
 
-export const DEFAULT_FOLDER_ITEM: MockItem = {
-  description: '',
-  id: '',
-  name: '',
-  path: '',
-  type: ItemType.FOLDER,
-  extra: {
-    [ItemType.FOLDER]: {},
-  },
+export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
+  name: 'default folder',
+  extra: { [ItemType.FOLDER]: {} },
   creator: CURRENT_MEMBER,
-  createdAt: new Date().toISOString(),
-  updatedAt: new Date().toISOString(),
-  lang: DEFAULT_LANG,
-  settings: {
-    isPinned: false,
-    showChatbox: false,
-  },
-  memberships: [
-    { memberId: MEMBERS.BOB.id, permission: PermissionLevel.Read },
-    { memberId: MEMBERS.CEDRIC.id, permission: PermissionLevel.Write },
-  ],
-};
+});
 
-export const ITEM_WITH_CHAT_BOX: MockItem = {
+export const ITEM_WITH_CHAT_BOX: ItemForTest = {
   ...DEFAULT_FOLDER_ITEM,
   id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
   name: 'parent folder',
@@ -55,7 +40,7 @@ export const ITEM_WITH_CHAT_BOX: MockItem = {
   },
 };
 
-export const DOCUMENT_WITH_CHAT_BOX: MockItem = {
+export const DOCUMENT_WITH_CHAT_BOX: ItemForTest = {
   ...DEFAULT_FOLDER_ITEM,
   id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
   name: 'parent folder',
@@ -68,7 +53,7 @@ export const DOCUMENT_WITH_CHAT_BOX: MockItem = {
   },
 };
 
-export const DOCUMENT_WITHOUT_CHAT_BOX: MockItem = {
+export const DOCUMENT_WITHOUT_CHAT_BOX: ItemForTest = {
   ...DEFAULT_FOLDER_ITEM,
   id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
   name: 'parent folder',
@@ -81,7 +66,7 @@ export const DOCUMENT_WITHOUT_CHAT_BOX: MockItem = {
   },
 };
 
-export const ITEM_WITHOUT_CHAT_BOX: MockItem = {
+export const ITEM_WITHOUT_CHAT_BOX: ItemForTest = {
   ...DEFAULT_FOLDER_ITEM,
   id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
   name: 'child folder',
@@ -92,7 +77,7 @@ export const ITEM_WITHOUT_CHAT_BOX: MockItem = {
   },
 };
 
-export const FOLDER_WITH_SUBFOLDER_ITEM: { items: MockItem[] } = {
+export const FOLDER_WITH_SUBFOLDER_ITEM: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -153,7 +138,7 @@ export const FOLDER_WITH_SUBFOLDER_ITEM: { items: MockItem[] } = {
   ],
 };
 export const FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER: {
-  items: MockItem[];
+  items: ItemForTest[];
 } = {
   items: [
     {
@@ -202,7 +187,7 @@ export const FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER: {
   ],
 };
 
-export const FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
+export const FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -246,7 +231,7 @@ export const FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
   ],
 };
 
-const getPinnedElementWithoutInheritance = (): MockItem[] => {
+const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
   const parent = FolderItemFactory({
     name: 'Parent folder',
     creator: CURRENT_MEMBER,
@@ -295,7 +280,7 @@ const getPinnedElementWithoutInheritance = (): MockItem[] => {
 export const PINNED_ITEMS_SHOULD_NOT_INHERIT =
   getPinnedElementWithoutInheritance();
 
-export const PINNED_AND_HIDDEN_ITEM: { items: MockItem[] } = {
+export const PINNED_AND_HIDDEN_ITEM: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -316,7 +301,7 @@ export const PINNED_AND_HIDDEN_ITEM: { items: MockItem[] } = {
         isPinned: true,
         showChatbox: false,
       },
-      hidden: mockHiddenTag(),
+      // hiddenVisibility : mockHiddenTag(),
     },
     {
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
@@ -337,7 +322,7 @@ export const PINNED_AND_HIDDEN_ITEM: { items: MockItem[] } = {
   ],
 };
 
-export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
+export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -348,7 +333,7 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
         isPinned: false,
         showChatbox: false,
       },
-      public: mockPublicTag(),
+      // public: mockPublicTag(),
     },
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -368,7 +353,7 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
           icons: [],
         },
       },
-      public: mockPublicTag(),
+      // public: mockPublicTag(),
     },
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -379,12 +364,12 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: MockItem[] } = {
         isPinned: true,
         showChatbox: false,
       },
-      public: mockPublicTag(),
+      // public: mockPublicTag(),
     },
   ],
 };
 
-export const FOLDER_WITH_HIDDEN_ITEMS: { items: MockItem[] } = {
+export const FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -412,7 +397,7 @@ export const FOLDER_WITH_HIDDEN_ITEMS: { items: MockItem[] } = {
   ],
 };
 
-export const getFolderWithShortcutFixture = (): MockItem[] => {
+export const getFolderWithShortcutFixture = (): ItemForTest[] => {
   const parent = FolderItemFactory({ name: 'Lesson', creator: CURRENT_MEMBER });
   const child = FolderItemFactory({
     parentItem: parent,
@@ -436,36 +421,37 @@ export const getFolderWithShortcutFixture = (): MockItem[] => {
   ];
 };
 
-export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: MockItem[] } = {
-  items: [
-    // original for the shortcut
-    GRAASP_DOCUMENT_ITEM,
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
-      name: 'parent folder',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130008',
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
+  {
+    items: [
+      // original for the shortcut
+      GRAASP_DOCUMENT_ITEM,
+      {
+        ...DEFAULT_FOLDER_ITEM,
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
+        name: 'parent folder',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130008',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-    },
-    // shortcut with collapse enabled
-    {
-      ...GRAASP_DOCUMENT_ITEM_VISIBLE,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
-      name: 'Shortcut to original document',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a_5688_11eb_ae93_0242ac130012',
-      type: ItemType.SHORTCUT,
-      extra: {
-        [ItemType.SHORTCUT]: { target: GRAASP_DOCUMENT_ITEM.id },
+      // shortcut with collapse enabled
+      {
+        ...GRAASP_DOCUMENT_ITEM_VISIBLE,
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
+        name: 'Shortcut to original document',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a_5688_11eb_ae93_0242ac130012',
+        type: ItemType.SHORTCUT,
+        extra: {
+          [ItemType.SHORTCUT]: { target: GRAASP_DOCUMENT_ITEM.id },
+        },
+        settings: { isCollapsible: true },
       },
-      settings: { isCollapsible: true },
-    },
-  ],
-};
+    ],
+  };
 
-export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: MockItem[] } = {
+export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -504,9 +490,9 @@ export const generateLotsOfFoldersOnHome = ({
   memberships = DEFAULT_FOLDER_ITEM.memberships,
 }: {
   folderCount: number;
-  creator?: MockItem['creator'];
-  memberships?: MockItem['memberships'];
-}): MockItem[] =>
+  creator?: ItemForTest['creator'];
+  memberships?: ItemForTest['memberships'];
+}): ItemForTest[] =>
   Array.from(Array(folderCount)).map(() => {
     const itemId = v4();
     return {
@@ -524,7 +510,7 @@ export const generateLotsOfFoldersOnHome = ({
     };
   });
 
-export const HOME_FOLDERS: { items: MockItem[] } = {
+export const HOME_FOLDERS: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -595,7 +581,7 @@ export const HOME_FOLDERS: { items: MockItem[] } = {
   ],
 };
 
-export const FOLDER_WITHOUT_CHILDREN_ORDER: { items: MockItem[] } = {
+export const FOLDER_WITHOUT_CHILDREN_ORDER: { items: ItemForTest[] } = {
   items: [
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -613,7 +599,9 @@ export const FOLDER_WITHOUT_CHILDREN_ORDER: { items: MockItem[] } = {
   ],
 };
 
-export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: { items: MockItem[] } = {
+export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
+  items: ItemForTest[];
+} = {
   items: [
     // root
     {
@@ -684,7 +672,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: { items: MockItem[] } = {
 };
 
 export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
-  items: MockItem[];
+  items: ItemForTest[];
 } = {
   items: [
     // root
@@ -756,7 +744,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 };
 
 export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
-  items: MockItem[];
+  items: ItemForTest[];
 } = {
   items: [
     // root

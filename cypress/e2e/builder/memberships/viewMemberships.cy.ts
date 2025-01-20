@@ -7,7 +7,6 @@ import {
   PackedFolderItemFactory,
   PermissionLevel,
 } from '@graasp/sdk';
-import { namespaces } from '@graasp/translations';
 
 // import i18n from '../../../../.storybook/i18nTestInstance';
 import {

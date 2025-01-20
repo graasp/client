@@ -1,36 +1,12 @@
 import {
   HOME_MODAL_ITEM_ID,
-  ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   MY_GRAASP_ITEM_PATH,
-  SHARE_BUTTON_SELECTOR,
-  SHARE_ITEM_EMAIL_INPUT_ID,
-  SHARE_ITEM_SHARE_BUTTON_ID,
   TREE_MODAL_CONFIRM_BUTTON_ID,
-  buildDataCyWrapper,
   buildItemRowArrowId,
   buildNavigationModalItemId,
-  buildPermissionOptionId,
   buildTreeItemId,
 } from '../../../../src/config/selectors';
 import { getParentsIdsFromPath } from '../../../../src/modules/builder/utils/item';
-
-Cypress.Commands.add(
-  'fillShareForm',
-  ({ email, permission, submit = true, selector = '' }) => {
-    cy.get(buildDataCyWrapper(SHARE_BUTTON_SELECTOR)).click();
-
-    // select permission
-    cy.get(`${selector} .${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`).click();
-    cy.get(`#${buildPermissionOptionId(permission)}`).click();
-
-    // input mail
-    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).type(email);
-
-    if (submit) {
-      cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).click();
-    }
-  },
-);
 
 Cypress.Commands.add('clickTreeMenuItem', (value: string) => {
   // cy.wrap(tree)

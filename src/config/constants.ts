@@ -1,5 +1,7 @@
 import { EmailFrequency } from '@graasp/sdk';
 
+export const DEFAULT_LANG = 'en';
+
 export const DEFAULT_EMAIL_FREQUENCY = EmailFrequency.Always;
 
 export const emailFrequency = {

@@ -5,6 +5,7 @@ import {
   DocumentItemExtra,
   Member,
   PermissionLevel,
+  PublicationStatus,
   getAppExtra,
   getDocumentExtra,
 } from '@graasp/sdk';
@@ -20,12 +21,18 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_SELECTOR,
   ITEM_FORM_NAME_INPUT_ID,
+  ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   MAGIC_LINK_EMAIL_FIELD_ID,
   NAME_SIGN_UP_FIELD_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
   REGISTER_AGREEMENTS_CHECKBOX_ID,
+  SHARE_BUTTON_SELECTOR,
+  SHARE_ITEM_EMAIL_INPUT_ID,
+  SHARE_ITEM_SHARE_BUTTON_ID,
+  buildDataCyWrapper,
   buildFolderItemCardThumbnail,
   buildItemFormAppOptionId,
+  buildPermissionOptionId,
 } from '../../src/config/selectors';
 import {
   fillPasswordSignInLayout,
@@ -35,47 +42,124 @@ import {
   submitRegister,
   submitSignIn,
 } from '../e2e/auth/util';
-import { APP_NAME, CUSTOM_APP_URL, NEW_APP_NAME } from '../fixtures/apps/apps';
-import { CURRENT_MEMBER, MEMBER_PUBLIC_PROFILE } from '../fixtures/members';
+import { SAMPLE_MENTIONS } from '../e2e/builder/fixtures/chatbox';
+import {
+  APPS_LIST,
+  APP_NAME,
+  CUSTOM_APP_URL,
+  NEW_APP_NAME,
+} from '../fixtures/apps/apps';
+import {
+  CURRENT_MEMBER,
+  MEMBERS,
+  MEMBER_PUBLIC_PROFILE,
+} from '../fixtures/members';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
 import {
+  mockAddFavorite,
+  mockAddTag,
   mockAnalytics,
   mockAppApiAccessToken,
   mockBuilder,
+  mockCheckShortLink,
+  mockClearItemChat,
+  mockCopyItems,
   mockCreatePassword,
   mockDefaultDownloadFile,
   mockDeleteAppData,
   mockDeleteCurrentMember,
+  mockDeleteFavorite,
+  mockDeleteInvitation,
+  mockDeleteItemLoginSchema,
+  mockDeleteItemMembershipForItem,
+  mockDeleteItemThumbnail,
+  mockDeleteItemVisibility,
+  mockDeleteItems,
+  mockDeleteShortLink,
+  mockDownloadItemChat,
   mockEditCurrentMember,
+  mockEditItem,
+  mockEditItemMembershipForItem,
+  mockEditMember,
   mockEditPublicProfile,
+  mockEnroll,
   mockExportData,
   mockGetAccessibleItems,
   mockGetAppData,
   mockGetAppLink,
+  mockGetAppListRoute,
+  mockGetAvatarUrl,
   mockGetChildren,
   mockGetCurrentMember,
   mockGetCurrentMemberAvatar,
   mockGetDescendants,
   mockGetItem,
   mockGetItemChat,
+  mockGetItemFavorites,
   mockGetItemGeolocation,
+  mockGetItemInvitations,
+  mockGetItemLoginSchema,
+  mockGetItemLoginSchemaType,
+  mockGetItemThumbnailUrl,
+  mockGetItemValidationGroups,
+  mockGetItems,
   mockGetItemsInMap,
+  mockGetLatestValidationGroup,
+  mockGetLinkMetadata,
   mockGetLoginSchemaType,
+  mockGetMember,
+  mockGetMemberMentions,
   mockGetMemberStorageFiles,
+  mockGetMembershipRequestsForItem,
+  mockGetOwnMembershipRequests,
   mockGetOwnProfile,
+  mockGetOwnRecycledItemData,
+  mockGetParents,
   mockGetPasswordStatus,
+  mockGetPublicationStatus,
+  mockGetPublishItemInformations,
+  mockGetPublishItemsForMember,
+  mockGetShortLinksItem,
   mockGetStatus,
   mockGetStorage,
+  mockGetTagsByItem,
+  mockImportH5p,
+  mockImportZip,
   mockLogin,
+  mockMoveItems,
   mockPatchAppData,
+  mockPatchInvitation,
+  mockPatchShortLink,
   mockPostAppData,
   mockPostAvatar,
+  mockPostInvitations,
+  mockPostItem,
+  mockPostItemChatMessage,
+  mockPostItemFlag,
+  mockPostItemLogin,
+  mockPostItemMembership,
+  mockPostItemThumbnail,
+  mockPostItemValidation,
+  mockPostItemVisibility,
+  mockPostManyItemMemberships,
+  mockPostShortLink,
+  mockPublishItem,
+  mockPutItemLoginSchema,
+  mockRecycleItems,
+  mockRejectMembershipRequest,
+  mockRemoveTag,
+  mockRequestMembership,
   mockRequestPasswordReset,
   mockResetPassword,
+  mockRestoreItems,
   mockSignInRedirection,
   mockSignOut,
+  mockUnpublishItem,
   mockUpdateEmail,
   mockUpdatePassword,
+  mockUploadInvitationCSV,
+  mockUploadInvitationCSVWithTemplate,
+  mockUploadItem,
 } from './server';
 import { ApiConfig } from './types';
 
@@ -190,31 +274,90 @@ Cypress.Commands.add(
   'setUpApi',
   ({
     currentMember = CURRENT_MEMBER,
-    hasPassword = false,
     currentProfile = MEMBER_PUBLIC_PROFILE,
-    getCurrentMemberError = false,
-    getCurrentProfileError = false,
-    editMemberError = false,
-    editPublicProfileError = false,
-    getAvatarUrlError = false,
-    postAvatarError = false,
-    updatePasswordError = false,
-    exportDataError = false,
     storageAmountInBytes = 10000,
     files = MEMBER_STORAGE_ITEM_RESPONSE,
+    itemLogins = {},
+    items = [],
+    shortLinks = [],
+    recycledItemData = [],
+    bookmarkedItems = [],
+    publishedItemData = [],
+    members = Object.values(MEMBERS),
+    mentions = SAMPLE_MENTIONS,
+    itemValidationGroups = [],
+    itemPublicationStatus = PublicationStatus.Unpublished,
+    membershipRequests = [],
     getMemberStorageFilesError = false,
     shouldFailRequestPasswordReset = false,
     shouldFailResetPassword = false,
     shouldFailLogin = false,
-    items = [],
-    itemLogins = {},
-    chatMessages = [],
+    getCurrentProfileError = false,
+    editPublicProfileError = false,
+    exportDataError = false,
+    hasPassword = false,
+    updateEmailError = false,
+    createPasswordError = false,
+    deleteItemsError = false,
+    postItemError = false,
+    moveItemsError = false,
+    copyItemsError = false,
     getItemError = false,
+    editItemError = false,
+    shareItemError = false,
+    defaultUploadError = false,
+    defaultDownloadFileError = false,
+    getCurrentMemberError = false,
+    postItemVisibilityError = false,
+    postItemLoginError = false,
+    putItemLoginError = false,
+    editMemberError = false,
+    postItemFlagError = false,
+    getItemChatError = false,
+    recycleItemsError = false,
+    deleteItemVisibilityError = false,
+    restoreItemsError = false,
+    getItemThumbnailError = false,
+    getAvatarUrlError = false,
+    postItemThumbnailError = false,
+    postAvatarError = false,
+    importZipError = false,
+    postInvitationsError = false,
+    getItemInvitationsError = false,
+    patchInvitationError = false,
+    deleteInvitationError = false,
+    updatePasswordError = false,
+    postItemChatMessageError = false,
+    clearItemChatError = false,
+    getMemberMentionsError = false,
     getAppLinkError = false,
+    appApiAccessTokenError = false,
+    getAppDataError = false,
+    postAppDataError = false,
+    patchAppDataError = false,
+    deleteAppDataError = false,
+    getFavoriteError = false,
+    addFavoriteError = false,
+    deleteFavoriteError = false,
+    itemId,
+    getShortLinksItemError = false,
+    getShortLinkAvailable = true,
+    postShortLinkError = false,
+    patchShortLinkError = false,
+    deleteShortLinkError = false,
+    importH5pError = false,
+    getRecycledItemsError = false,
+    getPublishedItemsError = false,
   } = {}) => {
+    const cachedItems = JSON.parse(JSON.stringify(items));
+    const cachedMembers = JSON.parse(JSON.stringify(members));
     const cachedCurrentMember = JSON.parse(JSON.stringify(currentMember));
     const cachedCurrentProfile = JSON.parse(JSON.stringify(currentProfile));
     const cachedCurrentStorageFiles = JSON.parse(JSON.stringify(files));
+    const cachedShortLinks = JSON.parse(JSON.stringify(shortLinks));
+
+    const allItems = [...cachedItems];
+
     // hide cookie banner by default
     cy.setCookie(CookieKeys.AcceptCookies, 'true');
 
@@ -250,16 +393,17 @@ Cypress.Commands.add(
     mockResetPassword(shouldFailResetPassword);
     mockLogin(shouldFailLogin);
 
-    mockGetAccessibleItems(items);
+    mockGetAccessibleItems(cachedItems);
     mockGetItem(
-      { items, currentMember },
+      { items: cachedItems, currentMember },
       getItemError || getCurrentMemberError,
     );
-    mockGetItemChat({ chatMessages });
+    mockPostItem(cachedItems, postItemError);
+    mockEditItem(cachedItems, editItemError);
+    mockCopyItems(cachedItems, copyItemsError);
+    mockDeleteItems(allItems, deleteItemsError);
 
     mockGetLoginSchemaType(itemLogins);
-
-    mockGetChildren(items, currentMember);
 
     mockGetDescendants(items, currentMember);
 
@@ -277,6 +421,158 @@ Cypress.Commands.add(
 
     mockGetItemGeolocation(items);
     mockGetItemsInMap(items, currentMember);
+
+    mockGetAppListRoute(APPS_LIST);
+
+    mockGetParents({ items, currentMember });
+    mockGetChildren({ items: cachedItems, currentMember });
+
+    mockMoveItems(cachedItems, moveItemsError);
+
+    mockPostItemMembership(cachedItems, shareItemError);
+    mockPostManyItemMemberships(
+      { items: cachedItems, members },
+      shareItemError,
+    );
+
+    mockGetMember(cachedMembers);
+
+    mockUploadItem(cachedItems, defaultUploadError);
+
+    mockDefaultDownloadFile(cachedItems, defaultDownloadFileError);
+
+    mockGetCurrentMember(currentMember, getCurrentMemberError);
+
+    mockSignInRedirection();
+
+    mockSignOut();
+
+    mockGetItemLoginSchema(items);
+
+    mockGetItemLoginSchemaType(items);
+
+    mockPostItemLogin(cachedItems, postItemLoginError);
+
+    mockPutItemLoginSchema(cachedItems, putItemLoginError);
+
+    mockDeleteItemLoginSchema();
+
+    // mockGetItemMembershipsForItem(items, currentMember);
+
+    mockPostItemVisibility(cachedItems, currentMember, postItemVisibilityError);
+
+    mockDeleteItemVisibility(deleteItemVisibilityError);
+
+    mockEditMember(members, editMemberError);
+
+    mockEditItemMembershipForItem();
+
+    mockDeleteItemMembershipForItem();
+
+    mockPostItemFlag(cachedItems, postItemFlagError);
+
+    mockGetItems({ items, currentMember });
+
+    mockGetItemChat({ items }, getItemChatError);
+
+    mockDownloadItemChat({ items }, getItemChatError);
+
+    mockPostItemChatMessage(postItemChatMessageError);
+
+    mockClearItemChat({ items }, clearItemChatError);
+
+    mockGetMemberMentions({ mentions }, getMemberMentionsError);
+
+    mockGetAppLink(getAppLinkError);
+
+    mockAppApiAccessToken(appApiAccessTokenError);
+
+    mockGetAppData(getAppDataError);
+
+    mockPostAppData(postAppDataError);
+
+    mockDeleteAppData(deleteAppDataError);
+
+    mockPatchAppData(patchAppDataError);
+
+    mockRecycleItems(items, recycleItemsError);
+
+    mockGetOwnRecycledItemData(recycledItemData, getRecycledItemsError);
+
+    mockRestoreItems(items, restoreItemsError);
+
+    mockGetItemThumbnailUrl(items, getItemThumbnailError);
+
+    mockDeleteItemThumbnail(items, getItemThumbnailError);
+
+    mockGetAvatarUrl(members, getAvatarUrlError);
+
+    mockPostItemThumbnail(items, postItemThumbnailError);
+
+    mockPostAvatar(postAvatarError);
+
+    mockImportZip(importZipError);
+
+    mockGetTagsByItem(items);
+
+    mockRemoveTag();
+    mockAddTag();
+
+    mockGetItemValidationGroups(itemValidationGroups);
+
+    mockPostItemValidation();
+
+    mockPostInvitations(items, postInvitationsError);
+
+    mockGetItemInvitations(items, getItemInvitationsError);
+
+    mockPatchInvitation(items, patchInvitationError);
+
+    mockDeleteInvitation(items, deleteInvitationError);
+
+    mockUploadInvitationCSV(items, false);
+
+    mockUploadInvitationCSVWithTemplate(false);
+
+    mockGetPublicationStatus(itemPublicationStatus);
+    mockPublishItem(items);
+    mockUnpublishItem(items);
+
+    mockGetPublishItemInformations(items);
+
+    mockGetLatestValidationGroup(items, itemValidationGroups);
+
+    mockGetItemFavorites(bookmarkedItems, getFavoriteError);
+
+    mockAddFavorite(cachedItems, addFavoriteError);
+
+    mockDeleteFavorite(deleteFavoriteError);
+
+    mockGetShortLinksItem(itemId, cachedShortLinks, getShortLinksItemError);
+
+    mockCheckShortLink(getShortLinkAvailable);
+
+    mockPostShortLink(cachedShortLinks, postShortLinkError);
+
+    mockPatchShortLink(cachedShortLinks, patchShortLinkError);
+
+    mockDeleteShortLink(cachedShortLinks, deleteShortLinkError);
+
+    mockGetLinkMetadata();
+
+    mockImportH5p(importH5pError);
+
+    mockGetPublishItemsForMember(publishedItemData, getPublishedItemsError);
+
+    mockGetOwnMembershipRequests(currentMember, membershipRequests);
+
+    mockRequestMembership();
+
+    mockGetMembershipRequestsForItem(membershipRequests);
+
+    mockRejectMembershipRequest();
+
+    mockEnroll();
   },
 );
 
@@ -464,3 +760,21 @@ Cypress.Commands.add('dragAndDrop', (subject, x, y) => {
 Cypress.Commands.add('selectItem', (id: DiscriminatedItem['id']) => {
   cy.get(buildFolderItemCardThumbnail(id)).click();
 });
+
+Cypress.Commands.add(
+  'fillShareForm',
+  ({ email, permission, submit = true, selector = '' }) => {
+    cy.get(buildDataCyWrapper(SHARE_BUTTON_SELECTOR)).click();
+
+    // select permission
+    cy.get(`${selector} .${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`).click();
+    cy.get(`#${buildPermissionOptionId(permission)}`).click();
+
+    // input mail
+    cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).type(email);
+
+    if (submit) {
+      cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).click();
+    }
+  },
+);

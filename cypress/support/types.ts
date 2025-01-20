@@ -6,6 +6,7 @@ import {
   DiscriminatedItem,
   Invitation,
   ItemBookmark,
+  ItemGeolocation,
   ItemLoginSchema,
   ItemMembership,
   ItemPublished,
@@ -24,6 +25,7 @@ import {
 } from '@graasp/sdk';
 
 export type ItemForTest = DiscriminatedItem & {
+  geolocation?: ItemGeolocation;
   tags?: Tag[];
   thumbnails?: ThumbnailsBySize;
   visibilities?: ItemVisibility[];
