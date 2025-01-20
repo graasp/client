@@ -53,7 +53,7 @@ type Props = {
 const ItemMain = ({ id, children, item }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { chat: chatIsOpen } = useSearch({
-    from: '/builder/_layout/items/$itemId',
+    from: '/builder/items/$itemId',
   });
 
   const [isChatboxOpen, setIsChatboxOpen] = useState(chatIsOpen ?? false);

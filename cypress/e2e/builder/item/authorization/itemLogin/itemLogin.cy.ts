@@ -47,7 +47,7 @@ describe('User is signed out', () => {
         PackedFolderItemFactory({}, { permission: null }),
         ItemLoginSchemaType.Username,
       );
-      cy.setUpApi({ items: [item], currentMember: SIGNED_OUT_MEMBER });
+      cy.setUpApi({ items: [item], currentMember: null });
 
       cy.visit(buildItemPath(item.id));
       checkItemLoginScreenLayout(item.itemLoginSchema.type);

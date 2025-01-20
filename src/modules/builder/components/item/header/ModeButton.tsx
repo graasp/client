@@ -36,7 +36,7 @@ const ModeButton = (): JSX.Element | null => {
 
   const isHomePath = useMatch({ from: '/builder', shouldThrow: false });
   const isItemPath = useMatch({
-    from: '/builder/_layout/items/$itemId',
+    from: '/builder/items/$itemId',
     shouldThrow: false,
   });
 

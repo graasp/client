@@ -32,7 +32,7 @@ const TanStackRouterDevtools =
 
 function RootComponent() {
   return (
-    <Stack id="__root">
+    <Stack id="__root" minHeight="100vh">
       <ScrollRestoration />
       <PreviewContextProvider>
         <Outlet />

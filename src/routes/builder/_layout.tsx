@@ -1,7 +1,15 @@
 import { ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
-import { Stack, styled, useTheme } from '@mui/material';
+import {
+  Alert,
+  Box,
+  Container,
+  Stack,
+  Typography,
+  styled,
+  useTheme,
+} from '@mui/material';
 
 import { AccountType, Context } from '@graasp/sdk';
 
@@ -12,6 +20,7 @@ import {
   redirect,
   useParams,
 } from '@tanstack/react-router';
+import { ClipboardPenIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
 import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
@@ -20,10 +29,12 @@ import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
   HEADER_APP_BAR_ID,
+  PREVENT_GUEST_MESSAGE_ID,
 } from '@/config/selectors';
 import GraaspMain from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
+import Button from '@/ui/buttons/Button/Button';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { MemberValidationBanner } from '~builder/components/alerts/MemberValidationBanner';
@@ -67,6 +78,10 @@ function RouteComponent() {
 
   const { itemId } = useParams({ strict: false });
 
+  if (user?.type === AccountType.Guest) {
+    return <GuestsNotAllowed />;
+  }
+
   const platformProps = {
     [Platform.Builder]: {
       href: '/',
@@ -82,12 +97,6 @@ function RouteComponent() {
     },
   };
 
-  const rightContent = (
-    <Stack direction="row" alignItems="center">
-      <NotificationButton />
-      <UserSwitchWrapper />
-    </Stack>
-  );
   return (
     <GraaspMain
       open={
@@ -101,7 +110,12 @@ function RouteComponent() {
       context={Context.Builder}
       headerId={HEADER_APP_BAR_ID}
       drawerOpenAriaLabel={t('ARIA_OPEN_DRAWER')}
-      headerRightContent={rightContent}
+      headerRightContent={
+        <Stack direction="row" alignItems="center">
+          <NotificationButton />
+          <UserSwitchWrapper />
+        </Stack>
+      }
       drawerContent={<MainMenu />}
       LinkComponent={LinkComponent}
       PlatformComponent={
@@ -120,4 +134,38 @@ function RouteComponent() {
       </FilterItemsContextProvider>
     </GraaspMain>
   );
+}
+
+function GuestsNotAllowed() {
+  const { user, logout } = useAuth();
+  const { t } = useTranslation(NS.Builder);
+  if (user) {
+    return (
+      <Stack height="100%" justifyContent="center" alignItems="center">
+        <Container maxWidth="md">
+          <Alert severity="info" id={PREVENT_GUEST_MESSAGE_ID}>
+            <Typography>
+              <Trans
+                t={t}
+                i18nKey={'GUEST_LIMITATION_TEXT'}
+                values={{
+                  name: user?.name,
+                }}
+                components={{ 1: <strong /> }}
+              />
+            </Typography>
+            <Box mt={2} textAlign="center">
+              <Button
+                startIcon={<ClipboardPenIcon />}
+                variant="contained"
+                onClick={() => logout()}
+              >
+                {t('GUEST_SIGN_OUT_BUTTON')}
+              </Button>
+            </Box>
+          </Alert>
+        </Container>
+      </Stack>
+    );
+  }
 }

@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next'
 
 import {
   Alert,
@@ -7,34 +7,32 @@ import {
   Divider,
   Stack,
   Typography,
-} from '@mui/material';
+} from '@mui/material'
 
-import { AccountType } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk'
 
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router'
 
-import { useAuth } from '@/AuthContext';
-import { NS } from '@/config/constants';
-import { VISIBILITY_HIDDEN_ALERT_ID } from '@/config/selectors';
+import { useAuth } from '@/AuthContext'
+import { NS } from '@/config/constants'
+import { VISIBILITY_HIDDEN_ALERT_ID } from '@/config/selectors'
 
-import DeleteItemLoginSchemaButton from '~builder/components/item/sharing/DeleteItemLoginSchemaButton';
-import HideSettingCheckbox from '~builder/components/item/sharing/HideSettingCheckbox';
-import VisibilitySelect from '~builder/components/item/sharing/VisibilitySelect';
-import MembershipTabs from '~builder/components/item/sharing/membershipTable/MembershipTabs';
-import { useOutletContext } from '~builder/contexts/OutletContext';
+import DeleteItemLoginSchemaButton from '~builder/components/item/sharing/DeleteItemLoginSchemaButton'
+import HideSettingCheckbox from '~builder/components/item/sharing/HideSettingCheckbox'
+import VisibilitySelect from '~builder/components/item/sharing/VisibilitySelect'
+import MembershipTabs from '~builder/components/item/sharing/membershipTable/MembershipTabs'
+import { useOutletContext } from '~builder/contexts/OutletContext'
 
-export const Route = createFileRoute(
-  '/builder/_layout/items/$itemId/_itemPage/share',
-)({
+export const Route = createFileRoute('/builder/items/$itemId/_itemPage/share')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const { user } = useAuth();
-  const { itemId } = Route.useParams();
-  const { item, canAdmin } = useOutletContext();
+  const { user } = useAuth()
+  const { itemId } = Route.useParams()
+  const { item, canAdmin } = useOutletContext()
 
-  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateBuilder } = useTranslation(NS.Builder)
   // const { data: memberships } = hooks.useItemMemberships(itemId);
 
   return (
@@ -78,5 +76,5 @@ function RouteComponent() {
         <MembershipTabs />
       </Stack>
     </Container>
-  );
+  )
 }

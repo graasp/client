@@ -1,6 +1,6 @@
 import 'react-quill/dist/quill.snow.css';
 
-import { Outlet, createFileRoute, redirect } from '@tanstack/react-router';
+import { Outlet, createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import 'katex/dist/katex.min.css';
 import { z } from 'zod';
@@ -19,14 +19,6 @@ const schema = z.object({
 });
 
 export const Route = createFileRoute('/builder')({
-  beforeLoad({ context }) {
-    if (!context.auth.isAuthenticated) {
-      throw redirect({
-        to: '/auth/login',
-        search: { url: window.location.href },
-      });
-    }
-  },
   validateSearch: zodValidator(schema),
   component: RouteComponent,
 });

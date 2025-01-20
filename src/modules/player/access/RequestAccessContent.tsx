@@ -13,18 +13,21 @@ import { Check, Lock } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import { REQUEST_MEMBERSHIP_BUTTON_ID } from '@/config/selectors';
+import {
+  MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
+  REQUEST_MEMBERSHIP_BUTTON_ID,
+} from '@/config/selectors';
 
-export const RequestAccessContent = ({
+export function RequestAccessContent({
   member,
   itemId,
-}: {
+}: Readonly<{
   member: Member;
   itemId: DiscriminatedItem['id'];
-}): JSX.Element => {
+}>): JSX.Element {
   const { t: translatePlayer } = useTranslation(NS.Player);
   const {
-    mutate: requestMembership,
+    mutateAsync: requestMembership,
     isSuccess,
     isPending,
   } = mutations.useRequestMembership();
@@ -37,7 +40,9 @@ export const RequestAccessContent = ({
         justifyContent="center"
         alignItems="center"
         height="100%"
+        flex={1}
         gap={2}
+        data-cy={MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR}
       >
         <Lock size={40} />
         <Typography variant="h3">
@@ -56,6 +61,7 @@ export const RequestAccessContent = ({
       justifyContent="center"
       alignItems="center"
       height="100%"
+      flex={1}
       gap={2}
     >
       <Lock size={40} />
@@ -64,13 +70,13 @@ export const RequestAccessContent = ({
       </Typography>
       <LoadingButton
         id={REQUEST_MEMBERSHIP_BUTTON_ID}
+        variant="contained"
         disabled={isSuccess}
         loading={isPending}
         endIcon={isSuccess ? <Check /> : null}
-        onClick={() => {
-          requestMembership({ id: itemId });
+        onClick={async () => {
+          await requestMembership({ id: itemId });
         }}
-        variant="contained"
       >
         {isSuccess
           ? translatePlayer('REQUEST_ACCESS_SENT_BUTTON')
@@ -83,4 +89,4 @@ export const RequestAccessContent = ({
       </Typography>
     </Stack>
   );
-};
+}

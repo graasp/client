@@ -29,7 +29,7 @@ const schema = z.object({
   chat: z.boolean().optional(),
 });
 
-export const Route = createFileRoute('/builder/_layout/items/$itemId')({
+export const Route = createFileRoute('/builder/items/$itemId')({
   validateSearch: zodValidator(schema),
   component: RouteComponent,
 });
@@ -58,10 +58,6 @@ function RouteComponent() {
   const errorStatusCode =
     (axios.isAxiosError(itemError) && itemError.status) || null;
 
-  if (!item) {
-    return null;
-  }
-
   return (
     <ItemLoginWrapper
       item={item}
@@ -89,17 +85,20 @@ function RouteComponent() {
           justifyContent="center"
           alignItems="center"
           height="100%"
+          flex={1}
           gap={2}
         >
           <ForbiddenContent id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID} />
         </Stack>
       }
     >
-      <OutletContext.Provider
-        value={{ item, permission: item?.permission, canWrite, canAdmin }}
-      >
-        <Outlet />
-      </OutletContext.Provider>
+      {item && (
+        <OutletContext.Provider
+          value={{ item, permission: item?.permission, canWrite, canAdmin }}
+        >
+          <Outlet />
+        </OutletContext.Provider>
+      )}
     </ItemLoginWrapper>
   );
 }

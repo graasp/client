@@ -1,20 +1,18 @@
-import { Box } from '@mui/material';
+import { Box } from '@mui/material'
 
-import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { Outlet, createFileRoute } from '@tanstack/react-router'
 
-import ErrorAlert from '~builder/components/common/ErrorAlert';
-import { useOutletContext } from '~builder/contexts/OutletContext';
+import ErrorAlert from '~builder/components/common/ErrorAlert'
+import { useOutletContext } from '~builder/contexts/OutletContext'
 
-export const Route = createFileRoute(
-  '/builder/_layout/items/$itemId/_itemPage',
-)({
+export const Route = createFileRoute('/builder/items/$itemId/_itemPage')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
   // const { itemId } = Route.useParams();
   // const search = Route.useSearch();
-  const outletContext = useOutletContext();
+  const outletContext = useOutletContext()
 
   if (outletContext.item) {
     return (
@@ -38,8 +36,8 @@ function RouteComponent() {
           <Outlet />
         </Box>
       </Box>
-    );
+    )
   }
 
-  return <ErrorAlert />;
+  return <ErrorAlert />
 }

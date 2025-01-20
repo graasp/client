@@ -208,7 +208,7 @@ const EtherpadContent = ({ item }: { item: EtherpadItemType }): JSX.Element => {
   );
 };
 
-const itemRoute = getRouteApi('/builder/_layout/items/$itemId');
+const itemRoute = getRouteApi('/builder/items/$itemId');
 /**
  * Main item renderer component
  */

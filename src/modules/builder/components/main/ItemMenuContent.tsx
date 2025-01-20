@@ -175,7 +175,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const destructiveMenus = [
-    member?.id ? <FlagButton item={item} /> : false,
+    member?.id ? <FlagButton key="flag" item={item} /> : false,
     canAdmin ? (
       <RecycleButton
         key="recycle"

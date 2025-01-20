@@ -56,7 +56,7 @@ describe('Bookmarked Item', () => {
     });
 
     it('Show empty table', () => {
-      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('contain', 'No Items');
+      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('contain', 'No bookmarked item');
     });
   });
 

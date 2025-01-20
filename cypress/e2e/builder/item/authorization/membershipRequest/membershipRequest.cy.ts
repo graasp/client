@@ -4,8 +4,7 @@ import {
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
   buildDataCyWrapper,
-} from '@/config/selectors';
-
+} from '../../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../../fixtures/members';
 import { buildItemPath } from '../../../utils';
 

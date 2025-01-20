@@ -1,7 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { ITEM_LOGIN_SCREEN_FORBIDDEN_ID } from '@/config/selectors';
-
+import { ITEM_LOGIN_SCREEN_FORBIDDEN_ID } from '../../../../../src/config/selectors';
 import { buildItemPath } from '../../utils';
 
 it('User is logged out and item is private', () => {
