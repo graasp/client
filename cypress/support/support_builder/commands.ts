@@ -22,28 +22,6 @@ Cypress.Commands.add('switchMode', (mode) => {
   }
 });
 
-Cypress.Commands.add(
-  'clickElementInIframe',
-  (iframeSelector, elementSelector) =>
-    cy
-      .get(iframeSelector)
-      .then(($iframe) =>
-        cy.wrap($iframe.contents().find(elementSelector)).click(),
-      ),
-);
-
-Cypress.Commands.add(
-  'checkContentInElementInIframe',
-  (iframeSelector, elementSelector, text) =>
-    cy
-      .get(iframeSelector)
-      .then(($iframe) =>
-        cy
-          .wrap($iframe.contents().find(elementSelector))
-          .should('contain', text),
-      ),
-);
-
 Cypress.Commands.add('attachFile', (selector, file, options = {}) => {
   selector.selectFile(`cypress/fixtures/${file}`, options);
 });

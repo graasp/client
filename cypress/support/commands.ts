@@ -58,9 +58,7 @@ import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
 import {
   mockAddFavorite,
   mockAddTag,
-  mockAnalytics,
   mockAppApiAccessToken,
-  mockBuilder,
   mockCheckShortLink,
   mockClearItemChat,
   mockCopyItems,
@@ -199,12 +197,6 @@ declare global {
       getIframeDocument(iframeSelector: string): Chainable;
       getIframeBody(iframeSelector: string): Chainable;
 
-      checkContentInElementInIframe(
-        iframeSelector: string,
-        elementSelector: string,
-        text: string,
-      ): Chainable;
-
       fillShareForm(args: {
         email: string;
         permission: PermissionLevel;
@@ -274,6 +266,7 @@ Cypress.Commands.add(
   'setUpApi',
   ({
     currentMember = CURRENT_MEMBER,
+    currentGuest = null,
     currentProfile = MEMBER_PUBLIC_PROFILE,
     storageAmountInBytes = 10000,
     files = MEMBER_STORAGE_ITEM_RESPONSE,
@@ -306,7 +299,6 @@ Cypress.Commands.add(
     editItemError = false,
     shareItemError = false,
     defaultUploadError = false,
-    defaultDownloadFileError = false,
     getCurrentMemberError = false,
     postItemVisibilityError = false,
     postItemLoginError = false,
@@ -331,11 +323,6 @@ Cypress.Commands.add(
     clearItemChatError = false,
     getMemberMentionsError = false,
     getAppLinkError = false,
-    appApiAccessTokenError = false,
-    getAppDataError = false,
-    postAppDataError = false,
-    patchAppDataError = false,
-    deleteAppDataError = false,
     getFavoriteError = false,
     addFavoriteError = false,
     deleteFavoriteError = false,
@@ -361,7 +348,6 @@ Cypress.Commands.add(
     // hide cookie banner by default
     cy.setCookie(CookieKeys.AcceptCookies, 'true');
 
-    mockGetCurrentMember(cachedCurrentMember, getCurrentMemberError);
     mockGetOwnProfile(cachedCurrentProfile, getCurrentProfileError);
 
     mockSignInRedirection();
@@ -409,9 +395,6 @@ Cypress.Commands.add(
 
     mockDefaultDownloadFile({ items, currentMember });
 
-    mockBuilder();
-    mockAnalytics();
-
     mockGetAppLink(getAppLinkError);
     mockAppApiAccessToken(getAppLinkError);
     mockGetAppData(getAppLinkError);
@@ -439,13 +422,7 @@ Cypress.Commands.add(
 
     mockUploadItem(cachedItems, defaultUploadError);
 
-    mockDefaultDownloadFile(cachedItems, defaultDownloadFileError);
-
-    mockGetCurrentMember(currentMember, getCurrentMemberError);
-
-    mockSignInRedirection();
-
-    mockSignOut();
+    mockGetCurrentMember(currentMember, currentGuest, getCurrentMemberError);
 
     mockGetItemLoginSchema(items);
 
@@ -483,18 +460,6 @@ Cypress.Commands.add(
 
     mockGetMemberMentions({ mentions }, getMemberMentionsError);
 
-    mockGetAppLink(getAppLinkError);
-
-    mockAppApiAccessToken(appApiAccessTokenError);
-
-    mockGetAppData(getAppDataError);
-
-    mockPostAppData(postAppDataError);
-
-    mockDeleteAppData(deleteAppDataError);
-
-    mockPatchAppData(patchAppDataError);
-
     mockRecycleItems(items, recycleItemsError);
 
     mockGetOwnRecycledItemData(recycledItemData, getRecycledItemsError);
@@ -508,8 +473,6 @@ Cypress.Commands.add(
     mockGetAvatarUrl(members, getAvatarUrlError);
 
     mockPostItemThumbnail(items, postItemThumbnailError);
-
-    mockPostAvatar(postAvatarError);
 
     mockImportZip(importZipError);
 
@@ -627,18 +590,6 @@ Cypress.Commands.add('getIframeBody', (iframeSelector) =>
     .its('body')
     .should('not.be.undefined')
     .then(cy.wrap),
-);
-
-Cypress.Commands.add(
-  'checkContentInElementInIframe',
-  (iframeSelector: string, elementSelector, text) =>
-    cy
-      .get(iframeSelector)
-      .then(($iframe) =>
-        cy
-          .wrap($iframe.contents().find(elementSelector))
-          .should('contain', text),
-      ),
 );
 
 Cypress.Commands.add(
@@ -777,4 +728,26 @@ Cypress.Commands.add(
       cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).click();
     }
   },
+);
+
+Cypress.Commands.add(
+  'clickElementInIframe',
+  (iframeSelector, elementSelector) =>
+    cy
+      .get(iframeSelector)
+      .then(($iframe) =>
+        cy.wrap($iframe.contents().find(elementSelector)).click(),
+      ),
+);
+
+Cypress.Commands.add(
+  'checkContentInElementInIframe',
+  (iframeSelector, elementSelector, text) =>
+    cy
+      .get(iframeSelector)
+      .then(($iframe) =>
+        cy
+          .wrap($iframe.contents().find(elementSelector))
+          .should('contain', text),
+      ),
 );

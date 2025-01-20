@@ -146,9 +146,12 @@ describe('Create Membership', () => {
           ...ITEM,
           memberships: [
             {
+              id: '97ebc357-5c7a-438c-b684-a34a35cf77a2',
               item: ITEM,
               permission: PermissionLevel.Read,
               account,
+              createdAt: '2021-08-11T12:56:36.834Z',
+              updatedAt: '2021-08-11T12:56:36.834Z',
             },
           ],
         },

@@ -14,19 +14,31 @@ import {
   buildMembershipRequestRowSelector,
 } from '@/config/selectors';
 
-import { CURRENT_USER } from '../fixtures/members';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 
 const itemWithRequests = PackedFolderItemFactory();
 const membershipRequests = [
-  { item: itemWithRequests, member: MemberFactory() },
-  { item: itemWithRequests, member: MemberFactory() },
-  { item: itemWithRequests, member: MemberFactory() },
+  {
+    item: itemWithRequests,
+    member: MemberFactory(),
+    createdAt: '2021-08-11T12:56:36.834Z',
+  },
+  {
+    item: itemWithRequests,
+    member: MemberFactory(),
+    createdAt: '2021-08-11T12:58:36.834Z',
+  },
+  {
+    item: itemWithRequests,
+    member: MemberFactory(),
+    createdAt: '2021-08-11T13:56:36.834Z',
+  },
 ];
 
 describe('Membership requests table', () => {
   it('Writers cannot see', () => {
     const itemWithWrite = PackedFolderItemFactory(
-      { creator: CURRENT_USER },
+      { creator: CURRENT_MEMBER },
       { permission: PermissionLevel.Write },
     );
     cy.setUpApi({ items: [itemWithWrite], membershipRequests });

@@ -3,7 +3,6 @@ import {
   FolderItemFactory,
   ItemType,
   PackedFolderItemFactory,
-  PermissionLevel,
   ShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
@@ -20,7 +19,7 @@ import {
   GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE,
   GRAASP_DOCUMENT_ITEM_VISIBLE,
 } from './documents';
-import { CURRENT_MEMBER, MEMBERS } from './members';
+import { CURRENT_MEMBER } from './members';
 import { mockHiddenTag, mockPublicTag } from './tags';
 
 export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
@@ -487,7 +486,7 @@ export const SHORTCUT = {
 export const generateLotsOfFoldersOnHome = ({
   folderCount,
   creator = DEFAULT_FOLDER_ITEM.creator,
-  memberships = DEFAULT_FOLDER_ITEM.memberships,
+  memberships = [],
 }: {
   folderCount: number;
   creator?: ItemForTest['creator'];

@@ -9,6 +9,6 @@
     "strict": true,
     "sourceMap": false
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": ["coverage", ".nyc_output"]
+  "include": ["**/*.ts"],
+  "exclude": ["coverage", ".nyc_output", "src/**/*.tsx"]
 }

@@ -11,13 +11,13 @@ import {
   buildLinkExtra,
 } from '@graasp/sdk';
 
+import { ItemForTest } from '../../support/types';
 import { MOCK_IMAGE_URL } from '../fileLinks';
 import { CURRENT_MEMBER } from '../members';
-import { MockItem } from '../mockTypes';
 import { mockItemTag } from '../tags';
 
 export const STATIC_ELECTRICITY: {
-  items: MockItem[];
+  items: ItemForTest[];
 } = {
   items: [
     FolderItemFactory({
@@ -188,7 +188,7 @@ export const STATIC_ELECTRICITY: {
           content: '',
         }),
       }),
-      filepath: MOCK_IMAGE_URL,
+      readFilepath: MOCK_IMAGE_URL,
     },
     DocumentItemFactory({
       id: 'gfbfed2a-4218-31eb-fe32-0522bc120065',
@@ -222,7 +222,7 @@ PUBLIC_STATIC_ELECTRICITY.items = PUBLIC_STATIC_ELECTRICITY.items.map(
   (item) => {
     const newItem = {
       ...item,
-      public: mockItemTag({ type: ItemVisibilityType.Public }),
+      visibilities: [mockItemTag({ item, type: ItemVisibilityType.Public })],
     };
     return newItem;
   },

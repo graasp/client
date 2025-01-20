@@ -27,7 +27,7 @@ import {
 } from '@graasp/sdk';
 
 export type ItemForTest = DiscriminatedItem & {
-  geolocation?: ItemGeolocation;
+  geolocation?: Partial<ItemGeolocation>;
   tags?: Tag[];
   thumbnails?: ThumbnailsBySize;
   visibilities?: ItemVisibility[];
@@ -35,7 +35,7 @@ export type ItemForTest = DiscriminatedItem & {
   readFilepath?: string;
   chat?: ChatMessage[];
   memberships?: ItemMembership[];
-  invitations?: Invitation[];
+  invitations?: Partial<Invitation>[];
   published?: ItemPublished;
   permission?: PermissionLevel | null;
   public?: ItemVisibility;
@@ -54,6 +54,7 @@ export type S3FileItemForTest = S3FileItemType & {
 export type FileItemForTest = LocalFileItemForTest | S3FileItemForTest;
 
 export type ApiConfig = {
+  currentGuest?: CompleteGuest | null;
   hasPassword?: boolean;
   currentProfile?: PublicProfile | null;
   getCurrentProfileError?: boolean;
@@ -61,7 +62,7 @@ export type ApiConfig = {
   items?: ItemForTest[];
   recycledItems?: DiscriminatedItem[];
   members?: MemberForTest[];
-  currentMember?: MemberForTest | CompleteGuest;
+  currentMember?: MemberForTest | null;
   mentions?: ChatMention[];
   shortLinks?: ShortLink[];
   itemId?: DiscriminatedItem['id'];

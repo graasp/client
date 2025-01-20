@@ -6,8 +6,8 @@ import {
   buildDocumentExtra,
 } from '@graasp/sdk';
 
+import { ItemForTest } from '../support/types';
 import { CURRENT_MEMBER, MEMBERS } from './members';
-import { MockItem } from './mockTypes';
 import { mockHiddenTag, mockPublicTag } from './tags';
 
 export const GRAASP_DOCUMENT_ITEM: DocumentItemType = DocumentItemFactory({
@@ -41,7 +41,7 @@ export const GRAASP_DOCUMENT_ITEM_VISIBLE: DocumentItemType =
     },
   });
 
-export const GRAASP_DOCUMENT_ITEM_HIDDEN: MockItem = {
+export const GRAASP_DOCUMENT_ITEM_HIDDEN: ItemForTest = {
   ...DocumentItemFactory({
     id: 'fdf09f5a-5688-11eb-ae93-0242ac130010',
     type: ItemType.DOCUMENT,
@@ -58,10 +58,10 @@ export const GRAASP_DOCUMENT_ITEM_HIDDEN: MockItem = {
     },
   }),
   hidden: mockHiddenTag(),
-  memberships: [{ memberId: MEMBERS.BOB.id, permission: PermissionLevel.Read }],
+  memberships: [{ account: MEMBERS.BOB, permission: PermissionLevel.Read }],
 };
 
-export const GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE: MockItem = {
+export const GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE: ItemForTest = {
   ...DocumentItemFactory({
     id: 'fdf09f5a-5688-11eb-ae93-0242ac130015',
     name: 'Public visible document',
@@ -79,7 +79,7 @@ export const GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE: MockItem = {
   public: mockPublicTag(),
 };
 
-export const GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN: MockItem = {
+export const GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN: ItemForTest = {
   ...DocumentItemFactory({
     id: 'fdf09f5a-5688-11eb-ae93-0242ac130010',
     type: ItemType.DOCUMENT,

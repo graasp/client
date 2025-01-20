@@ -1,11 +1,16 @@
-import { AppItemFactory, AppItemType, ItemType } from '@graasp/sdk';
+import {
+  AppItemFactory,
+  AppItemType,
+  ItemType,
+  PackedAppItemFactory,
+  PermissionLevel,
+} from '@graasp/sdk';
 
 import { API_HOST } from '../support/env';
+import { ItemForTest } from '../support/types';
 import { APP_NAME } from './apps/apps';
 import { DEFAULT_FOLDER_ITEM } from './items';
 import { CURRENT_MEMBER, MEMBERS } from './members';
-import { MockItem } from './mockTypes';
-import { mockPublicTag } from './tags';
 
 // mock an app with the graasp link
 export const GRAASP_APP_ITEM: AppItemType = AppItemFactory({
@@ -55,35 +60,42 @@ export const GRAASP_APP_CHILDREN_ITEM = AppItemFactory({
   creator: CURRENT_MEMBER,
 });
 
-export const APP_USING_CONTEXT_ITEM: MockItem = AppItemFactory({
-  id: 'ecafbd2a-5688-12eb-ae91-0272ac130002',
-  path: 'ecafbd2a_5688_12eb_ae91_0272ac130002',
-  name: 'my app',
-  description: 'my app description',
-  type: ItemType.APP,
-  settings: {},
-  extra: {
-    [ItemType.APP]: {
-      url: `${API_HOST}/${buildAppItemLinkForTest('app.html')}`,
-    },
-  },
-  creator: CURRENT_MEMBER,
-});
-
-export const PUBLIC_APP_USING_CONTEXT_ITEM: MockItem = {
-  ...AppItemFactory({
-    id: 'ecafbd2a-5688-12eb-ae91-0272ac130003',
-    path: 'ecafbd2a_5688_12eb_ae91_0272ac130003',
+export const APP_USING_CONTEXT_ITEM: ItemForTest = PackedAppItemFactory(
+  {
+    id: 'ecafbd2a-5688-12eb-ae91-0272ac130002',
+    path: 'ecafbd2a_5688_12eb_ae91_0272ac130002',
     name: 'my app',
     description: 'my app description',
+    type: ItemType.APP,
+    settings: {},
     extra: {
       [ItemType.APP]: {
         url: `${API_HOST}/${buildAppItemLinkForTest('app.html')}`,
       },
     },
-    creator: MEMBERS.BOB,
-  }),
-  public: mockPublicTag(),
+    creator: CURRENT_MEMBER,
+  },
+  {
+    permission: PermissionLevel.Admin,
+  },
+);
+
+export const PUBLIC_APP_USING_CONTEXT_ITEM: ItemForTest = {
+  ...PackedAppItemFactory(
+    {
+      id: 'ecafbd2a-5688-12eb-ae91-0272ac130003',
+      path: 'ecafbd2a_5688_12eb_ae91_0272ac130003',
+      name: 'my app',
+      description: 'my app description',
+      extra: {
+        [ItemType.APP]: {
+          url: `${API_HOST}/${buildAppItemLinkForTest('app.html')}`,
+        },
+      },
+      creator: MEMBERS.BOB,
+    },
+    { publicVisibility: {} },
+  ),
 };
 
 export const GRAASP_APP_ITEMS_FIXTURE = [

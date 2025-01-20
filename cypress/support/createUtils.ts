@@ -18,9 +18,9 @@ import {
   H5P_DASHBOARD_UPLOADER_ID,
   ZIP_DASHBOARD_UPLOADER_ID,
   buildDataCyWrapper,
-} from '../../config/selectors';
-import { InternalItemType } from '../../types';
-import { ZIPInternalItem } from '../fixtures/files';
+} from '../../src/config/selectors';
+import { InternalItemType } from '../../src/modules/builder/types';
+import { ZIPInternalItem } from '../e2e/builder/fixtures/files';
 import { FileItemForTest } from './types';
 
 export const createApp = (

@@ -1,5 +1,6 @@
 import {
   ChatMessage,
+  ItemVisibilityType,
   Member,
   PermissionLevel,
   PermissionLevelCompare,
@@ -9,7 +10,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
 
-import { MockItem } from '../fixtures/mockTypes';
+import { ItemForTest } from './types';
 
 // use simple id format for tests
 export const ID_FORMAT = '(?=.*[0-9])(?=.*[a-zA-Z])([a-z0-9-]+)';
@@ -96,9 +97,9 @@ export const parseStringToRegExp = (
 };
 
 export const getItemById = (
-  items: MockItem[],
+  items: ItemForTest[],
   targetId: string,
-): MockItem | undefined => items.find(({ id }) => targetId === id);
+): ItemForTest | undefined => items.find(({ id }) => targetId === id);
 
 export const getChatMessagesById = (
   chatMessages: ChatMessage[],
@@ -140,14 +141,12 @@ export const checkMemberHasAccess = ({
   items,
   member,
 }: {
-  item: MockItem;
-  items: MockItem[];
+  item: ItemForTest;
+  items: ItemForTest[];
   member: Member | null;
 }): undefined | { statusCode: number } => {
   if (
-    // @ts-expect-error move to packed item
     item.permission &&
-    // @ts-expect-error move to packed item
     PermissionLevelCompare.gte(item.permission, PermissionLevel.Read)
   ) {
     return undefined;
@@ -161,8 +160,8 @@ export const checkMemberHasAccess = ({
       (i) =>
         item.path.startsWith(i.path) &&
         i.memberships?.find(
-          ({ memberId, permission }) =>
-            memberId === member?.id &&
+          ({ account, permission }) =>
+            account.id === member?.id &&
             PermissionLevelCompare.gte(permission, PermissionLevel.Write),
         ),
     );
@@ -171,14 +170,18 @@ export const checkMemberHasAccess = ({
       (i) =>
         item.path.startsWith(i.path) &&
         i.memberships?.find(
-          ({ memberId, permission }) =>
-            memberId === member?.id &&
+          ({ account, permission }) =>
+            account.id === member?.id &&
             PermissionLevelCompare.lt(permission, PermissionLevel.Write),
         ),
     ) ?? false;
 
   const isHidden =
-    items.find((i) => item.path.startsWith(i.path) && i?.hidden) ?? false;
+    items.find(
+      (i) =>
+        item.path.startsWith(i.path) &&
+        i?.visibilities.find((v) => v.type === ItemVisibilityType.Hidden),
+    ) ?? false;
   const isPublic =
     items.find((i) => item.path.startsWith(i.path) && i?.public) ?? false;
   // user is more than a reader so he can access the item
@@ -196,10 +199,10 @@ export const checkMemberHasAccess = ({
 };
 
 export const getChildren = (
-  items: MockItem[],
-  item: MockItem,
+  items: ItemForTest[],
+  item: ItemForTest,
   member: Member | null,
-): MockItem[] =>
+): ItemForTest[] =>
   items.filter(
     (newItem) =>
       isChildOf(newItem.path, item.path) &&

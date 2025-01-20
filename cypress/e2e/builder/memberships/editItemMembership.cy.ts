@@ -10,8 +10,9 @@ import {
   buildPermissionOptionId,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
-import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { MEMBERS } from '../fixtures/members';
 import { ITEMS_WITH_MEMBERSHIPS } from '../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
@@ -86,13 +87,17 @@ describe('Edit Membership', () => {
       {
         id: 'membership-0',
         permission: PermissionLevel.Admin,
-        account: CURRENT_USER,
+        account: CURRENT_MEMBER,
         item: child,
+        createdAt: '2021-08-11T12:56:36.834Z',
+        updatedAt: '2021-08-11T12:56:36.834Z',
       },
       {
         id: 'membership-1',
         permission: PermissionLevel.Write,
         account: MEMBERS.BOB,
+        createdAt: '2021-08-11T12:56:36.834Z',
+        updatedAt: '2021-08-11T12:56:36.834Z',
         item,
       },
     ];

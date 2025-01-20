@@ -19,7 +19,7 @@ import {
 } from '../../src/config/selectors';
 import { ITEM_TYPES_WITH_CAPTIONS } from '../../src/modules/builder/constants';
 import { getHighestPermissionForMemberFromMemberships } from '../../src/modules/builder/utils/item';
-import { CURRENT_USER } from '../fixtures/members';
+import { CURRENT_MEMBER } from '../fixtures/members';
 import { ItemForTest, MemberForTest } from './types';
 
 const BR_REGEX = /<br(?:\s*\/?)>/g;
@@ -54,7 +54,7 @@ export const expectItemHeaderLayout = ({
 
 export const expectDocumentViewScreenLayout = ({
   item,
-  currentMember = CURRENT_USER,
+  currentMember = CURRENT_MEMBER,
 }: {
   item: DocumentItemType;
   currentMember?: MemberForTest;
@@ -68,7 +68,7 @@ export const expectDocumentViewScreenLayout = ({
 
 export const expectFileViewScreenLayout = ({
   item,
-  currentMember = CURRENT_USER,
+  currentMember = CURRENT_MEMBER,
 }: {
   item: ItemForTest;
   currentMember?: MemberForTest;
@@ -83,7 +83,7 @@ export const expectFileViewScreenLayout = ({
 
 export const expectLinkViewScreenLayout = ({
   item,
-  currentMember = CURRENT_USER,
+  currentMember = CURRENT_MEMBER,
 }: {
   item: LinkItemType;
   currentMember?: MemberForTest;
@@ -123,7 +123,7 @@ export const expectLinkViewScreenLayout = ({
 
 export const expectFolderViewScreenLayout = ({
   item,
-  currentMember = CURRENT_USER,
+  currentMember = CURRENT_MEMBER,
 }: {
   item: ItemForTest;
   currentMember?: MemberForTest | null;

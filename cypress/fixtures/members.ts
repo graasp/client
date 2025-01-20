@@ -6,7 +6,7 @@ import {
   PublicProfile,
 } from '@graasp/sdk';
 
-import { MemberForTest } from '../support/utils';
+import { MemberForTest } from '../support/types';
 import { AVATAR_LINK } from './thumbnails/links';
 
 export const MEMBER_WITH_AVATAR: MemberForTest = {
@@ -17,7 +17,7 @@ export const MEMBER_WITH_AVATAR: MemberForTest = {
     extra: { lang: 'en', hasAvatar: true },
   }),
   // this only exists for test
-  thumbnail: AVATAR_LINK,
+  thumbnails: AVATAR_LINK,
 };
 
 export const MEMBER_PUBLIC_PROFILE: PublicProfile = {

@@ -1,7 +1,23 @@
 import { ItemType, PackedAppItemFactory } from '@graasp/sdk';
 
+import 'cypress-iframe';
+
 import { buildAppItemLinkForTest } from '../../fixtures/apps';
 import { buildItemPath } from '../../utils';
+
+const clickElementInIframe = (
+  iframeSelector: string,
+  elementSelector: string,
+) => {
+  cy.iframe(iframeSelector).find(elementSelector).should('be.visible').click();
+};
+const checkContentInElementInIframe = (
+  iframeSelector: string,
+  elementSelector: string,
+  content: string,
+) => {
+  cy.iframe(iframeSelector).find(elementSelector).should('contain', content);
+};
 
 const APP = PackedAppItemFactory({
   extra: {
@@ -24,32 +40,32 @@ describe('Apps', () => {
     const iframeSelector = `iframe[title="${name}"]`;
 
     // check app receives successfully the context
-    cy.clickElementInIframe(iframeSelector, '#requestContext');
-    cy.checkContentInElementInIframe(
+    clickElementInIframe(iframeSelector, '#requestContext');
+    checkContentInElementInIframe(
       iframeSelector,
       '#requestContext-message',
       id,
     );
 
     // check app receives successfully the token
-    cy.clickElementInIframe(iframeSelector, '#requestToken');
-    cy.checkContentInElementInIframe(
+    clickElementInIframe(iframeSelector, '#requestToken');
+    checkContentInElementInIframe(
       iframeSelector,
       'ul',
       `GET_AUTH_TOKEN_SUCCESS_${id}`,
     );
 
     // check app can get app-data
-    cy.clickElementInIframe(iframeSelector, '#createAppData');
-    cy.checkContentInElementInIframe(iframeSelector, 'ul', 'get app data');
+    clickElementInIframe(iframeSelector, '#createAppData');
+    checkContentInElementInIframe(iframeSelector, 'ul', 'get app data');
     // check app can post app-data
-    cy.clickElementInIframe(iframeSelector, '#postAppData');
-    cy.checkContentInElementInIframe(iframeSelector, 'ul', 'post app data');
+    clickElementInIframe(iframeSelector, '#postAppData');
+    checkContentInElementInIframe(iframeSelector, 'ul', 'post app data');
     // check app can delete app-data
-    cy.clickElementInIframe(iframeSelector, '#deleteAppData');
-    cy.checkContentInElementInIframe(iframeSelector, 'ul', 'delete app data');
+    clickElementInIframe(iframeSelector, '#deleteAppData');
+    checkContentInElementInIframe(iframeSelector, 'ul', 'delete app data');
     // check app can patch app-data
-    cy.clickElementInIframe(iframeSelector, '#patchAppData');
-    cy.checkContentInElementInIframe(iframeSelector, 'ul', 'patch app data');
+    clickElementInIframe(iframeSelector, '#patchAppData');
+    checkContentInElementInIframe(iframeSelector, 'ul', 'patch app data');
   });
 });

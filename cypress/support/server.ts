@@ -2,6 +2,7 @@ import { API_ROUTES } from '@graasp/query-client';
 import {
   App,
   ChatMention,
+  CompleteGuest,
   CompleteMember,
   CompleteMembershipRequest,
   DiscriminatedItem,
@@ -123,8 +124,6 @@ const checkMembership = ({
   item: ItemForTest;
   currentMember: Member;
 }) => {
-  // todo: public
-  // TODO!!!
   return PermissionLevelCompare.gte(item.permission, PermissionLevel.Read);
 };
 
@@ -192,7 +191,8 @@ export const mockEditPublicProfile = (
 };
 
 export const mockGetCurrentMember = (
-  currentMember: CompleteMember | null = CURRENT_MEMBER,
+  currentMember: CompleteMember | null,
+  currentGuest: CompleteGuest | null,
   shouldThrowError = false,
 ): void => {
   cy.intercept(
@@ -203,7 +203,11 @@ export const mockGetCurrentMember = (
     ({ reply }) => {
       // simulate member accessing without log in
       if (currentMember == null) {
-        return reply({ statusCode: StatusCodes.UNAUTHORIZED });
+        if (currentGuest == null) {
+          return reply({ statusCode: StatusCodes.UNAUTHORIZED });
+        } else {
+          return reply(currentGuest);
+        }
       }
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST, body: null });
@@ -939,13 +943,13 @@ export const mockGetItem = (
     ({ url, reply }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
       const item = getItemById(items, itemId);
-
       // item does not exist in db
       if (!item) {
         return reply({
           statusCode: StatusCodes.NOT_FOUND,
         });
       }
+      console.log('werjhfgakjehfg', item);
 
       if (shouldThrowError) {
         return reply({
@@ -2105,30 +2109,6 @@ export const mockGetLoginSchemaType = (itemLogins: {
       });
     },
   ).as('getLoginSchemaType');
-};
-
-export const mockBuilder = (): void => {
-  cy.intercept(
-    {
-      method: HttpMethod.Get,
-      url: new RegExp(`${BUILDER_HOST}`),
-    },
-    ({ reply }) => {
-      reply(redirectionReply);
-    },
-  ).as('builder');
-};
-
-export const mockAnalytics = (): void => {
-  cy.intercept(
-    {
-      method: HttpMethod.Get,
-      url: new RegExp(ANALYTICS_HOST),
-    },
-    ({ reply }) => {
-      reply(redirectionReply);
-    },
-  ).as('analytics');
 };
 
 export const mockAppApiAccessToken = (shouldThrowError: boolean): void => {

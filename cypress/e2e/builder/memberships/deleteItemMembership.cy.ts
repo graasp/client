@@ -12,8 +12,9 @@ import {
   buildItemMembershipRowEditButtonId,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
-import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { MEMBERS } from '../fixtures/members';
 import { ITEMS_WITH_MEMBERSHIPS } from '../fixtures/memberships';
 import { buildItemPath } from '../utils';
 
@@ -68,7 +69,7 @@ describe('Delete Membership', () => {
           {
             id: v4(),
             permission: PermissionLevel.Admin,
-            account: CURRENT_USER,
+            account: CURRENT_MEMBER,
             item,
           } as unknown as ItemMembership,
           {

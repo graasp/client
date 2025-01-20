@@ -8,7 +8,6 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../.storybook/i18nTestInstance';
 import {
   buildDataCyWrapper,
   buildItemMembershipRowDeleteButtonId,
@@ -17,7 +16,8 @@ import {
   buildItemMembershipRowSelector,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
-import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
+import { MEMBERS } from '../fixtures/members';
 import { buildItemMembership } from '../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
@@ -60,7 +60,7 @@ const checkItemMembershipRow = ({
 }): void => {
   cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
     .should('contain', name)
-    .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+    .should('contain', permission);
 };
 
 describe('View Memberships - Individual', () => {
@@ -80,8 +80,6 @@ describe('View Memberships - Individual', () => {
     cy.visit(buildItemPath(item.id));
     cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
-
     // only admin - cannot edit, delete
     cy.get(buildDataCyWrapper(buildItemMembershipRowId(adminMembership.id)))
       .should('contain', adminMembership.account.name)
@@ -97,7 +95,7 @@ describe('View Memberships - Individual', () => {
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
         .should('contain', email)
-        .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+        .should('contain', permission);
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -163,7 +161,6 @@ describe('View Memberships - Hidden item', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
 
     // admin and write are enabled
@@ -235,7 +232,6 @@ describe('View Memberships - Hidden item', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
     // editable rows
     for (const { permission, account, id } of guestMemberships) {
@@ -246,7 +242,7 @@ describe('View Memberships - Hidden item', () => {
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
-        .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+        .should('contain', permission);
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -287,7 +283,6 @@ describe('View Memberships - Hidden item', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
     // editable rows
     for (const { permission, account, id } of guestMemberships) {
@@ -299,10 +294,7 @@ describe('View Memberships - Hidden item', () => {
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
         .should('not.contain', permission)
-        .should(
-          'contain',
-          i18n.t(ItemLoginSchemaStatus.Disabled, { ns: namespaces.enums }),
-        );
+        .should('contain', 'Disabled');
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -344,7 +336,6 @@ describe('View Memberships - Guest', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
     // editable rows
     for (const { permission, account, id } of guestMemberships) {
@@ -355,7 +346,7 @@ describe('View Memberships - Guest', () => {
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
-        .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+        .should('contain', permission);
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -395,7 +386,6 @@ describe('View Memberships - Guest', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
     // editable rows
     for (const { permission, account, id } of guestMemberships) {
@@ -406,7 +396,7 @@ describe('View Memberships - Guest', () => {
       // check name and disabled permission
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
-        .should('contain', i18n.t(permission, { ns: namespaces.enums }));
+        .should('contain', permission);
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -447,7 +437,6 @@ describe('View Memberships - Guest', () => {
         },
       ],
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     cy.visit(buildItemSharePath(item.id));
     // editable rows
     for (const { permission, account, id } of guestMemberships) {
@@ -459,10 +448,7 @@ describe('View Memberships - Guest', () => {
       cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
         .should('contain', name)
         .should('not.contain', permission)
-        .should(
-          'contain',
-          i18n.t(ItemLoginSchemaStatus.Disabled, { ns: namespaces.enums }),
-        );
+        .should('contain', 'Disabled');
 
       // check delete button exists
       cy.get(`#${buildItemMembershipRowDeleteButtonId(id)}`).should('exist');
@@ -503,15 +489,10 @@ describe('View Memberships Read-Only Mode', () => {
     cy.visit(buildItemPath(item.id));
     cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
-
     // can only see own permission - can edit, delete
     cy.get(buildItemMembershipRowSelector(ownMembership.id))
-      .should('contain', CURRENT_USER.email)
-      .should(
-        'contain',
-        i18n.t(ownMembership.permission, { ns: namespaces.enums }),
-      );
+      .should('contain', CURRENT_MEMBER.email)
+      .should('contain', ownMembership.permission);
 
     cy.get(`#${buildItemMembershipRowEditButtonId(ownMembership.id)}`).should(
       'be.visible',

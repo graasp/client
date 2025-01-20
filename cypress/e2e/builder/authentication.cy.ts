@@ -26,12 +26,12 @@ describe('Authentication', () => {
     describe('Load page correctly', () => {
       it('Home', () => {
         cy.visit('/builder');
-        cy.get(`#${HEADER_APP_BAR_ID}`).should('exist');
+        cy.get(`#${HEADER_APP_BAR_ID}`).should('be.visible');
       });
       it('Item', () => {
         cy.visit(`/builder/items/${ENV.items[0].id}`);
-        cy.get(`#${HEADER_APP_BAR_ID}`).should('exist');
-        cy.get(`.${ITEM_MAIN_CLASS}`).should('exist');
+        cy.get(`#${HEADER_APP_BAR_ID}`).should('be.visible');
+        cy.get(`.${ITEM_MAIN_CLASS}`).should('be.visible');
       });
     });
   });

@@ -1,8 +1,4 @@
-import {
-  FolderItemFactory,
-  LinkItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { FolderItemFactory, LinkItemFactory } from '@graasp/sdk';
 
 import {
   HOME_PAGE_PAGINATION_ID,
@@ -15,23 +11,16 @@ import {
   FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER,
   generateLotsOfFoldersOnHome,
 } from '../../fixtures/items';
-import { CURRENT_MEMBER, MEMBERS } from '../../fixtures/members';
+import { CURRENT_MEMBER } from '../../fixtures/members';
 import { buildContentPagePath, buildMainPath } from './utils';
 
 const items = generateLotsOfFoldersOnHome({ folderCount: 20 });
-const sharedItems = generateLotsOfFoldersOnHome({
-  folderCount: 11,
-  creator: MEMBERS.BOB,
-  memberships: [
-    { memberId: MEMBERS.ANNA.id, permission: PermissionLevel.Read },
-  ],
-});
 
 describe('Navigation', () => {
   // skipped for the moment
   it.skip('Show navigation on Home', () => {
     cy.setUpApi({
-      items: [...items, ...sharedItems],
+      items: [...items],
     });
     cy.visit('/');
 
