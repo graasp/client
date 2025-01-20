@@ -180,7 +180,7 @@ export const checkMemberHasAccess = ({
     items.find(
       (i) =>
         item.path.startsWith(i.path) &&
-        i?.visibilities.find((v) => v.type === ItemVisibilityType.Hidden),
+        i?.visibilities?.find((v) => v.type === ItemVisibilityType.Hidden),
     ) ?? false;
   const isPublic =
     items.find((i) => item.path.startsWith(i.path) && i?.public) ?? false;

@@ -124,7 +124,7 @@ const checkMembership = ({
   item: ItemForTest;
   currentMember: Member;
 }) => {
-  return PermissionLevelCompare.gte(item.permission, PermissionLevel.Read);
+  return PermissionLevelCompare.gte(item?.permission, PermissionLevel.Read);
 };
 
 export const redirectionReply = {

@@ -100,6 +100,7 @@ const TextEditor = ({
 
   useEffect(() => {
     // update the content with initialValue only when initialValue changes
+    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setContent(initialValue);
   }, [initialValue]);
 
