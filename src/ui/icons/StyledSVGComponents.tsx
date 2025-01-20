@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, SVGProps } from 'react';
 
 import { SxProps, styled } from '@mui/material';
 
@@ -7,7 +7,7 @@ type SVGWrapperProps = {
   viewBox?: string;
   size?: number;
   sx?: SxProps;
-} & React.SVGProps<SVGElement>;
+} & SVGProps<SVGElement>;
 
 const SVGWrapper = ({
   children,
@@ -28,7 +28,7 @@ const SVGWrapper = ({
 
 type SVGPathProps = {
   sx?: SxProps;
-} & React.SVGProps<SVGPathProps>;
+} & SVGProps<SVGPathProps>;
 const SVGPath = ({ d, sx }: SVGPathProps): JSX.Element => {
   const StyledPath = styled('path')();
   return <StyledPath d={d} sx={sx} />;

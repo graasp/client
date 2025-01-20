@@ -103,7 +103,6 @@ const ItemLoginScreen = ({
   ): void => {
     if (e.key === 'Enter') {
       if (withPassword) {
-        console.log(passwordFieldRef.current);
         // focus next field
         passwordFieldRef.current?.focus();
       } else {
@@ -128,6 +127,7 @@ const ItemLoginScreen = ({
       <Stack alignItems="center">
         <StyledTextField
           error={error}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onChange={onUsernameChange}
           label={t('Pseudonym')}

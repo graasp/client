@@ -58,6 +58,7 @@ export const GraaspButton = ({
 }: GraaspButtonProps): JSX.Element => (
   <Button
     role={role}
+    // eslint-disable-next-line jsx-a11y/no-autofocus
     autoFocus={autoFocus}
     className={className}
     color={color}

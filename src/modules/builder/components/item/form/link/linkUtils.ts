@@ -67,7 +67,6 @@ export const getSettingsFromLinkType = (
         showLinkButton: false,
       };
     }
-    // eslint-disable-next-line no-fallthrough
     case LinkType.Default:
     default: {
       return {

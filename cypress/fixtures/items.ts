@@ -2,6 +2,7 @@ import {
   DocumentItemFactory,
   FolderItemFactory,
   ItemType,
+  PackedDocumentItemFactory,
   PackedFolderItemFactory,
   ShortcutItemFactory,
   buildPathFromIds,
@@ -20,7 +21,6 @@ import {
   GRAASP_DOCUMENT_ITEM_VISIBLE,
 } from './documents';
 import { CURRENT_MEMBER } from './members';
-import { mockHiddenTag, mockPublicTag } from './tags';
 
 export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
   name: 'default folder',
@@ -381,18 +381,19 @@ export const FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
       },
     },
     GRAASP_DOCUMENT_ITEM_VISIBLE,
-    GRAASP_DOCUMENT_ITEM_HIDDEN,
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
-      name: 'hidden folder',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a-5688-11eb-ae93-0242ac130012',
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+    GRAASP_DOCUMENT_ITEM_HIDDEN(),
+    PackedDocumentItemFactory(
+      {
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
+        name: 'hidden folder',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a-5688-11eb-ae93-0242ac130012',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-      hidden: mockHiddenTag(),
-    },
+      { hiddenVisibility: {} },
+    ),
   ],
 };
 
@@ -452,17 +453,19 @@ export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
 
 export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
   items: [
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
-      name: 'public parent folder with hidden child',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130008',
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+    PackedFolderItemFactory(
+      {
+        ...DEFAULT_FOLDER_ITEM,
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
+        name: 'public parent folder with hidden child',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130008',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-      public: mockPublicTag(),
-    },
+      { publicVisibility: {} },
+    ),
     GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE,
     GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN,
   ],

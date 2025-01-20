@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Box,
   SpeedDial,
@@ -103,7 +104,7 @@ export const PlatformSwitch = ({
   /** Helper inner component: generates buttons from icons while capturing parent props */
   const PlatformButton = ({
     platform,
-    sx = {},
+    sx: localSX = {},
   }: {
     /** Platform which button should be rendered */
     platform: Platform;
@@ -117,7 +118,7 @@ export const PlatformSwitch = ({
     const Icon = PlatformIcons[platform];
 
     const tooltip = platformProps?.tooltip;
-    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
+    const sxProps = { ...localSX, ...(platformProps?.sx ?? {}) };
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -130,7 +131,7 @@ export const PlatformSwitch = ({
             cursor: platformProps?.disabled ? 'default' : 'pointer',
           }}
           data-testid={platform}
-          href={(!platformProps?.disabled && platformProps?.href) || '#'}
+          href={!platformProps?.disabled ? platformProps?.href : undefined}
           aria-disabled={platformProps?.disabled}
           data-umami-event={`header-navigation-switch-${platform}`}
         >
@@ -187,30 +188,33 @@ export const PlatformSwitch = ({
           direction={'down'}
           ariaLabel="platform switch dial"
         >
-          {Object.values(Platform).map((platform, index) => {
+          {Object.values(Platform).map((platform) => {
             const Icon = PlatformIcons[platform];
             const isSelectedPlatform = platform === selected;
-            const platformProps = platformsProps?.[platform];
-            const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
+            const localPlatformProps = platformsProps?.[platform];
+            const localSxProps = { ...sx, ...(platformProps?.sx ?? {}) };
             return (
               <SpeedDialAction
-                key={index}
+                key={platform}
                 icon={
                   <Icon
                     disabledColor={disabledColor}
-                    disabled={platformProps?.disabled}
+                    disabled={localPlatformProps?.disabled}
                     selected={isSelectedPlatform}
                     secondaryColor={accentColor}
                     primaryColor={color}
                     primaryOpacity={1}
                     size={size}
-                    sx={sxProps}
+                    sx={localSxProps}
                   />
                 }
-                tooltipTitle={platformProps?.tooltip}
+                tooltipTitle={localPlatformProps?.tooltip}
                 onClick={() => {
-                  if (!platformProps?.disabled && platformProps?.href) {
-                    location.assign(platformProps?.href);
+                  if (
+                    !localPlatformProps?.disabled &&
+                    localPlatformProps?.href
+                  ) {
+                    location.assign(localPlatformProps?.href);
                   }
                 }}
               />

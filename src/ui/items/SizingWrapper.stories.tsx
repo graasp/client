@@ -6,7 +6,9 @@ import { Meta, StoryObj } from '@storybook/react';
 
 import { SizingWrapper } from './SizingWrapper.js';
 
-const children = <img width="100%" src="https://picsum.photos/1000" />;
+const children = (
+  <img alt="cover" width="100%" src="https://picsum.photos/1000" />
+);
 
 const meta = {
   title: 'Items/SizingWrapper',
@@ -41,7 +43,9 @@ export const Default = {
 export const TallImage = {
   args: {
     size: MaxWidth.Medium,
-    children: <img width="100%" src="https://picsum.photos/1000/3000" />,
+    children: (
+      <img alt="cover" width="100%" src="https://picsum.photos/1000/3000" />
+    ),
   },
 };
 

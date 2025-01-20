@@ -1,7 +1,13 @@
 import { ReactNode, useState } from 'react';
 
-import { SxProps, Typography, styled } from '@mui/material';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  SxProps,
+  Typography,
+  styled,
+} from '@mui/material';
 
 import { ChevronDown } from 'lucide-react';
 
@@ -38,9 +44,9 @@ const Collapse = ({
 }: CollapseProps): JSX.Element => {
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const handleChange = (expanded: boolean) => () => {
-    setExpanded(!expanded);
-    onCollapse?.(!expanded);
+  const handleChange = (isExpanded: boolean) => () => {
+    setExpanded(!isExpanded);
+    onCollapse?.(!isExpanded);
   };
 
   return (

@@ -5,7 +5,7 @@ import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 
-import { Ordering } from '~builder/enums';
+import { Ordering, OrderingType } from '~builder/enums';
 
 import {
   AllSortingOptions,
@@ -19,18 +19,18 @@ export const useSorting = <T extends AllSortingOptions = SortingOptionsType>({
   ordering: o = Ordering.DESC,
 }: {
   sortBy?: T;
-  ordering: Ordering;
+  ordering: OrderingType;
 }): {
   sortBy: T;
-  ordering: Ordering;
+  ordering: OrderingType;
   setSortBy: Dispatch<T>;
-  setOrdering: Dispatch<Ordering>;
+  setOrdering: Dispatch<OrderingType>;
   sortFn: (a: DiscriminatedItem, b: DiscriminatedItem) => number;
 } => {
   const [sortBy, setSortBy] = useState<T>(
     s ?? (SortingOptions.ItemUpdatedAt as T),
   );
-  const [ordering, setOrdering] = useState<Ordering>(o);
+  const [ordering, setOrdering] = useState<OrderingType>(o);
 
   const sortFn = (a: DiscriminatedItem, b: DiscriminatedItem) => {
     const f = ordering === Ordering.ASC ? 1 : -1;

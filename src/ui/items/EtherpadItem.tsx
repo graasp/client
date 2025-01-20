@@ -41,6 +41,7 @@ const EtherpadItem = ({
 
   return (
     <iframe
+      title="etherpad frame"
       id={iframeId}
       src={src.href}
       frameBorder={0}

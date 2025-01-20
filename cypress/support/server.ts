@@ -48,7 +48,7 @@ import {
   MEMBER_PUBLIC_PROFILE,
 } from '../fixtures/members';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
-import { ANALYTICS_HOST, API_HOST, BUILDER_HOST } from './env';
+import { API_HOST } from './env';
 import { ItemForTest, MemberForTest } from './types';
 import {
   ID_FORMAT,
@@ -949,7 +949,6 @@ export const mockGetItem = (
           statusCode: StatusCodes.NOT_FOUND,
         });
       }
-      console.log('werjhfgakjehfg', item);
 
       if (shouldThrowError) {
         return reply({

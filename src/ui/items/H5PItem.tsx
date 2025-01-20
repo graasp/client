@@ -99,6 +99,7 @@ const H5PItem = ({
 
   let iframeH5Pitem = (
     <iframe
+      title="h5p frame"
       ref={iframeRef}
       id={iframeId}
       src={integrationUrl.href}

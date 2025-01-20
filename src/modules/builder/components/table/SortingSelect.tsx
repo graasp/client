@@ -17,7 +17,7 @@ import { ArrowDownNarrowWide, ArrowUpWideNarrow } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { SORTING_SELECT_SELECTOR_TEST_ID } from '@/config/selectors';
 
-import { Ordering } from '~builder/enums';
+import { Ordering, OrderingType } from '~builder/enums';
 
 import { AllSortingOptions, SortingOptions, SortingOptionsType } from './types';
 
@@ -38,8 +38,8 @@ export type SortingSelectProps<
 > = {
   sortBy: T;
   setSortBy: Dispatch<T>;
-  ordering: Ordering;
-  setOrdering: Dispatch<Ordering>;
+  ordering: OrderingType;
+  setOrdering: Dispatch<OrderingType>;
   options: T[];
 };
 

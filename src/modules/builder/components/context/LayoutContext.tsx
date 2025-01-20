@@ -2,10 +2,10 @@ import { createContext, useContext, useMemo } from 'react';
 
 import { useSearch } from '@tanstack/react-router';
 
-import { ItemLayoutMode } from '~builder/enums';
+import { ItemLayoutMode, ItemLayoutModeType } from '~builder/enums';
 
 interface LayoutContextInterface {
-  mode: ItemLayoutMode;
+  mode: ItemLayoutModeType;
 }
 
 export const LayoutContext = createContext<LayoutContextInterface>({

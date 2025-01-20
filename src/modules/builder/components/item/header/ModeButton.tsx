@@ -11,9 +11,9 @@ import { LAYOUT_MODE_BUTTON_ID } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
-import { ItemLayoutMode } from '~builder/enums';
+import { ItemLayoutMode, ItemLayoutModeType } from '~builder/enums';
 
-const ModeIcon = ({ mode }: { mode: ItemLayoutMode }) => {
+const ModeIcon = ({ mode }: { mode: ItemLayoutModeType }) => {
   const { color } = useButtonColor('primary');
   switch (mode) {
     case ItemLayoutMode.Map:

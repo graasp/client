@@ -33,7 +33,7 @@ describe('Published Items', () => {
     const guest = GuestFactory({
       itemLoginSchema: ItemLoginSchemaFactory({ item }),
     });
-    cy.setUpApi({ items: [item], currentMember: guest });
+    cy.setUpApi({ items: [item], currentMember: null, currentGuest: guest });
     cy.visit(PUBLISHED_ITEMS_PATH);
     cy.get(`#${PREVENT_GUEST_MESSAGE_ID}`).should('be.visible');
   });

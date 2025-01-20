@@ -126,7 +126,7 @@ describe('Check member info', () => {
     cy.get(`#${MEMBER_AVATAR_IMAGE_ID}`).should(
       'have.attr',
       'src',
-      MEMBER_WITH_AVATAR.thumbnail,
+      MEMBER_WITH_AVATAR.thumbnails,
     );
     // displays the correct member name
     cy.get(`#${MEMBER_USERNAME_DISPLAY_ID}`).should(

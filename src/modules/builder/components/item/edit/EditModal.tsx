@@ -32,6 +32,7 @@ const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
 
   useEffect(() => {
     if (item.id !== updatedItem.id) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setUpdatedItem(item);
     }
   }, [item, updatedItem.id]);

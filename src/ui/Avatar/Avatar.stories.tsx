@@ -140,9 +140,10 @@ export const Colors = {
         {Array.from(Array(64)).map((_, idx) => {
           const color = `${(idx * 4).toString(16).padStart(2, '0')}`;
           return (
-            <Stack direction="column" gap={1}>
-              {Array.from(Array(16)).map((_, sat) => (
+            <Stack key={idx} direction="column" gap={1}>
+              {Array.from(Array(16)).map((_other, sat) => (
                 <Box
+                  key={sat}
                   bgcolor={getColorFromId(`${color}${sat.toString(16)}`)}
                   height={20}
                   width={20}

@@ -62,18 +62,22 @@ export const DataSyncContextProvider = ({ children }: Props): JSX.Element => {
 
     switch (true) {
       case containsStatus(allStatus, SyncStatus.ERROR): {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setStatus(SyncStatus.ERROR);
         return;
       }
       case containsStatus(allStatus, SyncStatus.SYNCHRONIZING): {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setStatus(SyncStatus.SYNCHRONIZING);
         return;
       }
       case containsStatus(allStatus, SyncStatus.SYNCHRONIZED): {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setStatus(SyncStatus.SYNCHRONIZED);
         return;
       }
       default:
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setStatus(SyncStatus.NO_CHANGES);
     }
   };

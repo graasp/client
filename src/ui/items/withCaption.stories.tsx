@@ -23,7 +23,7 @@ const renderComponent = ({
       description,
       settings: { descriptionPlacement, alignment },
     },
-  })(<img src="https://picsum.photos/500" height="100%" />);
+  })(<img alt="cover" src="https://picsum.photos/500" height="100%" />);
 
 const meta: Meta<typeof renderComponent> = {
   title: 'Common/withCaption',

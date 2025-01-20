@@ -19,7 +19,7 @@ const ColorGrid = ({ cols, rows, size }: Props): JSX.Element => {
         const color = `${(idx * columnFactor).toString(16).padStart(2, '0')}`;
         return (
           <Stack direction="column" gap="4px">
-            {Array.from(Array(rows)).map((_, sat) => {
+            {Array.from(Array(rows)).map((_other, sat) => {
               const saturation = (sat * rowsFactor).toString(16);
               return (
                 <Box

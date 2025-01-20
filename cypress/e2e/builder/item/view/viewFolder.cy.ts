@@ -48,7 +48,8 @@ describe('View folder as guest', () => {
     });
     cy.setUpApi({
       items: [item],
-      currentMember: guest,
+      currentMember: null,
+      currentGuest: guest,
     });
     cy.visit(buildItemPath(item.id));
 
