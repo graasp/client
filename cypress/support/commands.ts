@@ -98,6 +98,7 @@ import {
   mockGetItemInvitations,
   mockGetItemLoginSchema,
   mockGetItemLoginSchemaType,
+  mockGetItemMembershipsForItem,
   mockGetItemThumbnailUrl,
   mockGetItemValidationGroups,
   mockGetItems,
@@ -434,7 +435,7 @@ Cypress.Commands.add(
 
     mockDeleteItemLoginSchema();
 
-    // mockGetItemMembershipsForItem(items, currentMember);
+    mockGetItemMembershipsForItem(items, currentMember);
 
     mockPostItemVisibility(cachedItems, currentMember, postItemVisibilityError);
 

@@ -70,9 +70,9 @@ const Select = <T extends string | number>({
       >
         {values.map(({ value: localValue, text, disabled: localDisabled }) => (
           <MenuItem
-            key={value}
+            key={localValue}
             id={buildOptionId?.(localValue)}
-            value={value}
+            value={localValue}
             disabled={Boolean(localDisabled)}
           >
             {text}

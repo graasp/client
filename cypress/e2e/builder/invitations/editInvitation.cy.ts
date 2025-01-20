@@ -20,9 +20,8 @@ const editInvitation = ({
 }) => {
   cy.get(`#${buildShareButtonId(itemId)}`).click();
   cy.get(`#${buildInvitationTableRowId(id)} [aria-label="Edit"]`).click();
-  const select = cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`);
-  select.click();
-  select.get(`#${buildPermissionOptionId(permission)}`).click();
+  cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`).click();
+  cy.get(`#${buildPermissionOptionId(permission)}`).click();
   cy.get('button[type="submit"]').click();
 };
 
