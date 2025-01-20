@@ -17,23 +17,33 @@ import {
   EMAIL_SIGN_UP_FIELD_ID,
   FLAVOR_SELECT_ID,
   FOLDER_FORM_DESCRIPTION_ID,
+  HOME_MODAL_ITEM_ID,
   ITEM_FORM_APP_URL_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_SELECTOR,
   ITEM_FORM_NAME_INPUT_ID,
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
+  LAYOUT_MODE_BUTTON_ID,
   MAGIC_LINK_EMAIL_FIELD_ID,
+  MY_GRAASP_ITEM_PATH,
   NAME_SIGN_UP_FIELD_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
   REGISTER_AGREEMENTS_CHECKBOX_ID,
   SHARE_BUTTON_SELECTOR,
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
+  TREE_MODAL_CONFIRM_BUTTON_ID,
   buildDataCyWrapper,
   buildFolderItemCardThumbnail,
+  buildItemCard,
   buildItemFormAppOptionId,
+  buildItemRowArrowId,
+  buildNavigationModalItemId,
   buildPermissionOptionId,
+  buildTreeItemId,
 } from '../../src/config/selectors';
+import { ItemLayoutMode } from '../../src/modules/builder/enums';
+import { getParentsIdsFromPath } from '../../src/modules/builder/utils/item';
 import {
   fillPasswordSignInLayout,
   fillSignInByMailLayout,
@@ -43,6 +53,7 @@ import {
   submitSignIn,
 } from '../e2e/auth/util';
 import { SAMPLE_MENTIONS } from '../e2e/builder/fixtures/chatbox';
+import { buildItemPath } from '../e2e/builder/utils';
 import {
   APPS_LIST,
   APP_NAME,
@@ -752,3 +763,74 @@ Cypress.Commands.add(
           .should('contain', text),
       ),
 );
+
+Cypress.Commands.add(
+  'handleTreeMenu',
+  (toItemPath, treeRootId = HOME_MODAL_ITEM_ID) => {
+    const ids =
+      toItemPath === MY_GRAASP_ITEM_PATH
+        ? []
+        : getParentsIdsFromPath(toItemPath);
+
+    [MY_GRAASP_ITEM_PATH, ...ids].forEach((value, idx, array) => {
+      cy.get(`#${treeRootId}`).then(($tree) => {
+        // click on the element
+        if (idx === array.length - 1) {
+          cy.wrap($tree)
+            .get(`#${buildNavigationModalItemId(value)}`)
+            .first()
+            .click();
+        }
+        // if can't find children click on parent (current value)
+        if (
+          idx !== array.length - 1 &&
+          !$tree.find(`#${buildTreeItemId(array[idx + 1], treeRootId)}`).length
+        ) {
+          cy.get(`#${buildNavigationModalItemId(value)}`)
+            .get(`#${buildItemRowArrowId(value)}`)
+            .first()
+            // hack to show button - cannot trigger with cypress
+            .invoke('attr', 'style', 'visibility: visible')
+            .click();
+        }
+      });
+    });
+
+    cy.get(`#${TREE_MODAL_CONFIRM_BUTTON_ID}`).click();
+  },
+);
+
+Cypress.Commands.add('attachFile', (selector, file, options = {}) => {
+  selector.selectFile(`cypress/fixtures/${file}`, options);
+});
+
+Cypress.Commands.add('attachFiles', (selector, filenames, options = {}) => {
+  const correctFilenames = filenames.map(
+    (filename) => `cypress/fixtures/${filename}`,
+  );
+  selector.selectFile(correctFilenames, options);
+});
+
+Cypress.Commands.add('goToItemInCard', (id) => {
+  // card component might have many click zone
+  cy.get(`#${buildItemCard(id)} a[href="${buildItemPath(id)}"]`)
+    .first()
+    .click();
+});
+
+Cypress.Commands.add('switchMode', (mode) => {
+  cy.get(`#${LAYOUT_MODE_BUTTON_ID}`).click({ force: true });
+  switch (mode) {
+    case ItemLayoutMode.Grid:
+      cy.get(`a[value="${ItemLayoutMode.Grid}"]`).click({ force: true });
+      break;
+    case ItemLayoutMode.List:
+      cy.get(`a[value="${ItemLayoutMode.List}"]`).click({ force: true });
+      break;
+    case ItemLayoutMode.Map:
+      cy.get(`a[value="${ItemLayoutMode.Map}"]`).click({ force: true });
+      break;
+    default:
+      throw new Error(`invalid mode ${mode} provided`);
+  }
+});

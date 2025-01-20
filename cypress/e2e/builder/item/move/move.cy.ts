@@ -6,6 +6,7 @@ import {
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
   MOVE_MANY_ITEMS_BUTTON_SELECTOR,
+  buildItemRowArrowId,
   buildItemsGridMoreButtonSelector,
   buildNavigationModalItemId,
 } from '../../../../../src/config/selectors';
@@ -18,6 +19,16 @@ const CHILD_CHILD = PackedFolderItemFactory({ parentItem: CHILD });
 const FOLDER2 = PackedFolderItemFactory();
 
 const items = [IMAGE_ITEM, FOLDER, FOLDER2, CHILD, CHILD_CHILD];
+
+const clickTreeMenuItem = (value: string) => {
+  // cy.wrap(tree)
+  cy.get(`#${buildNavigationModalItemId(value)}`)
+    .get(`#${buildItemRowArrowId(value)}`)
+    .first()
+    // hack to show button - cannot trigger with cypress
+    .invoke('attr', 'style', 'visibility: visible')
+    .click();
+};
 
 const openMoveModal = ({ id: movedItemId }: { id: string }) => {
   cy.get(buildItemsGridMoreButtonSelector(movedItemId)).click();
@@ -99,13 +110,13 @@ describe('Move Items', () => {
     cy.get(`#${buildNavigationModalItemId(parentId)} button`).should(
       'be.disabled',
     );
-    cy.clickTreeMenuItem(parentId);
+    clickTreeMenuItem(parentId);
 
     // self is disabled
     cy.get(`#${buildNavigationModalItemId(movedItemId)} button`).should(
       'be.disabled',
     );
-    cy.clickTreeMenuItem(movedItemId);
+    clickTreeMenuItem(movedItemId);
 
     // inner child is disabled
     cy.get(`#${buildNavigationModalItemId(childId)} button`).should(
@@ -142,7 +153,7 @@ describe('Move Items', () => {
     });
 
     // go to children item
-    cy.visit('/');
+    cy.visit('/builder');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);

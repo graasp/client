@@ -104,7 +104,7 @@ describe('Copy Item', () => {
     });
 
     // go to children item
-    cy.visit('/');
+    cy.visit('/builder');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
@@ -132,7 +132,7 @@ describe('Copy Item', () => {
     });
 
     // go to children item
-    cy.visit('/');
+    cy.visit('/builder');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);
