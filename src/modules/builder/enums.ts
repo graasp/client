@@ -1,23 +1,23 @@
-enum TreePreventSelection {
-  NONE = 'none',
-  SELF_AND_CHILDREN = 'selfAndChildren',
-}
+const TreePreventSelection = {
+  NONE: 'none',
+  SELF_AND_CHILDREN: 'selfAndChildren',
+} as const;
 
-enum ButtonVariants {
-  IconButton = 'icon',
-  Button = 'button',
-}
+const ButtonVariants = {
+  IconButton: 'icon',
+  Button: 'button',
+} as const;
 
-enum ItemLayoutMode {
-  List = 'list',
-  Grid = 'grid',
-  Map = 'map',
-}
+const ItemLayoutMode = {
+  List: 'list',
+  Grid: 'grid',
+  Map: 'map',
+} as const;
 
-enum Ordering {
-  ASC = 'asc',
-  DESC = 'desc',
-}
+const Ordering = {
+  ASC: 'asc',
+  DESC: 'desc',
+} as const;
 
 export const DEFAULT_ITEM_LAYOUT_MODE = ItemLayoutMode.List;
 

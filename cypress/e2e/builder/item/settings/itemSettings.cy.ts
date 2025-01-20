@@ -29,9 +29,10 @@ import {
   buildItemsGridMoreButtonSelector,
   buildSettingsButtonId,
 } from '../../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../fixtures/chatbox';
-import { CURRENT_USER, MEMBERS } from '../../fixtures/members';
+import { MEMBERS } from '../../fixtures/members';
 import { buildItemPath, buildItemSettingsPath } from '../../utils';
 
 describe('Item Settings', () => {
@@ -195,7 +196,7 @@ describe('Item Settings', () => {
               item,
               createdAt: '2021-08-11T12:56:36.834Z',
               updatedAt: '2021-08-11T12:56:36.834Z',
-              creator: CURRENT_USER,
+              creator: CURRENT_MEMBER,
             },
             {
               id: '78ad1166-3862-1593-a10c-d380e7b66674',

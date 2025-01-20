@@ -31,13 +31,13 @@ const { useItem } = hooks;
 type Props = {
   itemId: DiscriminatedItem['id'];
   isChatboxOpen: boolean;
-  toggleChatBox: () => void;
+  toggleChatbox: () => void;
 };
 
 const ItemHeaderActions = ({
   itemId,
   isChatboxOpen,
-  toggleChatBox,
+  toggleChatbox,
 }: Props): JSX.Element | null => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: item } = useItem(itemId);
@@ -85,7 +85,7 @@ const ItemHeaderActions = ({
             name: item.name,
           })}
           id={ITEM_CHATBOX_BUTTON_ID}
-          onClick={toggleChatBox}
+          onClick={toggleChatbox}
         />
         {canAdmin && <PublishButton itemId={item.id} />}
         {canWrite && <ItemSettingsButton itemId={item.id} />}

@@ -8,9 +8,9 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
+import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
+import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
-import { DEFAULT_FOLDER_ITEM } from './items';
-import { CURRENT_USER, MEMBERS } from './members';
 
 const item: FolderItemType = {
   ...DEFAULT_FOLDER_ITEM,
@@ -44,7 +44,7 @@ export const ITEM_WITH_CHATBOX_MESSAGES: ItemForTest = {
       item,
       createdAt: '2021-09-11T12:56:36.834Z',
       updatedAt: '2021-09-11T12:56:36.834Z',
-      creator: CURRENT_USER,
+      creator: CURRENT_MEMBER,
     },
     {
       id: '62cdf242-b480-4a61-8510-1991fb923912',
@@ -86,7 +86,7 @@ const ITEM_WITH_CHATBOX_MESSAGES_AND_ADMIN: ItemForTest = {
       item: items[0],
       createdAt: '2021-08-11T12:56:36.834Z', // '2021-08-11T12:56:36.834Z',
       updatedAt: '2021-08-11T12:56:36.834Z', // '2021-08-11T12:56:36.834Z',
-      creator: CURRENT_USER,
+      creator: CURRENT_MEMBER,
     },
     {
       id: '78ad1166-3862-1593-a10c-d380e7b66674',
@@ -110,7 +110,7 @@ export const ITEM_WITHOUT_CHATBOX_MESSAGES: ItemForTest = {
 export const SAMPLE_MENTIONS: ChatMention[] = [
   {
     id: '7062d5e6-a4a0-4828-b4b9-8bc9e21f7abd',
-    account: CURRENT_USER,
+    account: CURRENT_MEMBER,
     createdAt: '2021-08-11T12:56:36.834Z', // '2022-07-18T07:48:05.008Z',
     updatedAt: '2021-08-11T12:56:36.834Z', // '2022-07-18T07:48:05.008Z',
     status: MentionStatus.Unread,

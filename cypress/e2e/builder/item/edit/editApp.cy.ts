@@ -12,12 +12,12 @@ import {
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import {
   editCaptionFromViewPage,
   editItem,
 } from '../../../../support/editUtils';
-import { CURRENT_USER } from '../../fixtures/members';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const url = 'http://localhost:3334';
@@ -30,7 +30,7 @@ const newFields = {
 const GRAASP_APP_ITEM = PackedAppItemFactory({
   name: 'test app',
   description: 'my app description',
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
 });
 
 describe('Edit App', () => {

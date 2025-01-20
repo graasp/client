@@ -1,10 +1,10 @@
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectLinkViewScreenLayout } from '../../../../support/viewUtils';
 import {
   GRAASP_LINK_ITEM,
   GRAASP_LINK_ITEM_IFRAME_ONLY,
   YOUTUBE_LINK_ITEM,
 } from '../../fixtures/links';
-import { CURRENT_USER } from '../../fixtures/members';
 import { buildItemMembership } from '../../fixtures/memberships';
 import { buildItemPath } from '../../utils';
 
@@ -17,7 +17,7 @@ describe('Links', () => {
           memberships: [
             buildItemMembership({
               item: GRAASP_LINK_ITEM,
-              account: CURRENT_USER,
+              account: CURRENT_MEMBER,
             }),
           ],
         },
@@ -26,7 +26,7 @@ describe('Links', () => {
           memberships: [
             buildItemMembership({
               item: GRAASP_LINK_ITEM_IFRAME_ONLY,
-              account: CURRENT_USER,
+              account: CURRENT_MEMBER,
             }),
           ],
         },
@@ -35,7 +35,7 @@ describe('Links', () => {
           memberships: [
             buildItemMembership({
               item: YOUTUBE_LINK_ITEM,
-              account: CURRENT_USER,
+              account: CURRENT_MEMBER,
             }),
           ],
         },

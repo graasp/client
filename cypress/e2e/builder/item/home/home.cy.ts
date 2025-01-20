@@ -5,7 +5,6 @@ import {
   PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
   CREATE_ITEM_BUTTON_ID,
@@ -21,10 +20,10 @@ import {
 } from '../../../../../src/config/selectors';
 import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
 import { ITEM_PAGE_SIZE } from '../../../../../src/modules/builder/constants';
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { NAVIGATION_LOAD_PAUSE } from '../../../../support/constants';
 import { ItemForTest } from '../../../../support/types';
 import { generateOwnItems } from '../../fixtures/items';
-import { CURRENT_USER } from '../../fixtures/members';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const ownItems = generateOwnItems(30);
@@ -64,19 +63,18 @@ describe('Home', () => {
       cy.setUpApi({
         items: generateOwnItems(30),
       });
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       cy.visit(HOME_PATH);
     });
 
     it('Enabling show only created by me should trigger refetch', () => {
       cy.wait('@getAccessibleItems').then(({ request: { url } }) => {
-        expect(url).not.to.contain(CURRENT_USER.id);
+        expect(url).not.to.contain(CURRENT_MEMBER.id);
       });
 
       cy.get(`#${ACCESSIBLE_ITEMS_ONLY_ME_ID}`).click();
 
       cy.wait('@getAccessibleItems').then(({ request: { url } }) => {
-        expect(url).to.contain(CURRENT_USER.id);
+        expect(url).to.contain(CURRENT_MEMBER.id);
       });
     });
 
@@ -172,7 +170,6 @@ describe('Home', () => {
   describe('Navigation', () => {
     it('visit Home', () => {
       cy.setUpApi({ items: ITEMS });
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       cy.visit(HOME_PATH);
 
       cy.wait('@getAccessibleItems').then(({ response: { body } }) => {

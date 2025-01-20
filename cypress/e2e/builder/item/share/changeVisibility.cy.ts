@@ -155,6 +155,7 @@ describe('Visibility of an Item', () => {
       ...item,
       itemLoginSchema: {
         item,
+        status: ItemLoginSchemaStatus.Active,
         type: ItemLoginSchemaType.Username,
         id: 'efaf3d5a-5688-11eb-ae93-0242ac130002',
         createdAt: '2021-08-11T12:56:36.834Z',
@@ -192,6 +193,7 @@ describe('Visibility of an Item', () => {
       ...item,
       itemLoginSchema: {
         item,
+        status: ItemLoginSchemaStatus.Active,
         type: ItemLoginSchemaType.Username,
         id: 'efaf3d5a-5688-11eb-ae93-0242ac130002',
         createdAt: '2021-08-11T12:56:36.834Z',

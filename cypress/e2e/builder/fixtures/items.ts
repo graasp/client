@@ -1,6 +1,5 @@
 import {
   DiscriminatedItem,
-  ItemType,
   ItemValidation,
   ItemValidationGroup,
   ItemValidationProcess,
@@ -11,14 +10,9 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
+import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
 import { ApiConfig, ItemForTest } from '../../../support/types';
-import { CURRENT_USER, MEMBERS } from './members';
-
-export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
-  name: 'default folder',
-  extra: { [ItemType.FOLDER]: {} },
-  creator: CURRENT_USER,
-});
+import { MEMBERS } from './members';
 
 export const generateOwnItems = (number: number): ItemForTest[] => {
   const id = (i: number) => {

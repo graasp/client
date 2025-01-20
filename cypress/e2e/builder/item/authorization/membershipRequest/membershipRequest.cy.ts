@@ -6,7 +6,7 @@ import {
   buildDataCyWrapper,
 } from '@/config/selectors';
 
-import { CURRENT_USER } from '../../../fixtures/members';
+import { CURRENT_MEMBER } from '../../../../../fixtures/members';
 import { buildItemPath } from '../../../utils';
 
 it('Request membership when signed in', () => {
@@ -34,7 +34,12 @@ it('Membership request is already sent', () => {
   cy.setUpApi({
     items: [item],
     membershipRequests: [
-      { item, member: CURRENT_USER, status: MembershipRequestStatus.Pending },
+      {
+        item,
+        member: CURRENT_MEMBER,
+        status: MembershipRequestStatus.Pending,
+        createdAt: '2024-06-12T00:45:00Z',
+      },
     ],
   });
 

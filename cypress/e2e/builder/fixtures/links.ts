@@ -5,10 +5,10 @@ import {
   buildLinkExtra,
 } from '@graasp/sdk';
 
-import { CURRENT_USER } from './members';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 
 export const GRAASP_LINK_ITEM: LinkItemType = PackedLinkItemFactory({
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
   extra: buildLinkExtra({
     url: 'https://graasp.eu',
     html: '',
@@ -34,7 +34,7 @@ export const YOUTUBE_LINK_ITEM: LinkItemType = PackedLinkItemFactory({
   type: ItemType.LINK,
   name: 'graasp youtube link',
   description: 'a description for graasp youtube link',
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
   extra: buildLinkExtra({
     url: 'https://www.youtube.com/watch?v=FmiEgBMTPLo',
     html: '<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;"><iframe src="https://www.youtube.com/embed/FmiEgBMTPLo" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>',

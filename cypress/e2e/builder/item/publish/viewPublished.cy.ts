@@ -4,7 +4,6 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_SEARCH_INPUT_ID,
@@ -17,15 +16,14 @@ import {
   buildItemCard,
 } from '../../../../../src/config/selectors';
 import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
-import { BUILDER } from '../../../../../src/modules/builder/langs';
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { PublishedItemFactory } from '../../fixtures/items';
-import { CURRENT_USER } from '../../fixtures/members';
 import { PUBLISHED_ITEMS_PATH } from '../../utils';
 
 const items = [
-  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_USER })),
-  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_USER })),
-  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_USER })),
+  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_MEMBER })),
+  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_MEMBER })),
+  PublishedItemFactory(PackedFolderItemFactory({ creator: CURRENT_MEMBER })),
 ];
 const publishedItemData = items.map(({ published }) => published);
 
@@ -46,11 +44,11 @@ describe('Published Items', () => {
         items: [PackedFolderItemFactory()],
       });
       cy.visit(PUBLISHED_ITEMS_PATH);
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
-      const text = i18n.t(BUILDER.PUBLISHED_ITEMS_EMPTY, {
-        ns: 'builder',
-      });
-      cy.get(`#${PUBLISHED_ITEMS_ID}`).should('contain', text);
+
+      cy.get(`#${PUBLISHED_ITEMS_ID}`).should(
+        'contain',
+        "You didn't publish any items.",
+      );
     });
   });
 
@@ -60,19 +58,17 @@ describe('Published Items', () => {
         items,
         publishedItemData,
       });
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       cy.visit(PUBLISHED_ITEMS_PATH);
     });
 
     it('Empty search', () => {
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       const searchText = 'mysearch';
       cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
-      const text = i18n.t(BUILDER.PUBLISHED_ITEMS_NOT_FOUND_SEARCH, {
-        search: searchText,
-        ns: 'builder',
-      });
-      cy.get(`#${PUBLISHED_ITEMS_ID}`).should('contain', text);
+
+      cy.get(`#${PUBLISHED_ITEMS_ID}`).should(
+        'contain',
+        'No published item found for ',
+      );
     });
 
     it('New button should not exist', () => {

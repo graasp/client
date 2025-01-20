@@ -12,6 +12,10 @@ const ENV = {
 
 export default defineConfig({
   e2e: {
+    retries: {
+      openMode: 0,
+      runMode: 0,
+    },
     // needed for redirection tests to pass
     chromeWebSecurity: false,
     env: ENV,

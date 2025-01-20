@@ -1,6 +1,7 @@
 import {
   ChatMention,
   ChatMessage,
+  CompleteGuest,
   CompleteMember,
   CompleteMembershipRequest,
   DiscriminatedItem,
@@ -14,6 +15,7 @@ import {
   ItemVisibility,
   LocalFileItemType,
   MemberStorageItem,
+  MembershipRequestStatus,
   PermissionLevel,
   PublicProfile,
   PublicationStatus,
@@ -59,7 +61,7 @@ export type ApiConfig = {
   items?: ItemForTest[];
   recycledItems?: DiscriminatedItem[];
   members?: MemberForTest[];
-  currentMember?: MemberForTest;
+  currentMember?: MemberForTest | CompleteGuest;
   mentions?: ChatMention[];
   shortLinks?: ShortLink[];
   itemId?: DiscriminatedItem['id'];
@@ -67,7 +69,9 @@ export type ApiConfig = {
   recycledItemData?: RecycledItemData[];
   itemPublicationStatus?: PublicationStatus;
   publishedItemData?: ItemPublished[];
-  membershipRequests?: CompleteMembershipRequest[];
+  membershipRequests?: (CompleteMembershipRequest & {
+    status?: MembershipRequestStatus;
+  })[];
   itemValidationGroups?: ItemValidationGroup[];
   deleteItemsError?: boolean;
   postItemError?: boolean;

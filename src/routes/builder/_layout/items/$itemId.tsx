@@ -21,7 +21,6 @@ import {
 import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';
 import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
-import Redirect from '~builder/components/main/Redirect';
 import { OutletContext } from '~builder/contexts/OutletContext';
 import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
@@ -55,9 +54,7 @@ function RouteComponent() {
   const canAdmin = item?.permission
     ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin)
     : false;
-  if (!itemId) {
-    return <Redirect />;
-  }
+
   const errorStatusCode =
     (axios.isAxiosError(itemError) && itemError.status) || null;
 

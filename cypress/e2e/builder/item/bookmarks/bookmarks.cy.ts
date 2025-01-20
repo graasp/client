@@ -5,7 +5,6 @@ import {
   PackedItemBookmarkFactory,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   BOOKMARKED_ITEMS_ERROR_ALERT_ID,
   BOOKMARKED_ITEMS_ID,
@@ -20,8 +19,6 @@ import {
   buildItemCard,
 } from '../../../../../src/config/selectors';
 import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
-import { BUILDER } from '../../../../../src/modules/builder/langs';
-import { CURRENT_USER } from '../../fixtures/members';
 import { BOOKMARKED_ITEMS_PATH, HOME_PATH } from '../../utils';
 
 const BOOKMARKED_ITEMS = [
@@ -59,9 +56,7 @@ describe('Bookmarked Item', () => {
     });
 
     it('Show empty table', () => {
-      i18n.changeLanguage(CURRENT_USER.extra.lang);
-      const text = i18n.t(BUILDER.BOOKMARKS_NO_ITEM, { ns: 'builder' });
-      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('contain', text);
+      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('contain', 'No Items');
     });
   });
 
@@ -71,18 +66,17 @@ describe('Bookmarked Item', () => {
         items: [...ITEMS, NON_BOOKMARKED_ITEM],
         bookmarkedItems: BOOKMARKED_ITEMS,
       });
-      i18n.changeLanguage(CURRENT_USER.extra.lang);
       cy.visit(BOOKMARKED_ITEMS_PATH);
     });
 
     it('Empty search', () => {
       const searchText = 'mysearch';
       cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
-      const text = i18n.t(BUILDER.BOOKMARKS_NO_ITEM_SEARCH, {
-        search: searchText,
-        ns: 'builder',
-      });
-      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('contain', text);
+
+      cy.get(`#${BOOKMARKED_ITEMS_ID}`).should(
+        'contain',
+        `No items for ${searchText}`,
+      );
     });
 
     it("New button doesn't exist", () => {

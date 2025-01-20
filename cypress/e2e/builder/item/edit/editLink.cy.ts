@@ -8,12 +8,12 @@ import {
   buildEditButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import {
   editCaptionFromViewPage,
   editItem,
 } from '../../../../support/editUtils';
-import { CURRENT_USER } from '../../fixtures/members';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const EDITED_FIELDS = {
@@ -21,7 +21,7 @@ const EDITED_FIELDS = {
 };
 
 const GRAASP_LINK_ITEM = PackedLinkItemFactory({
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
   description: 'my link',
   extra: buildLinkExtra({
     url: 'https://graasp.eu',

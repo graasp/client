@@ -1,12 +1,10 @@
-import { Direction } from '@mui/material';
-
 import { Context, UnionOfConst } from '@graasp/sdk';
 
-export enum Variant {
-  TEXT = 'text',
-  RECT = 'rectangular',
-  CIRCLE = 'circular',
-}
+export const Variant = {
+  TEXT: 'text',
+  RECT: 'rectangular',
+  CIRCLE: 'circular',
+} as const;
 
 export type TooltipPlacement =
   | 'bottom-end'
@@ -41,27 +39,20 @@ export type ColorVariantsType = UnionOfConst<typeof ColorVariants>;
 
 export type IconSizeVariant = 'small' | 'medium' | 'large';
 
-export enum ActionButton {
-  ICON = 'icon',
-  ICON_BUTTON = 'iconButton',
-  MENU_ITEM = 'menuItem',
-}
+export const ActionButton = {
+  ICON: 'icon',
+  ICON_BUTTON: 'iconButton',
+  MENU_ITEM: 'menuItem',
+} as const;
 
-export type ActionButtonVariant = ActionButton | `${ActionButton}`;
+export type ActionButtonVariant = UnionOfConst<typeof ActionButton>;
 
 export type AllowedContext = Exclude<Context, Context.Unknown>;
 
-export enum CCSharing {
-  YES = 'yes',
-  NO = 'no',
-  ALIKE = 'alike',
-}
+export const CCSharing = {
+  YES: 'yes',
+  NO: 'no',
+  ALIKE: 'alike',
+} as const;
 
-export type CCSharingVariant = CCSharing | `${CCSharing}`;
-
-export type I18nInstance = {
-  language: string;
-  t: (s: string) => string;
-  dir: (l: string) => Direction;
-  changeLanguage: (lang: string) => void;
-};
+export type CCSharingVariant = UnionOfConst<typeof CCSharing>;

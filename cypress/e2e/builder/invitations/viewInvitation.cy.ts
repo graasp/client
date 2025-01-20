@@ -1,6 +1,5 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
-// import i18n from '../../../../.storybook/i18nTestInstance';
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
   buildInvitationTableRowId,
@@ -8,7 +7,7 @@ import {
   buildShareButtonId,
 } from '../../../../src/config/selectors';
 import { ITEMS_WITH_INVITATIONS } from '../fixtures/invitations';
-import { CURRENT_USER, MEMBERS } from '../fixtures/members';
+import { MEMBERS } from '../fixtures/members';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
 describe('View Invitations', () => {
@@ -17,7 +16,6 @@ describe('View Invitations', () => {
   });
 
   it('view invitation in share item modal', () => {
-    i18n.changeLanguage(CURRENT_USER.extra.lang);
     const item = ITEMS_WITH_INVITATIONS.items[1];
     const { invitations } = item;
     cy.visit(buildItemSharePath(item.id));
@@ -31,7 +29,7 @@ describe('View Invitations', () => {
         }
         cy.get(`#${buildInvitationTableRowId(id)}`)
           .should('contain', email)
-          .should('contain', i18n.t(permission, { ns: 'enums' }));
+          .should('contain', permission);
 
         cy.get(
           `#${buildInvitationTableRowId(

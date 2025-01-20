@@ -1,7 +1,7 @@
 import { DiscriminatedItem, ItemType, buildDocumentExtra } from '@graasp/sdk';
 
-import { DEFAULT_FOLDER_ITEM } from './items';
-import { CURRENT_USER } from './members';
+import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 
 export const FOLDER_WITH_TWO_DOCUMENTS: DiscriminatedItem[] = [
   {
@@ -16,7 +16,7 @@ export const FOLDER_WITH_TWO_DOCUMENTS: DiscriminatedItem[] = [
     name: 'doc1',
     path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130002',
 
-    creator: CURRENT_USER,
+    creator: CURRENT_MEMBER,
     extra: buildDocumentExtra({
       content: 'some text',
     }),

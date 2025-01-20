@@ -4,7 +4,6 @@ import {
   ItemValidationGroup,
   ItemValidationStatus,
   ItemVisibilityType,
-  Member,
   PackedFolderItemFactory,
   PackedItem,
   PermissionLevel,
@@ -20,7 +19,7 @@ import {
   buildPublicationStatus,
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
-import { ItemForTest } from '../../../../support/types';
+import { ItemForTest, MemberForTest } from '../../../../support/types';
 import {
   ItemValidationGroupFactory,
   PublishedItemFactory,
@@ -42,7 +41,7 @@ const setUpAndVisitItemPage = (
   }: {
     itemPublicationStatus?: PublicationStatus;
     itemValidationGroups?: ItemValidationGroup[];
-    currentMember?: Member | null;
+    currentMember?: MemberForTest;
   } = {},
 ) => {
   cy.setUpApi({

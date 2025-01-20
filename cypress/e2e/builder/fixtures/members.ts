@@ -85,7 +85,6 @@ export const MEMBERS: Record<string, MemberForTest> = {
   }),
 };
 
-export const CURRENT_USER = MEMBERS.ANNA;
 export const NOT_VALIDATED_MEMBER = MEMBERS.GARRY;
 export const VALIDATED_MEMBER = MEMBERS.ANNA;
 export const LEGACY_NOT_VALIDATED_MEMBER = {

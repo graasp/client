@@ -5,15 +5,12 @@ import {
   PackedRecycledItemDataFactory,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   PREVENT_GUEST_MESSAGE_ID,
   RECYCLED_ITEMS_ERROR_ALERT_ID,
   RECYCLED_ITEMS_ROOT_CONTAINER,
   buildItemCard,
 } from '../../../../../src/config/selectors';
-import { BUILDER } from '../../../../../src/modules/builder/langs';
-import { CURRENT_USER } from '../../fixtures/members';
 import { RECYCLE_BIN_PATH } from '../../utils';
 
 const recycledItemData = [
@@ -39,9 +36,10 @@ describe('View trash', () => {
         items: recycledItemData.map(({ item }) => item),
       });
       cy.visit(RECYCLE_BIN_PATH);
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
-      const text = i18n.t(BUILDER.TRASH_NO_ITEM, { ns: 'builder' });
-      cy.get(`#${RECYCLED_ITEMS_ROOT_CONTAINER}`).should('contain', text);
+      cy.get(`#${RECYCLED_ITEMS_ROOT_CONTAINER}`).should(
+        'contain',
+        'You trash is empty.',
+      );
     });
   });
 
@@ -51,7 +49,6 @@ describe('View trash', () => {
         items: recycledItemData.map(({ item }) => item),
         recycledItemData,
       });
-      i18n.changeLanguage(CURRENT_USER.extra.lang as string);
       cy.visit(RECYCLE_BIN_PATH);
     });
 

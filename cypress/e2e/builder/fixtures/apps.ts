@@ -7,7 +7,7 @@ import {
 } from '@graasp/sdk';
 
 import { APPS_LIST } from '../../../fixtures/apps/apps';
-import { CURRENT_USER } from './members';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
 
 export const buildAppApiAccessTokenRoute = (id: string): string =>
   `app-items/${id}/api-access-token`;
@@ -21,14 +21,14 @@ export const GRAASP_APP_ITEM: AppItemType = PackedAppItemFactory({
   extra: {
     [ItemType.APP]: { url: APPS_LIST[0].url },
   },
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
 });
 export const GRAASP_CUSTOM_APP_ITEM: AppItemType = PackedAppItemFactory({
   name: 'Add Your Custom App',
   extra: {
     [ItemType.APP]: { url: APPS_LIST[0].url },
   },
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
 });
 
 export const GRAASP_APP_PARENT_FOLDER: FolderItemType = PackedFolderItemFactory(
@@ -44,7 +44,7 @@ export const GRAASP_APP_CHILDREN_ITEM: AppItemType = PackedAppItemFactory({
       url: 'http://localhost.com:3333',
     },
   },
-  creator: CURRENT_USER,
+  creator: CURRENT_MEMBER,
   parentItem: GRAASP_APP_PARENT_FOLDER,
 });
 

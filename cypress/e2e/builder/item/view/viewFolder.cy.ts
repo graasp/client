@@ -5,7 +5,6 @@ import {
   PermissionLevel,
 } from '@graasp/sdk';
 
-// import i18n from '../../../../../.storybook/i18nTestInstance';
 import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_HEADER_ID,
@@ -24,7 +23,6 @@ import {
 import { SortingOptionsForFolder } from '../../../../../src/modules/builder/components/table/types';
 import { ItemLayoutMode } from '../../../../../src/modules/builder/enums';
 import { expectFolderViewScreenLayout } from '../../../../support/viewUtils';
-import { CURRENT_USER } from '../../fixtures/members';
 import { buildItemPath } from '../../utils';
 
 const parentItem = PackedFolderItemFactory();
@@ -91,7 +89,6 @@ describe('view Folder as admin', () => {
     cy.setUpApi({
       items,
     });
-    i18n.changeLanguage(CURRENT_USER.extra.lang as string);
   });
 
   it('View folder on map by default', () => {

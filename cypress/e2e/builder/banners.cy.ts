@@ -1,8 +1,7 @@
 import {
   MEMBER_VALIDATION_BANNER_CLOSE_BUTTON_ID,
   MEMBER_VALIDATION_BANNER_ID,
-} from '@/config/selectors';
-
+} from '../../../src/config/selectors';
 import {
   LEGACY_NOT_VALIDATED_MEMBER,
   NOT_VALIDATED_MEMBER,

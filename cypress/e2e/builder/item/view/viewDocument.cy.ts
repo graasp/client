@@ -1,7 +1,7 @@
 import { PackedDocumentItemFactory } from '@graasp/sdk';
 
+import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectDocumentViewScreenLayout } from '../../../../support/viewUtils';
-import { CURRENT_USER } from '../../fixtures/members';
 import { buildItemMembership } from '../../fixtures/memberships';
 import { buildItemPath } from '../../utils';
 
@@ -17,7 +17,7 @@ describe('View Document', () => {
             memberships: [
               buildItemMembership({
                 item: DOCUMENT,
-                account: CURRENT_USER,
+                account: CURRENT_MEMBER,
               }),
             ],
           },

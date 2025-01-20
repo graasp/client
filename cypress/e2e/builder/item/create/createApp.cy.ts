@@ -1,8 +1,8 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import { APPS_LIST } from '../../../../fixtures/apps/apps';
 import { createApp } from '../../../../support/createUtils';
 import { GRAASP_APP_ITEM, GRAASP_CUSTOM_APP_ITEM } from '../../fixtures/apps';
-import { APPS_LIST } from '../../fixtures/apps/apps';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const FOLDER = PackedFolderItemFactory();
