@@ -120,6 +120,7 @@ const AppItem = ({
         // this ensures that the index.html can not be aggressively cached by the browser
         [CURRENT_TIMESTAMP_QUERY_PARAM]: Date.now().toString(),
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [item],
   );
 

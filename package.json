@@ -86,7 +86,7 @@
     "start:test": "vite --mode test",
     "build": "tsc -b && vite build",
     "build:dev": "tsc -b && vite build --mode development",
-    "build:test": "vite build --mode test",
+    "build:test": "tsc -b && vite build --mode test",
     "preview": "vite preview",
     "preview:dev": "vite preview --mode development",
     "preview:test": "vite preview --mode test",
