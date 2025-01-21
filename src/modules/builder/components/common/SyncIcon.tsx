@@ -7,10 +7,10 @@ import { Chip, useTheme } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
-import { SyncStatus } from '../context/DataSyncContext';
+import { SyncStatus, SyncStatusType } from '../context/DataSyncContext';
 
 type Props = {
-  syncStatus: SyncStatus;
+  syncStatus: SyncStatusType;
 };
 
 const ICON_COLOR = '#BBB';

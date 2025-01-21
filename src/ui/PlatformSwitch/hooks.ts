@@ -1,14 +1,17 @@
+import { UnionOfConst } from '@graasp/sdk';
+
 /** Enumeration of available platforms */
-export enum Platform {
-  Builder = 'builder',
-  Player = 'player',
-  Library = 'library',
-  Analytics = 'analytics',
-}
+export const Platform = {
+  Builder: 'builder',
+  Player: 'player',
+  Library: 'library',
+  Analytics: 'analytics',
+} as const;
+export type PlatformType = UnionOfConst<typeof Platform>;
 
 /** Maps each Platform to a URL generator function */
 export type HostsMapper = Partial<
-  Record<Platform, (itemId?: string) => string | undefined>
+  Record<PlatformType, (itemId?: string) => string | undefined>
 >;
 
 /**
@@ -24,10 +27,10 @@ export type HostsMapper = Partial<
  * For any advanced usage, create your own {@see HostsMapper}
  */
 export function defaultHostsMapper(
-  hostsUrls: Partial<Record<Platform, string>>,
+  hostsUrls: Partial<Record<PlatformType, string>>,
 ): HostsMapper {
   const urlBuilders: Record<
-    Platform,
+    PlatformType,
     (origin: string, itemId: string) => string
   > = {
     [Platform.Builder]: (origin: string, itemId: string) =>
@@ -50,7 +53,9 @@ export function defaultHostsMapper(
         platform,
         // if passed itemId is undefined, redirect to home page of platform
         (itemId: string) =>
-          itemId ? urlBuilders[platform as Platform](origin, itemId) : origin,
+          itemId
+            ? urlBuilders[platform as PlatformType](origin, itemId)
+            : origin,
       ];
     }),
   ) as HostsMapper;
@@ -66,7 +71,7 @@ export function usePlatformNavigation(
   hostsMapper: HostsMapper,
   itemId?: string,
 ) {
-  return (platform: Platform) => {
+  return (platform: PlatformType) => {
     const url = hostsMapper[platform]?.(itemId);
     const href = url ?? '#';
     return {

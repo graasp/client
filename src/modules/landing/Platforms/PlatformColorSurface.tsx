@@ -2,7 +2,7 @@ import { Stack, SxProps, Typography, styled } from '@mui/material';
 
 import { ReactNode } from '@tanstack/react-router';
 
-import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { PlatformType } from '@/ui/PlatformSwitch/hooks';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 const StyledStack = styled(Stack)(({ theme }) => ({
@@ -16,7 +16,7 @@ const StyledStack = styled(Stack)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled('a')<{ color: `${Platform}` }>(
+const StyledButton = styled('a')<{ color: PlatformType }>(
   ({ theme, color }) => ({
     borderRadius: theme.spacing(1),
     color: theme.palette[color].main,
@@ -48,7 +48,7 @@ type IconComponentType = (props: {
 }) => JSX.Element;
 
 type PlatformColorSurfaceProps = {
-  color: `${Platform}`;
+  color: PlatformType;
   text: ReactNode;
   Icon: IconComponentType;
   button: {

@@ -1,7 +1,9 @@
 import { DiscriminatedItem } from '@graasp/sdk';
 
-export enum InternalItemType {
-  ZIP = 'zip',
-}
+export const InternalItemType = {
+  ZIP: 'zip',
+} as const;
 
-export type NewItemTabType = DiscriminatedItem['type'] | InternalItemType.ZIP;
+export type NewItemTabType =
+  | DiscriminatedItem['type']
+  | typeof InternalItemType.ZIP;

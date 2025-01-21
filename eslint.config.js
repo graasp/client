@@ -139,7 +139,13 @@ export default [
   {
     files: ['**/*.ts', '**/*.tsx'],
     rules: {
-      'no-restricted-syntax': 'error',
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'TSEnumDeclaration',
+          message: 'Use a const object and string unions instead.',
+        },
+      ],
     },
   },
   {

@@ -12,6 +12,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 
 import ThumbnailUploader, {
   EventChanges,
+  EventChangesType,
 } from '~builder/components/thumbnails/ThumbnailUploader';
 import { BUILDER } from '~builder/langs';
 
@@ -34,7 +35,7 @@ export const PublicationThumbnail = ({
   // not sure about this value
   const title = 'my-categories';
 
-  const handleChange = (e: EventChanges) => {
+  const handleChange = (e: EventChangesType) => {
     switch (e) {
       case EventChanges.ON_UPLOADING:
       case EventChanges.ON_HAS_THUMBNAIL:

@@ -6,7 +6,7 @@ import { Snowflake } from 'lucide-react';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
 import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';
-import { Platform } from './hooks.js';
+import { Platform, PlatformType } from './hooks.js';
 
 const MOCK_PLATFORM_PROPS = {
   [Platform.Builder]: {
@@ -41,7 +41,7 @@ type Story = StoryObj<typeof PlatformSwitch>;
 
 const checkHref = async (
   canvas: BoundFunctions<typeof queries>,
-  platform: Platform,
+  platform: PlatformType,
   platformsProps: PlatformSwitchProps['platformsProps'],
 ): Promise<void> => {
   const button = await canvas.findByTestId(platform);

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { Box, CircularProgress, useTheme } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
+import { PackedItem, UnionOfConst } from '@graasp/sdk';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 
@@ -12,12 +12,13 @@ import useThumbnailUploader from './ThumbnailUploader.hook';
 const THUMBNAIL_SIZE = 150;
 const THUMBNAIL_BORDER = '1px solid #ddd';
 
-export enum EventChanges {
-  ON_UPLOADING = 'onUploading',
-  ON_HAS_THUMBNAIL = 'onHasThumbnail',
-  ON_NO_THUMBNAIL = 'onNoThumbnail',
-  ON_LOADING = 'onLoading',
-}
+export const EventChanges = {
+  ON_UPLOADING: 'onUploading',
+  ON_HAS_THUMBNAIL: 'onHasThumbnail',
+  ON_NO_THUMBNAIL: 'onNoThumbnail',
+  ON_LOADING: 'onLoading',
+} as const;
+export type EventChangesType = UnionOfConst<typeof EventChanges>;
 
 type Props = {
   item: PackedItem;
@@ -26,7 +27,7 @@ type Props = {
   syncStatusKey?: string;
   topCornerElement?: JSX.Element;
 
-  onChange?: (event: EventChanges) => void;
+  onChange?: (event: EventChangesType) => void;
 };
 
 export const ThumbnailUploader = ({

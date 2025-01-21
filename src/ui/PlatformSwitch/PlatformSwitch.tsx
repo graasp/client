@@ -15,7 +15,7 @@ import BuildIcon from '../icons/BuildIcon.js';
 import LibraryIcon from '../icons/LibraryIcon.js';
 import PlayIcon from '../icons/PlayIcon.js';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
-import { Platform } from './hooks.js';
+import { Platform, PlatformType } from './hooks.js';
 
 export type PlatformSwitchProps = {
   /** Element ID of the Platform Switch */
@@ -33,11 +33,11 @@ export type PlatformSwitchProps = {
   /** Style overrides to apply to the switch frame */
   sx?: SxProps;
   /** Platform that should be currently highlighted */
-  selected?: Platform;
+  selected?: PlatformType;
   /** Platform-specific icon props */
   platformsProps?: Partial<
     Record<
-      Platform,
+      PlatformType,
       {
         /** Element ID of this specific platform button */
         id?: string;
@@ -75,7 +75,7 @@ type IconProps = {
 };
 
 /** Mapping from platform to their icons */
-const PlatformIcons: Record<Platform, (props: IconProps) => JSX.Element> = {
+const PlatformIcons: Record<PlatformType, (props: IconProps) => JSX.Element> = {
   [Platform.Builder]: BuildIcon,
   [Platform.Player]: PlayIcon,
   [Platform.Library]: LibraryIcon,
@@ -107,7 +107,7 @@ export const PlatformSwitch = ({
     sx: localSX = {},
   }: {
     /** Platform which button should be rendered */
-    platform: Platform;
+    platform: PlatformType;
     /** Styles applied to the underlying icon */
     sx?: SxProps;
   }): JSX.Element => {

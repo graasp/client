@@ -7,12 +7,15 @@ import {
   useState,
 } from 'react';
 
-export enum SyncStatus {
-  NO_CHANGES = 'noChanges',
-  SYNCHRONIZED = 'synchronized',
-  ERROR = 'error',
-  SYNCHRONIZING = 'synchronizing',
-}
+import type { UnionOfConst } from '@graasp/sdk';
+
+export const SyncStatus = {
+  NO_CHANGES: 'noChanges',
+  SYNCHRONIZED: 'synchronized',
+  ERROR: 'error',
+  SYNCHRONIZING: 'synchronizing',
+} as const;
+export type SyncStatusType = UnionOfConst<typeof SyncStatus>;
 
 type ComputeStatusParam = {
   isLoading: boolean;
@@ -21,7 +24,7 @@ type ComputeStatusParam = {
 };
 
 type DataSyncContextType = {
-  status: SyncStatus;
+  status: SyncStatusType;
   computeStatusFor: (
     requestKey: string,
     requestStatus: ComputeStatusParam,
@@ -41,7 +44,7 @@ type Props = {
   children: JSX.Element | JSX.Element[];
 };
 
-const containsStatus = (allStatus: SyncStatus[], status: SyncStatus) =>
+const containsStatus = (allStatus: SyncStatusType[], status: SyncStatusType) =>
   allStatus.some((s) => s === status);
 
 /**
@@ -52,12 +55,12 @@ const containsStatus = (allStatus: SyncStatus[], status: SyncStatus) =>
  *
  */
 export const DataSyncContextProvider = ({ children }: Props): JSX.Element => {
-  const [status, setStatus] = useState(SyncStatus.NO_CHANGES);
-  const [mapStatus, setMapStatus] = useState<Map<string, SyncStatus>>(
+  const [status, setStatus] = useState<SyncStatusType>(SyncStatus.NO_CHANGES);
+  const [mapStatus, setMapStatus] = useState<Map<string, SyncStatusType>>(
     new Map(),
   );
 
-  const updateStatus = (newMapStatus: Map<string, SyncStatus>) => {
+  const updateStatus = (newMapStatus: Map<string, SyncStatusType>) => {
     const allStatus = Array.from(newMapStatus.values());
 
     switch (true) {
@@ -99,7 +102,7 @@ export const DataSyncContextProvider = ({ children }: Props): JSX.Element => {
       requestKey: string,
       { isLoading, isSuccess, isError }: ComputeStatusParam,
     ) => {
-      let statusSync: SyncStatus | undefined;
+      let statusSync: SyncStatusType | undefined;
 
       if (isSuccess) {
         statusSync = SyncStatus.SYNCHRONIZED;

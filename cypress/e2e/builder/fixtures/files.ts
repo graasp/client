@@ -122,7 +122,10 @@ export const PDF_ITEM_DEFAULT: LocalFileItemForTest = {
   createFilepath: ICON_FILEPATH,
   readFilepath: MOCK_PDF_URL,
 };
-export type ZIPInternalItem = { type: InternalItemType.ZIP; filepath: string };
+export type ZIPInternalItem = {
+  type: typeof InternalItemType.ZIP;
+  filepath: string;
+};
 export const ZIP_DEFAULT: ZIPInternalItem = {
   type: InternalItemType.ZIP,
   filepath: 'files/graasp.zip',
