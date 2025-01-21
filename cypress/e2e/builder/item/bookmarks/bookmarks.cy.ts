@@ -71,6 +71,7 @@ describe('Bookmarked Item', () => {
 
     it('Empty search', () => {
       const searchText = 'mysearch';
+      cy.wait('@getBookmarkedItems');
       cy.get(`#${ITEM_SEARCH_INPUT_ID}`).should('not.be.disabled');
       cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText, { delay: 100 });
 

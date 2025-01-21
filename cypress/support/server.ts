@@ -1400,7 +1400,7 @@ export const mockGetItemFavorites = (
 
       return reply(itemFavorites);
     },
-  ).as('getFavoriteItems');
+  ).as('getBookmarkedItems');
 };
 
 export const mockAddFavorite = (

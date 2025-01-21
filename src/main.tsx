@@ -150,6 +150,8 @@ const rootElement = document.getElementById('root')!;
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
+    // we disable strict mode because the map component (leaflet) can not handle it.
+    // ideally we would like to be able to enable strict mode to have a better DX and find bugs.
     <React.StrictMode>
       <App />
     </React.StrictMode>,
