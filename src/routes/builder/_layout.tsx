@@ -132,7 +132,6 @@ function RouteComponent() {
         />
       }
     >
-      <Link to="/builder/bookmarks">Bookmarks </Link>
       <MemberValidationBanner />
       <FilterItemsContextProvider>
         <Outlet />
