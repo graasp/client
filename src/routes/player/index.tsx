@@ -1,9 +1,9 @@
 import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/player/')({
-  beforeLoad: () => {
-    throw redirect({
-      to: '/account',
-    });
-  },
+  // beforeLoad: () => {
+  //   throw redirect({
+  //     to: '/account',
+  //   });
+  // },
 });

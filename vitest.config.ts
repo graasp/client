@@ -4,7 +4,23 @@ import viteConfig from './vite.config';
 
 export default mergeConfig(viteConfig({ mode: 'test' }), {
   optimizeDeps: {
-    include: ['@emotion/react'],
+    include: [
+      'react-dom/client',
+      'react-helmet-async',
+      '@graasp/stylis-plugin-rtl',
+      '@emotion/cache',
+      '@emotion/react',
+      '@sentry/react',
+      'stylis',
+      'i18next-browser-languagedetector',
+      'i18next-fetch-backend',
+      '@tanstack/zod-adapter',
+      'zod',
+      'react-hook-form',
+      '@tanstack/router-devtools',
+      'date-fns/isAfter',
+      'jwt-decode',
+    ],
     exclude: ['.cache/**'],
   },
   test: {

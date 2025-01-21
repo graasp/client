@@ -50,12 +50,17 @@ export function AuthProvider({
   children: ReactNode;
 }>): JSX.Element {
   const { data: currentMember, isLoading } = hooks.useCurrentMember();
-
   const useLogin = mutations.useSignIn();
   const useLogout = mutations.useSignOut();
 
   const logout = useCallback(async () => {
+    const url = window.location.href;
     await useLogout.mutateAsync();
+    // redirect to auth page with url from the page that we just left.
+    const redirectionURL = new URL('/auth/login', window.location.origin);
+    redirectionURL.searchParams.set('url', url);
+    // navigate to the auth page with the right params
+    window.location.assign(redirectionURL);
   }, [useLogout]);
 
   const login = useCallback(
