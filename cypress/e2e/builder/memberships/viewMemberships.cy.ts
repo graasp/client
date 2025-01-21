@@ -104,7 +104,7 @@ describe('View Memberships - Individual', () => {
 });
 
 describe('View Memberships - Hidden item', () => {
-  it('view disabled memberships for hidden item', () => {
+  it.only('view disabled memberships for hidden item', () => {
     const hiddenItem = PackedFolderItemFactory({}, { hiddenVisibility: {} });
     const adminHiddenMembership = buildItemMembership({
       item: hiddenItem,

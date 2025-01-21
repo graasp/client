@@ -30,13 +30,11 @@ const StyledWrapper = styled(Box)(() => ({
 
 type Props = {
   Actions?: JSX.Element | JSX.Element[];
-  buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
   isMemberLoading?: boolean;
   currentMember?: CurrentAccount | null;
   menuId?: string;
-  onMemberClick?: (_id: string) => MouseEventHandler;
   avatar?: JSX.Element;
   signedOutTooltipText?: string;
   dataUmamiEvent?: string;

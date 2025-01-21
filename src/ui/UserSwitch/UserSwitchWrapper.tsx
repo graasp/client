@@ -70,25 +70,6 @@ export const UserSwitchWrapper = ({
   userMenuItems = [],
   dataUmamiEvent,
 }: Props): JSX.Element => {
-  // get stored sessions
-  // const sessions = getStoredSessions();
-  // const { data } = useMembers(sessions.map(({ id }) => id));
-  // const members = data?.data?.toSeq()?.toList();
-
-  // save current member in sessions if it doesn't exist
-  // it is not possible to do it on /auth since it's a backend call
-  // useEffect(() => {
-  //   if (currentMember && isCurrentMemberSuccess) {
-  //     const token = getCurrentSession();
-  //     if (token) {
-  //       storeSession(
-  //         { id: currentMember.get('id'), token, createdAt: Date.now() },
-  //         domain,
-  //       );
-  //     }
-  //   }
-  // }, [currentMember, isCurrentMemberSuccess]);
-
   if (isCurrentMemberLoading) {
     return <Loader />;
   }
@@ -102,17 +83,12 @@ export const UserSwitchWrapper = ({
   };
 
   const handleSignIn = (): void => {
-    // setCurrentSession(null, domain);
-    // saveUrlForRedirection(window.location.href, domain);
     return redirect(window, redirectPath);
   };
 
   const goToProfile = (): void => {
     redirect(window, profilePath);
   };
-
-  // const onMemberClick = (memberId: string) => () =>
-  //   switchMember({ memberId, domain });
 
   let Actions: JSX.Element[];
 
@@ -168,9 +144,7 @@ export const UserSwitchWrapper = ({
     <UserSwitch
       ButtonContent={ButtonContent}
       Actions={Actions}
-      // onMemberClick={onMemberClick}
       currentMember={currentMember}
-      // members={members}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
       buildMemberMenuItemId={buildMemberMenuItemId}

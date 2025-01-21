@@ -20,7 +20,7 @@ import axios from 'axios';
 import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
-import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
+import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks, mutations } from '@/config/queryClient';
@@ -131,7 +131,7 @@ function RouteComponent() {
       headerRightContent={
         <Stack direction="row" alignItems="center">
           <NotificationButton />
-          <UserSwitchWrapper />
+          <UserButtonMenu />
         </Stack>
       }
       drawerContent={<MainMenu />}

@@ -4,6 +4,7 @@ import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import { hooks, mutations } from '@/config/queryClient';
+import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
 import { UserSwitchWrapper as GraaspUserSwitch } from '@/ui/UserSwitch/UserSwitchWrapper';
 
 import LanguageSwitch from './LanguageSwitch';
@@ -13,7 +14,7 @@ type Props = {
   ButtonContent?: JSX.Element;
 };
 
-export function UserSwitchWrapper({
+export function UserButtonMenu({
   ButtonContent,
 }: Readonly<Props>): JSX.Element | null {
   const { i18n } = useTranslation(NS.Account);
@@ -36,6 +37,7 @@ export function UserSwitchWrapper({
         />
 
         <GraaspUserSwitch
+          buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
           ButtonContent={ButtonContent}
           signOut={logout}
           currentMember={member}

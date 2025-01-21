@@ -10,7 +10,7 @@ import { fallback, zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
 import { CustomLink } from '@/components/ui/CustomLink';
-import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
+import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
@@ -94,7 +94,7 @@ function PlayerWrapper(): JSX.Element {
         />
       }
       headerLeftContent={<Typography noWrap>{item?.name}</Typography>}
-      headerRightContent={<UserSwitchWrapper />}
+      headerRightContent={<UserButtonMenu />}
     >
       <Outlet />
     </Main>
