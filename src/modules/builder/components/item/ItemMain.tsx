@@ -12,6 +12,8 @@ import { NS } from '@/config/constants';
 import { ITEM_MAIN_CLASS } from '@/config/selectors';
 import { DrawerHeader } from '@/ui/DrawerHeader/DrawerHeader';
 
+import { useOutletContext } from '~builder/contexts/OutletContext';
+
 import Chatbox from '../common/Chatbox';
 import ItemPanel from './ItemPanel';
 import ItemHeader from './header/ItemHeader';
@@ -46,11 +48,11 @@ const StyledContainer = styled(Container)<{ open: boolean }>(({
 
 type Props = {
   children: JSX.Element | JSX.Element[];
-  item?: PackedItem;
   id?: string;
 };
 
-const ItemMain = ({ id, children, item }: Props): JSX.Element => {
+const ItemMain = ({ id, children }: Props): JSX.Element => {
+  const { item } = useOutletContext();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { chat: chatIsOpen } = useSearch({
     from: '/builder/items/$itemId',

@@ -4,16 +4,12 @@ import LinkIcon from '@mui/icons-material/Link';
 import { LoadingButton } from '@mui/lab';
 import { Alert, Button } from '@mui/material';
 
-import {
-  ClientHostManager,
-  Context,
-  PackedItem,
-  PublicationStatus,
-} from '@graasp/sdk';
+import { Context, PackedItem, PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
+import { ClientManager } from '@/lib/ClientManager';
 
 import PublicationButton from './PublicationButton';
 
@@ -33,8 +29,8 @@ export const PublishedButton = ({ item, isLoading }: Props): JSX.Element => {
   const handleUnPublishItem = () => unpublish({ id: itemId });
 
   const getLibraryLink = () => {
-    const clientHostManager = ClientHostManager.getInstance();
-    return clientHostManager.getItemLink(Context.Library, itemId);
+    const clientManager = ClientManager.getInstance();
+    return clientManager.getItemLink(Context.Library, itemId);
   };
 
   const description = <Alert>{t('LIBRARY_SETTINGS_PUBLISHED_STATUS')}</Alert>;

@@ -71,11 +71,12 @@ describe('Bookmarked Item', () => {
 
     it('Empty search', () => {
       const searchText = 'mysearch';
-      cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
+      cy.get(`#${ITEM_SEARCH_INPUT_ID}`).should('not.be.disabled');
+      cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText, { delay: 100 });
 
       cy.get(`#${BOOKMARKED_ITEMS_ID}`).should(
         'contain',
-        `No items for ${searchText}`,
+        `No bookmarked item for ${searchText}`,
       );
     });
 

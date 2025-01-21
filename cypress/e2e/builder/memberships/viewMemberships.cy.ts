@@ -473,7 +473,7 @@ describe('View Memberships - Guest', () => {
 });
 
 describe('View Memberships Read-Only Mode', () => {
-  it.only('view membership in settings read-only mode', () => {
+  it('view membership in settings read-only mode', () => {
     const item = PackedFolderItemFactory(
       {},
       { permission: PermissionLevel.Write },

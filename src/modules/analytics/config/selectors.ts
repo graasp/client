@@ -13,20 +13,6 @@ export const SELECT_USER_ID = 'selectUserId';
 export const SELECT_ACTION_ID = 'selectActionId';
 export const SELECT_VIEW_RENDERED_TEXT_ID = 'selectViewTextId';
 
-export const APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS = {
-  Builder: 'appNavigationPlatformSwitchButtonBuilder',
-  Player: 'appNavigationPlatformSwitchButtonPlayer',
-  Library: 'appNavigationPlatformSwitchButtonLibrary',
-  Analytics: 'appNavigationPlatformSwitchButtonAnalytics',
-};
-export const APP_NAVIGATION_PLATFORM_SWITCH_ID = 'appNavigationPlatformSwitch';
-
-export const HEADER_MEMBER_MENU_SEE_PROFILE_BUTTON_ID =
-  'headerMemberMenuSeeProfileButton';
-export const HEADER_MEMBER_MENU_SIGN_IN_BUTTON_ID =
-  'headerMemberMenuSignInButton';
-export const HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID =
-  'headerMemberMenuSignOutButton';
 export const buildMemberAvatarId = (id?: string): string =>
   `memberAvatar-${id}`;
 export const buildMemberMenuItemId = (id: string): string =>

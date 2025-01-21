@@ -57,8 +57,8 @@ const ShortLinksRenderer = ({
       if (!publishedEntry && platform === Context.Library) {
         return undefined;
       }
-      const clientHostManager = ClientManager.getInstance();
-      const url = clientHostManager.getItemAsURL(platform, itemId);
+      const clientManager = ClientManager.getInstance();
+      const url = clientManager.getItemAsURL(platform, itemId);
 
       // not ideal, provide a select to choose the mode?
       if (platform === Context.Builder) {

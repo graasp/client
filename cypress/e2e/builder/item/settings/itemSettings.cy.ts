@@ -461,7 +461,7 @@ describe('Item Settings', () => {
         cy.get(`#${buildSettingsButtonId(itemId)}`).should('not.exist');
       });
     });
-    describe('write', () => {
+    describe('admin', () => {
       const item = PackedFolderItemFactory(
         {},
         { permission: PermissionLevel.Admin },
