@@ -59,8 +59,8 @@ const ModeButton = (): JSX.Element | null => {
         {options.map((value) => (
           <MenuItemLink
             key={value}
-            from="/builder"
-            search={{ mode: value }}
+            to="."
+            search={(prev) => ({ ...prev, mode: value })}
             onClick={() => handleClose()}
             value={value}
           >

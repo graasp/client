@@ -197,7 +197,7 @@ describe('view Folder as admin', () => {
   });
 });
 
-describe('Folder Layout mode', () => {
+describe.only('Folder Layout mode', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: [parentItem, child1],
@@ -206,6 +206,7 @@ describe('Folder Layout mode', () => {
   });
 
   it('list', () => {
+    cy.wait('@getItem');
     // default mode is list
     cy.get(`#${buildItemCard(child1.id)}`);
 
@@ -218,11 +219,15 @@ describe('Folder Layout mode', () => {
   });
 
   it('grid', () => {
+    cy.wait('@getItem');
+
     cy.switchMode(ItemLayoutMode.Grid);
     cy.get(`#${buildItemCard(child1.id)}`);
   });
 
   it('map', () => {
+    cy.wait('@getItem');
+
     cy.switchMode(ItemLayoutMode.Map);
     cy.get(`#${buildMapViewId(parentItem.id)}`, { timeout: 10000 }).should(
       'be.visible',
