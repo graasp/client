@@ -19,12 +19,12 @@ import {
   buildPublicationStatus,
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
+import { MEMBERS } from '../../../../fixtures/members';
 import { ItemForTest, MemberForTest } from '../../../../support/types';
 import {
   ItemValidationGroupFactory,
   PublishedItemFactory,
 } from '../../fixtures/items';
-import { MEMBERS } from '../../fixtures/members';
 import { createPublicItemByType } from '../../fixtures/publish/publish';
 import { buildItemPath } from '../../utils';
 

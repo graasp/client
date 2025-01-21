@@ -12,8 +12,8 @@ import {
   buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../../../../src/config/selectors';
+import { MEMBERS } from '../../../../../fixtures/members';
 import { ITEM_LOGIN_PAUSE } from '../../../../../support/constants';
-import { MEMBERS } from '../../../fixtures/members';
 import { buildItemMembership } from '../../../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../../../utils';
 import { addItemLoginSchema } from './utils';

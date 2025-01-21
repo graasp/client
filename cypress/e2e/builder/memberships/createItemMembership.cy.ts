@@ -14,7 +14,7 @@ import {
   buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
-import { MEMBERS } from '../fixtures/members';
+import { MEMBERS } from '../../../fixtures/members';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
 const shareItem = ({

@@ -10,8 +10,8 @@ import {
   buildHideButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
+import { MEMBERS } from '../../../../fixtures/members';
 import { ItemForTest } from '../../../../support/types';
-import { MEMBERS } from '../../fixtures/members';
 import {
   HOME_PATH,
   buildItemPath,

@@ -6,8 +6,8 @@ import {
   buildItemInvitationRowDeleteButtonId,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
+import { MEMBERS } from '../../../fixtures/members';
 import { ITEMS_WITH_INVITATIONS } from '../fixtures/invitations';
-import { MEMBERS } from '../fixtures/members';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
 describe('View Invitations', () => {

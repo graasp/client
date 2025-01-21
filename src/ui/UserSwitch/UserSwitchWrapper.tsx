@@ -16,7 +16,6 @@ type UserMenuItem = {
   id?: string;
 };
 type Props = {
-  buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
   currentMember?: CurrentAccount | null;
@@ -48,7 +47,6 @@ type Props = {
 };
 
 export const UserSwitchWrapper = ({
-  buildMemberMenuItemId,
   ButtonContent,
   buttonId,
   currentMember,
@@ -147,7 +145,6 @@ export const UserSwitchWrapper = ({
       currentMember={currentMember}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
-      buildMemberMenuItemId={buildMemberMenuItemId}
       avatar={avatar}
       dataUmamiEvent={dataUmamiEvent}
     />
