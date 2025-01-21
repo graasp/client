@@ -29,10 +29,9 @@ import {
   buildItemsGridMoreButtonSelector,
   buildSettingsButtonId,
 } from '../../../../../src/config/selectors';
-import { CURRENT_MEMBER } from '../../../../fixtures/members';
+import { CURRENT_MEMBER, MEMBERS } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../fixtures/chatbox';
-import { MEMBERS } from '../../fixtures/members';
 import { buildItemPath, buildItemSettingsPath } from '../../utils';
 
 describe('Item Settings', () => {
@@ -455,7 +454,7 @@ describe('Item Settings', () => {
           items: [item],
           currentMember: MEMBERS.BOB,
         });
-        cy.visit('/');
+        cy.visit('/builder');
       });
       it('does not have access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
@@ -471,9 +470,9 @@ describe('Item Settings', () => {
       beforeEach(() => {
         cy.setUpApi({
           items: [item],
-          currentMember: MEMBERS.ALICE,
+          currentMember: MEMBERS.ANNA,
         });
-        cy.visit('/');
+        cy.visit('/builder');
       });
       it('has access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();

@@ -11,8 +11,8 @@ import {
 } from '@graasp/sdk';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
+import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig, ItemForTest } from '../../../support/types';
-import { MEMBERS } from './members';
 
 export const generateOwnItems = (number: number): ItemForTest[] => {
   const id = (i: number) => {

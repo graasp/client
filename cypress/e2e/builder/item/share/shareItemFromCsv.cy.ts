@@ -15,7 +15,7 @@ import {
   TREE_MODAL_CONFIRM_BUTTON_ID,
   buildNavigationModalItemId,
 } from '../../../../../src/config/selectors';
-import { MEMBERS } from '../../fixtures/members';
+import { MEMBERS } from '../../../../fixtures/members';
 import { buildItemSharePath } from '../../utils';
 
 const shareItem = ({ fixture }: { id: string; fixture: string }) => {

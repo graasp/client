@@ -7,8 +7,8 @@ import {
   buildPublishAttrContainer,
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
+import { MEMBERS } from '../../../../fixtures/members';
 import { PUBLISHED_ITEM } from '../../fixtures/items';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../fixtures/members';
 import { buildItemPath } from '../../utils';
 
 const LANGUAGE_CHIP_SELECTOR = `${buildDataCyWrapper(
@@ -63,7 +63,7 @@ describe('Languages permissions', () => {
 
     cy.setUpApi({
       items: [item],
-      currentMember: SIGNED_OUT_MEMBER,
+      currentMember: null,
     });
     cy.visit(buildItemPath(item.id));
 

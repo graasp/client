@@ -2,7 +2,6 @@ import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
 import { buildDownloadButtonId } from '../../../../../src/config/selectors';
 import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
-import { SIGNED_OUT_MEMBER } from '../../fixtures/members';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const SHARED_ITEM = PackedFolderItemFactory(
@@ -42,10 +41,9 @@ describe('Download Item', () => {
     );
   });
   it('download button for public item should be exist', () => {
-    const currentMember = SIGNED_OUT_MEMBER;
     cy.setUpApi({
       ...SAMPLE_PUBLIC_ITEMS,
-      currentMember,
+      currentMember: null,
     });
     const item = SAMPLE_PUBLIC_ITEMS.items[4];
     cy.visit(buildItemPath(item.id));

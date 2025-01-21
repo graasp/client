@@ -16,8 +16,7 @@ import {
   buildItemMembershipRowSelector,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
-import { CURRENT_MEMBER } from '../../../fixtures/members';
-import { MEMBERS } from '../fixtures/members';
+import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { buildItemMembership } from '../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
@@ -49,6 +48,23 @@ const membershipsWithoutAdmin = [
   }),
 ];
 
+const getLocalizedPermissionText = (
+  permission: 'disabled' | PermissionLevel,
+) => {
+  switch (permission) {
+    case 'disabled':
+      return 'Disabled';
+    case 'read':
+      return 'read';
+    case 'write':
+      return 'write';
+    case 'admin':
+      return 'admin';
+    default:
+      return 'NO VALUE';
+  }
+};
+
 const checkItemMembershipRow = ({
   id,
   name,
@@ -60,7 +76,7 @@ const checkItemMembershipRow = ({
 }): void => {
   cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
     .should('contain', name)
-    .should('contain', permission);
+    .should('contain', getLocalizedPermissionText(permission));
 };
 
 describe('View Memberships - Individual', () => {
@@ -104,7 +120,7 @@ describe('View Memberships - Individual', () => {
 });
 
 describe('View Memberships - Hidden item', () => {
-  it.only('view disabled memberships for hidden item', () => {
+  it('view disabled memberships for hidden item', () => {
     const hiddenItem = PackedFolderItemFactory({}, { hiddenVisibility: {} });
     const adminHiddenMembership = buildItemMembership({
       item: hiddenItem,
@@ -457,7 +473,7 @@ describe('View Memberships - Guest', () => {
 });
 
 describe('View Memberships Read-Only Mode', () => {
-  it('view membership in settings read-only mode', () => {
+  it.only('view membership in settings read-only mode', () => {
     const item = PackedFolderItemFactory(
       {},
       { permission: PermissionLevel.Write },

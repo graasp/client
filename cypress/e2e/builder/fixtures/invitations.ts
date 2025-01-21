@@ -7,8 +7,8 @@ import {
 
 import { v4 } from 'uuid';
 
+import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
-import { MEMBERS } from './members';
 
 export const buildInvitation = (args: {
   item: DiscriminatedItem;

@@ -4,7 +4,7 @@ import {
   HEADER_MEMBER_MENU_BUTTON_ID,
   buildItemCard,
 } from '../../../../../src/config/selectors';
-import { MEMBERS } from '../../fixtures/members';
+import { MEMBERS } from '../../../../fixtures/members';
 import { ITEM_THUMBNAIL_LINK } from '../../fixtures/thumbnails/links';
 import { HOME_PATH } from '../../utils';
 

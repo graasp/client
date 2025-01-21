@@ -86,11 +86,9 @@ export const UserSwitch = ({
           {/* show info only for normal member */}
           {/* todo: show which item a pseudonymized member as access to */}
           {currentMember.type === AccountType.Individual && (
-            <>
-              <Typography variant="subtitle2" noWrap>
-                {currentMember.email}
-              </Typography>
-            </>
+            <Typography variant="subtitle2" noWrap>
+              {currentMember.email}
+            </Typography>
           )}
         </div>
       </MenuItem>

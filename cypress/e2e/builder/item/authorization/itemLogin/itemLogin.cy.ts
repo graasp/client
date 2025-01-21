@@ -8,8 +8,8 @@ import {
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
 import { SETTINGS_ITEM_LOGIN_DEFAULT } from '../../../../../../src/modules/builder/constants';
+import { MEMBERS } from '../../../../../fixtures/members';
 import { ITEM_LOGIN_PAUSE } from '../../../../../support/constants';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../../fixtures/members';
 import { buildItemPath } from '../../../utils';
 import { addItemLoginSchema } from './utils';
 
@@ -61,7 +61,7 @@ describe('User is signed out', () => {
         PackedFolderItemFactory({}, { permission: null }),
         ItemLoginSchemaType.UsernameAndPassword,
       );
-      cy.setUpApi({ items: [item], currentMember: SIGNED_OUT_MEMBER });
+      cy.setUpApi({ items: [item], currentMember: null });
 
       cy.visit(buildItemPath(item.id));
       checkItemLoginScreenLayout(item.itemLoginSchema.type);
@@ -82,7 +82,7 @@ describe('User is signed out', () => {
       cy.setUpApi({
         items: [item],
         postItemLoginError: true,
-        currentMember: SIGNED_OUT_MEMBER,
+        currentMember: null,
       });
 
       // go to children item

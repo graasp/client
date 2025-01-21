@@ -24,25 +24,5 @@ describe('Header', () => {
       cy.get(`#${HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID}`).click();
       cy.url().should('include', '/auth/login');
     });
-
-    // it('Switch users', () => {
-    //   cy.setUpApi({ storedSessions: MOCK_SESSIONS });
-    //   cy.visit(HOME_PATH);
-    //   cy.get(`#${HEADER_MEMBER_MENU_BUTTON_ID}`).click();
-
-    //   MOCK_SESSIONS.forEach(({ id }) => {
-    //     cy.get(`#${buildMemberMenuItemId(id)}`).should('be.visible');
-    //   });
-
-    //   // switch to first user
-    //   cy.get(`#${buildMemberMenuItemId(MOCK_SESSIONS[0].id)}`)
-    //     .click()
-    //     .then(() => {
-    //       // session cookie should be different
-    //       const currentCookie = getCurrentSession();
-    //       expect(currentCookie).to.equal(MOCK_SESSIONS[0].token);
-    //     });
-    //   cy.get(`#${OWNED_ITEMS_ID}`).should('be.visible');
-    // });
   });
 });

@@ -8,8 +8,8 @@ import {
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
 import { DISPLAY_CO_EDITORS_OPTIONS } from '../../../../../src/modules/builder/constants';
+import { MEMBERS } from '../../../../fixtures/members';
 import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../../support/constants';
-import { MEMBERS, SIGNED_OUT_MEMBER } from '../../fixtures/members';
 import { ITEM_WITH_TAGS_CONTEXT } from '../../fixtures/tags';
 import { buildItemPath } from '../../utils';
 
@@ -60,7 +60,7 @@ describe('Co-editor setting permissions', () => {
   it('User signed out cannot edit co-editor setting', () => {
     cy.setUpApi({
       items: [item],
-      currentMember: SIGNED_OUT_MEMBER,
+      currentMember: null,
     });
     cy.visit(buildItemPath(item.id));
 

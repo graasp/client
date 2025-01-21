@@ -6,7 +6,7 @@ import {
   SHARE_ITEM_SHARE_BUTTON_ID,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
-import { MEMBERS } from '../fixtures/members';
+import { MEMBERS } from '../../../fixtures/members';
 import { buildItemPath } from '../utils';
 
 const inviteItem = ({
