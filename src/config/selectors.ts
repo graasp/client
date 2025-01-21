@@ -572,7 +572,7 @@ export const buildPublishChipContainer = (id: string): string =>
   `publicationChipContainer${id}`;
 
 export const buildPublicationStatus = (status: PublicationStatus): string =>
-  `publicationStatus${status}`;
+  `publicationStatus-${status}`;
 
 export const PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON =
   'publicVisbilityModalValidateButton';

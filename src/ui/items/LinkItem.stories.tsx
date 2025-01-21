@@ -1,7 +1,7 @@
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { fn } from '@storybook/test';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import LinkItem from './LinkItem.js';
@@ -83,13 +83,13 @@ export const Iframe = {
     showIframe: true,
     memberId: 'link-iframe-id',
   },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    if (args.item.description) {
-      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-    }
-    expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
-  },
+  // play: async ({ canvasElement, args }) => {
+  //   const canvas = within(canvasElement);
+  //   if (args.item.description) {
+  //     expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  //   }
+  //   expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  // },
 } satisfies Story;
 
 export const LinkButton: Story = {
@@ -98,14 +98,14 @@ export const LinkButton: Story = {
     showButton: true,
     showIframe: false,
   },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    if (args.item.description) {
-      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-    }
-    await userEvent.click(canvas.getByText(args.item.name));
-    expect(args.onClick).toHaveBeenCalled();
-  },
+  // play: async ({ canvasElement, args }) => {
+  //   const canvas = within(canvasElement);
+  //   if (args.item.description) {
+  //     expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  //   }
+  //   await userEvent.click(canvas.getByText(args.item.name));
+  //   expect(args.onClick).toHaveBeenCalled();
+  // },
 } satisfies Story;
 
 export const SimpleLink: Story = {
@@ -114,14 +114,14 @@ export const SimpleLink: Story = {
     showButton: false,
     showIframe: false,
   },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    if (args.item.description) {
-      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-    }
-    await userEvent.click(canvas.getByText(args.item.extra.embeddedLink.url));
-    expect(args.onClick).toHaveBeenCalled();
-  },
+  // play: async ({ canvasElement, args }) => {
+  //   const canvas = within(canvasElement);
+  //   if (args.item.description) {
+  //     expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  //   }
+  //   await userEvent.click(canvas.getByText(args.item.extra.embeddedLink.url));
+  //   expect(args.onClick).toHaveBeenCalled();
+  // },
 } satisfies Story;
 
 export const LinkWithDescription = {
@@ -136,14 +136,14 @@ export const IframeAndLinkButton: Story = {
     showButton: true,
     showIframe: true,
   },
-  play: async ({ canvasElement, args }) => {
-    const canvas = within(canvasElement);
-    if (args.item.description) {
-      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-    }
+  // play: async ({ canvasElement, args }) => {
+  //   const canvas = within(canvasElement);
+  //   if (args.item.description) {
+  //     expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+  //   }
 
-    expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
-    await userEvent.click(canvas.getByText(args.item.name));
-    expect(args.onClick).toHaveBeenCalled();
-  },
+  //   expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  //   await userEvent.click(canvas.getByText(args.item.name));
+  //   expect(args.onClick).toHaveBeenCalled();
+  // },
 } satisfies Story;

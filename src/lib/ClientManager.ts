@@ -7,7 +7,11 @@ export class ClientManager {
   private clientPrefix = new Map<Context, string>();
 
   private constructor() {
-    this.host = new URL(window.location.href);
+    try {
+      this.host = new URL(window.location.href);
+    } catch {
+      this.host = new URL('http://mock.graasp.org');
+    }
   }
 
   public static getInstance() {
