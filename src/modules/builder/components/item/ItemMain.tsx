@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Container, Divider, Stack, Typography, styled } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { useSearch } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';

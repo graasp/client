@@ -6,7 +6,7 @@ import {
   YOUTUBE_LINK_ITEM,
 } from '../../fixtures/links';
 import { buildItemMembership } from '../../fixtures/memberships';
-import { buildItemPath } from '../../utils';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 describe('Links', () => {
   beforeEach(() => {
@@ -53,7 +53,7 @@ describe('Links', () => {
     expectLinkViewScreenLayout({ item: GRAASP_LINK_ITEM });
 
     // check home page display link thumbnail
-    cy.visit('/');
+    cy.visit(HOME_PATH);
     cy.get(`[src="${extra.embeddedLink.thumbnails?.[0]}"]`);
   });
 
@@ -67,7 +67,7 @@ describe('Links', () => {
     expectLinkViewScreenLayout({ item: GRAASP_LINK_ITEM_IFRAME_ONLY });
 
     // check home page display link thumbnail
-    cy.visit('/');
+    cy.visit(HOME_PATH);
     cy.get(`[src="${extra.embeddedLink.thumbnails?.[0]}"]`);
   });
 
@@ -81,7 +81,7 @@ describe('Links', () => {
     expectLinkViewScreenLayout({ item: YOUTUBE_LINK_ITEM });
 
     // check home page display link icon because it does not have thumbnail
-    cy.visit('/');
+    cy.visit(HOME_PATH);
     cy.get(`[src="${extra.embeddedLink.icons?.[0]}"]`);
   });
 });
