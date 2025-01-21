@@ -8,8 +8,8 @@ import {
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
 } from '../../../../../src/config/selectors';
+import { GRAASP_REDIRECTION_HOST } from '../../../../support/env';
 import {
-  GRAASP_REDIRECTION_HOST,
   buildGraaspBuilderView,
   buildGraaspLibraryLink,
   buildGraaspPlayerView,

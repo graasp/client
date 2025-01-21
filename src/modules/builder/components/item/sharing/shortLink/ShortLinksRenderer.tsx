@@ -2,15 +2,11 @@ import { useState } from 'react';
 
 import { Box, Dialog, Stack } from '@mui/material';
 
-import {
-  ClientHostManager,
-  Context,
-  ShortLink,
-  appendPathToUrl,
-} from '@graasp/sdk';
+import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 
 import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
+import { ClientManager } from '@/lib/ClientManager';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { randomAlias } from '~builder/utils/shortLink';
@@ -61,7 +57,7 @@ const ShortLinksRenderer = ({
       if (!publishedEntry && platform === Context.Library) {
         return undefined;
       }
-      const clientHostManager = ClientHostManager.getInstance();
+      const clientHostManager = ClientManager.getInstance();
       const url = clientHostManager.getItemAsURL(platform, itemId);
 
       // not ideal, provide a select to choose the mode?

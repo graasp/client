@@ -7,7 +7,6 @@ const ENV = {
   VITE_GRAASP_API_HOST: process.env.VITE_GRAASP_API_HOST,
   VITE_SHOW_NOTIFICATIONS: false,
   VITE_GRAASP_LIBRARY_HOST: process.env.VITE_GRAASP_LIBRARY_HOST,
-  VITE_GRAASP_ANALYZER_HOST: process.env.VITE_GRAASP_ANALYZER_HOST,
 };
 
 export default defineConfig({
@@ -25,6 +24,7 @@ export default defineConfig({
       return config;
     },
     baseUrl: `http://localhost:${process.env.VITE_PORT ?? 3333}`,
+    defaultCommandTimeout: 5000,
   },
   component: {
     devServer: {

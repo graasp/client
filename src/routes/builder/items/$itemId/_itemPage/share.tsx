@@ -15,12 +15,14 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import { VISIBILITY_HIDDEN_ALERT_ID } from '@/config/selectors';
 
 import DeleteItemLoginSchemaButton from '~builder/components/item/sharing/DeleteItemLoginSchemaButton';
 import HideSettingCheckbox from '~builder/components/item/sharing/HideSettingCheckbox';
 import VisibilitySelect from '~builder/components/item/sharing/VisibilitySelect';
 import MembershipTabs from '~builder/components/item/sharing/membershipTable/MembershipTabs';
+import ShortLinksRenderer from '~builder/components/item/sharing/shortLink/ShortLinksRenderer';
 import { useOutletContext } from '~builder/contexts/OutletContext';
 
 export const Route = createFileRoute('/builder/items/$itemId/_itemPage/share')({
@@ -33,7 +35,7 @@ function RouteComponent() {
   const { item, canAdmin } = useOutletContext();
 
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  // const { data: memberships } = hooks.useItemMemberships(itemId);
+  const { data: memberships } = hooks.useItemMemberships(itemId);
 
   return (
     <Container disableGutters component="div">
@@ -42,10 +44,10 @@ function RouteComponent() {
           <Typography variant="h5">
             {translateBuilder('SHARING_TITLE')}
           </Typography>
-          {/* <ShortLinksRenderer
+          <ShortLinksRenderer
             itemId={itemId}
             canAdminShortLink={Boolean(memberships && canAdmin)}
-          /> */}
+          />
         </Box>
         <Divider />
         {user?.type === AccountType.Individual ? (

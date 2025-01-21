@@ -10,6 +10,7 @@ import {
   ThemeProvider as MuiThemeProvider,
 } from '@mui/material';
 
+import { Context } from '@graasp/sdk';
 import rtlPlugin from '@graasp/stylis-plugin-rtl';
 
 import createCache from '@emotion/cache';
@@ -28,8 +29,14 @@ import { theme } from '@/ui/theme';
 import pkg from '../package.json';
 import { AuthProvider, useAuth } from './AuthContext';
 import './app.css';
-import { APP_VERSION, SENTRY_DSN, SENTRY_ENV } from './config/env';
+import {
+  APP_VERSION,
+  GRAASP_LIBRARY_HOST,
+  SENTRY_DSN,
+  SENTRY_ENV,
+} from './config/env';
 import { QueryClientProvider, queryClient } from './config/queryClient';
+import { ClientManager } from './lib/ClientManager';
 import { routeTree } from './routeTree.gen';
 
 SentryInit({
@@ -53,6 +60,13 @@ SentryInit({
   // sessions when an error occurs.
   replaysOnErrorSampleRate: 0.5,
 });
+
+const clientManager = ClientManager.getInstance();
+clientManager.addPrefix(Context.Builder, '/builder/items');
+clientManager.addPrefix(Context.Analytics, '/analytics/items');
+clientManager.addPrefix(Context.Player, '/player');
+clientManager.addHost(Context.Library, new URL(GRAASP_LIBRARY_HOST));
+clientManager.addPrefix(Context.Library, '/collections');
 
 // Set up a Router instance
 const router = createRouter({
