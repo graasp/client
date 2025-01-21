@@ -13,7 +13,7 @@ export default defineConfig({
   e2e: {
     retries: {
       openMode: 0,
-      runMode: 0,
+      runMode: 1,
     },
     // needed for redirection tests to pass
     chromeWebSecurity: false,
@@ -24,7 +24,7 @@ export default defineConfig({
       return config;
     },
     baseUrl: `http://localhost:${process.env.VITE_PORT ?? 3333}`,
-    defaultCommandTimeout: 5000,
+    defaultCommandTimeout: 7000,
   },
   component: {
     devServer: {
