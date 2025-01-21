@@ -55,6 +55,7 @@ const GeolocationPicker = ({
 
   useEffect(() => {
     if (initialValue !== query) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setQuery(initialValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -55,7 +55,6 @@ export function MainMenu(): JSX.Element | null {
         <Stack direction="column" height="100%" justifyContent="space-between">
           <Box>
             <MainMenuItem
-              dataUmamiEvent="sidebar-home"
               to="/builder"
               icon={<HomeIcon />}
               text={t('MY_ITEMS')}
@@ -63,19 +62,16 @@ export function MainMenu(): JSX.Element | null {
             {user.type === AccountType.Individual ? (
               <>
                 <MainMenuItem
-                  dataUmamiEvent="sidebar-bookmarks"
                   to="/builder/bookmarks"
                   text={t('BOOKMARKED_ITEMS')}
                   icon={<BookmarkIcon />}
                 />
                 <MainMenuItem
-                  dataUmamiEvent="sidebar-published"
                   to="/builder/published"
                   text={t('PUBLISHED_ITEMS')}
                   icon={<LibraryBigIcon />}
                 />
                 <MainMenuItem
-                  dataUmamiEvent="sidebar-trash"
                   to="/builder/recycled"
                   text={t('RECYCLED_ITEMS')}
                   icon={<TrashIcon />}

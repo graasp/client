@@ -41,6 +41,7 @@ const ItemsMarkers = ({
           map.fitBounds(groupRef.current.getBounds());
         }
 
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setPrevState(itemGeolocations);
       }
     }

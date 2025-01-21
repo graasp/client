@@ -33,6 +33,7 @@ const InitialSetup = ({
           map.fitBounds(c as any);
         }
         setShowMap(true);
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setIsInitial(false);
       }
       // center on current position of user
@@ -40,6 +41,7 @@ const InitialSetup = ({
         map.setZoom(11);
         map.flyTo([currentPosition.lat, currentPosition.lng] as any);
         setShowMap(true);
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
         setIsInitial(false);
       }
     }

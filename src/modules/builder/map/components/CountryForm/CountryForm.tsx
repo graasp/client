@@ -27,7 +27,6 @@ const CustomPopper = ({
 }: {
   placement: PopperProps['placement'];
 }) =>
-  // eslint-disable-next-line func-names
   function (props: PopperProps): JSX.Element {
     return (
       <Popper

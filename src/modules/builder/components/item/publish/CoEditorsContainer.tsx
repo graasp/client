@@ -59,6 +59,7 @@ export const CoEditorsContainer = ({
 
   useEffect(() => {
     if (settings.displayCoEditors) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setDisplayCoEditors(settings.displayCoEditors);
     }
   }, [settings]);

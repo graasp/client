@@ -84,17 +84,21 @@ function RouteComponent() {
 
   const platformProps = {
     [Platform.Builder]: {
-      href: '/',
+      href: '/builder',
     },
-    [Platform.Player]: {
-      href: `/player/${itemId}/${itemId}`,
-    },
+    [Platform.Player]: itemId
+      ? {
+          href: `/player/${itemId}/${itemId}`,
+        }
+      : { disabled: true },
     [Platform.Library]: {
       href: GRAASP_LIBRARY_HOST,
     },
-    [Platform.Analytics]: {
-      href: `/analytics/items/${itemId}`,
-    },
+    [Platform.Analytics]: itemId
+      ? {
+          href: `/analytics/items/${itemId}`,
+        }
+      : { disabled: true },
   };
 
   return (
@@ -128,6 +132,7 @@ function RouteComponent() {
         />
       }
     >
+      <Link to="/builder/bookmarks">Bookmarks </Link>
       <MemberValidationBanner />
       <FilterItemsContextProvider>
         <Outlet />

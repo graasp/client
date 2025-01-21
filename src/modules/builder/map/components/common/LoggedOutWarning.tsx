@@ -14,6 +14,7 @@ const LoggedOutWarning = (): JSX.Element | null => {
 
   useEffect(() => {
     if (!currentMember) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setOpen(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
