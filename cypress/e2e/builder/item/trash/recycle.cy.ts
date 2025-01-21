@@ -59,7 +59,7 @@ describe('Recycle Items', () => {
       items: folders,
     });
 
-    cy.visit('/');
+    cy.visit(HOME_PATH);
 
     folders.forEach((item) => {
       cy.selectItem(item.id);

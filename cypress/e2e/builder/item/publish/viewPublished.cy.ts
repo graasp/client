@@ -62,12 +62,16 @@ describe('Published Items', () => {
     });
 
     it('Empty search', () => {
+      // wait for content to have loaded
+      cy.wait('@getPublishedItemsForMember');
       const searchText = 'mysearch';
-      cy.get(`#${ITEM_SEARCH_INPUT_ID}`).type(searchText);
+      cy.get(`#${ITEM_SEARCH_INPUT_ID}`)
+        .should('not.be.disabled')
+        .type(searchText);
 
       cy.get(`#${PUBLISHED_ITEMS_ID}`).should(
         'contain',
-        'No published item found for ',
+        `No published item found for ${searchText}`,
       );
     });
 

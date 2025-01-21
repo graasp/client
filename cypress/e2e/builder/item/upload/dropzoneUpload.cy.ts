@@ -2,7 +2,7 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { DROPZONE_SELECTOR } from '../../../../../src/config/selectors';
 import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
-import { buildItemPath } from '../../utils';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
 describe('Dropzone Helper Visibility', () => {
   describe('Home screen', () => {
@@ -11,7 +11,7 @@ describe('Dropzone Helper Visibility', () => {
     });
 
     it('should display the dropzone on the home screen when no items', () => {
-      cy.visit('/');
+      cy.visit(HOME_PATH);
       cy.get(DROPZONE_SELECTOR).should('be.visible');
     });
   });
