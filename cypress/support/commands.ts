@@ -116,7 +116,6 @@ import {
   mockGetItemsInMap,
   mockGetLatestValidationGroup,
   mockGetLinkMetadata,
-  mockGetLoginSchemaType,
   mockGetMember,
   mockGetMemberMentions,
   mockGetMemberStorageFiles,
@@ -400,8 +399,6 @@ Cypress.Commands.add(
     mockEditItem(cachedItems, editItemError);
     mockCopyItems(cachedItems, copyItemsError);
     mockDeleteItems(allItems, deleteItemsError);
-
-    mockGetLoginSchemaType(itemLogins);
 
     mockGetDescendants(items, currentMember);
 

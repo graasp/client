@@ -31,7 +31,7 @@ export type ItemForTest = DiscriminatedItem & {
   tags?: Tag[];
   thumbnails?: ThumbnailsBySize;
   visibilities?: ItemVisibility[];
-  itemLoginSchema?: ItemLoginSchema;
+  itemLoginSchema?: Partial<ItemLoginSchema>;
   readFilepath?: string;
   chat?: ChatMessage[];
   memberships?: ItemMembership[];

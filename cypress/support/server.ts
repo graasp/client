@@ -399,7 +399,7 @@ export const mockGetItemLoginSchemaType = (items: ItemForTest[]): void => {
     ({ reply, url }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
       const item = items.find(({ id }) => itemId === id);
-
+      console.log(items, item);
       // if no item login schema is defined, the backend returns null
       return reply({
         body: item?.itemLoginSchema?.type ?? null,
@@ -2086,30 +2086,6 @@ export const mockDefaultDownloadFile = (
       return reply({ fixture: item.readFilepath });
     },
   ).as('downloadFile');
-};
-
-export const mockGetLoginSchemaType = (itemLogins: {
-  [key: string]: string;
-}): void => {
-  cy.intercept(
-    {
-      method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/${buildGetItemLoginSchemaRoute(ID_FORMAT)}`),
-    },
-    ({ reply, url }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
-
-      // improvement: add response for itemLoginSchemaType
-      const itemLogin = itemLogins[itemId];
-
-      if (itemLogin) {
-        return reply(itemLogin);
-      }
-      return reply({
-        statusCode: StatusCodes.NOT_FOUND,
-      });
-    },
-  ).as('getLoginSchemaType');
 };
 
 export const mockAppApiAccessToken = (shouldThrowError: boolean): void => {
