@@ -11,7 +11,7 @@ import * as CardStories from './Card.stories.js';
 
 const { FullWidth, Dense } = composeStories(CardStories);
 
-const data = Array.from({ length: 12 }, () => PackedFolderItemFactory());
+const data = Array(12).map(() => PackedFolderItemFactory({ id: v4() }));
 
 const meta = {
   title: 'Common/Cards',
@@ -87,7 +87,7 @@ export const GridOfDenseWithClickCards = {
     return (
       <Grid container spacing={2}>
         {data.map((i) => (
-          <Grid key={`cardno${i}`} size={size}>
+          <Grid key={`cardno${i.id}`} size={size}>
             <Dense
               creator={i.creator?.name}
               name={i.name}
