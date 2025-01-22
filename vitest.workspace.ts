@@ -15,6 +15,7 @@ export default defineWorkspace([
       browser: {
         enabled: true,
         headless: true,
+        name: 'chromium',
         provider: 'playwright',
       },
       // Make sure to adjust this pattern to match your stories files.

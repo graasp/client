@@ -50,7 +50,9 @@ const checkHref = async (
     const selectedPlatformProps = platformsProps[platform];
     if (selectedPlatformProps) {
       const href = selectedPlatformProps.href;
-      expect(button).toHaveAttribute('href', href);
+      if (href) {
+        expect(button).toHaveAttribute('href', href);
+      }
     }
   }
 };
@@ -113,7 +115,13 @@ export const Disabled: Story = {
       const selectedPlatformProps = args.platformsProps[Platform.Analytics];
       if (selectedPlatformProps) {
         const href = selectedPlatformProps.href;
-        expect(button).toHaveAttribute('href', href);
+        if (href) {
+          expect(button).toHaveAttribute('href', href);
+        }
+        const disabled = selectedPlatformProps.disabled;
+        if (disabled) {
+          expect(button).toHaveAttribute('aria-disabled', 'true');
+        }
       }
     }
   },

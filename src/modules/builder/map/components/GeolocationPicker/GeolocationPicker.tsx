@@ -9,9 +9,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { DEFAULT_LANG } from '@graasp/translations';
-
-import { NS } from '@/config/constants';
+import { DEFAULT_LANG, NS } from '@/config/constants';
 
 import { MAP } from '../../constants';
 import { QueryClientContextInterface } from '../context/QueryClientContext';

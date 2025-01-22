@@ -4,8 +4,10 @@ import i18n from 'i18next';
 
 import account from '../src/locales/en/account.json';
 import auth from '../src/locales/en/auth.json';
+import builder from '../src/locales/en/builder.json';
 import common from '../src/locales/en/common.json';
 import landing from '../src/locales/en/landing.json';
+import map from '../src/locales/en/map.json';
 import messages from '../src/locales/en/messages.json';
 import player from '../src/locales/en/player.json';
 
@@ -14,7 +16,7 @@ i18n.use(initReactI18next).init({
   fallbackLng: 'en',
 
   // have a common namespace used around the full app
-  ns: ['auth', 'account', 'landing', 'messages', 'player'],
+  ns: ['auth', 'account', 'landing', 'messages', 'player', 'map', 'builder'],
   defaultNS: 'translationsNS',
 
   // debug: true,
@@ -23,7 +25,9 @@ i18n.use(initReactI18next).init({
     escapeValue: false, // not needed for react!!
   },
 
-  resources: { en: { landing, auth, account, messages, common, player } },
+  resources: {
+    en: { landing, auth, account, messages, common, player, map, builder },
+  },
 });
 
 export default i18n;
