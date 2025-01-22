@@ -11,8 +11,7 @@ import {
 import { ChevronRightIcon, HomeIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
-
-import NavigationLink from './common/NavigationLink.js';
+import { TypographyLink } from '@/components/ui/TypographyLink';
 
 const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
@@ -83,9 +82,9 @@ const HomeMenu = ({
           </MenuItemLink>
         ))}
       </Menu>
-      <NavigationLink to={selected.to} key={selected.id}>
-        <Typography>{selected.name}</Typography>
-      </NavigationLink>
+      <TypographyLink to={selected.to} key={selected.id}>
+        {selected.name}
+      </TypographyLink>
     </>
   );
 };

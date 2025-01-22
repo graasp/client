@@ -185,7 +185,7 @@ const CurrentItemNavigation = ({
   );
 };
 
-type ItemMenuProps = {
+export type ItemMenuProps = {
   buildIconId?: (id: string) => string;
   buildMenuId?: (itemId: string) => string;
   buildMenuItemId?: (itemId: string) => string;
@@ -196,7 +196,7 @@ type ItemMenuProps = {
   renderArrow?: boolean;
 };
 
-function ItemMenu({
+export function ItemMenu({
   buildIconId,
   buildMenuId,
   buildMenuItemId,
