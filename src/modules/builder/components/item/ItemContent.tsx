@@ -18,10 +18,10 @@ import {
   getH5PExtra,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
 
 import { getRouteApi } from '@tanstack/react-router';
 
+import { DEFAULT_LANG } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
 import { axios, hooks } from '@/config/queryClient';
 import {

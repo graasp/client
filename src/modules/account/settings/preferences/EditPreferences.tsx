@@ -4,13 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { Stack, Switch, Tooltip } from '@mui/material';
 
 import { CompleteMember } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
-import { DEFAULT_EMAIL_FREQUENCY, NS } from '@/config/constants';
+import { DEFAULT_EMAIL_FREQUENCY, DEFAULT_LANG, NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,

@@ -4,7 +4,7 @@ import {
   SelectChangeEvent,
 } from '@mui/material';
 
-import { langs } from '@graasp/translations';
+import { LANGS } from '@/config/langs';
 
 type Props = {
   id?: string;
@@ -22,7 +22,7 @@ const LanguageSwitch = ({ id, lang, onChange }: Props): JSX.Element => {
     }
   };
 
-  const values = Object.entries(langs).map(([value, text]) => ({
+  const values = Object.entries(LANGS).map(([value, text]) => ({
     value,
     text,
   }));

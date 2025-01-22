@@ -5,8 +5,8 @@ import {
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
-import { langs } from '@graasp/translations';
 
+import { LANGS } from '@/config/langs';
 import { mutations } from '@/config/queryClient';
 import { LANGUAGE_SELECTOR_ID } from '@/config/selectors';
 import Select from '@/ui/Select/Select';
@@ -23,7 +23,7 @@ const LanguageSelect = ({ item }: { item: PackedItem }): JSX.Element => {
     changeLang({ id: item.id, lang: newLang as string });
   };
 
-  const values = Object.entries(langs).map(([k, v]) => ({ value: k, text: v }));
+  const values = Object.entries(LANGS).map(([k, v]) => ({ value: k, text: v }));
 
   return (
     <Select

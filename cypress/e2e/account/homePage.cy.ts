@@ -4,7 +4,7 @@ import { HttpMethod } from '@graasp/sdk';
 import { formatDistanceToNow } from 'date-fns';
 import { StatusCodes } from 'http-status-codes';
 
-import { getLocalForDateFns } from '../../../src/components/langs';
+import { getLocalForDateFns } from '../../../src/config/langs';
 import { ACCOUNT_HOME_PATH } from '../../../src/config/paths';
 import {
   AVATAR_UPLOAD_ICON_ID,

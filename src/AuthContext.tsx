@@ -9,8 +9,8 @@ import {
 } from 'react';
 
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
 
+import { DEFAULT_LANG } from './config/constants';
 import { hooks, mutations } from './config/queryClient';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 

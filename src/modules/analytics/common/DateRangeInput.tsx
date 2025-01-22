@@ -17,9 +17,9 @@ import { format } from 'date-fns/format';
 import { isSameDay } from 'date-fns/isSameDay';
 import { subMonths } from 'date-fns/subMonths';
 
-import { getLocalForDateFns } from '@/components/langs';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
+import { getLocalForDateFns } from '@/config/langs';
 
 import { DateRange } from '~analytics/config/type';
 

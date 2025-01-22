@@ -8,7 +8,6 @@ import {
   ShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
-import '@graasp/translations';
 
 import { v4 } from 'uuid';
 

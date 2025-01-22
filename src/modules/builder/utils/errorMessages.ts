@@ -1,13 +1,11 @@
-import { FAILURE_MESSAGES } from '@graasp/translations';
-
 import axios, { AxiosError } from 'axios';
 
 export const getErrorFromPayload = (
   inputError?: Error | AxiosError,
 ): { name: string; message: string } => {
   const defaultError = {
-    name: FAILURE_MESSAGES.UNEXPECTED_ERROR,
-    message: FAILURE_MESSAGES.UNEXPECTED_ERROR,
+    name: 'UNEXPECTED_ERROR',
+    message: 'UNEXPECTED_ERROR',
   };
   if (inputError && axios.isAxiosError(inputError)) {
     const errorData = inputError.response?.data;
@@ -17,6 +15,6 @@ export const getErrorFromPayload = (
 
   return {
     ...defaultError,
-    message: inputError?.message ?? FAILURE_MESSAGES.UNEXPECTED_ERROR,
+    message: inputError?.message ?? 'UNEXPECTED_ERROR',
   };
 };

@@ -9,8 +9,8 @@ import {
   formatFileSize,
   getFileExtra,
 } from '@graasp/sdk';
-import { langs } from '@graasp/translations';
 
+import { LANGS } from '../../../../../src/config/langs';
 import {
   CLEAR_CHAT_CONFIRM_BUTTON_ID,
   CLEAR_CHAT_DIALOG_ID,
@@ -120,7 +120,7 @@ describe('Item Settings', () => {
         cy.visit(buildItemSettingsPath(id));
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        const langName = langs[lang];
+        const langName = LANGS[lang];
         cy.get(`#${LANGUAGE_SELECTOR_ID}`).should('contain', langName);
         cy.get(`#${LANGUAGE_SELECTOR_ID}`).click();
         cy.get(`[role="option"][data-value="de"]`).click();

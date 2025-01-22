@@ -6,8 +6,8 @@ import { AccountType } from '@graasp/sdk';
 
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
 
-import { getLocalForDateFns } from '@/components/langs';
 import { NS } from '@/config/constants';
+import { getLocalForDateFns } from '@/config/langs';
 import { hooks } from '@/config/queryClient';
 import {
   MEMBER_CREATED_AT_ID,
