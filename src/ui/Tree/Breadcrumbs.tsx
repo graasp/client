@@ -48,7 +48,7 @@ const Breadcrumbs = ({
   return (
     <MuiBreadcrumbs separator="›" aria-label="breadcrumb">
       {allElements.map((ele) => (
-        <Tooltip title={ele.name}>
+        <Tooltip key={ele.name} title={ele.name}>
           <Button
             variant="text"
             color="inherit"
