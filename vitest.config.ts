@@ -21,7 +21,7 @@ export default mergeConfig(viteConfig({ mode: 'test' }), {
       'date-fns/isAfter',
       'jwt-decode',
     ],
-    exclude: ['.cache/**'],
+    exclude: ['.cache/**', '.vite'],
   },
   test: {
     environment: 'happy-dom',

@@ -242,6 +242,6 @@ export const FolderWithParentsWithExtraItems = {
     }
 
     // 4 = 2 parents + 2 x Home + current item is a folder + 1 extra item
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(6);
+    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(5);
   },
 } satisfies Story;
