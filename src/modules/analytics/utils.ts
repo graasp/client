@@ -17,13 +17,11 @@ import orderBy from 'lodash/orderBy';
 import toPairs from 'lodash/toPairs';
 import truncate from 'lodash/truncate';
 
+import { ITEM_NAME_MAX_LENGTH } from '@/config/constants';
+
 import { GroupByInterval, GroupByIntervalType } from '~analytics/config/type';
 
-import {
-  ITEM_NAME_MAX_LENGTH,
-  MIN_PERCENTAGE_TO_SHOW_VERB,
-  OTHER_VERB,
-} from './constants';
+import { MIN_PERCENTAGE_TO_SHOW_VERB, OTHER_VERB } from './constants';
 
 const getActionDay = (action: Action) => {
   const dateKey = 'createdAt';

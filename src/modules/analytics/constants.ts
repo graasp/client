@@ -112,8 +112,6 @@ export const ActionViewContext = {
 } as const;
 export type ActionViewContextUnion = UnionOfConst<typeof ActionViewContext>;
 
-export const ITEM_NAME_MAX_LENGTH = 15;
-
 export const NAVIGATOR_BACKGROUND_COLOR = '#f6f6f6';
 
 export const ITEM_PAGE_SIZE = 10;

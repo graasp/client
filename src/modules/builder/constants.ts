@@ -2,11 +2,6 @@ import { ItemLoginSchemaType, ItemType } from '@graasp/sdk';
 
 export const APP_NAME = 'Graasp';
 
-/**
- * Max length to display for an item name
- */
-export const ITEM_NAME_MAX_LENGTH = 20;
-
 export const SETTINGS = {
   ITEM_LOGIN: {
     name: 'item-login',

@@ -1,7 +1,6 @@
 import { ChangeEventHandler } from 'react';
 
-import { LoadingButton } from '@mui/lab';
-import { styled } from '@mui/material';
+import { Button, styled } from '@mui/material';
 
 import { CloudUploadIcon } from 'lucide-react';
 
@@ -65,7 +64,7 @@ const UploadFileButton = ({
   size,
   color,
 }: UploadFileButtonProps): JSX.Element => (
-  <LoadingButton
+  <Button
     id={id}
     component="label"
     variant={variant}
@@ -82,7 +81,7 @@ const UploadFileButton = ({
       type="file"
       accept={accept}
     />
-  </LoadingButton>
+  </Button>
 );
 
 export default UploadFileButton;

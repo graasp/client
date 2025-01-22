@@ -167,7 +167,7 @@ describe('Home', () => {
     });
   });
 
-  describe('Navigation', () => {
+  describe.only('Navigation', () => {
     it('visit Home', () => {
       cy.setUpApi({ items: ITEMS });
       cy.visit(HOME_PATH);

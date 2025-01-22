@@ -7,11 +7,9 @@ import { useParams } from '@tanstack/react-router';
 import { NS } from '@/config/constants';
 import { ITEM_HEADER_ID } from '@/config/selectors';
 
-import ItemHeaderActions from './ItemHeaderActions';
+import Navigation from '~builder/components/layout/Navigation';
 
-function Navigation() {
-  return <div>Temp navigation</div>;
-}
+import ItemHeaderActions from './ItemHeaderActions';
 
 type Props = {
   showNavigation?: boolean;
