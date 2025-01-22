@@ -197,7 +197,7 @@ describe('view Folder as admin', () => {
   });
 });
 
-describe.only('Folder Layout mode', () => {
+describe('Folder Layout mode', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: [parentItem, child1],

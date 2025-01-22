@@ -281,7 +281,6 @@ Cypress.Commands.add(
     currentProfile = MEMBER_PUBLIC_PROFILE,
     storageAmountInBytes = 10000,
     files = MEMBER_STORAGE_ITEM_RESPONSE,
-    itemLogins = {},
     items = [],
     shortLinks = [],
     recycledItemData = [],

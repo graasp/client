@@ -118,7 +118,6 @@ export type ApiConfig = {
   shouldFailRequestPasswordReset?: boolean;
   shouldFailResetPassword?: boolean;
   shouldFailLogin?: boolean;
-  itemLogins?: { [key: string]: string };
   chatMessages?: ChatMessage[];
   postItemChatMessageError?: boolean;
   clearItemChatError?: boolean;

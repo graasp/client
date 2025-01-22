@@ -399,7 +399,7 @@ export const mockGetItemLoginSchemaType = (items: ItemForTest[]): void => {
     ({ reply, url }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
       const item = items.find(({ id }) => itemId === id);
-      console.log(items, item);
+
       // if no item login schema is defined, the backend returns null
       return reply({
         body: item?.itemLoginSchema?.type ?? null,
@@ -2018,6 +2018,8 @@ export const mockGetDescendants = (
       const id = url.slice(API_HOST.length).split('/')[2];
       const item = items.find(({ id: thisId }) => id === thisId);
 
+      // const showHidden = new URL(url).searchParams.get('showHidden') !== 'false';
+
       // item does not exist in db
       if (!item) {
         return reply({
@@ -2029,13 +2031,15 @@ export const mockGetDescendants = (
       if (isError(error)) {
         return reply(error);
       }
-      const descendants = items.filter(
-        (newItem) =>
+      const descendants = items.filter((newItem) => {
+        // todo: filter out elements that have hidden visibility
+        return (
           isDescendantOf(newItem.path, item.path) &&
           checkMemberHasAccess({ item: newItem, items, member }) ===
             undefined &&
-          newItem.path !== item.path,
-      );
+          newItem.path !== item.path
+        );
+      });
       return reply(descendants);
     },
   ).as('getDescendants');

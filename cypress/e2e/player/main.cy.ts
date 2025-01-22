@@ -1,4 +1,4 @@
-import { DiscriminatedItem } from '@graasp/sdk';
+import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 
 import {
   FOLDER_NAME_TITLE_CLASS,
@@ -40,14 +40,17 @@ describe('Main Screen', () => {
     beforeEach(() => {
       cy.setUpApi({
         items: [
-          GRAASP_LINK_ITEM,
-          GRAASP_LINK_ITEM_IFRAME_ONLY,
-          YOUTUBE_LINK_ITEM,
-          IMAGE_ITEM_DEFAULT,
-          VIDEO_ITEM_DEFAULT,
-          PDF_ITEM_DEFAULT,
-          GRAASP_DOCUMENT_ITEM,
-          GRAASP_APP_ITEM,
+          { ...GRAASP_LINK_ITEM, permission: PermissionLevel.Admin },
+          {
+            ...GRAASP_LINK_ITEM_IFRAME_ONLY,
+            permission: PermissionLevel.Admin,
+          },
+          { ...YOUTUBE_LINK_ITEM, permission: PermissionLevel.Admin },
+          { ...IMAGE_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+          { ...VIDEO_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+          { ...PDF_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+          { ...GRAASP_DOCUMENT_ITEM, permission: PermissionLevel.Admin },
+          { ...GRAASP_APP_ITEM, permission: PermissionLevel.Admin },
           ...FOLDER_WITH_SUBFOLDER_ITEM.items,
           ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
         ],
@@ -158,7 +161,10 @@ describe('Main Screen', () => {
     });
     it(`Cannot display ${STATIC_ELECTRICITY.items[0].name} if does not have membership`, () => {
       cy.setUpApi({
-        items: STATIC_ELECTRICITY.items,
+        items: STATIC_ELECTRICITY.items.map((i) => {
+          const { permission: _permission, ...item } = i;
+          return item;
+        }),
         currentMember: MEMBERS.BOB,
       });
       const parentFolder = STATIC_ELECTRICITY.items[0];

@@ -1,4 +1,8 @@
-import { FolderItemFactory, LinkItemFactory } from '@graasp/sdk';
+import {
+  LinkItemFactory,
+  PackedFolderItemFactory,
+  PermissionLevel,
+} from '@graasp/sdk';
 
 import {
   HOME_PAGE_PAGINATION_ID,
@@ -70,14 +74,20 @@ describe('Navigation', () => {
 
 describe('Internal navigation', () => {
   it('Open a /:rootId link works', () => {
-    const firstCourse = FolderItemFactory({
-      name: 'Parent',
-      creator: CURRENT_MEMBER,
-    });
-    const target = FolderItemFactory({
-      name: 'Target',
-      creator: CURRENT_MEMBER,
-    });
+    const firstCourse = PackedFolderItemFactory(
+      {
+        name: 'Parent',
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    );
+    const target = PackedFolderItemFactory(
+      {
+        name: 'Target',
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    );
     const url = new URL(
       `/player/${target.id}`,
       window.location.origin,

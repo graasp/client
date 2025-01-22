@@ -4,6 +4,7 @@ import {
   ItemType,
   PackedDocumentItemFactory,
   PackedFolderItemFactory,
+  PermissionLevel,
   ShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
@@ -78,20 +79,25 @@ export const ITEM_WITHOUT_CHAT_BOX: ItemForTest = {
 
 export const FOLDER_WITH_SUBFOLDER_ITEM: { items: ItemForTest[] } = {
   items: [
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
-      name: 'parent folder',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
-      type: ItemType.FOLDER,
-      extra: {
-        [ItemType.FOLDER]: {},
+    PackedFolderItemFactory(
+      {
+        ...DEFAULT_FOLDER_ITEM,
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
+        name: 'parent folder',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
+        type: ItemType.FOLDER,
+        extra: {
+          [ItemType.FOLDER]: {},
+        },
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+      {
+        permission: PermissionLevel.Admin,
       },
-    },
+    ),
     {
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
@@ -231,30 +237,42 @@ export const FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
 };
 
 const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
-  const parent = FolderItemFactory({
-    name: 'Parent folder',
-    creator: CURRENT_MEMBER,
-  });
+  const parent = PackedFolderItemFactory(
+    {
+      name: 'Parent folder',
+      creator: CURRENT_MEMBER,
+    },
+    { permission: PermissionLevel.Admin },
+  );
   const children = [
-    DocumentItemFactory({
-      name: 'pinned from root',
-      extra: { document: { content: 'I am pinned from parent' } },
-      settings: { isPinned: true },
-      parentItem: parent,
-      creator: CURRENT_MEMBER,
-    }),
-    FolderItemFactory({
-      name: 'child folder 1',
-      settings: { isPinned: false },
-      parentItem: parent,
-      creator: CURRENT_MEMBER,
-    }),
-    FolderItemFactory({
-      name: 'child folder 2',
-      settings: { isPinned: false },
-      parentItem: parent,
-      creator: CURRENT_MEMBER,
-    }),
+    PackedDocumentItemFactory(
+      {
+        name: 'pinned from root',
+        extra: { document: { content: 'I am pinned from parent' } },
+        settings: { isPinned: true },
+        parentItem: parent,
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    ),
+    PackedFolderItemFactory(
+      {
+        name: 'child folder 1',
+        settings: { isPinned: false },
+        parentItem: parent,
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    ),
+    PackedFolderItemFactory(
+      {
+        name: 'child folder 2',
+        settings: { isPinned: false },
+        parentItem: parent,
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    ),
   ];
   const childrenOfChildren = [
     DocumentItemFactory({
@@ -292,15 +310,21 @@ export const PINNED_AND_HIDDEN_ITEM: { items: ItemForTest[] } = {
       },
     },
     {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
-      name: 'PINNED & hidden',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130007',
-      settings: {
-        isPinned: true,
-        showChatbox: false,
-      },
-      // hiddenVisibility : mockHiddenTag(),
+      ...PackedFolderItemFactory(
+        {
+          ...DEFAULT_FOLDER_ITEM,
+          id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
+          name: 'PINNED & hidden',
+          path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130007',
+          settings: {
+            isPinned: true,
+            showChatbox: false,
+          },
+        },
+        {
+          hiddenVisibility: {},
+        },
+      ),
     },
     {
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',

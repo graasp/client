@@ -117,18 +117,21 @@ export const GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN: ItemForTest = {
 };
 
 export const GRAASP_DOCUMENT_ITEM_WITH_CHAT_BOX: DocumentItemType =
-  DocumentItemFactory({
-    id: 'ecafbf2a-5688-12eb-ae91-0242ac130002',
-    type: ItemType.DOCUMENT,
-    name: 'graasp text',
-    description: 'a description for graasp text',
-    path: 'ecafbf2a_5688_12eb_ae93_0242ac130002',
-    creator: CURRENT_MEMBER,
-    extra: buildDocumentExtra({
-      content: '<h1>Some Title</h1>',
-    }),
-    settings: {
-      isPinned: false,
-      showChatbox: true,
+  PackedDocumentItemFactory(
+    {
+      id: 'ecafbf2a-5688-12eb-ae91-0242ac130002',
+      type: ItemType.DOCUMENT,
+      name: 'graasp text',
+      description: 'a description for graasp text',
+      path: 'ecafbf2a_5688_12eb_ae93_0242ac130002',
+      creator: CURRENT_MEMBER,
+      extra: buildDocumentExtra({
+        content: '<h1>Some Title</h1>',
+      }),
+      settings: {
+        isPinned: false,
+        showChatbox: true,
+      },
     },
-  });
+    { permission: PermissionLevel.Admin },
+  );
