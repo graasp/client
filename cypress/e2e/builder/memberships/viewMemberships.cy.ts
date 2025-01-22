@@ -510,13 +510,13 @@ describe('View Memberships Read-Only Mode', () => {
       .should('contain', CURRENT_MEMBER.email)
       .should('contain', ownMembership.permission);
 
-    cy.get(`#${buildItemMembershipRowEditButtonId(ownMembership.id)}`).should(
-      'be.visible',
-    );
+    cy.get(`#${buildItemMembershipRowEditButtonId(ownMembership.id)}`)
+      .scrollIntoView()
+      .should('be.visible');
 
-    cy.get(`#${buildItemMembershipRowDeleteButtonId(ownMembership.id)}`).should(
-      'be.visible',
-    );
+    cy.get(`#${buildItemMembershipRowDeleteButtonId(ownMembership.id)}`)
+      .scrollIntoView()
+      .should('be.visible');
 
     // cannot see others
     for (const { id } of memberships) {

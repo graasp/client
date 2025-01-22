@@ -52,9 +52,9 @@ describe('Membership requests table', () => {
     cy.setUpApi({ items: [itemWithRequests] });
     cy.visit(`/builder/items/${itemWithRequests.id}/share`);
     cy.get(buildDataCyWrapper(MEMBERSHIP_REQUESTS_TAB_SELECTOR)).click();
-    cy.get(buildDataCyWrapper(MEMBERSHIP_REQUESTS_EMPTY_SELECTOR)).should(
-      'be.visible',
-    );
+    cy.get(buildDataCyWrapper(MEMBERSHIP_REQUESTS_EMPTY_SELECTOR))
+      .scrollIntoView()
+      .should('be.visible');
   });
 
   describe('Filled Membership Requests', () => {
@@ -70,20 +70,8 @@ describe('Membership requests table', () => {
         )
           .should('contain', mr.member.name)
           .should('contain', mr.member.email)
-          .should(
-            'contain',
-            // FIX: use exact string in the user language
-            // i18n.t(BUILDER.MEMBERSHIP_REQUEST_ACCEPT_BUTTON, {
-            //   ns: BUILDER_NAMESPACE,
-            // }),
-          )
-          .should(
-            'contain',
-            // FIX: use exact string in the user language
-            // i18n.t(BUILDER.MEMBERSHIP_REQUEST_REJECT_BUTTON, {
-            //   ns: BUILDER_NAMESPACE,
-            // }),
-          );
+          .should('contain', 'Accept')
+          .should('contain', 'Reject');
       }
     });
     it('accept membership requests', () => {
