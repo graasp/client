@@ -1,4 +1,11 @@
-import React, { FC, ReactElement, RefObject, useEffect, useState } from 'react';
+import {
+  type KeyboardEvent,
+  ReactElement,
+  RefObject,
+  useEffect,
+  useState,
+} from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Mention,
   MentionItem,
@@ -11,24 +18,24 @@ import { Send as SendIcon } from '@mui/icons-material';
 import { Box, IconButton, Typography, styled, useTheme } from '@mui/material';
 
 import { MessageBodyType } from '@graasp/sdk';
-import { CHATBOX } from '@graasp/translations';
 
-import { useChatboxTranslation } from '@/config/i18n.js';
-import {
-  charCounterCypress,
-  inputTextFieldCypress,
-  inputTextFieldTextAreaCypress,
-  sendButtonCypress,
-} from '@/config/selectors.js';
+import { NS } from '@/config/constants.js';
+
 import {
   ALL_MEMBERS_ID,
   ALL_MEMBERS_SUGGESTION,
   GRAASP_MENTION_COLOR,
   HARD_MAX_MESSAGE_LENGTH,
-} from '@/constants.js';
-import { useCurrentMemberContext } from '@/context/CurrentMemberContext.js';
-import { useMessagesContext } from '@/context/MessagesContext.js';
-import { MENTION_MARKUP } from '@/utils/mentions.js';
+} from '../constants.js';
+import { useCurrentMemberContext } from '../context/CurrentMemberContext.js';
+import { useMessagesContext } from '../context/MessagesContext.js';
+import {
+  charCounterCypress,
+  inputTextFieldCypress,
+  inputTextFieldTextAreaCypress,
+  sendButtonCypress,
+} from '../selectors.js';
+import { MENTION_MARKUP } from '../utils.js';
 
 const HelperText = styled(Typography)(({ theme }) => ({
   whiteSpace: 'pre',
@@ -50,14 +57,14 @@ type Props = {
   sendMessageFunction?: (body: MessageBodyType) => void;
 };
 
-const Input: FC<Props> = ({
+export function Input({
   id,
   inputRef,
   textInput,
   setTextInput,
   placeholder,
   sendMessageFunction,
-}) => {
+}: Readonly<Props>) {
   // use mui theme for the mentions component
   // we can not use 'useStyles' with it because it requests an object for the styles
   const theme = useTheme();
@@ -115,9 +122,18 @@ const Input: FC<Props> = ({
 
   const { members } = useMessagesContext();
   const currentMember = useCurrentMemberContext();
-  const { t } = useChatboxTranslation();
+  const { t } = useTranslation(NS.Chatbox);
   const [currentMentions, setCurrentMentions] = useState<string[]>([]);
   const [plainTextMessage, setPlainTextMessage] = useState<string>('');
+
+  // autofocus on first render
+  useEffect(
+    () => {
+      inputRef.current?.focus();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   if (!currentMember) {
     return null;
@@ -135,11 +151,6 @@ const Input: FC<Props> = ({
 
   // compute if message exceeds max length
   const isMessageTooLong = textInput.length > HARD_MAX_MESSAGE_LENGTH;
-
-  // autofocus on first render
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   const onSend = (): void => {
     if (textInput) {
@@ -169,14 +180,12 @@ const Input: FC<Props> = ({
   ): void => {
     setTextInput(newValue);
     setPlainTextMessage(newPlainTextValue);
-    setCurrentMentions(newMentions.map(({ id }) => id));
+    setCurrentMentions(newMentions.map(({ id: mentionId }) => mentionId));
   };
 
   // catch {enter} key press to send messages
   const keyDown = (
-    e:
-      | React.KeyboardEvent<HTMLTextAreaElement>
-      | React.KeyboardEvent<HTMLInputElement>,
+    e: KeyboardEvent<HTMLTextAreaElement> | KeyboardEvent<HTMLInputElement>,
   ): void => {
     // let user insert a new line with shift+enter
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -198,7 +207,7 @@ const Input: FC<Props> = ({
       // append the max message size
       if (isMessageTooLong) {
         // there is a "space" before the message
-        helperText += ` ${t(CHATBOX.INPUT_MESSAGE_TOO_LONG, {
+        helperText += ` ${t('INPUT_MESSAGE_TOO_LONG', {
           length: HARD_MAX_MESSAGE_LENGTH,
         })}`;
       }
@@ -232,8 +241,8 @@ const Input: FC<Props> = ({
           onKeyDown={keyDown}
           style={inputStyle}
           forceSuggestionsAboveCursor
-          a11ySuggestionsListLabel={t(CHATBOX.SUGGESTED_MENTIONS)}
-          placeholder={placeholder || t(CHATBOX.INPUT_FIELD_PLACEHOLDER)}
+          a11ySuggestionsListLabel={t('SUGGESTED_MENTIONS')}
+          placeholder={placeholder ?? t('INPUT_FIELD_PLACEHOLDER')}
         >
           <Mention
             displayTransform={(_, display): string => `@${display}`}
@@ -257,6 +266,4 @@ const Input: FC<Props> = ({
       {renderHelperText()}
     </div>
   );
-};
-
-export default Input;
+}

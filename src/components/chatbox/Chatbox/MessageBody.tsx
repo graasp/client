@@ -10,10 +10,10 @@ import {
   ALL_MEMBERS_ID,
   ALL_MEMBERS_MEMBER,
   UNKNOWN_USER_NAME,
-} from '@/constants.js';
-import { useCurrentMemberContext } from '@/context/CurrentMemberContext.js';
-import { useMessagesContext } from '@/context/MessagesContext.js';
-import { getIdMention, getMention } from '@/utils/mentions.js';
+} from '../constants.js';
+import { useCurrentMemberContext } from '../context/CurrentMemberContext.js';
+import { useMessagesContext } from '../context/MessagesContext.js';
+import { getIdMention, getMention } from '../utils.js';
 
 const StyledReactMarkdown = styled(ReactMarkdown)(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,

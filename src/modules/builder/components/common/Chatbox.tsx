@@ -1,6 +1,6 @@
-import { Chatbox as GraaspChatbox } from '@graasp/chatbox';
 import { PackedItem, PermissionLevel } from '@graasp/sdk';
 
+import { Chatbox as GraaspChatbox } from '@/components/chatbox/Chatbox/Chatbox';
 import { hooks, mutations } from '@/config/queryClient';
 import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
 import Loader from '@/ui/Loader/Loader';

@@ -1,4 +1,5 @@
-import { Close, Edit } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+
 import {
   Box,
   Divider,
@@ -8,16 +9,18 @@ import {
   styled,
 } from '@mui/material';
 
-import { CHATBOX } from '@graasp/translations';
+import { PenIcon, XIcon } from 'lucide-react';
 
-import { useChatboxTranslation } from '@/config/i18n.js';
+import { NS } from '@/config/constants.js';
+import { useButtonColor } from '@/ui/buttons/hooks.js';
+
+import { useEditingContext } from '../context/EditingContext.js';
 import {
   editBannerCloseButtonCypress,
   editBannerCypress,
   editBannerOldTextCypress,
-} from '@/config/selectors.js';
-import { useEditingContext } from '@/context/EditingContext.js';
-import { normalizeMentions } from '@/index.js';
+} from '../selectors.js';
+import { normalizeMentions } from '../utils.js';
 
 const Container = styled(Box)({
   display: 'flex',
@@ -45,9 +48,10 @@ type Props = {
   editedText: string;
 };
 
-const EditBanner = ({ onClose, editedText }: Props) => {
+export function EditBanner({ onClose, editedText }: Readonly<Props>) {
   const { open } = useEditingContext();
-  const { t } = useChatboxTranslation();
+  const { color } = useButtonColor('error');
+  const { t } = useTranslation(NS.Chatbox);
   if (!open) {
     return null;
   }
@@ -56,25 +60,20 @@ const EditBanner = ({ onClose, editedText }: Props) => {
       <Divider />
       <Container data-cy={editBannerCypress}>
         <EditIcon fontSize="small" color="primary">
-          <Edit />
+          <PenIcon />
         </EditIcon>
         <EditContainer>
           <OldTextLabel variant="subtitle2">
-            {t(CHATBOX.EDITING_MESSAGE_LABEL)}
+            {t('EDITING_MESSAGE_LABEL')}
           </OldTextLabel>
           <Typography noWrap data-cy={editBannerOldTextCypress}>
             {normalizeMentions(editedText)}
           </Typography>
         </EditContainer>
         <IconButton data-cy={editBannerCloseButtonCypress} onClick={onClose}>
-          <Close
-            // todo: change to secondary once Graasp has one
-            color="primary"
-          />
+          <XIcon color={color} />
         </IconButton>
       </Container>
     </>
   );
-};
-
-export default EditBanner;
+}

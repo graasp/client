@@ -1,34 +1,35 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Dialog, DialogContent, DialogTitle, Stack } from '@mui/material';
 
-import { CHATBOX } from '@graasp/translations';
-import { useButtonColor } from '@graasp/ui';
-
 import { BellIcon } from 'lucide-react';
 
-import { useChatboxTranslation } from '@/config/i18n.js';
+import { NS } from '@/config/constants';
+import { useButtonColor } from '@/ui/buttons/hooks';
 
 type Props = {
-  content: ReactElement;
+  children: ReactNode;
   open: boolean;
   setOpen: (state: boolean) => void;
 };
 
-const MentionsDialog = ({ content, open, setOpen }: Props): JSX.Element => {
-  const { t } = useChatboxTranslation();
+export function MentionsDialog({
+  children,
+  open,
+  setOpen,
+}: Readonly<Props>): JSX.Element {
+  const { t } = useTranslation(NS.Chatbox);
   const { color } = useButtonColor('primary');
   return (
     <Dialog open={open} onClose={(): void => setOpen(false)} maxWidth="lg">
       <DialogTitle>
         <Stack direction="row" spacing={1} alignItems="center">
           <BellIcon color={color} />
-          {t(CHATBOX.NOTIFICATIONS_DIALOG_TITLE)}
+          {t('NOTIFICATIONS_DIALOG_TITLE')}
         </Stack>
       </DialogTitle>
-      <DialogContent>{content}</DialogContent>
+      <DialogContent>{children}</DialogContent>
     </Dialog>
   );
-};
-
-export default MentionsDialog;
+}

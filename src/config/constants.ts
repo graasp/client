@@ -25,6 +25,7 @@ export const NS = {
   Analytics: 'analytics',
   Auth: 'auth',
   Builder: 'builder',
+  Chatbox: 'chatbox',
   Common: 'common',
   Enums: 'enums',
   Landing: 'landing',

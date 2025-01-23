@@ -1,21 +1,23 @@
+import { useTranslation } from 'react-i18next';
+
 import { Box, Stack, Typography, colors, styled } from '@mui/material';
 
 import { Account, ChatMessage, CurrentAccount } from '@graasp/sdk';
-import { CHATBOX } from '@graasp/translations';
-import { Avatar } from '@graasp/ui';
 
 import { format } from 'date-fns';
 import truncate from 'lodash.truncate';
 
-import { getDateLocale, useChatboxTranslation } from '@/config/i18n.js';
-import { messageIdCyWrapper } from '@/config/selectors.js';
+import { NS } from '@/config/constants.js';
+import { getLocalForDateFns } from '@/config/langs.js';
+import Avatar from '@/ui/Avatar/Avatar.js';
+
 import {
   DEFAULT_USER_NAME,
   MAX_AVATAR_SIZE,
   MAX_USERNAME_LENGTH,
-} from '@/constants.js';
-import { useHooksContext } from '@/context/HooksContext.js';
-
+} from '../constants.js';
+import { useHooksContext } from '../context/HooksContext.js';
+import { messageIdCyWrapper } from '../selectors.js';
 import MessageBody from './MessageBody.js';
 
 const MessageWrapper = styled(Box)(({ theme }) => ({
@@ -41,7 +43,7 @@ type Props = {
 };
 
 const Message = ({ message, currentMember, member }: Props): JSX.Element => {
-  const { t, i18n } = useChatboxTranslation();
+  const { t, i18n } = useTranslation(NS.Chatbox);
   const { useAvatarUrl } = useHooksContext();
   const {
     data: avatarUrl,
@@ -57,7 +59,7 @@ const Message = ({ message, currentMember, member }: Props): JSX.Element => {
     ? truncate(member?.name, { length: MAX_USERNAME_LENGTH })
     : DEFAULT_USER_NAME;
   const time = format(message.createdAt, 'HH:mm aaa', {
-    locale: getDateLocale(i18n.language),
+    locale: getLocalForDateFns(i18n.language),
   });
 
   return (
@@ -97,7 +99,7 @@ const Message = ({ message, currentMember, member }: Props): JSX.Element => {
         {`${
           // when the createdAt and updatedAt times are different it means the message has been modified
           message.updatedAt !== message.createdAt
-            ? t(CHATBOX.MESSAGE_MODIFIED_INDICATOR)
+            ? t('MESSAGE_MODIFIED_INDICATOR')
             : ''
         } ${time}`}
       </TimeText>

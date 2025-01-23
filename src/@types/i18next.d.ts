@@ -5,6 +5,7 @@ import account from '../locales/en/account.json';
 import analytics from '../locales/en/analytics.json';
 import auth from '../locales/en/auth.json';
 import builder from '../locales/en/builder.json';
+import chatbox from '../locales/en/chatbox.json';
 import common from '../locales/en/common.json';
 import enums from '../locales/en/enums.json';
 import landing from '../locales/en/landing.json';
@@ -19,6 +20,7 @@ declare module 'i18next' {
       analytics: typeof analytics;
       auth: typeof auth;
       builder: typeof builder;
+      chatbox: typeof chatbox;
       common: typeof common;
       enums: typeof enums;
       landing: typeof landing;

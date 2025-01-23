@@ -1,4 +1,5 @@
-import { FC, ReactElement } from 'react';
+import { ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -8,25 +9,24 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { CHATBOX } from '@graasp/translations';
+import { NS } from '@/config/constants.js';
 
-import { useChatboxTranslation } from '@/config/i18n.js';
 import {
   cancelDialogButtonCypress,
   confirmDialogButtonCypress,
-} from '@/config/selectors.js';
+} from '../selectors.js';
 
 type Props = {
   open: boolean;
   title: string;
-  content: ReactElement<unknown> | string;
+  content: ReactNode;
   confirmText?: string;
   cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
 };
 
-const ConfirmationDialog: FC<Props> = ({
+export function ConfirmationDialog({
   open,
   title,
   content,
@@ -34,8 +34,8 @@ const ConfirmationDialog: FC<Props> = ({
   cancelText,
   onConfirm,
   onCancel,
-}) => {
-  const { t } = useChatboxTranslation();
+}: Readonly<Props>) {
+  const { t } = useTranslation(NS.Chatbox);
 
   return (
     <Dialog open={open}>
@@ -47,18 +47,16 @@ const ConfirmationDialog: FC<Props> = ({
           onClick={onCancel}
           data-cy={cancelDialogButtonCypress}
         >
-          {cancelText || t(CHATBOX.CANCEL_BUTTON)}
+          {cancelText ?? t('CANCEL_BUTTON')}
         </Button>
         <Button
           variant="outlined"
           onClick={onConfirm}
           data-cy={confirmDialogButtonCypress}
         >
-          {confirmText || t(CHATBOX.CONFIRM_BUTTON)}
+          {confirmText ?? t('CONFIRM_BUTTON')}
         </Button>
       </DialogActions>
     </Dialog>
   );
-};
-
-export default ConfirmationDialog;
+}

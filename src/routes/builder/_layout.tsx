@@ -23,6 +23,7 @@ import {
 import { ClipboardPenIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
+import { MentionButton } from '@/components/chatbox/Mentions/MentionButton';
 import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
@@ -40,7 +41,6 @@ import { useMobileView } from '@/ui/hooks/useMobileView';
 import { MemberValidationBanner } from '~builder/components/alerts/MemberValidationBanner';
 import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import { MainMenu } from '~builder/components/main/MainMenu';
-import { NotificationButton } from '~builder/components/main/NotificationButton';
 
 export const Route = createFileRoute('/builder/_layout')({
   beforeLoad({ context }) {
@@ -116,7 +116,7 @@ function RouteComponent() {
       drawerOpenAriaLabel={t('ARIA_OPEN_DRAWER')}
       headerRightContent={
         <Stack direction="row" alignItems="center">
-          <NotificationButton />
+          <MentionButton color="white" badgeColor="primary" />
           <UserButtonMenu />
         </Stack>
       }

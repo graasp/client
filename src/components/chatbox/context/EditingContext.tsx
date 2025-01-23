@@ -35,8 +35,8 @@ export const EditingContextProvider = ({ children }: Props): JSX.Element => {
   const open = editing.open;
   const body = editing.body;
   const messageId = editing.id;
-  const enableEdit = (id: string, body: string): void =>
-    setEditing({ id, open: true, body });
+  const enableEdit = (id: string, newBody: string): void =>
+    setEditing({ id, open: true, body: newBody });
   const cancelEdit = (): void => setEditing(INITIAL_EDITING_PROPS);
 
   return (

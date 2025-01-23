@@ -1,20 +1,21 @@
 import { Fragment, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Box, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 
 import { ChatMessage, CurrentAccount } from '@graasp/sdk';
 
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
 
-import { getDateLocale, useChatboxTranslation } from '@/config/i18n.js';
-import { messagesContainerCypress } from '@/config/selectors.js';
-import { DEFAULT_DATE_FORMAT, SCROLL_SAFETY_MARGIN } from '@/constants.js';
-import { useEditingContext } from '@/context/EditingContext.js';
-import { useMessagesContext } from '@/context/MessagesContext.js';
-import type { DeleteMessageFunctionType } from '@/types.js';
+import { NS } from '@/config/constants.js';
+import { getLocalForDateFns } from '@/config/langs.js';
 
-import Date from './Date.js';
+import { DEFAULT_DATE_FORMAT, SCROLL_SAFETY_MARGIN } from '../constants.js';
+import { useEditingContext } from '../context/EditingContext.js';
+import { useMessagesContext } from '../context/MessagesContext.js';
+import { messagesContainerCypress } from '../selectors.js';
+import type { DeleteMessageFunctionType } from '../types.js';
 import Message from './Message.js';
 import MessageActions from './MessageActions.js';
 
@@ -50,12 +51,12 @@ type Props = {
   deleteMessageFunction?: DeleteMessageFunctionType;
 };
 
-const Messages = ({
+export function Messages({
   currentMember,
   isAdmin = false,
   deleteMessageFunction,
-}: Props): JSX.Element => {
-  const { i18n } = useChatboxTranslation();
+}: Readonly<Props>) {
+  const { i18n } = useTranslation(NS.Chatbox);
   const ref = useRef<HTMLDivElement>(null);
   const { open } = useEditingContext();
   const { messages, members } = useMessagesContext();
@@ -77,7 +78,7 @@ const Messages = ({
   const messagesByDay = Object.entries(
     groupBy(messages, ({ createdAt }) =>
       format(createdAt, DEFAULT_DATE_FORMAT, {
-        locale: getDateLocale(i18n.language),
+        locale: getLocalForDateFns(i18n.language),
       }),
     ),
   );
@@ -87,7 +88,9 @@ const Messages = ({
       <MessageContainer>
         {messagesByDay?.map(([date, m]) => (
           <Fragment key={date}>
-            <Date date={date} />
+            <Box p={1} alignSelf="center">
+              <Typography variant="subtitle2">{date}</Typography>
+            </Box>
             {m?.map((message) => {
               const isOwnMessage = isOwn(message);
               return (
@@ -119,6 +122,4 @@ const Messages = ({
       </MessageContainer>
     </Container>
   );
-};
-
-export default Messages;
+}

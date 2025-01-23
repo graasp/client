@@ -1,4 +1,5 @@
 import { MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
 import {
@@ -11,17 +12,17 @@ import {
 } from '@mui/material';
 
 import { ChatMessage } from '@graasp/sdk';
-import { CHATBOX } from '@graasp/translations';
 
-import { useChatboxTranslation } from '@/config/i18n.js';
+import { NS } from '@/config/constants.js';
+
+import { LIST_ICON_MIN_WIDTH } from '../constants.js';
+import { useEditingContext } from '../context/EditingContext.js';
 import {
   deleteMenuItemCypress,
   editMenuItemCypress,
   messageActionsButtonCypress,
-} from '@/config/selectors.js';
-import { LIST_ICON_MIN_WIDTH } from '@/constants.js';
-import { useEditingContext } from '@/context/EditingContext.js';
-import { DeleteMessageFunctionType } from '@/types.js';
+} from '../selectors.js';
+import { DeleteMessageFunctionType } from '../types.js';
 
 type Props = {
   message: ChatMessage;
@@ -43,7 +44,7 @@ const MessageActions = ({
 }: Props): JSX.Element => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
-  const { t } = useChatboxTranslation();
+  const { t } = useTranslation(NS.Chatbox);
   const { enableEdit } = useEditingContext();
 
   const handleOnClickMenu = (e: MouseEvent<HTMLButtonElement>): void => {
@@ -97,7 +98,7 @@ const MessageActions = ({
               <StyledListItemIcon>
                 <Edit color="primary" />
               </StyledListItemIcon>
-              <ListItemText>{t(CHATBOX.EDIT_BUTTON)}</ListItemText>
+              <ListItemText>{t('EDIT_BUTTON')}</ListItemText>
             </MenuItem>
           )
         }
@@ -107,12 +108,9 @@ const MessageActions = ({
           dense
         >
           <StyledListItemIcon>
-            <Delete
-              // todo: change to secondary once Graasp has one
-              color="primary"
-            />
+            <Delete color="error" />
           </StyledListItemIcon>
-          <ListItemText>{t(CHATBOX.DELETE_BUTTON)}</ListItemText>
+          <ListItemText>{t('DELETE_BUTTON')}</ListItemText>
         </MenuItem>
       </Menu>
     </>
