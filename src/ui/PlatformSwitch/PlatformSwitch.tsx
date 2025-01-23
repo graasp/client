@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Box,
   SpeedDial,
@@ -14,7 +15,7 @@ import BuildIcon from '../icons/BuildIcon.js';
 import LibraryIcon from '../icons/LibraryIcon.js';
 import PlayIcon from '../icons/PlayIcon.js';
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
-import { Platform } from './hooks.js';
+import { Platform, PlatformType } from './hooks.js';
 
 export type PlatformSwitchProps = {
   /** Element ID of the Platform Switch */
@@ -32,11 +33,11 @@ export type PlatformSwitchProps = {
   /** Style overrides to apply to the switch frame */
   sx?: SxProps;
   /** Platform that should be currently highlighted */
-  selected?: Platform;
+  selected?: PlatformType;
   /** Platform-specific icon props */
   platformsProps?: Partial<
     Record<
-      Platform,
+      PlatformType,
       {
         /** Element ID of this specific platform button */
         id?: string;
@@ -74,7 +75,7 @@ type IconProps = {
 };
 
 /** Mapping from platform to their icons */
-const PlatformIcons: Record<Platform, (props: IconProps) => JSX.Element> = {
+const PlatformIcons: Record<PlatformType, (props: IconProps) => JSX.Element> = {
   [Platform.Builder]: BuildIcon,
   [Platform.Player]: PlayIcon,
   [Platform.Library]: LibraryIcon,
@@ -103,10 +104,10 @@ export const PlatformSwitch = ({
   /** Helper inner component: generates buttons from icons while capturing parent props */
   const PlatformButton = ({
     platform,
-    sx = {},
+    sx: localSX = {},
   }: {
     /** Platform which button should be rendered */
-    platform: Platform;
+    platform: PlatformType;
     /** Styles applied to the underlying icon */
     sx?: SxProps;
   }): JSX.Element => {
@@ -117,7 +118,7 @@ export const PlatformSwitch = ({
     const Icon = PlatformIcons[platform];
 
     const tooltip = platformProps?.tooltip;
-    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
+    const sxProps = { ...localSX, ...(platformProps?.sx ?? {}) };
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -130,7 +131,7 @@ export const PlatformSwitch = ({
             cursor: platformProps?.disabled ? 'default' : 'pointer',
           }}
           data-testid={platform}
-          href={(!platformProps?.disabled && platformProps?.href) || '#'}
+          href={!platformProps?.disabled ? platformProps?.href : undefined}
           aria-disabled={platformProps?.disabled}
           data-umami-event={`header-navigation-switch-${platform}`}
         >
@@ -187,30 +188,33 @@ export const PlatformSwitch = ({
           direction={'down'}
           ariaLabel="platform switch dial"
         >
-          {Object.values(Platform).map((platform, index) => {
+          {Object.values(Platform).map((platform) => {
             const Icon = PlatformIcons[platform];
             const isSelectedPlatform = platform === selected;
-            const platformProps = platformsProps?.[platform];
-            const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
+            const localPlatformProps = platformsProps?.[platform];
+            const localSxProps = { ...sx, ...(platformProps?.sx ?? {}) };
             return (
               <SpeedDialAction
-                key={index}
+                key={platform}
                 icon={
                   <Icon
                     disabledColor={disabledColor}
-                    disabled={platformProps?.disabled}
+                    disabled={localPlatformProps?.disabled}
                     selected={isSelectedPlatform}
                     secondaryColor={accentColor}
                     primaryColor={color}
                     primaryOpacity={1}
                     size={size}
-                    sx={sxProps}
+                    sx={localSxProps}
                   />
                 }
-                tooltipTitle={platformProps?.tooltip}
+                tooltipTitle={localPlatformProps?.tooltip}
                 onClick={() => {
-                  if (!platformProps?.disabled && platformProps?.href) {
-                    location.assign(platformProps?.href);
+                  if (
+                    !localPlatformProps?.disabled &&
+                    localPlatformProps?.href
+                  ) {
+                    location.assign(localPlatformProps?.href);
                   }
                 }}
               />

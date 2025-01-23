@@ -1,6 +1,6 @@
 import { EmailFrequency } from '@graasp/sdk';
-import { langs } from '@graasp/translations';
 
+import { LANGS } from '../../../../src/config/langs';
 import { ACCOUNT_SETTINGS_PATH } from '../../../../src/config/paths';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
@@ -16,7 +16,7 @@ import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 
 describe('Display preferences', () => {
   describe('Language', () => {
-    Object.entries(langs)
+    Object.entries(LANGS)
       .map(([lang, expectedLabel]) => ({
         lang,
         expectedLabel,

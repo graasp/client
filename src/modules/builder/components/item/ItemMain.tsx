@@ -1,16 +1,18 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 import { Container, Divider, Stack, Typography, styled } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
+import { useSearch } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { ITEM_MAIN_CLASS } from '@/config/selectors';
 import { DrawerHeader } from '@/ui/DrawerHeader/DrawerHeader';
 
+import { useOutletContext } from '~builder/contexts/OutletContext';
+
 import Chatbox from '../common/Chatbox';
-import { useLayoutContext } from '../context/LayoutContext';
 import ItemPanel from './ItemPanel';
 import ItemHeader from './header/ItemHeader';
 
@@ -44,14 +46,18 @@ const StyledContainer = styled(Container)<{ open: boolean }>(({
 
 type Props = {
   children: JSX.Element | JSX.Element[];
-  item?: PackedItem;
   id?: string;
 };
 
-const ItemMain = ({ id, children, item }: Props): JSX.Element => {
+const ItemMain = ({ id, children }: Props): JSX.Element => {
+  const { item } = useOutletContext();
   const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { chat: chatIsOpen } = useSearch({
+    from: '/builder/items/$itemId',
+  });
 
-  const { isChatboxMenuOpen, setIsChatboxMenuOpen } = useLayoutContext();
+  const [isChatboxOpen, setIsChatboxOpen] = useState(chatIsOpen ?? false);
+  const toggleChatbox = () => setIsChatboxOpen((s) => !s);
 
   return (
     <>
@@ -59,11 +65,11 @@ const ItemMain = ({ id, children, item }: Props): JSX.Element => {
         <title>{item?.name}</title>
       </Helmet>
       <Stack id={id} pt={2} className={ITEM_MAIN_CLASS} height="100%">
-        {isChatboxMenuOpen && (
-          <ItemPanel open={isChatboxMenuOpen}>
+        {isChatboxOpen && (
+          <ItemPanel open={isChatboxOpen}>
             <DrawerHeader
               handleDrawerClose={() => {
-                setIsChatboxMenuOpen(false);
+                setIsChatboxOpen(false);
               }}
               direction="rtl"
             >
@@ -77,8 +83,12 @@ const ItemMain = ({ id, children, item }: Props): JSX.Element => {
             {item && <Chatbox item={item} />}
           </ItemPanel>
         )}
-        <StyledContainer open={isChatboxMenuOpen}>
-          <ItemHeader showNavigation />
+        <StyledContainer open={isChatboxOpen}>
+          <ItemHeader
+            showNavigation
+            isChatboxOpen={isChatboxOpen}
+            toggleChatbox={toggleChatbox}
+          />
 
           {children}
         </StyledContainer>

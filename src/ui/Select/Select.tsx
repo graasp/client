@@ -47,8 +47,8 @@ const Select = <T extends string | number>({
     <FormControl
       sx={{ mt: label ? 1 : 0, height: 'fit-content' }}
       size={size}
-      data-testid='select-test-id'
-      disabled={disabled || values.every(({ disabled }) => disabled)}
+      data-testid="select-test-id"
+      disabled={disabled || values.every(({ disabled: d }) => d)}
     >
       {showLabel && <InputLabel id={labelId}>{label}</InputLabel>}
       <MuiSelect
@@ -57,7 +57,8 @@ const Select = <T extends string | number>({
         defaultValue={defaultValue}
         onChange={onChange}
         renderValue={(v) =>
-          values.find(({ value }) => value === v)?.text ?? label
+          values.find(({ value: currentValue }) => currentValue === v)?.text ??
+          label
         }
         displayEmpty={displayEmpty}
         className={className}
@@ -67,12 +68,12 @@ const Select = <T extends string | number>({
         value={value}
         sx={sx}
       >
-        {values.map(({ value, text, disabled }) => (
+        {values.map(({ value: localValue, text, disabled: localDisabled }) => (
           <MenuItem
-            key={value}
-            id={buildOptionId?.(value)}
-            value={value}
-            disabled={Boolean(disabled)}
+            key={localValue}
+            id={buildOptionId?.(localValue)}
+            value={localValue}
+            disabled={Boolean(localDisabled)}
           >
             {text}
           </MenuItem>

@@ -19,7 +19,7 @@ const Title = ({
       </AlertTitle>
     );
   }
-  return <Typography variant='h5'>{title}</Typography>;
+  return <Typography variant="h5">{title}</Typography>;
 };
 type WithFlavorProps = {
   content: JSX.Element | string;

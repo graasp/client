@@ -1,6 +1,6 @@
 import {
-  FolderItemFactory,
   LinkItemFactory,
+  PackedFolderItemFactory,
   PermissionLevel,
 } from '@graasp/sdk';
 
@@ -15,23 +15,16 @@ import {
   FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER,
   generateLotsOfFoldersOnHome,
 } from '../../fixtures/items';
-import { CURRENT_MEMBER, MEMBERS } from '../../fixtures/members';
+import { CURRENT_MEMBER } from '../../fixtures/members';
 import { buildContentPagePath, buildMainPath } from './utils';
 
 const items = generateLotsOfFoldersOnHome({ folderCount: 20 });
-const sharedItems = generateLotsOfFoldersOnHome({
-  folderCount: 11,
-  creator: MEMBERS.BOB,
-  memberships: [
-    { memberId: MEMBERS.ANNA.id, permission: PermissionLevel.Read },
-  ],
-});
 
 describe('Navigation', () => {
   // skipped for the moment
   it.skip('Show navigation on Home', () => {
     cy.setUpApi({
-      items: [...items, ...sharedItems],
+      items: [...items],
     });
     cy.visit('/');
 
@@ -81,14 +74,20 @@ describe('Navigation', () => {
 
 describe('Internal navigation', () => {
   it('Open a /:rootId link works', () => {
-    const firstCourse = FolderItemFactory({
-      name: 'Parent',
-      creator: CURRENT_MEMBER,
-    });
-    const target = FolderItemFactory({
-      name: 'Target',
-      creator: CURRENT_MEMBER,
-    });
+    const firstCourse = PackedFolderItemFactory(
+      {
+        name: 'Parent',
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    );
+    const target = PackedFolderItemFactory(
+      {
+        name: 'Target',
+        creator: CURRENT_MEMBER,
+      },
+      { permission: PermissionLevel.Admin },
+    );
     const url = new URL(
       `/player/${target.id}`,
       window.location.origin,

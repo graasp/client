@@ -6,14 +6,13 @@ import { Tooltip } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 
-import { title } from 'process';
-
 import { NS } from '@/config/constants';
 import { buildPublishWarningIcon } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import ThumbnailUploader, {
   EventChanges,
+  EventChangesType,
 } from '~builder/components/thumbnails/ThumbnailUploader';
 import { BUILDER } from '~builder/langs';
 
@@ -33,8 +32,10 @@ export const PublicationThumbnail = ({
   const { color } = useButtonColor('warning');
   const { t } = useTranslation(NS.Builder);
   const [showWarning, setShowWarning] = useState(false);
+  // not sure about this value
+  const title = 'my-categories';
 
-  const handleChange = (e: EventChanges) => {
+  const handleChange = (e: EventChangesType) => {
     switch (e) {
       case EventChanges.ON_UPLOADING:
       case EventChanges.ON_HAS_THUMBNAIL:

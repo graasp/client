@@ -1,7 +1,5 @@
 import { ActionTriggers, Context, UnionOfConst } from '@graasp/sdk';
 
-import { GRAASP_BUILDER_HOST, GRAASP_LIBRARY_HOST } from '@/config/env';
-
 // Default latitude and longitude for centering map. Zurich coordinates used below.
 export const DEFAULT_LATITUDE = 47.3769;
 export const DEFAULT_LONGITUDE = 8.5417;
@@ -113,15 +111,6 @@ export const ActionViewContext = {
   Library: Context.Library,
 } as const;
 export type ActionViewContextUnion = UnionOfConst<typeof ActionViewContext>;
-
-export const HOST_MAP = {
-  [Context.Builder]: GRAASP_BUILDER_HOST,
-  [Context.Player]: '/player',
-  [Context.Library]: GRAASP_LIBRARY_HOST,
-  [Context.Analytics]: '/',
-};
-
-export const ITEM_NAME_MAX_LENGTH = 15;
 
 export const NAVIGATOR_BACKGROUND_COLOR = '#f6f6f6';
 

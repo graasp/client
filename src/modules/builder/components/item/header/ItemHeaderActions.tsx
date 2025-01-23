@@ -21,7 +21,6 @@ import { ITEM_TYPES_WITH_CAPTIONS } from '~builder/constants';
 import { BUILDER } from '../../../langs';
 import PublishButton from '../../common/PublishButton';
 import ShareButton from '../../common/ShareButton';
-import { useLayoutContext } from '../../context/LayoutContext';
 import EditButton from '../edit/EditButton';
 import EditModal from '../edit/EditModal';
 import ItemSettingsButton from '../settings/ItemSettingsButton';
@@ -31,12 +30,16 @@ const { useItem } = hooks;
 
 type Props = {
   itemId: DiscriminatedItem['id'];
+  isChatboxOpen: boolean;
+  toggleChatbox: () => void;
 };
 
-const ItemHeaderActions = ({ itemId }: Props): JSX.Element | null => {
+const ItemHeaderActions = ({
+  itemId,
+  isChatboxOpen,
+  toggleChatbox,
+}: Props): JSX.Element | null => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { editingItemId, isChatboxMenuOpen, setIsChatboxMenuOpen } =
-    useLayoutContext();
   const { data: item } = useItem(itemId);
   const {
     isOpen: isEditModalOpen,
@@ -51,17 +54,11 @@ const ItemHeaderActions = ({ itemId }: Props): JSX.Element | null => {
     ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin)
     : false;
 
-  const onClickChatbox = () => {
-    setIsChatboxMenuOpen(!isChatboxMenuOpen);
-  };
-
   // if id is defined, we are looking at an item
   if (item && item?.id) {
     // show edition only for allowed types
     const showEditButton =
-      !editingItemId &&
-      ITEM_TYPES_WITH_CAPTIONS.includes(item.type) &&
-      canWrite;
+      ITEM_TYPES_WITH_CAPTIONS.includes(item.type) && canWrite;
 
     return (
       <Stack direction="row">
@@ -83,12 +80,12 @@ const ItemHeaderActions = ({ itemId }: Props): JSX.Element | null => {
 
         <ShareButton itemId={item.id} />
         <ChatboxButton
-          showChat={isChatboxMenuOpen}
+          showChat={isChatboxOpen}
           tooltip={translateBuilder(BUILDER.ITEM_CHATBOX_TITLE, {
             name: item.name,
           })}
           id={ITEM_CHATBOX_BUTTON_ID}
-          onClick={onClickChatbox}
+          onClick={toggleChatbox}
         />
         {canAdmin && <PublishButton itemId={item.id} />}
         {canWrite && <ItemSettingsButton itemId={item.id} />}

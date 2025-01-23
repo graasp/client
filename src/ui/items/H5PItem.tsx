@@ -1,6 +1,6 @@
-import { validate, version } from 'uuid';
-
 import { useEffect, useRef } from 'react';
+
+import { validate, version } from 'uuid';
 
 import withCollapse from '../Collapse/withCollapse.js';
 
@@ -46,64 +46,69 @@ const H5PItem = ({
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   // Listen for content height changes
-  useEffect(() => {
-    const onResize = (event: MessageEvent): void => {
-      // iframe must be mounted
-      if (iframeRef.current === null) {
-        return;
-      }
-      // message origin must be same window
-      if (event.origin !== integrationUrl.origin) {
-        return;
-      }
-      // message source must be iframe of this H5P integration
-      if (event.source !== iframeRef.current.contentWindow) {
-        return;
-      }
-      // message data should be object
-      if (!event.data || typeof event.data !== 'object') {
-        return;
-      }
-      // message should have fields contentId and height
-      if (!event.data.contentId || !event.data.height) {
-        return;
-      }
-      // contentId should be UUID string
-      if (
-        typeof event.data.contentId !== 'string' ||
-        version(event.data.contentId) !== 4 ||
-        !validate(event.data.contentId)
-      ) {
-        return;
-      }
-      // contentId should match current item
-      if (event.data.contentId !== contentId) {
-        return;
-      }
-      // height should be number
-      if (typeof event.data.height !== 'number') {
-        return;
-      }
-      // height should be int
-      const newHeight = parseInt(event.data.height);
-      iframeRef.current.height = newHeight.toString();
-    };
+  useEffect(
+    () => {
+      const onResize = (event: MessageEvent): void => {
+        // iframe must be mounted
+        if (iframeRef.current === null) {
+          return;
+        }
+        // message origin must be same window
+        if (event.origin !== integrationUrl.origin) {
+          return;
+        }
+        // message source must be iframe of this H5P integration
+        if (event.source !== iframeRef.current.contentWindow) {
+          return;
+        }
+        // message data should be object
+        if (!event.data || typeof event.data !== 'object') {
+          return;
+        }
+        // message should have fields contentId and height
+        if (!event.data.contentId || !event.data.height) {
+          return;
+        }
+        // contentId should be UUID string
+        if (
+          typeof event.data.contentId !== 'string' ||
+          version(event.data.contentId) !== 4 ||
+          !validate(event.data.contentId)
+        ) {
+          return;
+        }
+        // contentId should match current item
+        if (event.data.contentId !== contentId) {
+          return;
+        }
+        // height should be number
+        if (typeof event.data.height !== 'number') {
+          return;
+        }
+        // height should be int
+        const newHeight = parseInt(event.data.height);
+        iframeRef.current.height = newHeight.toString();
+      };
 
-    window.addEventListener('message', onResize);
+      window.addEventListener('message', onResize);
 
-    // cleanup on unmount
-    return () => {
-      window.removeEventListener('message', onResize);
-    };
-  }, []);
+      // cleanup on unmount
+      return () => {
+        window.removeEventListener('message', onResize);
+      };
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  );
 
   let iframeH5Pitem = (
     <iframe
+      title="h5p frame"
       ref={iframeRef}
       id={iframeId}
       src={integrationUrl.href}
       allowFullScreen
-      scrolling='no'
+      scrolling="no"
       style={{
         width: '100%',
         border: 'none',

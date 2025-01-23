@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { Stack } from '@mui/material';
 
-import ContentLoader from '@/components/common/ContentLoader';
+import ContentLoader from '~builder/components/common/ContentLoader';
 
 import DescriptionElement from './DescriptionElement';
 

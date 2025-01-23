@@ -16,7 +16,7 @@ const meta = {
   },
   render: (args) => (
     <Collapse {...args}>
-      <img src='https://picsum.photos/100' />
+      <img alt="cover" src="https://picsum.photos/100" />
     </Collapse>
   ),
 } satisfies Meta<typeof Collapse>;

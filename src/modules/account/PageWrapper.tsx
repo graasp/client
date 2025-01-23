@@ -8,7 +8,7 @@ import { Context } from '@graasp/sdk';
 import { Link } from '@tanstack/react-router';
 import { UserRoundIcon } from 'lucide-react';
 
-import { UserSwitchWrapper } from '@/components/ui/UserSwitchWrapper';
+import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
@@ -74,7 +74,7 @@ export function PageWrapper({
           accentColor={isMobile ? 'white' : theme.palette.primary.main}
         />
       }
-      headerRightContent={<UserSwitchWrapper />}
+      headerRightContent={<UserButtonMenu />}
     >
       {children}
     </Main>

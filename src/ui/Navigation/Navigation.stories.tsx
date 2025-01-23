@@ -11,9 +11,9 @@ import { expect, within } from '@storybook/test';
 import { CogIcon } from 'lucide-react';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
+import ExtraItemsMenu from './ExtraItemsMenu.js';
 import HomeMenu from './HomeMenu.js';
-import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
-import Navigation from './Navigation.js';
+import { ItemMenu, ItemMenuProps, Navigation } from './Navigation.js';
 
 const buildItem = (name: string): LocalFileItemType =>
   LocalFileItemFactory({
@@ -58,7 +58,7 @@ const children = [buildItem('child 1'), buildItem('child 2')];
 const useChildren: ItemMenuProps['useChildren'] = () => {
   return { data: children } as UseChildrenHookType;
 };
-const buildToItemPath = (id: string): string => id;
+const itemPath = '/itemPath';
 const dataTestId = 'NavigateNextIcon';
 const folder = FolderItemFactory({
   id: 'folder-id',
@@ -77,7 +77,7 @@ const menu = [
 
 export const HomeRoot = {
   args: {
-    buildToItemPath,
+    itemPath,
     useChildren,
 
     renderRoot: () => {
@@ -91,7 +91,7 @@ export const HomeRoot = {
                 data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
-            buildToItemPath={buildToItemPath}
+            itemPath="/itemPath"
           />
         </>
       );
@@ -108,7 +108,7 @@ export const HomeRoot = {
 
 export const FolderWithParents = {
   args: {
-    buildToItemPath,
+    itemPath,
     useChildren,
     item: folder,
 
@@ -123,7 +123,7 @@ export const FolderWithParents = {
                 data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
-            buildToItemPath={buildToItemPath}
+            itemPath={itemPath}
           />
         </>
       );
@@ -150,7 +150,7 @@ export const FolderWithParents = {
 
 export const FileWithParents = {
   args: {
-    buildToItemPath,
+    itemPath,
     useChildren,
     item,
 
@@ -165,7 +165,7 @@ export const FileWithParents = {
                 data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
-            buildToItemPath={buildToItemPath}
+            itemPath={itemPath}
           />
         </>
       );
@@ -190,22 +190,22 @@ export const FileWithParents = {
   },
 } satisfies Story;
 
-const extraItems = [
-  {
-    name: 'Settings',
-    path: '/settings',
-    icon: <CogIcon />,
-    menuItems: [
+const extraItems = (
+  <ExtraItemsMenu
+    name="Settings"
+    // path="/settings"
+    icon={<CogIcon />}
+    menuItems={[
       { name: 'Information', path: '/info' },
       { name: 'Settings', path: '/settings' },
       { name: 'Publish', path: '/publish' },
-    ],
-  },
-];
+    ]}
+  />
+);
 
 export const FolderWithParentsWithExtraItems = {
   args: {
-    buildToItemPath,
+    itemPath,
     useChildren,
     item: folder,
     maxItems: 10,
@@ -220,13 +220,13 @@ export const FolderWithParentsWithExtraItems = {
                 data: [buildItem('Home item 1'), buildItem('Home item 2')],
               } as UseChildrenHookType;
             }}
-            buildToItemPath={buildToItemPath}
+            itemPath={itemPath}
           />
         </>
       );
     },
     parents,
-    extraItems,
+    children: extraItems,
   },
 
   play: async ({ canvasElement }) => {
@@ -242,6 +242,6 @@ export const FolderWithParentsWithExtraItems = {
     }
 
     // 4 = 2 parents + 2 x Home + current item is a folder + 1 extra item
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(6);
+    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(5);
   },
 } satisfies Story;

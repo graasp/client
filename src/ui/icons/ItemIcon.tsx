@@ -1,3 +1,14 @@
+import { ReactNode } from 'react';
+
+import {
+  ItemType,
+  LocalFileItemExtra,
+  MimeTypes,
+  S3FileItemExtra,
+  UnionOfConst,
+  getMimetype,
+} from '@graasp/sdk';
+
 import {
   AppWindowIcon,
   CableIcon,
@@ -12,17 +23,6 @@ import {
   Music2Icon,
   TextIcon,
 } from 'lucide-react';
-
-import { ReactNode } from 'react';
-
-import {
-  ItemType,
-  LocalFileItemExtra,
-  MimeTypes,
-  S3FileItemExtra,
-  UnionOfConst,
-  getMimetype,
-} from '@graasp/sdk';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents.js';
 import EtherpadIcon from './EtherpadIcon.js';

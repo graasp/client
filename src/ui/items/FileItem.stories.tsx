@@ -1,5 +1,3 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import {
   DescriptionPlacement,
   ItemType,
@@ -8,6 +6,8 @@ import {
   MimeTypes,
   UnionOfConst,
 } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import FileItem from './FileItem.js';

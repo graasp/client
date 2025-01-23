@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Button, Chip, Stack, Typography } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
-import { DEFAULT_LANG, langs } from '@graasp/translations';
 
-import { NS } from '@/config/constants';
+import { DEFAULT_LANG, NS } from '@/config/constants';
+import { LANGS } from '@/config/langs';
 import { LIBRARY_SETTINGS_LANGUAGES_ID } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -33,11 +33,11 @@ export function LanguageContainer({ item }: Readonly<Props>): JSX.Element {
     </Button>,
   ];
 
-  let currentLang = langs[DEFAULT_LANG];
-  if (item.lang in langs) {
+  let currentLang = LANGS[DEFAULT_LANG];
+  if (item.lang in LANGS) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    currentLang = langs[item.lang];
+    currentLang = LANGS[item.lang];
   }
 
   return (

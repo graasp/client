@@ -2,17 +2,14 @@ import { useState } from 'react';
 
 import { Box, Dialog, Stack } from '@mui/material';
 
-import {
-  ClientHostManager,
-  Context,
-  ShortLink,
-  appendPathToUrl,
-} from '@graasp/sdk';
+import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 
-import { useLayoutContext } from '@/components/context/LayoutContext';
 import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
-import { randomAlias } from '@/utils/shortLink';
+import { ClientManager } from '@/lib/ClientManager';
+
+import { useLayoutContext } from '~builder/components/context/LayoutContext';
+import { randomAlias } from '~builder/utils/shortLink';
 
 import ShortLinkDialogContent from './ShortLinkDialogContent';
 import ShortLinkDisplay from './ShortLinkDisplay';
@@ -60,8 +57,8 @@ const ShortLinksRenderer = ({
       if (!publishedEntry && platform === Context.Library) {
         return undefined;
       }
-      const clientHostManager = ClientHostManager.getInstance();
-      const url = clientHostManager.getItemAsURL(platform, itemId);
+      const clientManager = ClientManager.getInstance();
+      const url = clientManager.getItemAsURL(platform, itemId);
 
       // not ideal, provide a select to choose the mode?
       if (platform === Context.Builder) {

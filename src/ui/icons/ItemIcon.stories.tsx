@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { ItemType, MimeTypes } from '@graasp/sdk';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import ItemIcon from './ItemIcon.js';

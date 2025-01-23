@@ -43,23 +43,23 @@ import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
 import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
 import { Route as BuilderLayoutIndexImport } from './routes/builder/_layout/index'
 import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
+import { Route as BuilderItemsItemIdImport } from './routes/builder/items/$itemId'
 import { Route as BuilderLayoutRecycledImport } from './routes/builder/_layout/recycled'
 import { Route as BuilderLayoutPublishedImport } from './routes/builder/_layout/published'
 import { Route as BuilderLayoutBookmarksImport } from './routes/builder/_layout/bookmarks'
 import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
 import { Route as PlayerRootIdItemIdIndexImport } from './routes/player/$rootId/$itemId/index'
+import { Route as BuilderItemsItemIdIndexImport } from './routes/builder/items/$itemId/index'
 import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
 import { Route as PlayerRootIdItemIdAutoLoginImport } from './routes/player/$rootId/$itemId/autoLogin'
-import { Route as BuilderLayoutItemsItemIdImport } from './routes/builder/_layout/items/$itemId'
+import { Route as BuilderItemsItemIdItemPageImport } from './routes/builder/items/$itemId/_itemPage'
 import { Route as AnalyticsItemsItemIdUsersImport } from './routes/analytics/items/$itemId/users'
 import { Route as AnalyticsItemsItemIdItemsImport } from './routes/analytics/items/$itemId/items'
 import { Route as AnalyticsItemsItemIdExportImport } from './routes/analytics/items/$itemId/export'
 import { Route as AnalyticsItemsItemIdAppsImport } from './routes/analytics/items/$itemId/apps'
-import { Route as BuilderLayoutItemsItemIdIndexImport } from './routes/builder/_layout/items/$itemId/index'
-import { Route as BuilderLayoutItemsItemIdItemPageImport } from './routes/builder/_layout/items/$itemId/_itemPage'
-import { Route as BuilderLayoutItemsItemIdItemPageShareImport } from './routes/builder/_layout/items/$itemId/_itemPage/share'
-import { Route as BuilderLayoutItemsItemIdItemPageSettingsImport } from './routes/builder/_layout/items/$itemId/_itemPage/settings'
-import { Route as BuilderLayoutItemsItemIdItemPagePublishImport } from './routes/builder/_layout/items/$itemId/_itemPage/publish'
+import { Route as BuilderItemsItemIdItemPageShareImport } from './routes/builder/items/$itemId/_itemPage/share'
+import { Route as BuilderItemsItemIdItemPageSettingsImport } from './routes/builder/items/$itemId/_itemPage/settings'
+import { Route as BuilderItemsItemIdItemPagePublishImport } from './routes/builder/items/$itemId/_itemPage/publish'
 
 // Create/Update Routes
 
@@ -253,6 +253,12 @@ const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BuilderItemsItemIdRoute = BuilderItemsItemIdImport.update({
+  id: '/items/$itemId',
+  path: '/items/$itemId',
+  getParentRoute: () => BuilderRoute,
+} as any)
+
 const BuilderLayoutRecycledRoute = BuilderLayoutRecycledImport.update({
   id: '/recycled',
   path: '/recycled',
@@ -283,6 +289,12 @@ const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
   getParentRoute: () => PlayerRootIdItemIdRoute,
 } as any)
 
+const BuilderItemsItemIdIndexRoute = BuilderItemsItemIdIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => BuilderItemsItemIdRoute,
+} as any)
+
 const AnalyticsItemsItemIdIndexRoute = AnalyticsItemsItemIdIndexImport.update({
   id: '/',
   path: '/',
@@ -296,11 +308,12 @@ const PlayerRootIdItemIdAutoLoginRoute =
     getParentRoute: () => PlayerRootIdItemIdRoute,
   } as any)
 
-const BuilderLayoutItemsItemIdRoute = BuilderLayoutItemsItemIdImport.update({
-  id: '/items/$itemId',
-  path: '/items/$itemId',
-  getParentRoute: () => BuilderLayoutRoute,
-} as any)
+const BuilderItemsItemIdItemPageRoute = BuilderItemsItemIdItemPageImport.update(
+  {
+    id: '/_itemPage',
+    getParentRoute: () => BuilderItemsItemIdRoute,
+  } as any,
+)
 
 const AnalyticsItemsItemIdUsersRoute = AnalyticsItemsItemIdUsersImport.update({
   id: '/users',
@@ -328,38 +341,25 @@ const AnalyticsItemsItemIdAppsRoute = AnalyticsItemsItemIdAppsImport.update({
   getParentRoute: () => AnalyticsItemsItemIdRoute,
 } as any)
 
-const BuilderLayoutItemsItemIdIndexRoute =
-  BuilderLayoutItemsItemIdIndexImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => BuilderLayoutItemsItemIdRoute,
-  } as any)
-
-const BuilderLayoutItemsItemIdItemPageRoute =
-  BuilderLayoutItemsItemIdItemPageImport.update({
-    id: '/_itemPage',
-    getParentRoute: () => BuilderLayoutItemsItemIdRoute,
-  } as any)
-
-const BuilderLayoutItemsItemIdItemPageShareRoute =
-  BuilderLayoutItemsItemIdItemPageShareImport.update({
+const BuilderItemsItemIdItemPageShareRoute =
+  BuilderItemsItemIdItemPageShareImport.update({
     id: '/share',
     path: '/share',
-    getParentRoute: () => BuilderLayoutItemsItemIdItemPageRoute,
+    getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
 
-const BuilderLayoutItemsItemIdItemPageSettingsRoute =
-  BuilderLayoutItemsItemIdItemPageSettingsImport.update({
+const BuilderItemsItemIdItemPageSettingsRoute =
+  BuilderItemsItemIdItemPageSettingsImport.update({
     id: '/settings',
     path: '/settings',
-    getParentRoute: () => BuilderLayoutItemsItemIdItemPageRoute,
+    getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
 
-const BuilderLayoutItemsItemIdItemPagePublishRoute =
-  BuilderLayoutItemsItemIdItemPagePublishImport.update({
+const BuilderItemsItemIdItemPagePublishRoute =
+  BuilderItemsItemIdItemPagePublishImport.update({
     id: '/publish',
     path: '/publish',
-    getParentRoute: () => BuilderLayoutItemsItemIdItemPageRoute,
+    getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -597,6 +597,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BuilderLayoutRecycledImport
       parentRoute: typeof BuilderLayoutImport
     }
+    '/builder/items/$itemId': {
+      id: '/builder/items/$itemId'
+      path: '/items/$itemId'
+      fullPath: '/builder/items/$itemId'
+      preLoaderRoute: typeof BuilderItemsItemIdImport
+      parentRoute: typeof BuilderImport
+    }
     '/player/$rootId/$itemId': {
       id: '/player/$rootId/$itemId'
       path: '/player/$rootId/$itemId'
@@ -646,12 +653,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsItemsItemIdUsersImport
       parentRoute: typeof AnalyticsItemsItemIdImport
     }
-    '/builder/_layout/items/$itemId': {
-      id: '/builder/_layout/items/$itemId'
-      path: '/items/$itemId'
+    '/builder/items/$itemId/_itemPage': {
+      id: '/builder/items/$itemId/_itemPage'
+      path: ''
       fullPath: '/builder/items/$itemId'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdImport
-      parentRoute: typeof BuilderLayoutImport
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageImport
+      parentRoute: typeof BuilderItemsItemIdImport
     }
     '/player/$rootId/$itemId/autoLogin': {
       id: '/player/$rootId/$itemId/autoLogin'
@@ -667,6 +674,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsItemsItemIdIndexImport
       parentRoute: typeof AnalyticsItemsItemIdImport
     }
+    '/builder/items/$itemId/': {
+      id: '/builder/items/$itemId/'
+      path: '/'
+      fullPath: '/builder/items/$itemId/'
+      preLoaderRoute: typeof BuilderItemsItemIdIndexImport
+      parentRoute: typeof BuilderItemsItemIdImport
+    }
     '/player/$rootId/$itemId/': {
       id: '/player/$rootId/$itemId/'
       path: '/'
@@ -674,40 +688,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayerRootIdItemIdIndexImport
       parentRoute: typeof PlayerRootIdItemIdImport
     }
-    '/builder/_layout/items/$itemId/_itemPage': {
-      id: '/builder/_layout/items/$itemId/_itemPage'
-      path: ''
-      fullPath: '/builder/items/$itemId'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdItemPageImport
-      parentRoute: typeof BuilderLayoutItemsItemIdImport
-    }
-    '/builder/_layout/items/$itemId/': {
-      id: '/builder/_layout/items/$itemId/'
-      path: '/'
-      fullPath: '/builder/items/$itemId/'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdIndexImport
-      parentRoute: typeof BuilderLayoutItemsItemIdImport
-    }
-    '/builder/_layout/items/$itemId/_itemPage/publish': {
-      id: '/builder/_layout/items/$itemId/_itemPage/publish'
+    '/builder/items/$itemId/_itemPage/publish': {
+      id: '/builder/items/$itemId/_itemPage/publish'
       path: '/publish'
       fullPath: '/builder/items/$itemId/publish'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdItemPagePublishImport
-      parentRoute: typeof BuilderLayoutItemsItemIdItemPageImport
+      preLoaderRoute: typeof BuilderItemsItemIdItemPagePublishImport
+      parentRoute: typeof BuilderItemsItemIdItemPageImport
     }
-    '/builder/_layout/items/$itemId/_itemPage/settings': {
-      id: '/builder/_layout/items/$itemId/_itemPage/settings'
+    '/builder/items/$itemId/_itemPage/settings': {
+      id: '/builder/items/$itemId/_itemPage/settings'
       path: '/settings'
       fullPath: '/builder/items/$itemId/settings'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdItemPageSettingsImport
-      parentRoute: typeof BuilderLayoutItemsItemIdItemPageImport
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageSettingsImport
+      parentRoute: typeof BuilderItemsItemIdItemPageImport
     }
-    '/builder/_layout/items/$itemId/_itemPage/share': {
-      id: '/builder/_layout/items/$itemId/_itemPage/share'
+    '/builder/items/$itemId/_itemPage/share': {
+      id: '/builder/items/$itemId/_itemPage/share'
       path: '/share'
       fullPath: '/builder/items/$itemId/share'
-      preLoaderRoute: typeof BuilderLayoutItemsItemIdItemPageShareImport
-      parentRoute: typeof BuilderLayoutItemsItemIdItemPageImport
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageShareImport
+      parentRoute: typeof BuilderItemsItemIdItemPageImport
     }
   }
 }
@@ -809,50 +809,11 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-interface BuilderLayoutItemsItemIdItemPageRouteChildren {
-  BuilderLayoutItemsItemIdItemPagePublishRoute: typeof BuilderLayoutItemsItemIdItemPagePublishRoute
-  BuilderLayoutItemsItemIdItemPageSettingsRoute: typeof BuilderLayoutItemsItemIdItemPageSettingsRoute
-  BuilderLayoutItemsItemIdItemPageShareRoute: typeof BuilderLayoutItemsItemIdItemPageShareRoute
-}
-
-const BuilderLayoutItemsItemIdItemPageRouteChildren: BuilderLayoutItemsItemIdItemPageRouteChildren =
-  {
-    BuilderLayoutItemsItemIdItemPagePublishRoute:
-      BuilderLayoutItemsItemIdItemPagePublishRoute,
-    BuilderLayoutItemsItemIdItemPageSettingsRoute:
-      BuilderLayoutItemsItemIdItemPageSettingsRoute,
-    BuilderLayoutItemsItemIdItemPageShareRoute:
-      BuilderLayoutItemsItemIdItemPageShareRoute,
-  }
-
-const BuilderLayoutItemsItemIdItemPageRouteWithChildren =
-  BuilderLayoutItemsItemIdItemPageRoute._addFileChildren(
-    BuilderLayoutItemsItemIdItemPageRouteChildren,
-  )
-
-interface BuilderLayoutItemsItemIdRouteChildren {
-  BuilderLayoutItemsItemIdItemPageRoute: typeof BuilderLayoutItemsItemIdItemPageRouteWithChildren
-  BuilderLayoutItemsItemIdIndexRoute: typeof BuilderLayoutItemsItemIdIndexRoute
-}
-
-const BuilderLayoutItemsItemIdRouteChildren: BuilderLayoutItemsItemIdRouteChildren =
-  {
-    BuilderLayoutItemsItemIdItemPageRoute:
-      BuilderLayoutItemsItemIdItemPageRouteWithChildren,
-    BuilderLayoutItemsItemIdIndexRoute: BuilderLayoutItemsItemIdIndexRoute,
-  }
-
-const BuilderLayoutItemsItemIdRouteWithChildren =
-  BuilderLayoutItemsItemIdRoute._addFileChildren(
-    BuilderLayoutItemsItemIdRouteChildren,
-  )
-
 interface BuilderLayoutRouteChildren {
   BuilderLayoutBookmarksRoute: typeof BuilderLayoutBookmarksRoute
   BuilderLayoutPublishedRoute: typeof BuilderLayoutPublishedRoute
   BuilderLayoutRecycledRoute: typeof BuilderLayoutRecycledRoute
   BuilderLayoutIndexRoute: typeof BuilderLayoutIndexRoute
-  BuilderLayoutItemsItemIdRoute: typeof BuilderLayoutItemsItemIdRouteWithChildren
 }
 
 const BuilderLayoutRouteChildren: BuilderLayoutRouteChildren = {
@@ -860,21 +821,55 @@ const BuilderLayoutRouteChildren: BuilderLayoutRouteChildren = {
   BuilderLayoutPublishedRoute: BuilderLayoutPublishedRoute,
   BuilderLayoutRecycledRoute: BuilderLayoutRecycledRoute,
   BuilderLayoutIndexRoute: BuilderLayoutIndexRoute,
-  BuilderLayoutItemsItemIdRoute: BuilderLayoutItemsItemIdRouteWithChildren,
 }
 
 const BuilderLayoutRouteWithChildren = BuilderLayoutRoute._addFileChildren(
   BuilderLayoutRouteChildren,
 )
 
+interface BuilderItemsItemIdItemPageRouteChildren {
+  BuilderItemsItemIdItemPagePublishRoute: typeof BuilderItemsItemIdItemPagePublishRoute
+  BuilderItemsItemIdItemPageSettingsRoute: typeof BuilderItemsItemIdItemPageSettingsRoute
+  BuilderItemsItemIdItemPageShareRoute: typeof BuilderItemsItemIdItemPageShareRoute
+}
+
+const BuilderItemsItemIdItemPageRouteChildren: BuilderItemsItemIdItemPageRouteChildren =
+  {
+    BuilderItemsItemIdItemPagePublishRoute:
+      BuilderItemsItemIdItemPagePublishRoute,
+    BuilderItemsItemIdItemPageSettingsRoute:
+      BuilderItemsItemIdItemPageSettingsRoute,
+    BuilderItemsItemIdItemPageShareRoute: BuilderItemsItemIdItemPageShareRoute,
+  }
+
+const BuilderItemsItemIdItemPageRouteWithChildren =
+  BuilderItemsItemIdItemPageRoute._addFileChildren(
+    BuilderItemsItemIdItemPageRouteChildren,
+  )
+
+interface BuilderItemsItemIdRouteChildren {
+  BuilderItemsItemIdItemPageRoute: typeof BuilderItemsItemIdItemPageRouteWithChildren
+  BuilderItemsItemIdIndexRoute: typeof BuilderItemsItemIdIndexRoute
+}
+
+const BuilderItemsItemIdRouteChildren: BuilderItemsItemIdRouteChildren = {
+  BuilderItemsItemIdItemPageRoute: BuilderItemsItemIdItemPageRouteWithChildren,
+  BuilderItemsItemIdIndexRoute: BuilderItemsItemIdIndexRoute,
+}
+
+const BuilderItemsItemIdRouteWithChildren =
+  BuilderItemsItemIdRoute._addFileChildren(BuilderItemsItemIdRouteChildren)
+
 interface BuilderRouteChildren {
   BuilderLayoutRoute: typeof BuilderLayoutRouteWithChildren
   BuilderMapRoute: typeof BuilderMapRoute
+  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
 }
 
 const BuilderRouteChildren: BuilderRouteChildren = {
   BuilderLayoutRoute: BuilderLayoutRouteWithChildren,
   BuilderMapRoute: BuilderMapRoute,
+  BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
 }
 
 const BuilderRouteWithChildren =
@@ -926,6 +921,7 @@ export interface FileRoutesByFullPath {
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/published': typeof BuilderLayoutPublishedRoute
   '/builder/recycled': typeof BuilderLayoutRecycledRoute
+  '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
   '/builder/': typeof BuilderLayoutIndexRoute
   '/player/$rootId': typeof PlayerRootIdIndexRoute
@@ -933,14 +929,13 @@ export interface FileRoutesByFullPath {
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
   '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
   '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
-  '/builder/items/$itemId': typeof BuilderLayoutItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
+  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
   '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/items/$itemId/': typeof BuilderLayoutItemsItemIdIndexRoute
-  '/builder/items/$itemId/publish': typeof BuilderLayoutItemsItemIdItemPagePublishRoute
-  '/builder/items/$itemId/settings': typeof BuilderLayoutItemsItemIdItemPageSettingsRoute
-  '/builder/items/$itemId/share': typeof BuilderLayoutItemsItemIdItemPageShareRoute
+  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
 }
 
 export interface FileRoutesByTo {
@@ -977,13 +972,13 @@ export interface FileRoutesByTo {
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
   '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
   '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
+  '/builder/items/$itemId': typeof BuilderItemsItemIdIndexRoute
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdIndexRoute
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/items/$itemId': typeof BuilderLayoutItemsItemIdIndexRoute
-  '/builder/items/$itemId/publish': typeof BuilderLayoutItemsItemIdItemPagePublishRoute
-  '/builder/items/$itemId/settings': typeof BuilderLayoutItemsItemIdItemPageSettingsRoute
-  '/builder/items/$itemId/share': typeof BuilderLayoutItemsItemIdItemPageShareRoute
+  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
 }
 
 export interface FileRoutesById {
@@ -1021,6 +1016,7 @@ export interface FileRoutesById {
   '/builder/_layout/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/_layout/published': typeof BuilderLayoutPublishedRoute
   '/builder/_layout/recycled': typeof BuilderLayoutRecycledRoute
+  '/builder/items/$itemId': typeof BuilderItemsItemIdRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
   '/builder/_layout/': typeof BuilderLayoutIndexRoute
   '/player/$rootId/': typeof PlayerRootIdIndexRoute
@@ -1028,15 +1024,14 @@ export interface FileRoutesById {
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
   '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
   '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
-  '/builder/_layout/items/$itemId': typeof BuilderLayoutItemsItemIdRouteWithChildren
+  '/builder/items/$itemId/_itemPage': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
+  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
   '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/_layout/items/$itemId/_itemPage': typeof BuilderLayoutItemsItemIdItemPageRouteWithChildren
-  '/builder/_layout/items/$itemId/': typeof BuilderLayoutItemsItemIdIndexRoute
-  '/builder/_layout/items/$itemId/_itemPage/publish': typeof BuilderLayoutItemsItemIdItemPagePublishRoute
-  '/builder/_layout/items/$itemId/_itemPage/settings': typeof BuilderLayoutItemsItemIdItemPageSettingsRoute
-  '/builder/_layout/items/$itemId/_itemPage/share': typeof BuilderLayoutItemsItemIdItemPageShareRoute
+  '/builder/items/$itemId/_itemPage/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/_itemPage/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/_itemPage/share': typeof BuilderItemsItemIdItemPageShareRoute
 }
 
 export interface FileRouteTypes {
@@ -1074,6 +1069,7 @@ export interface FileRouteTypes {
     | '/builder/bookmarks'
     | '/builder/published'
     | '/builder/recycled'
+    | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
     | '/builder/'
     | '/player/$rootId'
@@ -1081,11 +1077,10 @@ export interface FileRouteTypes {
     | '/analytics/items/$itemId/export'
     | '/analytics/items/$itemId/items'
     | '/analytics/items/$itemId/users'
-    | '/builder/items/$itemId'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId/'
-    | '/player/$rootId/$itemId/'
     | '/builder/items/$itemId/'
+    | '/player/$rootId/$itemId/'
     | '/builder/items/$itemId/publish'
     | '/builder/items/$itemId/settings'
     | '/builder/items/$itemId/share'
@@ -1124,10 +1119,10 @@ export interface FileRouteTypes {
     | '/analytics/items/$itemId/export'
     | '/analytics/items/$itemId/items'
     | '/analytics/items/$itemId/users'
+    | '/builder/items/$itemId'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId'
     | '/player/$rootId/$itemId'
-    | '/builder/items/$itemId'
     | '/builder/items/$itemId/publish'
     | '/builder/items/$itemId/settings'
     | '/builder/items/$itemId/share'
@@ -1166,6 +1161,7 @@ export interface FileRouteTypes {
     | '/builder/_layout/bookmarks'
     | '/builder/_layout/published'
     | '/builder/_layout/recycled'
+    | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
     | '/builder/_layout/'
     | '/player/$rootId/'
@@ -1173,15 +1169,14 @@ export interface FileRouteTypes {
     | '/analytics/items/$itemId/export'
     | '/analytics/items/$itemId/items'
     | '/analytics/items/$itemId/users'
-    | '/builder/_layout/items/$itemId'
+    | '/builder/items/$itemId/_itemPage'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId/'
+    | '/builder/items/$itemId/'
     | '/player/$rootId/$itemId/'
-    | '/builder/_layout/items/$itemId/_itemPage'
-    | '/builder/_layout/items/$itemId/'
-    | '/builder/_layout/items/$itemId/_itemPage/publish'
-    | '/builder/_layout/items/$itemId/_itemPage/settings'
-    | '/builder/_layout/items/$itemId/_itemPage/share'
+    | '/builder/items/$itemId/_itemPage/publish'
+    | '/builder/items/$itemId/_itemPage/settings'
+    | '/builder/items/$itemId/_itemPage/share'
   fileRoutesById: FileRoutesById
 }
 
@@ -1277,7 +1272,8 @@ export const routeTree = rootRoute
       "filePath": "builder.tsx",
       "children": [
         "/builder/_layout",
-        "/builder/map"
+        "/builder/map",
+        "/builder/items/$itemId"
       ]
     },
     "/signin": {
@@ -1354,8 +1350,7 @@ export const routeTree = rootRoute
         "/builder/_layout/bookmarks",
         "/builder/_layout/published",
         "/builder/_layout/recycled",
-        "/builder/_layout/",
-        "/builder/_layout/items/$itemId"
+        "/builder/_layout/"
       ]
     },
     "/builder/map": {
@@ -1403,6 +1398,14 @@ export const routeTree = rootRoute
       "filePath": "builder/_layout/recycled.tsx",
       "parent": "/builder/_layout"
     },
+    "/builder/items/$itemId": {
+      "filePath": "builder/items/$itemId.tsx",
+      "parent": "/builder",
+      "children": [
+        "/builder/items/$itemId/_itemPage",
+        "/builder/items/$itemId/"
+      ]
+    },
     "/player/$rootId/$itemId": {
       "filePath": "player/$rootId/$itemId.tsx",
       "children": [
@@ -1433,12 +1436,13 @@ export const routeTree = rootRoute
       "filePath": "analytics/items/$itemId/users.tsx",
       "parent": "/analytics/items/$itemId"
     },
-    "/builder/_layout/items/$itemId": {
-      "filePath": "builder/_layout/items/$itemId.tsx",
-      "parent": "/builder/_layout",
+    "/builder/items/$itemId/_itemPage": {
+      "filePath": "builder/items/$itemId/_itemPage.tsx",
+      "parent": "/builder/items/$itemId",
       "children": [
-        "/builder/_layout/items/$itemId/_itemPage",
-        "/builder/_layout/items/$itemId/"
+        "/builder/items/$itemId/_itemPage/publish",
+        "/builder/items/$itemId/_itemPage/settings",
+        "/builder/items/$itemId/_itemPage/share"
       ]
     },
     "/player/$rootId/$itemId/autoLogin": {
@@ -1449,34 +1453,25 @@ export const routeTree = rootRoute
       "filePath": "analytics/items/$itemId/index.tsx",
       "parent": "/analytics/items/$itemId"
     },
+    "/builder/items/$itemId/": {
+      "filePath": "builder/items/$itemId/index.tsx",
+      "parent": "/builder/items/$itemId"
+    },
     "/player/$rootId/$itemId/": {
       "filePath": "player/$rootId/$itemId/index.tsx",
       "parent": "/player/$rootId/$itemId"
     },
-    "/builder/_layout/items/$itemId/_itemPage": {
-      "filePath": "builder/_layout/items/$itemId/_itemPage.tsx",
-      "parent": "/builder/_layout/items/$itemId",
-      "children": [
-        "/builder/_layout/items/$itemId/_itemPage/publish",
-        "/builder/_layout/items/$itemId/_itemPage/settings",
-        "/builder/_layout/items/$itemId/_itemPage/share"
-      ]
+    "/builder/items/$itemId/_itemPage/publish": {
+      "filePath": "builder/items/$itemId/_itemPage/publish.tsx",
+      "parent": "/builder/items/$itemId/_itemPage"
     },
-    "/builder/_layout/items/$itemId/": {
-      "filePath": "builder/_layout/items/$itemId/index.tsx",
-      "parent": "/builder/_layout/items/$itemId"
+    "/builder/items/$itemId/_itemPage/settings": {
+      "filePath": "builder/items/$itemId/_itemPage/settings.tsx",
+      "parent": "/builder/items/$itemId/_itemPage"
     },
-    "/builder/_layout/items/$itemId/_itemPage/publish": {
-      "filePath": "builder/_layout/items/$itemId/_itemPage/publish.tsx",
-      "parent": "/builder/_layout/items/$itemId/_itemPage"
-    },
-    "/builder/_layout/items/$itemId/_itemPage/settings": {
-      "filePath": "builder/_layout/items/$itemId/_itemPage/settings.tsx",
-      "parent": "/builder/_layout/items/$itemId/_itemPage"
-    },
-    "/builder/_layout/items/$itemId/_itemPage/share": {
-      "filePath": "builder/_layout/items/$itemId/_itemPage/share.tsx",
-      "parent": "/builder/_layout/items/$itemId/_itemPage"
+    "/builder/items/$itemId/_itemPage/share": {
+      "filePath": "builder/items/$itemId/_itemPage/share.tsx",
+      "parent": "/builder/items/$itemId/_itemPage"
     }
   }
 }

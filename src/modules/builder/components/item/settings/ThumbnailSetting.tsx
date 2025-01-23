@@ -9,6 +9,7 @@ import { NS } from '@/config/constants';
 
 import ThumbnailUploader, {
   EventChanges,
+  EventChangesType,
 } from '~builder/components/thumbnails/ThumbnailUploader';
 import { BUILDER } from '~builder/langs';
 
@@ -21,7 +22,7 @@ const ThumbnailSetting = ({ item }: Props): JSX.Element | null => {
   const { t } = useTranslation(NS.Builder);
   const [hasThumbnail, setHasThumbnail] = useState(Boolean(item.thumbnails));
 
-  const handleChange = (e: EventChanges) => {
+  const handleChange = (e: EventChangesType) => {
     switch (e) {
       case EventChanges.ON_UPLOADING:
       case EventChanges.ON_HAS_THUMBNAIL:

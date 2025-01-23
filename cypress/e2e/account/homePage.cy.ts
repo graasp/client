@@ -4,7 +4,7 @@ import { HttpMethod } from '@graasp/sdk';
 import { formatDistanceToNow } from 'date-fns';
 import { StatusCodes } from 'http-status-codes';
 
-import { getLocalForDateFns } from '../../../src/components/langs';
+import { getLocalForDateFns } from '../../../src/config/langs';
 import { ACCOUNT_HOME_PATH } from '../../../src/config/paths';
 import {
   AVATAR_UPLOAD_ICON_ID,
@@ -20,7 +20,8 @@ import {
   THUMBNAIL_MEDIUM_PATH,
 } from '../../fixtures/thumbnails/links';
 import { API_HOST } from '../../support/env';
-import { ID_FORMAT, MemberForTest } from '../../support/utils';
+import { MemberForTest } from '../../support/types';
+import { ID_FORMAT } from '../../support/utils';
 
 const { buildGetCurrentMemberRoute, buildUploadAvatarRoute } = API_ROUTES;
 
@@ -50,7 +51,7 @@ class TestHelper {
       },
       ({ reply }) => {
         if (this.currentMember.extra.hasAvatar) {
-          return reply({ body: this.currentMember.thumbnail });
+          return reply({ body: this.currentMember.thumbnails });
         }
         return reply({ statusCode: StatusCodes.NOT_FOUND });
       },
@@ -64,7 +65,7 @@ class TestHelper {
         // update avatar
         this.currentMember.extra.hasAvatar = true;
         // use default avatar link as thumbnail, we discard the uploaded thumbnail
-        this.currentMember.thumbnail = AVATAR_LINK;
+        this.currentMember.thumbnails = AVATAR_LINK;
         return reply({ statusCode: StatusCodes.OK });
       },
     ).as('uploadAvatar');
@@ -125,7 +126,7 @@ describe('Check member info', () => {
     cy.get(`#${MEMBER_AVATAR_IMAGE_ID}`).should(
       'have.attr',
       'src',
-      MEMBER_WITH_AVATAR.thumbnail,
+      MEMBER_WITH_AVATAR.thumbnails,
     );
     // displays the correct member name
     cy.get(`#${MEMBER_USERNAME_DISPLAY_ID}`).should(

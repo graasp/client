@@ -2,7 +2,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import { useNavigate } from '@tanstack/react-router';
 import { ArrowLeftRightIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
@@ -18,12 +17,6 @@ import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';
 export function ItemForbiddenScreen(): JSX.Element {
   const { user, logout, isAuthenticated } = useAuth();
   const { t } = useTranslation(NS.Player, { keyPrefix: 'FORBIDDEN_CONTENT' });
-
-  const navigate = useNavigate();
-  const redirectionProps = {
-    to: '/auth/login',
-    search: { url: window.location.toString() },
-  };
 
   return (
     <Stack
@@ -44,7 +37,6 @@ export function ItemForbiddenScreen(): JSX.Element {
         <Button
           onClick={() => {
             logout();
-            navigate(redirectionProps);
           }}
           variant="outlined"
           startIcon={<ArrowLeftRightIcon />}
@@ -52,7 +44,11 @@ export function ItemForbiddenScreen(): JSX.Element {
           {t('LOG_OUT_BUTTON')}
         </Button>
       ) : (
-        <ButtonLink variant="outlined" {...redirectionProps}>
+        <ButtonLink
+          variant="outlined"
+          to="/auth/login"
+          search={{ url: window.location.toString() }}
+        >
           {t('LOG_IN_BUTTON')}
         </ButtonLink>
       )}

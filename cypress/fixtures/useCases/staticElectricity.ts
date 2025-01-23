@@ -6,30 +6,35 @@ import {
   ItemVisibilityType,
   LinkItemFactory,
   LocalFileItemFactory,
+  PackedFolderItemFactory,
+  PermissionLevel,
   buildDocumentExtra,
   buildFileExtra,
   buildLinkExtra,
 } from '@graasp/sdk';
 
+import { ItemForTest } from '../../support/types';
 import { MOCK_IMAGE_URL } from '../fileLinks';
 import { CURRENT_MEMBER } from '../members';
-import { MockItem } from '../mockTypes';
 import { mockItemTag } from '../tags';
 
 export const STATIC_ELECTRICITY: {
-  items: MockItem[];
+  items: ItemForTest[];
 } = {
   items: [
-    FolderItemFactory({
-      id: 'fdf09f5a-5688-11eb-ae31-0242ac130003',
-      path: 'fdf09f5a_5688_11eb_ae31_0242ac130003',
-      name: 'Static Electricity',
-      description: '',
-      creator: CURRENT_MEMBER,
-      extra: {
-        [ItemType.FOLDER]: {},
+    PackedFolderItemFactory(
+      {
+        id: 'fdf09f5a-5688-11eb-ae31-0242ac130003',
+        path: 'fdf09f5a_5688_11eb_ae31_0242ac130003',
+        name: 'Static Electricity',
+        description: '',
+        creator: CURRENT_MEMBER,
+        extra: {
+          [ItemType.FOLDER]: {},
+        },
       },
-    }),
+      { permission: PermissionLevel.Admin },
+    ),
     FolderItemFactory({
       id: 'gcafbd2a-5688-11eb-ae92-0242ac130015',
       path: 'fdf09f5a_5688_11eb_ae31_0242ac130003.gcafbd2a_5688_11eb_ae92_0242ac130015',
@@ -188,7 +193,7 @@ export const STATIC_ELECTRICITY: {
           content: '',
         }),
       }),
-      filepath: MOCK_IMAGE_URL,
+      readFilepath: MOCK_IMAGE_URL,
     },
     DocumentItemFactory({
       id: 'gfbfed2a-4218-31eb-fe32-0522bc120065',
@@ -213,16 +218,24 @@ export const STATIC_ELECTRICITY: {
       }),
       settings: { showLinkIframe: true },
     }),
-  ],
+  ].map((i) => ({
+    ...i,
+    permission: PermissionLevel.Admin,
+  })),
 };
 
-export const PUBLIC_STATIC_ELECTRICITY = { ...STATIC_ELECTRICITY };
+export const PUBLIC_STATIC_ELECTRICITY = {
+  items: STATIC_ELECTRICITY.items.map((i) => ({
+    ...i,
+    permission: PermissionLevel.Read,
+  })),
+};
 
 PUBLIC_STATIC_ELECTRICITY.items = PUBLIC_STATIC_ELECTRICITY.items.map(
   (item) => {
     const newItem = {
       ...item,
-      public: mockItemTag({ type: ItemVisibilityType.Public }),
+      visibilities: [mockItemTag({ item, type: ItemVisibilityType.Public })],
     };
     return newItem;
   },

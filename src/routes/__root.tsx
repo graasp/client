@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router';
 
 import { AuthContextType } from '@/AuthContext';
+import { DefaultCatchBoundary } from '@/components/DefaultCatchBoundary';
 import { NotFoundComponent } from '@/components/NotFoundComponent';
 import { ReactQueryDevtools } from '@/config/queryClient';
 
@@ -16,6 +17,7 @@ import { PreviewContextProvider } from '~landing/preview/PreviewModeContext';
 
 export const Route = createRootRouteWithContext<{ auth: AuthContextType }>()({
   component: RootComponent,
+  errorComponent: DefaultCatchBoundary,
   notFoundComponent: NotFoundComponent,
 });
 
@@ -32,7 +34,7 @@ const TanStackRouterDevtools =
 
 function RootComponent() {
   return (
-    <Stack id="__root">
+    <Stack id="__root" minHeight="100vh">
       <ScrollRestoration />
       <PreviewContextProvider>
         <Outlet />

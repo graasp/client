@@ -9,9 +9,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { DEFAULT_LANG } from '@graasp/translations';
-
-import { NS } from '@/config/constants';
+import { DEFAULT_LANG, NS } from '@/config/constants';
 
 import { MAP } from '../../constants';
 import { QueryClientContextInterface } from '../context/QueryClientContext';
@@ -55,6 +53,7 @@ const GeolocationPicker = ({
 
   useEffect(() => {
     if (initialValue !== query) {
+      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
       setQuery(initialValue);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

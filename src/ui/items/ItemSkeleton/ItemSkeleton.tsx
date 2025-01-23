@@ -27,7 +27,7 @@ const ItemSkeleton = ({
     case isCollapsible: {
       return (
         <Skeleton
-          variant='rectangular'
+          variant="rectangular"
           width={'100%'}
           height={SKELETON_COLLAPSE_HEIGHT}
         />
@@ -39,7 +39,7 @@ const ItemSkeleton = ({
     case itemType === ItemType.FOLDER: {
       return (
         <Skeleton
-          variant='rectangular'
+          variant="rectangular"
           width={'100%'}
           height={SKELETON_FOLDER_BUTTON_HEIGHT}
         />
@@ -55,7 +55,7 @@ const ItemSkeleton = ({
     ).includes(itemType): {
       return (
         <Skeleton
-          variant='rectangular'
+          variant="rectangular"
           width={'100%'}
           height={screenMaxHeight || SCREEN_MAX_HEIGHT}
         />
@@ -64,14 +64,14 @@ const ItemSkeleton = ({
     case itemType === ItemType.DOCUMENT: {
       return (
         <>
-          <Skeleton variant='text' />
-          <Skeleton variant='text' />
-          <Skeleton variant='text' />
+          <Skeleton variant="text" />
+          <Skeleton variant="text" />
+          <Skeleton variant="text" />
         </>
       );
     }
     default: {
-      return <Skeleton variant='rectangular' width={'100%'} />;
+      return <Skeleton variant="rectangular" width={'100%'} />;
     }
   }
 };

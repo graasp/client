@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-
 import { Box, Stack } from '@mui/material';
+
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Avatar from './Avatar.js';
@@ -71,7 +71,7 @@ export const ColoredAvatars = {
   },
   render: (props) => {
     return (
-      <Stack direction='row' gap={2} flexWrap='wrap'>
+      <Stack direction="row" gap={2} flexWrap="wrap">
         {[
           'Evelynn',
           'Samuel',
@@ -111,15 +111,15 @@ export const ColoredIdAvatars = {
   },
   render: (props) => {
     return (
-      <Stack direction='row' gap={2} flexWrap='wrap'>
+      <Stack direction="row" gap={2} flexWrap="wrap">
         {gradientIds.map((id) => {
           return (
             <Avatar
               {...props}
               key={id}
               alt={id}
-              maxWidth='10px'
-              maxHeight='10px'
+              maxWidth="10px"
+              maxHeight="10px"
               sx={{ bgcolor: getColorFromId(id) }}
             />
           );
@@ -136,13 +136,14 @@ export const Colors = {
   },
   render: () => {
     return (
-      <Stack direction='row' gap={1}>
+      <Stack direction="row" gap={1}>
         {Array.from(Array(64)).map((_, idx) => {
           const color = `${(idx * 4).toString(16).padStart(2, '0')}`;
           return (
-            <Stack direction='column' gap={1}>
-              {Array.from(Array(16)).map((_, sat) => (
+            <Stack key={idx} direction="column" gap={1}>
+              {Array.from(Array(16)).map((_other, sat) => (
                 <Box
+                  key={sat}
                   bgcolor={getColorFromId(`${color}${sat.toString(16)}`)}
                   height={20}
                   width={20}

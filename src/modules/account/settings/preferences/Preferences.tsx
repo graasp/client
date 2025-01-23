@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AccountType } from '@graasp/sdk';
-import { DEFAULT_LANG, langs } from '@graasp/translations';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
-import { NS } from '@/config/constants';
+import { DEFAULT_LANG, NS } from '@/config/constants';
+import { LANGS } from '@/config/langs';
 import { hooks } from '@/config/queryClient';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
@@ -32,8 +32,8 @@ export const Preferences = (): JSX.Element | null => {
   }
 
   const languageCode = (member.extra?.lang ??
-    DEFAULT_LANG) as keyof typeof langs;
-  const languageName = langs[languageCode];
+    DEFAULT_LANG) as keyof typeof LANGS;
+  const languageName = LANGS[languageCode];
 
   const handleEditClick = () => {
     setIsEditing(true);

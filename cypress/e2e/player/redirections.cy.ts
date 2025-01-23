@@ -62,7 +62,7 @@ describe('Item page', () => {
   });
 });
 
-describe.skip('Platform switch', () => {
+describe('Platform switch', () => {
   const parent = FOLDER_WITH_SUBFOLDER_ITEM.items[0];
   const child = FOLDER_WITH_SUBFOLDER_ITEM.items[1];
   beforeEach(() => {
@@ -75,8 +75,7 @@ describe.skip('Platform switch', () => {
   ['builder', 'analytics'].forEach((platform) => {
     it(platform, () => {
       cy.get(`[data-testid="${platform}"]`).click();
-      cy.wait(`@${platform.toLowerCase()}`);
-      cy.url().should('contain', child.id);
+      cy.url().should('contain', `/${platform}/items/${child.id}`);
     });
   });
 });

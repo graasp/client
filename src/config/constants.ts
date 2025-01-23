@@ -1,5 +1,7 @@
 import { EmailFrequency } from '@graasp/sdk';
 
+export const DEFAULT_LANG = 'en';
+
 export const DEFAULT_EMAIL_FREQUENCY = EmailFrequency.Always;
 
 export const emailFrequency = {
@@ -35,3 +37,5 @@ export const PRIVACY_EMAIL = 'privacy@graasp.org';
 
 export const DEFAULT_LINK_SHOW_BUTTON = true;
 export const DEFAULT_LINK_SHOW_IFRAME = false;
+
+export const ITEM_NAME_MAX_LENGTH = 15;

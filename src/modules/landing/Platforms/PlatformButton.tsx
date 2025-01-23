@@ -10,11 +10,11 @@ import {
 } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import { Platform } from '@/ui/PlatformSwitch/hooks';
+import { type PlatformType } from '@/ui/PlatformSwitch/hooks';
 import BuildIcon from '@/ui/icons/BuildIcon';
 
 type PlatformButtonProps = {
-  platform: Platform;
+  platform: PlatformType;
   direction: 'left' | 'right';
   buttonText: string;
   description: string;

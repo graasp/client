@@ -23,7 +23,7 @@ const ExtraItemsMenu = ({
   menuItems,
   buildIconId,
   buildMenuId,
-  name,
+  name: title,
 }: ExtraItemsMenuProps): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -40,7 +40,7 @@ const ExtraItemsMenu = ({
       <IconButton
         onClick={handleClick}
         aria-haspopup="true"
-        id={buildIconId?.(name)}
+        id={buildIconId?.(title)}
         aria-expanded={open ? true : undefined}
       >
         {icon}
@@ -48,7 +48,7 @@ const ExtraItemsMenu = ({
       <Menu
         anchorEl={anchorEl}
         open={open}
-        id={buildMenuId?.(name)}
+        id={buildMenuId?.(title)}
         onClose={handleClose}
         onClick={handleClose}
         anchorOrigin={{

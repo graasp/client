@@ -13,9 +13,9 @@ on:
   # Allow to manually trigger the workflow
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: false
+# concurrency:
+# group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+# cancel-in-progress: false
 
 jobs:
   build:
@@ -50,6 +50,30 @@ jobs:
         env:
           VITE_RECAPTCHA_SITE_KEY: 123456789
 
+  test-unit:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 9
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "package.json"
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
+
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Get Latest playwright version
         run: echo "PLAYWRIGHT_VERSION=$(pnpm show playwright version)" >> $GITHUB_ENV
       - name: Cache playwright binaries
@@ -68,7 +92,7 @@ jobs:
   cypress:
     name: Cypress
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -85,11 +109,30 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
 
+      #  use the Cypress GitHub Action to run Cypress Component tests within the chrome browser
+      - name: Cypress run components
+        uses: cypress-io/github-action@v6
+        with:
+          install: true
+          component: true
+          browser: chrome
+          quiet: true
+          config-file: cypress.config.ts
+          cache-key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        env:
+          VITE_PORT: ${{ vars.VITE_PORT }}
+          VITE_VERSION: ${{ vars.VITE_VERSION }}
+          VITE_GRAASP_DOMAIN: ${{ vars.VITE_GRAASP_DOMAIN }}
+          VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
+          VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
+          VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
+          VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
+
       #  use the Cypress GitHub Action to run Cypress tests within the chrome browser
       - name: Cypress
         uses: cypress-io/github-action@v6
         with:
-          install: true
+          install: false
           build: pnpm build:test
           # we launch the app in preview mode to avoid issues with hmr websockets from vite polluting the mocks
           start: pnpm preview:test
@@ -101,9 +144,7 @@ jobs:
           VITE_VERSION: ${{ vars.VITE_VERSION }}
           VITE_GRAASP_DOMAIN: ${{ vars.VITE_GRAASP_DOMAIN }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
-          VITE_GRAASP_PLAYER_HOST: ${{ vars.VITE_GRAASP_PLAYER_HOST }}
           VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
-          VITE_GRAASP_ANALYZER_HOST: ${{ vars.VITE_GRAASP_ANALYZER_HOST }}
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
           VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
 

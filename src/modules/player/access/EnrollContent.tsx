@@ -20,6 +20,7 @@ export const EnrollContent = ({ itemId }: { itemId: string }): JSX.Element => {
       justifyContent="center"
       alignItems="center"
       height="100%"
+      flex={1}
       gap={2}
     >
       <CircleUser size={40} />

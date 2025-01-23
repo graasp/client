@@ -1,8 +1,8 @@
 // we could replace dnd with this https://docs.dndkit.com
-import { Box } from '@mui/material';
-
 import { useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
+
+import { Box } from '@mui/material';
 
 import type { DraggableAndDroppableProps, DroppedFile } from './types.js';
 

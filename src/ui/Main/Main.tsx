@@ -32,7 +32,6 @@ const DRAWER_WIDTH = 240;
 
 const buildHeaderGradient = (color: string): string =>
   `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 const openDrawerStyles = (theme: Theme) => ({
   width: '100%',
   // conditional styles applied when screen is larger than mobile
@@ -147,11 +146,15 @@ const MainWithDrawerContent = ({
     setOpen((state) => !state);
   };
 
-  useEffect(() => {
-    if (openOverride !== undefined) {
-      setOpen(openOverride);
-    }
-  }, [openOverride]);
+  useEffect(
+    () => {
+      if (openOverride !== undefined) {
+        setOpen(openOverride);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [openOverride],
+  );
 
   return (
     <>

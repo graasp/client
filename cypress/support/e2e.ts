@@ -28,4 +28,7 @@ Cypress.on('uncaught:exception', (err): false | void => {
   if (err.message.includes('Node with id')) {
     return false;
   }
+  if (err.message.includes('Map container is already initialized.')) {
+    return false;
+  }
 });

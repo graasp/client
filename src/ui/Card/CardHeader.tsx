@@ -1,6 +1,6 @@
-import { Stack, Typography } from '@mui/material';
-
 import { ReactElement } from 'react';
+
+import { Stack, Typography } from '@mui/material';
 
 type CardHeaderProps = {
   name: string;
@@ -19,13 +19,13 @@ const CustomCardHeader = ({
 }: CardHeaderProps): JSX.Element => {
   return (
     <Stack
-      direction='row'
-      justifyContent='space-between'
+      direction="row"
+      justifyContent="space-between"
       // align to the top so the button does not move when there is no creator
-      alignItems='start'
-      boxSizing='border-box'
+      alignItems="start"
+      boxSizing="border-box"
     >
-      <Stack minWidth={0} direction='column'>
+      <Stack minWidth={0} direction="column">
         <NameWrapper>
           <Typography noWrap variant={dense ? 'h5' : 'h3'}>
             {name}
@@ -35,7 +35,7 @@ const CustomCardHeader = ({
           <Typography
             noWrap
             variant={dense ? 'caption' : 'body1'}
-            color='text.secondary'
+            color="text.secondary"
           >
             {creator}
           </Typography>

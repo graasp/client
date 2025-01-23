@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/test';
+import { expect, userEvent, within } from '@storybook/test';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
 
@@ -76,7 +76,7 @@ export const Background = {
       values: [{ name: 'default', value: '#00aced' }],
     },
   },
-  play: async ({ canvasElement, args }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     expect(canvas.getByLabelText('Geolocation')).toHaveTextContent(
       'initial value',

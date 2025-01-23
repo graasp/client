@@ -175,7 +175,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const destructiveMenus = [
-    member?.id ? <FlagButton item={item} /> : false,
+    member?.id ? <FlagButton key="flag" item={item} /> : false,
     canAdmin ? (
       <RecycleButton
         key="recycle"
@@ -197,7 +197,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ]
     // remove empty arrays
     .filter((e) => e.length > 0)
-    .flatMap((e) => [<Divider />, ...e])
+    .flatMap((e) => [<Divider key={e.toString()} />, ...e])
     .slice(1);
 
   return (

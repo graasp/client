@@ -2,11 +2,6 @@ import { ItemLoginSchemaType, ItemType } from '@graasp/sdk';
 
 export const APP_NAME = 'Graasp';
 
-/**
- * Max length to display for an item name
- */
-export const ITEM_NAME_MAX_LENGTH = 20;
-
 export const SETTINGS = {
   ITEM_LOGIN: {
     name: 'item-login',
@@ -74,9 +69,6 @@ export const DISPLAY_CO_EDITORS_OPTIONS = {
     label: 'No',
   },
 };
-
-export const ITEM_HEADER_ICON_HEIGHT = 24;
-export const AVATAR_ICON_HEIGHT = 30;
 
 // TODO: refer from specific endpoint /tutorials?
 export const TUTORIALS_LINK =

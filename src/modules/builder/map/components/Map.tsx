@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 
+import { Alert } from '@mui/material';
+
+import { ErrorBoundary } from '@sentry/react';
 import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-geosearch/assets/css/leaflet.css';
 import 'leaflet/dist/leaflet.css';
@@ -54,37 +57,48 @@ const MapComponent = ({
           position: 'relative',
         }}
       >
-        {/* the properties set here are the initial ones */}
-        <MapContainer
-          // default to switzerland
-          center={[47, 8]}
-          zoom={4}
-          dragging={false}
-          scrollWheelZoom={false}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-          <LoggedOutWarning />
+        <ErrorBoundary fallback={<ErrorFallback />}>
+          {/* the properties set here are the initial ones */}
+          <MapContainer
+            // default to switzerland
+            center={[47, 8]}
+            zoom={4}
+            dragging={false}
+            scrollWheelZoom={false}
+            style={{ width: '100%', height: '100%' }}
+          >
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <LoggedOutWarning />
 
-          {/* focus on initial geoloc if item id is defined, cannot use useffect because of map updates */}
-          <InitialSetup
-            showMap={showMap}
-            setShowMap={setShowMap}
-            currentPosition={currentPosition}
-          />
+            {/* focus on initial geoloc if item id is defined, cannot use useffect because of map updates */}
+            <InitialSetup
+              showMap={showMap}
+              setShowMap={setShowMap}
+              currentPosition={currentPosition}
+            />
 
-          {!showMap && !currentPosition ? (
-            <CountryContent setShowMap={setShowMap} />
-          ) : (
-            <MapContent currentPosition={currentPosition} />
-          )}
-        </MapContainer>
+            {!showMap && !currentPosition ? (
+              <CountryContent setShowMap={setShowMap} />
+            ) : (
+              <MapContent currentPosition={currentPosition} />
+            )}
+          </MapContainer>
+        </ErrorBoundary>
       </div>
     </QueryClientContextProvider>
   );
 };
+
+function ErrorFallback() {
+  return (
+    <Alert severity="warning">
+      We are having issues showing you the map. Please try again later. If this
+      issue persist, please let us know and we will get back to you.
+    </Alert>
+  );
+}
 
 export default MapComponent;

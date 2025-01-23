@@ -396,13 +396,6 @@ export const buildPlayerTabName = (id: string): string => `builder-tab-${id}`;
 
 export const ITEM_PUBLISH_SECTION_TITLE_ID = 'itemPublishSectionTitle';
 export const APP_NAVIGATION_PLATFORM_SWITCH_ID = 'appNavigationPlatformSwitch';
-// cannot use graasp ui because it slows down a lot cypress
-export const APP_NAVIGATION_PLATFORM_SWITCH_BUTTON_IDS = {
-  builder: 'appNavigationPlatformSwitchButtonBuilder',
-  player: 'appNavigationPlatformSwitchButtonPlayer',
-  library: 'appNavigationPlatformSwitchButtonLibrary',
-  analytics: 'appNavigationPlatformSwitchButtonAnalytics',
-};
 
 export const buildItemPublicationButton = (status: PublicationStatus): string =>
   `item${status}Button`;
@@ -422,8 +415,6 @@ export const HEADER_MEMBER_MENU_SEE_PROFILE_BUTTON_ID =
 export const HEADER_MEMBER_MENU_SIGN_IN_BUTTON_ID =
   'headerMemberMenuSignInButton';
 
-export const HEADER_MEMBER_MENU_SIGN_OUT_BUTTON_ID =
-  'headerMemberMenuSignOutButton';
 export const buildMemberMenuItemId = (id: string): string =>
   `memberMenuItem-${id}`;
 export const CO_EDITOR_SETTINGS_RADIO_GROUP_ID = 'coEditorSettingsRadioGroup';
@@ -572,7 +563,7 @@ export const buildPublishChipContainer = (id: string): string =>
   `publicationChipContainer${id}`;
 
 export const buildPublicationStatus = (status: PublicationStatus): string =>
-  `publicationStatus${status}`;
+  `publicationStatus-${status}`;
 
 export const PUBLIC_VISIBILITY_MODAL_VALIDATE_BUTTON =
   'publicVisbilityModalValidateButton';

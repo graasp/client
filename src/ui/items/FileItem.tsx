@@ -62,28 +62,32 @@ const FileItem = ({
 }: FileItemProps): JSX.Element => {
   const [url, setUrl] = useState<string>();
 
-  useEffect(() => {
-    (async () => {
-      if (fileUrl) {
-        setUrl(fileUrl);
-      } else if (content) {
-        // Build a URL from the file
-        const urlFromContent = URL.createObjectURL(content);
-        if (urlFromContent) {
-          setUrl(urlFromContent);
-        } else {
-          setUrl(Errors.BlobURL);
+  useEffect(
+    () => {
+      (async () => {
+        if (fileUrl) {
+          setUrl(fileUrl);
+        } else if (content) {
+          // Build a URL from the file
+          const urlFromContent = URL.createObjectURL(content);
+          if (urlFromContent) {
+            setUrl(urlFromContent);
+          } else {
+            setUrl(Errors.BlobURL);
+          }
         }
-      }
 
-      return () => {
-        if (content && url) {
-          URL.revokeObjectURL(url);
-        }
-      };
-    })();
-    // does not include url to avoid infinite loop
-  }, [content, fileUrl]);
+        return () => {
+          if (content && url) {
+            URL.revokeObjectURL(url);
+          }
+        };
+      })();
+      // does not include url to avoid infinite loop
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [content, fileUrl],
+  );
 
   if (!url) {
     return (

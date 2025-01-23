@@ -1,6 +1,5 @@
-import { defineWorkspace } from 'vitest/config';
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
-
+import { defineWorkspace } from 'vitest/config';
 
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
 export default defineWorkspace([
@@ -19,8 +18,6 @@ export default defineWorkspace([
         name: 'chromium',
         provider: 'playwright',
       },
-      // Make sure to adjust this pattern to match your stories files.
-      include: ['**/*.stories.?(m)[jt]s?(x)'],
       setupFiles: ['.storybook/vitest.setup.ts'],
     },
   },

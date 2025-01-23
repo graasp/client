@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Tooltip } from '@mui/material';
 
-import { ClientHostManager, Context } from '@graasp/sdk';
+import { Context } from '@graasp/sdk';
 
 import { Link, useParams } from '@tanstack/react-router';
 import { MapPinIcon } from 'lucide-react';
@@ -10,10 +10,11 @@ import { MapPinIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_MAP_BUTTON_ID } from '@/config/selectors';
+import { ClientManager } from '@/lib/ClientManager';
 
 import { ToolButton } from './customButtons';
 
-const cm = ClientHostManager.getInstance();
+const cm = ClientManager.getInstance();
 
 const useGeolocationButton = (): { geolocationButton: JSX.Element | null } => {
   const { t } = useTranslation(NS.Player);

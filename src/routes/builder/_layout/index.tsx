@@ -45,7 +45,6 @@ function HomeScreen(): JSX.Element {
       }
     >
       <SelectionContextProvider>
-        test
         <HomeScreenContent searchText={itemSearch.text} />
       </SelectionContextProvider>
     </BuilderPageLayout>

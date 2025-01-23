@@ -1,6 +1,6 @@
-import { SxProps, styled } from '@mui/material';
-
 import { ReactEventHandler, useRef, useState } from 'react';
+
+import { SxProps, styled } from '@mui/material';
 
 import { ITEM_MAX_HEIGHT } from './constants.js';
 
@@ -56,7 +56,7 @@ const FilePdf = ({
       ref={embedRef}
       id={id}
       src={urlWithPdfViewer}
-      width='100%'
+      width="100%"
       height={height || '100%'}
       onLoad={onLoad}
       sx={sx}

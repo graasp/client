@@ -1,13 +1,7 @@
 import { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Alert,
-  AlertTitle,
-  Grid2 as Grid,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Grid2 as Grid, Stack, Typography } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 

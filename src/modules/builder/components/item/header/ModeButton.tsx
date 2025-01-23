@@ -11,9 +11,9 @@ import { LAYOUT_MODE_BUTTON_ID } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
-import { ItemLayoutMode } from '~builder/enums';
+import { ItemLayoutMode, ItemLayoutModeType } from '~builder/enums';
 
-const ModeIcon = ({ mode }: { mode: ItemLayoutMode }) => {
+const ModeIcon = ({ mode }: { mode: ItemLayoutModeType }) => {
   const { color } = useButtonColor('primary');
   switch (mode) {
     case ItemLayoutMode.Map:
@@ -36,7 +36,7 @@ const ModeButton = (): JSX.Element | null => {
 
   const isHomePath = useMatch({ from: '/builder', shouldThrow: false });
   const isItemPath = useMatch({
-    from: '/builder/_layout/items/$itemId',
+    from: '/builder/items/$itemId',
     shouldThrow: false,
   });
 
@@ -59,8 +59,8 @@ const ModeButton = (): JSX.Element | null => {
         {options.map((value) => (
           <MenuItemLink
             key={value}
-            from="/builder"
-            search={{ mode: value }}
+            to="."
+            search={(prev) => ({ ...prev, mode: value })}
             onClick={() => handleClose()}
             value={value}
           >

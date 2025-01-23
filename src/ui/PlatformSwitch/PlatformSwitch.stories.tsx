@@ -6,7 +6,7 @@ import { Snowflake } from 'lucide-react';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
 import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';
-import { Platform } from './hooks.js';
+import { Platform, PlatformType } from './hooks.js';
 
 const MOCK_PLATFORM_PROPS = {
   [Platform.Builder]: {
@@ -41,7 +41,7 @@ type Story = StoryObj<typeof PlatformSwitch>;
 
 const checkHref = async (
   canvas: BoundFunctions<typeof queries>,
-  platform: Platform,
+  platform: PlatformType,
   platformsProps: PlatformSwitchProps['platformsProps'],
 ): Promise<void> => {
   const button = await canvas.findByTestId(platform);
@@ -50,7 +50,9 @@ const checkHref = async (
     const selectedPlatformProps = platformsProps[platform];
     if (selectedPlatformProps) {
       const href = selectedPlatformProps.href;
-      expect(button).toHaveAttribute('href', href);
+      if (href) {
+        expect(button).toHaveAttribute('href', href);
+      }
     }
   }
 };
@@ -113,7 +115,13 @@ export const Disabled: Story = {
       const selectedPlatformProps = args.platformsProps[Platform.Analytics];
       if (selectedPlatformProps) {
         const href = selectedPlatformProps.href;
-        expect(button).toHaveAttribute('href', href);
+        if (href) {
+          expect(button).toHaveAttribute('href', href);
+        }
+        const disabled = selectedPlatformProps.disabled;
+        if (disabled) {
+          expect(button).toHaveAttribute('aria-disabled', 'true');
+        }
       }
     }
   },

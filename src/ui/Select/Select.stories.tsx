@@ -4,7 +4,7 @@ import { expect, within } from '@storybook/test';
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Select from './Select.js';
 
-const values = [
+const VALUES = [
   { value: 1, text: 'one' },
   { value: 2, text: 'two', disabled: true },
   { value: 3, text: 'three' },
@@ -57,16 +57,16 @@ export const Primary: Story = {
   args: {
     color: 'primary',
     label: 'My Label',
-    defaultValue: values[0].value,
-    values,
+    defaultValue: VALUES[0].value,
+    values: VALUES,
   },
 };
 
 export const Simple: Story = {
   args: {
     color: 'primary',
-    defaultValue: values[0].value,
-    values,
+    defaultValue: VALUES[0].value,
+    values: VALUES,
   },
 };
 
@@ -75,21 +75,21 @@ export const Secondary: Story = {
     color: 'secondary',
     defaultValue: undefined,
     displayEmpty: true,
-    values,
+    values: VALUES,
   },
 };
 
 export const Filled: Story = {
   args: {
     variant: 'filled',
-    values,
+    values: VALUES,
   },
 };
 
 export const Standard: Story = {
   args: {
     variant: 'standard',
-    values: values,
+    values: VALUES,
   },
 };
 

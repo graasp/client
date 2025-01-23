@@ -1,5 +1,3 @@
-import { Container, Stack, TextField, styled } from '@mui/material';
-
 import {
   ChangeEvent,
   KeyboardEvent,
@@ -8,6 +6,8 @@ import {
   useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { Container, Stack, TextField, styled } from '@mui/material';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
@@ -103,7 +103,6 @@ const ItemLoginScreen = ({
   ): void => {
     if (e.key === 'Enter') {
       if (withPassword) {
-        console.log(passwordFieldRef.current);
         // focus next field
         passwordFieldRef.current?.focus();
       } else {
@@ -124,17 +123,18 @@ const ItemLoginScreen = ({
     Boolean(username) && (username.length < 3 || username.length > 50);
 
   return (
-    <WrapperContainer maxWidth='xs'>
-      <Stack alignItems='center'>
+    <WrapperContainer maxWidth="xs">
+      <Stack alignItems="center">
         <StyledTextField
           error={error}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
           onChange={onUsernameChange}
           label={t('Pseudonym')}
-          color='primary'
-          variant='outlined'
+          color="primary"
+          variant="outlined"
           fullWidth
-          type='text'
+          type="text"
           id={usernameInputId}
           value={username}
           onKeyDown={handleUsernamePressEnter}
@@ -145,9 +145,9 @@ const ItemLoginScreen = ({
           onChange={onPasswordChange}
           label={t('Password')}
           value={password}
-          type='password'
-          color='primary'
-          variant='outlined'
+          type="password"
+          color="primary"
+          variant="outlined"
           id={passwordInputId}
           onKeyDown={handlePressEnter}
           // used to set focus when first field is filled

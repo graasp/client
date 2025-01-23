@@ -1,4 +1,4 @@
-export enum EditorMode {
-  Rich,
-  Raw,
-}
+export const EditorMode = {
+  Rich: 0,
+  Raw: 1,
+} as const;

@@ -16,7 +16,6 @@ type UserMenuItem = {
   id?: string;
 };
 type Props = {
-  buildMemberMenuItemId?: (id: string) => string;
   ButtonContent?: JSX.Element;
   buttonId?: string;
   currentMember?: CurrentAccount | null;
@@ -48,7 +47,6 @@ type Props = {
 };
 
 export const UserSwitchWrapper = ({
-  buildMemberMenuItemId,
   ButtonContent,
   buttonId,
   currentMember,
@@ -70,25 +68,6 @@ export const UserSwitchWrapper = ({
   userMenuItems = [],
   dataUmamiEvent,
 }: Props): JSX.Element => {
-  // get stored sessions
-  // const sessions = getStoredSessions();
-  // const { data } = useMembers(sessions.map(({ id }) => id));
-  // const members = data?.data?.toSeq()?.toList();
-
-  // save current member in sessions if it doesn't exist
-  // it is not possible to do it on /auth since it's a backend call
-  // useEffect(() => {
-  //   if (currentMember && isCurrentMemberSuccess) {
-  //     const token = getCurrentSession();
-  //     if (token) {
-  //       storeSession(
-  //         { id: currentMember.get('id'), token, createdAt: Date.now() },
-  //         domain,
-  //       );
-  //     }
-  //   }
-  // }, [currentMember, isCurrentMemberSuccess]);
-
   if (isCurrentMemberLoading) {
     return <Loader />;
   }
@@ -102,17 +81,12 @@ export const UserSwitchWrapper = ({
   };
 
   const handleSignIn = (): void => {
-    // setCurrentSession(null, domain);
-    // saveUrlForRedirection(window.location.href, domain);
     return redirect(window, redirectPath);
   };
 
   const goToProfile = (): void => {
     redirect(window, profilePath);
   };
-
-  // const onMemberClick = (memberId: string) => () =>
-  //   switchMember({ memberId, domain });
 
   let Actions: JSX.Element[];
 
@@ -123,7 +97,7 @@ export const UserSwitchWrapper = ({
       id={item.id}
     >
       <ListItemIcon>{item.icon}</ListItemIcon>
-      <Typography variant='subtitle2'>{item.text}</Typography>
+      <Typography variant="subtitle2">{item.text}</Typography>
     </MenuItem>
   ));
   if (currentMember && currentMember.id) {
@@ -131,14 +105,14 @@ export const UserSwitchWrapper = ({
       currentMember.type === AccountType.Individual
         ? [
             <MenuItem
-              key='seeProfile'
+              key="seeProfile"
               onClick={goToProfile}
               id={seeProfileButtonId}
             >
               <ListItemIcon>
-                <AccountCircleIcon fontSize='large' />
+                <AccountCircleIcon fontSize="large" />
               </ListItemIcon>
-              <Typography variant='subtitle2'>{seeProfileText}</Typography>
+              <Typography variant="subtitle2">{seeProfileText}</Typography>
             </MenuItem>,
           ]
         : [];
@@ -146,20 +120,20 @@ export const UserSwitchWrapper = ({
     Actions.push(...MenuItems);
 
     Actions.push(
-      <MenuItem key='signout' onClick={handleSignOut} id={signOutMenuItemId}>
+      <MenuItem key="signout" onClick={handleSignOut} id={signOutMenuItemId}>
         <ListItemIcon>
-          <MeetingRoomIcon fontSize='large' />
+          <MeetingRoomIcon fontSize="large" />
         </ListItemIcon>
-        <Typography variant='subtitle2'>{signOutText}</Typography>
+        <Typography variant="subtitle2">{signOutText}</Typography>
       </MenuItem>,
     );
   } else {
     Actions = [
-      <MenuItem key='signin' onClick={handleSignIn} id={signInMenuItemId}>
+      <MenuItem key="signin" onClick={handleSignIn} id={signInMenuItemId}>
         <ListItemIcon>
-          <AccountCircleIcon fontSize='large' />
+          <AccountCircleIcon fontSize="large" />
         </ListItemIcon>
-        <Typography variant='subtitle2'>{switchMemberText}</Typography>
+        <Typography variant="subtitle2">{switchMemberText}</Typography>
       </MenuItem>,
     ];
   }
@@ -168,12 +142,9 @@ export const UserSwitchWrapper = ({
     <UserSwitch
       ButtonContent={ButtonContent}
       Actions={Actions}
-      // onMemberClick={onMemberClick}
       currentMember={currentMember}
-      // members={members}
       signedOutTooltipText={signedOutTooltipText}
       buttonId={buttonId}
-      buildMemberMenuItemId={buildMemberMenuItemId}
       avatar={avatar}
       dataUmamiEvent={dataUmamiEvent}
     />

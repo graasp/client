@@ -10,8 +10,6 @@ import { NS } from '@/config/constants';
 import { buildSettingsButtonId } from '@/config/selectors';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
-import { buildItemSettingsPath } from '~builder/paths';
-
 import { BUILDER } from '../../../langs';
 
 type Props = {
@@ -26,13 +24,17 @@ const ItemSettingsButton = ({
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const text = translateBuilder(BUILDER.SETTINGS_TITLE);
-  const to = buildItemSettingsPath(itemId);
   const id = buildSettingsButtonId(itemId);
 
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItemLink to={to} key={text} id={id}>
+        <MenuItemLink
+          to="/builder/items/$itemId/settings"
+          params={{ itemId }}
+          key={text}
+          id={id}
+        >
           <ListItemIcon>
             <SettingsIcon />
           </ListItemIcon>
@@ -43,7 +45,7 @@ const ItemSettingsButton = ({
     default:
       return (
         <Tooltip title={text}>
-          <Link to={to}>
+          <Link to="/builder/items/$itemId/settings" params={{ itemId }}>
             <IconButton id={id}>
               <SettingsIcon />
             </IconButton>

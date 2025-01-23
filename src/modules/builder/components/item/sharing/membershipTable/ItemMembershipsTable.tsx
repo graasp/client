@@ -19,6 +19,7 @@ import {
 
 import groupby from 'lodash.groupby';
 
+import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 
@@ -72,7 +73,7 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({
     itemId: item.id,
   });
-  const { data: currentAccount } = hooks.useCurrentMember();
+  const { user } = useAuth();
 
   const itemLoginSchemaIsDisabled =
     !itemLoginSchema ||
@@ -110,8 +111,7 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
             data={im}
             isDisabled={
               Boolean(item.hidden) ||
-              (currentAccount?.id !== im.account.id &&
-                itemLoginSchemaIsDisabled)
+              (user?.id !== im.account.id && itemLoginSchemaIsDisabled)
             }
           />
         ),

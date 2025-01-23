@@ -5,7 +5,7 @@ import withResizing from './withResizing.js';
 const ComponentWithResizing = withResizing({
   height: 100,
   itemId: 'my-item-id',
-  component: <img src='https://picsum.photos/500' height='100%' />,
+  component: <img alt="cover" src="https://picsum.photos/500" height="100%" />,
 });
 
 const meta: Meta<typeof ComponentWithResizing> = {

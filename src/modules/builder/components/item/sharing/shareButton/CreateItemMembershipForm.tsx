@@ -17,7 +17,7 @@ import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 import truncate from 'lodash.truncate';
 import validator from 'validator';
 
-import { NS } from '@/config/constants';
+import { ITEM_NAME_MAX_LENGTH, NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -26,8 +26,6 @@ import {
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
-
-import { ITEM_NAME_MAX_LENGTH } from '~builder/constants';
 
 import { BUILDER } from '../../../../langs';
 import ItemMembershipSelect from '../ItemMembershipSelect';

@@ -12,12 +12,7 @@ import {
   TableRow,
 } from '@mui/material';
 
-import {
-  ClientHostManager,
-  Context,
-  formatDate,
-  formatFileSize,
-} from '@graasp/sdk';
+import { formatDate, formatFileSize } from '@graasp/sdk';
 
 import { Link } from '@tanstack/react-router';
 
@@ -35,12 +30,6 @@ export const StorageFiles = (): JSX.Element | null => {
   const { t, i18n } = useTranslation(NS.Account);
   const [pagination, setPagination] = useState({ page: 1, pageSize: 10 });
   const { data, isLoading } = hooks.useMemberStorageFiles(pagination);
-
-  // redirect to file's location in builder
-  const getFileLink = (id: string) => {
-    const clientHostManager = ClientHostManager.getInstance();
-    return clientHostManager.getItemLink(Context.Builder, id);
-  };
 
   const handlePageChange = (_: unknown, newPage: number) => {
     setPagination((prev) => {
@@ -85,7 +74,12 @@ export const StorageFiles = (): JSX.Element | null => {
                 <TableCell
                   id={getCellId(`${MEMBER_STORAGE_FILE_NAME_ID}`, file.id)}
                 >
-                  <Link to={getFileLink(file.id)}>{file.name}</Link>
+                  <Link
+                    to="/builder/items/$itemId"
+                    params={{ itemId: file.id }}
+                  >
+                    {file.name}
+                  </Link>
                 </TableCell>
                 <TableCell
                   id={getCellId(`${MEMBER_STORAGE_FILE_SIZE_ID}`, file.id)}
