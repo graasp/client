@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Box,
+  List,
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -22,7 +23,7 @@ import {
 import { useAuth } from '@/AuthContext';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
-import GraaspMainMenu from '@/ui/MainMenu/MainMenu';
+import { DRAWER_WIDTH } from '@/ui/constants';
 
 import { TUTORIALS_LINK } from '../../constants';
 import { BUILDER } from '../../langs';
@@ -51,39 +52,42 @@ export function MainMenu(): JSX.Element | null {
 
   if (user) {
     return (
-      <GraaspMainMenu fullHeight>
-        <Stack direction="column" height="100%" justifyContent="space-between">
-          <Box>
-            <MainMenuItem
-              to="/builder"
-              icon={<HomeIcon />}
-              text={t('MY_ITEMS')}
-            />
-            {user.type === AccountType.Individual ? (
-              <>
-                <MainMenuItem
-                  to="/builder/bookmarks"
-                  text={t('BOOKMARKED_ITEMS')}
-                  icon={<BookmarkIcon />}
-                />
-                <MainMenuItem
-                  to="/builder/published"
-                  text={t('PUBLISHED_ITEMS')}
-                  icon={<LibraryBigIcon />}
-                />
-                <MainMenuItem
-                  to="/builder/recycled"
-                  text={t('RECYCLED_ITEMS')}
-                  icon={<TrashIcon />}
-                />
-              </>
-            ) : null}
-          </Box>
-          <Box>
-            <ResourceLinks />
-          </Box>
-        </Stack>
-      </GraaspMainMenu>
+      <Stack
+        direction="column"
+        justifyContent="space-between"
+        flex={1}
+        height="100%"
+      >
+        <List sx={{ width: DRAWER_WIDTH }}>
+          <MainMenuItem
+            to="/builder"
+            icon={<HomeIcon />}
+            text={t('MY_ITEMS')}
+          />
+          {user.type === AccountType.Individual ? (
+            <>
+              <MainMenuItem
+                to="/builder/bookmarks"
+                text={t('BOOKMARKED_ITEMS')}
+                icon={<BookmarkIcon />}
+              />
+              <MainMenuItem
+                to="/builder/published"
+                text={t('PUBLISHED_ITEMS')}
+                icon={<LibraryBigIcon />}
+              />
+              <MainMenuItem
+                to="/builder/recycled"
+                text={t('RECYCLED_ITEMS')}
+                icon={<TrashIcon />}
+              />
+            </>
+          ) : null}
+        </List>
+        <Box>
+          <ResourceLinks />
+        </Box>
+      </Stack>
     );
   }
   return null;

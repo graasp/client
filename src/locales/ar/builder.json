@@ -237,8 +237,6 @@
   "MOVE_ITEM_MODAL_TITLE_other": "إلى أين تريد نقل {{name}} و{{count}} آخرين؟",
   "MY_ITEMS_TITLE": "العناصر الخاصّة بي",
   "NAVIGATION_BOOKMARKED_ITEMS_TITLE": "العناصر المؤرشفة",
-  "NAVIGATION_PUBLISHED_ITEMS_TITLE": "العناصر المنشورة",
-  "NAVIGATION_MY_ITEMS_TITLE": "العناصر الخاصّة بي",
   "SELECT_TEMPLATE_TITLE": "أي مجلد ستختار كقالب؟",
   "NAVIGATION_SHARED_ITEMS_TITLE": "العناصر المشاركة",
   "NEW_ITEM_APP_TAB_TEXT": "تطبيق",

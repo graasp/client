@@ -1,4 +1,10 @@
 {
+  "MENU": {
+    "MY_ITEMS": "Mon Graasp",
+    "BOOKMARKED_ITEMS": "Signets",
+    "PUBLISHED_ITEMS": "Publications",
+    "RECYCLED_ITEMS": "Corbeille"
+  },
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "Cet élément permet de s'y connecter directement. Les nouveaux utilisateurs peuvent accéder à cet élément s'ils utilisent cette authentification.",
   "ACCESS_ITEM_LOGIN_TAG": "N'importe quel visiteur authentifié avec le lien",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "Cet élément est public. N'importe qui peut y accéder.",
@@ -236,11 +242,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "Où déplacer {{name}} ?",
   "MOVE_ITEM_MODAL_TITLE_other": "Où déplacer {{name}} et {{count}} autres éléments ?",
   "MY_ITEMS_TITLE": "Mon Graasp",
-  "NAVIGATION_BOOKMARKED_ITEMS_TITLE": "Signets",
-  "NAVIGATION_PUBLISHED_ITEMS_TITLE": "Éléments Publiés",
-  "NAVIGATION_MY_ITEMS_TITLE": "Mon Graasp",
   "SELECT_TEMPLATE_TITLE": "Quel dossier choisirez-vous comme modèle ?",
-  "NAVIGATION_SHARED_ITEMS_TITLE": "Éléments Partagés",
   "NEW_ITEM_APP_TAB_TEXT": "Application",
   "NEW_ITEM_BUTTON_TOOLTIP": "Créer un nouvel élément",
   "NEW_ITEM_BUTTON": "Nouvel Élément",
