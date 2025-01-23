@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.19.1](https://github.com/graasp/client/compare/v2.19.0...v2.19.1) (2025-01-23)
+
+
+### Bug Fixes
+
+* add h5p integration url to env vars and deploy script ([dae246c](https://github.com/graasp/client/commit/dae246cf71130e24001bd5ddf94928910039b4a4))
+* harmonize button to be imported from a single file ([#604](https://github.com/graasp/client/issues/604)) ([c50c409](https://github.com/graasp/client/commit/c50c4090b7f424403648ef59c7b0d2c2bd1ce356))
+* player home ([#606](https://github.com/graasp/client/issues/606)) ([c866e5a](https://github.com/graasp/client/commit/c866e5a199fac54a7e693446931255d88fc5fa45))
+* **tests:** cypress tests for builder ([#615](https://github.com/graasp/client/issues/615)) ([c632038](https://github.com/graasp/client/commit/c6320385db89f886dd15ea30a5cf860e1f235624))
+* unit tests ([#725](https://github.com/graasp/client/issues/725)) ([aa6c670](https://github.com/graasp/client/commit/aa6c670b6f186ebc582f721e21d1d21c98620bfb))
+
 ## [2.19.0](https://github.com/graasp/client/compare/v2.18.0...v2.19.0) (2025-01-14)
 
 
