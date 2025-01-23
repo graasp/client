@@ -1,14 +1,15 @@
-import React, { type JSX } from 'react';
+import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMap } from 'react-leaflet';
 
-import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Fab from '@mui/material/Fab';
+
+import { SearchIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 
@@ -25,7 +26,7 @@ const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
   const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
   const { t: commonT } = useTranslation(NS.Common);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);

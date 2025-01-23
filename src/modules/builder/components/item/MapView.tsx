@@ -8,7 +8,7 @@ import { hooks, mutations } from '@/config/queryClient';
 import { buildMapViewId } from '@/config/selectors';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
-import Map from '~builder/map/components/Map';
+import { MapComponent } from '~builder/map/components/Map';
 
 import NewItemModal from '../main/NewItemModal';
 import { useCurrentLocation } from '../map/useCurrentLocation';
@@ -70,7 +70,7 @@ const MapView = ({
             (enableGeolocation && !hasFetchedCurrentLocation) ? (
               <Skeleton width="100%" height="100%" />
             ) : (
-              <Map
+              <MapComponent
                 currentPosition={currentPosition}
                 useDeleteItemGeolocation={mutations.useDeleteItemGeolocation}
                 usePostItem={mutations.usePostItem}

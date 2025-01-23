@@ -3,7 +3,6 @@ import { type JSX, useState } from 'react';
 import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useQueryClientContext } from '../context/QueryClientContext';
-import TopBar from '../topbar/TopBar';
 import CurrentLocationMarker from './CurrentLocationMarker';
 import CurrentMarker from './CurrentMarker';
 import ItemsMarkers from './ItemsMarkers';
@@ -11,8 +10,10 @@ import MapEvents from './MapEvents';
 
 const MapContent = ({
   currentPosition,
+  tags,
 }: {
   currentPosition?: { lat: number; lng: number };
+  tags: string[];
 }): JSX.Element => {
   const { item } = useQueryClientContext();
   const [bounds, setBounds] = useState<{
@@ -21,11 +22,6 @@ const MapContent = ({
     lng1: number;
     lng2: number;
   }>();
-  const [tags, setTags] = useState<string[]>([]);
-
-  const onChangeTags = (newTags: string[]) => {
-    setTags(newTags);
-  };
 
   // can write in root or with right permission in item
   const canWrite =
@@ -36,7 +32,6 @@ const MapContent = ({
   return (
     <>
       <MapEvents setBounds={setBounds} />
-      <TopBar tags={tags} onChange={onChangeTags} />
       <ItemsMarkers tags={tags} bounds={bounds} />
       <CurrentLocationMarker position={currentPosition} />
       {canWrite && <CurrentMarker />}

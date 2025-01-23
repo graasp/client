@@ -15,7 +15,7 @@ import {
 } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
-export function NotFoundComponent(): JSX.Element {
+export function NotFoundComponent() {
   const { t } = useTranslation(NS.Account);
   const { color } = useButtonColor('primary');
   return (

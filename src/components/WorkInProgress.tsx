@@ -12,7 +12,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 import { ConstructionAnimation } from './ConstructionTruck';
 import { ButtonLink } from './ui/ButtonLink';
 
-function ActionButtons(): JSX.Element {
+function ActionButtons() {
   const { t } = useTranslation(NS.Common);
   return (
     <Stack direction="row" gap={2} alignItems="center" justifyContent="center">
@@ -31,7 +31,7 @@ function ActionButtons(): JSX.Element {
   );
 }
 
-export function WorkInProgress(): JSX.Element {
+export function WorkInProgress() {
   const { t } = useTranslation(NS.Common);
   const { color } = useButtonColor('warning');
   return (

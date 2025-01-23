@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import { type JSX, useState } from 'react';
 
 import {
   IconButton,
@@ -34,7 +34,7 @@ const HomeMenu = ({
   menuId,
   selected,
 }: Props): JSX.Element => {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleClick: IconButtonProps['onClick'] = (event) => {

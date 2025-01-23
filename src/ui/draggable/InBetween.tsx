@@ -26,7 +26,6 @@ const InBetween = <T extends object>({
   allowFiles = true,
 }: InBetweenProps<T>): JSX.Element => {
   const dropRef = useRef<HTMLDivElement>(null);
-
   const accept = ['row'];
   if (allowFiles) {
     accept.push(NativeTypes.FILE);

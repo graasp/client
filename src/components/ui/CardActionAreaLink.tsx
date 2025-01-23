@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import { CardActionArea, CardActionAreaProps } from '@mui/material';
 
@@ -9,7 +9,7 @@ interface MUICardActionAreaProps extends Omit<CardActionAreaProps, 'href'> {
   // Add any additional props you want to pass to the card action area
 }
 
-const MUICardActionAreaComponent = React.forwardRef<
+const MUICardActionAreaComponent = forwardRef<
   HTMLAnchorElement,
   MUICardActionAreaProps
 >((props, ref) => {

@@ -84,13 +84,11 @@ type Props = {
   messageBody: string;
 };
 
-const MessageBody = ({ messageBody }: Props): JSX.Element => {
+const MessageBody = ({ messageBody }: Props) => {
   const currentMember = useCurrentMemberContext();
   const { members = [] } = useMessagesContext();
 
-  function code(
-    props: JSX.IntrinsicElements['code'] & ExtraProps,
-  ): JSX.Element {
+  function code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
     const { className: language, children, ...rest } = props;
 
     const match = /language-(\w+)/.exec(language || '');

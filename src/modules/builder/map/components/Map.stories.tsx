@@ -9,7 +9,7 @@ import { fn } from '@storybook/test';
 import { v4 } from 'uuid';
 
 import { MOCK_USE_SUGGESTIONS } from '../fixture';
-import MapComponent from './Map';
+import { MapComponent } from './Map';
 
 const meta = {
   title: 'Map',

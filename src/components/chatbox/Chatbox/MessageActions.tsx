@@ -41,7 +41,7 @@ const MessageActions = ({
   message,
   deleteMessageFunction,
   isOwn = false,
-}: Props): JSX.Element => {
+}: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const { t } = useTranslation(NS.Chatbox);

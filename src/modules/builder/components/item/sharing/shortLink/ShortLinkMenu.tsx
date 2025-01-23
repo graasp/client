@@ -1,4 +1,4 @@
-import React, { type JSX, useState } from 'react';
+import React, { type JSX, type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -57,7 +57,7 @@ const ShortLinkMenu = ({
 
   const menuOpen = Boolean(anchorEl);
 
-  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMenuClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleMenuClose = () => {

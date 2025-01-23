@@ -1,7 +1,6 @@
 import type { JSX } from 'react';
-import { useMap } from 'react-leaflet';
 
-import { Box, Divider, Stack } from '@mui/material';
+import { Divider, Stack } from '@mui/material';
 
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
@@ -15,65 +14,56 @@ import Search from './Search';
 const TopBar = ({
   onChange,
   tags,
+  onChangeOption,
 }: {
   tags: string[];
   onChange: (tags: string[]) => void;
+  onChangeOption: GeolocationPickerProps['onChangeOption'];
 }): JSX.Element => {
-  const map = useMap();
   const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
 
   const { isMobile } = useMobileView();
-
-  const onChangeOption: GeolocationPickerProps['onChangeOption'] = ({
-    lat,
-    lng,
-  }) => {
-    map.flyTo({ lat, lng }, 10);
-  };
 
   if (isMobile) {
     return <MobileTopBar tags={tags} onChange={onChange} />;
   }
 
   return (
-    <Box
-      sx={{
-        position: 'absolute',
-        top: 20,
-        left: '10%',
-        width: '80%',
-        zIndex: 450,
-      }}
+    <Stack
+      justifyContent="center"
+      alignItems="center"
+      p={2}
+      // allow the bar to be 80% of the width and be centered
+      width="80%"
+      zIndex={450}
+      position="absolute"
+      // constrain to both borders and add auto margins to center
+      left={0}
+      right={0}
+      m="auto"
     >
-      <Stack justifyContent="center" alignItems="center" py={2}>
-        <Stack
-          sx={{
-            background: 'white',
-            borderRadius: '10px',
-            boxShadow: '0 3px 15px rgba(0,0,0,0.5)',
-          }}
-          direction="row"
-          gap={2}
-          p={2}
-        >
-          {currentMember && (
-            <>
-              <Stack>
-                <GeolocationPicker
-                  useSuggestionsForAddress={useSuggestionsForAddress}
-                  onChangeOption={onChangeOption}
-                  invisible
-                />
-              </Stack>
-              <Divider orientation="vertical" flexItem />
-            </>
-          )}
-          <Stack>
-            <Search invisible tags={tags} onChange={onChange} />
-          </Stack>
-        </Stack>
+      <Stack
+        sx={{
+          background: 'white',
+          borderRadius: '10px',
+          boxShadow: '0 3px 15px rgba(0,0,0,0.5)',
+        }}
+        direction="row"
+        gap={2}
+        p={2}
+        width="100%"
+        divider={<Divider orientation="vertical" flexItem />}
+      >
+        {currentMember ? (
+          <GeolocationPicker
+            useSuggestionsForAddress={useSuggestionsForAddress}
+            onChangeOption={onChangeOption}
+            invisible
+          />
+        ) : null}
+        <Search invisible tags={tags} onChange={onChange} />
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 export default TopBar;

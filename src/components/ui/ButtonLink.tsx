@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import { Button, ButtonProps } from '@mui/material';
 
@@ -9,7 +9,7 @@ interface MUILinkProps extends Omit<ButtonProps, 'href'> {
   // Add any additional props you want to pass to the button
 }
 
-const MUILinkComponent = React.forwardRef<HTMLAnchorElement, MUILinkProps>(
+const MUILinkComponent = forwardRef<HTMLAnchorElement, MUILinkProps>(
   (props, ref) => {
     return (
       <Button

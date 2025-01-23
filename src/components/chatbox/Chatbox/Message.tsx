@@ -43,7 +43,7 @@ type Props = {
   member?: Account;
 };
 
-const Message = ({ message, currentMember, member }: Props): JSX.Element => {
+const Message = ({ message, currentMember, member }: Props) => {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,

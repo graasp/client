@@ -78,7 +78,7 @@ const FileDropperComponent = ({
   releaseText = 'Release to drop',
   uploadProgress,
   isLoading = false,
-}: FileDropperProps): JSX.Element => {
+}: FileDropperProps) => {
   const theme = useTheme();
   const dropRef = useRef<HTMLDivElement>(null);
 
@@ -110,9 +110,12 @@ const FileDropperComponent = ({
 
   return (
     <Stack
+      // eslint-disable-next-line jsx-a11y/aria-role
+      role="dropzone"
       direction="column"
       // eslint-disable-next-line jsx-a11y/aria-role
       role="dropzone"
+      component="div"
       id={id}
       height="100%"
       width="100%"

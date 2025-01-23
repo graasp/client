@@ -77,7 +77,7 @@ const GeolocationPicker = ({
   };
 
   return (
-    <Box sx={{ position: 'relative', width: '100%' }} ref={ref}>
+    <Box flex={1} position="relative" ref={ref}>
       <TextField
         disabled={disabled}
         fullWidth
@@ -87,7 +87,6 @@ const GeolocationPicker = ({
         onChange={onChange}
         onFocus={() => setShowSuggestions(true)}
         value={selectedAddress ?? query}
-        sx={{ minWidth: '30vw' }}
         {...(invisible
           ? {
               variant: 'standard',

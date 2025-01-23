@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 
 import { Stack } from '@mui/material';
 
@@ -25,7 +25,7 @@ export const Route = createRootRouteWithContext<{ auth: AuthContextType }>()({
 const TanStackRouterDevtools =
   process.env.NODE_ENV === 'production'
     ? () => null // Render nothing in production
-    : React.lazy(() =>
+    : lazy(() =>
         // Lazy load in development
         import('@tanstack/router-devtools').then((res) => ({
           default: res.TanStackRouterDevtools,
