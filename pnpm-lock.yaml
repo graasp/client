@@ -223,22 +223,22 @@ importers:
         specifier: 1.2.5
         version: 1.2.5(eslint@9.18.0(jiti@2.4.2))
       '@storybook/addon-essentials':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(@types/react@18.3.18)(storybook@8.5.0(prettier@3.4.2))
       '@storybook/blocks':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.0(prettier@3.4.2))
       '@storybook/experimental-addon-test':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(@vitest/browser@3.0.2)(@vitest/runner@3.0.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.0(prettier@3.4.2))(vitest@3.0.2)
       '@storybook/react':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(@storybook/test@8.5.0(storybook@8.5.0(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(storybook@8.5.0(prettier@3.4.2))(typescript@5.7.3)
       '@storybook/react-vite':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(@storybook/test@8.5.0(storybook@8.5.0(prettier@3.4.2)))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(rollup@4.31.0)(storybook@8.5.0(prettier@3.4.2))(typescript@5.7.3)(vite@6.0.10(@types/node@22.10.7)(jiti@2.4.2)(terser@5.37.0)(tsx@4.19.2))
       '@storybook/test':
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(storybook@8.5.0(prettier@3.4.2))
       '@tanstack/router-plugin':
         specifier: 1.97.3
@@ -364,7 +364,7 @@ importers:
         specifier: 3.4.2
         version: 3.4.2
       storybook:
-        specifier: ^8.5.0
+        specifier: 8.5.0
         version: 8.5.0(prettier@3.4.2)
       typescript:
         specifier: 5.7.3
