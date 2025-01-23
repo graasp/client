@@ -1,7 +1,7 @@
 import { ItemType, LinkItemFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { expect, fn, within } from '@storybook/test';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import LinkItem from './LinkItem.js';
@@ -83,13 +83,13 @@ export const Iframe = {
     showIframe: true,
     memberId: 'link-iframe-id',
   },
-  // play: async ({ canvasElement, args }) => {
-  //   const canvas = within(canvasElement);
-  //   if (args.item.description) {
-  //     expect(canvas.getByText(args.item.description)).toBeInTheDocument();
-  //   }
-  //   expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
-  // },
+  play: async ({ canvasElement, args }) => {
+    const canvas = within(canvasElement);
+    if (args.item.description) {
+      expect(canvas.getByText(args.item.description)).toBeInTheDocument();
+    }
+    expect(canvas.getByTitle(args.item.name)).toBeInTheDocument();
+  },
 } satisfies Story;
 
 export const LinkButton: Story = {
