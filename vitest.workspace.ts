@@ -10,6 +10,9 @@ export default defineWorkspace([
       // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
       storybookTest({ configDir: '.storybook' }),
     ],
+    optimizeDeps: {
+      entries: ['src/**/*.stories.tsx'],
+    },
     test: {
       name: 'storybook',
       retry: 1,
