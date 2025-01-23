@@ -4,7 +4,8 @@ import viteConfig from './vite.config';
 
 export default mergeConfig(viteConfig({ mode: 'test' }), {
   optimizeDeps: {
-    include: [
+    entries: ['src/**/*.stories.tsx'],
+    exclude: [
       'react-dom/client',
       'react-helmet-async',
       '@graasp/stylis-plugin-rtl',
@@ -21,7 +22,6 @@ export default mergeConfig(viteConfig({ mode: 'test' }), {
       'date-fns/isAfter',
       'jwt-decode',
     ],
-    exclude: ['.cache/**', '.vite'],
   },
   test: {
     environment: 'happy-dom',
