@@ -1,5 +1,0 @@
-dist
-public
-coverage
-cypress/integration/examples
-cypress/plugins/

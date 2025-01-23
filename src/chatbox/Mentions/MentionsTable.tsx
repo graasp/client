@@ -1,6 +1,6 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useState } from "react";
 
-import { Check, Close, FiberManualRecord } from '@mui/icons-material';
+import { Check, Close, FiberManualRecord } from "@mui/icons-material";
 import {
   Button,
   Grid2 as Grid,
@@ -13,25 +13,25 @@ import {
   TableRow,
   Tooltip,
   styled,
-} from '@mui/material';
+} from "@mui/material";
 
 import {
   ChatMention,
   MentionStatus,
   buildItemLinkForBuilder,
   getIdsFromPath,
-} from '@graasp/sdk';
-import { CHATBOX } from '@graasp/translations';
+} from "@graasp/sdk";
+import { CHATBOX } from "@graasp/translations";
 
-import { useChatboxTranslation } from '@/config/i18n.js';
+import { useChatboxTranslation } from "@/config/i18n.js";
 
-import MessageBody from '../Chatbox/MessageBody.js';
-import ConfirmationDialog from '../common/ConfirmationDialog.js';
+import MessageBody from "../../Chatbox/MessageBody.js";
+import ConfirmationDialog from "../common/ConfirmationDialog.js";
 
 const StyledRow = styled(TableRow)({
-  '&:hover': {
+  "&:hover": {
     // make the cursor a pointer to indicate we can click
-    cursor: 'pointer',
+    cursor: "pointer",
   },
 });
 
@@ -127,7 +127,7 @@ const MentionsTable = ({
             mentions
               ?.filter((m) => m.status === MentionStatus.Unread)
               .map((m) =>
-                patchMention({ id: m.id, status: MentionStatus.Read }),
+                patchMention({ id: m.id, status: MentionStatus.Read })
               );
           }}
         >
