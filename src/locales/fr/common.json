@@ -23,6 +23,9 @@
   "EDIT": {
     "BUTTON_TEXT": "Modifier"
   },
+  "CLOSE": {
+    "BUTTON_TEXT": "Fermer"
+  },
   "CONFIRM": {
     "BUTTON_TEXT": "Confirmer"
   },
@@ -49,5 +52,6 @@
     "USERNAME_MAX_LENGTH": "Le nom d'utilisateur doit contenir moins de {{max}} caractères",
     "USERNAME_SPECIAL_CHARACTERS": "Le nom d'utilisateur ne doit pas contenir de guillemets, d'anti-slash, <, >, ^, %",
     "INVALID_EMAIL": "Cela ne ressemble pas à une adresse e-mail valide"
-  }
+  },
+  "UNKNOWN_DATE": "Inconnu"
 }

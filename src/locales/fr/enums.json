@@ -10,6 +10,7 @@
   "h5p": "h5p",
   "s3File": "fichier",
   "shortcut": "raccourci",
+  "etherpad": "etherpad",
   "builder": "builder",
   "player": "player",
   "analytics": "analytics",
@@ -27,6 +28,7 @@
   "md": "Moyen",
   "lg": "Grand",
   "xl": "Très grand",
+  "default": "Défaut",
   "guest": "invité",
   "individual": "membre",
   "group": "groupe",
@@ -51,5 +53,9 @@
   "uncollapse-item": "expansion de l'élément",
   "member-login": "connexion",
   "ask-reset-password": "demande de réinitialisation du mot de passe",
-  "reset-password": "réinitialisation du mot de passe"
+  "reset-password": "réinitialisation du mot de passe",
+  "level": "Niveau",
+  "discipline": "Discipline",
+  "resource-type": "Type de ressource",
+  "disabled": "Désactivé"
 }
