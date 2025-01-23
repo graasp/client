@@ -57,7 +57,7 @@ type Inputs = {
   confirmPassword: string;
 };
 
-export function ResetPassword() {
+function ResetPassword() {
   const { t } = useTranslation(NS.Auth);
   const search = Route.useSearch();
   const { isValid: isTokenValid, token } = useValidateJWTToken(search.t);
