@@ -44,16 +44,14 @@ jobs:
           VITE_VERSION: ${{ github.sha }}
           VITE_GRAASP_DOMAIN: ${{ vars.VITE_GRAASP_DOMAIN }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
-          VITE_GRAASP_BUILDER_HOST: ${{ vars.VITE_GRAASP_BUILDER_HOST }}
-          VITE_GRAASP_PLAYER_HOST: ${{ vars.VITE_GRAASP_PLAYER_HOST }}
           VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
-          VITE_GRAASP_ANALYTICS_HOST: ${{ vars.VITE_GRAASP_ANALYZER_HOST }}
           VITE_SENTRY_ENV: ${{ vars.VITE_SENTRY_ENV }}
           VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
           VITE_UMAMI_WEBSITE_ID: ${{ secrets.VITE_UMAMI_WEBSITE_ID }}
           VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+          VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
         run: pnpm build
         shell: bash
 
