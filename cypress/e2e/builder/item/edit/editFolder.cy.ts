@@ -106,16 +106,20 @@ describe('Edit Folder', () => {
       description: 'first description',
     });
     cy.setUpApi({ items: [parentItem, itemToEdit] });
-
     // go to parent item
     cy.visit(buildItemPath(parentItem.id));
 
+    cy.wait(['@getParents', '@getItem', '@getChildren']);
     // open edit
     cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
     cy.get(`#${EDIT_ITEM_MODAL_CANCEL_BUTTON_ID}`).click();
 
+    cy.get(`[role="dialog"]`).should('not.be.visible');
+
     // go to child
     cy.goToItemInCard(itemToEdit.id);
+
+    cy.wait(['@getParents', '@getItem', '@getChildren']);
 
     cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
     cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).should('have.value', itemToEdit.name);

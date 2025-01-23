@@ -81,7 +81,7 @@ export const Enroll = {
     itemId: v4(),
     itemLoginSchemaType: ItemLoginSchemaType.Username,
     enrollContent: (
-      <div data-testId="enroll" key="enroll">
+      <div data-testid="enroll" key="enroll">
         Enroll Content
       </div>
     ),

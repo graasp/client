@@ -79,7 +79,7 @@ export function UserTestimoniesSection() {
         sequential
       >
         {Testimonies.map((testimony) => (
-          <TestimonyCard {...testimony} />
+          <TestimonyCard key={testimony.name} {...testimony} />
         ))}
       </Masonry>
       <Stack gap={2} alignItems="center">

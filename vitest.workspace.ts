@@ -10,8 +10,28 @@ export default defineWorkspace([
       // See options at: https://storybook.js.org/docs/writing-tests/vitest-plugin#storybooktest
       storybookTest({ configDir: '.storybook' }),
     ],
+    optimizeDeps: {
+      entries: ['src/**/*.stories.tsx', '.storybook/preview.tsx'],
+      include: [
+        'react-dom/client',
+        'react-helmet-async',
+        '@graasp/stylis-plugin-rtl',
+        '@emotion/cache',
+        '@emotion/react',
+        'stylis',
+        'i18next-browser-languagedetector',
+        'i18next-fetch-backend',
+        '@tanstack/zod-adapter',
+        'zod',
+        'react-hook-form',
+        '@tanstack/router-devtools',
+        'date-fns/isAfter',
+        'jwt-decode',
+      ],
+    },
     test: {
       name: 'storybook',
+      retry: 1,
       browser: {
         enabled: true,
         headless: true,

@@ -53,7 +53,19 @@ type StyledGProps = {
   disabledColor?: string;
 };
 const StyledG: (props: StyledGProps & { children: ReactNode }) => ReactNode =
-  styled('g')<StyledGProps>(({
+  styled('g', {
+    shouldForwardProp: (propName: string) =>
+      ![
+        'selected',
+        'primaryColor',
+        'primaryOpacity',
+        'secondaryColor',
+        'secondaryOpacity',
+        'disabled',
+        'disabledColor',
+        'disableHover',
+      ].includes(propName),
+  })<StyledGProps>(({
     selected = false,
     primaryColor,
     primaryOpacity,
