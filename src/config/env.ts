@@ -15,14 +15,12 @@ export const GRAASP_REDIRECTION_HOST = import.meta.env
   .VITE_GRAASP_REDIRECTION_HOST;
 export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
-// expect integration url to be present in production
-// we should not use the backend integration in production as it exposes the cookies to the h5p files if they are served on the same domain.
-if (import.meta.env.PROD && !import.meta.env.VITE_GRAASP_H5P_INTEGRATION_URL) {
-  throw new Error(
-    "Missing required env variable in production: 'VITE_GRAASP_H5P_INTEGRATION_URL'",
-  );
-}
-
+/**
+ * The integration url needed to display H5P content
+ *
+ * It's value is required in production since it is not recommended to use the fallback backend endpoint.
+ * The backend endpoint is considered in-secure when the app and the backend are hosted on a domain where cookies are shared.
+ */
 export const H5P_INTEGRATION_URL =
   import.meta.env.VITE_GRAASP_H5P_INTEGRATION_URL ??
   `${API_HOST}/items/h5p-assets/integration.html`;
@@ -31,4 +29,9 @@ export const H5P_INTEGRATION_URL =
 // Are there any security implications if it is hosted on the same domain as the app code ?
 export const GRAASP_ASSETS_URL = import.meta.env.VITE_GRAASP_ASSETS_URL;
 
+/**
+ * Required API Key to use google map api in analytics.
+ *
+ * This could maybe be replaced by our own map implementation if we want using react-leaflet.
+ */
 export const GOOGLE_KEY = import.meta.env.VITE_GOOGLE_KEY;

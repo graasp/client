@@ -25,6 +25,13 @@ const config = ({ mode }: { mode: string }): UserConfig => {
     VITE_UMAMI_HOST,
     VITE_GRAASP_API_HOST,
   } = process.env;
+
+  // ensure required variables are present
+  if (mode === 'production') {
+    requireEnvVariable('VITE_GRAASP_H5P_INTEGRATION_URL');
+    requireEnvVariable('VITE_GOOGLE_KEY');
+  }
+
   // compute the port to use
   const PORT = parseInt(VITE_PORT ?? '3114', 10);
   // compute whether we should open the browser
@@ -99,3 +106,16 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   });
 };
 export default config;
+
+function requireEnvVariable(varName: string) {
+  if (!process.env[varName]) {
+    const message = `Missing required env variable for production build: '${varName}'`;
+    const messageLength = message.length;
+    const straightSection = Array(messageLength + 4)
+      .fill('═')
+      .join('');
+    const pad = '   ';
+    const borderedMessage = `\n\n${pad}╔${straightSection}╗\n${pad}║  ${message}  ║\n${pad}╚${straightSection}╝\n`;
+    throw new Error(borderedMessage);
+  }
+}
