@@ -102,6 +102,7 @@ export function PublicProfile(): JSX.Element {
       </BorderedSection>
     );
   }
+
   return (
     <BorderedSection
       id={PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID}
