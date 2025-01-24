@@ -25,7 +25,7 @@ type Props = {
 const SideDrawer = ({ children, onClose, title, open }: Props): JSX.Element => (
   <StyledDrawer anchor="right" variant="persistent" open={open}>
     <Toolbar />
-    <DrawerHeader handleDrawerClose={onClose} direction="rtl">
+    <DrawerHeader handleDrawerClose={onClose}>
       <Typography variant="h6">{title}</Typography>
     </DrawerHeader>
     <Divider />

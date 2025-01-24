@@ -17,7 +17,7 @@ export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
 export const H5P_INTEGRATION_URL =
   import.meta.env.VITE_GRAASP_H5P_INTEGRATION_URL ||
-  `${API_HOST}/p/h5p-integration`;
+  `${API_HOST}/items/h5p-assets/integration.html`;
 
 // Question: should we host the pdf player assets inside the public directory here instead of at another bucket ?
 // Are there any security implications if it is hosted on the same domain as the app code ?
