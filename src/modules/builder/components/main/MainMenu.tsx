@@ -35,7 +35,7 @@ const ResourceLinks = () => {
       <ListItemButton
         href={TUTORIALS_LINK}
         target="_blank"
-        data-umami-event="sidebar-tutorials"
+        // data-umami-event="sidebar-tutorials"
       >
         <ListItemIcon>
           <BookOpenTextIcon />
