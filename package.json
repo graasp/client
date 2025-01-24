@@ -50,7 +50,7 @@
     "lodash.debounce": "4.0.8",
     "lodash.groupby": "4.6.0",
     "lodash.truncate": "4.4.2",
-    "lucide-react": "0.473.0",
+    "lucide-react": "0.474.0",
     "papaparse": "5.5.1",
     "prism-react-renderer": "2.4.1",
     "react": "18.3.1",
