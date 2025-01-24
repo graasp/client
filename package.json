@@ -45,7 +45,7 @@
     "katex": "0.16.21",
     "leaflet": "1.9.4",
     "leaflet-easybutton": "2.4.0",
-    "leaflet-geosearch": "3.11.1",
+    "leaflet-geosearch": "4.1.0",
     "lodash": "4.17.21",
     "lodash.debounce": "4.0.8",
     "lodash.groupby": "4.6.0",

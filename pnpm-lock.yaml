@@ -105,8 +105,8 @@ importers:
         specifier: 2.4.0
         version: 2.4.0
       leaflet-geosearch:
-        specifier: 3.11.1
-        version: 3.11.1
+        specifier: 4.1.0
+        version: 4.1.0
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -4522,8 +4522,8 @@ packages:
   leaflet-easybutton@2.4.0:
     resolution: {integrity: sha512-O+qsQq4zTF6ds8VClnytobTH/MKalctlPpiA8L+bNKHP14J3lgJpvEd/jSpq9mHTI6qOzRAvbQX6wS6qNwThvg==}
 
-  leaflet-geosearch@3.11.1:
-    resolution: {integrity: sha512-cILLFLmn8C3MtGhaafGqY7CuhUG2+bGyUgfPHgNgW6fs4EvYyiIO88nO2ZqR7Hy6Ba089haLkhODpZR+/fRrPQ==}
+  leaflet-geosearch@4.1.0:
+    resolution: {integrity: sha512-HyqmRWInm5/B28PpAscruOFnYztamJji4OTsueNluvaHg/hYVMWpaReyWvfVUQGVn8U42+Mm01gBpOcRsqh60g==}
 
   leaflet.markercluster@1.5.3:
     resolution: {integrity: sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==}
@@ -11175,7 +11175,7 @@ snapshots:
     dependencies:
       leaflet: 1.9.4
 
-  leaflet-geosearch@3.11.1:
+  leaflet-geosearch@4.1.0:
     optionalDependencies:
       '@googlemaps/js-api-loader': 1.16.8
       leaflet: 1.9.4
