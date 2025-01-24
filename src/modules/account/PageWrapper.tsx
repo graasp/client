@@ -49,13 +49,13 @@ export function PageWrapper({
       href: '/builder',
     },
     [Platform.Player]: {
-      href: '/player',
+      disabled: true,
     },
     [Platform.Library]: {
       href: GRAASP_LIBRARY_HOST,
     },
     [Platform.Analytics]: {
-      href: '/analytics',
+      disabled: true,
     },
   };
 
