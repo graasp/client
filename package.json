@@ -19,7 +19,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@fontsource-variable/nunito": "5.1.1",
-    "@graasp/query-client": "5.7.1",
+    "@graasp/query-client": "github:graasp/graasp-query-client#public-profile-should-return-null",
     "@graasp/sdk": "5.7.0",
     "@graasp/stylis-plugin-rtl": "2.2.0",
     "@mui/icons-material": "6.4.1",
