@@ -56,6 +56,7 @@ export function EditPublicProfile({
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isValid },
   } = useForm<Inputs>({
     mode: 'onChange',
@@ -91,6 +92,7 @@ export function EditPublicProfile({
 
   // register visibility checkbox manually
   const visibility = register('visibility');
+  const visibilityValue = watch('visibility');
 
   return (
     <BorderedSection title={t('TITLE')}>
@@ -159,10 +161,12 @@ export function EditPublicProfile({
           control={
             <Checkbox
               color="primary"
+              checked={visibilityValue}
               name={visibility.name}
               onChange={visibility.onChange}
             />
           }
+          ref={visibility.ref}
           label={t('VISIBILITY_LABEL')}
         />
         <Stack direction="row" gap={1} justifyContent="flex-end">
