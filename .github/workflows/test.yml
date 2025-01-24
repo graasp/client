@@ -49,6 +49,7 @@ jobs:
         run: pnpm build
         env:
           VITE_RECAPTCHA_SITE_KEY: 123456789
+          VITE_GRAASP_H5P_INTEGRATION_URL: http://integration.url/mock-value.html
 
       - name: Get Latest playwright version
         run: echo "PLAYWRIGHT_VERSION=$(pnpm show playwright version)" >> $GITHUB_ENV
