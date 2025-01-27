@@ -45,6 +45,9 @@ jobs:
 
       - name: Build storybook
         run: pnpm storybook:build
+        env:
+          VITE_GRAASP_H5P_INTEGRATION_URL: http://mock.value.com
+          VITE_GOOGLE_KEY: 1234567890
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
