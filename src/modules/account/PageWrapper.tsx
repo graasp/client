@@ -1,4 +1,4 @@
-import { type JSX, ReactNode } from 'react';
+import { type JSX, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { styled, useTheme } from '@mui/material';

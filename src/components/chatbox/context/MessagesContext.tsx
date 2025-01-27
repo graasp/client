@@ -1,4 +1,4 @@
-import React, { type JSX, ReactNode } from 'react';
+import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
 import { Account, ChatMessage } from '@graasp/sdk';
 
@@ -8,7 +8,7 @@ export type MessagesContextType = {
   members?: Account[];
 };
 
-export const MessagesContext = React.createContext<MessagesContextType>({
+export const MessagesContext = createContext<MessagesContextType>({
   chatId: '',
   members: [],
 });
@@ -40,4 +40,4 @@ export const MessagesContextProvider = ({
 };
 
 export const useMessagesContext = (): MessagesContextType =>
-  React.useContext<MessagesContextType>(MessagesContext);
+  useContext<MessagesContextType>(MessagesContext);

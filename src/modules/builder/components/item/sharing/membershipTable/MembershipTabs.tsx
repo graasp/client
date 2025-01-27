@@ -1,4 +1,4 @@
-import { type JSX, ReactNode, useState } from 'react';
+import { type JSX, type ReactNode, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Badge, Box, Stack, Tab, Tabs, Typography } from '@mui/material';

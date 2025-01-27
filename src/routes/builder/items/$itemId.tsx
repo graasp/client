@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Stack, styled, useTheme } from '@mui/material';
@@ -9,12 +10,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import {
-  Link,
-  Outlet,
-  ReactNode,
-  createFileRoute,
-} from '@tanstack/react-router';
+import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import axios from 'axios';
 import { z } from 'zod';

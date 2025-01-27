@@ -1,4 +1,9 @@
-import { type JSX, MouseEventHandler, ReactNode, useState } from 'react';
+import {
+  type JSX,
+  type MouseEventHandler,
+  type ReactNode,
+  useState,
+} from 'react';
 
 import {
   Box,

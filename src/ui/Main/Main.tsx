@@ -1,4 +1,4 @@
-import { type JSX, ReactNode, useEffect } from 'react';
+import { type JSX, type ReactNode, useEffect } from 'react';
 
 import { MenuOpen } from '@mui/icons-material';
 import {

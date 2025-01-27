@@ -1,11 +1,11 @@
-import React, { type JSX, ReactNode } from 'react';
+import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
 import { CurrentAccount } from '@graasp/sdk';
 
 export type CurrentMemberContextType = CurrentAccount | null | undefined;
 
 export const CurrentMemberContext =
-  React.createContext<CurrentMemberContextType>(null);
+  createContext<CurrentMemberContextType>(null);
 
 type Props = {
   children: ReactNode;
@@ -24,4 +24,4 @@ export const CurrentMemberContextProvider = ({
 };
 
 export const useCurrentMemberContext = (): CurrentMemberContextType =>
-  React.useContext<CurrentMemberContextType>(CurrentMemberContext);
+  useContext<CurrentMemberContextType>(CurrentMemberContext);

@@ -1,4 +1,4 @@
-import React, { type JSX, ReactNode, useEffect } from 'react';
+import { type JSX, type ReactNode, StrictMode, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -152,8 +152,8 @@ if (!rootElement.innerHTML) {
   root.render(
     // we disable strict mode because the map component (leaflet) can not handle it.
     // ideally we would like to be able to enable strict mode to have a better DX and find bugs.
-    <React.StrictMode>
+    <StrictMode>
       <App />
-    </React.StrictMode>,
+    </StrictMode>,
   );
 }

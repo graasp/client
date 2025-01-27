@@ -1,4 +1,4 @@
-import { type JSX, ReactNode, SyntheticEvent } from 'react';
+import { type JSX, type ReactNode, type SyntheticEvent } from 'react';
 
 import {
   ListItem,

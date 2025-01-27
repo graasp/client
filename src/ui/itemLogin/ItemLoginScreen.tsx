@@ -1,4 +1,10 @@
-import { ChangeEvent, KeyboardEvent, ReactNode, useRef, useState } from 'react';
+import {
+  type ChangeEvent,
+  type KeyboardEvent,
+  type ReactNode,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Container, Stack, TextField, styled } from '@mui/material';
