@@ -1,29 +1,30 @@
 import type { JSX } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Container, Skeleton, Stack, styled } from '@mui/material';
+import { Alert, Container, Skeleton, Stack, styled } from '@mui/material';
 
 import { Api } from '@graasp/query-client';
 import {
-  AccountType,
   AppItemType,
   Context,
-  CurrentAccount,
   DocumentItemType,
   EtherpadItemType,
   H5PItemType,
   ItemType,
   LinkItemType,
   LocalFileItemType,
+  PackedItem,
   PermissionLevel,
   S3FileItemType,
+  ShortcutItemType,
   buildPdfViewerLink,
   getH5PExtra,
   getLinkThumbnailUrl,
+  getShortcutExtra,
 } from '@graasp/sdk';
 
-import { getRouteApi } from '@tanstack/react-router';
-
-import { DEFAULT_LANG } from '@/config/constants';
+import { AuthenticatedMember, useAuth } from '@/AuthContext';
+import { DEFAULT_LANG, NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
 import { axios, hooks } from '@/config/queryClient';
 import {
@@ -101,7 +102,7 @@ const LinkContent = ({
   member,
 }: {
   item: LinkItemType;
-  member?: CurrentAccount | null;
+  member?: { id: string } | null;
 }): JSX.Element => (
   <LinkItem
     id={item.id}
@@ -130,11 +131,11 @@ const DocumentContent = ({ item }: { item: DocumentItemType }): JSX.Element => (
 const AppContent = ({
   item,
   member,
-  permission = PermissionLevel.Read,
+  permission,
 }: {
   item: AppItemType;
-  member?: CurrentAccount | null;
-  permission?: PermissionLevel;
+  member?: AuthenticatedMember | null;
+  permission?: PermissionLevel | null;
 }): JSX.Element => (
   <AppItem
     isResizable={false}
@@ -149,12 +150,9 @@ const AppContent = ({
       apiHost: API_HOST,
       itemId: item.id,
       accountId: member?.id,
-      permission,
+      permission: permission ?? PermissionLevel.Read,
       settings: item.settings,
-      lang:
-        item.lang ||
-        (member?.type === AccountType.Individual && member?.extra?.lang) ||
-        DEFAULT_LANG,
+      lang: item.lang || member?.lang || DEFAULT_LANG,
       context: Context.Builder,
     }}
   />
@@ -178,6 +176,25 @@ const H5PContent = ({ item }: { item: H5PItemType }): JSX.Element => {
       integrationUrl={H5P_INTEGRATION_URL}
     />
   );
+};
+
+/**
+ * Helper component to render typed Shortcut items
+ */
+const ShortcutContent = ({ item }: { item: ShortcutItemType }): JSX.Element => {
+  const { t } = useTranslation(NS.Builder);
+  const extra = getShortcutExtra(item?.extra);
+  const { data: targetItem, isFetching } = hooks.useItem(extra.target);
+
+  if (targetItem) {
+    return <ItemContent item={targetItem} />;
+  }
+
+  if (isFetching) {
+    return <Skeleton width="100%" height="200px" />;
+  }
+
+  return <Alert severity="error">{t('SHORTCUT_FETCHING_ISSUE')}</Alert>;
 };
 
 /**
@@ -210,24 +227,12 @@ const EtherpadContent = ({ item }: { item: EtherpadItemType }): JSX.Element => {
   );
 };
 
-const itemRoute = getRouteApi('/builder/items/$itemId');
 /**
  * Main item renderer component
  */
-const ItemContent = (): JSX.Element => {
-  const { data: member, isLoading, isError } = hooks.useCurrentMember();
-  // const { item, permission } = useOutletContext<OutletType>();
-  const { itemId } = itemRoute.useParams();
-  const { data: item } = hooks.useItem(itemId);
-  const permission = item?.permission ?? undefined;
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (!item || !item.id || isError) {
-    return <ErrorAlert id={ITEM_SCREEN_ERROR_ALERT_ID} />;
-  }
+export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
+  const { t } = useTranslation(NS.Builder);
+  const { user: member } = useAuth();
 
   switch (item.type) {
     case ItemType.LOCAL_FILE:
@@ -239,21 +244,28 @@ const ItemContent = (): JSX.Element => {
     case ItemType.DOCUMENT:
       return <DocumentContent item={item} />;
     case ItemType.APP:
-      return <AppContent item={item} member={member} permission={permission} />;
+      return (
+        <AppContent item={item} member={member} permission={item?.permission} />
+      );
     case ItemType.FOLDER:
       return <FolderContent item={item} />;
-
     case ItemType.H5P: {
       return <H5PContent item={item} />;
     }
-
     case ItemType.ETHERPAD: {
       return <EtherpadContent item={item} />;
     }
+    case ItemType.SHORTCUT: {
+      return <ShortcutContent item={item} />;
+    }
 
     default:
-      return <ErrorAlert id={ITEM_SCREEN_ERROR_ALERT_ID} />;
+      return (
+        <Alert id={ITEM_SCREEN_ERROR_ALERT_ID} severity="error">
+          {t('ITEM_TYPE_COULD_NOT_BE_HANDLED', {
+            type: item['type'],
+          })}
+        </Alert>
+      );
   }
-};
-
-export default ItemContent;
+}
