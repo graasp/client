@@ -1,4 +1,4 @@
-import React, { type JSX, type ReactNode } from 'react';
+import { type JSX, type ReactNode, forwardRef } from 'react';
 
 import { Box, LinkProps, Link as MUILink, Stack, styled } from '@mui/material';
 
@@ -72,7 +72,7 @@ interface MUILinkProps extends Omit<LinkProps, 'href'> {
   // Add any additional props you want to pass to the button
 }
 
-const MUILinkComponent = React.forwardRef<HTMLAnchorElement, MUILinkProps>(
+const MUILinkComponent = forwardRef<HTMLAnchorElement, MUILinkProps>(
   (props, ref) => {
     return <StyledLink component={'a'} ref={ref} {...props} />;
   },
