@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Typography } from '@mui/material';
 
 import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';

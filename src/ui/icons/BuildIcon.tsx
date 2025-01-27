@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { SxProps } from '@mui/material';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';

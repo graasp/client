@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box, Typography } from '@mui/material';
 
 import { Api } from '@graasp/query-client';

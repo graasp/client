@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { type JSX, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Autocomplete, TextField } from '@mui/material';
@@ -16,7 +16,7 @@ const Search = ({
   tags: string[];
   onChange: (newTags: string[]) => void;
 }): JSX.Element => {
-  const ref = useRef();
+  const ref = useRef(undefined);
   const { currentMember } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
 

@@ -1,5 +1,6 @@
 import {
   Dispatch,
+  type JSX,
   createContext,
   useContext,
   useEffect,

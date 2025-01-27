@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { PackedItem } from '@graasp/sdk';
 
 import RecycleButton from '~builder/components/common/RecycleButton';

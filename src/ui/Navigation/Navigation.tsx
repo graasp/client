@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type JSX, ReactNode, useState } from 'react';
 
 import {
   Breadcrumbs,

@@ -1,4 +1,4 @@
-import { ReactEventHandler, useRef, useState } from 'react';
+import { type JSX, ReactEventHandler, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ReactCrop, {
   Crop,

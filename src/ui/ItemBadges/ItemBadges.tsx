@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Avatar, AvatarGroup, Tooltip } from '@mui/material';
 
 import {

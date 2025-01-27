@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Grid2 as Grid, Typography } from '@mui/material';

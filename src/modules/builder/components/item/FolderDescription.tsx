@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { hooks } from '@/config/queryClient';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 

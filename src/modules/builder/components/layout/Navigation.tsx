@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { IconButton } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';

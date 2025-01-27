@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, ElementType, ReactNode } from 'react';
+import { AnchorHTMLAttributes, ElementType, type JSX, ReactNode } from 'react';
 
 import { Button, ButtonProps } from '@mui/material';
 

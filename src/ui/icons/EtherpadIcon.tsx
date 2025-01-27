@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { SvgIcon, SxProps, Theme } from '@mui/material';
 
 type Props = {

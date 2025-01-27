@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 export function PlayStoreIcon(): JSX.Element {
   return (
     <svg

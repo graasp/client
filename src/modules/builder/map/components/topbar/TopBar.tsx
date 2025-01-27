@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useMap } from 'react-leaflet';
 
 import { Box, Divider, Stack } from '@mui/material';

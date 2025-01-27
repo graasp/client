@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DialogActions, DialogContent, DialogContentText } from '@mui/material';

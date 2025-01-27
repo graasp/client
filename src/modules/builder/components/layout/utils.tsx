@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import GroupsIcon from '@mui/icons-material/Groups';
 import SettingsIcon from '@mui/icons-material/Settings';
 

@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { Link as MuiLink, Typography } from '@mui/material';

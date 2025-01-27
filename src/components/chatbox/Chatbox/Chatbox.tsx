@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { styled } from '@mui/material';
 
 import { Account, ChatMessage, CurrentAccount } from '@graasp/sdk';
@@ -5,10 +7,8 @@ import { Account, ChatMessage, CurrentAccount } from '@graasp/sdk';
 import { CONTAINER_HEIGHT_SAFETY_MARGIN } from '../constants.js';
 import { CurrentMemberContextProvider } from '../context/CurrentMemberContext.js';
 import { EditingContextProvider } from '../context/EditingContext.js';
-import { HooksContextProvider } from '../context/HooksContext.js';
 import { MessagesContextProvider } from '../context/MessagesContext.js';
 import {
-  AvatarHookType,
   DeleteMessageFunctionType,
   EditMessageFunctionType,
   SendMessageFunctionType,
@@ -38,7 +38,6 @@ type Props = {
   sendMessageFunction?: SendMessageFunctionType;
   deleteMessageFunction?: DeleteMessageFunctionType;
   editMessageFunction?: EditMessageFunctionType;
-  useAvatarUrl: AvatarHookType;
   chatId: string;
   showAdminTools?: boolean;
   currentMember?: CurrentAccount | null;
@@ -51,7 +50,6 @@ export function Chatbox({
   sendMessageFunction,
   deleteMessageFunction,
   editMessageFunction,
-  useAvatarUrl,
   messages,
   isLoading,
   chatId,
@@ -65,30 +63,28 @@ export function Chatbox({
 
   return (
     <EditingContextProvider>
-      <HooksContextProvider useAvatarUrl={useAvatarUrl}>
-        <CurrentMemberContextProvider currentMember={currentMember}>
-          <MessagesContextProvider
-            chatId={chatId}
-            members={members}
-            messages={messages}
-          >
-            <ChatboxContainer id={id}>
-              <Messages
-                currentMember={currentMember}
-                isAdmin={showAdminTools}
-                deleteMessageFunction={deleteMessageFunction}
+      <CurrentMemberContextProvider currentMember={currentMember}>
+        <MessagesContextProvider
+          chatId={chatId}
+          members={members}
+          messages={messages}
+        >
+          <ChatboxContainer id={id}>
+            <Messages
+              currentMember={currentMember}
+              isAdmin={showAdminTools}
+              deleteMessageFunction={deleteMessageFunction}
+            />
+            <InputContainer>
+              <InputBar
+                sendMessageBoxId={sendMessageBoxId}
+                sendMessageFunction={sendMessageFunction}
+                editMessageFunction={editMessageFunction}
               />
-              <InputContainer>
-                <InputBar
-                  sendMessageBoxId={sendMessageBoxId}
-                  sendMessageFunction={sendMessageFunction}
-                  editMessageFunction={editMessageFunction}
-                />
-              </InputContainer>
-            </ChatboxContainer>
-          </MessagesContextProvider>
-        </CurrentMemberContextProvider>
-      </HooksContextProvider>
+            </InputContainer>
+          </ChatboxContainer>
+        </MessagesContextProvider>
+      </CurrentMemberContextProvider>
     </EditingContextProvider>
   );
 }

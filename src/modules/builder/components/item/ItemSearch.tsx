@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Typography } from '@mui/material';

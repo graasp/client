@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Container, Skeleton, Stack, styled } from '@mui/material';
 
 import { Api } from '@graasp/query-client';

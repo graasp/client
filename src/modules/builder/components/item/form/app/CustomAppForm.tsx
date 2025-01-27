@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import { Dispatch, type JSX } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

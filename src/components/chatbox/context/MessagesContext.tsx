@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { type JSX, ReactNode } from 'react';
 
 import { Account, ChatMessage } from '@graasp/sdk';
 

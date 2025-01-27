@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { type JSX, MouseEventHandler } from 'react';
 
 import {
   CircularProgress,

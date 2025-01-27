@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Switch } from '@mui/material';
 
 import ItemSettingProperty from './ItemSettingProperty';

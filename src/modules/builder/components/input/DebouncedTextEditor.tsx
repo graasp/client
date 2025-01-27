@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type JSX, useEffect, useState } from 'react';
 
 import { hooks } from '@/config/queryClient';
 import TextEditor from '@/ui/TextEditor/TextEditor';

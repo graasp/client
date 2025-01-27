@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Divider, Drawer, Toolbar, Typography, styled } from '@mui/material';
 
 import DrawerHeader from '@/ui/DrawerHeader/DrawerHeader';

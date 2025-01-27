@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react';
+import { CSSProperties, type JSX } from 'react';
 
 /**
  * @see https://etherpad.org/doc/v1.8.18/#index_embed-parameters

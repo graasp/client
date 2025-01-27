@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Stack, Typography } from '@mui/material';
 
 const SectionTitle = ({

@@ -1,4 +1,9 @@
-import { DetailedHTMLProps, HTMLAttributes, ImgHTMLAttributes } from 'react';
+import {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  ImgHTMLAttributes,
+  type JSX,
+} from 'react';
 
 import { SxProps, styled } from '@mui/material';
 

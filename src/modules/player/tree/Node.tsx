@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import type { IBranchProps, INode, LeafProps } from 'react-accessible-treeview';
 
 import { Box, IconButton, Typography, colors } from '@mui/material';

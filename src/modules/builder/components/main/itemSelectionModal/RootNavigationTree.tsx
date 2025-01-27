@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Alert, Skeleton, Typography } from '@mui/material';

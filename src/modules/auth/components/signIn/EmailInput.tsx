@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import { StyledTextField } from '../common/StyledTextField';

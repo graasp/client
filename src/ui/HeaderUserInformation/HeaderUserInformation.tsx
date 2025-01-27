@@ -1,4 +1,4 @@
-import { AriaAttributes, MouseEventHandler } from 'react';
+import { AriaAttributes, type JSX, MouseEventHandler } from 'react';
 
 import { Avatar, Skeleton, Tooltip, Typography, styled } from '@mui/material';
 

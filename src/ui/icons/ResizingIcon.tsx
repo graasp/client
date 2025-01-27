@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box, Theme, styled, useTheme } from '@mui/material';
 
 import { UnfoldVerticalIcon } from 'lucide-react';

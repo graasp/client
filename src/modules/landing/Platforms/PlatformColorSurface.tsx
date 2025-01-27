@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Stack, SxProps, Typography, styled } from '@mui/material';
 
 import { ReactNode } from '@tanstack/react-router';

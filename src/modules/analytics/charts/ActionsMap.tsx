@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { type JSX, useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@mui/material';
@@ -35,7 +35,8 @@ type BBox =
 const ActionsMap = (): JSX.Element | null => {
   const theme = useTheme();
   const { t } = useTranslation(NS.Analytics);
-  const mapRef = useRef<any>();
+  // TODO: replace with a better type, maybe by replacing the google map with leaflet
+  const mapRef = useRef<any>(undefined);
   const [bounds, setBounds] = useState<BBox>();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const { actions, selectedUsers } = useContext(DataContext);

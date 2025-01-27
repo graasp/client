@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Skeleton, Stack, Typography } from '@mui/material';
 
 export function LoadingTree(): JSX.Element {

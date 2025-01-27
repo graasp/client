@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Button, Stack, Typography, styled } from '@mui/material';
 
 import { DownloadIcon, FileIcon } from 'lucide-react';

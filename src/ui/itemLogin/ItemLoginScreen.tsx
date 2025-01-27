@@ -1,10 +1,4 @@
-import {
-  ChangeEvent,
-  KeyboardEvent,
-  ReactElement,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, KeyboardEvent, ReactNode, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Container, Stack, TextField, styled } from '@mui/material';
@@ -42,7 +36,7 @@ export type ItemLoginScreenProps = {
   /**
    * content to display when the user doesn't have access
    */
-  ForbiddenContent?: ReactElement;
+  ForbiddenContent?: ReactNode;
   passwordInputId?: string;
   signInButtonId?: string;
   usernameInputId?: string;
@@ -56,7 +50,7 @@ const ItemLoginScreen = ({
   signIn,
   signInButtonId,
   usernameInputId,
-}: ItemLoginScreenProps): JSX.Element => {
+}: ItemLoginScreenProps) => {
   const { t } = useTranslation();
   const passwordFieldRef = useRef<HTMLInputElement | null>(null);
   const [password, setPassword] = useState<string>('');

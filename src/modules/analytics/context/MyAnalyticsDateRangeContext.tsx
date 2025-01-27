@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from 'react';
+import { type JSX, createContext, useMemo, useState } from 'react';
 
 import type { Duration } from 'date-fns';
 import { addDays } from 'date-fns/addDays';

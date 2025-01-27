@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, IconButtonProps, Tooltip } from '@mui/material';

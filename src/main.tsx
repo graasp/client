@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { type JSX, ReactNode, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';

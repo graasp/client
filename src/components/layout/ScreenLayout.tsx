@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type JSX, ReactNode } from 'react';
 
 import { Divider, Stack, Typography } from '@mui/material';
 

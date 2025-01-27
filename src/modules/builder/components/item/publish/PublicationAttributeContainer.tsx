@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { type JSX, MouseEvent } from 'react';
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import WarningIcon from '@mui/icons-material/Warning';

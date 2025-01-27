@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { type JSX, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';

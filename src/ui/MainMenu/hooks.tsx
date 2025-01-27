@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { type JSX, createContext, useContext, useState } from 'react';
 
 import { useMobileView } from '../hooks/useMobileView.js';
 

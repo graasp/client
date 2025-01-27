@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { Control, useController, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 

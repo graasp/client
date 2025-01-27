@@ -1,4 +1,4 @@
-import { ReactElement, SyntheticEvent } from 'react';
+import { type JSX, ReactNode, SyntheticEvent } from 'react';
 
 import {
   ListItem,
@@ -12,7 +12,7 @@ import { useMobileView } from '@/ui/hooks/useMobileView.js';
 import { useMainMenuOpenContext } from '../hooks.js';
 
 export type MenuItemProps = {
-  icon?: ReactElement;
+  icon?: ReactNode;
   id?: string;
   key?: string;
   onClick?: (event?: SyntheticEvent) => void;

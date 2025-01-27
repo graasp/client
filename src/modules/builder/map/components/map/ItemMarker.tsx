@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { Marker } from 'react-leaflet';
 
 import { ItemGeolocation } from '@graasp/sdk';

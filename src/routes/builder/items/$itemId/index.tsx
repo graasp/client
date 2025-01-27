@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { createFileRoute } from '@tanstack/react-router';
 
 import ItemContent from '~builder/components/item/ItemContent';

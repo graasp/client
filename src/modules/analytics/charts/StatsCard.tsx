@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Grid2 as Grid, Paper, Stack, Typography } from '@mui/material';
 
 type Props = {

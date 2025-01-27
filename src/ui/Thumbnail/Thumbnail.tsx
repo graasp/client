@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Skeleton, SkeletonProps, SxProps } from '@mui/material';
 
 import { StyledImage } from '../StyledComponents/StyledBaseComponents.js';

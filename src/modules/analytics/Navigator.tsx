@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { AnalyticsNavigator } from '@/components/ui/Navigator/Navigator';
 import { hooks } from '@/config/queryClient';
 

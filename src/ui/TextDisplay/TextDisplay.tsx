@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { styled } from '@mui/material';
 
 import { Interweave } from 'interweave';

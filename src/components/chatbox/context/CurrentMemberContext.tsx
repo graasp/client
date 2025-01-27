@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { type JSX, ReactNode } from 'react';
 
 import { CurrentAccount } from '@graasp/sdk';
 

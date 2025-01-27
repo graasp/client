@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type Props = { size: number; fill?: string };
 export function FacebookIcon({
   size,

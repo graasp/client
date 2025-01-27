@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Skeleton } from '@mui/material';
 
 import { DiscriminatedItem, ItemType, UnionOfConst } from '@graasp/sdk';

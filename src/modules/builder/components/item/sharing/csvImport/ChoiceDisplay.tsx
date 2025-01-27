@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { IconButton, Stack, Typography, useTheme } from '@mui/material';
 
 import { Trash2 } from 'lucide-react';

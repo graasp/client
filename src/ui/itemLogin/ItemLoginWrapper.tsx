@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import {
   AccountType,
@@ -25,10 +25,10 @@ export type ItemLoginAuthorizationProps = {
   signInButtonId?: string;
   passwordInputId?: string;
   children?: ReactNode;
-  forbiddenContent?: ReactElement;
+  forbiddenContent?: ReactNode;
   isLoading?: boolean;
-  enrollContent?: ReactElement;
-  requestAccessContent?: ReactElement;
+  enrollContent?: ReactNode;
+  requestAccessContent?: ReactNode;
 };
 
 const ItemLoginAuthorization = ({

@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { FlagItemModalProvider } from './FlagItemModalContext';
 import { LayoutContextProvider } from './LayoutContext';
 

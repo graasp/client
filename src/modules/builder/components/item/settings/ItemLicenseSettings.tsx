@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { type JSX, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { CreativeCommons as CCLicenseIcon } from 'lucide-react';

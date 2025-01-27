@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box, Stack } from '@mui/material';
 
 import { NAVIGATION_ISLAND_CLASSNAME } from '@/config/selectors';

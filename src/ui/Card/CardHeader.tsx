@@ -1,12 +1,12 @@
-import { ReactElement } from 'react';
+import { type JSX, ReactNode } from 'react';
 
 import { Stack, Typography } from '@mui/material';
 
 type CardHeaderProps = {
   name: string;
   creator?: string;
-  ItemMenu?: ReactElement;
-  NameWrapper?: ({ children }: { children: JSX.Element }) => JSX.Element;
+  ItemMenu?: ReactNode;
+  NameWrapper?: ({ children }: { children: ReactNode }) => ReactNode;
   dense?: boolean;
 };
 
@@ -15,7 +15,7 @@ const CustomCardHeader = ({
   creator,
   ItemMenu,
   dense,
-  NameWrapper = ({ children }: { children: ReactElement }) => children,
+  NameWrapper = ({ children }: { children: ReactNode }) => children,
 }: CardHeaderProps): JSX.Element => {
   return (
     <Stack

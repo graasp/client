@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Grid } from '@mui/material';
 
 import ItemsByActionChart from '../charts/ItemsByActionChart';

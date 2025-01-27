@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Container, Typography, styled, useTheme } from '@mui/material';
 
 import { TypographyLink } from '@/components/ui/TypographyLink.js';

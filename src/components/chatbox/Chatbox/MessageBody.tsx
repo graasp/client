@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import ReactMarkdown, { ExtraProps } from 'react-markdown';
 
 import { styled } from '@mui/material';
