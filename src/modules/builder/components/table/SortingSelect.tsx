@@ -1,4 +1,4 @@
-import { Dispatch, type JSX } from 'react';
+import { type Dispatch, type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -9,7 +9,7 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-  SelectChangeEvent,
+  type SelectChangeEvent,
 } from '@mui/material';
 
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from 'lucide-react';
@@ -19,7 +19,11 @@ import { SORTING_SELECT_SELECTOR_TEST_ID } from '@/config/selectors';
 
 import { Ordering, OrderingType } from '~builder/enums';
 
-import { AllSortingOptions, SortingOptions, SortingOptionsType } from './types';
+import {
+  type AllSortingOptions,
+  SortingOptions,
+  SortingOptionsForFolder,
+} from './types';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -33,32 +37,35 @@ const MenuProps = {
 
 const LABEL_ID = 'sort-by-filter-label';
 
-export type SortingSelectProps<
-  T extends AllSortingOptions = SortingOptionsType,
-> = {
-  sortBy: T;
-  setSortBy: Dispatch<T>;
+export type SortingSelectProps = {
+  sortBy: AllSortingOptions;
+  setSortBy: Dispatch<AllSortingOptions>;
   ordering: OrderingType;
   setOrdering: Dispatch<OrderingType>;
-  options: T[];
+  options: AllSortingOptions[];
 };
 
-export const SortingSelect = <
-  T extends AllSortingOptions = SortingOptionsType,
->({
+export const SortingSelect = ({
   sortBy,
   setSortBy,
   ordering,
   setOrdering,
   options,
-}: SortingSelectProps<T>): JSX.Element => {
+}: SortingSelectProps): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleChange = (event: SelectChangeEvent) => {
     const {
-      target: { value: v },
+      target: { value },
     } = event;
-    setSortBy(v as T);
+    if (
+      [
+        ...Object.values<string>(SortingOptions),
+        ...Object.values<string>(SortingOptionsForFolder),
+      ].includes(value)
+    ) {
+      setSortBy(value as AllSortingOptions);
+    }
   };
 
   const label = translateBuilder('SORT_BY_LABEL');

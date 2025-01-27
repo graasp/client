@@ -161,11 +161,10 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
     types: itemTypes,
   });
 
-  const { ordering, setOrdering, setSortBy, sortBy, sortFn } =
-    useSorting<SortingOptionsForFolderType>({
-      sortBy: SortingOptionsForFolder.Order,
-      ordering: Ordering.ASC,
-    });
+  const { ordering, setOrdering, setSortBy, sortBy, sortFn } = useSorting({
+    sortBy: SortingOptionsForFolder.Order,
+    ordering: Ordering.ASC,
+  });
 
   const sortingOptions = Object.values(SortingOptionsForFolder).sort((t1, t2) =>
     translateBuilder(t1).localeCompare(translateBuilder(t2)),

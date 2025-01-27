@@ -14,21 +14,21 @@ import {
   SortingOptionsType,
 } from './types';
 
-export const useSorting = <T extends AllSortingOptions = SortingOptionsType>({
+export const useSorting = ({
   sortBy: s,
   ordering: o = Ordering.DESC,
 }: {
-  sortBy?: T;
+  sortBy?: AllSortingOptions;
   ordering: OrderingType;
 }): {
-  sortBy: T;
+  sortBy: AllSortingOptions;
   ordering: OrderingType;
-  setSortBy: Dispatch<T>;
+  setSortBy: Dispatch<AllSortingOptions>;
   setOrdering: Dispatch<OrderingType>;
   sortFn: (a: DiscriminatedItem, b: DiscriminatedItem) => number;
 } => {
-  const [sortBy, setSortBy] = useState<T>(
-    s ?? (SortingOptions.ItemUpdatedAt as T),
+  const [sortBy, setSortBy] = useState<AllSortingOptions>(
+    s ?? SortingOptions.ItemUpdatedAt,
   );
   const [ordering, setOrdering] = useState<OrderingType>(o);
 
