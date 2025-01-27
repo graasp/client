@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography, colors, styled } from '@mui/material';

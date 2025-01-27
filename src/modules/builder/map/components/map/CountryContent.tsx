@@ -1,4 +1,4 @@
-import { Dispatch, type JSX } from 'react';
+import { type Dispatch } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Paper } from '@mui/material';

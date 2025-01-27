@@ -42,12 +42,6 @@ const Search = ({
           {...params}
           placeholder={t('Enter keywords here')}
           label={t('Keywords')}
-          sx={
-            {
-              // minWidth: currentMember ? '30vw' : '70vw',
-              // maxWidth: '100%',
-            }
-          }
           {...(invisible
             ? {
                 variant: 'standard',

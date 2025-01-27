@@ -1,4 +1,4 @@
-import { type JSX, MouseEvent, useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Delete, Edit, MoreVert } from '@mui/icons-material';

@@ -110,8 +110,6 @@ const FileDropperComponent = ({
 
   return (
     <Stack
-      // eslint-disable-next-line jsx-a11y/aria-role
-      role="dropzone"
       direction="column"
       // eslint-disable-next-line jsx-a11y/aria-role
       role="dropzone"
