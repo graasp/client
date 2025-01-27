@@ -53,6 +53,18 @@
         "design",
         "translation"
       ]
+    },
+    {
+      "login": "swouf",
+      "name": "Jérémy La Scala",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5767619?v=4",
+      "profile": "https://github.com/swouf",
+      "contributions": [
+        "code",
+        "bug",
+        "test",
+        "research"
+      ]
     }
   ],
   "contributorsPerLine": 7,
