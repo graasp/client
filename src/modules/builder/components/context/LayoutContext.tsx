@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react';
+import { type JSX, createContext, useContext, useMemo } from 'react';
 
 import { useSearch } from '@tanstack/react-router';
 

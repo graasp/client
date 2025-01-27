@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { type JSX, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import AppsIcon from '@mui/icons-material/Apps';

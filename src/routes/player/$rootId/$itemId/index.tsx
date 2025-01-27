@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { AccountType } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';

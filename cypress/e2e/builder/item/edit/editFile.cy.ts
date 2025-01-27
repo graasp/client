@@ -68,7 +68,9 @@ describe('Edit File', () => {
 
       cy.get(`#${buildEditButtonId(id)}`).click();
 
-      cy.get(`#${ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID}`).click();
+      cy.get(`#${ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID}`)
+        .should('be.visible')
+        .click();
       cy.get(
         `#${buildDescriptionPlacementId(DescriptionPlacement.ABOVE)}`,
       ).click();

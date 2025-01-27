@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, type JSX, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {

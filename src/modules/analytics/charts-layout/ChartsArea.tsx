@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Grid2, Stack } from '@mui/material';
 
 import { GOOGLE_KEY } from '@/config/env';

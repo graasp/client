@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react';
+import { ChangeEventHandler, type JSX } from 'react';
 
 import { Button, styled } from '@mui/material';
 

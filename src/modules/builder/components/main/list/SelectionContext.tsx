@@ -1,5 +1,6 @@
 import {
-  ReactNode,
+  type JSX,
+  type ReactNode,
   createContext,
   useCallback,
   useContext,

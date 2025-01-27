@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import {
   AccountCircle as AccountCircleIcon,
   MeetingRoom as MeetingRoomIcon,

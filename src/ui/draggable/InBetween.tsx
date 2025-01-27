@@ -1,4 +1,5 @@
 // we could replace dnd with this https://docs.dndkit.com
+import { type JSX, useRef } from 'react';
 import { useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 
@@ -24,6 +25,8 @@ const InBetween = <T extends object>({
   renderComponent,
   allowFiles = true,
 }: InBetweenProps<T>): JSX.Element => {
+  const dropRef = useRef<HTMLDivElement>(null);
+
   const accept = ['row'];
   if (allowFiles) {
     accept.push(NativeTypes.FILE);
@@ -43,11 +46,15 @@ const InBetween = <T extends object>({
     }),
     [onDrop],
   );
+  // this is a patch for making the drop connector work with react19
+  // ref: https://arc.net/l/quote/qeobtkbh
+  // https://github.com/react-dnd/react-dnd/issues/3655
+  drop(dropRef);
 
   const spacing = 12;
 
   return (
-    <Box ref={drop}>
+    <Box ref={dropRef}>
       {(!isOver || !enableMoveInBetween) && (
         <Box style={{ padding: 0, height: spacing, width: '100%' }} />
       )}

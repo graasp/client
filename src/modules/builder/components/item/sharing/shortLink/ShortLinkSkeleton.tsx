@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Skeleton, Stack, styled } from '@mui/material';
 
 import {

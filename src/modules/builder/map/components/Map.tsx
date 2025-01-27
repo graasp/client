@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type JSX, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 
 import { Alert } from '@mui/material';

@@ -1,17 +1,17 @@
-import { ReactNode } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
 import { Divider, Stack, Typography } from '@mui/material';
 
 type ScreenLayoutProps = {
-  readonly id?: string;
-  readonly title: string;
-  readonly children: ReactNode;
+  id?: string;
+  title: string;
+  children: ReactNode;
 };
 export function ScreenLayout({
   id,
   title,
   children,
-}: ScreenLayoutProps): JSX.Element {
+}: Readonly<ScreenLayoutProps>): JSX.Element {
   return (
     <Stack spacing={2} id={id}>
       <Typography variant="h2" component="h1">

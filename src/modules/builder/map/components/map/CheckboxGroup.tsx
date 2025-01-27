@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, type JSX } from 'react';
 
 import { Checkbox, FormControlLabel, FormGroup, styled } from '@mui/material';
 

@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Pagination, Stack } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';

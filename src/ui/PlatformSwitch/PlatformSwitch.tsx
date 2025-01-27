@@ -1,4 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import type { JSX } from 'react';
+
 import {
   Box,
   SpeedDial,

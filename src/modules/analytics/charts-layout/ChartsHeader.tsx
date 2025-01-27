@@ -1,4 +1,10 @@
-import { KeyboardEvent, MouseEvent, useContext, useState } from 'react';
+import {
+  type JSX,
+  KeyboardEvent,
+  MouseEvent,
+  useContext,
+  useState,
+} from 'react';
 
 import { Badge, IconButton, Stack, SwipeableDrawer } from '@mui/material';
 

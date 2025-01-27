@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Stack } from '@mui/material';
 
 import { DescriptionForm, type DescriptionFormProps } from './DescriptionForm';

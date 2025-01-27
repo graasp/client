@@ -1,4 +1,4 @@
-import { Fragment, memo, useEffect, useState } from 'react';
+import { Fragment, type JSX, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 

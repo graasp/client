@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { DiscriminatedItem } from '@graasp/sdk';
 
 import {

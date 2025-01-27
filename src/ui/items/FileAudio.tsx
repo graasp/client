@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { SxProps, styled } from '@mui/material';
 
 type FileAudioProps = {

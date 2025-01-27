@@ -1,4 +1,10 @@
-import { ReactElement, createContext, useContext, useState } from 'react';
+import {
+  type JSX,
+  type ReactNode,
+  createContext,
+  useContext,
+  useState,
+} from 'react';
 
 import { INITIAL_EDITING_PROPS } from '../constants.js';
 
@@ -27,7 +33,7 @@ export const EditingContext = createContext<EditingContextType>({
 });
 
 type Props = {
-  children: ReactElement;
+  children: ReactNode;
 };
 
 export const EditingContextProvider = ({ children }: Props): JSX.Element => {

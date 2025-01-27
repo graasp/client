@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type JSX, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import { IconButton, InputAdornment, TextField } from '@mui/material';

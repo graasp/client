@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Stack } from '@mui/material';
 
 import { AccountType, DiscriminatedItem } from '@graasp/sdk';

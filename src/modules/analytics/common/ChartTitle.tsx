@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Stack, Tooltip, Typography } from '@mui/material';
 
 import { Info } from 'lucide-react';

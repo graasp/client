@@ -1,4 +1,4 @@
-import { ReactNode, SVGProps } from 'react';
+import { type JSX, type ReactNode, type SVGProps } from 'react';
 
 import { SxProps, styled } from '@mui/material';
 
@@ -52,69 +52,70 @@ type StyledGProps = {
   /** color of path when disabled. */
   disabledColor?: string;
 };
-const StyledG: (props: StyledGProps & { children: ReactNode }) => ReactNode =
-  styled('g', {
-    shouldForwardProp: (propName: string) =>
-      ![
-        'selected',
-        'primaryColor',
-        'primaryOpacity',
-        'secondaryColor',
-        'secondaryOpacity',
-        'disabled',
-        'disabledColor',
-        'disableHover',
-      ].includes(propName),
-  })<StyledGProps>(({
-    selected = false,
-    primaryColor,
-    primaryOpacity,
-    secondaryColor,
-    secondaryOpacity,
-    disabled = false,
-    disabledColor = '#CCC',
-    disableHover = true,
-  }) => {
-    if (disabled) {
-      return {
-        path: {
-          fill: disabledColor,
-          fillOpacity: 0.6,
-        },
-        circle: {
-          fill: 'transparent',
-          fillOpacity: 1,
-        },
-      };
-    }
-
-    const hoverStyles = disableHover
-      ? {}
-      : {
-          '&:hover': {
-            circle: {
-              fill: primaryColor,
-              fillOpacity: primaryOpacity,
-            },
-            path: {
-              fill: secondaryColor,
-              fillOpacity: secondaryOpacity,
-            },
-          },
-        };
-
+const StyledG: (
+  props: StyledGProps & { children: ReactNode },
+) => ReactNode | Promise<ReactNode> = styled('g', {
+  shouldForwardProp: (propName: string) =>
+    ![
+      'selected',
+      'primaryColor',
+      'primaryOpacity',
+      'secondaryColor',
+      'secondaryOpacity',
+      'disabled',
+      'disabledColor',
+      'disableHover',
+    ].includes(propName),
+})<StyledGProps>(({
+  selected = false,
+  primaryColor,
+  primaryOpacity,
+  secondaryColor,
+  secondaryOpacity,
+  disabled = false,
+  disabledColor = '#CCC',
+  disableHover = true,
+}) => {
+  if (disabled) {
     return {
       path: {
-        fill: selected ? secondaryColor : primaryColor,
-        fillOpacity: selected ? secondaryOpacity : primaryOpacity,
+        fill: disabledColor,
+        fillOpacity: 0.6,
       },
       circle: {
-        fill: selected ? primaryColor : 'transparent',
-        fillOpacity: selected ? primaryOpacity : secondaryOpacity,
+        fill: 'transparent',
+        fillOpacity: 1,
       },
-
-      ...hoverStyles,
     };
-  });
+  }
+
+  const hoverStyles = disableHover
+    ? {}
+    : {
+        '&:hover': {
+          circle: {
+            fill: primaryColor,
+            fillOpacity: primaryOpacity,
+          },
+          path: {
+            fill: secondaryColor,
+            fillOpacity: secondaryOpacity,
+          },
+        },
+      };
+
+  return {
+    path: {
+      fill: selected ? secondaryColor : primaryColor,
+      fillOpacity: selected ? secondaryOpacity : primaryOpacity,
+    },
+    circle: {
+      fill: selected ? primaryColor : 'transparent',
+      fillOpacity: selected ? primaryOpacity : secondaryOpacity,
+    },
+
+    ...hoverStyles,
+  };
+});
 
 export { SVGWrapper, SVGPath, StyledG };

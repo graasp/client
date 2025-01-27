@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { type JSX, MouseEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { DiscriminatedItem } from '@graasp/sdk';

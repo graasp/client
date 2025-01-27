@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import { useParams, useSearch } from '@tanstack/react-router';

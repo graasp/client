@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo } from 'react';
+import { type JSX, createContext, useContext, useMemo } from 'react';
 
 import type { configureQueryClient } from '@graasp/query-client';
 import {
@@ -39,8 +39,14 @@ export const QueryClientContext = createContext<QueryClientContextInterface>({
     ({
       data: { display_name: 'address' },
     }) as any,
-  useItemsInMap: () => ({ data: [] }) as any,
-  useSuggestionsForAddress: () => ({ data: [] }) as any,
+  useItemsInMap: () =>
+    ({
+      data: [],
+    }) as any,
+  useSuggestionsForAddress: () =>
+    ({
+      data: [],
+    }) as any,
   useRecycleItems: () => ({}) as any,
   usePostItem: () => ({}) as any,
   useDeleteItemGeolocation: () => ({}) as any,

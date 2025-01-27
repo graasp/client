@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { type JSX, MouseEvent, useState } from 'react';
 
 import { IconButton } from '@mui/material';
 import Menu from '@mui/material/Menu';

@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { type JSX, MouseEvent, useState } from 'react';
 
 import { MoreVert } from '@mui/icons-material';
 import { Divider, IconButton, Menu } from '@mui/material';

@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box } from '@mui/material';
 
 import { ResponsiveContainer } from 'recharts';

@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {
   Chip,

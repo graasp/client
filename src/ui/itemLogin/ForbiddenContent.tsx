@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import ForbiddenText from './ForbiddenText.js';
 
 export type ForbiddenContentProps = {

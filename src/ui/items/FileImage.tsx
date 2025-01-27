@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type FileImageProps = {
   alt: string;
   url?: string;

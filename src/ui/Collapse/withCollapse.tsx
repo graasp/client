@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import Collapse from './Collapse.js';
 
 const withCollapse = <T extends { name: string }>({

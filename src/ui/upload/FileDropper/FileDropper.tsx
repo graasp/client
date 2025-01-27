@@ -1,3 +1,4 @@
+import { type JSX, useRef } from 'react';
 import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 
@@ -79,6 +80,7 @@ const FileDropperComponent = ({
   isLoading = false,
 }: FileDropperProps): JSX.Element => {
   const theme = useTheme();
+  const dropRef = useRef<HTMLDivElement>(null);
 
   const [{ canDrop, isOver }, drop] = useDrop({
     accept: [NativeTypes.FILE],
@@ -93,6 +95,10 @@ const FileDropperComponent = ({
       canDrop: monitor.canDrop(),
     }),
   });
+  // this is a patch for making the drop connector work with react19
+  // ref: https://arc.net/l/quote/qeobtkbh
+  // https://github.com/react-dnd/react-dnd/issues/3655
+  drop(dropRef);
 
   const isActive = canDrop && isOver;
   let bgColor = '#eeeefa';
@@ -104,6 +110,7 @@ const FileDropperComponent = ({
 
   return (
     <Stack
+      direction="column"
       // eslint-disable-next-line jsx-a11y/aria-role
       role="dropzone"
       id={id}
@@ -113,7 +120,7 @@ const FileDropperComponent = ({
       alignItems="center"
       bgcolor={error ? '#ffbaba' : bgColor}
       borderRadius={5}
-      ref={drop}
+      ref={dropRef}
       gap={2}
       sx={{
         borderStyle: 'dashed',

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
 import { Drawer, SxProps, styled } from '@mui/material';
 
@@ -7,7 +7,7 @@ import { DRAWER_WIDTH } from '../constants.js';
 
 export type SidebarProps = {
   children?: ReactNode;
-  drawerHeaderContent?: React.ReactElement;
+  drawerHeaderContent?: ReactNode;
   handleDrawerClose?: () => void;
   isSidebarOpen?: boolean;
   sx?: SxProps;

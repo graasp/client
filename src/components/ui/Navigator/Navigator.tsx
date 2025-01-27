@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Breadcrumbs, SxProps, styled } from '@mui/material';
 
 import { DiscriminatedItem } from '@graasp/sdk';

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';

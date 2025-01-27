@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
 import {
   Box,
@@ -54,7 +54,7 @@ type CardProps = {
    * image link to display as thumbnail
    */
   thumbnail?: string;
-  footer?: string | ReactElement;
+  footer?: ReactNode;
   sx?: SxProps;
   /**
    * Whether the card should expand to take all available space

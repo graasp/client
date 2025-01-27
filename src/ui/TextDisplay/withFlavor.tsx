@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Alert, AlertTitle, Typography } from '@mui/material';
 
 import { DocumentItemExtraFlavor } from '@graasp/sdk';

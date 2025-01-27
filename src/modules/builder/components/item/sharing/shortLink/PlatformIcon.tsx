@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Context, ShortLink } from '@graasp/sdk';
 
 import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';

@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { IconButton, Stack } from '@mui/material';
 
 import { XIcon } from 'lucide-react';

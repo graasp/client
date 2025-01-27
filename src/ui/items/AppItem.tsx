@@ -1,4 +1,4 @@
-import { memo, useMemo, useRef, useState } from 'react';
+import { type JSX, memo, useMemo, useRef, useState } from 'react';
 
 import { Skeleton, styled } from '@mui/material';
 

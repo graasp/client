@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from 'react';
+import { type JSX, createContext, useMemo, useState } from 'react';
 
 import {
   ActionViewContext,

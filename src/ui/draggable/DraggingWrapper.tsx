@@ -1,4 +1,5 @@
 // we could replace dnd with this https://docs.dndkit.com
+import type { JSX } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 

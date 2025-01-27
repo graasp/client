@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { type JSX, useRef } from 'react';
 import { FeatureGroup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 

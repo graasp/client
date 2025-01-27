@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { Alert, Stack, Typography } from '@mui/material';

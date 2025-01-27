@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, type JSX } from 'react';
 
 import { InputAdornment, TextField, type TextFieldProps } from '@mui/material';
 

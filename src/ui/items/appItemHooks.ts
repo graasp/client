@@ -39,7 +39,7 @@ const useAppCommunication = ({
   item: DiscriminatedItem;
   appUrl: string;
   contextPayload: ContextPayload;
-  iFrameRef: RefObject<HTMLIFrameElement>;
+  iFrameRef: RefObject<HTMLIFrameElement | null>;
   requestApiAccessToken: (payload: {
     id: UUID;
     key: string;

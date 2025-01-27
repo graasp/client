@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type JSX, useEffect, useState } from 'react';
 import { Rnd } from 'react-rnd';
 
 import { Box } from '@mui/material';

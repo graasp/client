@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography, colors, styled } from '@mui/material';
@@ -9,6 +10,7 @@ import truncate from 'lodash.truncate';
 
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
+import { hooks } from '@/config/queryClient.js';
 import Avatar from '@/ui/Avatar/Avatar.js';
 
 import {
@@ -16,7 +18,6 @@ import {
   MAX_AVATAR_SIZE,
   MAX_USERNAME_LENGTH,
 } from '../constants.js';
-import { useHooksContext } from '../context/HooksContext.js';
 import { messageIdCyWrapper } from '../selectors.js';
 import MessageBody from './MessageBody.js';
 
@@ -44,12 +45,11 @@ type Props = {
 
 const Message = ({ message, currentMember, member }: Props): JSX.Element => {
   const { t, i18n } = useTranslation(NS.Chatbox);
-  const { useAvatarUrl } = useHooksContext();
   const {
     data: avatarUrl,
     isLoading: isLoadingAvatar,
     isFetching: isFetchingAvatar,
-  } = useAvatarUrl({
+  } = hooks.useAvatarUrl({
     id: member?.id,
     size: 'small',
   });

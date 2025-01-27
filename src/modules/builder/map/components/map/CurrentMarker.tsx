@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type JSX, useState } from 'react';
 import { Marker, Popup, useMapEvents } from 'react-leaflet';
 
 import { ItemGeolocation } from '@graasp/sdk';

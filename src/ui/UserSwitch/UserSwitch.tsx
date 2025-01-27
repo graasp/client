@@ -1,4 +1,9 @@
-import { MouseEventHandler, ReactElement, useState } from 'react';
+import {
+  type JSX,
+  type MouseEventHandler,
+  type ReactNode,
+  useState,
+} from 'react';
 
 import {
   Box,
@@ -69,7 +74,7 @@ export const UserSwitch = ({
     setAnchorEl(null);
   };
 
-  const renderCurrentMemberInfo = (): ReactElement | null => {
+  const renderCurrentMemberInfo = (): ReactNode => {
     if (!currentMember || !currentMember.id) {
       return null;
     }
@@ -97,7 +102,7 @@ export const UserSwitch = ({
 
   // renders default button
   // shows given content or current member information
-  const renderButtonContent = (): ReactElement => {
+  const renderButtonContent = (): ReactNode => {
     if (ButtonContent) {
       return ButtonContent;
     }

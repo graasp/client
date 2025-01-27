@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box, useTheme } from '@mui/material';
 
 import { ItemType } from '@graasp/sdk';

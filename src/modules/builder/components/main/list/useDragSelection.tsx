@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { type JSX, type ReactNode, useState } from 'react';
 
 import { Stack } from '@mui/material';
 

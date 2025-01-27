@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 type H5PProps = {
   size: string | number;
   color?: string;

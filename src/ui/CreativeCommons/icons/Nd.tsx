@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { CCIconsProps } from './CCIconsProps.js';
 
 const Nd = ({ size }: CCIconsProps): JSX.Element => (

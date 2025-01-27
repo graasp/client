@@ -1,6 +1,6 @@
 import {
   type KeyboardEvent,
-  ReactElement,
+  type ReactNode,
   RefObject,
   useEffect,
   useState,
@@ -50,7 +50,7 @@ const mentionStyle = {
 
 type Props = {
   id?: string;
-  inputRef: RefObject<HTMLTextAreaElement>;
+  inputRef: RefObject<HTMLTextAreaElement | null>;
   placeholder?: string;
   textInput: string;
   setTextInput: (newText: string) => void;
@@ -198,7 +198,7 @@ export function Input({
     }
   };
 
-  const renderHelperText = (): ReactElement => {
+  const renderHelperText = (): ReactNode => {
     // when the textInput is empty, return a text with just a whitespace
     // to keep the height of the element the same
     let helperText = ' ';
@@ -248,7 +248,7 @@ export function Input({
             displayTransform={(_, display): string => `@${display}`}
             markup={MENTION_MARKUP}
             trigger="@"
-            renderSuggestion={(_, __, highlightedDisplay): ReactElement => (
+            renderSuggestion={(_, __, highlightedDisplay): ReactNode => (
               <div className="user">{highlightedDisplay}</div>
             )}
             data={memberSuggestions}

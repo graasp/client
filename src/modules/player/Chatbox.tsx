@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { DiscriminatedItem } from '@graasp/sdk';
 
 import { Chatbox as GraaspChatbox } from '@/components/chatbox/Chatbox/Chatbox';
@@ -6,8 +8,7 @@ import Loader from '@/ui/Loader/Loader';
 
 import { ITEM_CHATBOX_ID } from '../../config/selectors';
 
-const { useItemChat, useAvatarUrl, useItemMemberships, useCurrentMember } =
-  hooks;
+const { useItemChat, useItemMemberships, useCurrentMember } = hooks;
 const {
   usePostItemChatMessage,
   usePatchItemChatMessage,
@@ -42,7 +43,6 @@ const Chatbox = ({ item }: Props): JSX.Element => {
       sendMessageFunction={sendMessage}
       editMessageFunction={editMessage}
       deleteMessageFunction={deleteMessage}
-      useAvatarUrl={useAvatarUrl}
     />
   );
 };

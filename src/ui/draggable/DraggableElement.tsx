@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import { ConnectableElement, useDrag, useDrop } from 'react-dnd';
 import { NativeTypes } from 'react-dnd-html5-backend';
 

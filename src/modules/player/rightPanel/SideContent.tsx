@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import { useTranslation } from 'react-i18next';
 

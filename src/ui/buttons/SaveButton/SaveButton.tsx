@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import GraaspButton, { GraaspButtonProps } from '../Button/Button.js';
 
 export type SaveButtonProps = {

@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { type JSX, createContext, useContext, useMemo, useState } from 'react';
 
 import { DiscriminatedItem } from '@graasp/sdk';
 

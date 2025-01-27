@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import ReactQuill from 'react-quill';
+import { type JSX, useEffect, useRef, useState } from 'react';
+import ReactQuill from 'react-quill-new';
 
 import { Stack, styled } from '@mui/material';
 

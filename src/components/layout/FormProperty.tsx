@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
 import { Grid2 as Grid, Typography } from '@mui/material';
 

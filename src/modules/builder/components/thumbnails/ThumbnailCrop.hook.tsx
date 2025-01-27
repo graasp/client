@@ -4,7 +4,7 @@ type UseThumbnailCrop = {
   showCropModal: boolean;
   fileSource?: string;
   croppedUrl?: string;
-  inputRef: RefObject<HTMLInputElement>;
+  inputRef: RefObject<HTMLInputElement | null>;
   onSelectFile: (target: HTMLInputElement) => void;
   onClose: () => void;
   onConfirmCrop: (croppedImage: Blob | null) => void;

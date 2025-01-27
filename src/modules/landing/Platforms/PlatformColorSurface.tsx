@@ -1,6 +1,6 @@
-import { Stack, SxProps, Typography, styled } from '@mui/material';
+import type { JSX, ReactNode } from 'react';
 
-import { ReactNode } from '@tanstack/react-router';
+import { Stack, SxProps, Typography, styled } from '@mui/material';
 
 import { PlatformType } from '@/ui/PlatformSwitch/hooks';
 import { useButtonColor } from '@/ui/buttons/hooks';

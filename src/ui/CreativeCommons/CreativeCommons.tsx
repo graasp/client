@@ -1,3 +1,5 @@
+import type { JSX } from 'react';
+
 import { Box, Stack, SxProps, Tooltip, Typography } from '@mui/material';
 
 import { PRIMARY_COLOR } from '../theme.js';

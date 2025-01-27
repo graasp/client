@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from 'react';
+import { type JSX, createContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { routines } from '@graasp/query-client';
