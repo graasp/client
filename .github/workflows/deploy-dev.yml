@@ -52,6 +52,7 @@ jobs:
           VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
           VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
           VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
+          VITE_GOOGLE_KEY: ${{ secrets.VITE_GOOGLE_KEY }}
         run: pnpm build
         shell: bash
 
