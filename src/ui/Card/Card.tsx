@@ -54,7 +54,7 @@ type CardProps = {
    * image link to display as thumbnail
    */
   thumbnail?: string;
-  footer?: string | ReactNode;
+  footer?: ReactNode;
   sx?: SxProps;
   /**
    * Whether the card should expand to take all available space

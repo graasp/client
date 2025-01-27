@@ -35,7 +35,6 @@ type BBox =
 const ActionsMap = (): JSX.Element | null => {
   const theme = useTheme();
   const { t } = useTranslation(NS.Analytics);
-  // TODO: replace with a better type, maybe by replacing the google map with leaflet
   const mapRef = useRef<any>(undefined);
   const [bounds, setBounds] = useState<BBox>();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);

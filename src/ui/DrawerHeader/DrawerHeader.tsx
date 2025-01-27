@@ -1,4 +1,4 @@
-import type { JSX, type ReactNode } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
 import { IconButton, Stack, useTheme } from '@mui/material';
 
