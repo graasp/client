@@ -1,4 +1,13 @@
 {
+  "MENU": {
+    "MY_ITEMS": "Mein Graasp",
+    "BOOKMARKED_ITEMS": "Merkliste",
+    "PUBLISHED_ITEMS": "Veröffentlicht",
+    "RECYCLED_ITEMS": "Recycelt"
+  },
+  "REDIRECTION_TEXT": "Umleitung",
+  "REDIRECTION_BUTTON": "Zur Weiterleitung navigieren",
+  "AVATAR_DEFAULT_ALT": "Avatar - Aufbruch",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "Für dieses Element ist die Elementanmeldung aktiviert. Neue Benutzer können auf dieses Element zugreifen, wenn sie sich mit dem Element-Login authentifizieren.",
   "ACCESS_ITEM_LOGIN_TAG": "Jeder, der sich mit dem Link authentifiziert hat",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "Dieses Element ist öffentlich. Jeder kann auf dieses Element zugreifen.",
@@ -359,6 +368,7 @@
   "CREATE_CUSTOM_APP_HELPER_TEXT": "Wenn Sie die URL einer interaktiven App kennen, die die API von Graasp nutzen kann, können Sie sie hier eingeben.",
   "CREATE_NEW_APP_BACK_TO_APP_LIST_BUTTON": "Zurück zur App-Liste",
   "APP_LIST_LOADING_FAILED": "Beim Abrufen der App-Liste ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
+  "APP_REQUIRED_ERROR": "Sie müssen eine App zum Hinzufügen auswählen.",
   "FLAG_REASON_DESCRIPTION": "Wählen Sie den Grund für die Meldung dieses Inhaltes aus",
   "FLAG_MODAL_TITLE": "Inhalt melden",
   "FLAG_MODAL_CONFIRM": "Melden",
@@ -448,11 +458,23 @@
   "UPLOAD_NOTIFICATION_LOADING": "Hochladen...",
   "UPLOAD_NOTIFICATION_COMPLETE": "Hochladen abgeschlossen!",
   "SORT_BY_LABEL": "Sortiere nach",
-  "item.updated_at": "Aktualisiert am",
-  "item.creator.name": "Schöpfer",
-  "item.type": "Typ",
-  "item.name": "Name",
-  "order": "Befehl",
+  "item": {
+    "updated_at": "Aktualisiert am",
+    "creator": {
+      "name": "Schöpfer"
+    },
+    "type": "Typ",
+    "name": "Name",
+    "order": "Befehl"
+  },
+  "CHAT": {
+    "SHOW": "Chat anzeigen",
+    "HIDE": "Chat ausblenden",
+    "CLEAR_BUTTON_TEXT": "Klar",
+    "CLEAR_ALL": "Chat löschen",
+    "CLEAR_ALL_TITLE": "Chat-Inhalte löschen",
+    "CLEAR_ALL_CONTENT": "Sie können alle Nachrichten aus dem Chat löschen. Stellen Sie sicher, dass Sie eine Kopie heruntergeladen haben, wenn Sie die Nachrichten behalten möchten. Sie können diese Aktion nicht rückgängig machen."
+  },
   "TRASH_NO_ITEM": "Ihr Papierkorb ist leer.",
   "BOOKMARKS_NO_ITEM": "Kein mit Lesezeichen versehener Eintrag",
   "BOOKMARKS_NO_ITEM_SEARCH": "Kein Lesezeichen für {{search}}",
@@ -507,5 +529,9 @@
   "DELETE_GUESTS_MODAL_CONTENT": "Ich bestätige die <1>dauerhafte</1> Löschung der folgenden Leser und ihrer Daten:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Endgültig löschen",
   "ADD_TAG_OPTION_BUTTON_TEXT": "{{value}} hinzufügen",
-  "CREATE_FOLDER_BUTTON_TEXT": "Ordner erstellen"
+  "CREATE_FOLDER_BUTTON_TEXT": "Ordner erstellen",
+  "TAGS_DESCRITPION": "Tags sind Schlüsselwörter oder Begriffe, die Sie Ihren Artikeln hinzufügen können. Sie beschreiben das Thema, den Kontext, das Projekt oder die Zielgruppe Ihrer Artikel. Sie helfen anderen Benutzern, Ihre Inhalte zu finden, wenn sie in der Bibliothek suchen, wenn Ihre Sammlung veröffentlicht ist. Weitere Informationen zu Tags finden Sie in <1>der Dokumentation</1>.",
+  "TAGS_DISCIPLINE_HELPERTEXT": "Beispiel: Mathematik, Geschichte, Biologie",
+  "TAGS_LEVEL_HELPERTEXT": "Beispiel: Grundschule, weiterführende Schule, Bachelor",
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Beispiel: Artikel, Video, Quiz"
 }
