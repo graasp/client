@@ -1,14 +1,19 @@
-import { Stack } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+
+import { Box, Stack, Typography } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
+import { ChartNoAxesCombinedIcon } from 'lucide-react';
 
-import { HomeMessage } from '~analytics/HomeMessage';
+import { ButtonLink } from '@/components/ui/ButtonLink';
+import { NS } from '@/config/constants';
 
 export const Route = createFileRoute('/analytics/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const { t } = useTranslation(NS.Analytics);
   return (
     <Stack
       width="100%"
@@ -16,7 +21,27 @@ function RouteComponent() {
       justifyContent="center"
       height="100vh"
     >
-      <HomeMessage />
+      <Box
+        display="flex"
+        flexDirection="column"
+        flexGrow={1}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          gap={6}
+          p={6}
+        >
+          <ChartNoAxesCombinedIcon size={100} />
+          <Typography variant="h4" textAlign="center">
+            {t('NO_ITEM_SELECTED')}
+          </Typography>
+        </Stack>
+        <ButtonLink to="/account">Choose an item</ButtonLink>
+      </Box>
     </Stack>
   );
 }
