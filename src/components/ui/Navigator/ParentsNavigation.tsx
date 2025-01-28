@@ -19,7 +19,7 @@ export function ParentsNavigation({
   buildBreadcrumbsItemLinkId,
 }: Readonly<ParentsProps>): JSX.Element {
   return (
-    <Stack direction="row">
+    <Stack direction="row" alignItems="center">
       {parents.map(({ name, id }) => (
         <Stack
           key={id}

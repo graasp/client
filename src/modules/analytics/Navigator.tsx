@@ -16,15 +16,11 @@ const { useItem, useParents, useChildren } = hooks;
 export function Navigator({
   itemId,
 }: Readonly<{ itemId: string }>): JSX.Element | null {
-  const { data: item, isLoading: isItemLoading } = useItem(itemId);
+  const { data: item } = useItem(itemId);
 
-  const { data: parents, isLoading: areParentsLoading } = useParents({
+  const { data: parents } = useParents({
     id: itemId,
   });
-
-  if (isItemLoading || areParentsLoading) {
-    return null;
-  }
 
   return (
     <AnalyticsNavigator

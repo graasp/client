@@ -27,7 +27,7 @@ export function CurrentItemNavigation({
   showArrow,
 }: Readonly<CurrentItemProps>): JSX.Element | null {
   return (
-    <Stack alignItems="center">
+    <Stack direction="row" alignItems="center">
       <TypographyLink
         id={buildBreadcrumbsItemLinkId?.(item.id)}
         key={item.id}
