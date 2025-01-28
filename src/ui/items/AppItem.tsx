@@ -13,7 +13,7 @@ import withCollapse from '../Collapse/withCollapse.js';
 import { SCREEN_MAX_HEIGHT } from '../constants.js';
 import { ContextPayload, Token, useAppCommunication } from './appItemHooks.js';
 import { iframeCommonStyles } from './iframeStyles.js';
-import withCaption from './withCaption.js';
+import { withCaption } from './withCaption.js';
 import withResizing from './withResizing.js';
 
 const AppIFrame = styled('iframe')<{

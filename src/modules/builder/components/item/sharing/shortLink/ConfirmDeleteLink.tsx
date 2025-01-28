@@ -16,7 +16,7 @@ import {
   buildShortLinkConfirmDeleteBtnId,
 } from '@/config/selectors';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 import { BUILDER } from '~builder/langs';
 
 interface DeleteLinkProps {

@@ -31,7 +31,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
-import Loader from '@/ui/Loader/Loader';
+import { Loader } from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';
 import DocumentItem from '@/ui/items/DocumentItem';
 import EtherpadItem from '@/ui/items/EtherpadItem';

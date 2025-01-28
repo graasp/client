@@ -30,7 +30,7 @@ import {
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
 } from '@/config/selectors';
 import Main from '@/ui/Main/Main';
-import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
+import { PlatformSwitch } from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';

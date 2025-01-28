@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
-import MainMenu from './MainMenu.js';
+import { MainMenu } from './MainMenu.js';
 import { MenuItem } from './MenuItem/MenuItem.js';
 
 const meta: Meta<typeof MainMenu> = {

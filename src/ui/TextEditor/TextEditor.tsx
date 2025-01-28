@@ -5,7 +5,7 @@ import { Stack, styled } from '@mui/material';
 
 import katex from 'katex';
 
-import Button from '../buttons/Button/Button.js';
+import { Button } from '../buttons/Button/Button.js';
 import SaveButton from '../buttons/SaveButton/SaveButton.js';
 
 declare const window: Window &

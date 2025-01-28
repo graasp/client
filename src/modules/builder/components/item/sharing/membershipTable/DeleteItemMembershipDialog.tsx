@@ -24,7 +24,7 @@ import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../../../langs';
-import CancelButton from '../../../common/CancelButton';
+import {CancelButton} from '../../../common/CancelButton';
 
 const labelId = 'alert-dialog-title';
 const descriptionId = 'alert-dialog-description';

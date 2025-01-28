@@ -107,5 +107,3 @@ export function withCaption<T extends WithCaptionItem>({
     return <CaptionWrapper item={item}>{component}</CaptionWrapper>;
   };
 }
-
-export default withCaption;

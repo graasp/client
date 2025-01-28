@@ -11,7 +11,7 @@ import truncate from 'lodash.truncate';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { hooks } from '@/config/queryClient.js';
-import Avatar from '@/ui/Avatar/Avatar.js';
+import { Avatar } from '@/ui/Avatar/Avatar.js';
 
 import {
   DEFAULT_USER_NAME,

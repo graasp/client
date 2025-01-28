@@ -23,7 +23,7 @@ export type EditingContextType = {
   cancelEdit: () => void;
 };
 
-export const EditingContext = createContext<EditingContextType>({
+const EditingContext = createContext<EditingContextType>({
   open: false,
   body: '',
   messageId: '',

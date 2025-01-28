@@ -54,7 +54,7 @@ export function ConstructionAnimation(): JSX.Element | null {
 type ConstructionTruckProps = {
   size: number;
 };
-export function ConstructionTruck({
+function ConstructionTruck({
   size,
 }: Readonly<ConstructionTruckProps>): JSX.Element {
   return (

@@ -10,7 +10,7 @@ import LinkCard from '@/ui/Card/LinkCard.js';
 import withCollapse from '../Collapse/withCollapse.js';
 import { ITEM_MAX_HEIGHT } from './constants.js';
 import { iframeCommonStyles } from './iframeStyles.js';
-import withCaption from './withCaption.js';
+import { withCaption } from './withCaption.js';
 import withResizing from './withResizing.js';
 
 const StyledIFrame = styled('iframe')<{

@@ -11,7 +11,7 @@ import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import Main from '@/ui/Main/Main';
-import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
+import { PlatformSwitch } from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';

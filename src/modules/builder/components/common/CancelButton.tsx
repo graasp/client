@@ -32,5 +32,3 @@ export function CancelButton({
     </Button>
   );
 }
-
-export default CancelButton;

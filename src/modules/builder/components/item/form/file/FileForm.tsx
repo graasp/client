@@ -28,7 +28,7 @@ import {
   ITEM_FORM_IMAGE_ALT_TEXT_EDIT_FIELD_ID,
 } from '@/config/selectors';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 import { getExtraFromPartial } from '~builder/utils/itemExtra';
 
 import { BUILDER } from '../../../../langs';

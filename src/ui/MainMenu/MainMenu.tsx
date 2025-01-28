@@ -21,5 +21,3 @@ export const MainMenu = ({
     </List>
   );
 };
-
-export default MainMenu;

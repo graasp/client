@@ -8,7 +8,7 @@ export type MessagesContextType = {
   members?: Account[];
 };
 
-export const MessagesContext = createContext<MessagesContextType>({
+const MessagesContext = createContext<MessagesContextType>({
   chatId: '',
   members: [],
 });

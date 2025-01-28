@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Divider, Drawer, Toolbar, Typography, styled } from '@mui/material';
 
-import DrawerHeader from '@/ui/DrawerHeader/DrawerHeader';
+import { DrawerHeader } from '@/ui/DrawerHeader/DrawerHeader';
 import { DEFAULT_BACKGROUND_COLOR } from '@/ui/theme';
 
 import { DRAWER_WIDTH } from '~player/config/constants';

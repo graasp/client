@@ -10,9 +10,9 @@ import { expect, screen, userEvent, within } from '@storybook/test';
 
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
-import Avatar from '../Avatar/Avatar.js';
+import { Avatar } from '../Avatar/Avatar.js';
 import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
-import UserSwitchWrapper from './UserSwitchWrapper.js';
+import { UserSwitchWrapper } from './UserSwitchWrapper.js';
 
 const meta = {
   title: 'Common/UserSwitch/UserSwitchWrapper',

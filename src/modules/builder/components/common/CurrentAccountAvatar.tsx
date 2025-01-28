@@ -6,7 +6,7 @@ import { ThumbnailSize } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { buildMemberAvatarId } from '@/config/selectors';
-import Avatar from '@/ui/Avatar/Avatar';
+import { Avatar } from '@/ui/Avatar/Avatar';
 
 const AVATAR_ICON_HEIGHT = 30;
 

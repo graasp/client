@@ -8,7 +8,7 @@ import { DiscriminatedItem } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { EDIT_ITEM_MODAL_CANCEL_BUTTON_ID } from '@/config/selectors';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 import { FileUploader } from '~builder/components/file/FileUploader';
 
 type UploadFileModalContentProps = {

@@ -14,7 +14,7 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from './ItemNameField';
 import { DescriptionAndPlacementForm } from './description/DescriptionAndPlacementForm';

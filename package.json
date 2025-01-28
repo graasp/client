@@ -108,7 +108,8 @@
     "test:unit": "vitest",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "storybook:test": "vitest --project storybook"
+    "storybook:test": "vitest --project storybook",
+    "knip": "knip"
   },
   "browserslist": {
     "production": [
@@ -149,6 +150,7 @@
     "@types/lodash.debounce": "4.0.9",
     "@types/lodash.groupby": "4.6.9",
     "@types/lodash.truncate": "4.4.9",
+    "@types/node": "22.12.0",
     "@types/react": "19.0.8",
     "@types/react-date-range": "1.4.9",
     "@types/react-dom": "19.0.3",
@@ -176,6 +178,7 @@
     "happy-dom": "16.7.2",
     "husky": "9.1.7",
     "jose": "5.9.6",
+    "knip": "5.43.5",
     "nyc": "17.1.0",
     "playwright": "1.50.0",
     "prettier": "3.4.2",
@@ -194,6 +197,15 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
+    ]
+  },
+  "knip": {
+    "entry": [
+      "src/routes/**/*.tsx",
+      "src/main.tsx"
+    ],
+    "project": [
+      "src/**/*.{ts,tsx}"
     ]
   },
   "resolutions": {

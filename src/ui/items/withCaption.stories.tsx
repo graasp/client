@@ -9,7 +9,7 @@ import {
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import withCaption from './withCaption.js';
+import { withCaption } from './withCaption.js';
 
 const renderComponent = ({
   description,

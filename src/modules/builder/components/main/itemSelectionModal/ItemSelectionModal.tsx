@@ -25,7 +25,7 @@ import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
 import type { NavigationElement } from '@/ui/Tree/types';
 
 import { BUILDER } from '../../../langs';
-import CancelButton from '../../common/CancelButton';
+import { CancelButton } from '../../common/CancelButton';
 import AccessibleNavigationTree from './AccessibleNavigationTree';
 import ChildrenNavigationTree from './ChildrenNavigationTree';
 import RootNavigationTree from './RootNavigationTree';

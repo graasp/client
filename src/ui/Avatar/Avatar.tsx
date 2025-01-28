@@ -31,7 +31,7 @@ type AvatarProps = {
   variant?: SkeletonProps['variant'];
 };
 
-const Avatar = ({
+export function Avatar({
   sx,
   id,
   alt = 'avatar',
@@ -41,7 +41,7 @@ const Avatar = ({
   component = 'avatar',
   isLoading,
   url,
-}: AvatarProps): JSX.Element | null => {
+}: AvatarProps): JSX.Element | null {
   if (component === 'avatar') {
     if (url) {
       return (
@@ -84,6 +84,4 @@ const Avatar = ({
       isLoading={isLoading}
     />
   );
-};
-
-export default Avatar;
+}
