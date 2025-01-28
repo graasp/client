@@ -28,7 +28,14 @@ const MUILinkComponent = React.forwardRef<
   HTMLAnchorElement,
   MUIListItemButtonProps
 >((props, ref) => {
-  const { id, icon, text, dataUmamiEvent, onClick, ...rest } = props;
+  const {
+    id,
+    icon,
+    text,
+    // dataUmamiEvent,
+    onClick,
+    ...rest
+  } = props;
   const { isMobile } = useMobileView();
   const { setOpen } = useMainMenuOpenContext();
 
@@ -45,7 +52,7 @@ const MUILinkComponent = React.forwardRef<
       <ListItemButton
         component={'a'}
         ref={ref}
-        data-umami-event={dataUmamiEvent}
+        // data-umami-event={dataUmamiEvent}
         onClick={onClickHandler}
         {...rest}
       >

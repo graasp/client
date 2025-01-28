@@ -135,7 +135,7 @@ export const PlatformSwitch = ({
           data-testid={platform}
           href={!platformProps?.disabled ? platformProps?.href : undefined}
           aria-disabled={platformProps?.disabled}
-          data-umami-event={`header-navigation-switch-${platform}`}
+          // data-umami-event={`header-navigation-switch-${platform}`}
         >
           <Icon
             disabledColor={disabledColor}

@@ -196,7 +196,7 @@ const MainWithDrawerContent = ({
               >
                 {open ? <MenuOpen /> : <MenuIcon />}
               </IconButton>
-              {LinkComponent && LinkComponent({ children: <LogoHeader /> })}
+              {LinkComponent?.({ children: <LogoHeader /> })}
               {PlatformComponent}
               {headerLeftContent}
             </Stack>

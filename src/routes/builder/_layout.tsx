@@ -62,8 +62,8 @@ const StyledLink = styled(Link)(() => ({
 }));
 const LinkComponent = ({ children }: { children: ReactNode }) => (
   <StyledLink
-    data-umami-event="header-home-link"
-    data-umami-event-context={Context.Builder}
+    // data-umami-event="header-home-link"
+    // data-umami-event-context={Context.Builder}
     to="/account"
   >
     {children}
