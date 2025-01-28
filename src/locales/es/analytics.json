@@ -24,7 +24,9 @@
   "MOST_INTERACTED_ITEMS_BY_ACTION": "{{nb}} Elementos con mayor interacción por acción",
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} Elementos con mayor interacción por usuario",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "No hay acciones para mostrar para este usuario",
-  "NO_ITEM_SELECTED": "Tienes que seleccionar un elemento para ver los análisis.",
+  "HOME": {
+    "NO_ITEM_SELECTED": "Tienes que seleccionar un elemento para ver los análisis."
+  },
   "NO_USER_SELECTED": "Ningún usuario seleccionado",
   "OTHER_ACTION_TYPE": "Otro",
   "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Mostrando acciones '{{view}} view' de un tamaño de muestra máximo solicitado de {{requestedSampleSize}} acciones.",

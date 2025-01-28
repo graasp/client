@@ -24,7 +24,9 @@
   "MOST_INTERACTED_ITEMS_BY_ACTION": "{{nb}} العناصر الأكثر تفاعلاً حسب الإجراء",
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} العناصر الأكثر تفاعلاً من قبل المستخدم",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "لا توجد إجراءات لإظهارها لهذا المستخدم",
-  "NO_ITEM_SELECTED": "يجب عليك اختيار عنصر لعرض التحليلات.",
+  "HOME": {
+    "NO_ITEM_SELECTED": "يجب عليك اختيار عنصر لعرض التحليلات."
+  },
   "NO_USER_SELECTED": "لم يتم تحديد أي مستخدم",
   "OTHER_ACTION_TYPE": "أخرى",
   "SAMPLE_ACTIONS_CHARTS_MESSAGE": "عرض إجراءات \"عرض {{view}}\" من الحد الأقصى لحجم العينة المطلوب لإجراءات {{requestedSampleSize}}.",

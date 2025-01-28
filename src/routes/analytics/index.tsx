@@ -13,7 +13,7 @@ export const Route = createFileRoute('/analytics/')({
 });
 
 function RouteComponent() {
-  const { t } = useTranslation(NS.Analytics);
+  const { t } = useTranslation(NS.Analytics, { keyPrefix: 'HOME' });
   return (
     <Stack
       width="100%"
@@ -40,7 +40,7 @@ function RouteComponent() {
             {t('NO_ITEM_SELECTED')}
           </Typography>
         </Stack>
-        <ButtonLink to="/account">Choose an item</ButtonLink>
+        <ButtonLink to="/account">{t('SELECT_AN_ITEM')}</ButtonLink>
       </Box>
     </Stack>
   );
