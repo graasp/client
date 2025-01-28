@@ -123,8 +123,8 @@ importers:
         specifier: 0.474.0
         version: 0.474.0(react@19.0.0)
       papaparse:
-        specifier: 5.5.1
-        version: 5.5.1
+        specifier: 5.5.2
+        version: 5.5.2
       prism-react-renderer:
         specifier: 2.4.1
         version: 2.4.1(react@19.0.0)
@@ -5042,8 +5042,8 @@ packages:
     resolution: {integrity: sha512-whdkPIooSu/bASggZ96BWVvZTRMOFxnyUG5PnTSGKoJE2gd5mbVNmR2Nj20QFzxYYgAXpoqC+AiXzl+UMRh7zQ==}
     engines: {node: '>=8'}
 
-  papaparse@5.5.1:
-    resolution: {integrity: sha512-EuEKUhyxrHVozD7g3/ztsJn6qaKse8RPfR6buNB2dMJvdtXNhcw8jccVi/LxNEY3HVrV6GO6Z4OoeCG9Iy9wpA==}
+  papaparse@5.5.2:
+    resolution: {integrity: sha512-PZXg8UuAc4PcVwLosEEDYjPyfWnTEhOrUfdv+3Bx+NuAb+5NhDmXzg5fHWmdCh1mP5p7JAZfFr3IMQfcntNAdA==}
 
   parchment@3.0.0:
     resolution: {integrity: sha512-HUrJFQ/StvgmXRcQ1ftY6VEZUq3jA2t9ncFN4F84J/vN0/FPpQF+8FKXb3l6fLces6q0uOHj6NJn+2xvZnxO6A==}
@@ -12053,7 +12053,7 @@ snapshots:
       lodash.flattendeep: 4.4.0
       release-zalgo: 1.0.0
 
-  papaparse@5.5.1: {}
+  papaparse@5.5.2: {}
 
   parchment@3.0.0: {}
 
