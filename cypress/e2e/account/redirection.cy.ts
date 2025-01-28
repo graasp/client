@@ -8,10 +8,12 @@ describe('Redirections', () => {
     cy.url().should('contain', `/auth/login?url=`);
   });
 
-  it('redirects to account when already logged in', () => {
+  it('redirects to builder when already logged in', () => {
+    // COMMENT: This has been changed from "/account" to "/builder" to not change too much for users.
+    // in the future we will redirect to a personalized home page for the user
     cy.setUpApi({});
     cy.visit(LOG_IN_PAGE_PATH);
     cy.wait('@getCurrentMember');
-    cy.url().should('contain', `/account`);
+    cy.url().should('contain', '/builder');
   });
 });

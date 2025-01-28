@@ -24,7 +24,10 @@
   "MOST_INTERACTED_ITEMS_BY_ACTION": "{{nb}} Most Interacted Items by Action",
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} Most Interacted Items by User",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "No actions to show for this user",
-  "NO_ITEM_SELECTED": "You have to select an item to view the analytics.",
+  "HOME": {
+    "NO_ITEM_SELECTED": "You have to select an item to view the analytics.",
+    "SELECT_AN_ITEM": "Choose an item"
+  },
   "NO_USER_SELECTED": "No user selected",
   "OTHER_ACTION_TYPE": "Other",
   "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Displaying '{{view}} view' actions from a maximum requested sample size of {{requestedSampleSize}} actions.",

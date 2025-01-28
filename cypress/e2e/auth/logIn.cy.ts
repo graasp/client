@@ -24,9 +24,10 @@ describe('Already signed in', () => {
     cy.setUpApi({ currentMember: AUTH_MEMBERS.BOB });
   });
 
-  it('Should show account home', () => {
+  it('Should show builder home', () => {
     cy.visit('/auth');
-    cy.get(`h4`).should('contain', 'Welcome');
+    // COMMENT: We redirect to the builder for now until we have a better home page in account to show the users
+    cy.get(`h4`).should('contain', 'My Graasp');
   });
 });
 

@@ -24,7 +24,9 @@
   "MOST_INTERACTED_ITEMS_BY_ACTION": "{{nb}} Elementi con più interazione per azione",
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} Elementi con più interazione per utente",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "Nessuna azione da mostrare per questo utente",
-  "NO_ITEM_SELECTED": "È necessario selezionare un elemento per visualizzare l'analisi.",
+  "HOME": {
+    "NO_ITEM_SELECTED": "È necessario selezionare un elemento per visualizzare l'analisi."
+  },
   "NO_USER_SELECTED": "Nessun utente selezionato",
   "OTHER_ACTION_TYPE": "Altro",
   "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Visualizzazione delle azioni '{{view}}' da un campione massimo richiesto di {{requestedSampleSize}} azioni.",
