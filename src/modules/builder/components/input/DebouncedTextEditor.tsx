@@ -1,5 +1,7 @@
 import { type JSX, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import TextEditor from '@/ui/TextEditor/TextEditor';
 
@@ -19,9 +21,9 @@ type Props = {
 export const DebouncedTextEditor = ({
   id,
   initialValue,
-  showActions = false,
   onUpdate,
 }: Props): JSX.Element => {
+  const { t } = useTranslation(NS.Builder);
   // prevent to call onUpdate when initialValue changed
   const [startDebounce, setStartDebounce] = useState(false);
   const [value, setValue] = useState(initialValue);
@@ -49,7 +51,7 @@ export const DebouncedTextEditor = ({
       id={id}
       value={value}
       onChange={(newValue) => handleValueUpdated(newValue)}
-      showActions={showActions}
+      placeholderText={t('DESCRIPTION.PLACEHOLDER')}
     />
   );
 };

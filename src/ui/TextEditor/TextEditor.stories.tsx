@@ -16,6 +16,7 @@ const meta = {
   title: 'Text/TextEditor',
   component: TextEditor,
   args: {
+    placeholderText: 'Write something...',
     onChange: fn(),
   },
 } satisfies Meta<typeof TextEditor>;

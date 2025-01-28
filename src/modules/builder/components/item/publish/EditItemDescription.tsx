@@ -56,7 +56,7 @@ export const EditItemDescription = ({ item }: Props): JSX.Element => {
   const modal = (
     <PublicationModal
       isOpen={isOpen}
-      title={t(BUILDER.DESCRIPTION_LABEL)}
+      title={t('DESCRIPTION.LABEL')}
       modalContent={
         <DebouncedTextEditor
           initialValue={description ?? undefined}
@@ -78,7 +78,7 @@ export const EditItemDescription = ({ item }: Props): JSX.Element => {
 
   const descriptionHeader = (
     <Stack direction="row" spacing={1} alignItems="center">
-      <Typography variant="h5">{t(BUILDER.DESCRIPTION_LABEL)}</Typography>
+      <Typography variant="h5">{t('DESCRIPTION.LABEL')}</Typography>
       <IconButton onClick={openModal}>
         <EditIcon />
       </IconButton>
