@@ -11,7 +11,7 @@ import { Container, Stack, TextField, styled } from '@mui/material';
 
 import { ItemLoginSchemaType, UUID } from '@graasp/sdk';
 
-import Button from '../buttons/Button/Button.js';
+import { GraaspButton } from '../buttons/Button/Button.js';
 import ForbiddenText from './ForbiddenText.js';
 
 export type SignInPropertiesType = {
@@ -154,13 +154,13 @@ const ItemLoginScreen = ({
           inputRef={passwordFieldRef}
         />
       )}
-      <Button
+      <GraaspButton
         onClick={onClickSignIn}
         id={signInButtonId}
         disabled={shouldSignInBeDisabled()}
       >
         {t('Sign In')}
-      </Button>
+      </GraaspButton>
     </WrapperContainer>
   );
 };

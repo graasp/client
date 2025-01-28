@@ -11,7 +11,7 @@ import { useAuth } from '@/AuthContext.tsx';
 import { NS } from '@/config/constants.ts';
 import { axios, hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
-import MainMenu from '@/ui/MainMenu/MainMenu';
+import { MainMenu } from '@/ui/MainMenu/MainMenu';
 
 import { LoadingTree } from './tree/LoadingTree';
 import { TreeView } from './tree/TreeView';

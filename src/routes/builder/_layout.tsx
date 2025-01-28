@@ -33,7 +33,7 @@ import {
   PREVENT_GUEST_MESSAGE_ID,
 } from '@/config/selectors';
 import GraaspMain from '@/ui/Main/Main';
-import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
+import { PlatformSwitch } from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import Button from '@/ui/buttons/Button/Button';
 import { useMobileView } from '@/ui/hooks/useMobileView';

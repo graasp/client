@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import DrawerHeader from './DrawerHeader.js';
+import { DrawerHeader } from './DrawerHeader.js';
 
 const meta: Meta<typeof DrawerHeader> = {
   title: 'Common/DrawerHeader',

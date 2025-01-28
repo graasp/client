@@ -245,5 +245,3 @@ export const PlatformSwitch = ({
     </Box>
   );
 };
-
-export default PlatformSwitch;

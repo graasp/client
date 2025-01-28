@@ -5,7 +5,7 @@ import { queries } from '@testing-library/dom';
 import { Snowflake } from 'lucide-react';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
-import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';
+import { PlatformSwitch, PlatformSwitchProps } from './PlatformSwitch.js';
 import { Platform, PlatformType } from './hooks.js';
 
 const MOCK_PLATFORM_PROPS = {

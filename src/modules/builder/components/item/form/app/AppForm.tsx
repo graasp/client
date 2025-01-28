@@ -16,7 +16,7 @@ import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import AppListForm from './AppListForm';
 import { CustomAppForm } from './CustomAppForm';

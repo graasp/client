@@ -9,7 +9,7 @@ import { ChevronRightIcon } from 'lucide-react';
 
 import { MenuItemLink } from '../MenuItemLink';
 
-export const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
+const Separator = <ChevronRightIcon data-testid="NavigateNextIcon" />;
 
 export type ItemMenuProps = {
   buildIconId?: (id: string) => string;

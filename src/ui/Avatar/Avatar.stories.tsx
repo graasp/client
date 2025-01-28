@@ -3,7 +3,7 @@ import { Box, Stack } from '@mui/material';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
-import Avatar from './Avatar.js';
+import { Avatar } from './Avatar.js';
 import { getColorFromId, stringToColor } from './stringToColor.js';
 
 const meta = {

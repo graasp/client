@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ThumbnailSize } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import Avatar from '@/ui/Avatar/Avatar';
+import { Avatar } from '@/ui/Avatar/Avatar';
 
 import { hooks } from '../../config/queryClient';
 

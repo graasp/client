@@ -55,5 +55,3 @@ export const SearchInput = ({
     />
   );
 };
-
-export default SearchInput;

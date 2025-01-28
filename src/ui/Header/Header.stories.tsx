@@ -5,7 +5,7 @@ import { Context } from '@graasp/sdk';
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
-import Header from './Header.js';
+import { Header } from './Header.js';
 
 const meta: Meta<typeof Header> = {
   title: 'Common/Header',

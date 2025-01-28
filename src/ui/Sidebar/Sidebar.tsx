@@ -2,7 +2,7 @@ import { type JSX, type ReactNode } from 'react';
 
 import { Drawer, SxProps, styled } from '@mui/material';
 
-import DrawerHeader from '../DrawerHeader/DrawerHeader.js';
+import { DrawerHeader } from '../DrawerHeader/DrawerHeader.js';
 import { DRAWER_WIDTH } from '../constants.js';
 
 export type SidebarProps = {
@@ -54,5 +54,3 @@ export const Sidebar = ({
     </StyledDrawer>
   );
 };
-
-export default Sidebar;

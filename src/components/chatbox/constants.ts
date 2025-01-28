@@ -19,14 +19,8 @@ export const INITIAL_EDITING_PROPS = {
 
 export const GRAASP_MENTION_COLOR = '#b9b9ed';
 
-export const SIDE_PANE_WIDTH = 290;
-export const SIDE_PANE_HEIGHT = 800;
-
-export const ICON_VARIANT = 'icon';
-export const BUTTON_VARIANT = 'button';
-
 export const ALL_MEMBERS_ID = '00000000-0000-4000-8000-000000000000';
-export const ALL_MEMBERS_DISPLAY = 'all';
+const ALL_MEMBERS_DISPLAY = 'all';
 export const ALL_MEMBERS_SUGGESTION: SuggestionDataItem = {
   id: ALL_MEMBERS_ID,
   display: ALL_MEMBERS_DISPLAY,

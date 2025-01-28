@@ -42,7 +42,7 @@ type AuthContextSignedOut = {
  */
 export type AuthContextType = AuthContextLoggedMember | AuthContextSignedOut;
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({
   children,

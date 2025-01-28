@@ -19,7 +19,7 @@ import {
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 import { BUILDER } from '~builder/langs';
 
 import { ItemNameField } from '../ItemNameField';

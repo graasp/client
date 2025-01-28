@@ -6,7 +6,7 @@ import { CirclePlus, Snowflake, Sparkles } from 'lucide-react';
 import { MenuItem } from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
-import Sidebar from './Sidebar.js';
+import { Sidebar } from './Sidebar.js';
 
 const meta: Meta<typeof Sidebar> = {
   title: 'Common/Sidebar',

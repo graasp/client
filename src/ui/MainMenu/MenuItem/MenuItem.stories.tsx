@@ -3,7 +3,7 @@ import { expect, fn, userEvent, within } from '@storybook/test';
 import { SparklesIcon } from 'lucide-react';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
-import MenuItem from './MenuItem.js';
+import { MenuItem } from './MenuItem.js';
 
 export default {
   title: 'Main/MenuItem',

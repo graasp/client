@@ -36,5 +36,3 @@ export const DrawerHeader = ({
     </Stack>
   );
 };
-
-export default DrawerHeader;

@@ -18,7 +18,7 @@ import {
   buildShortLinkCancelBtnId,
 } from '@/config/selectors';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 import { useDebouncedCallback } from '~builder/utils/useDebounce';
 
 import AliasInput from './AliasInput';

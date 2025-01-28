@@ -33,5 +33,3 @@ export const ItemFlagButton = ({
     </Tooltip>
   );
 };
-
-export default ItemFlagButton;

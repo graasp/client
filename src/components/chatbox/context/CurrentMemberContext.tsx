@@ -4,8 +4,7 @@ import { CurrentAccount } from '@graasp/sdk';
 
 export type CurrentMemberContextType = CurrentAccount | null | undefined;
 
-export const CurrentMemberContext =
-  createContext<CurrentMemberContextType>(null);
+const CurrentMemberContext = createContext<CurrentMemberContextType>(null);
 
 type Props = {
   children: ReactNode;

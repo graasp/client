@@ -8,7 +8,7 @@ import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { AccountType, CurrentAccount, redirect } from '@graasp/sdk';
 
-import Loader from '../Loader/Loader.js';
+import { Loader } from '../Loader/Loader.js';
 import { UserSwitch } from './UserSwitch.js';
 
 type UserMenuItem = {
@@ -152,5 +152,3 @@ export const UserSwitchWrapper = ({
     />
   );
 };
-
-export default UserSwitchWrapper;

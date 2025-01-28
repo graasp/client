@@ -14,5 +14,3 @@ export type LoaderProps = {
 export const Loader = ({ sx, color = 'primary' }: LoaderProps): JSX.Element => (
   <CircularProgress sx={sx} color={color} />
 );
-
-export default Loader;

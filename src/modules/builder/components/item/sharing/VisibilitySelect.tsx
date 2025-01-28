@@ -7,7 +7,7 @@ import { PackedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { SHARE_ITEM_VISIBILITY_SELECT_ID } from '@/config/selectors';
-import Loader from '@/ui/Loader/Loader';
+import { Loader } from '@/ui/Loader/Loader';
 
 import useVisibility from '~builder/components/hooks/useVisibility';
 

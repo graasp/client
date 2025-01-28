@@ -22,23 +22,4 @@ export const normalizeMentions = (message: string): string => {
   return message.replace(regexMentions, '@$2');
 };
 
-// markup constants from the react-mentions package
-const reactMentionsMarkup = {
-  name: '__display__',
-  id: '__id__',
-};
-/**
- * @deprecated Use `MENTION_MARKUP` instead
- */
-export const LEGACY_MENTION_MARKUP = '`<!@__display__>[__id__]`';
 export const MENTION_MARKUP = '`<!@__id__>[__display__]`';
-
-export const getMentionMarkupFromMember = (
-  member: PartialMemberDisplay,
-  templateMarkup = MENTION_MARKUP,
-): string =>
-  Object.entries(reactMentionsMarkup).reduce(
-    (markup, [key, value]) =>
-      markup.replace(value, member[key as keyof typeof reactMentionsMarkup]),
-    templateMarkup,
-  );

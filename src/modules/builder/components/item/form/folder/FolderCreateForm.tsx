@@ -22,7 +22,7 @@ import {
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import ThumbnailCrop from '../../../thumbnails/ThumbnailCrop';
 import { ItemNameField } from '../ItemNameField';

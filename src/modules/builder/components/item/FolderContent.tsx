@@ -22,7 +22,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildItemsTableId,
 } from '@/config/selectors';
-import Loader from '@/ui/Loader/Loader';
+import { Loader } from '@/ui/Loader/Loader';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
 import { ItemLayoutMode, Ordering } from '~builder/enums';

@@ -13,7 +13,8 @@ import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import Main from '@/ui/Main/Main';
-import PlatformSwitch, {
+import {
+  PlatformSwitch,
   PlatformSwitchProps,
 } from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';

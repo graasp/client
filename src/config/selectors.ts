@@ -65,7 +65,6 @@ export const PUBLIC_PROFILE_DISPLAY_CONTAINER_ID =
   'public-profile-display-container';
 export const PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID =
   'public-profile-not-configured-container';
-export const PUBLIC_PROFILE_EDIT_CONTAINER_ID = 'public-profile-edit-container';
 
 export const PASSWORD_DISPLAY_CONTAINER_ID = 'password-display-container';
 export const PASSWORD_DISPLAY_INFORMATION_ID = 'password-display-information';
@@ -84,8 +83,6 @@ export const EMAIL_VALIDATION_UNAUTHORIZED_MESSAGE_ID =
   'email-validation-unauthorized';
 export const EMAIL_VALIDATION_CONFLICT_MESSAGE_ID = 'email-validation-conflict';
 
-export const LOGIN_REQUIRED_TEXT_ID = 'login-required-text';
-export const LOGIN_REQUIRED_BUTTON_ID = 'login-required-button';
 export const EXPORT_DATA_BUTTON_ID = 'export-data-button-id';
 export const NOT_FOUND_TEXT_ID = 'not-found-text-id';
 export const NOT_FOUND_MESSAGE_ID = 'not-found-message-id';
@@ -134,8 +131,6 @@ export const REGISTER_BUTTON_ID = 'registerButton';
 export const REGISTER_HEADER_ID = 'registerHeader';
 export const LOG_IN_HEADER_ID = 'logInHeader';
 export const REGISTER_SAVE_ACTIONS_ID = 'registerSaveActions';
-export const EMAIL_SIGN_IN_METHOD_BUTTON_ID = 'emailSignInMethodButton';
-export const USER_SWITCH_ID = 'userSwitch';
 export const SUCCESS_CONTENT_ID = 'successContent';
 export const BACK_BUTTON_ID = 'backButtonId';
 export const RESEND_EMAIL_BUTTON_ID = 'resendEmailButton';

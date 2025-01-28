@@ -15,7 +15,7 @@ import {
 } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionForm } from '../description/DescriptionForm';

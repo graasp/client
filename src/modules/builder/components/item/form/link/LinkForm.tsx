@@ -34,7 +34,7 @@ import LinkCard from '@/ui/Card/LinkCard';
 import Button from '@/ui/buttons/Button/Button';
 import LinkItem from '@/ui/items/LinkItem';
 
-import CancelButton from '~builder/components/common/CancelButton';
+import { CancelButton } from '~builder/components/common/CancelButton';
 
 import { BUILDER } from '../../../../langs';
 import { isUrlValid } from '../../../../utils/item';

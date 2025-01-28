@@ -59,5 +59,3 @@ export const MenuItem = ({
     </ListItem>
   );
 };
-
-export default MenuItem;

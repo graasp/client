@@ -7,8 +7,8 @@ import { Context } from '@graasp/sdk';
 import { Meta, type StoryObj, composeStories } from '@storybook/react';
 import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
-import MainMenu from '@/ui/MainMenu/MainMenu.js';
-import MenuItem from '@/ui/MainMenu/MenuItem/MenuItem.js';
+import { MainMenu } from '@/ui/MainMenu/MainMenu.js';
+import { MenuItem } from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories.js';
 import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories.js';

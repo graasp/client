@@ -9,7 +9,7 @@ import groupBy from 'lodash/groupBy';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
-import Loader from '@/ui/Loader/Loader';
+import { Loader } from '@/ui/Loader/Loader';
 
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
 import DateRange from '~analytics/common/DateRangeInput';

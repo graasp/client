@@ -17,6 +17,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
     "paths": {
       "~account/*": ["./src/modules/account/*"],
       "~analytics/*": ["./src/modules/analytics/*"],
