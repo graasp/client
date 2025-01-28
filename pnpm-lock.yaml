@@ -28,7 +28,7 @@ importers:
         version: 5.1.1
       '@graasp/query-client':
         specifier: 5.7.1
-        version: 5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@19.0.0)
+        version: 5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)
       '@graasp/sdk':
         specifier: 5.7.0
         version: 5.7.0(date-fns@4.1.0)(uuid@11.0.5)
@@ -81,8 +81,8 @@ importers:
         specifier: 7.13.0
         version: 7.13.0
       i18next:
-        specifier: 24.2.1
-        version: 24.2.1(typescript@5.7.3)
+        specifier: 24.2.2
+        version: 24.2.2(typescript@5.7.3)
       i18next-browser-languagedetector:
         specifier: 8.0.2
         version: 8.0.2
@@ -157,7 +157,7 @@ importers:
         version: 7.54.2(react@19.0.0)
       react-i18next:
         specifier: 15.4.0
-        version: 15.4.0(i18next@24.2.1(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        version: 15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-image-crop:
         specifier: 11.0.7
         version: 11.0.7(react@19.0.0)
@@ -4133,8 +4133,8 @@ packages:
     resolution: {integrity: sha512-kVqnydqLVMZfVlOuP2nf71cREydlxEKLH43jUXAFdOku/GF+6b9fBg31anoos5XncdhdtiYgL9fheqMrtXRwng==}
     engines: {node: '>=18'}
 
-  i18next@24.2.1:
-    resolution: {integrity: sha512-Q2wC1TjWcSikn1VAJg13UGIjc+okpFxQTxjVAymOnSA3RpttBQNMPf2ovcgoFVsV4QNxTfNZMAxorXZXsk4fBA==}
+  i18next@24.2.2:
+    resolution: {integrity: sha512-NE6i86lBCKRYZa5TaUDkU5S4HFgLIEJRLr3Whf2psgaxBleQ2LC1YW1Vc+SCgkAW7VEzndT6al6+CzegSUHcTQ==}
     peerDependencies:
       typescript: ^5
     peerDependenciesMeta:
@@ -7790,10 +7790,10 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/query-client@5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3)))(react@19.0.0)':
+  '@graasp/query-client@5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)':
     dependencies:
       '@graasp/sdk': 5.7.0(date-fns@4.1.0)(uuid@11.0.5)
-      '@graasp/translations': 1.43.0(i18next@24.2.1(typescript@5.7.3))
+      '@graasp/translations': 1.43.0(i18next@24.2.2(typescript@5.7.3))
       '@tanstack/react-query': 5.61.5(react@19.0.0)
       '@tanstack/react-query-devtools': 5.61.5(@tanstack/react-query@5.61.5(react@19.0.0))(react@19.0.0)
       axios: 1.7.8
@@ -7815,9 +7815,9 @@ snapshots:
       cssjanus: 2.3.0
       stylis: 4.3.5
 
-  '@graasp/translations@1.43.0(i18next@24.2.1(typescript@5.7.3))':
+  '@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3))':
     dependencies:
-      i18next: 24.2.1(typescript@5.7.3)
+      i18next: 24.2.2(typescript@5.7.3)
 
   '@humanfs/core@0.19.1': {}
 
@@ -10891,9 +10891,9 @@ snapshots:
 
   i18next-fetch-backend@6.0.0: {}
 
-  i18next@24.2.1(typescript@5.7.3):
+  i18next@24.2.2(typescript@5.7.3):
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.26.7
     optionalDependencies:
       typescript: 5.7.3
 
@@ -12304,11 +12304,11 @@ snapshots:
     dependencies:
       react: 19.0.0
 
-  react-i18next@15.4.0(i18next@24.2.1(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-i18next@15.4.0(i18next@24.2.2(typescript@5.7.3))(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@babel/runtime': 7.26.0
       html-parse-stringify: 3.0.1
-      i18next: 24.2.1(typescript@5.7.3)
+      i18next: 24.2.2(typescript@5.7.3)
       react: 19.0.0
     optionalDependencies:
       react-dom: 19.0.0(react@19.0.0)
