@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography, colors, styled } from '@mui/material';
@@ -43,7 +42,7 @@ type Props = {
   member?: Account;
 };
 
-const Message = ({ message, currentMember, member }: Props): JSX.Element => {
+const Message = ({ message, currentMember, member }: Props) => {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,

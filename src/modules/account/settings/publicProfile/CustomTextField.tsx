@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import { ChangeEvent, type JSX } from 'react';
 
 import { InputAdornment, TextField } from '@mui/material';
 
@@ -7,7 +7,7 @@ type CustomTextFieldProps = {
   readonly value: string;
   readonly name: string;
   readonly helperText: string | false;
-  readonly onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  readonly onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   readonly Icon?: JSX.Element;
   readonly isError: boolean;
   readonly rows?: number;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import { Theme, styled } from '@mui/material';
 
@@ -60,7 +60,7 @@ const StyledNavigationButton = styled('a')(({ theme }) => ({
   },
 }));
 
-const StyledNavigationComponent = React.forwardRef<HTMLAnchorElement>(
+const StyledNavigationComponent = forwardRef<HTMLAnchorElement>(
   (props, ref) => {
     return <StyledNavigationButton ref={ref} {...props} />;
   },

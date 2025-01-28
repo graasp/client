@@ -1,4 +1,4 @@
-import React, { type JSX } from 'react';
+import { type JSX, forwardRef } from 'react';
 
 import {
   ListItem,
@@ -21,47 +21,37 @@ interface MUIListItemButtonProps extends Omit<ListItemButtonProps, 'href'> {
   id?: string;
   text: string;
   icon: JSX.Element;
-  dataUmamiEvent?: string;
 }
 
-const MUILinkComponent = React.forwardRef<
-  HTMLAnchorElement,
-  MUIListItemButtonProps
->((props, ref) => {
-  const {
-    id,
-    icon,
-    text,
-    // dataUmamiEvent,
-    onClick,
-    ...rest
-  } = props;
-  const { isMobile } = useMobileView();
-  const { setOpen } = useMainMenuOpenContext();
+const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIListItemButtonProps>(
+  (props, ref) => {
+    const { id, icon, text, onClick, ...rest } = props;
+    const { isMobile } = useMobileView();
+    const { setOpen } = useMainMenuOpenContext();
 
-  const onClickHandler = (e: any) => {
-    if (isMobile) {
-      setOpen(false);
-    }
-    // call original onclick
-    onClick?.(e);
-  };
+    const onClickHandler = (e: any) => {
+      if (isMobile) {
+        setOpen(false);
+      }
+      // call original onclick
+      onClick?.(e);
+    };
 
-  return (
-    <ListItem disablePadding id={id}>
-      <ListItemButton
-        component={'a'}
-        ref={ref}
-        // data-umami-event={dataUmamiEvent}
-        onClick={onClickHandler}
-        {...rest}
-      >
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={text} />
-      </ListItemButton>
-    </ListItem>
-  );
-});
+    return (
+      <ListItem disablePadding id={id}>
+        <ListItemButton
+          component={'a'}
+          ref={ref}
+          onClick={onClickHandler}
+          {...rest}
+        >
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText primary={text} />
+        </ListItemButton>
+      </ListItem>
+    );
+  },
+);
 
 const CreatedLinkComponent = createLink(MUILinkComponent);
 

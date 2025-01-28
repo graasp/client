@@ -31,7 +31,7 @@ const ShakingBox = styled(Box)({
   },
 });
 
-export function ConstructionAnimation(): JSX.Element | null {
+export function ConstructionAnimation(): JSX.Element {
   const [working, setWorking] = useState(true);
 
   if (working) {

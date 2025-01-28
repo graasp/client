@@ -179,13 +179,16 @@ function RouteComponent() {
             </Stack>
           }
         >
-          {item && (
-            <OutletContext.Provider
-              value={{ item, permission: item?.permission, canWrite, canAdmin }}
-            >
-              <Outlet />
-            </OutletContext.Provider>
-          )}
+          <OutletContext.Provider
+            value={{
+              item: item!,
+              permission: item?.permission,
+              canWrite,
+              canAdmin,
+            }}
+          >
+            <Outlet />
+          </OutletContext.Provider>
         </ItemLoginWrapper>
       </FilterItemsContextProvider>
     </Main>

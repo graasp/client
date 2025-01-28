@@ -1,4 +1,4 @@
-import { type JSX, MouseEvent, useState } from 'react';
+import { type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
@@ -41,7 +41,7 @@ const MessageActions = ({
   message,
   deleteMessageFunction,
   isOwn = false,
-}: Props): JSX.Element => {
+}: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const { t } = useTranslation(NS.Chatbox);

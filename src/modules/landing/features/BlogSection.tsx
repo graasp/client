@@ -14,14 +14,15 @@ export function BlogSection() {
       <CallOutSection
         lead={t('LEAD_SENTENCE')}
         title={t('TITLE')}
-        children={<Typography>{t('DESCRIPTION')}</Typography>}
         actions={
           <Button variant="contained" href={GRAASP_BLOG_URL}>
             {t('BUTTON_TEXT')}
           </Button>
         }
         image={<Image alt="blog cover" src="/illustration/graasp-blog.webp" />}
-      />
+      >
+        <Typography>{t('DESCRIPTION')}</Typography>
+      </CallOutSection>
     </Stack>
   );
 }

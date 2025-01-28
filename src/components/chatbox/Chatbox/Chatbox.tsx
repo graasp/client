@@ -34,7 +34,6 @@ type Props = {
   id?: string;
   sendMessageBoxId?: string;
   messages?: ChatMessage[];
-  isLoading?: boolean;
   sendMessageFunction?: SendMessageFunctionType;
   deleteMessageFunction?: DeleteMessageFunctionType;
   editMessageFunction?: EditMessageFunctionType;
@@ -51,16 +50,11 @@ export function Chatbox({
   deleteMessageFunction,
   editMessageFunction,
   messages,
-  isLoading,
   chatId,
   showAdminTools = false,
   currentMember,
   members,
-}: Readonly<Props>): JSX.Element | null {
-  if (isLoading) {
-    return null;
-  }
-
+}: Readonly<Props>): JSX.Element {
   return (
     <EditingContextProvider>
       <CurrentMemberContextProvider currentMember={currentMember}>

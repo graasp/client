@@ -1,4 +1,4 @@
-import { type JSX, type ReactNode, StrictMode, useEffect } from 'react';
+import { type ReactNode, StrictMode, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
@@ -101,7 +101,7 @@ const getCacheForDirection = (direction?: Direction): EmotionCache =>
     stylisPlugins: [prefixer, ...(direction === 'rtl' ? [rtlPlugin] : [])],
   });
 
-function ThemeWrapper({ children }: Readonly<ThemeWrapperProps>): JSX.Element {
+function ThemeWrapper({ children }: Readonly<ThemeWrapperProps>) {
   // use the hook as it allows to use the correct instance of i18n
   const { i18n: i18nInstance } = useTranslation();
   const direction = i18nInstance.dir(i18nInstance.language);

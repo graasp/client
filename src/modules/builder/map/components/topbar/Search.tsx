@@ -5,8 +5,6 @@ import { Autocomplete, TextField } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
-import { useQueryClientContext } from '../context/QueryClientContext';
-
 const Search = ({
   onChange,
   invisible = false,
@@ -17,7 +15,6 @@ const Search = ({
   onChange: (newTags: string[]) => void;
 }): JSX.Element => {
   const ref = useRef(undefined);
-  const { currentMember } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
 
   const onChangeTags = (_e: unknown, newValue: string[]) => {
@@ -26,6 +23,7 @@ const Search = ({
 
   return (
     <Autocomplete
+      sx={{ flex: 1 }}
       multiple
       freeSolo
       aria-label={t('Keywords')}
@@ -44,10 +42,6 @@ const Search = ({
           {...params}
           placeholder={t('Enter keywords here')}
           label={t('Keywords')}
-          sx={{
-            minWidth: currentMember ? '30vw' : '70vw',
-            maxWidth: '100%',
-          }}
           {...(invisible
             ? {
                 variant: 'standard',

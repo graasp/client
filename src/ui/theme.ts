@@ -1,4 +1,4 @@
-import type React from 'react';
+import type { CSSProperties } from 'react';
 
 import {
   Direction,
@@ -53,16 +53,16 @@ export const AccentColors: {
 // add custom typography variants, based on the design guideline
 declare module '@mui/material/styles' {
   interface TypographyVariants {
-    display: React.CSSProperties;
-    label: React.CSSProperties;
-    note: React.CSSProperties;
+    display: CSSProperties;
+    label: CSSProperties;
+    note: CSSProperties;
   }
 
   // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
-    display?: React.CSSProperties;
-    label?: React.CSSProperties;
-    note?: React.CSSProperties;
+    display?: CSSProperties;
+    label?: CSSProperties;
+    note?: CSSProperties;
   }
 }
 

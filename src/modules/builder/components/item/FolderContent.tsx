@@ -85,7 +85,7 @@ const Content = ({
 
   if (mode === ItemLayoutMode.Map) {
     return (
-      <Box mt={1}>
+      <Box flex={1} mt={1}>
         <DesktopMap parentId={item.id} />
       </Box>
     );

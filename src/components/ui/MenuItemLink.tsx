@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import { MenuItem, MenuItemProps } from '@mui/material';
 
@@ -9,12 +9,11 @@ interface MUIMenuItemProps extends Omit<MenuItemProps, 'href'> {
   // Add any additional props you want to pass to the typography
 }
 
-const MUIMenuItemComponent = React.forwardRef<
-  HTMLAnchorElement,
-  MUIMenuItemProps
->((props, ref) => {
-  return <MenuItem component={'a'} ref={ref} {...props} />;
-});
+const MUIMenuItemComponent = forwardRef<HTMLAnchorElement, MUIMenuItemProps>(
+  (props, ref) => {
+    return <MenuItem component={'a'} ref={ref} {...props} />;
+  },
+);
 
 const CreatedLinkComponent = createLink(MUIMenuItemComponent);
 

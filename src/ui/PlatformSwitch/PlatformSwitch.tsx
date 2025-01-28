@@ -120,7 +120,7 @@ export const PlatformSwitch = ({
     const Icon = PlatformIcons[platform];
 
     const tooltip = platformProps?.tooltip;
-    const sxProps = { ...localSX, ...(platformProps?.sx ?? {}) };
+    const sxProps = { ...localSX, ...platformProps?.sx };
     return (
       <Tooltip
         title={platformProps?.disabled ? undefined : tooltip}
@@ -166,7 +166,7 @@ export const PlatformSwitch = ({
     const selectedPlatform = selected || Platform.Builder;
     const SelectedIcon = CustomMobileIcon ?? PlatformIcons[selectedPlatform];
     const platformProps = platformsProps?.[selectedPlatform];
-    const sxProps = { ...sx, ...(platformProps?.sx ?? {}) };
+    const sxProps = { ...sx, ...platformProps?.sx };
     return (
       <Box sx={{ position: 'relative', height: '40px' }}>
         <SpeedDial

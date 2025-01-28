@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
@@ -15,7 +14,7 @@ import {
 } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
-export function NotFoundComponent(): JSX.Element {
+export function NotFoundComponent() {
   const { t } = useTranslation(NS.Account);
   const { color } = useButtonColor('primary');
   return (

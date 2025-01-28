@@ -4,8 +4,7 @@ import { Box, CircularProgress, useTheme } from '@mui/material';
 
 import { PackedItem, UnionOfConst } from '@graasp/sdk';
 
-import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
-
+import { useDataSyncContext } from '../context/DataSyncContext';
 import ThumbnailCrop from './ThumbnailCrop';
 import useThumbnailUploader from './ThumbnailUploader.hook';
 
@@ -45,7 +44,6 @@ export const ThumbnailUploader = ({
     isThumbnailUploading,
     isUploadingError,
     itemThumbnail,
-
     handleDelete,
     onThumbnailUpload,
   } = useThumbnailUploader({ item });

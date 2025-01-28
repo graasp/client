@@ -1,4 +1,4 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import { Typography, TypographyProps } from '@mui/material';
 
@@ -9,7 +9,7 @@ interface MUITypographyProps extends Omit<TypographyProps, 'href'> {
   // Add any additional props you want to pass to the typography
 }
 
-const MUITypographyComponent = React.forwardRef<
+const MUITypographyComponent = forwardRef<
   HTMLAnchorElement,
   MUITypographyProps
 >((props, ref) => {

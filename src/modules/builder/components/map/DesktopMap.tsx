@@ -27,11 +27,10 @@ export const DesktopMap = ({ parentId }: Props): JSX.Element => {
     });
   };
 
-  // todo: improve height
   return (
     <MapView
       parentId={parentId}
-      height="65vh"
+      height="100%"
       viewItem={viewItem}
       viewItemInBuilder={viewItemInBuilder}
     />

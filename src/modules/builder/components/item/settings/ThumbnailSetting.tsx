@@ -14,7 +14,6 @@ import ThumbnailUploader, {
 import { BUILDER } from '~builder/langs';
 
 const THUMBNAIL_SIZE = 120;
-const SYNC_STATUS_KEY = 'ThumbnailSetting';
 
 type Props = { item: PackedItem };
 
@@ -41,7 +40,6 @@ const ThumbnailSetting = ({ item }: Props): JSX.Element | null => {
       <ThumbnailUploader
         item={item}
         thumbnailSize={THUMBNAIL_SIZE}
-        syncStatusKey={SYNC_STATUS_KEY}
         onChange={handleChange}
       />
       {!hasThumbnail && (

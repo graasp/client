@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ComponentProps } from 'react';
 
 import { AccountType } from '@graasp/sdk';
 
@@ -9,7 +9,7 @@ import { AuthContext } from '@/AuthContext';
 
 import { RightHeader } from './RightHeader';
 
-type RightHeaderProps = React.ComponentProps<typeof RightHeader> & {
+type RightHeaderProps = ComponentProps<typeof RightHeader> & {
   isAuthenticated: boolean;
 };
 
