@@ -1,8 +1,14 @@
-import type { JSX } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Button, DialogActions, DialogContent } from '@mui/material';
+import {
+  Box,
+  Button,
+  DialogActions,
+  DialogContent,
+  Stack,
+  TextField,
+} from '@mui/material';
 
 import { DescriptionPlacementType, DiscriminatedItem } from '@graasp/sdk';
 
@@ -15,8 +21,8 @@ import {
 
 import CancelButton from '~builder/components/common/CancelButton';
 
-import { ItemNameField } from './ItemNameField';
-import { DescriptionAndPlacementForm } from './description/DescriptionAndPlacementForm';
+import { ItemNameField } from '../ItemNameField';
+import DescriptionPlacementForm from '../description/DescriptionPlacementForm';
 
 type Inputs = {
   name: string;
@@ -24,28 +30,29 @@ type Inputs = {
   descriptionPlacement: DescriptionPlacementType;
 };
 
-const BaseItemForm = ({
+export function LinkEditForm({
   item,
   onClose,
-}: {
+}: Readonly<{
   item: DiscriminatedItem;
   onClose: () => void;
-}): JSX.Element => {
+}>) {
   const { t: translateCommon } = useTranslation(NS.Common);
-
+  const { t: translateBuilder } = useTranslation(NS.Builder);
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item.name,
       description: item.description ?? '',
     },
   });
-  const { mutateAsync: editItem, isPending } = mutations.useEditItem();
   const {
-    setValue,
     handleSubmit,
-    formState: { isValid },
+    register,
+    formState: { isValid, dirtyFields },
   } = methods;
 
+  // TODO: use special endpoint for link
+  const { mutateAsync: editItem } = mutations.useEditItem();
   async function onSubmit(data: Inputs) {
     try {
       await editItem({
@@ -61,15 +68,22 @@ const BaseItemForm = ({
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <ItemNameField required />
-          <DescriptionAndPlacementForm
-            onDescriptionChange={(newValue) => {
-              setValue('description', newValue);
-            }}
-          />
+          <Stack spacing={2}>
+            <TextField
+              label={translateBuilder('DESCRIPTION.LABEL')}
+              placeholder={translateBuilder('DESCRIPTION.PLACEHOLDER')}
+              variant="filled"
+              multiline
+              minRows={3}
+              maxRows={15}
+              {...register('description')}
+            />
+            <DescriptionPlacementForm />
+          </Stack>
         </DialogContent>
         <DialogActions>
           <CancelButton
@@ -77,18 +91,15 @@ const BaseItemForm = ({
             onClick={onClose}
           />
           <Button
-            loading={isPending}
             id={ITEM_FORM_CONFIRM_BUTTON_ID}
-            type="submit"
-            disabled={!isValid}
             variant="contained"
+            type="submit"
+            disabled={!isValid || !Object.keys(dirtyFields).length}
           >
             {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
-      </FormProvider>
-    </Box>
+      </Box>
+    </FormProvider>
   );
-};
-
-export default BaseItemForm;
+}

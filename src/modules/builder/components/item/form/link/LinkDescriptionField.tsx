@@ -26,7 +26,7 @@ const LinkDescriptionField = ({
   const { description } = getValues();
   return (
     <TextField
-      label={t('DESCRIPTION_LABEL')}
+      label={t('DESCRIPTION.LABEL')}
       variant="standard"
       slotProps={{
         inputLabel: { shrink: true },
