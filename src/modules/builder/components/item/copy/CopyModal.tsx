@@ -41,7 +41,7 @@ export const CopyModal = ({
 
   return (
     <ItemSelectionModal
-      titleKey={BUILDER.COPY_ITEM_MODAL_TITLE}
+      title={translateBuilder(BUILDER.COPY_ITEM_MODAL_TITLE)}
       buttonText={buttonText}
       onClose={onClose}
       open={open}

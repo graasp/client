@@ -91,7 +91,7 @@ const TemplateSelectionButton = ({
 
       {targetItemId && open && (
         <ItemSelectionModal
-          titleKey={BUILDER.ITEM_TEMPLATE_SELECTION_MODAL_TITLE}
+          title={t(BUILDER.ITEM_TEMPLATE_SELECTION_MODAL_TITLE)}
           buttonText={buttonText}
           onClose={onClose}
           open={open}

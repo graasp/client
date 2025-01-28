@@ -25,7 +25,7 @@ import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
 import type { NavigationElement } from '@/ui/Tree/types';
 
 import { BUILDER } from '../../../langs';
-import CancelButton from '../../common/CancelButton';
+import { CancelButton } from '../../common/CancelButton';
 import AccessibleNavigationTree from './AccessibleNavigationTree';
 import ChildrenNavigationTree from './ChildrenNavigationTree';
 import RootNavigationTree from './RootNavigationTree';
@@ -48,7 +48,7 @@ export type ItemSelectionModalProps = {
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;
-  titleKey: string;
+  title: string;
 };
 const ItemSelectionModal = ({
   buttonText = () => 'Submit',
@@ -57,12 +57,11 @@ const ItemSelectionModal = ({
   onClose,
   onConfirm,
   open = false,
-  // titleKey,
+  title,
 }: ItemSelectionModalProps): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: items, isLoading } = hooks.useItems(itemIds);
-  // todo: title is broken because of translations
-  // const title = items ? translateBuilder(titleKey) : <Skeleton height={50} />;
+  const titleElement = items ? title : <Skeleton height={50} />;
 
   // special elements for breadcrumbs
   // root displays specific paths
@@ -122,12 +121,7 @@ const ItemSelectionModal = ({
       open={open}
       scroll="paper"
     >
-      <DialogTitle id={dialogId}>
-        {
-          'Fix me title'
-          // title
-        }
-      </DialogTitle>
+      <DialogTitle id={dialogId}>{titleElement}</DialogTitle>
       <DialogContent>
         <Stack
           direction="column"

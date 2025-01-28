@@ -56,7 +56,7 @@ const CreateShortcutModal = ({
   if (item && open) {
     return (
       <ItemSelectionModal
-        titleKey={BUILDER.CREATE_SHORTCUT_MODAL_TITLE}
+        title={translateBuilder(BUILDER.CREATE_SHORTCUT_MODAL_TITLE)}
         buttonText={buttonText}
         onClose={onClose}
         open={open}

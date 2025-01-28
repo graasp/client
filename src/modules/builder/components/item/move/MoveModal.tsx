@@ -71,7 +71,7 @@ export const MoveModal = ({
 
   return items ? (
     <ItemSelectionModal
-      titleKey={BUILDER.MOVE_ITEM_MODAL_TITLE}
+      title={translateBuilder(BUILDER.MOVE_ITEM_MODAL_TITLE)}
       isDisabled={isDisabled}
       buttonText={buttonText}
       onClose={onClose}
