@@ -26,7 +26,7 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
     item.type === ItemType.SHORTCUT ? item.extra.shortcut.target : item.id;
 
   return (
-    <Card>
+    <Card id={`recentItem-${item.id}`}>
       <Stack
         direction="row"
         alignItems="stretch"
@@ -34,6 +34,7 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
         width="100%"
       >
         <CardActionAreaLink
+          id={`recentItemCardAction-${item.id}`}
           to="/player/$rootId/$itemId"
           params={{ rootId: itemId, itemId: itemId }}
           sx={{
@@ -74,6 +75,7 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
         </CardActionAreaLink>
         <Stack p={1}>
           <Link
+            id={`recentItemBuilder-${item.id}`}
             to="/builder/items/$itemId"
             params={{ itemId }}
             style={{ minHeight: 0 }}
@@ -86,6 +88,7 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
             />
           </Link>
           <Link
+            id={`recentItemPlayer-${item.id}`}
             to="/player/$rootId/$itemId"
             params={{ rootId: itemId, itemId }}
             style={{ minHeight: 0 }}
@@ -97,7 +100,11 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
               sx={{ display: 'block' }}
             />
           </Link>
-          <Link to="/analytics/items/$itemId" params={{ itemId }}>
+          <Link
+            id={`recentItemAnalytics-${item.id}`}
+            to="/analytics/items/$itemId"
+            params={{ itemId }}
+          >
             <AnalyticsIcon
               size={30}
               secondaryColor="white"
