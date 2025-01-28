@@ -23,6 +23,9 @@
   "EDIT": {
     "BUTTON_TEXT": "Bearbeiten"
   },
+  "CLOSE": {
+    "BUTTON_TEXT": "Schließen"
+  },
   "CONFIRM": {
     "BUTTON_TEXT": "Bestätigen"
   },
@@ -49,5 +52,6 @@
     "USERNAME_MAX_LENGTH": "Der Benutzername muss weniger als {{max}} Zeichen lang sein",
     "USERNAME_SPECIAL_CHARACTERS": "Der Benutzername darf keine Anführungszeichen, Anti-Slash, <, >, ^, % enthalten",
     "INVALID_EMAIL": "Dies scheint keine gültige E-Mail-Adresse zu sein"
-  }
+  },
+  "UNKNOWN_DATE": "Unbekannt"
 }
