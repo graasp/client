@@ -21,7 +21,7 @@ import ModeButton from '../item/header/ModeButton';
 import LoadingScreen from '../layout/LoadingScreen';
 import ItemsTable from '../main/list/ItemsTable';
 import SortingSelect from '../table/SortingSelect';
-import { SortingOptions, SortingOptionsType } from '../table/types';
+import { SortingOptions } from '../table/types';
 import { useSorting, useTranslatedSortingOptions } from '../table/useSorting';
 import { BuilderPageLayout } from './BuilderPageLayout';
 
@@ -38,11 +38,10 @@ const BookmarkedItemsContent = ({
   } = hooks.useBookmarkedItems();
   const { shouldDisplayItem } = useFilterItemsContext();
 
-  const { sortBy, setSortBy, ordering, setOrdering, sortFn } =
-    useSorting<SortingOptionsType>({
-      sortBy: SortingOptions.ItemUpdatedAt,
-      ordering: Ordering.DESC,
-    });
+  const { sortBy, setSortBy, ordering, setOrdering, sortFn } = useSorting({
+    sortBy: SortingOptions.ItemUpdatedAt,
+    ordering: Ordering.DESC,
+  });
   const options = useTranslatedSortingOptions();
 
   const filteredData = bookmarkedItems

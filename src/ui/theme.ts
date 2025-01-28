@@ -1,15 +1,10 @@
-import type { CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 
-import {
-  Direction,
-  Theme,
-  createTheme,
-  responsiveFontSizes,
-} from '@mui/material';
+import { createTheme, responsiveFontSizes } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { AllowedContext } from './types.js';
+import { AllowedContext } from './types';
 
 export const PRIMARY_COLOR = '#5050d2';
 export const SECONDARY_COLOR = '#d4b8ff';
@@ -127,16 +122,82 @@ declare module '@mui/material/CircularProgress' {
   }
 }
 
-type GraaspThemeOptions = {
-  fontFamily?: string;
-  direction?: Direction;
-};
-export const createGraaspTheme = ({
-  fontFamily,
-  direction = 'ltr',
-}: GraaspThemeOptions): Theme => {
+const components = {
+  MuiCssBaseline: {
+    styleOverrides: `
+      html {
+        scroll-behavior: smooth;
+      }
+    `,
+  },
+  MuiAvatar: {
+    styleOverrides: {
+      root: {
+        color: 'white',
+        backgroundColor: '#bcbcbc',
+      },
+    },
+  },
+  MuiTypography: {
+    defaultProps: {
+      variantMapping: {
+        // Map the new variants to render a <p> by default
+        label: 'p',
+        note: 'p',
+      },
+    },
+  },
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        textTransform: 'capitalize',
+      },
+    },
+  },
+  MuiTextField: {
+    styleOverrides: {
+      root: {
+        '& input': {
+          backgroundColor: 'white',
+        },
+      },
+    },
+  },
+  MuiOutlinedInput: {
+    // outlined inputs should have the inside white
+    styleOverrides: {
+      root: {
+        backgroundColor: 'white',
+      },
+    },
+  },
+  MuiSelect: {
+    styleOverrides: {
+      root: {
+        overflow: 'hidden',
+        backgroundColor: 'white',
+      },
+    },
+  },
+  MuiTab: {
+    styleOverrides: {
+      root: {
+        textTransform: 'capitalize',
+      },
+    },
+  },
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        borderRadius: '8px',
+      },
+    },
+  },
+} as const;
+
+export const createGraaspTheme = () => {
   const baseTheme = createTheme({
-    direction,
+    direction: 'ltr',
     palette: {
       action: {
         active: DEFAULT_ACTIVE_ACTION_COLOR,
@@ -157,80 +218,9 @@ export const createGraaspTheme = ({
     zIndex: {
       drawer: 100,
     },
-    components: {
-      MuiCssBaseline: {
-        styleOverrides: `
-          html {
-            scroll-behavior: smooth;
-          }
-        `,
-      },
-      MuiAvatar: {
-        styleOverrides: {
-          root: {
-            color: 'white',
-            backgroundColor: '#bcbcbc',
-          },
-        },
-      },
-      MuiTypography: {
-        defaultProps: {
-          variantMapping: {
-            // Map the new variants to render a <p> by default
-            label: 'p',
-            note: 'p',
-          },
-        },
-      },
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            textTransform: 'capitalize',
-          },
-        },
-      },
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            '& input': {
-              backgroundColor: 'white',
-            },
-          },
-        },
-      },
-      MuiOutlinedInput: {
-        // outlined inputs should have the inside white
-        styleOverrides: {
-          root: {
-            backgroundColor: 'white',
-          },
-        },
-      },
-      MuiSelect: {
-        styleOverrides: {
-          root: {
-            overflow: 'hidden',
-            backgroundColor: 'white',
-          },
-        },
-      },
-      MuiTab: {
-        styleOverrides: {
-          root: {
-            textTransform: 'capitalize',
-          },
-        },
-      },
-      MuiCard: {
-        styleOverrides: {
-          root: {
-            borderRadius: '8px',
-          },
-        },
-      },
-    },
+    components,
     typography: {
-      fontFamily: fontFamily ?? ['Nunito', 'Roboto', 'sans-serif'].join(','),
+      fontFamily: 'Nunito, Roboto, sans-serif',
       display: {
         fontSize: '4.5rem',
         fontWeight: 800,
@@ -312,4 +302,4 @@ export const createGraaspTheme = ({
   });
 };
 
-export const theme = createGraaspTheme({});
+export const theme = createGraaspTheme();

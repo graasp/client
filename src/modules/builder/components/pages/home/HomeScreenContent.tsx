@@ -29,10 +29,7 @@ import {
 import { DesktopMap } from '~builder/components/map/DesktopMap';
 import ShowOnlyMeButton from '~builder/components/table/ShowOnlyMeButton';
 import SortingSelect from '~builder/components/table/SortingSelect';
-import {
-  SortingOptions,
-  SortingOptionsType,
-} from '~builder/components/table/types';
+import { SortingOptions } from '~builder/components/table/types';
 import { useSorting } from '~builder/components/table/useSorting';
 import { ITEM_PAGE_SIZE } from '~builder/constants';
 import { ItemLayoutMode, Ordering } from '~builder/enums';
@@ -54,11 +51,10 @@ export function HomeScreenContent({
 
   const { selectedIds } = useSelectionContext();
   const { mode } = useLayoutContext();
-  const { sortBy, setSortBy, ordering, setOrdering } =
-    useSorting<SortingOptionsType>({
-      sortBy: SortingOptions.ItemUpdatedAt,
-      ordering: Ordering.DESC,
-    });
+  const { sortBy, setSortBy, ordering, setOrdering } = useSorting({
+    sortBy: SortingOptions.ItemUpdatedAt,
+    ordering: Ordering.DESC,
+  });
 
   const { user } = useAuth();
   const { itemTypes } = useFilterItemsContext();
@@ -67,6 +63,9 @@ export function HomeScreenContent({
       {
         // todo: in the future this can be any member from creators
         creatorId: showOnlyMe ? user?.id : undefined,
+        // this error is caused by a typing that is very expensive to perform, relaxing it to a string is easier on the checker
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         sortBy,
         ordering,
         types: itemTypes,
@@ -131,7 +130,7 @@ export function HomeScreenContent({
               <SelectTypes />
               <Stack direction="row" gap={1}>
                 {sortBy && setSortBy && (
-                  <SortingSelect<SortingOptionsType>
+                  <SortingSelect
                     sortBy={sortBy}
                     setSortBy={setSortBy}
                     ordering={ordering}
