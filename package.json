@@ -54,7 +54,7 @@
     "papaparse": "5.5.1",
     "prism-react-renderer": "2.4.1",
     "react": "19.0.0",
-    "react-accessible-treeview": "2.10.0",
+    "react-accessible-treeview": "2.11.0",
     "react-date-range": "2.0.1",
     "react-dnd": "16.0.1",
     "react-dnd-html5-backend": "16.0.1",

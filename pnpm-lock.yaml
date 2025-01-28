@@ -132,8 +132,8 @@ importers:
         specifier: 19.0.0
         version: 19.0.0
       react-accessible-treeview:
-        specifier: 2.10.0
-        version: 2.10.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 2.11.0
+        version: 2.11.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-date-range:
         specifier: 2.0.1
         version: 2.0.1(date-fns@4.1.0)(react@19.0.0)
@@ -1659,6 +1659,7 @@ packages:
   '@mui/base@5.0.0-beta.69':
     resolution: {integrity: sha512-r2YyGUXpZxj8rLAlbjp1x2BnMERTZ/dMqd9cClKj2OJ7ALAuiv/9X5E9eHfRc9o/dGRuLSMq/WTjREktJVjxVA==}
     engines: {node: '>=14.0.0'}
+    deprecated: This package has been replaced by @base-ui-components/react
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0 || ^19.0.0
       react: ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -5209,13 +5210,13 @@ packages:
       react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  react-accessible-treeview@2.10.0:
-    resolution: {integrity: sha512-EJadKn+fkL1doftJOvAgN9XYLS6iluVtGuW2ok/eWEBTG80GkpIBxCzKNucGLMHaYQoBMyHe8jfz3h93xDd4UA==}
+  react-accessible-treeview@2.11.0:
+    resolution: {integrity: sha512-KgyDQNq64tfy1AOOlxc2qzkDXjQ8dAlPb2jrFlamF2BagkrM3s4qQKg6YaOuAcZLw1wtps4RfFB2sEO3Hh+SvA==}
     peerDependencies:
       classnames: ^2.2.6
       prop-types: ^15.7.2
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-date-range@2.0.1:
     resolution: {integrity: sha512-jwKYc9zcjYMg2hWbPht+6BF2wjGG5DkRVNJLRXn2Y0B/QCOOnvQX6YXziZVujVADWmgsBaoQnILdmzYw+Bwh0g==}
@@ -12154,7 +12155,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  react-accessible-treeview@2.10.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  react-accessible-treeview@2.11.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       classnames: 2.5.1
       prop-types: 15.8.1
