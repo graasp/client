@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Stack, Typography } from '@mui/material';
 
-import { PackedItem, formatDate } from '@graasp/sdk';
+import { ItemType, PackedItem, formatDate } from '@graasp/sdk';
 
 import { Link } from '@tanstack/react-router';
 
@@ -22,21 +22,28 @@ type Props = {
 const SimpleCard = ({ item }: Props): JSX.Element => {
   const { i18n } = useTranslation(NS.Player);
 
+  const itemId =
+    item.type === ItemType.SHORTCUT ? item.extra.shortcut.target : item.id;
+
   return (
-    <Card>
+    <Card id={`recentItem-${item.id}`}>
       <Stack
         direction="row"
-        alignItems="center"
+        alignItems="stretch"
         justifyContent="space-between"
         width="100%"
       >
         <CardActionAreaLink
+          id={`recentItemCardAction-${item.id}`}
           to="/player/$rootId/$itemId"
-          params={{ rootId: item.id, itemId: item.id }}
+          params={{ rootId: itemId, itemId: itemId }}
           sx={{
             minWidth: 0,
             width: '100%',
-            p: 2,
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            padding: 2,
           }}
         >
           <Stack direction="row" spacing={2} width="100%" minWidth={0}>
@@ -66,10 +73,11 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
             </Stack>
           </Stack>
         </CardActionAreaLink>
-        <Stack paddingInlineEnd={2}>
+        <Stack p={1}>
           <Link
+            id={`recentItemBuilder-${item.id}`}
             to="/builder/items/$itemId"
-            params={{ itemId: item.id }}
+            params={{ itemId }}
             style={{ minHeight: 0 }}
           >
             <BuildIcon
@@ -80,8 +88,9 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
             />
           </Link>
           <Link
+            id={`recentItemPlayer-${item.id}`}
             to="/player/$rootId/$itemId"
-            params={{ rootId: item.id, itemId: item.id }}
+            params={{ rootId: itemId, itemId }}
             style={{ minHeight: 0 }}
           >
             <PlayIcon
@@ -91,7 +100,11 @@ const SimpleCard = ({ item }: Props): JSX.Element => {
               sx={{ display: 'block' }}
             />
           </Link>
-          <Link to="/analytics/items/$itemId" params={{ itemId: item.id }}>
+          <Link
+            id={`recentItemAnalytics-${item.id}`}
+            to="/analytics/items/$itemId"
+            params={{ itemId }}
+          >
             <AnalyticsIcon
               size={30}
               secondaryColor="white"

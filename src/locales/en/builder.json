@@ -531,5 +531,7 @@
   "TAGS_DESCRITPION": "Tags are keywords or terms that you can attach to your items. They describe the subject, context, project, or intended audience of your items. They help other users to find your content when they search in the library if your collection is published. You can find out more about tags in <1>the documentation</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Example: mathematics, history, biology",
   "TAGS_LEVEL_HELPERTEXT": "Example: elementary, high school, undergraduate",
-  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Example: article, video, quiz"
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Example: article, video, quiz",
+  "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Item type {{type}} could not be handled",
+  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item."
 }
