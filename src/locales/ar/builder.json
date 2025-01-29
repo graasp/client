@@ -1,4 +1,13 @@
 {
+  "MENU": {
+    "MY_ITEMS": "قبضتي",
+    "BOOKMARKED_ITEMS": "العلامات المرجعية",
+    "PUBLISHED_ITEMS": "نُشرت",
+    "RECYCLED_ITEMS": "مُعاد تدويره"
+  },
+  "REDIRECTION_TEXT": "إعادة التوجيه",
+  "REDIRECTION_BUTTON": "انتقل إلى إعادة التوجيه",
+  "AVATAR_DEFAULT_ALT": "الصورة الرمزية",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "تم إتاحة تسجيل الدخول لهذا العنصر. يمكن للمستخدمين الجدد الوصول إلى هذا العنصر عند المصادقة باستخدام تسجيل دخول العنصر.",
   "ACCESS_ITEM_LOGIN_TAG": "أي شخص مع رابط الموقع مصدّق عليه ",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "هذا العنصر عامّ. يمكن لأي شخص الوصول إلى هذا العنصر.",
@@ -236,9 +245,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "أين تريد نقل {{name}} وواحد آخر؟",
   "MOVE_ITEM_MODAL_TITLE_other": "إلى أين تريد نقل {{name}} و{{count}} آخرين؟",
   "MY_ITEMS_TITLE": "العناصر الخاصّة بي",
-  "NAVIGATION_BOOKMARKED_ITEMS_TITLE": "العناصر المؤرشفة",
   "SELECT_TEMPLATE_TITLE": "أي مجلد ستختار كقالب؟",
-  "NAVIGATION_SHARED_ITEMS_TITLE": "العناصر المشاركة",
   "NEW_ITEM_APP_TAB_TEXT": "تطبيق",
   "NEW_ITEM_BUTTON_TOOLTIP": "إنشاء عنصر جديد",
   "NEW_ITEM_BUTTON": "عنصر جديد",
@@ -361,6 +368,7 @@
   "CREATE_CUSTOM_APP_HELPER_TEXT": "إذا كنت تعرف عنوان URL الخاص بتطبيق تفاعلي يمكنه الاستفادة من واجهة برمجة تطبيقات Graasp، فيمكنك إدخاله هنا.",
   "CREATE_NEW_APP_BACK_TO_APP_LIST_BUTTON": "الرجوع إلى قائمة التطبيقات",
   "APP_LIST_LOADING_FAILED": "حدث خطأ أثناء الحصول على قائمة التطبيقات. الرجاء معاودة المحاولة في وقت لاحق.",
+  "APP_REQUIRED_ERROR": "يتعين عليك اختيار التطبيق الذي تريد إضافته.",
   "FLAG_REASON_DESCRIPTION": "حدد سبب وضع علامة على هذا العنصر",
   "FLAG_MODAL_TITLE": "إبلاغ عن العنصر",
   "FLAG_MODAL_CONFIRM": "إبلاغ",
@@ -450,11 +458,23 @@
   "UPLOAD_NOTIFICATION_LOADING": "جارٍ التحميل...",
   "UPLOAD_NOTIFICATION_COMPLETE": "اكتمل التحميل!",
   "SORT_BY_LABEL": "فرز حسب",
-  "item.updated_at": "تم التحديث في",
-  "item.creator.name": "الخالق",
-  "item.type": "يكتب",
-  "item.name": "اسم",
-  "order": "طلب",
+  "item": {
+    "updated_at": "تم التحديث في",
+    "creator": {
+      "name": "الخالق"
+    },
+    "type": "يكتب",
+    "name": "اسم",
+    "order": "طلب"
+  },
+  "CHAT": {
+    "SHOW": "عرض الدردشة",
+    "HIDE": "إخفاء الدردشة",
+    "CLEAR_BUTTON_TEXT": "واضح",
+    "CLEAR_ALL": "مسح الدردشة",
+    "CLEAR_ALL_TITLE": "مسح محتوى الدردشة",
+    "CLEAR_ALL_CONTENT": "يمكنك حذف جميع الرسائل من الدردشة. تأكد من تنزيل نسخة إذا كنت تريد الاحتفاظ بالرسائل. لا يمكنك التراجع عن هذا الإجراء."
+  },
   "TRASH_NO_ITEM": "سلة المهملات فارغة.",
   "BOOKMARKS_NO_ITEM": "لا يوجد عنصر مُضاف إلى الإشارات المرجعية",
   "BOOKMARKS_NO_ITEM_SEARCH": "لا يوجد عنصر مُضاف إلى قائمة الإشارات المرجعية لـ {{search}}",
@@ -509,5 +529,11 @@
   "DELETE_GUESTS_MODAL_CONTENT": "أؤكد حذف القراء التاليين وبياناتهم <1>بشكل دائم</1>:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "حذف نهائيا",
   "ADD_TAG_OPTION_BUTTON_TEXT": "أضف {{value}}",
-  "CREATE_FOLDER_BUTTON_TEXT": "إنشاء مجلد"
+  "CREATE_FOLDER_BUTTON_TEXT": "إنشاء مجلد",
+  "TAGS_DESCRITPION": "العلامات هي كلمات رئيسية أو مصطلحات يمكنك إرفاقها بعناصر. وهي تصف الموضوع أو السياق أو المشروع أو الجمهور المستهدف لعناصرك. وهي تساعد المستخدمين الآخرين على العثور على المحتوى الخاص بك عندما يبحثون في المكتبة إذا تم نشر مجموعتك. يمكنك معرفة المزيد حول العلامات في <1>الوثائق</1>.",
+  "TAGS_DISCIPLINE_HELPERTEXT": "مثال: الرياضيات، التاريخ، علم الأحياء",
+  "TAGS_LEVEL_HELPERTEXT": "مثال: ابتدائي، ثانوي، جامعي",
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "مثال: مقال، فيديو، اختبار",
+  "ITEM_TYPE_COULD_NOT_BE_HANDLED": "لم يتمكن من التعامل مع نوع العنصر {{type}}",
+  "SHORTCUT_FETCHING_ISSUE": "كانت هناك مشكلة أثناء جلب المحتوى لهذا العنصر المختصر."
 }
