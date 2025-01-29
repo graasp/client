@@ -19,5 +19,7 @@
   "This location does not match a specific address.": "هذا الموقع لا يتطابق مع عنوان محدد.",
   "Select a country": "حدد البلد",
   "VIEW_ITEM_BUILDER_TOOLTIP": "عرض العنصر في Graasp Builder",
-  "VIEW_ITEM_PLAYER_TOOLTIP": "عرض العنصر في Graasp Player"
+  "VIEW_ITEM_PLAYER_TOOLTIP": "عرض العنصر في Graasp Player",
+  "FUNCTIONALITIES_REDUCED_FOR_LOGGED_OUT_MESSAGE": "تم تعطيل بعض الوظائف للمستخدمين الذين قاموا بتسجيل الخروج.",
+  "Add a new item at this location": "أضف عنصرًا جديدًا في هذا الموقع"
 }
