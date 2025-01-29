@@ -19,10 +19,12 @@ const baseStyle = (theme: Theme) => ({
   '&:hover': {
     cursor: 'pointer',
   },
-  '&:disabled svg': {
+  // since not using `button` but `a` tags, they are not "disabled" in the css sense, so we use the disabled attribute
+  '&[disabled] svg': {
     color: 'gray',
   },
-  '&:disabled': {
+  // since not using `button` but `a` tags, they are not "disabled" in the css sense, so we use the disabled attribute
+  '&[disabled]': {
     backgroundColor: '#e9e9e9',
     cursor: 'not-allowed',
   },
@@ -44,7 +46,8 @@ export const ToolButton = styled('button')(({ theme }) => ({
   '& svg': {
     color: '#00639A',
   },
-  '&:hover:not(:disabled)': {
+  // since not using `button` but `a` tags, they are not "disabled" in the css sense, so we use the disabled attribute
+  '&:hover:not([disabled])': {
     backgroundColor: '#A2CEFF',
   },
 }));
@@ -55,16 +58,18 @@ const StyledNavigationButton = styled('a')(({ theme }) => ({
   '& svg': {
     color: theme.palette.primary.main,
   },
-  '&:hover:not(:disabled)': {
+  // since not using `button` but `a` tags, they are not "disabled" in the css sense, so we use the disabled attribute
+  '&:hover:not([disabled])': {
     backgroundColor: '#BFB4FF',
   },
 }));
 
-const StyledNavigationComponent = forwardRef<HTMLAnchorElement>(
-  (props, ref) => {
-    return <StyledNavigationButton ref={ref} {...props} />;
-  },
-);
+const StyledNavigationComponent = forwardRef<
+  HTMLAnchorElement,
+  { id?: string }
+>((props, ref) => {
+  return <StyledNavigationButton ref={ref} {...props} />;
+});
 
 const CreatedLinkComponent = createLink(StyledNavigationComponent);
 
