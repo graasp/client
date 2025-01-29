@@ -27,8 +27,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
       '@graasp/query-client':
-        specifier: github:graasp/graasp-query-client#public-profile-should-return-null
-        version: https://codeload.github.com/graasp/graasp-query-client/tar.gz/230313ebc5ceeff1fb50d7668138d7e3be00768d(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)
+        specifier: 5.7.1
+        version: 5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)
       '@graasp/sdk':
         specifier: 5.7.0
         version: 5.7.0(date-fns@4.1.0)(uuid@11.0.5)
@@ -1521,9 +1521,8 @@ packages:
   '@googlemaps/js-api-loader@1.16.8':
     resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
 
-  '@graasp/query-client@https://codeload.github.com/graasp/graasp-query-client/tar.gz/230313ebc5ceeff1fb50d7668138d7e3be00768d':
-    resolution: {tarball: https://codeload.github.com/graasp/graasp-query-client/tar.gz/230313ebc5ceeff1fb50d7668138d7e3be00768d}
-    version: 5.7.1
+  '@graasp/query-client@5.7.1':
+    resolution: {integrity: sha512-GARwmHf227nH5s8Mie0n5WEA4Anv1+LTp3SPsJerXjWqwgNuqLya6/h6OAvhMIyDNmhGypr+yXl2g4ZSqmBsgQ==}
     peerDependencies:
       '@graasp/sdk': ^4.0.0 || ^5.0.0
       '@graasp/translations': '*'
@@ -7782,7 +7781,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/query-client@https://codeload.github.com/graasp/graasp-query-client/tar.gz/230313ebc5ceeff1fb50d7668138d7e3be00768d(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)':
+  '@graasp/query-client@5.7.1(@graasp/sdk@5.7.0(date-fns@4.1.0)(uuid@11.0.5))(@graasp/translations@1.43.0(i18next@24.2.2(typescript@5.7.3)))(react@19.0.0)':
     dependencies:
       '@graasp/sdk': 5.7.0(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/translations': 1.43.0(i18next@24.2.2(typescript@5.7.3))
