@@ -494,21 +494,6 @@ export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
   ],
 };
 
-export const SHORTCUT = {
-  ...DEFAULT_FOLDER_ITEM,
-  id: 'gcafbd2a-5688-11eb-ae92-0242ac130002',
-  name: 'shortcut for own_item_name1',
-  path: 'gcafbd2a_5688_11eb_ae92_0242ac130002',
-  type: ItemType.SHORTCUT,
-  extra: {
-    image: 'someimageurl',
-  },
-  settings: {
-    isPinned: false,
-    showChatbox: false,
-  },
-};
-
 export const generateLotsOfFoldersOnHome = ({
   folderCount,
   creator = DEFAULT_FOLDER_ITEM.creator,

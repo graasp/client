@@ -1,5 +1,9 @@
 import { API_ROUTES } from '@graasp/query-client';
-import { HttpMethod } from '@graasp/sdk';
+import {
+  HttpMethod,
+  PackedFolderItemFactory,
+  PackedShortcutItemFactory,
+} from '@graasp/sdk';
 
 import { formatDistanceToNow } from 'date-fns';
 import { StatusCodes } from 'http-status-codes';
@@ -24,6 +28,12 @@ import { MemberForTest } from '../../support/types';
 import { ID_FORMAT } from '../../support/utils';
 
 const { buildGetCurrentMemberRoute, buildUploadAvatarRoute } = API_ROUTES;
+
+const targetItem = PackedFolderItemFactory({ name: 'Target' });
+const shortcutItem = PackedShortcutItemFactory({
+  name: 'Shortcut',
+  extra: { shortcut: { target: targetItem.id } },
+});
 
 type TestHelperInput = { currentMember: MemberForTest };
 class TestHelper {
@@ -139,5 +149,45 @@ describe('Check member info', () => {
       locale: getLocalForDateFns(lang),
     });
     cy.get(`#${MEMBER_CREATED_AT_ID}`).should('contain', formattedDate);
+  });
+});
+
+describe('Recent items', () => {
+  beforeEach(() => {
+    cy.setUpApi({
+      currentMember: MEMBER_WITH_AVATAR,
+      items: [shortcutItem, targetItem],
+    });
+    cy.visit(ACCOUNT_HOME_PATH);
+    cy.wait('@getCurrentMember');
+  });
+
+  it('Shortcut item links to target item', () => {
+    cy.get(`#recentItem-${shortcutItem.id}`).should('be.visible');
+    cy.get(`#recentItem-${targetItem.id}`).should('be.visible');
+
+    // card action on the shortcut directs to the target item
+    cy.get(`a#recentItemCardAction-${shortcutItem.id}`).click();
+    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
+
+    // builder link
+    cy.visit('/account');
+    cy.get(`a#recentItemBuilder-${shortcutItem.id}`).click();
+    cy.url().should('contain', `/builder/items/${targetItem.id}`);
+
+    // player link
+    cy.visit('/account');
+    cy.get(`a#recentItemPlayer-${shortcutItem.id}`).click();
+    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
+
+    // analytics link
+    cy.visit('/account');
+    cy.get(`a#recentItemAnalytics-${shortcutItem.id}`).click();
+    cy.url().should('contain', `/analytics/items/${targetItem.id}`);
+
+    // the target item directs to the target item
+    cy.visit('/account');
+    cy.get(`a#recentItemCardAction-${targetItem.id}`).click();
+    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
   });
 });
