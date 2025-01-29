@@ -25,7 +25,8 @@
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} Elementos con mayor interacción por usuario",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "No hay acciones para mostrar para este usuario",
   "HOME": {
-    "NO_ITEM_SELECTED": "Tienes que seleccionar un elemento para ver los análisis."
+    "NO_ITEM_SELECTED": "Tienes que seleccionar un elemento para ver los análisis.",
+    "SELECT_AN_ITEM": "Elige un artículo"
   },
   "NO_USER_SELECTED": "Ningún usuario seleccionado",
   "OTHER_ACTION_TYPE": "Otro",
@@ -125,5 +126,8 @@
   "JSON_DESCRIPTION": "pares clave-valor, más un formato técnico.",
   "CSV_DESCRIPTION": "como una vista de tabla, similar a lo que se ve en hojas de cálculo como Excel.",
   "START_EXPORTING": "Comience a exportar con {{format}}",
-  "EXPORTING_DONE": "{{formato}} solicitud enviada"
+  "EXPORTING_DONE": "{{formato}} solicitud enviada",
+  "LAST_THREE_MONTHS_LABEL": "Últimos tres meses",
+  "Count": "Contar: {{count}}",
+  "CHART_DATA_UNAVAILABLE": "No se pudieron obtener los datos para este gráfico"
 }
