@@ -1,6 +1,5 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useMap } from 'react-leaflet';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -19,10 +18,17 @@ import GeolocationPicker, {
 import { useQueryClientContext } from '../context/QueryClientContext';
 import Search from './Search';
 
-type Props = { onChange: (tags: string[]) => void; tags: string[] };
+type Props = {
+  onChange: (tags: string[]) => void;
+  tags: string[];
+  onChangeOption: GeolocationPickerProps['onChangeOption'];
+};
 
-const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
-  const map = useMap();
+const MobileTopBar = ({
+  onChange,
+  tags,
+  onChangeOption,
+}: Props): JSX.Element => {
   const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
   const { t: commonT } = useTranslation(NS.Common);
@@ -33,14 +39,6 @@ const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
   };
 
   const handleClose = () => {
-    setOpen(false);
-  };
-
-  const onChangeOption: GeolocationPickerProps['onChangeOption'] = ({
-    lat,
-    lng,
-  }) => {
-    map.flyTo({ lat, lng }, 10);
     setOpen(false);
   };
 
@@ -63,7 +61,10 @@ const MobileTopBar = ({ onChange, tags }: Props): JSX.Element => {
               <br />
               <GeolocationPicker
                 useSuggestionsForAddress={useSuggestionsForAddress}
-                onChangeOption={onChangeOption}
+                onChangeOption={(v) => {
+                  onChangeOption?.(v);
+                  setOpen(false);
+                }}
               />
               <br />
             </>

@@ -1,4 +1,4 @@
-import { type JSX, useRef } from 'react';
+import { type JSX } from 'react';
 import { FeatureGroup } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
@@ -19,36 +19,12 @@ const ItemsMarkers = ({
     lng2: number;
   };
 }): JSX.Element | JSX.Element[] | undefined => {
-  const groupRef = useRef<any>(null);
-  // const map = useMap();
   const { useItemsInMap, item } = useQueryClientContext();
   const { data: itemGeolocations, isFetching } = useItemsInMap({
     ...bounds,
     parentItemId: item?.id,
     keywords: tags,
   });
-  // const [prevState, setPrevState] = useState(itemGeolocations);
-
-  // todo: fix this code.
-  // this use effect causes the storybook tests to hang forever
-  // useEffect(() => {
-  //   if (!isFetching) {
-  //     if (JSON.stringify(itemGeolocations) !== JSON.stringify(prevState)) {
-  //       // on positive search, focus on items
-  //       if (
-  //         itemGeolocations?.length &&
-  //         itemGeolocations.length !== prevState?.length &&
-  //         tags.length
-  //       ) {
-  //         map.fitBounds(groupRef.current.getBounds());
-  //       }
-
-  //       // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-  //       setPrevState(itemGeolocations);
-  //     }
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [tags, itemGeolocations, isFetching]);
 
   if (isFetching) {
     return (
@@ -68,7 +44,7 @@ const ItemsMarkers = ({
   }
   // color of clusters is defined by number of markers grouped together
   return (
-    <FeatureGroup ref={groupRef}>
+    <FeatureGroup>
       <MarkerClusterGroup chunkedLoading showCoverageOnHover={false}>
         {itemGeolocations?.map((geoloc) => (
           <ItemMarker key={geoloc.id} geolocation={geoloc} />

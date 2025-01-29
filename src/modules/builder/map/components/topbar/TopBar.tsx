@@ -25,7 +25,13 @@ const TopBar = ({
   const { isMobile } = useMobileView();
 
   if (isMobile) {
-    return <MobileTopBar tags={tags} onChange={onChange} />;
+    return (
+      <MobileTopBar
+        tags={tags}
+        onChange={onChange}
+        onChangeOption={onChangeOption}
+      />
+    );
   }
 
   return (
