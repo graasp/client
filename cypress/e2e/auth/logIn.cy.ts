@@ -27,7 +27,7 @@ describe('Already signed in', () => {
   it('Should show builder home', () => {
     cy.visit('/auth');
     // COMMENT: We redirect to the builder for now until we have a better home page in account to show the users
-    cy.get(`h4`).should('contain', 'My Graasp');
+    cy.get(`h1`).should('contain', 'My Graasp');
   });
 });
 

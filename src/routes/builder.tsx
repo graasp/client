@@ -1,8 +1,5 @@
-import 'react-quill-new/dist/quill.snow.css';
-
 import { Outlet, createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
-import 'katex/dist/katex.min.css';
 import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';

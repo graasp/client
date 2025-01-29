@@ -1,3 +1,9 @@
+/* import quill styles */
+@import url(react-quill-new/dist/quill.snow.css);
+
+/* import katex styles */
+@import url(katex/dist/katex.min.css);
+
 /* nunito-latin-wght-normal */
 @font-face {
   font-family: 'Nunito';
