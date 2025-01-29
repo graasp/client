@@ -1,6 +1,6 @@
 # Graasp Account
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
@@ -62,6 +62,7 @@ VITE_GRAASP_ANALYZER_HOST=http://localhost:3005
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ReidyT"><img src="https://avatars.githubusercontent.com/u/147397675?v=4?s=100" width="100px;" alt="Thibault Reidy"/><br /><sub><b>Thibault Reidy</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=ReidyT" title="Tests">⚠️</a> <a href="https://github.com/graasp/client/commits?author=ReidyT" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MartinaVin"><img src="https://avatars.githubusercontent.com/u/47863122?v=4?s=100" width="100px;" alt="Martina Vincoli"/><br /><sub><b>Martina Vincoli</b></sub></a><br /><a href="#design-MartinaVin" title="Design">🎨</a> <a href="#translation-MartinaVin" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/swouf"><img src="https://avatars.githubusercontent.com/u/5767619?v=4?s=100" width="100px;" alt="Jérémy La Scala"/><br /><sub><b>Jérémy La Scala</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=swouf" title="Code">💻</a> <a href="https://github.com/graasp/client/issues?q=author%3Aswouf" title="Bug reports">🐛</a> <a href="https://github.com/graasp/client/commits?author=swouf" title="Tests">⚠️</a> <a href="#research-swouf" title="Research">🔬</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://morganridel.fr"><img src="https://avatars.githubusercontent.com/u/14032127?v=4?s=100" width="100px;" alt="Morgan Ridel"/><br /><sub><b>Morgan Ridel</b></sub></a><br /><a href="#infra-morganridel" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/graasp/client/commits?author=morganridel" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=morganridel" title="Tests">⚠️</a> <a href="https://github.com/graasp/client/commits?author=morganridel" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
