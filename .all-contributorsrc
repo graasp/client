@@ -1,7 +1,5 @@
 {
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -12,71 +10,56 @@
       "name": "Kim Lan Phan Hoang",
       "avatar_url": "https://avatars.githubusercontent.com/u/11229627?v=4",
       "profile": "https://www.linkedin.com/in/kim-lan-phan-hoang-a457bb130",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "dialexo",
       "name": "Alexandre Chau",
       "avatar_url": "https://avatars.githubusercontent.com/u/14943421?v=4",
       "profile": "https://www.linkedin.com/in/chau-alexandre/",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "spaenleh",
       "name": "Basile Spaenlehauer",
       "avatar_url": "https://avatars.githubusercontent.com/u/39373170?v=4",
       "profile": "https://github.com/spaenleh",
-      "contributions": [
-        "code"
-      ]
+      "contributions": ["code"]
     },
     {
       "login": "ReidyT",
       "name": "Thibault Reidy",
       "avatar_url": "https://avatars.githubusercontent.com/u/147397675?v=4",
       "profile": "https://github.com/ReidyT",
-      "contributions": [
-        "test",
-        "code"
-      ]
+      "contributions": ["test", "code"]
     },
     {
       "login": "MartinaVin",
       "name": "Martina Vincoli",
       "avatar_url": "https://avatars.githubusercontent.com/u/47863122?v=4",
       "profile": "https://github.com/MartinaVin",
-      "contributions": [
-        "design",
-        "translation"
-      ]
+      "contributions": ["design", "translation"]
     },
     {
       "login": "swouf",
       "name": "Jérémy La Scala",
       "avatar_url": "https://avatars.githubusercontent.com/u/5767619?v=4",
       "profile": "https://github.com/swouf",
-      "contributions": [
-        "code",
-        "bug",
-        "test",
-        "research"
-      ]
+      "contributions": ["code", "bug", "test", "research"]
     },
     {
       "login": "morganridel",
       "name": "Morgan Ridel",
       "avatar_url": "https://avatars.githubusercontent.com/u/14032127?v=4",
       "profile": "http://morganridel.fr",
-      "contributions": [
-        "infra",
-        "code",
-        "test",
-        "doc"
-      ]
+      "contributions": ["infra", "code", "test", "doc"]
+    },
+    {
+      "login": "juancarlosfarah",
+      "name": "Juan Carlos Farah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1707188?v=4",
+      "profile": "https://juancarlosfarah.com",
+      "contributions": ["code", "review", "test", "research", "ideas", "bug"]
     }
   ],
   "contributorsPerLine": 7,
