@@ -1,6 +1,6 @@
 # Graasp Account
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
@@ -73,6 +73,7 @@ VITE_GRAASP_ANALYZER_HOST=http://localhost:3005
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mariembencheikh"><img src="https://avatars.githubusercontent.com/u/58473159?v=4?s=100" width="100px;" alt="mariembencheikh"/><br /><sub><b>mariembencheikh</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=mariembencheikh" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=mariembencheikh" title="Tests">⚠️</a> <a href="#design-mariembencheikh" title="Design">🎨</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/LinaYahya"><img src="https://avatars.githubusercontent.com/u/49619087?v=4?s=100" width="100px;" alt="Lina Ebeid"/><br /><sub><b>Lina Ebeid</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=LinaYahya" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=LinaYahya" title="Tests">⚠️</a> <a href="#design-LinaYahya" title="Design">🎨</a> <a href="#a11y-LinaYahya" title="Accessibility">️️️️♿️</a> <a href="#translation-LinaYahya" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/victorggonzalez"><img src="https://avatars.githubusercontent.com/u/36533965?v=4?s=100" width="100px;" alt="Víctor González"/><br /><sub><b>Víctor González</b></sub></a><br /><a href="#infra-victorggonzalez" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/graasp/client/commits?author=victorggonzalez" title="Tests">⚠️</a> <a href="#tool-victorggonzalez" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/alvrba"><img src="https://avatars.githubusercontent.com/u/67112345?v=4?s=100" width="100px;" alt="Alvaro Bautista"/><br /><sub><b>Alvaro Bautista</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=alvrba" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=alvrba" title="Tests">⚠️</a> <a href="#design-alvrba" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>

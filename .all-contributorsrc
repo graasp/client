@@ -109,6 +109,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/36533965?v=4",
       "profile": "https://github.com/victorggonzalez",
       "contributions": ["infra", "test", "tool"]
+    },
+    {
+      "login": "alvrba",
+      "name": "Alvaro Bautista",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67112345?v=4",
+      "profile": "https://github.com/alvrba",
+      "contributions": ["code", "test", "design"]
     }
   ],
   "contributorsPerLine": 7,
