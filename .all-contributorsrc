@@ -94,7 +94,14 @@
       "name": "mariembencheikh",
       "avatar_url": "https://avatars.githubusercontent.com/u/58473159?v=4",
       "profile": "https://github.com/mariembencheikh",
-      "contributions": ["code", "test", "design"]
+      "contributions": ["code", "test", "design", "translation"]
+    },
+    {
+      "login": "LinaYahya",
+      "name": "Lina Ebeid",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49619087?v=4",
+      "profile": "https://github.com/LinaYahya",
+      "contributions": ["code", "test", "design", "a11y", "translation"]
     }
   ],
   "contributorsPerLine": 7,
