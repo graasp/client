@@ -102,6 +102,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/49619087?v=4",
       "profile": "https://github.com/LinaYahya",
       "contributions": ["code", "test", "design", "a11y", "translation"]
+    },
+    {
+      "login": "victorggonzalez",
+      "name": "Víctor González",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36533965?v=4",
+      "profile": "https://github.com/victorggonzalez",
+      "contributions": ["infra", "test", "tool"]
     }
   ],
   "contributorsPerLine": 7,
