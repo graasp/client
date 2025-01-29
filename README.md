@@ -1,6 +1,6 @@
 # Graasp Account
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
@@ -82,6 +82,7 @@ VITE_GRAASP_ANALYZER_HOST=http://localhost:3005
     <tr>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Julien-Torrent"><img src="https://avatars.githubusercontent.com/u/44172411?v=4?s=100" width="100px;" alt="Julien Torrent"/><br /><sub><b>Julien Torrent</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=Julien-Torrent" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=Julien-Torrent" title="Tests">⚠️</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://xiaotiansu.github.io/"><img src="https://avatars.githubusercontent.com/u/44131581?v=4?s=100" width="100px;" alt="Su"/><br /><sub><b>Su</b></sub></a><br /><a href="https://github.com/graasp/client/commits?author=xiaotiansu" title="Code">💻</a> <a href="https://github.com/graasp/client/commits?author=xiaotiansu" title="Tests">⚠️</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/HusamJubran"><img src="https://avatars.githubusercontent.com/u/92751330?v=4?s=100" width="100px;" alt="HusamJubran"/><br /><sub><b>HusamJubran</b></sub></a><br /><a href="#translation-HusamJubran" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
