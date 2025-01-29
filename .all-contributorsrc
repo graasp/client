@@ -130,6 +130,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/51781491?v=4",
       "profile": "https://github.com/abdallah75",
       "contributions": ["code"]
+    },
+    {
+      "login": "Julien-Torrent",
+      "name": "Julien Torrent",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44172411?v=4",
+      "profile": "https://github.com/Julien-Torrent",
+      "contributions": ["code", "test"]
     }
   ],
   "contributorsPerLine": 7,
