@@ -1,5 +1,43 @@
 # Changelog
 
+## [2.19.2](https://github.com/graasp/client/compare/v2.19.1...v2.19.2) (2025-01-29)
+
+
+### Bug Fixes
+
+* add spanish builder ([7fc36a2](https://github.com/graasp/client/commit/7fc36a2b4e58e99f04af6e6b497ab79396c8e450))
+* analytics navigator arrow is miss-aligned ([#741](https://github.com/graasp/client/issues/741)) ([2d77e45](https://github.com/graasp/client/commit/2d77e452fca748c979f42b1067b34146db78ab36))
+* **arabic:** update translations ([#779](https://github.com/graasp/client/issues/779)) ([b3ae3ef](https://github.com/graasp/client/commit/b3ae3ef5bdb18ba3e23508029189e354c7543ba7))
+* chatbox container ([#729](https://github.com/graasp/client/issues/729)) ([a75f4c3](https://github.com/graasp/client/commit/a75f4c3fd9e9ba589e475cae29a1d41c011f722f))
+* chatbox with translations and other improvements ([784936f](https://github.com/graasp/client/commit/784936f3aa0e6578d09aa099633e8a0f23ecce5f))
+* default to builder when user is already authenticated ([#763](https://github.com/graasp/client/issues/763)) ([af5ae6b](https://github.com/graasp/client/commit/af5ae6bfaaa3fe83d9ea0f654d4ea1566ff3c81b))
+* deployment workflows ([e5d338f](https://github.com/graasp/client/commit/e5d338fbc145feaecc5daeb974794047ad98a95e))
+* **deps:** update dependency @sentry/react to v8.52.0 ([#608](https://github.com/graasp/client/issues/608)) ([43b8b84](https://github.com/graasp/client/commit/43b8b84e5d514ac501e7a3baca883f2b961c265d))
+* **deps:** update dependency @tanstack/react-query to v5.65.1 ([#757](https://github.com/graasp/client/issues/757)) ([0abeffb](https://github.com/graasp/client/commit/0abeffb62758359a64af6ee9cad16a0fab80803f))
+* **deps:** update dependency i18next to v24.2.2 ([#745](https://github.com/graasp/client/issues/745)) ([8f83540](https://github.com/graasp/client/commit/8f83540370066ad9e606d174c3c45cd77156c756))
+* **deps:** update dependency lucide-react to v0.474.0 ([#738](https://github.com/graasp/client/issues/738)) ([40113a3](https://github.com/graasp/client/commit/40113a3451ddfe68b7bacd1fb4ead7eb143aa9fc))
+* **deps:** update dependency papaparse to v5.5.2 ([#762](https://github.com/graasp/client/issues/762)) ([6c120c3](https://github.com/graasp/client/commit/6c120c3c84357e7f0bc87979a77d01f881b68610))
+* **deps:** update dependency react-accessible-treeview to v2.11.0 ([#758](https://github.com/graasp/client/issues/758)) ([a9bcdd4](https://github.com/graasp/client/commit/a9bcdd4bd27e381e72c184271ca38b5eee0fe15b))
+* **deps:** update dependency recharts to v2.15.1 ([#759](https://github.com/graasp/client/issues/759)) ([b3fefe5](https://github.com/graasp/client/commit/b3fefe57a7fdcb04e8aae346c7b3f4fbc983a4b6))
+* **deps:** update tanstack-router monorepo to v1.97.25 ([#585](https://github.com/graasp/client/issues/585)) ([123b4e4](https://github.com/graasp/client/commit/123b4e4f990c433d486f92e3a271ada02bd3272f))
+* **deps:** update tanstack-router monorepo to v1.98.0 ([#496](https://github.com/graasp/client/issues/496)) ([f4a1b7c](https://github.com/graasp/client/commit/f4a1b7cb876a62fdf73d25c7dedc9e5b7c2a7654))
+* disable navigation to player and analytics home from account ([#743](https://github.com/graasp/client/issues/743)) ([447e816](https://github.com/graasp/client/commit/447e816d31126b81155b26e7669134da0d34869d))
+* **french:** update translations ([#737](https://github.com/graasp/client/issues/737)) ([3497fe3](https://github.com/graasp/client/commit/3497fe3332a94940bd66e58b1ba0097aa61ca7a4))
+* **german:** update translations ([#765](https://github.com/graasp/client/issues/765)) ([1945e36](https://github.com/graasp/client/commit/1945e36c885969cee726834fda292129af52a4a3))
+* h5p integration and require h5p env var in prod build ([#744](https://github.com/graasp/client/issues/744)) ([7319a34](https://github.com/graasp/client/commit/7319a346a98e58979e36f0816ccf072986493912))
+* **italian:** update translations ([#778](https://github.com/graasp/client/issues/778)) ([592c586](https://github.com/graasp/client/commit/592c58649f3bdb7b00a71a125bd6a6f6e4976731))
+* map responsive crash because context is not present ([#776](https://github.com/graasp/client/issues/776)) ([66c4754](https://github.com/graasp/client/commit/66c4754fbfce07124f6378764984e2ec26d899cf))
+* map view ([#739](https://github.com/graasp/client/issues/739)) ([f289fd2](https://github.com/graasp/client/commit/f289fd206bc98e271bd17604a323bdf80f35ace6))
+* modal titles ([4c2da02](https://github.com/graasp/client/commit/4c2da0278f0e5cf4ebff590077b343a66bb61dc0))
+* modal titles ([#764](https://github.com/graasp/client/issues/764)) ([c8d1bc9](https://github.com/graasp/client/commit/c8d1bc9a248196df87812c140e666094cb35a307))
+* public profile visibility not updating ([#740](https://github.com/graasp/client/issues/740)) ([11b9276](https://github.com/graasp/client/commit/11b92762a01cd819b655115d6fd36df8a3b5b876))
+* re-order links on landing page ([8bcb000](https://github.com/graasp/client/commit/8bcb000cda22618df31a12a8ee0e01031180b23a))
+* react 19 migration ([#747](https://github.com/graasp/client/issues/747)) ([f37ed27](https://github.com/graasp/client/commit/f37ed278deacae9e866beaa9c19ed683cb94c28f))
+* shortcut and storybook build ([#751](https://github.com/graasp/client/issues/751)) ([79bc571](https://github.com/graasp/client/commit/79bc571c787a1240861b4cfb6297fe327a0eeaaf))
+* **spanish:** update translations ([#777](https://github.com/graasp/client/issues/777)) ([9e74139](https://github.com/graasp/client/commit/9e741391532a4d92643d9f88b6ab5e8ac77c8ad1))
+* tsc compilation time ([#756](https://github.com/graasp/client/issues/756)) ([69c6c18](https://github.com/graasp/client/commit/69c6c181726625b7232ae9f1bdad0dc6557eea8e))
+* umami event on navigation cause full-page reload ([#742](https://github.com/graasp/client/issues/742)) ([0bc66f9](https://github.com/graasp/client/commit/0bc66f9f5cfe5519b7a4a95832a706f1de29a9e0))
+
 ## [2.19.1](https://github.com/graasp/client/compare/v2.19.0...v2.19.1) (2025-01-23)
 
 
