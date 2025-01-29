@@ -1,6 +1,6 @@
 # Graasp Account
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
@@ -33,6 +33,7 @@ VITE_SENTRY_DSN= # some value
 VITE_RECAPTCHA_SITE_KEY= # some value
 
 VITE_GRAASP_H5P_INTEGRATION_URL= # the origin for the h5p integration
+VITE_GOOGLE_KEY= # a google api key for using the google map in analytics
 ```
 
 ## Test setup
