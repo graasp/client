@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { I18nextProvider } from 'react-i18next';
-import 'react-quill-new/dist/quill.snow.css';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
