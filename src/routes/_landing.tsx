@@ -98,15 +98,15 @@ function RouteComponent() {
             >
               <ButtonLink
                 activeProps={() => ({ fontStyle: 'bold' })}
-                to="/support"
-              >
-                {t('GETTING_STARTED')}
-              </ButtonLink>
-              <ButtonLink
-                activeProps={() => ({ fontStyle: 'bold' })}
                 to="/features"
               >
                 {t('FEATURES')}
+              </ButtonLink>
+              <ButtonLink
+                activeProps={() => ({ fontStyle: 'bold' })}
+                to="/support"
+              >
+                {t('GETTING_STARTED')}
               </ButtonLink>
               <ButtonLink
                 activeProps={() => ({ fontStyle: 'bold' })}
