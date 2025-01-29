@@ -223,8 +223,8 @@ importers:
         specifier: 19.6.0
         version: 19.6.0
       '@cypress/code-coverage':
-        specifier: 3.13.10
-        version: 3.13.10(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(cypress@14.0.0)(webpack@5.97.1(esbuild@0.24.2))
+        specifier: 3.13.11
+        version: 3.13.11(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(cypress@14.0.1)(webpack@5.97.1(esbuild@0.24.2))
       '@eslint-react/eslint-plugin':
         specifier: 1.25.0
         version: 1.25.0(eslint@9.19.0(jiti@2.4.2))(ts-api-utils@2.0.0(typescript@5.7.3))(typescript@5.7.3)
@@ -328,8 +328,8 @@ importers:
         specifier: 9.1.2
         version: 9.1.2
       cypress:
-        specifier: 14.0.0
-        version: 14.0.0
+        specifier: 14.0.1
+        version: 14.0.1
       cypress-iframe:
         specifier: 1.0.1
         version: 1.0.1(@types/cypress@1.1.6)
@@ -1047,8 +1047,8 @@ packages:
     resolution: {integrity: sha512-DSHae2obMSMkAtTBSOulg5X7/z+rGLxcXQIkg3OmWvY6wifojge5uVMydfhUvs7yQj+V7jNmRZ2Xzl8GJyqRgg==}
     engines: {node: '>=v18'}
 
-  '@cypress/code-coverage@3.13.10':
-    resolution: {integrity: sha512-Bcj24zr82HNd6XGLvt9i00YYPscZwKiXBoyNM5iloJeo1cOqJRN7qkS/SIfX9Ab6lTvuNBDdZat48vyuZAuJBA==}
+  '@cypress/code-coverage@3.13.11':
+    resolution: {integrity: sha512-mX5MLnfIGwtd4pAEzTBMfwnQYAT/z8sINq4DA10DNhj8ZkF4/foSxosToFbtNkchTtZiKGrhWS+6LZL2qsi+bw==}
     peerDependencies:
       '@babel/core': ^7.0.1
       '@babel/preset-env': ^7.0.0
@@ -3231,8 +3231,8 @@ packages:
     peerDependencies:
       '@types/cypress': ^1.1.0
 
-  cypress@14.0.0:
-    resolution: {integrity: sha512-kEGqQr23so5IpKeg/dp6GVi7RlHx1NmW66o2a2Q4wk9gRaAblLZQSiZJuDI8UMC4LlG5OJ7Q6joAiqTrfRNbTw==}
+  cypress@14.0.1:
+    resolution: {integrity: sha512-gBAvKZE3f6eBaW1v8OtrwAFP90rjNZjjOO40M2KvOvmwVXk96Ps5Yjyck1EzGkXmNCaC/8kXFOY/1KD/wsaWpQ==}
     engines: {node: ^18.0.0 || ^20.0.0 || >=22.0.0}
     hasBin: true
 
@@ -3311,15 +3311,6 @@ packages:
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-
-  debug@4.3.7:
-    resolution: {integrity: sha512-Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==}
-    engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
     peerDependenciesMeta:
@@ -7339,16 +7330,16 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.1
       chalk: 5.4.1
 
-  '@cypress/code-coverage@3.13.10(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(cypress@14.0.0)(webpack@5.97.1(esbuild@0.24.2))':
+  '@cypress/code-coverage@3.13.11(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(cypress@14.0.1)(webpack@5.97.1(esbuild@0.24.2))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/preset-env': 7.26.0(@babel/core@7.26.0)
       '@cypress/webpack-preprocessor': 6.0.2(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(webpack@5.97.1(esbuild@0.24.2))
       babel-loader: 9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2))
       chalk: 4.1.2
-      cypress: 14.0.0
+      cypress: 14.0.1
       dayjs: 1.11.13
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
       execa: 4.1.0
       globby: 11.1.0
       istanbul-lib-coverage: 3.2.2
@@ -7385,7 +7376,7 @@ snapshots:
       '@babel/preset-env': 7.26.0(@babel/core@7.26.0)
       babel-loader: 9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2))
       bluebird: 3.7.1
-      debug: 4.3.7
+      debug: 4.4.0(supports-color@8.1.1)
       lodash: 4.17.21
       webpack: 5.97.1(esbuild@0.24.2)
     transitivePeerDependencies:
@@ -8664,7 +8655,7 @@ snapshots:
 
   '@types/cypress@1.1.6':
     dependencies:
-      cypress: 14.0.0
+      cypress: 14.0.1
 
   '@types/d3-array@3.2.1': {}
 
@@ -9720,7 +9711,7 @@ snapshots:
     dependencies:
       '@types/cypress': 1.1.6
 
-  cypress@14.0.0:
+  cypress@14.0.1:
     dependencies:
       '@cypress/request': 3.0.7
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -9839,10 +9830,6 @@ snapshots:
       ms: 2.1.3
     optionalDependencies:
       supports-color: 8.1.1
-
-  debug@4.3.7:
-    dependencies:
-      ms: 2.1.3
 
   debug@4.4.0(supports-color@8.1.1):
     dependencies:
