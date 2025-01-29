@@ -25,7 +25,8 @@
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} العناصر الأكثر تفاعلاً من قبل المستخدم",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "لا توجد إجراءات لإظهارها لهذا المستخدم",
   "HOME": {
-    "NO_ITEM_SELECTED": "يجب عليك اختيار عنصر لعرض التحليلات."
+    "NO_ITEM_SELECTED": "يجب عليك اختيار عنصر لعرض التحليلات.",
+    "SELECT_AN_ITEM": "اختر عنصرا"
   },
   "NO_USER_SELECTED": "لم يتم تحديد أي مستخدم",
   "OTHER_ACTION_TYPE": "أخرى",
@@ -125,5 +126,8 @@
   "JSON_DESCRIPTION": "أزواج (المفتاح - القيمة / key - value)، وهي أكثر تنسيقًا تقنيًا.",
   "CSV_DESCRIPTION": "مثل طريقة عرض الجدول، على غرار ما تراه في جداول البيانات مثل Excel.",
   "START_EXPORTING": "ابدأ التصدير باستخدام {{format}}",
-  "EXPORTING_DONE": "تم إرسال طلب {{تنسيق}}."
+  "EXPORTING_DONE": "تم إرسال طلب {{تنسيق}}.",
+  "LAST_THREE_MONTHS_LABEL": "الأشهر الثلاثة الماضية",
+  "Count": "العدد: {{count}}",
+  "CHART_DATA_UNAVAILABLE": "لم نتمكن من الحصول على البيانات لهذا الرسم البياني"
 }
