@@ -65,6 +65,18 @@
         "test",
         "research"
       ]
+    },
+    {
+      "login": "morganridel",
+      "name": "Morgan Ridel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/14032127?v=4",
+      "profile": "http://morganridel.fr",
+      "contributions": [
+        "infra",
+        "code",
+        "test",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
