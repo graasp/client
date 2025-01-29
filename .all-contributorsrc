@@ -60,6 +60,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/1707188?v=4",
       "profile": "https://juancarlosfarah.com",
       "contributions": ["code", "review", "test", "research", "ideas", "bug"]
+    },
+    {
+      "login": "claudiaalarconlpz",
+      "name": "claudiaalarconlpz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/130067747?v=4",
+      "profile": "https://github.com/claudiaalarconlpz",
+      "contributions": ["translation", "research"]
     }
   ],
   "contributorsPerLine": 7,
