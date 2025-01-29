@@ -88,6 +88,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/13879502?v=4",
       "profile": "https://github.com/rayacers",
       "contributions": ["code", "test", "design"]
+    },
+    {
+      "login": "mariembencheikh",
+      "name": "mariembencheikh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58473159?v=4",
+      "profile": "https://github.com/mariembencheikh",
+      "contributions": ["code", "test", "design"]
     }
   ],
   "contributorsPerLine": 7,
