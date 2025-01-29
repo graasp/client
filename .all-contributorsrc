@@ -137,6 +137,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/44172411?v=4",
       "profile": "https://github.com/Julien-Torrent",
       "contributions": ["code", "test"]
+    },
+    {
+      "login": "xiaotiansu",
+      "name": "Su",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44131581?v=4",
+      "profile": "https://xiaotiansu.github.io/",
+      "contributions": ["code", "test"]
     }
   ],
   "contributorsPerLine": 7,
