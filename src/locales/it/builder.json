@@ -1,4 +1,13 @@
 {
+  "MENU": {
+    "MY_ITEMS": "Il mio Graasp",
+    "BOOKMARKED_ITEMS": "Segnalibri",
+    "PUBLISHED_ITEMS": "Pubblicato",
+    "RECYCLED_ITEMS": "Riciclato"
+  },
+  "REDIRECTION_TEXT": "Reindirizzamento",
+  "REDIRECTION_BUTTON": "Vai al reindirizzamento",
+  "AVATAR_DEFAULT_ALT": "Immagine dell'avatar",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "Per questo elemento è abilitato l'accesso tramite login. I nuovi utenti possono accedere a questo elemento quando si autenticano utilizzando il login dell'elemento.",
   "ACCESS_ITEM_LOGIN_TAG": "Chiunque si sia autenticato con il collegamento",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "Questo elemento è pubblico. Chiunque può accedere a questo elemento.",
@@ -359,6 +368,7 @@
   "CREATE_CUSTOM_APP_HELPER_TEXT": "Se conosci l'URL di un'app interattiva che può sfruttare l'API di Graasp, puoi inserirlo qui.",
   "CREATE_NEW_APP_BACK_TO_APP_LIST_BUTTON": "Torna all'elenco delle app",
   "APP_LIST_LOADING_FAILED": "Si è verificato un errore durante il recupero dell'elenco delle app. Per favore riprova più tardi.",
+  "APP_REQUIRED_ERROR": "Devi scegliere un'app da aggiungere.",
   "FLAG_REASON_DESCRIPTION": "Seleziona il motivo per cui segnalare questo elemento",
   "FLAG_MODAL_TITLE": "Elemento segnalato",
   "FLAG_MODAL_CONFIRM": "Segnala",
@@ -448,11 +458,23 @@
   "UPLOAD_NOTIFICATION_LOADING": "Caricamento...",
   "UPLOAD_NOTIFICATION_COMPLETE": "Caricamento completato!",
   "SORT_BY_LABEL": "Ordina per",
-  "item.updated_at": "Aggiornato a",
-  "item.creator.name": "Creatore",
-  "item.type": "Tipo",
-  "item.name": "Nome",
-  "order": "Ordine",
+  "item": {
+    "updated_at": "Aggiornato alle",
+    "creator": {
+      "name": "Creatore"
+    },
+    "type": "Tipo",
+    "name": "Nome",
+    "order": "Ordine"
+  },
+  "CHAT": {
+    "SHOW": "Mostra chat",
+    "HIDE": "Nascondi chat",
+    "CLEAR_BUTTON_TEXT": "Chiaro",
+    "CLEAR_ALL": "Cancella chat",
+    "CLEAR_ALL_TITLE": "Cancella il contenuto della chat",
+    "CLEAR_ALL_CONTENT": "Puoi eliminare tutti i messaggi dalla chat. Assicurati di aver scaricato una copia se vuoi conservare i messaggi. Non puoi annullare questa azione."
+  },
   "TRASH_NO_ITEM": "Il tuo cestino è vuoto.",
   "BOOKMARKS_NO_ITEM": "Nessun elemento aggiunto ai segnalibri",
   "BOOKMARKS_NO_ITEM_SEARCH": "Nessun elemento aggiunto ai segnalibri per {{search}}",
@@ -507,5 +529,11 @@
   "DELETE_GUESTS_MODAL_CONTENT": "Confermo di eliminare <1>permanentemente</1> i seguenti lettori e i loro dati:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Elimina definitivamente",
   "ADD_TAG_OPTION_BUTTON_TEXT": "Aggiungi {{value}}",
-  "CREATE_FOLDER_BUTTON_TEXT": "Crea cartella"
+  "CREATE_FOLDER_BUTTON_TEXT": "Crea cartella",
+  "TAGS_DESCRITPION": "I tag sono parole chiave o termini che puoi associare ai tuoi elementi. Descrivono l'argomento, il contesto, il progetto o il pubblico di riferimento dei tuoi elementi. Aiutano gli altri utenti a trovare i tuoi contenuti quando cercano nella biblioteca se la tua collezione è pubblicata. Puoi scoprire di più sui tag nella <1>documentazione</1>.",
+  "TAGS_DISCIPLINE_HELPERTEXT": "Esempio: matematica, storia, biologia",
+  "TAGS_LEVEL_HELPERTEXT": "Esempio: scuola elementare, scuola superiore, università",
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Esempio: articolo, video, quiz",
+  "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Il tipo di elemento {{type}} non può essere gestito",
+  "SHORTCUT_FETCHING_ISSUE": "Si è verificato un problema durante il recupero del contenuto per questo elemento di collegamento."
 }
