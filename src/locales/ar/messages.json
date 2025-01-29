@@ -148,5 +148,13 @@
   "ACCOUNT_NOT_FOUND": "لم يتم العثور على حساب",
   "CANNOT_CREATE_MEMBERSHIP_CAUSE_ITEM_LOGIN_SCHEMA_EXISTS": "لا يمكنك طلب العضوية لأن المورد المستهدف يسمح للمستخدمين المزيفين",
   "CANNOT_MODIFY_GUEST_ITEM_MEMBERSHIP": "لا يمكن تعديل إذن الحساب المستهدف لأنه مستخدم مستعار",
-  "CANNOT_ENROLL_ITEM_WITHOUT_ITEM_LOGIN_SCHEMA": "لا يمكن التسجيل في العنصر المستهدف لأنه لا يسمح للمستخدمين المجهولين"
+  "CANNOT_ENROLL_ITEM_WITHOUT_ITEM_LOGIN_SCHEMA": "لا يمكن التسجيل في العنصر المستهدف لأنه لا يسمح للمستخدمين المجهولين",
+  "REQUEST_MEMBERSHIP": "تم إرسال طلبات العضوية بنجاح!",
+  "DELETE_MEMBERSHIP_REQUEST": "تم حذف طلب العضوية بنجاح.",
+  "ENROLL": "لقد قمت بالتسجيل في هذا العنصر بنجاح.",
+  "CANNOT_REGISTER_ON_FROZEN_ITEM_LOGIN_SCHEMA": "لا يمكن التسجيل على العنصر المستهدف لأن الاشتراك تم تجميده من قبل مالكه",
+  "CANNOT_ENROLL_FROZEN_ITEM_LOGIN_SCHEMA": "لا يمكن الاشتراك في العنصر المستهدف لأن الاشتراك تم تجميده من قبل مالكه",
+  "NOT_MEMBER_OR_GUEST": "حسابك غير مسجل كعضو أو مستخدم وهمي",
+  "INVALID_ITEM_NAME_PATTERN_ERROR": "اسم العنصر غير صالح. يجب أن يبدأ وينتهي بحرف أبجدي.",
+  "INVALID_ITEM_NAME_MAX_LENGTH_ERROR": "اسم العنصر طويل جداً."
 }
