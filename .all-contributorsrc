@@ -67,6 +67,13 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/130067747?v=4",
       "profile": "https://github.com/claudiaalarconlpz",
       "contributions": ["translation", "research"]
+    },
+    {
+      "login": "ztlee042",
+      "name": "Ziting Li",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31677780?v=4",
+      "profile": "http://blog.ztleespace.com/",
+      "contributions": ["code", "test", "design", "userTesting"]
     }
   ],
   "contributorsPerLine": 7,
