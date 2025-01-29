@@ -19,5 +19,7 @@
   "This location does not match a specific address.": "Questa posizione non corrisponde a un indirizzo specifico.",
   "Select a country": "Seleziona un paese",
   "VIEW_ITEM_BUILDER_TOOLTIP": "Visualizza l'elemento in Graasp Builder",
-  "VIEW_ITEM_PLAYER_TOOLTIP": "Visualizza l'elemento in Graasp Player"
+  "VIEW_ITEM_PLAYER_TOOLTIP": "Visualizza l'elemento in Graasp Player",
+  "FUNCTIONALITIES_REDUCED_FOR_LOGGED_OUT_MESSAGE": "Alcune funzionalità sono disabilitate per gli utenti disconnessi.",
+  "Add a new item at this location": "Aggiungi un nuovo elemento in questa posizione"
 }

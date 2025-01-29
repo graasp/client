@@ -1,39 +1,64 @@
 {
+  "NAVBAR": {
+    "GETTING_STARTED": "Iniziare",
+    "FEATURES": "Caratteristiche",
+    "LIBRARY": "Biblioteca",
+    "ABOUT_US": "Chi siamo"
+  },
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "La tua piattaforma di esperienza di apprendimento",
+    "DESCRIPTION": "Per creare, esplorare e condividere risorse educative coinvolgenti che integrano elementi interattivi e intelligenti in scenari di apprendimento attivo per l'istruzione e la ricerca.",
     "REGISTER_CALL_TO_ACTION": "Creare un account",
     "LIBRARY_CALL_TO_ACTION": "Visita la Biblioteca",
     "SUPPORTERS_LABEL": "Supportato da",
     "MISSION": {
+      "TITLE": "La nostra visione",
+      "DESCRIPTION": "Il nostro obiettivo è quello di consentire agli educatori di abbracciare pienamente la tecnologia digitale a valore aggiunto per coinvolgere i propri studenti in scenari di apprendimento innovativi e per sviluppare le loro competenze digitali",
       "CALL_TO_ACTION_LABEL": "Vuoi saperne di più?",
       "CALL_TO_ACTION_BUTTON_TEXT": "Conosciamoci meglio"
     },
     "PUZZLE": {
+      "TITLE": "Una piattaforma all-in-one, come?",
       "BUILDER": {
+        "DESCRIPTION": "Crea le tue risorse educative interattive e intelligenti con <strong>Builder</strong>",
         "BUTTON_TEXT": "Creare"
       },
       "PLAYER": {
+        "DESCRIPTION": "Coinvolgi i tuoi studenti in scenari di apprendimento attivo con <strong>Player</strong>",
         "BUTTON_TEXT": "Esperienza"
       },
       "ANALYTICS": {
+        "DESCRIPTION": "Ottieni informazioni preziose ed esplora i dashboard con <strong>Analytics</strong>",
         "BUTTON_TEXT": "Analizzare"
       },
       "LIBRARY": {
+        "DESCRIPTION": "Esplora e condividi risorse educative aperte nella nostra <strong>Biblioteca</strong>",
         "BUTTON_TEXT": "Esplorare"
       }
     },
     "USER_STORY": {
       "TEACHER": {
+        "LEADING_SENTENCE": "Sei un insegnante interessato a semplificare la creazione di contenuti digitali?",
+        "TITLE": "Costruisci il tuo materiale con Graasp",
         "USE_CASE_1": "Incorpora app interattive nel materiale didattico",
+        "USE_CASE_2": "Co-creare e condividere risorse con i colleghi",
         "USE_CASE_3": "Esplora analisi dettagliate sui tuoi studenti",
         "BUTTON_TEXT": "Inizia oggi",
         "IMAGE_ATTRIBUTION": "Foto di <author>Tra Nguyen</author> su <image>Unsplash</image>"
       },
       "RESEARCHER": {
+        "LEADING_SENTENCE": "Sei un ricercatore alla ricerca di una piattaforma che integri perfettamente la raccolta dati e le esperienze di apprendimento interattive?",
         "TITLE": "Inizia a usare Graasp per la tua ricerca",
+        "USE_CASE_1": "Beneficia di un ambiente sicuro per le indagini di ricerca",
+        "USE_CASE_2": "Eseguire test con diverse condizioni sperimentali",
+        "USE_CASE_3": "Interagisci con i colleghi che promuovono le scienze dell'apprendimento digitale",
         "BUTTON_TEXT": "Registrati ora"
       }
+    },
+    "USER_TESTIMONIES": {
+      "TITLE": "Cosa dicono di noi i nostri utenti",
+      "JOIN_US": "Unisciti a noi e intraprendi un luminoso viaggio nell'istruzione e nello sviluppo professionale!"
     }
   },
   "TERMS": {
@@ -234,6 +259,203 @@
       }
     }
   },
+  "FEATURES": {
+    "TITLE": "Trasforma la tua esperienza di insegnamento con Graasp",
+    "DESCRIPTION": "Che tu stia <bold>creando contenuti personalizzati</bold>, <bold>coinvolgendo gli studenti in presentazioni dinamiche</bold> o conducendo studi per migliorare il panorama dell'istruzione digitale, la nostra piattaforma offre un'ampia gamma di funzionalità per supportare la creazione, la presentazione, la condivisione e l'analisi dei tuoi contenuti didattici. <bold>Registrati gratuitamente a Graasp oggi stesso</bold> e inizia a creare e condividere le tue conoscenze in una rete globale di persone fortemente appassionate di istruzione come te!",
+    "CALL_TO_ACTION_TEXT": "Supporta il tuo percorso di apprendimento digitale con i nostri quattro servizi principali",
+    "CALL_TO_ACTION_BUTTON_TEXT": "Registrati a Graasp",
+    "PLATFORM_OVERVIEW": {
+      "TITLE": "Graasp in breve",
+      "builder": {
+        "TITLE": "Costruttore",
+        "DESCRIPTION": "Su misura per la creazione di contenuti strutturati",
+        "BUTTON_TEXT": "Per saperne di più"
+      },
+      "player": {
+        "TITLE": "Giocatore",
+        "DESCRIPTION": "Coinvolgimento interattivo reso facile",
+        "BUTTON_TEXT": "Per saperne di più"
+      },
+      "analytics": {
+        "TITLE": "Analisi",
+        "DESCRIPTION": "Scopri, misura, interpreta dati e approfondimenti",
+        "BUTTON_TEXT": "Per saperne di più"
+      },
+      "library": {
+        "TITLE": "Biblioteca",
+        "DESCRIPTION": "Condivisione e scoperta collaborativa delle conoscenze",
+        "BUTTON_TEXT": "Per saperne di più"
+      }
+    },
+    "BLENDED_LEARNING": {
+      "TITLE": "Cos'è l'apprendimento misto?",
+      "DESCRIPTION_1": "L'apprendimento misto unisce l'<strong>insegnamento tradizionale in classe</strong> con le <strong>risorse online</strong>, creando un ambiente di apprendimento flessibile. Combina l'istruzione faccia a faccia con gli strumenti digitali, consentendo agli studenti di imparare al proprio ritmo e di accedere ai materiali sempre e ovunque.",
+      "DESCRIPTION_2": "Questo approccio promuove l'autonomia degli studenti e le capacità di auto-direzione offrendo esperienze di apprendimento personalizzate. Gli educatori possono utilizzare approfondimenti basati sui dati per personalizzare l'istruzione e supportare le esigenze individuali degli studenti, portando a risultati di apprendimento migliori.",
+      "DESCRIPTION_3": "L'apprendimento misto unisce i punti di forza dell'insegnamento in aula alla flessibilità degli strumenti online, creando per gli studenti un ambiente di apprendimento adattabile e arricchito."
+    },
+    "GRAASP_FEATURES": {
+      "TITLE": "Caratteristiche di Graasp",
+      "builder": {
+        "LEAD_SENTENCE": "Inizia con il costruttore",
+        "TITLE": "Utilizza <color>Builder</color> per dare forma alle tue idee e alle tue lezioni",
+        "DESCRIPTION": "Crea contenuti liberamente o utilizzando modelli in linea con il tuo stile di insegnamento e la tua strategia pedagogica.<br/>Anche senza modelli, il design intuitivo della nostra piattaforma garantisce un'esperienza di creazione di contenuti guidata e strutturata, che ricorda i sistemi di file familiari. <br/>La collaborazione è incoraggiata, consentendo a più collaboratori di creare contenuti coesi e semplificando il processo per i team che lavorano in modo collaborativo.",
+        "CTA_BUTTON_TEXT": "Inizia a creare",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Come impostare",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Come gestirlo"
+      },
+      "player": {
+        "LEAD_SENTENCE": "Presenta al tuo pubblico",
+        "TITLE": "Migliora il tuo materiale con il <color>Player</color>",
+        "DESCRIPTION": "Coinvolgi gli studenti con una serie di strumenti e funzionalità interattivi.<br/>Da strumenti di valutazione come quiz, test e domande aperte, alla simulazione di esperimenti del mondo reale tramite laboratori di fisica o chimica, valutazioni delle competenze di codifica con la capsula di codice e molto altro!<br/>Incorpora contenuti multimediali, crea blocchi di scrittura condivisi e interagisci con i chatbot.<br/>La nostra piattaforma consente agli educatori di coinvolgere gli studenti in modo efficace e in vari modi, garantendo un'esperienza ricca e formativa sia nelle aule tradizionali che negli ambienti di apprendimento a distanza.",
+        "CTA_BUTTON_TEXT": "Inizia a sperimentare",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Come aggiungere app",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Tutorial del giocatore"
+      },
+      "analytics": {
+        "LEAD_SENTENCE": "Impara dai tuoi successi e dai tuoi errori",
+        "TITLE": "Migliora il tuo materiale tramite <color>Analisi</color>",
+        "DESCRIPTION": "Scopri informazioni preziose sul coinvolgimento degli studenti e sulle prestazioni dei contenuti tramite la nostra dashboard di analisi. <br/> Tieni traccia degli accessi, delle interazioni, dei download e altro ancora, fornendo agli educatori informazioni basate sui dati per migliorare il coinvolgimento degli studenti e adattare la distribuzione dei contenuti alle esigenze individuali della classe",
+        "CTA_BUTTON_TEXT": "Inizia ad imparare",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Esercitazione di analisi",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Filtra analisi"
+      },
+      "library": {
+        "LEAD_SENTENCE": "Condividi la tua conoscenza!",
+        "TITLE": "Unisciti a una comunità di educatori nella <color>Biblioteca</color>",
+        "DESCRIPTION": "La collaborazione è al centro di Graasp. La nostra biblioteca condivisa promuove una vivace comunità di educatori e professionisti. Condividi e accedi facilmente ai contenuti, co-crea materiali e connettiti con altri educatori, amplificando la condivisione delle conoscenze e le esperienze di apprendimento collettive.",
+        "CTA_BUTTON_TEXT": "Esplora i contenuti",
+        "SECONDARY_ACTION_BUTTON_TEXT": "Come navigare",
+        "TERTIARY_ACTION_BUTTON_TEXT": "Come pubblicare"
+      }
+    },
+    "PRICING": {
+      "TITLE": "Sblocca ancora di più con Graasp Premium",
+      "CALL_TO_ACTION": "Passa a Premium oggi stesso",
+      "FREE": {
+        "NAME": "Piano base",
+        "STORAGE": "5 GB di spazio di archiviazione per video, immagini, documenti",
+        "SUPPORT": "Tutorial gratuiti",
+        "TEMPLATES": "Modelli standard",
+        "PRICE": "Gratuito"
+      },
+      "PREMIUM": {
+        "NAME": "Piano Premium",
+        "STORAGE": "15 GB di spazio di archiviazione per video, immagini, documenti",
+        "SUPPORT": "Linea di supporto diretto",
+        "TEMPLATES": "Selezione di modelli estesi",
+        "PRICE": "XX CHF/mese"
+      },
+      "CUSTOM": {
+        "NAME": "Piano personalizzato",
+        "CONTACT_US": "Contatta il nostro team per discutere di una soluzione adatta alle tue esigenze.",
+        "GET_A_QUOTE": "Richiedi un preventivo per i servizi desiderati"
+      }
+    },
+    "BLOG": {
+      "LEAD_SENTENCE": "Graasp è in continua crescita!",
+      "TITLE": "Visita il nostro blog per scoprire tutte le ultime novità!",
+      "DESCRIPTION": "Scopri gli aggiornamenti, arricchisci la tua esperienza Graasp",
+      "BUTTON_TEXT": "Visita il nostro blog"
+    }
+  },
+  "ABOUT_US": {
+    "TITLE": "Incontra le persone dietro Graasp",
+    "DESCRIPTION_1": "Fondata da un team dedicato di professionisti, la nostra missione è colmare il divario tra tecnologia all'avanguardia e istruzione, dando potere a educatori e ricercatori in tutto il mondo.",
+    "DESCRIPTION_2": "Vogliamo colmare il divario tra gli ambienti di ricerca e i contesti educativi tradizionali come le scuole. Immaginiamo un futuro in cui Graasp potenzia educatori e studenti in contesti educativi tradizionali e altro ancora, rivoluzionando le metodologie di insegnamento e promuovendo esperienze di apprendimento coinvolgenti.",
+    "ASSOCIATION": {
+      "TITLE": "Associazione Graasp",
+      "DESCRIPTION": "Graasp è più di una Learning Experience Platform. È un prodotto dietro al quale c'è un'organizzazione non-profit svizzera dedicata a promuovere l'istruzione digitale. Il nostro obiettivo principale è supportare educatori e ricercatori in ogni fase del percorso, fornendo assistenza e formazione per raggiungere i loro obiettivi in modo efficace.",
+      "PROJECTS": {
+        "TITLE": "Altri progetti",
+        "HELVETAS": {
+          "TITLE": "Gli elvetici",
+          "DESCRIPTION": "Piattaforma digitale collaborativa per la formazione dei giovani sulle rotte migratorie"
+        },
+        "CLIMATE": {
+          "TITLE": "Clima",
+          "DESCRIPTION": "Simulazioni di apprendimento attivo per indagare la scienza del riscaldamento globale"
+        }
+      }
+    },
+    "TEAM": {
+      "TITLE": "Incontra il team!",
+      "STATUSES": {
+        "TITLE_PRESIDENT": "Presidente",
+        "TITLE_MANAGING_DIRECTOR": "Consigliere delegato",
+        "TITLE_VP_RESEARCH": "Vicepresidente della ricerca",
+        "TITLE_VP_PRODUCT": "Vicepresidente Prodotto",
+        "TITLE_VP_ENGINEERING": "Vicepresidente Ingegneria",
+        "TITLE_VP_OUTREACH": "Vicepresidente per la divulgazione",
+        "TITLE_VP_INNOVATION": "Vicepresidente Innovazione",
+        "TITLE_VP_TECHNOLOGY": "Vicepresidente della tecnologia",
+        "TITLE_VP_EDUCATION_AND_CONTENT": "Vicepresidente Istruzione e Contenuti",
+        "TITLE_SOFTWARE_ENGINEER": "Ingegnere informatico",
+        "TITLE_AMBASSADOR": "Ambasciatore",
+        "TITLE_PEDAGOGICAL_ENGINEER": "Ingegnere Pedagogico"
+      }
+    },
+    "PRESENTATION_VIDEO": {
+      "TITLE": "Guarda il nostro video di presentazione",
+      "JOIN_BUTTON_TEXT": "Unisciti alla nostra comunità",
+      "LIBRARY_BUTTON_TEXT": "Esplora la biblioteca"
+    }
+  },
+  "SUPPORT": {
+    "TITLE": "Iniziare",
+    "DESCRIPTION": "Esplora le nostre risorse di supporto e accedi al supporto di cui hai bisogno. Ci impegniamo a garantire il tuo successo con la nostra piattaforma.",
+    "FAQ": {
+      "TITLE": "Domande frequenti",
+      "DESCRIPTION_1": "Ecco le nostre Domande più Frequenti per aiutarti a trovare soluzioni rapide ai dubbi e alle sfide più comuni nella community.",
+      "DESCRIPTION_2": "Per qualsiasi domanda aggiuntiva o specifica, compila il modulo di contatto e ti risponderemo."
+    },
+    "TUTORIALS": {
+      "TITLE": "Esercitazioni",
+      "DESCRIPTION": "Padroneggia le funzionalità della piattaforma: ecco una raccolta dei nostri tutorial e guide dettagliati, pensati per aiutarti a sfruttare al meglio le funzionalità di Graasp.",
+      "GENERAL_TUTORIALS": {
+        "QUICK_GET_STARTED": {
+          "TITLE": "Avvio rapido",
+          "DESCRIPTION": "Tutorial rapido per iniziare a usare la piattaforma",
+          "LINK": "https://player.graasp.org/9d80d81f-ec9d-4bfb-836a-1c6b125aef2f/84518f10-3174-4216-98e9-aede34ee108e"
+        }
+      },
+      "BUILDER": {
+        "TITLE": "Tutorial del costruttore"
+      },
+      "PLAYER": {
+        "TITLE": "Tutorial per i giocatori"
+      },
+      "LIBRARY": {
+        "TITLE": "Esercitazioni sulla biblioteca"
+      },
+      "ACCOUNT": {
+        "TITLE": "Tutorial sull'account"
+      },
+      "READ_BUTTON": "Leggere"
+    },
+    "DEVELOPERS": {
+      "TITLE": "Sviluppatori",
+      "SUBTITLE": "Ti interessa sviluppare? Abbraccia l'istruzione aperta con Graasp!",
+      "DESCRIPTION": "In Graasp, crediamo nel potere del software libero tanto quanto crediamo nell'istruzione aperta. Per questo motivo, condividiamo il codice dei nostri servizi su GitHub e invitiamo gli sviluppatori a unirsi a noi nella nostra missione per dare forma al panorama dell'istruzione digitale",
+      "GITHUB": {
+        "TITLE": "Apprendimento aperto",
+        "SUBTITLE": "Vuoi collaborare?",
+        "BUTTON_TEXT": "Visita il repository",
+        "DESCRIPTION": "Visita il nostro repository su GitHub dove collaboriamo attivamente e condividiamo codice, promuovendo un approccio all'istruzione guidato dalla comunità. Connettiti con il team se vuoi iniziare a collaborare!"
+      }
+    },
+    "HELP": {
+      "TITLE": "Hai bisogno di aiuto? Contattaci",
+      "DESCRIPTION": "Non esitate a contattarci per qualsiasi necessità o problema che potreste avere! Siamo lieti di rispondere ai vostri dubbi e curiosità.",
+      "CONTACT_FORM_BUTTON": "Vai al modulo di contatto"
+    }
+  },
+  "NEWSLETTER": {
+    "TITLE": "Vuoi rimanere aggiornato?",
+    "DESCRIPTION": "Vi terremo aggiornati tramite e-mail sulle modifiche importanti della piattaforma.",
+    "INPUT_LABEL": "Indirizzo e-mail",
+    "INPUT_PLACEHOLDER": "Dove possiamo contattarti?",
+    "BUTTON_TEXT": "Iscriviti"
+  },
   "FOOTER": {
     "TAG_LINE": "Sviluppato in Svizzera dall'Associazione Graasp",
     "CONTENT": {
@@ -242,7 +464,8 @@
       "FEATURES": "Caratteristiche",
       "ABOUT_US": "Chi siamo",
       "SUPPORT": "Supporto",
-      "CONTACT_US": "Contattaci"
+      "CONTACT_US": "Contattaci",
+      "BLOG": "Blog"
     },
     "PARTNERS": {
       "TITLE": "Partner"
@@ -256,5 +479,8 @@
       "POLICY": "politica sulla riservatezza",
       "DISCLAIMER": "Disclaimer"
     }
+  },
+  "NAV": {
+    "GO_TO_GRAASP": "Iniziare"
   }
 }
