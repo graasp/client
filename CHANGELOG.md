@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.19.4](https://github.com/graasp/client/compare/v2.19.3...v2.19.4) (2025-01-30)
+
+
+### Bug Fixes
+
+* favicon ([027e9a5](https://github.com/graasp/client/commit/027e9a54226cb34cff6420c0b5aeb4690ab19d21))
+* get started button directs to Builder view ([f39ab9a](https://github.com/graasp/client/commit/f39ab9ad4501a862caf0eaff29af3a27ee478963))
+* html title ([3869548](https://github.com/graasp/client/commit/3869548c8a3f35edd946e519a0375b749267c6cc))
+
 ## [2.19.3](https://github.com/graasp/client/compare/v2.19.2...v2.19.3) (2025-01-30)
 
 
