@@ -127,9 +127,11 @@ export function MapComponent({
       >
         <ErrorBoundary fallback={<ErrorFallback />}>
           <LoggedOutWarning />
-          {!currentPosition && !country && (
-            <CountryContent onCountrySelection={onCountrySelection} />
-          )}
+          {currentPosition
+            ? null
+            : !country && (
+                <CountryContent onCountrySelection={onCountrySelection} />
+              )}
           <TopBar
             tags={tags}
             onChange={onChangeTags}
