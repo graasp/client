@@ -37,6 +37,7 @@ export function MapComponent({
   viewItemInBuilder,
 }: Readonly<Props>): JSX.Element {
   const [mapRef, setMapRef] = useState<Map | null>(null);
+  const [country, setCountry] = useState<Country | null>(null);
   const [tags, setTags] = useState<string[]>([]);
 
   const onChangeTags = (newTags: string[]) => {
@@ -44,6 +45,7 @@ export function MapComponent({
   };
   const onCountrySelection = (newValue: Country) => {
     if (mapRef) {
+      setCountry(newValue);
       mapRef.fitBounds([newValue.minBoundary, newValue.maxBoundary]);
     }
   };
@@ -125,7 +127,7 @@ export function MapComponent({
       >
         <ErrorBoundary fallback={<ErrorFallback />}>
           <LoggedOutWarning />
-          {!currentPosition && (
+          {!currentPosition && !country && (
             <CountryContent onCountrySelection={onCountrySelection} />
           )}
           <TopBar

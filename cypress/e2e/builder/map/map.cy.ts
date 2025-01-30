@@ -7,7 +7,7 @@ import {
 import { MAP_ITEMS_PATH } from '../utils';
 
 describe('Map', () => {
-  it.skip('open create folder modal on Home', () => {
+  it('open create folder modal on Home', () => {
     cy.setUpApi();
     cy.visit(`${MAP_ITEMS_PATH}?enableGeolocation=false`);
 
