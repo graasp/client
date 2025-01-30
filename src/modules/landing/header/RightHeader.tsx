@@ -27,7 +27,7 @@ export function RightHeader({
       <Stack gap={2} direction="row" alignItems="center">
         <ButtonLink
           variant="contained"
-          to="/account"
+          to="/builder"
           endIcon={<ArrowRightIcon />}
         >
           {translateLanding('NAV.GO_TO_GRAASP')}
