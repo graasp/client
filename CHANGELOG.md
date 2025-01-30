@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.19.3](https://github.com/graasp/client/compare/v2.19.2...v2.19.3) (2025-01-30)
+
+
+### Bug Fixes
+
+* navigation buttons issues ([#798](https://github.com/graasp/client/issues/798)) ([9ac9d92](https://github.com/graasp/client/commit/9ac9d92e0604b31798e526fd78ea48ebba4bdba5))
+* width of container grid for apps in analytics ([#802](https://github.com/graasp/client/issues/802)) ([e072484](https://github.com/graasp/client/commit/e072484200231a2912ce5a8cbd064a3849a8d3d6))
+
 ## [2.19.2](https://github.com/graasp/client/compare/v2.19.1...v2.19.2) (2025-01-29)
 
 
