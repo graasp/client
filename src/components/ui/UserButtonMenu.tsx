@@ -1,8 +1,13 @@
-import type { JSX } from 'react';
+import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { Link } from '@mui/material';
+
+import { useLocation } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
+import { API_HOST } from '@/config/env';
 import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import { hooks, mutations } from '@/config/queryClient';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
@@ -48,8 +53,20 @@ export function UserButtonMenu({
           redirectPath="/auth/login"
           userMenuItems={[]}
         />
+        <LogoutButton />
       </>
     );
   }
   return null;
+}
+
+function LogoutButton() {
+  const location = useLocation();
+  const redirectionURL = new URL('/logout', API_HOST);
+  redirectionURL.searchParams.set(
+    'url',
+    new URL(location.href, window.location.origin).toString(),
+  );
+  const logoutUrl = redirectionURL.toString();
+  return <Link href={logoutUrl}>Logout</Link>;
 }

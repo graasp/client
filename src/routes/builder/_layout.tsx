@@ -45,6 +45,7 @@ import { MainMenu } from '~builder/components/main/MainMenu';
 export const Route = createFileRoute('/builder/_layout')({
   beforeLoad({ context }) {
     if (!context.auth.isAuthenticated) {
+      console.log('_layout is not authed', window.location.href);
       throw redirect({
         to: '/auth/login',
         search: { url: window.location.href },

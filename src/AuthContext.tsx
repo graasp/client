@@ -11,8 +11,40 @@ import {
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import { DEFAULT_LANG } from './config/constants';
-import { hooks, mutations } from './config/queryClient';
+import { API_HOST } from './config/env';
+import {
+  hooks,
+  mutations,
+  useMutation,
+  useQueryClient,
+} from './config/queryClient';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
+
+const useLogoutMutation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: () => fetch(`${API_HOST}/logout`),
+    onSuccess: async () => {
+      await queryClient.resetQueries();
+
+      // cookie operations only if window is defined (operation happens in the frontend)
+      // if (!isServer() && queryConfig.DOMAIN) {
+      //   // save current page for further redirection
+      //   saveUrlForRedirection(window.location.href, queryConfig.DOMAIN);
+      //   // remove cookie and stored session from browser when the logout is confirmed
+      //   // todo: find a way to do something equivalent but with httpOnly cookies
+      //   // setCurrentSession(null, queryConfig.DOMAIN);
+      //   // removeSession(currentMemberId, queryConfig.DOMAIN);
+      // }
+      // Update when the server confirmed the logout, instead optimistically updating the member
+      // This prevents logout loop (redirect to logout -> still cookie -> logs back in)
+      // queryClient.setQueryData(memberKeys.current().content, undefined);
+    },
+    onError: (error: Error) => {
+      console.error('Logout failure', error);
+    },
+  });
+};
 
 type LoginInput = {
   email: string;
@@ -51,16 +83,18 @@ export function AuthProvider({
 }>): JSX.Element {
   const { data: currentMember, isPending } = hooks.useCurrentMember();
   const useLogin = mutations.useSignIn();
-  const useLogout = mutations.useSignOut();
+  // const useLogout = mutations.useSignOut();
+  const useLogout = useLogoutMutation();
 
   const logout = useCallback(async () => {
-    const url = window.location.href;
+    // const url = window.location.href;
     await useLogout.mutateAsync();
     // redirect to auth page with url from the page that we just left.
-    const redirectionURL = new URL('/auth/login', window.location.origin);
-    redirectionURL.searchParams.set('url', url);
-    // navigate to the auth page with the right params
-    window.location.assign(redirectionURL);
+    // const redirectionURL = new URL('/logout', API_HOST);
+    // redirectionURL.searchParams.set('url', url);
+    // console.log(redirectionURL.toString());
+    // // navigate to the auth page with the right params
+    // window.location.assign(encodeURI(redirectionURL.toString()));
   }, [useLogout]);
 
   const login = useCallback(

@@ -16,7 +16,7 @@ import { MagicLinkLoginForm } from '~auth/components/signIn/MagicLinkLoginForm';
 import { PasswordLoginForm } from '~auth/components/signIn/PasswordLoginForm';
 
 const loginSearchSchema = z.object({
-  url: z.string().url().optional(),
+  url: z.string().optional(),
   m: z.string().optional(),
 });
 
