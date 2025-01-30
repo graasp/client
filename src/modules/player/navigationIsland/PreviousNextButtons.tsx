@@ -7,6 +7,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
 import { hooks } from '@/config/queryClient';
+import {
+  NEXT_ITEM_NAV_BUTTON_ID,
+  PREVIOUS_ITEM_NAV_BUTTON_ID,
+} from '@/config/selectors';
 
 import {
   combineUuids,
@@ -32,7 +36,7 @@ function getNext(
   folderHierarchy: DiscriminatedItem[],
 ): DiscriminatedItem | null {
   const idx = folderHierarchy.findIndex(({ id }) => id === itemId);
-  if (idx < 0 || idx + 1 < folderHierarchy.length) {
+  if (idx < 0 || idx + 1 > folderHierarchy.length) {
     return null;
   }
   return folderHierarchy[idx + 1];
@@ -93,6 +97,7 @@ export function usePreviousNextButtons(): {
   return {
     previousButton: (
       <NavigationButton
+        id={PREVIOUS_ITEM_NAV_BUTTON_ID}
         disabled={!prev}
         key="previousButton"
         to="/player/$rootId/$itemId"
@@ -105,6 +110,7 @@ export function usePreviousNextButtons(): {
 
     nextButton: (
       <NavigationButton
+        id={NEXT_ITEM_NAV_BUTTON_ID}
         disabled={!next}
         key="nextButton"
         to="/player/$rootId/$itemId"

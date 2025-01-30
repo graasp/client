@@ -5,32 +5,44 @@ import {
 } from '@graasp/sdk';
 
 import {
-  HOME_PAGE_PAGINATION_ID,
+  NEXT_ITEM_NAV_BUTTON_ID,
+  PREVIOUS_ITEM_NAV_BUTTON_ID,
   TREE_VIEW_ID,
-  buildHomePaginationId,
   buildTreeItemClass,
 } from '../../../src/config/selectors';
 import {
   FOLDER_WITH_SUBFOLDER_ITEM,
   FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER,
-  generateLotsOfFoldersOnHome,
 } from '../../fixtures/items';
 import { CURRENT_MEMBER } from '../../fixtures/members';
 import { buildContentPagePath, buildMainPath } from './utils';
 
-const items = generateLotsOfFoldersOnHome({ folderCount: 20 });
-
 describe('Navigation', () => {
-  // skipped for the moment
-  it.skip('Show navigation on Home', () => {
-    cy.setUpApi({
-      items: [...items],
-    });
-    cy.visit('/');
+  it('Show navigation island on root item', () => {
+    cy.setUpApi({ items: FOLDER_WITH_SUBFOLDER_ITEM.items });
+    const rootId = FOLDER_WITH_SUBFOLDER_ITEM.items[0].id;
+    const itemId = FOLDER_WITH_SUBFOLDER_ITEM.items[1].id;
+    const rootPage = buildContentPagePath({ rootId, itemId: rootId });
+    cy.visit(rootPage);
 
-    cy.wait(['@getCurrentMember', '@getAccessibleItems']);
-    cy.get(`#${HOME_PAGE_PAGINATION_ID}`).scrollIntoView().should('be.visible');
-    cy.get(`#${buildHomePaginationId(2)}`).click();
+    // previous should be disabled, but visible
+    cy.get(`#${PREVIOUS_ITEM_NAV_BUTTON_ID}`)
+      .should('be.visible')
+      .and('not.have.attr', 'href');
+
+    // next should be visible and enabled
+    cy.get(`#${NEXT_ITEM_NAV_BUTTON_ID}`).should('be.visible').click();
+    cy.url().should('contain', buildContentPagePath({ rootId, itemId }));
+    // both previous and next are enabled
+    cy.get(`#${PREVIOUS_ITEM_NAV_BUTTON_ID}`)
+      .should('be.visible')
+      .and('have.attr', 'href');
+    cy.get(`#${NEXT_ITEM_NAV_BUTTON_ID}`)
+      .should('be.visible')
+      .and('have.attr', 'href');
+
+    cy.get(`#${PREVIOUS_ITEM_NAV_BUTTON_ID}`).click();
+    cy.url().should('contain', rootPage);
   });
 
   it('Expand folder when navigating', () => {
