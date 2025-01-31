@@ -30,6 +30,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   if (mode === 'production') {
     requireEnvVariable('VITE_GRAASP_H5P_INTEGRATION_URL');
     requireEnvVariable('VITE_GOOGLE_KEY');
+    requireEnvVariable('VITE_GRAASP_REDIRECTION_HOST');
   }
 
   // compute the port to use

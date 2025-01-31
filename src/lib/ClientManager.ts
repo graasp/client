@@ -72,7 +72,8 @@ export class ClientManager {
     itemId: string,
     qs: { [key: string]: string | number | boolean } = {},
   ) {
-    let host = this.host;
+    // make a copy of the host
+    let host = new URL(this.host.toString());
     if (context === Context.Library) {
       const libraryHost = this.clientHosts.get(context);
       if (libraryHost) {
