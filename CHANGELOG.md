@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.19.6](https://github.com/graasp/client/compare/v2.19.5...v2.19.6) (2025-01-31)
+
+
+### Bug Fixes
+
+* add sentry release upload step in deploy workflows ([e4c05b4](https://github.com/graasp/client/commit/e4c05b4eab982b41198d6995f5818be56f0bcd9d))
+* use sha and version instead ([c49a2a1](https://github.com/graasp/client/commit/c49a2a1b066c9b839f691244a8f75c20d5356622))
+
 ## [2.19.5](https://github.com/graasp/client/compare/v2.19.4...v2.19.5) (2025-01-31)
 
 
