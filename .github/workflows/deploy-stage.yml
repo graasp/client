@@ -88,4 +88,4 @@ jobs:
           environment: staging
           sourcemaps: "./build"
           inject: true
-          version: ${{ github.ref }}
+          version: ${{ github.event.client_payload.tag || inputs.version }}

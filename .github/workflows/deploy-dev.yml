@@ -77,4 +77,4 @@ jobs:
           environment: development
           sourcemaps: "./build"
           inject: true
-          version: ${{ github.ref }}
+          version: ${{ github.sha }}
