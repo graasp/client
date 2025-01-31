@@ -407,7 +407,19 @@
     "FAQ": {
       "TITLE": "FAQ",
       "DESCRIPTION_1": "Here are our most Frequently Asked Questions for you to find quick solutions to commonly shared doubts and challenges within the community.",
-      "DESCRIPTION_2": "For any additional or specific question, please fill the contact form and we will answer to you."
+      "DESCRIPTION_2": "For any additional or specific question, please fill the contact form and we will answer to you.",
+      "HOW_TO_GET_STARTED": {
+        "QUESTION": "How to get started using the platform?",
+        "RESPONSE": "You can start by creating a free account."
+      },
+      "BUILDER_PLAYER_DIFFERENCE": {
+        "QUESTION": "What is the difference between Builder and Player?",
+        "RESPONSE": "The builder and the player are two interfaces available in Graasp. The interface users choose to use depends on the purpose they have. Traditionally the builder interface is best suited to create the educational content, building the lessons, adding elements and managing their properties. The player interface is mainly used when consuming the content created. Primary audience for this interface is students and other consumers."
+      },
+      "IMPORT_FROM_OTHER_PLATFORM": {
+        "QUESTION": "How do I import my existing content from another platform into Graasp?",
+        "RESPONSE": "You can use drag and drop for documents, images and other rich media. We support H5P content and a wide array of multimedia contents, audio, video, images and web links. We currently do not have special procedures to import from specific platforms."
+      }
     },
     "TUTORIALS": {
       "TITLE": "Tutorials",
