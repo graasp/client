@@ -26,7 +26,7 @@
     "@mui/lab": "6.0.0-beta.24",
     "@mui/material": "6.4.1",
     "@sentry/react": "8.52.0",
-    "@tanstack/react-query": "5.65.1",
+    "@tanstack/react-query": "5.66.0",
     "@tanstack/react-router": "1.98.0",
     "@tanstack/router-devtools": "1.98.0",
     "@tanstack/zod-adapter": "1.98.0",
