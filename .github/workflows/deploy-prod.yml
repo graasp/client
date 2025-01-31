@@ -79,3 +79,15 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           aws-s3-bucket-name: ${{ vars.AWS_S3_BUCKET_NAME }}
           cloudfront-distribution-id: ${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: client
+        with:
+          environment: production
+          sourcemaps: "./build"
+          inject: true
+          version: ${{ github.ref }}
