@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.19.5](https://github.com/graasp/client/compare/v2.19.4...v2.19.5) (2025-01-31)
+
+
+### Bug Fixes
+
+* add missing env var for go links ([#810](https://github.com/graasp/client/issues/810)) ([3b3b55e](https://github.com/graasp/client/commit/3b3b55ecb950b66ecd4aad5441247e95c3ff976e))
+
 ## [2.19.4](https://github.com/graasp/client/compare/v2.19.3...v2.19.4) (2025-01-30)
 
 
