@@ -26,7 +26,6 @@ import { prefixer } from 'stylis';
 import '@/config/i18n';
 import { theme } from '@/ui/theme';
 
-import pkg from '../package.json';
 import { AuthProvider, useAuth } from './AuthContext';
 import './app.css';
 import {
@@ -48,7 +47,7 @@ SentryInit({
       maskAllInputs: true,
     }),
   ],
-  release: `${pkg.name}@${APP_VERSION}`,
+  release: APP_VERSION,
   environment: SENTRY_ENV,
   tracesSampleRate: 0.5,
 
