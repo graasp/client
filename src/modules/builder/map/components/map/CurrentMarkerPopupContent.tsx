@@ -19,7 +19,7 @@ const CurrentMarkerPopupContent = ({
 }): JSX.Element => {
   const { t } = useTranslation(NS.Map);
   const { useAddressFromGeolocation, currentMember } = useQueryClientContext();
-  const { data: address, isLoading } = useAddressFromGeolocation(point, {
+  const { data: address, isPending } = useAddressFromGeolocation(point, {
     enabled: Boolean(currentMember) && open,
   });
 
@@ -28,7 +28,7 @@ const CurrentMarkerPopupContent = ({
       return address?.addressLabel;
     }
 
-    if (isLoading) {
+    if (isPending) {
       return <Skeleton />;
     }
 

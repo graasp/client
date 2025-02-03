@@ -12,6 +12,7 @@ import frTrans from 'i18n-iso-countries/langs/fr.json';
 import itTrans from 'i18n-iso-countries/langs/it.json';
 
 import { NS } from '@/config/constants';
+import { MAP_COUNTRY_SELECTION_FORM_ID } from '@/config/selectors';
 
 import countries from '../../countries.json';
 import { Country } from '../../types';
@@ -67,7 +68,7 @@ const CountryForm = ({
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div id={MAP_COUNTRY_SELECTION_FORM_ID} style={{ position: 'relative' }}>
       <Autocomplete
         autoSelect
         onChange={handleOnChange as any}
