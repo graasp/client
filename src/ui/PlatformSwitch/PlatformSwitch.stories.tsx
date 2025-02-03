@@ -11,19 +11,19 @@ import { Platform, PlatformType } from './hooks.js';
 const MOCK_PLATFORM_PROPS = {
   [Platform.Builder]: {
     tooltip: 'builder',
-    href: 'builder',
+    href: '/builder',
   },
   [Platform.Player]: {
     tooltip: 'player',
-    href: 'player',
+    href: '/player',
   },
   [Platform.Library]: {
     tooltip: 'library',
-    href: 'library',
+    href: '/library',
   },
   [Platform.Analytics]: {
     tooltip: 'analytics',
-    href: 'analytics',
+    href: '/analytics',
   },
 };
 

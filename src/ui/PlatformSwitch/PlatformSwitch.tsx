@@ -12,6 +12,8 @@ import {
   useTheme,
 } from '@mui/material';
 
+import { Link } from '@tanstack/react-router';
+
 import AnalyticsIcon from '../icons/AnalyticsIcon.js';
 import BuildIcon from '../icons/BuildIcon.js';
 import LibraryIcon from '../icons/LibraryIcon.js';
@@ -126,14 +128,14 @@ export const PlatformSwitch = ({
         title={platformProps?.disabled ? undefined : tooltip}
         placement={platformProps?.placement}
       >
-        <a
+        <Link
           id={platformProps?.id}
           style={{
             display: 'flex',
             cursor: platformProps?.disabled ? 'default' : 'pointer',
           }}
           data-testid={platform}
-          href={!platformProps?.disabled ? platformProps?.href : undefined}
+          to={!platformProps?.disabled ? platformProps?.href : undefined}
           aria-disabled={platformProps?.disabled}
           // data-umami-event={`header-navigation-switch-${platform}`}
         >
@@ -148,7 +150,7 @@ export const PlatformSwitch = ({
             sx={sxProps}
             disableHover={false}
           />
-        </a>
+        </Link>
       </Tooltip>
     );
   };

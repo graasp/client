@@ -25,4 +25,8 @@ i18n
       order: ['localStorage', 'navigator', 'querystring'],
       caches: ['localStorage'],
     },
+    react: {
+      // prevent the translations from using the react suspense and thus making the interface flicker
+      useSuspense: false,
+    },
   });
