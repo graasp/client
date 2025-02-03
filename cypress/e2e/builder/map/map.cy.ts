@@ -2,6 +2,7 @@
 import {
   CREATE_ITEM_FOLDER_ID,
   FOLDER_FORM_DESCRIPTION_ID,
+  MAP_COUNTRY_SELECTION_FORM_ID,
   buildMapViewId,
 } from '../../../../src/config/selectors';
 import { MAP_ITEMS_PATH } from '../utils';
@@ -15,13 +16,15 @@ describe('Map', () => {
     cy.get(`#${buildMapViewId()}`).should('be.visible');
 
     // select a country
-    cy.get(`#${buildMapViewId()} input`).click();
+    cy.get(
+      `#${buildMapViewId()} #${MAP_COUNTRY_SELECTION_FORM_ID} input`,
+    ).click();
     cy.get(`#${buildMapViewId()} [role="presentation"]`).click();
 
     // open location button
     cy.get(`#${buildMapViewId()}`).click();
-    cy.get(`#${buildMapViewId()} img[role="button"]`).click();
-    cy.get(`[data-testid="AddLocationAltIcon"]`).click();
+    cy.get(`#${buildMapViewId()} img[role="button"]`).click({ force: true });
+    cy.get(`[data-testid="AddLocationAltIcon"]`).click({ force: true });
 
     // open folder form
     cy.get(`#${CREATE_ITEM_FOLDER_ID}`).click();

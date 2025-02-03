@@ -44,6 +44,8 @@ export const AVATAR_UPLOAD_ICON_ID = 'avatar-upload-icon';
 
 export const CROP_MODAL_CONFIRM_BUTTON_ID = 'crop-modal-confirm-button';
 
+export const MAP_COUNTRY_SELECTION_FORM_ID = 'map-country-selection-form';
+
 export const PERSONAL_INFO_EDIT_BUTTON_ID = 'personal-info-edit-button';
 export const PERSONAL_INFO_EDIT_CONTAINER_ID = 'personal-info-edit-container';
 export const PERSONAL_INFO_CANCEL_BUTTON_ID = 'personal-info-cancel-button';
