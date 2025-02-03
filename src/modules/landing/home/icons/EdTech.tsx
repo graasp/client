@@ -10,7 +10,7 @@ export function EdTech({
   return (
     <svg
       viewBox="-15 0 185 110.7"
-      style={{ maxHeight: height, maxWidth: width }}
+      style={{ maxHeight: height, maxWidth: width, width: 'fit-content' }}
     >
       <path
         className="st0"

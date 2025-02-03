@@ -11,7 +11,7 @@ export function Unine({
     <svg
       version="1.1"
       viewBox="0 0 1203.2533 514.58667"
-      style={{ maxHeight: height, maxWidth: width }}
+      style={{ maxHeight: height, maxWidth: width, width: 'fit-content' }}
     >
       <style>{`.stunine {fill:#000;fill-opacity:1;fill-rule:nonzero;stroke:none}`}</style>
       <g id="g8" transform="matrix(1.3333333,0,0,-1.3333333,0,514.58667)">

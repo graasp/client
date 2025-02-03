@@ -11,7 +11,7 @@ export function Epfl({
     <svg
       version="1.1"
       id="Calque_1"
-      style={{ maxHeight: height, maxWidth: width }}
+      style={{ maxHeight: height, maxWidth: width, width: 'fit-content' }}
       viewBox="-20 -15 220 83"
     >
       <style type="text/css">{`.stepfl{fill:#FF0000;}`}</style>
