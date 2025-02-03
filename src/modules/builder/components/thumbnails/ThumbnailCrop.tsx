@@ -22,7 +22,7 @@ import {
 
 import CropModal, {
   MODAL_TITLE_ARIA_LABEL_ID,
-} from '~builder/components/common/CropModal';
+} from '~account/home/memberPicture/CropModal';
 
 import useThumbnailCrop from './ThumbnailCrop.hook';
 
