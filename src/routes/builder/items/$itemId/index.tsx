@@ -24,7 +24,7 @@ export const Route = createFileRoute('/builder/items/$itemId/')({
 function RouteComponent(): JSX.Element {
   const { item } = useOutletContext();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { chat: chatIsOpen } = Route.useSearch();
+  const { chatOpen: chatIsOpen } = Route.useSearch();
 
   const [isChatboxOpen, setIsChatboxOpen] = useState(chatIsOpen ?? false);
   const toggleChatbox = () => setIsChatboxOpen((s) => !s);
