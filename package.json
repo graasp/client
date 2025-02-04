@@ -137,7 +137,7 @@
     "@storybook/react": "8.5.3",
     "@storybook/react-vite": "8.5.3",
     "@storybook/test": "8.5.3",
-    "@tanstack/router-plugin": "1.99.3",
+    "@tanstack/router-plugin": "1.99.6",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
     "@testing-library/react": "16.2.0",
