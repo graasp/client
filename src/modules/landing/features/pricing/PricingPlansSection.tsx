@@ -57,7 +57,7 @@ export function PricingPlansSection() {
           <Typography textAlign="center">{t('CUSTOM.CONTACT_US')}</Typography>
         </PlanLayout>
       </Stack>
-      <ButtonLink variant="contained" to="/account">
+      <ButtonLink variant="contained" to="/home">
         {t('CALL_TO_ACTION')}
       </ButtonLink>
     </Stack>

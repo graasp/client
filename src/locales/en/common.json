@@ -53,5 +53,11 @@
     "USERNAME_SPECIAL_CHARACTERS": "User name must not contain quotes, anti-slash, <, >, ^, %",
     "INVALID_EMAIL": "This does not look like a valid email address"
   },
-  "UNKNOWN_DATE": "Unknown"
+  "UNKNOWN_DATE": "Unknown",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "My Graasp",
+    "BOOKMARKED_ITEMS": "Bookmarks",
+    "PUBLISHED_ITEMS": "Published Items",
+    "TRASH": "Trash"
+  }
 }

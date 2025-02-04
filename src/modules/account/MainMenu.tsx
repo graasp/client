@@ -13,12 +13,6 @@ import {
 
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
-import {
-  ACCOUNT_HOME_PATH,
-  ACCOUNT_SETTINGS_PATH,
-  ACCOUNT_STATS_PATH,
-  ACCOUNT_STORAGE_PATH,
-} from '@/config/paths';
 import { DRAWER_WIDTH } from '@/ui/constants';
 
 export function MainMenu(): JSX.Element {
@@ -32,23 +26,19 @@ export function MainMenu(): JSX.Element {
       height="100%"
     >
       <List sx={{ width: DRAWER_WIDTH }}>
+        <MainMenuItem to="/home" icon={<HouseIcon />} text={t('HOME')} />
         <MainMenuItem
-          to={ACCOUNT_HOME_PATH}
-          icon={<HouseIcon />}
-          text={t('HOME')}
-        />
-        <MainMenuItem
-          to={ACCOUNT_STATS_PATH}
+          to="/statistics"
           icon={<ChartColumnIcon />}
           text={t('STATS')}
         />
         <MainMenuItem
-          to={ACCOUNT_SETTINGS_PATH}
+          to="/settings"
           icon={<SettingsIcon />}
           text={t('SETTINGS')}
         />
         <MainMenuItem
-          to={ACCOUNT_STORAGE_PATH}
+          to="/storage"
           icon={<HardDriveIcon />}
           text={t('STORAGE')}
         />

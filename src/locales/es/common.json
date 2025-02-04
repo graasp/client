@@ -53,5 +53,11 @@
     "USERNAME_SPECIAL_CHARACTERS": "El nombre de usuario no debe contener comillas, anti-barras, <, >, ^, %",
     "INVALID_EMAIL": "Esta no parece una dirección de correo electrónico válida"
   },
-  "UNKNOWN_DATE": "Desconocido"
+  "UNKNOWN_DATE": "Desconocido",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Mi Graasp",
+    "BOOKMARKED_ITEMS": "Artículos favoritos",
+    "PUBLISHED_ITEMS": "Artículos publicados",
+    "TRASH": "Basura"
+  }
 }

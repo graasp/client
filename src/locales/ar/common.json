@@ -53,5 +53,11 @@
     "USERNAME_SPECIAL_CHARACTERS": "يجب ألا يحتوي اسم المستخدم على علامات اقتباس، شرطة مائلة، <، >، ^، %",
     "INVALID_EMAIL": "لا يبدو أن هذا عنوان بريد إلكتروني صالح"
   },
-  "UNKNOWN_DATE": "مجهول"
+  "UNKNOWN_DATE": "مجهول",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "العناصر الخاصّة بي",
+    "BOOKMARKED_ITEMS": "العناصر المفضلة",
+    "PUBLISHED_ITEMS": "العناصر المنشورة",
+    "TRASH": "القمامة"
+  }
 }

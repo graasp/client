@@ -115,12 +115,12 @@ const BookmarkedItemsContent = ({
 };
 
 export function BookmarkedItemsScreen() {
-  const { t } = useTranslation(NS.Builder);
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'PAGE_TITLES' });
   const itemSearch = useItemSearch();
 
   return (
     <BuilderPageLayout
-      title={t(BUILDER.BOOKMARKED_ITEMS_TITLE)}
+      title={t('BOOKMARKED_ITEMS')}
       id={BOOKMARKED_ITEMS_ID}
       options={
         <Stack

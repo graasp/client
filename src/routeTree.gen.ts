@@ -15,11 +15,10 @@ import { Route as SigninImport } from './routes/signin'
 import { Route as BuilderImport } from './routes/builder'
 import { Route as AuthImport } from './routes/auth'
 import { Route as AnalyticsImport } from './routes/analytics'
-import { Route as AccountImport } from './routes/account'
 import { Route as LandingImport } from './routes/_landing'
+import { Route as AccountImport } from './routes/_account'
 import { Route as PlayerIndexImport } from './routes/player/index'
 import { Route as AnalyticsIndexImport } from './routes/analytics/index'
-import { Route as AccountIndexImport } from './routes/account/index'
 import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
 import { Route as BuilderMapImport } from './routes/builder.map'
@@ -30,9 +29,6 @@ import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthRegisterImport } from './routes/auth/register'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
-import { Route as AccountStorageImport } from './routes/account/storage'
-import { Route as AccountStatsImport } from './routes/account/stats'
-import { Route as AccountSettingsImport } from './routes/account/settings'
 import { Route as LandingTermsImport } from './routes/_landing/terms'
 import { Route as LandingSupportImport } from './routes/_landing/support'
 import { Route as LandingPolicyImport } from './routes/_landing/policy'
@@ -40,6 +36,10 @@ import { Route as LandingFeaturesImport } from './routes/_landing/features'
 import { Route as LandingDisclaimerImport } from './routes/_landing/disclaimer'
 import { Route as LandingContactUsImport } from './routes/_landing/contact-us'
 import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
+import { Route as AccountStorageImport } from './routes/_account/storage'
+import { Route as AccountStatisticsImport } from './routes/_account/statistics'
+import { Route as AccountSettingsImport } from './routes/_account/settings'
+import { Route as AccountHomeImport } from './routes/_account/home'
 import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
 import { Route as BuilderLayoutIndexImport } from './routes/builder/_layout/index'
 import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
@@ -87,14 +87,13 @@ const AnalyticsRoute = AnalyticsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AccountRoute = AccountImport.update({
-  id: '/account',
-  path: '/account',
+const LandingRoute = LandingImport.update({
+  id: '/_landing',
   getParentRoute: () => rootRoute,
 } as any)
 
-const LandingRoute = LandingImport.update({
-  id: '/_landing',
+const AccountRoute = AccountImport.update({
+  id: '/_account',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -108,12 +107,6 @@ const AnalyticsIndexRoute = AnalyticsIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AnalyticsRoute,
-} as any)
-
-const AccountIndexRoute = AccountIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AccountRoute,
 } as any)
 
 const LandingIndexRoute = LandingIndexImport.update({
@@ -175,24 +168,6 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const AccountStorageRoute = AccountStorageImport.update({
-  id: '/storage',
-  path: '/storage',
-  getParentRoute: () => AccountRoute,
-} as any)
-
-const AccountStatsRoute = AccountStatsImport.update({
-  id: '/stats',
-  path: '/stats',
-  getParentRoute: () => AccountRoute,
-} as any)
-
-const AccountSettingsRoute = AccountSettingsImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AccountRoute,
-} as any)
-
 const LandingTermsRoute = LandingTermsImport.update({
   id: '/terms',
   path: '/terms',
@@ -233,6 +208,30 @@ const LandingAboutUsRoute = LandingAboutUsImport.update({
   id: '/about-us',
   path: '/about-us',
   getParentRoute: () => LandingRoute,
+} as any)
+
+const AccountStorageRoute = AccountStorageImport.update({
+  id: '/storage',
+  path: '/storage',
+  getParentRoute: () => AccountRoute,
+} as any)
+
+const AccountStatisticsRoute = AccountStatisticsImport.update({
+  id: '/statistics',
+  path: '/statistics',
+  getParentRoute: () => AccountRoute,
+} as any)
+
+const AccountSettingsRoute = AccountSettingsImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AccountRoute,
+} as any)
+
+const AccountHomeRoute = AccountHomeImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => AccountRoute,
 } as any)
 
 const PlayerRootIdIndexRoute = PlayerRootIdIndexImport.update({
@@ -366,18 +365,18 @@ const BuilderItemsItemIdItemPagePublishRoute =
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_account': {
+      id: '/_account'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AccountImport
+      parentRoute: typeof rootRoute
+    }
     '/_landing': {
       id: '/_landing'
       path: ''
       fullPath: ''
       preLoaderRoute: typeof LandingImport
-      parentRoute: typeof rootRoute
-    }
-    '/account': {
-      id: '/account'
-      path: '/account'
-      fullPath: '/account'
-      preLoaderRoute: typeof AccountImport
       parentRoute: typeof rootRoute
     }
     '/analytics': {
@@ -407,6 +406,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/signin'
       preLoaderRoute: typeof SigninImport
       parentRoute: typeof rootRoute
+    }
+    '/_account/home': {
+      id: '/_account/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof AccountHomeImport
+      parentRoute: typeof AccountImport
+    }
+    '/_account/settings': {
+      id: '/_account/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AccountSettingsImport
+      parentRoute: typeof AccountImport
+    }
+    '/_account/statistics': {
+      id: '/_account/statistics'
+      path: '/statistics'
+      fullPath: '/statistics'
+      preLoaderRoute: typeof AccountStatisticsImport
+      parentRoute: typeof AccountImport
+    }
+    '/_account/storage': {
+      id: '/_account/storage'
+      path: '/storage'
+      fullPath: '/storage'
+      preLoaderRoute: typeof AccountStorageImport
+      parentRoute: typeof AccountImport
     }
     '/_landing/about-us': {
       id: '/_landing/about-us'
@@ -456,27 +483,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/terms'
       preLoaderRoute: typeof LandingTermsImport
       parentRoute: typeof LandingImport
-    }
-    '/account/settings': {
-      id: '/account/settings'
-      path: '/settings'
-      fullPath: '/account/settings'
-      preLoaderRoute: typeof AccountSettingsImport
-      parentRoute: typeof AccountImport
-    }
-    '/account/stats': {
-      id: '/account/stats'
-      path: '/stats'
-      fullPath: '/account/stats'
-      preLoaderRoute: typeof AccountStatsImport
-      parentRoute: typeof AccountImport
-    }
-    '/account/storage': {
-      id: '/account/storage'
-      path: '/storage'
-      fullPath: '/account/storage'
-      preLoaderRoute: typeof AccountStorageImport
-      parentRoute: typeof AccountImport
     }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
@@ -547,13 +553,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof LandingIndexImport
       parentRoute: typeof LandingImport
-    }
-    '/account/': {
-      id: '/account/'
-      path: '/'
-      fullPath: '/account/'
-      preLoaderRoute: typeof AccountIndexImport
-      parentRoute: typeof AccountImport
     }
     '/analytics/': {
       id: '/analytics/'
@@ -714,6 +713,23 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
+interface AccountRouteChildren {
+  AccountHomeRoute: typeof AccountHomeRoute
+  AccountSettingsRoute: typeof AccountSettingsRoute
+  AccountStatisticsRoute: typeof AccountStatisticsRoute
+  AccountStorageRoute: typeof AccountStorageRoute
+}
+
+const AccountRouteChildren: AccountRouteChildren = {
+  AccountHomeRoute: AccountHomeRoute,
+  AccountSettingsRoute: AccountSettingsRoute,
+  AccountStatisticsRoute: AccountStatisticsRoute,
+  AccountStorageRoute: AccountStorageRoute,
+}
+
+const AccountRouteWithChildren =
+  AccountRoute._addFileChildren(AccountRouteChildren)
+
 interface LandingRouteChildren {
   LandingAboutUsRoute: typeof LandingAboutUsRoute
   LandingContactUsRoute: typeof LandingContactUsRoute
@@ -738,23 +754,6 @@ const LandingRouteChildren: LandingRouteChildren = {
 
 const LandingRouteWithChildren =
   LandingRoute._addFileChildren(LandingRouteChildren)
-
-interface AccountRouteChildren {
-  AccountSettingsRoute: typeof AccountSettingsRoute
-  AccountStatsRoute: typeof AccountStatsRoute
-  AccountStorageRoute: typeof AccountStorageRoute
-  AccountIndexRoute: typeof AccountIndexRoute
-}
-
-const AccountRouteChildren: AccountRouteChildren = {
-  AccountSettingsRoute: AccountSettingsRoute,
-  AccountStatsRoute: AccountStatsRoute,
-  AccountStorageRoute: AccountStorageRoute,
-  AccountIndexRoute: AccountIndexRoute,
-}
-
-const AccountRouteWithChildren =
-  AccountRoute._addFileChildren(AccountRouteChildren)
 
 interface AnalyticsItemsItemIdRouteChildren {
   AnalyticsItemsItemIdAppsRoute: typeof AnalyticsItemsItemIdAppsRoute
@@ -890,11 +889,14 @@ const PlayerRootIdItemIdRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '': typeof LandingRouteWithChildren
-  '/account': typeof AccountRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderLayoutRouteWithChildren
   '/signin': typeof SigninRoute
+  '/home': typeof AccountHomeRoute
+  '/settings': typeof AccountSettingsRoute
+  '/statistics': typeof AccountStatisticsRoute
+  '/storage': typeof AccountStorageRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
   '/disclaimer': typeof LandingDisclaimerRoute
@@ -902,9 +904,6 @@ export interface FileRoutesByFullPath {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/account/settings': typeof AccountSettingsRoute
-  '/account/stats': typeof AccountStatsRoute
-  '/account/storage': typeof AccountStorageRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -914,7 +913,6 @@ export interface FileRoutesByFullPath {
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
-  '/account/': typeof AccountIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
@@ -939,9 +937,14 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
+  '': typeof AccountRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderLayoutIndexRoute
   '/signin': typeof SigninRoute
+  '/home': typeof AccountHomeRoute
+  '/settings': typeof AccountSettingsRoute
+  '/statistics': typeof AccountStatisticsRoute
+  '/storage': typeof AccountStorageRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
   '/disclaimer': typeof LandingDisclaimerRoute
@@ -949,9 +952,6 @@ export interface FileRoutesByTo {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/account/settings': typeof AccountSettingsRoute
-  '/account/stats': typeof AccountStatsRoute
-  '/account/storage': typeof AccountStorageRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -961,7 +961,6 @@ export interface FileRoutesByTo {
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
-  '/account': typeof AccountIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
@@ -983,12 +982,16 @@ export interface FileRoutesByTo {
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
+  '/_account': typeof AccountRouteWithChildren
   '/_landing': typeof LandingRouteWithChildren
-  '/account': typeof AccountRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderRouteWithChildren
   '/signin': typeof SigninRoute
+  '/_account/home': typeof AccountHomeRoute
+  '/_account/settings': typeof AccountSettingsRoute
+  '/_account/statistics': typeof AccountStatisticsRoute
+  '/_account/storage': typeof AccountStorageRoute
   '/_landing/about-us': typeof LandingAboutUsRoute
   '/_landing/contact-us': typeof LandingContactUsRoute
   '/_landing/disclaimer': typeof LandingDisclaimerRoute
@@ -996,9 +999,6 @@ export interface FileRoutesById {
   '/_landing/policy': typeof LandingPolicyRoute
   '/_landing/support': typeof LandingSupportRoute
   '/_landing/terms': typeof LandingTermsRoute
-  '/account/settings': typeof AccountSettingsRoute
-  '/account/stats': typeof AccountStatsRoute
-  '/account/storage': typeof AccountStorageRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -1009,7 +1009,6 @@ export interface FileRoutesById {
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
-  '/account/': typeof AccountIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player/': typeof PlayerIndexRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
@@ -1038,11 +1037,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
-    | '/account'
     | '/analytics'
     | '/auth'
     | '/builder'
     | '/signin'
+    | '/home'
+    | '/settings'
+    | '/statistics'
+    | '/storage'
     | '/about-us'
     | '/contact-us'
     | '/disclaimer'
@@ -1050,9 +1052,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1062,7 +1061,6 @@ export interface FileRouteTypes {
     | '/builder/map'
     | '/email/change'
     | '/'
-    | '/account/'
     | '/analytics/'
     | '/player'
     | '/analytics/items/$itemId'
@@ -1086,9 +1084,14 @@ export interface FileRouteTypes {
     | '/builder/items/$itemId/share'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | ''
     | '/auth'
     | '/builder'
     | '/signin'
+    | '/home'
+    | '/settings'
+    | '/statistics'
+    | '/storage'
     | '/about-us'
     | '/contact-us'
     | '/disclaimer'
@@ -1096,9 +1099,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1108,7 +1108,6 @@ export interface FileRouteTypes {
     | '/builder/map'
     | '/email/change'
     | '/'
-    | '/account'
     | '/analytics'
     | '/player'
     | '/builder/bookmarks'
@@ -1128,12 +1127,16 @@ export interface FileRouteTypes {
     | '/builder/items/$itemId/share'
   id:
     | '__root__'
+    | '/_account'
     | '/_landing'
-    | '/account'
     | '/analytics'
     | '/auth'
     | '/builder'
     | '/signin'
+    | '/_account/home'
+    | '/_account/settings'
+    | '/_account/statistics'
+    | '/_account/storage'
     | '/_landing/about-us'
     | '/_landing/contact-us'
     | '/_landing/disclaimer'
@@ -1141,9 +1144,6 @@ export interface FileRouteTypes {
     | '/_landing/policy'
     | '/_landing/support'
     | '/_landing/terms'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1154,7 +1154,6 @@ export interface FileRouteTypes {
     | '/builder/map'
     | '/email/change'
     | '/_landing/'
-    | '/account/'
     | '/analytics/'
     | '/player/'
     | '/analytics/items/$itemId'
@@ -1181,8 +1180,8 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  LandingRoute: typeof LandingRouteWithChildren
   AccountRoute: typeof AccountRouteWithChildren
+  LandingRoute: typeof LandingRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
   BuilderRoute: typeof BuilderRouteWithChildren
@@ -1194,8 +1193,8 @@ export interface RootRouteChildren {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  LandingRoute: LandingRouteWithChildren,
   AccountRoute: AccountRouteWithChildren,
+  LandingRoute: LandingRouteWithChildren,
   AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
   BuilderRoute: BuilderRouteWithChildren,
@@ -1216,8 +1215,8 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
+        "/_account",
         "/_landing",
-        "/account",
         "/analytics",
         "/auth",
         "/builder",
@@ -1226,6 +1225,15 @@ export const routeTree = rootRoute
         "/player/",
         "/player/$rootId/$itemId",
         "/player/$rootId/"
+      ]
+    },
+    "/_account": {
+      "filePath": "_account.tsx",
+      "children": [
+        "/_account/home",
+        "/_account/settings",
+        "/_account/statistics",
+        "/_account/storage"
       ]
     },
     "/_landing": {
@@ -1239,15 +1247,6 @@ export const routeTree = rootRoute
         "/_landing/support",
         "/_landing/terms",
         "/_landing/"
-      ]
-    },
-    "/account": {
-      "filePath": "account.tsx",
-      "children": [
-        "/account/settings",
-        "/account/stats",
-        "/account/storage",
-        "/account/"
       ]
     },
     "/analytics": {
@@ -1279,6 +1278,22 @@ export const routeTree = rootRoute
     "/signin": {
       "filePath": "signin.tsx"
     },
+    "/_account/home": {
+      "filePath": "_account/home.tsx",
+      "parent": "/_account"
+    },
+    "/_account/settings": {
+      "filePath": "_account/settings.tsx",
+      "parent": "/_account"
+    },
+    "/_account/statistics": {
+      "filePath": "_account/statistics.tsx",
+      "parent": "/_account"
+    },
+    "/_account/storage": {
+      "filePath": "_account/storage.tsx",
+      "parent": "/_account"
+    },
     "/_landing/about-us": {
       "filePath": "_landing/about-us.tsx",
       "parent": "/_landing"
@@ -1306,18 +1321,6 @@ export const routeTree = rootRoute
     "/_landing/terms": {
       "filePath": "_landing/terms.tsx",
       "parent": "/_landing"
-    },
-    "/account/settings": {
-      "filePath": "account/settings.tsx",
-      "parent": "/account"
-    },
-    "/account/stats": {
-      "filePath": "account/stats.tsx",
-      "parent": "/account"
-    },
-    "/account/storage": {
-      "filePath": "account/storage.tsx",
-      "parent": "/account"
     },
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.tsx",
@@ -1363,10 +1366,6 @@ export const routeTree = rootRoute
     "/_landing/": {
       "filePath": "_landing/index.tsx",
       "parent": "/_landing"
-    },
-    "/account/": {
-      "filePath": "account/index.tsx",
-      "parent": "/account"
     },
     "/analytics/": {
       "filePath": "analytics/index.tsx",

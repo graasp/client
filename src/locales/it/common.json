@@ -53,5 +53,10 @@
     "USERNAME_SPECIAL_CHARACTERS": "Il nome utente non deve contenere virgolette, anti-barra, <, >, ^, %",
     "INVALID_EMAIL": "Questo non sembra un indirizzo email valido"
   },
-  "UNKNOWN_DATE": "Sconosciuto"
+  "UNKNOWN_DATE": "Sconosciuto",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Il mio Graasp",
+    "PUBLISHED_ITEMS": "Elementi pubblicati",
+    "TRASH": "Cestino"
+  }
 }

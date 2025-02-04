@@ -53,5 +53,11 @@
     "USERNAME_SPECIAL_CHARACTERS": "Le nom d'utilisateur ne doit pas contenir de guillemets, d'anti-slash, <, >, ^, %",
     "INVALID_EMAIL": "Cela ne ressemble pas à une adresse e-mail valide"
   },
-  "UNKNOWN_DATE": "Inconnu"
+  "UNKNOWN_DATE": "Inconnu",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Mon Graasp",
+    "BOOKMARKED_ITEMS_TITLE": "Signets",
+    "PUBLISHED_ITEMS": "Éléments publiés",
+    "TRASH": "Poubelle"
+  }
 }

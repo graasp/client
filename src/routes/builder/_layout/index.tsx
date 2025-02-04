@@ -19,7 +19,7 @@ export const Route = createFileRoute('/builder/_layout/')({
 });
 
 function HomeScreen(): JSX.Element {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'PAGE_TITLES' });
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
 
@@ -27,7 +27,7 @@ function HomeScreen(): JSX.Element {
 
   return (
     <BuilderPageLayout
-      title={translateBuilder('MY_ITEMS_TITLE')}
+      title={t('MY_GRAASP')}
       options={
         <Stack
           direction="row"

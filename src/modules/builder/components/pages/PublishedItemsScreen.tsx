@@ -111,13 +111,13 @@ const PublishedItemsScreenContent = ({
 };
 
 const PublishedItemsScreen = (): JSX.Element | null => {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'PAGE_TITLES' });
   const { input, text } = useItemSearch();
 
   return (
     <BuilderPageLayout
       id={PUBLISHED_ITEMS_ID}
-      title={translateBuilder(BUILDER.PUBLISHED_ITEMS_TITLE)}
+      title={t('PUBLISHED_ITEMS')}
       options={
         <Stack
           direction="row"

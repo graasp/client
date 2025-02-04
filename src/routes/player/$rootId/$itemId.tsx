@@ -33,7 +33,7 @@ export const Route = createFileRoute('/player/$rootId/$itemId')({
 
 const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
   <CustomLink
-    to="/account"
+    to="/home"
     sx={{
       textDecoration: 'none',
       color: 'inherit',
