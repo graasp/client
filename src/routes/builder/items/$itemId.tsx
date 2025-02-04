@@ -44,7 +44,7 @@ import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
 
 const schema = z.object({
-  chat: z.boolean().optional(),
+  chatOpen: z.boolean().optional(),
 });
 
 export const Route = createFileRoute('/builder/items/$itemId')({

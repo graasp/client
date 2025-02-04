@@ -16,12 +16,9 @@ import {
   styled,
 } from '@mui/material';
 
-import {
-  ChatMention,
-  MentionStatus,
-  buildItemLinkForBuilder,
-  getIdsFromPath,
-} from '@graasp/sdk';
+import { ChatMention, MentionStatus, getIdsFromPath } from '@graasp/sdk';
+
+import { Link } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext.js';
 import { NS } from '@/config/constants.js';
@@ -72,57 +69,52 @@ export function MentionsTable({ mentions }: Readonly<Props>) {
     }
 
     return mentions.map((m) => (
-      <StyledRow
+      <Link
         key={m.id}
-        hover
-        onClick={(): void => {
-          const link = buildItemLinkForBuilder({
-            origin: window.location.origin,
-            itemId: getIdsFromPath(m.message.item.path).slice(-1)[0],
-            chatOpen: true,
-          });
-          markAsRead(m.id);
-          window.location.href = link;
-        }}
+        to="/builder/items/$itemId"
+        params={{ itemId: getIdsFromPath(m.message.item.path).slice(-1)[0] }}
+        search={{ chatOpen: true }}
       >
-        <TableCell>
-          {m.status === MentionStatus.Unread && (
-            <FiberManualRecord fontSize="small" color="primary" />
-          )}
-        </TableCell>
-        <TableCell>
-          <MessageBody messageBody={m.message.body} />
-        </TableCell>
-        <TableCell>{m.message.creator?.name}</TableCell>
-        <TableCell>
-          <Grid container direction="row">
-            <Grid>
-              <Tooltip title={t('MARK_AS_READ')}>
-                <IconButton
-                  onClick={(e): void => {
-                    e.stopPropagation();
-                    markAsRead(m.id);
-                  }}
-                >
-                  <Check color="primary" />
-                </IconButton>
-              </Tooltip>
+        <StyledRow hover onClick={() => markAsRead(m.id)}>
+          <TableCell>
+            {m.status === MentionStatus.Unread && (
+              <FiberManualRecord fontSize="small" color="primary" />
+            )}
+          </TableCell>
+          <TableCell>
+            <MessageBody messageBody={m.message.body} />
+          </TableCell>
+          <TableCell>{m.message.creator?.name}</TableCell>
+          <TableCell>
+            <Grid container direction="row">
+              <Grid>
+                <Tooltip title={t('MARK_AS_READ')}>
+                  <IconButton
+                    onClick={(e): void => {
+                      e.stopPropagation();
+                      markAsRead(m.id);
+                    }}
+                  >
+                    <Check color="primary" />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
+              <Grid>
+                <Tooltip title={t('DELETE_TOOLTIP')}>
+                  <IconButton
+                    onClick={(e): void => {
+                      e.stopPropagation();
+                      deleteMention.mutate(m.id);
+                    }}
+                  >
+                    <Close color="primary" />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
             </Grid>
-            <Grid>
-              <Tooltip title={t('DELETE_TOOLTIP')}>
-                <IconButton
-                  onClick={(e): void => {
-                    e.stopPropagation();
-                    deleteMention.mutate(m.id);
-                  }}
-                >
-                  <Close color="primary" />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-          </Grid>
-        </TableCell>
-      </StyledRow>
+          </TableCell>
+        </StyledRow>
+      </Link>
     ));
   };
 

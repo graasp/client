@@ -24,7 +24,7 @@ type Props = {
 const ItemMain = ({ id, children }: Props): JSX.Element => {
   const { item } = useOutletContext();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { chat: chatIsOpen } = useSearch({
+  const { chatOpen: chatIsOpen } = useSearch({
     from: '/builder/items/$itemId',
   });
 
