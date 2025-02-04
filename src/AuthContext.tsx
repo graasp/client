@@ -87,9 +87,7 @@ export function AuthProvider({
   }, [currentMember]);
 
   const value = useMemo(() => {
-    Sentry.setUser(
-      currentMember ? { id: currentMember.id, name: currentMember.name } : null,
-    );
+    Sentry.setUser(currentMember ? { id: currentMember.id } : null);
     if (currentMember) {
       return {
         isAuthenticated: true as const,
