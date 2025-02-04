@@ -12,7 +12,7 @@ export function BeLEARN({
       id="Ebene_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 290 114.77"
-      style={{ maxHeight: height, maxWidth: width }}
+      style={{ maxHeight: height, maxWidth: width, width: 'fit-content' }}
     >
       <title>BeLEARN</title>
       <defs>
