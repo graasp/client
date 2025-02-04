@@ -10,6 +10,8 @@ import {
 
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
+import * as Sentry from '@sentry/react';
+
 import { DEFAULT_LANG } from './config/constants';
 import { hooks, mutations } from './config/queryClient';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
@@ -55,7 +57,10 @@ export function AuthProvider({
 
   const logout = useCallback(async () => {
     const url = window.location.href;
+    // call the logout mutation
     await useLogout.mutateAsync();
+    // unset the user in Sentry session
+    Sentry.setUser(null);
     // redirect to auth page with url from the page that we just left.
     const redirectionURL = new URL('/auth/login', window.location.origin);
     redirectionURL.searchParams.set('url', url);
@@ -82,6 +87,7 @@ export function AuthProvider({
   }, [currentMember]);
 
   const value = useMemo(() => {
+    Sentry.setUser(currentMember ? { id: currentMember.id } : null);
     if (currentMember) {
       return {
         isAuthenticated: true as const,
