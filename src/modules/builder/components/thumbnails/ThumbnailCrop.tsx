@@ -12,6 +12,7 @@ import {
 
 import { Trash2 as DeleteIcon, ImageUp as ImageUpIcon } from 'lucide-react';
 
+import CropModal, { MODAL_TITLE_ARIA_LABEL_ID } from '@/components/CropModal';
 import { NS } from '@/config/constants';
 import {
   IMAGE_PLACEHOLDER_FOLDER,
@@ -19,10 +20,6 @@ import {
   IMAGE_THUMBNAIL_UPLOADER,
   REMOVE_THUMBNAIL_BUTTON,
 } from '@/config/selectors';
-
-import CropModal, {
-  MODAL_TITLE_ARIA_LABEL_ID,
-} from '~builder/components/common/CropModal';
 
 import useThumbnailCrop from './ThumbnailCrop.hook';
 
