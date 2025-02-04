@@ -8,6 +8,7 @@ import { ThumbnailSize } from '@graasp/sdk';
 import { ImageUpIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
+import CropModal, { MODAL_TITLE_ARIA_LABEL_ID } from '@/components/CropModal';
 import { AVATAR_SIZE, NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import {
@@ -17,7 +18,6 @@ import {
   MEMBER_AVATAR_WRAPPER_ID,
 } from '@/config/selectors';
 
-import CropModal, { MODAL_TITLE_ARIA_LABEL_ID } from './CropModal';
 import { useUploadProgress } from './useUploadProgress';
 
 const VisuallyHiddenInput = styled('input')({
