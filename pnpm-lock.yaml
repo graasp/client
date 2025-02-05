@@ -198,8 +198,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       social-links:
-        specifier: 1.15.0
-        version: 1.15.0
+        specifier: 1.15.1
+        version: 1.15.1
       stylis:
         specifier: 4.3.5
         version: 4.3.5
@@ -5693,8 +5693,8 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
 
-  social-links@1.15.0:
-    resolution: {integrity: sha512-Q5K8wcryxBvF+Czv8F9IL0B86VRxkibBtfv9GaDyPoM/vTQOZVbv3zIFvovvMiJOkfd1vs4Eg2ESrSAGXiON4A==}
+  social-links@1.15.1:
+    resolution: {integrity: sha512-GCB0h9sSo/MQt5F+GsJYqQf+abYkCPZtLXtvk3FrQj1qzEnKqy6y4NJfLXMENeJMJveybMqEt8oJN+uhw5KL5w==}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -12789,7 +12789,7 @@ snapshots:
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
 
-  social-links@1.15.0: {}
+  social-links@1.15.1: {}
 
   source-map-js@1.2.1: {}
 
