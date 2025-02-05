@@ -15,7 +15,6 @@ import { Route as SigninImport } from './routes/signin'
 import { Route as BuilderImport } from './routes/builder'
 import { Route as AuthImport } from './routes/auth'
 import { Route as AnalyticsImport } from './routes/analytics'
-import { Route as MemberOnlyImport } from './routes/_memberOnly'
 import { Route as LandingImport } from './routes/_landing'
 import { Route as PlayerIndexImport } from './routes/player/index'
 import { Route as AnalyticsIndexImport } from './routes/analytics/index'
@@ -29,7 +28,6 @@ import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthRegisterImport } from './routes/auth/register'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
-import { Route as MemberOnlyHomeImport } from './routes/_memberOnly/home'
 import { Route as LandingTermsImport } from './routes/_landing/terms'
 import { Route as LandingSupportImport } from './routes/_landing/support'
 import { Route as LandingPolicyImport } from './routes/_landing/policy'
@@ -45,9 +43,6 @@ import { Route as BuilderLayoutRecycledImport } from './routes/builder/_layout/r
 import { Route as BuilderLayoutPublishedImport } from './routes/builder/_layout/published'
 import { Route as BuilderLayoutBookmarksImport } from './routes/builder/_layout/bookmarks'
 import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
-import { Route as MemberOnlyAccountStorageImport } from './routes/_memberOnly/account/storage'
-import { Route as MemberOnlyAccountStatsImport } from './routes/_memberOnly/account/stats'
-import { Route as MemberOnlyAccountSettingsImport } from './routes/_memberOnly/account/settings'
 import { Route as PlayerRootIdItemIdIndexImport } from './routes/player/$rootId/$itemId/index'
 import { Route as BuilderItemsItemIdIndexImport } from './routes/builder/items/$itemId/index'
 import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
@@ -84,11 +79,6 @@ const AuthRoute = AuthImport.update({
 const AnalyticsRoute = AnalyticsImport.update({
   id: '/analytics',
   path: '/analytics',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const MemberOnlyRoute = MemberOnlyImport.update({
-  id: '/_memberOnly',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -166,12 +156,6 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
   getParentRoute: () => AuthRoute,
-} as any)
-
-const MemberOnlyHomeRoute = MemberOnlyHomeImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => MemberOnlyRoute,
 } as any)
 
 const LandingTermsRoute = LandingTermsImport.update({
@@ -264,24 +248,6 @@ const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdImport.update({
   getParentRoute: () => AnalyticsRoute,
 } as any)
 
-const MemberOnlyAccountStorageRoute = MemberOnlyAccountStorageImport.update({
-  id: '/account/storage',
-  path: '/account/storage',
-  getParentRoute: () => MemberOnlyRoute,
-} as any)
-
-const MemberOnlyAccountStatsRoute = MemberOnlyAccountStatsImport.update({
-  id: '/account/stats',
-  path: '/account/stats',
-  getParentRoute: () => MemberOnlyRoute,
-} as any)
-
-const MemberOnlyAccountSettingsRoute = MemberOnlyAccountSettingsImport.update({
-  id: '/account/settings',
-  path: '/account/settings',
-  getParentRoute: () => MemberOnlyRoute,
-} as any)
-
 const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
   id: '/',
   path: '/',
@@ -372,13 +338,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingImport
       parentRoute: typeof rootRoute
     }
-    '/_memberOnly': {
-      id: '/_memberOnly'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof MemberOnlyImport
-      parentRoute: typeof rootRoute
-    }
     '/analytics': {
       id: '/analytics'
       path: '/analytics'
@@ -455,13 +414,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/terms'
       preLoaderRoute: typeof LandingTermsImport
       parentRoute: typeof LandingImport
-    }
-    '/_memberOnly/home': {
-      id: '/_memberOnly/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof MemberOnlyHomeImport
-      parentRoute: typeof MemberOnlyImport
     }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
@@ -546,27 +498,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/player'
       preLoaderRoute: typeof PlayerIndexImport
       parentRoute: typeof rootRoute
-    }
-    '/_memberOnly/account/settings': {
-      id: '/_memberOnly/account/settings'
-      path: '/account/settings'
-      fullPath: '/account/settings'
-      preLoaderRoute: typeof MemberOnlyAccountSettingsImport
-      parentRoute: typeof MemberOnlyImport
-    }
-    '/_memberOnly/account/stats': {
-      id: '/_memberOnly/account/stats'
-      path: '/account/stats'
-      fullPath: '/account/stats'
-      preLoaderRoute: typeof MemberOnlyAccountStatsImport
-      parentRoute: typeof MemberOnlyImport
-    }
-    '/_memberOnly/account/storage': {
-      id: '/_memberOnly/account/storage'
-      path: '/account/storage'
-      fullPath: '/account/storage'
-      preLoaderRoute: typeof MemberOnlyAccountStorageImport
-      parentRoute: typeof MemberOnlyImport
     }
     '/analytics/items/$itemId': {
       id: '/analytics/items/$itemId'
@@ -738,24 +669,6 @@ const LandingRouteChildren: LandingRouteChildren = {
 const LandingRouteWithChildren =
   LandingRoute._addFileChildren(LandingRouteChildren)
 
-interface MemberOnlyRouteChildren {
-  MemberOnlyHomeRoute: typeof MemberOnlyHomeRoute
-  MemberOnlyAccountSettingsRoute: typeof MemberOnlyAccountSettingsRoute
-  MemberOnlyAccountStatsRoute: typeof MemberOnlyAccountStatsRoute
-  MemberOnlyAccountStorageRoute: typeof MemberOnlyAccountStorageRoute
-}
-
-const MemberOnlyRouteChildren: MemberOnlyRouteChildren = {
-  MemberOnlyHomeRoute: MemberOnlyHomeRoute,
-  MemberOnlyAccountSettingsRoute: MemberOnlyAccountSettingsRoute,
-  MemberOnlyAccountStatsRoute: MemberOnlyAccountStatsRoute,
-  MemberOnlyAccountStorageRoute: MemberOnlyAccountStorageRoute,
-}
-
-const MemberOnlyRouteWithChildren = MemberOnlyRoute._addFileChildren(
-  MemberOnlyRouteChildren,
-)
-
 interface AnalyticsItemsItemIdRouteChildren {
   AnalyticsItemsItemIdAppsRoute: typeof AnalyticsItemsItemIdAppsRoute
   AnalyticsItemsItemIdExportRoute: typeof AnalyticsItemsItemIdExportRoute
@@ -889,7 +802,7 @@ const PlayerRootIdItemIdRouteWithChildren =
   PlayerRootIdItemIdRoute._addFileChildren(PlayerRootIdItemIdRouteChildren)
 
 export interface FileRoutesByFullPath {
-  '': typeof MemberOnlyRouteWithChildren
+  '': typeof LandingRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderLayoutRouteWithChildren
@@ -901,7 +814,6 @@ export interface FileRoutesByFullPath {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/home': typeof MemberOnlyHomeRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -913,9 +825,6 @@ export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
-  '/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/published': typeof BuilderLayoutPublishedRoute
@@ -938,7 +847,6 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '': typeof MemberOnlyRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderLayoutIndexRoute
   '/signin': typeof SigninRoute
@@ -949,7 +857,6 @@ export interface FileRoutesByTo {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/home': typeof MemberOnlyHomeRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -961,9 +868,6 @@ export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
-  '/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/account/storage': typeof MemberOnlyAccountStorageRoute
   '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/published': typeof BuilderLayoutPublishedRoute
   '/builder/recycled': typeof BuilderLayoutRecycledRoute
@@ -984,7 +888,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_landing': typeof LandingRouteWithChildren
-  '/_memberOnly': typeof MemberOnlyRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderRouteWithChildren
@@ -996,7 +899,6 @@ export interface FileRoutesById {
   '/_landing/policy': typeof LandingPolicyRoute
   '/_landing/support': typeof LandingSupportRoute
   '/_landing/terms': typeof LandingTermsRoute
-  '/_memberOnly/home': typeof MemberOnlyHomeRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -1009,9 +911,6 @@ export interface FileRoutesById {
   '/_landing/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player/': typeof PlayerIndexRoute
-  '/_memberOnly/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/_memberOnly/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/builder/_layout/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/_layout/published': typeof BuilderLayoutPublishedRoute
@@ -1049,7 +948,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/home'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1061,9 +959,6 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics/'
     | '/player'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
     | '/analytics/items/$itemId'
     | '/builder/bookmarks'
     | '/builder/published'
@@ -1085,7 +980,6 @@ export interface FileRouteTypes {
     | '/builder/items/$itemId/share'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | ''
     | '/auth'
     | '/builder'
     | '/signin'
@@ -1096,7 +990,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/home'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1108,9 +1001,6 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/player'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
     | '/builder/bookmarks'
     | '/builder/published'
     | '/builder/recycled'
@@ -1129,7 +1019,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_landing'
-    | '/_memberOnly'
     | '/analytics'
     | '/auth'
     | '/builder'
@@ -1141,7 +1030,6 @@ export interface FileRouteTypes {
     | '/_landing/policy'
     | '/_landing/support'
     | '/_landing/terms'
-    | '/_memberOnly/home'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1154,9 +1042,6 @@ export interface FileRouteTypes {
     | '/_landing/'
     | '/analytics/'
     | '/player/'
-    | '/_memberOnly/account/settings'
-    | '/_memberOnly/account/stats'
-    | '/_memberOnly/account/storage'
     | '/analytics/items/$itemId'
     | '/builder/_layout/bookmarks'
     | '/builder/_layout/published'
@@ -1182,7 +1067,6 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   LandingRoute: typeof LandingRouteWithChildren
-  MemberOnlyRoute: typeof MemberOnlyRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
   BuilderRoute: typeof BuilderRouteWithChildren
@@ -1195,7 +1079,6 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRouteWithChildren,
-  MemberOnlyRoute: MemberOnlyRouteWithChildren,
   AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
   BuilderRoute: BuilderRouteWithChildren,
@@ -1217,7 +1100,6 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_landing",
-        "/_memberOnly",
         "/analytics",
         "/auth",
         "/builder",
@@ -1239,15 +1121,6 @@ export const routeTree = rootRoute
         "/_landing/support",
         "/_landing/terms",
         "/_landing/"
-      ]
-    },
-    "/_memberOnly": {
-      "filePath": "_memberOnly.tsx",
-      "children": [
-        "/_memberOnly/home",
-        "/_memberOnly/account/settings",
-        "/_memberOnly/account/stats",
-        "/_memberOnly/account/storage"
       ]
     },
     "/analytics": {
@@ -1307,10 +1180,6 @@ export const routeTree = rootRoute
       "filePath": "_landing/terms.tsx",
       "parent": "/_landing"
     },
-    "/_memberOnly/home": {
-      "filePath": "_memberOnly/home.tsx",
-      "parent": "/_memberOnly"
-    },
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.tsx",
       "parent": "/auth"
@@ -1362,18 +1231,6 @@ export const routeTree = rootRoute
     },
     "/player/": {
       "filePath": "player/index.tsx"
-    },
-    "/_memberOnly/account/settings": {
-      "filePath": "_memberOnly/account/settings.tsx",
-      "parent": "/_memberOnly"
-    },
-    "/_memberOnly/account/stats": {
-      "filePath": "_memberOnly/account/stats.tsx",
-      "parent": "/_memberOnly"
-    },
-    "/_memberOnly/account/storage": {
-      "filePath": "_memberOnly/account/storage.tsx",
-      "parent": "/_memberOnly"
     },
     "/analytics/items/$itemId": {
       "filePath": "analytics/items/$itemId.tsx",

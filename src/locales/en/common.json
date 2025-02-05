@@ -59,5 +59,11 @@
     "BOOKMARKED_ITEMS": "Bookmarks",
     "PUBLISHED_ITEMS": "Published Items",
     "TRASH": "Trash"
+  },
+  "USER_SWITCH": {
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "STORAGE": "Storage",
+    "SIGN_IN": "Sign In"
   }
 }
