@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
-import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import { hooks, mutations } from '@/config/queryClient';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
 import { UserSwitchWrapper as GraaspUserSwitch } from '@/ui/UserSwitch/UserSwitchWrapper';
@@ -44,7 +43,6 @@ export function UserButtonMenu({
           currentMember={member}
           isCurrentMemberLoading={isLoading}
           avatar={<MemberAvatar id={user.id} />}
-          profilePath={ACCOUNT_HOME_PATH}
           redirectPath="/auth/login"
           userMenuItems={[]}
         />

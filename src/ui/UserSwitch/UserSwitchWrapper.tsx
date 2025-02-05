@@ -8,6 +8,8 @@ import { ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { AccountType, CurrentAccount, redirect } from '@graasp/sdk';
 
+import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
+
 import Loader from '../Loader/Loader.js';
 import { UserSwitch } from './UserSwitch.js';
 
@@ -24,7 +26,6 @@ type Props = {
   // domain: string;
   isCurrentMemberLoading?: boolean;
   // isCurrentMemberSuccess: boolean;
-  profilePath: string;
   redirectPath: string;
   avatar: JSX.Element;
   seeProfileButtonId?: string;
@@ -55,7 +56,6 @@ export const UserSwitchWrapper = ({
   // domain,
   isCurrentMemberLoading = false,
   // isCurrentMemberSuccess,
-  profilePath,
   redirectPath,
   avatar,
   seeProfileButtonId,
@@ -86,10 +86,6 @@ export const UserSwitchWrapper = ({
     return redirect(window, redirectPath);
   };
 
-  const goToProfile = (): void => {
-    redirect(window, profilePath);
-  };
-
   let Actions: JSX.Element[];
 
   const MenuItems = userMenuItems.map((item: UserMenuItem) => (
@@ -106,16 +102,16 @@ export const UserSwitchWrapper = ({
     Actions =
       currentMember.type === AccountType.Individual
         ? [
-            <MenuItem
+            <MenuItemLink
               key="seeProfile"
-              onClick={goToProfile}
               id={seeProfileButtonId}
+              to="/account"
             >
               <ListItemIcon>
                 <AccountCircleIcon fontSize="large" />
               </ListItemIcon>
               <Typography variant="subtitle2">{seeProfileText}</Typography>
-            </MenuItem>,
+            </MenuItemLink>,
           ]
         : [];
 

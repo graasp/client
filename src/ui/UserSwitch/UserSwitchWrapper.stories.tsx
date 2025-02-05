@@ -22,7 +22,6 @@ const meta = {
   },
   args: {
     signOut: async () => {},
-    profilePath: 'profilePath',
     redirectPath: 'redirectPath',
   },
 } satisfies Meta<typeof UserSwitchWrapper>;
