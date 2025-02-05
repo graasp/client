@@ -84,7 +84,7 @@ function PlayerWrapper(): JSX.Element {
          * override the open prop to close the menu when there is no rootId or we could not fetch the item (logged out and not public)
          * we want to keep the default behavior when the user is logged in
          */
-        Boolean(rootId)
+        Boolean(rootId) && Boolean(item) ? undefined : false
       }
       context={Context.Player}
       drawerContent={<ItemNavigation />}
