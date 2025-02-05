@@ -1,25 +1,25 @@
-import type { JSX } from 'react'
-import { useTranslation } from 'react-i18next'
+import type { JSX } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
-import { ScreenLayout } from '@/components/layout/ScreenLayout'
-import { NS } from '@/config/constants'
-import { SETTINGS_PAGE_CONTAINER_ID } from '@/config/selectors'
+import { ScreenLayout } from '@/components/layout/ScreenLayout';
+import { NS } from '@/config/constants';
+import { SETTINGS_PAGE_CONTAINER_ID } from '@/config/selectors';
 
-import { DeleteMemberSection } from '~account/settings/DeleteMemberSection'
-import { ExportMemberData } from '~account/settings/ExportMemberData'
-import { Password } from '~account/settings/password/Password'
-import { Preferences } from '~account/settings/preferences/Preferences'
-import { PersonalInformation } from '~account/settings/profile/PersonalInformation'
-import { PublicProfile } from '~account/settings/publicProfile/PublicProfile'
+import { DeleteMemberSection } from '~account/settings/DeleteMemberSection';
+import { ExportMemberData } from '~account/settings/ExportMemberData';
+import { Password } from '~account/settings/password/Password';
+import { Preferences } from '~account/settings/preferences/Preferences';
+import { PersonalInformation } from '~account/settings/profile/PersonalInformation';
+import { PublicProfile } from '~account/settings/publicProfile/PublicProfile';
 
 export const Route = createFileRoute('/_account/settings')({
   component: SettingsRoute,
-})
+});
 
 function SettingsRoute(): JSX.Element {
-  const { t } = useTranslation(NS.Account)
+  const { t } = useTranslation(NS.Account);
 
   return (
     <ScreenLayout
@@ -33,5 +33,5 @@ function SettingsRoute(): JSX.Element {
       <ExportMemberData />
       <DeleteMemberSection />
     </ScreenLayout>
-  )
+  );
 }

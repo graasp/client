@@ -9,7 +9,6 @@ import { formatDistanceToNow } from 'date-fns';
 import { StatusCodes } from 'http-status-codes';
 
 import { getLocalForDateFns } from '../../../src/config/langs';
-import { ACCOUNT_HOME_PATH } from '../../../src/config/paths';
 import {
   AVATAR_UPLOAD_ICON_ID,
   AVATAR_UPLOAD_INPUT_ID,
@@ -87,7 +86,7 @@ describe('Upload Avatar', () => {
   beforeEach(() => {
     helpers = new TestHelper({ currentMember: MEMBERS.BOB });
     helpers.setupServer();
-    cy.visit(ACCOUNT_HOME_PATH);
+    cy.visit('/home');
   });
 
   it('Upload a new thumbnail', () => {
@@ -109,7 +108,7 @@ describe('Upload Avatar', () => {
 describe('Image is not set', () => {
   beforeEach(() => {
     cy.setUpApi({ currentMember: MEMBERS.BOB });
-    cy.visit(ACCOUNT_HOME_PATH);
+    cy.visit('/home');
   });
 
   it('Image is not set', () => {
@@ -126,7 +125,7 @@ describe('Check member info', () => {
     cy.setUpApi({
       currentMember: MEMBER_WITH_AVATAR,
     });
-    cy.visit(ACCOUNT_HOME_PATH);
+    cy.visit('/home');
     cy.wait('@getCurrentMember');
   });
 
@@ -158,7 +157,7 @@ describe('Recent items', () => {
       currentMember: MEMBER_WITH_AVATAR,
       items: [shortcutItem, targetItem],
     });
-    cy.visit(ACCOUNT_HOME_PATH);
+    cy.visit('/home');
     cy.wait('@getCurrentMember');
   });
 
@@ -171,22 +170,22 @@ describe('Recent items', () => {
     cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
 
     // builder link
-    cy.visit('/account');
+    cy.visit('/home');
     cy.get(`a#recentItemBuilder-${shortcutItem.id}`).click();
     cy.url().should('contain', `/builder/items/${targetItem.id}`);
 
     // player link
-    cy.visit('/account');
+    cy.visit('/home');
     cy.get(`a#recentItemPlayer-${shortcutItem.id}`).click();
     cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
 
     // analytics link
-    cy.visit('/account');
+    cy.visit('/home');
     cy.get(`a#recentItemAnalytics-${shortcutItem.id}`).click();
     cy.url().should('contain', `/analytics/items/${targetItem.id}`);
 
     // the target item directs to the target item
-    cy.visit('/account');
+    cy.visit('/home');
     cy.get(`a#recentItemCardAction-${targetItem.id}`).click();
     cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
   });

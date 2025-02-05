@@ -11,7 +11,6 @@ import { UserRoundIcon } from 'lucide-react';
 import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
-import { ACCOUNT_HOME_PATH } from '@/config/paths';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch, {
   PlatformSwitchProps,
@@ -29,7 +28,7 @@ const StyledLink = styled(Link)(() => ({
 }));
 
 const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
-  <StyledLink to={ACCOUNT_HOME_PATH}>{children}</StyledLink>
+  <StyledLink to="/home">{children}</StyledLink>
 );
 
 const AccountIcon: PlatformSwitchProps['CustomMobileIcon'] = (props) => (
