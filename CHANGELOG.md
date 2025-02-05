@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.19.6](https://github.com/graasp/client/compare/v2.19.5...v2.19.6) (2025-02-05)
+
+
+### Bug Fixes
+
+* add sentry release upload step in deploy workflows ([e4c05b4](https://github.com/graasp/client/commit/e4c05b4eab982b41198d6995f5818be56f0bcd9d))
+* add sentry session for Release Health reporting ([#818](https://github.com/graasp/client/issues/818)) ([7e43759](https://github.com/graasp/client/commit/7e43759417dcb60ee932cd2979fd1a208be92494))
+* country selection ([#803](https://github.com/graasp/client/issues/803)) ([bdf0cb1](https://github.com/graasp/client/commit/bdf0cb177d0d6f2f346ee081e2683e8c7e2c545c))
+* **deps:** update dependency @graasp/sdk to v5.8.0 ([#827](https://github.com/graasp/client/issues/827)) ([bce8c57](https://github.com/graasp/client/commit/bce8c578efbd57a628402f143481103bd961b034))
+* **deps:** update dependency @sentry/react to v8.54.0 ([#816](https://github.com/graasp/client/issues/816)) ([79413f9](https://github.com/graasp/client/commit/79413f90589d9f70ef18e5766fb0e02da9859660))
+* **deps:** update mui (non-major) ([#466](https://github.com/graasp/client/issues/466)) ([3666c22](https://github.com/graasp/client/commit/3666c220f3c9f7789e16b694456ec68d1b78dce0))
+* **deps:** update tanstack-router monorepo to v1.99.0 ([#820](https://github.com/graasp/client/issues/820)) ([c9cc509](https://github.com/graasp/client/commit/c9cc50984457352904216e90a05630635ccb97ed))
+* flicker caused by suspense when loading translations ([#823](https://github.com/graasp/client/issues/823)) ([f12ea12](https://github.com/graasp/client/commit/f12ea12fdfe49c6223b2f64716833da5ceb1a99a))
+* logo on safari ([#825](https://github.com/graasp/client/issues/825)) ([9a0a4cd](https://github.com/graasp/client/commit/9a0a4cdd0e3c867f8a15c5a3e8bf8be921d4ec26))
+* remove duplicated crop modal code ([#822](https://github.com/graasp/client/issues/822)) ([935e9f0](https://github.com/graasp/client/commit/935e9f00888e28e46397bb4c676d14490f0994b7))
+* remove mock content from faq ([#808](https://github.com/graasp/client/issues/808)) ([447e485](https://github.com/graasp/client/commit/447e4851dfb5eeaaae3f76694ed0146955ffce5c))
+* update the user profile link in userswitch ([#829](https://github.com/graasp/client/issues/829)) ([474e6c1](https://github.com/graasp/client/commit/474e6c1b02e53692a304653b56f5a5028acefed1))
+* use sha and version instead ([c49a2a1](https://github.com/graasp/client/commit/c49a2a1b066c9b839f691244a8f75c20d5356622))
+
 ## [2.19.5](https://github.com/graasp/client/compare/v2.19.4...v2.19.5) (2025-01-31)
 
 
