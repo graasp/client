@@ -118,6 +118,6 @@
   "DRAWER_OPEN_ARIA_LABEL": "Open drawer",
   "GUEST_AUTH": {
     "TITLE": "Guests can not access this page",
-    "DESCRIPTION": "You are currently logged in with a guest account. These accounts can not be used to manage settings. Register an account to use these features."
+    "DESCRIPTION": "You are currently logged in with a guest account. These accounts can not manage settings and configurations. Register an account to use these features."
   }
 }
