@@ -240,6 +240,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "Where do you want to move {{name}} and one other?",
   "MOVE_ITEM_MODAL_TITLE_other": "Where do you want to move {{name}} and {{count}} others?",
   "SELECT_TEMPLATE_TITLE": "Which folder will you choose as a template?",
+  "SELECT_MY_ITEMS": "My Items",
   "NEW_ITEM_APP_TAB_TEXT": "Application",
   "NEW_ITEM_BUTTON_TOOLTIP": "Create new item",
   "NEW_ITEM_BUTTON": "New Item",

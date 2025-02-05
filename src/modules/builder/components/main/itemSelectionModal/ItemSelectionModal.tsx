@@ -24,7 +24,6 @@ import {
 import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
 import type { NavigationElement } from '@/ui/Tree/types';
 
-import { BUILDER } from '../../../langs';
 import { CancelButton } from '../../common/CancelButton';
 import AccessibleNavigationTree from './AccessibleNavigationTree';
 import ChildrenNavigationTree from './ChildrenNavigationTree';
@@ -73,7 +72,7 @@ const ItemSelectionModal = ({
   };
   // my graasp displays accessible items
   const MY_GRAASP_BREADCRUMB: NavigationElement = {
-    name: translateBuilder(BUILDER.MY_ITEMS_TITLE),
+    name: translateBuilder('SELECT_MY_ITEMS'),
     id: MY_GRAASP_ITEM_PATH,
     path: MY_GRAASP_ITEM_PATH,
   };
