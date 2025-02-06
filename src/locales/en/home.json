@@ -1,0 +1,9 @@
+{
+  "MENU": {
+    "HOME": "Home",
+    "MY_ITEMS": "My Graasp",
+    "BOOKMARKED_ITEMS": "Bookmarks",
+    "PUBLISHED_ITEMS": "Published",
+    "RECYCLED_ITEMS": "Trash"
+  }
+}

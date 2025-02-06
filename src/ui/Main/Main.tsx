@@ -1,26 +1,18 @@
-import { type JSX, type ReactNode, useEffect } from 'react';
+import { type JSX, type ReactNode } from 'react';
 
-import { MenuOpen } from '@mui/icons-material';
 import {
   AppBar,
   Box,
   CssBaseline,
-  Drawer,
-  IconButton,
   Stack,
   Theme,
   Toolbar,
   styled,
 } from '@mui/material';
 
-import { MenuIcon } from 'lucide-react';
-
 import { AllowedContext } from '@/ui/types.js';
 
-import {
-  MainMenuOpenContextProvider,
-  useMainMenuOpenContext,
-} from '../MainMenu/hooks.js';
+import { MainMenuOpenContextProvider } from '../MainMenu/hooks.js';
 import {
   AccentColors,
   DEFAULT_BACKGROUND_COLOR,
@@ -74,10 +66,6 @@ type Props = {
    */
   context?: `${AllowedContext}` | AllowedContext;
   /**
-   * Content to display inside the drawer / sidebar
-   */
-  drawerContent: ReactNode;
-  /**
    * Content to display inside the footer
    */
   footerContent?: ReactNode;
@@ -95,11 +83,6 @@ type Props = {
    */
   headerRightContent?: ReactNode;
   /**
-   * Override the state of the drawer
-   * defaults to `false`
-   */
-  open?: boolean;
-  /**
    * Wrapper component that supplies a link facility wrapping the logo
    */
   LinkComponent?: (props: { children: ReactNode }) => JSX.Element;
@@ -112,11 +95,6 @@ type Props = {
    */
   headerId?: string;
   /**
-   * Aria label to put on the button that opens and closes the drawer
-   * This should be a translated string reading i.e: `open drawer`
-   */
-  drawerOpenAriaLabel: string;
-  /**
    * Color of the background
    */
   backgroundColor?: string;
@@ -124,38 +102,15 @@ type Props = {
 
 const MainWithDrawerContent = ({
   context,
-  drawerContent,
   footerContent,
   children,
   headerLeftContent,
   headerRightContent,
-  open: openOverride,
   headerId,
-  drawerOpenAriaLabel,
   LinkComponent,
   PlatformComponent,
   backgroundColor = DEFAULT_BACKGROUND_COLOR,
 }: Props): JSX.Element => {
-  const { open, setOpen } = useMainMenuOpenContext();
-
-  const handleDrawerClose = (): void => {
-    setOpen(false);
-  };
-
-  const handleDrawerToggle = (): void => {
-    setOpen((state) => !state);
-  };
-
-  useEffect(
-    () => {
-      if (openOverride !== undefined) {
-        setOpen(openOverride);
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [openOverride],
-  );
-
   return (
     <>
       <CssBaseline />
@@ -185,17 +140,6 @@ const MainWithDrawerContent = ({
               minWidth={0}
               spacing={1}
             >
-              <IconButton
-                color="inherit"
-                aria-label={drawerOpenAriaLabel}
-                onClick={handleDrawerToggle}
-                edge="start"
-                data-umami-event="header-drawer-toggle"
-                data-umami-event-context={context}
-                data-umami-event-open={open}
-              >
-                {open ? <MenuOpen /> : <MenuIcon />}
-              </IconButton>
               {LinkComponent?.({ children: <LogoHeader /> })}
               {PlatformComponent}
               {headerLeftContent}
@@ -204,47 +148,11 @@ const MainWithDrawerContent = ({
           </Stack>
         </Toolbar>
       </AppBar>
-      <Box component="nav" aria-label="navigation">
-        <Drawer
-          variant="temporary"
-          open={open}
-          onClose={handleDrawerClose}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
-              backgroundColor,
-            },
-          }}
-        >
-          <Toolbar />
-          {drawerContent}
-        </Drawer>
-        <Drawer
-          variant="persistent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
-              backgroundColor,
-            },
-          }}
-          open={open}
-        >
-          <Toolbar />
-          {drawerContent}
-        </Drawer>
-      </Box>
       <Toolbar />
-      <StyledMain open={open} backgroundColor={backgroundColor}>
+      <StyledMain open={false} backgroundColor={backgroundColor}>
         {children}
       </StyledMain>
-      <StyledFooter open={open}>{footerContent}</StyledFooter>
+      <StyledFooter open={false}>{footerContent}</StyledFooter>
     </>
   );
 };
