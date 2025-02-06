@@ -34,6 +34,8 @@ VITE_RECAPTCHA_SITE_KEY= # some value
 
 VITE_GRAASP_H5P_INTEGRATION_URL= # the origin for the h5p integration
 VITE_GOOGLE_KEY= # a google api key for using the google map in analytics
+
+VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
 ```
 
 ## Test setup

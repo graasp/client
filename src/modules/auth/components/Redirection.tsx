@@ -50,7 +50,7 @@ export function Redirection({ children }: Readonly<Props>) {
             </Typography>
             <ButtonLink
               variant="contained"
-              to="/account"
+              to="/home"
               endIcon={<ArrowRightIcon />}
             >
               {t(AUTH.REDIRECTION_BUTTON)}

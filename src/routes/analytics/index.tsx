@@ -40,7 +40,7 @@ function RouteComponent() {
             {t('NO_ITEM_SELECTED')}
           </Typography>
         </Stack>
-        <ButtonLink to="/account">{t('SELECT_AN_ITEM')}</ButtonLink>
+        <ButtonLink to="/home">{t('SELECT_AN_ITEM')}</ButtonLink>
       </Box>
     </Stack>
   );

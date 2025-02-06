@@ -11,7 +11,8 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: 'en',
-    ns: 'common',
+    // namespaces that will be loaded by default
+    ns: ['common'],
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },

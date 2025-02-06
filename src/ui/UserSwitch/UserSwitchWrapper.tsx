@@ -102,11 +102,7 @@ export const UserSwitchWrapper = ({
     Actions =
       currentMember.type === AccountType.Individual
         ? [
-            <MenuItemLink
-              key="seeProfile"
-              id={seeProfileButtonId}
-              to="/account"
-            >
+            <MenuItemLink key="seeProfile" id={seeProfileButtonId} to="/home">
               <ListItemIcon>
                 <AccountCircleIcon fontSize="large" />
               </ListItemIcon>

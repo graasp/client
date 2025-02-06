@@ -125,13 +125,10 @@ const RecycledItemsScreenContent = (): JSX.Element => {
 };
 
 function RecycledItemsScreen(): JSX.Element | null {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'PAGE_TITLES' });
 
   return (
-    <BuilderPageLayout
-      title={translateBuilder(BUILDER.RECYCLE_BIN_TITLE)}
-      id={RECYCLED_ITEMS_ROOT_CONTAINER}
-    >
+    <BuilderPageLayout title={t('TRASH')} id={RECYCLED_ITEMS_ROOT_CONTAINER}>
       <SelectionContextProvider>
         <RecycledItemsScreenContent />
       </SelectionContextProvider>

@@ -17,6 +17,7 @@ import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
 import { MentionButton } from '@/components/chatbox/Mentions/MentionButton';
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
@@ -71,6 +72,7 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
 function RouteComponent() {
   const { user } = useAuth();
   const { t } = useTranslation(NS.Builder);
+  const { t: translateCommon } = useTranslation(NS.Common);
   const theme = useTheme();
   const { isMobile } = useMobileView();
   const { itemId } = Route.useParams();
@@ -176,6 +178,9 @@ function RouteComponent() {
               gap={2}
             >
               <ForbiddenContent id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID} />
+              <ButtonLink to="/auth/login">
+                {translateCommon('LOG_IN.BUTTON_TEXT')}
+              </ButtonLink>
             </Stack>
           }
         >

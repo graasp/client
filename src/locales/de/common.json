@@ -53,5 +53,11 @@
     "USERNAME_SPECIAL_CHARACTERS": "Der Benutzername darf keine Anführungszeichen, Anti-Slash, <, >, ^, % enthalten",
     "INVALID_EMAIL": "Dies scheint keine gültige E-Mail-Adresse zu sein"
   },
-  "UNKNOWN_DATE": "Unbekannt"
+  "UNKNOWN_DATE": "Unbekannt",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "Mein Graasp",
+    "BOOKMARKED_ITEMS": "Lieblingselemente",
+    "PUBLISHED_ITEMS": "Veröffentlichte Elemente",
+    "TRASH": "Papierkorb"
+  }
 }

@@ -115,5 +115,9 @@
   "LOGOUT_BUTTON": "Log Out",
   "HERE_BUTTON": "Here",
   "TEMPORARY_MOVED_ACCOUNT_HOME_PAGE_MESSAGE": "The home page of account has moved",
-  "DRAWER_OPEN_ARIA_LABEL": "Open drawer"
+  "DRAWER_OPEN_ARIA_LABEL": "Open drawer",
+  "GUEST_AUTH": {
+    "TITLE": "Guests can not access this page",
+    "DESCRIPTION": "You are currently logged in with a guest account. These accounts can not manage settings and configurations. Register an account to use these features."
+  }
 }

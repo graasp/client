@@ -11,7 +11,7 @@ import { ADMIN_CONTACT, NS } from '@/config/constants';
 import { StorageBar } from '~account/storage/StorageBar';
 import { StorageFiles } from '~account/storage/StorageFiles';
 
-export const Route = createFileRoute('/account/storage')({
+export const Route = createFileRoute('/_memberOnly/account/storage')({
   component: StorageRoute,
 });
 

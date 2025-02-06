@@ -33,7 +33,7 @@ export const Route = createFileRoute('/player/$rootId/$itemId')({
 
 const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
   <CustomLink
-    to="/account"
+    to="/home"
     sx={{
       textDecoration: 'none',
       color: 'inherit',
@@ -51,7 +51,7 @@ function PlayerWrapper(): JSX.Element {
   const theme = useTheme();
   const { isMobile } = useMobileView();
   const { rootId, itemId } = Route.useParams();
-  const { data: item } = hooks.useItem();
+  const { data: item } = hooks.useItem(itemId);
 
   const platformProps = {
     [Platform.Builder]: {
@@ -79,7 +79,13 @@ function PlayerWrapper(): JSX.Element {
 
   return (
     <Main
-      open={Boolean(rootId)}
+      open={
+        /**
+         * override the open prop to close the menu when there is no rootId or we could not fetch the item (logged out and not public)
+         * we want to keep the default behavior when the user is logged in
+         */
+        Boolean(rootId)
+      }
       context={Context.Player}
       drawerContent={<ItemNavigation />}
       drawerOpenAriaLabel={t('DRAWER_ARIAL_LABEL')}
