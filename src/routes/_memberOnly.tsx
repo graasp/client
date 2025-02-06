@@ -20,7 +20,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { PageWrapper } from '~account/PageWrapper';
 
-export const Route = createFileRoute('/_account')({
+export const Route = createFileRoute('/_memberOnly')({
   beforeLoad: ({ context }) => {
     const { auth } = context;
     // check if the user is authenticated.

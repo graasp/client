@@ -14,7 +14,7 @@ import { Preferences } from '~account/settings/preferences/Preferences';
 import { PersonalInformation } from '~account/settings/profile/PersonalInformation';
 import { PublicProfile } from '~account/settings/publicProfile/PublicProfile';
 
-export const Route = createFileRoute('/_account/settings')({
+export const Route = createFileRoute('/_memberOnly/account/settings')({
   component: SettingsRoute,
 });
 

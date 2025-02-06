@@ -28,17 +28,17 @@ export function MainMenu(): JSX.Element {
       <List sx={{ width: DRAWER_WIDTH }}>
         <MainMenuItem to="/home" icon={<HouseIcon />} text={t('HOME')} />
         <MainMenuItem
-          to="/statistics"
+          to="/account/stats"
           icon={<ChartColumnIcon />}
           text={t('STATS')}
         />
         <MainMenuItem
-          to="/settings"
+          to="/account/settings"
           icon={<SettingsIcon />}
           text={t('SETTINGS')}
         />
         <MainMenuItem
-          to="/storage"
+          to="/account/storage"
           icon={<HardDriveIcon />}
           text={t('STORAGE')}
         />
