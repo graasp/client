@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   MAX_TARGETS_FOR_READ_REQUEST,
   PackedItem,

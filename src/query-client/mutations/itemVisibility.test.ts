@@ -4,18 +4,12 @@ import {
   HttpMethod,
   ItemVisibilityType,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  ITEM_VISIBILITIES,
-  UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { itemKeys } from '../keys.js';
 import {
   buildDeleteItemVisibilityRoute,
@@ -25,6 +19,8 @@ import {
   deleteItemVisibilityRoutine,
   postItemVisibilityRoutine,
 } from '../routines/itemVisibility.js';
+import { ITEM_VISIBILITIES, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -76,7 +72,7 @@ describe('Item Visibility Mutations', () => {
       ).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: postItemVisibilityRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.POST_ITEM_VISIBILITY },
+        payload: { message: 'POST_ITEM_VISIBILITY' },
       });
     });
 
@@ -155,7 +151,7 @@ describe('Item Visibility Mutations', () => {
       );
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: deleteItemVisibilityRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_VISIBILITY },
+        payload: { message: 'DELETE_ITEM_VISIBILITY' },
       });
     });
 

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Container, Skeleton, Stack, styled } from '@mui/material';
 
-import { Api } from '@graasp/query-client';
 import {
   AppItemType,
   Context,
@@ -32,6 +31,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
+import { Api } from '@/query-client';
 import Loader from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';
 import DocumentItem from '@/ui/items/DocumentItem';

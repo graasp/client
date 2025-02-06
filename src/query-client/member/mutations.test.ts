@@ -4,7 +4,6 @@ import {
   MemberFactory,
   ThumbnailSize,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import axios from 'axios';
@@ -12,10 +11,10 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { memberKeys } from '../keys.js';
 import { SIGN_OUT_ROUTE } from '../routes.js';
+import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 import {
   buildDeleteCurrentMemberRoute,
   buildExportMemberDataRoute,
@@ -290,7 +289,7 @@ describe('Member Mutations', () => {
       }
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: uploadAvatarRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.UPLOAD_AVATAR },
+        payload: { message: 'UPLOAD_AVATAR' },
       });
     });
 
@@ -366,7 +365,7 @@ describe('Member Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: updatePasswordRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.UPDATE_PASSWORD },
+        payload: { message: 'UPDATE_PASSWORD' },
       });
     });
 
@@ -427,7 +426,7 @@ describe('Member Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: updatePasswordRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.UPDATE_PASSWORD },
+        payload: { message: 'UPDATE_PASSWORD' },
       });
     });
 

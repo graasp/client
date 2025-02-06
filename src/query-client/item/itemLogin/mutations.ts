@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { UUID } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -17,7 +17,7 @@ export const useEnroll = (queryConfig: QueryClientConfig) => () => {
     onSuccess: () => {
       notifier?.({
         type: enrollRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.ENROLL },
+        payload: { message: 'ENROLL' },
       });
     },
     onError: (error: Error, _args, _context) => {

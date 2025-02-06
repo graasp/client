@@ -4,13 +4,13 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { ITEM_LIKES, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
 import { itemKeys, memberKeys } from '../keys.js';
 import {
   buildGetItemLikesRoute,
   buildGetLikesForMemberRoute,
 } from '../routes.js';
+import { ITEM_LIKES, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

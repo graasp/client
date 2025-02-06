@@ -4,10 +4,10 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildItemChatKey } from '../keys.js';
 import { buildGetItemChatRoute } from '../routes.js';
+import { UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

@@ -1,18 +1,13 @@
 import { FolderItemFactory, HttpMethod } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { itemKeys } from '../../keys.js';
+import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildEnroll } from './routes.js';
 import { enrollRoutine } from './routines.js';
 
@@ -61,7 +56,7 @@ describe('useEnroll', () => {
 
     expect(mockedNotifier).toHaveBeenCalledWith({
       type: enrollRoutine.SUCCESS,
-      payload: { message: SUCCESS_MESSAGES.ENROLL },
+      payload: { message: 'ENROLL' },
     });
 
     expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();

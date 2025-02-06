@@ -1,5 +1,4 @@
 import * as sdk from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
@@ -7,20 +6,15 @@ import { v4 } from 'uuid';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
-  ITEM_GEOLOCATION,
-  UNAUTHORIZED_RESPONSE,
-  generateFolders,
-} from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
-import {
   getKeyForParentId,
   itemKeys,
   itemsWithGeolocationKeys,
 } from '../../keys.js';
+import {
+  ITEM_GEOLOCATION,
+  UNAUTHORIZED_RESPONSE,
+} from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import {
   buildPostItemRoute,
   buildPostItemWithThumbnailRoute,
@@ -277,76 +271,6 @@ describe('usePostItem', () => {
     expect(
       queryClient.getQueryState(itemKeys.allAccessible())?.isInvalidated,
     ).toBeTruthy();
-  });
-});
-
-describe('useUploadFilesFeedback', () => {
-  const mutation = mutations.useUploadFilesFeedback;
-  const items = generateFolders();
-  const { id } = items[0];
-
-  it('Upload one item', async () => {
-    // set data in cache
-    items.forEach((item) => {
-      const itemKey = itemKeys.single(item.id).content;
-      queryClient.setQueryData(itemKey, item);
-    });
-    queryClient.setQueryData(itemKeys.allAccessible(), items);
-    queryClient.setQueryData(itemKeys.single(id).children(), items);
-
-    const mockedMutation = await mockMutation({
-      endpoints: [],
-      mutation,
-      wrapper,
-    });
-
-    await act(async () => {
-      mockedMutation.mutate({ data: [id], id });
-      await waitForMutation();
-    });
-
-    // check memberships invalidation
-    const data = queryClient.getQueryState(itemKeys.single(id).children());
-    expect(data?.isInvalidated).toBeTruthy();
-
-    // check notification trigger
-    expect(mockedNotifier).toHaveBeenCalledWith({
-      type: uploadFilesRoutine.SUCCESS,
-      payload: { message: SUCCESS_MESSAGES.UPLOAD_FILES },
-    });
-  });
-
-  it('Error while uploading an item', async () => {
-    // set data in cache
-    items.forEach((item) => {
-      const itemKey = itemKeys.single(item.id).content;
-      queryClient.setQueryData(itemKey, item);
-    });
-    queryClient.setQueryData(itemKeys.allAccessible(), items);
-    queryClient.setQueryData(itemKeys.single(id).children(), items);
-
-    const mockedMutation = await mockMutation({
-      endpoints: [],
-      mutation,
-      wrapper,
-    });
-
-    const error = new Error('an error');
-
-    await act(async () => {
-      mockedMutation.mutate({ id, error });
-      await waitForMutation();
-    });
-
-    // check memberships invalidation
-    const data = queryClient.getQueryState(itemKeys.single(id).children());
-    expect(data?.isInvalidated).toBeTruthy();
-
-    // check notification trigger
-    expect(mockedNotifier).toHaveBeenCalledWith({
-      type: uploadFilesRoutine.FAILURE,
-      payload: { error },
-    });
   });
 });
 

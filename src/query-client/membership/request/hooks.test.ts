@@ -8,7 +8,7 @@ import {
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { mockHook, setUpTest } from '../../../test/utils.js';
+import { mockHook, setUpTest } from '../../test/utils.js';
 import { membershipRequestsKeys } from './keys.js';
 import {
   buildGetOwnMembershipRequestRoute,

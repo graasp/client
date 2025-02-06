@@ -1,13 +1,14 @@
+import React, { JSX } from 'react';
+
 import { Channel } from '@graasp/sdk';
 
 import { QueryClient } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
-import React from 'react';
 import { vi } from 'vitest';
 
-import configureAxios from '../src/api/axios.js';
-import configureQueryClient from '../src/queryClient.js';
-import { Notifier, QueryClientConfig } from '../src/types.js';
+import configureAxios from '../api/axios.js';
+import configureQueryClient from '../queryClient.js';
+import { Notifier, QueryClientConfig } from '../types.js';
 import { API_HOST, DOMAIN, WS_HOST } from './constants.js';
 
 export type Handler = { channel: Channel; handler: (event: unknown) => void };

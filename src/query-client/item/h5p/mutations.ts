@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { DiscriminatedItem } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
@@ -22,7 +22,7 @@ export const useImportH5P = (queryConfig: QueryClientConfig) => () => {
     onSuccess: () => {
       notifier?.({
         type: importH5PRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.IMPORT_H5P },
+        payload: { message: 'IMPORT_H5P' },
       });
     },
     onError: (error: Error) => {

@@ -6,7 +6,8 @@ import {
   ItemVisibility,
   UUID,
 } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+
+import { DEFAULT_LANG } from '@/config/constants.js';
 
 import * as itemRoutes from './item/routes.js';
 import * as memberRoutes from './member/routes.js';

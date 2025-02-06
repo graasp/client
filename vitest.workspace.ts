@@ -1,9 +1,27 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
-import { defineWorkspace } from 'vitest/config';
+import { configDefaults, defineWorkspace } from 'vitest/config';
 
+const queryClientInclude = 'src/query-client/**/*.test.ts';
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
 export default defineWorkspace([
-  'vite.config.ts',
+  {
+    extends: './vite.config.js',
+    test: {
+      name: 'unit',
+      include: ['src/**/*.test.ts'],
+      exclude: [...configDefaults.exclude, queryClientInclude],
+    },
+  },
+  {
+    // add "extends" to merge two configs together
+    extends: './vite.config.js',
+    test: {
+      include: [queryClientInclude],
+      // it is recommended to define a name when using inline configs
+      name: 'query-client',
+      environment: 'jsdom',
+    },
+  },
   {
     extends: 'vite.config.ts',
     plugins: [
@@ -27,9 +45,12 @@ export default defineWorkspace([
         '@tanstack/router-devtools',
         'date-fns/isAfter',
         'jwt-decode',
+        'react-i18next',
+        'react',
       ],
     },
     test: {
+      include: ['src/**/*.stories.tsx'],
       name: 'storybook',
       retry: 1,
       browser: {

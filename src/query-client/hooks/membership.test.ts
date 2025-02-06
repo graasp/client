@@ -9,15 +9,15 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { buildManyItemMembershipsKey, itemKeys } from '../keys.js';
+import { buildGetItemMembershipsForItemsRoute } from '../routes.js';
 import {
   ITEM_MEMBERSHIPS_RESPONSE,
   UNAUTHORIZED_RESPONSE,
   buildResultOfData,
   generateFolders,
-} from '../../test/constants.js';
-import { mockHook, setUpTest, splitEndpointByIds } from '../../test/utils.js';
-import { buildManyItemMembershipsKey, itemKeys } from '../keys.js';
-import { buildGetItemMembershipsForItemsRoute } from '../routes.js';
+} from '../test/constants.js';
+import { mockHook, setUpTest, splitEndpointByIds } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

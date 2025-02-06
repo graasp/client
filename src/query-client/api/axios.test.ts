@@ -1,9 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import {
-  UNAUTHORIZED_RESPONSE,
-  buildResultOfData,
-} from '../../test/constants.js';
+import { UNAUTHORIZED_RESPONSE, buildResultOfData } from '../test/constants.js';
 import { splitRequestByIds, splitRequestByIdsAndReturn } from './axios.js';
 
 const chunkSize = 5;

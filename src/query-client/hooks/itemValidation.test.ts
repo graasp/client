@@ -2,13 +2,13 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../keys.js';
+import { buildGetLastItemValidationGroupRoute } from '../routes.js';
 import {
   ITEM_VALIDATION_GROUP,
   UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
-import { itemKeys } from '../keys.js';
-import { buildGetLastItemValidationGroupRoute } from '../routes.js';
+} from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

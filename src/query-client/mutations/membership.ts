@@ -5,7 +5,6 @@ import {
   PermissionLevel,
   UUID,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -35,7 +34,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: postItemMembershipRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SHARE_ITEM },
+          payload: { message: 'SHARE_ITEM' },
         });
       },
       onError: (error: Error) => {
@@ -82,7 +81,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: editItemMembershipRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.EDIT_ITEM_MEMBERSHIP },
+          payload: { message: 'EDIT_ITEM_MEMBERSHIP' },
         });
       },
       onError: (error: Error) => {
@@ -124,7 +123,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: deleteItemMembershipRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_MEMBERSHIP },
+          payload: { message: 'DELETE_ITEM_MEMBERSHIP' },
         });
       },
       onError: (error: Error, { itemId }, context) => {

@@ -2,16 +2,13 @@ import { AccountFactory, ChatMention, MentionStatus } from '@graasp/sdk';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import {
-  buildChatMention,
-  buildMemberMentions,
-} from '../../../test/constants.js';
+import { buildItemChatKey, buildMentionKey } from '../../keys.js';
+import { buildChatMention, buildMemberMentions } from '../../test/constants.js';
 import {
   getHandlerByChannel,
   mockWsHook,
   setUpWsTest,
-} from '../../../test/wsUtils.js';
-import { buildItemChatKey, buildMentionKey } from '../../keys.js';
+} from '../../test/wsUtils.js';
 import { OPS, TOPICS } from '../constants.js';
 import { configureWsChatMentionsHooks } from './mentions.js';
 

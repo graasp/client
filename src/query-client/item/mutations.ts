@@ -7,7 +7,6 @@ import {
   buildPathFromIds,
   getParentFromPath,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import {
   QueryClient,
@@ -23,11 +22,7 @@ import {
 } from '../types.js';
 import { DEFAULT_ENABLE_NOTIFICATIONS } from '../utils/notifications.js';
 import * as Api from './api.js';
-import {
-  usePostItem,
-  useUploadFiles,
-  useUploadFilesFeedback,
-} from './create/mutations.js';
+import { usePostItem, useUploadFiles } from './create/mutations.js';
 import { useImportH5P } from './h5p/mutations.js';
 import { useImportZip } from './import-zip/mutations.js';
 import { useReorderItem } from './reorder/mutations.js';
@@ -42,7 +37,6 @@ import {
 import {
   useDeleteItemThumbnail,
   useUploadItemThumbnail,
-  useUploadItemThumbnailFeedback,
 } from './thumbnail/mutations.js';
 
 export default (queryConfig: QueryClientConfig) => {
@@ -107,6 +101,7 @@ export default (queryConfig: QueryClientConfig) => {
     enableNotifications,
   }: EnableNotificationsParam = DEFAULT_ENABLE_NOTIFICATIONS) => {
     const queryClient = useQueryClient();
+
     return useMutation({
       mutationFn: (
         item: Pick<DiscriminatedItem, 'id'> &
@@ -121,7 +116,7 @@ export default (queryConfig: QueryClientConfig) => {
         notifier?.(
           {
             type: editItemRoutine.SUCCESS,
-            payload: { message: SUCCESS_MESSAGES.EDIT_ITEM },
+            payload: { message: 'EDIT_ITEM' },
           },
           { enableNotifications },
         );
@@ -328,11 +323,7 @@ export default (queryConfig: QueryClientConfig) => {
     useDeleteItems,
     useCopyItems,
     useUploadFiles: useUploadFiles(queryConfig),
-    /** @deprecated use useUploadFiles */
-    useUploadFilesFeedback: useUploadFilesFeedback(queryConfig),
     useUploadItemThumbnail: useUploadItemThumbnail(queryConfig),
-    /** @deprecated use useUploadItemThumbnail */
-    useUploadItemThumbnailFeedback: useUploadItemThumbnailFeedback(queryConfig),
     useRestoreItems,
     useImportZip: useImportZip(queryConfig),
     useMoveItems,

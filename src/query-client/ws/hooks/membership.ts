@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import {
   Channel,
   ItemMembership,
@@ -7,7 +9,6 @@ import {
 } from '@graasp/sdk';
 
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 
 import { itemKeys } from '../../keys.js';
 import { KINDS, OPS, TOPICS } from '../constants.js';

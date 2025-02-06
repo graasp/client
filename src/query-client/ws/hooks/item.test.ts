@@ -9,12 +9,12 @@ import {
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
   getHandlerByChannel,
   mockWsHook,
   setUpWsTest,
-} from '../../../test/wsUtils.js';
-import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
+} from '../../test/wsUtils.js';
 import { KINDS, OPS, TOPICS } from '../constants.js';
 import { configureWsItemHooks } from './item.js';
 

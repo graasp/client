@@ -6,13 +6,9 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { itemKeys } from '../../keys.js';
+import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildAddTagRoute, buildRemoveTagRoute } from './routes.js';
 import { addTagRoutine, removeTagRoutine } from './routines.js';
 

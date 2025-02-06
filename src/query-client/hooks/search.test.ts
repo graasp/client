@@ -4,12 +4,12 @@ import axios from 'axios';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildFacetKey, itemKeys } from '../keys.js';
 import {
   SEARCH_PUBLISHED_ITEMS_ROUTE,
   buildGetSearchFacets,
 } from '../routes.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 import { DEFAULT_ELEMENTS_PER_PAGE } from './search.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

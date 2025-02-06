@@ -10,12 +10,8 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
+import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { membershipRequestsKeys } from './keys.js';
 import {
   buildDeleteMembershipRequestRoute,

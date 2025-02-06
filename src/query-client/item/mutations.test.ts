@@ -13,19 +13,19 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
+import { getKeyForParentId, itemKeys, memberKeys } from '../keys.js';
 import {
   OK_RESPONSE,
   RECYCLED_ITEM_DATA,
   UNAUTHORIZED_RESPONSE,
   generateFolders,
-} from '../../test/constants.js';
+} from '../test/constants.js';
 import {
   mockMutation,
   setUpTest,
   splitEndpointByIds,
   waitForMutation,
-} from '../../test/utils.js';
-import { getKeyForParentId, itemKeys, memberKeys } from '../keys.js';
+} from '../test/utils.js';
 import {
   buildCopyItemsRoute,
   buildDeleteItemsRoute,

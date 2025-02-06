@@ -10,13 +10,13 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { memberKeys } from '../keys.js';
 import {
   AVATAR_URL_RESPONSE,
   FILE_NOT_FOUND_RESPONSE,
   UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
-import { memberKeys } from '../keys.js';
+} from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from './fixtures.js';
 import {
   buildDownloadAvatarRoute,

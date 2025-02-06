@@ -1,7 +1,8 @@
+import { useEffect } from 'react';
+
 import { Channel, ChatMention, UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 
 import { buildMentionKey } from '../../keys.js';
 import { OPS, TOPICS } from '../constants.js';

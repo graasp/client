@@ -1,5 +1,4 @@
 import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -26,7 +25,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         queryConfig.notifier?.({
           type: putItemGeolocationRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.PUT_ITEM_GEOLOCATION },
+          payload: { message: 'PUT_ITEM_GEOLOCATION' },
         });
       },
       onError: (error: Error) => {
@@ -54,7 +53,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         queryConfig.notifier?.({
           type: deleteItemGeolocationRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_GEOLOCATION },
+          payload: { message: 'DELETE_ITEM_GEOLOCATION' },
         });
       },
       onError: (error: Error) => {

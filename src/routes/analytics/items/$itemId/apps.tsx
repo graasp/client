@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid2, Typography } from '@mui/material';
 
-import { Api } from '@graasp/query-client';
 import { Context, ItemType, PackedItem, PermissionLevel } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
@@ -12,6 +11,7 @@ import { type AuthenticatedMember, useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { API_HOST } from '@/config/env';
 import { axios } from '@/config/queryClient';
+import { Api } from '@/query-client';
 import AppItem from '@/ui/items/AppItem';
 
 import SectionTitle from '~analytics/common/SectionTitle';

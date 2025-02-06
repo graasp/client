@@ -6,12 +6,6 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  CHAT_MESSAGES,
-  OK_RESPONSE,
-  UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildItemChatKey } from '../keys.js';
 import {
   buildClearItemChatRoute,
@@ -25,6 +19,12 @@ import {
   patchItemChatMessageRoutine,
   postItemChatMessageRoutine,
 } from '../routines/chat.js';
+import {
+  CHAT_MESSAGES,
+  OK_RESPONSE,
+  UNAUTHORIZED_RESPONSE,
+} from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 describe('Chat Mutations', () => {
   const itemId = FolderItemFactory().id;

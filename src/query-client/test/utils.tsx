@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { HttpMethod, spliceIntoChunks } from '@graasp/sdk';
 
 import {
@@ -8,13 +10,12 @@ import {
 import { RenderHookOptions, renderHook, waitFor } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock, { InterceptFunction, ReplyHeaders, Scope } from 'nock';
-import React from 'react';
 import { expect } from 'vitest';
 
-import configureAxios from '../src/api/axios.js';
-import configureHooks from '../src/hooks/index.js';
-import configureQueryClient from '../src/queryClient.js';
-import { Notifier, QueryClientConfig } from '../src/types.js';
+import configureAxios from '../api/axios.js';
+import configureHooks from '../hooks/index.js';
+import configureQueryClient from '../queryClient.js';
+import { Notifier, QueryClientConfig } from '../types.js';
 import { API_HOST, DOMAIN, WS_HOST } from './constants.js';
 
 type Args = { enableWebsocket?: boolean; notifier?: Notifier };

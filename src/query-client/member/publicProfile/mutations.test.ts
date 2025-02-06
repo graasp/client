@@ -4,12 +4,8 @@ import { act } from '@testing-library/react';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { memberKeys } from '../../keys.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import {
   buildPatchPublicProfileRoute,
   buildPostPublicProfileRoute,

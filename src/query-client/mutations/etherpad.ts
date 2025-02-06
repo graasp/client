@@ -1,5 +1,4 @@
 import { DiscriminatedItem } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -23,7 +22,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: createEtherpadRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.CREATE_ITEM },
+          payload: { message: 'CREATE_ITEM' },
         });
       },
       onError: (error: Error) => {

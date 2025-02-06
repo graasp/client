@@ -12,7 +12,6 @@ import {
   Stack,
 } from '@mui/material';
 
-import { Api } from '@graasp/query-client';
 import {
   ActionTriggers,
   AppItemType,
@@ -45,6 +44,7 @@ import {
   buildFolderButtonId,
   buildLinkItemId,
 } from '@/config/selectors';
+import { Api } from '@/query-client';
 import withCollapse from '@/ui/Collapse/withCollapse';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 import AppItem from '@/ui/items/AppItem';

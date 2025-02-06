@@ -1,15 +1,15 @@
+// todo: remove this ignore once the queries are refactored
+/* eslint-disable react-hooks/rules-of-hooks */
 import {
   DiscriminatedItem,
   MAX_FILE_SIZE,
   MAX_NUMBER_OF_FILES_UPLOAD,
   partitionArray,
 } from '@graasp/sdk';
-import { FAILURE_MESSAGES, SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
 
-import { throwIfArrayContainsErrorOrReturn } from '../../api/axios.js';
 import { getKeyForParentId, itemsWithGeolocationKeys } from '../../keys.js';
 import { QueryClientConfig } from '../../types.js';
 import {
@@ -36,7 +36,7 @@ export const usePostItem = (queryConfig: QueryClientConfig) => () => {
     onSuccess: () => {
       notifier?.({
         type: createItemRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.CREATE_ITEM },
+        payload: { message: 'CREATE_ITEM' },
       });
     },
     onError: (error: Error) => {
@@ -55,44 +55,6 @@ export const usePostItem = (queryConfig: QueryClientConfig) => () => {
     },
   });
 };
-
-/**
- * @deprecated use useUploadFiles
- * this mutation is used for its callback and invalidate the keys
- * @param {UUID} id parent item id where the file is uploaded in
- * @param {error} [error] error ocurred during the file uploading
- */
-export const useUploadFilesFeedback =
-  (queryConfig: QueryClientConfig) => () => {
-    const queryClient = useQueryClient();
-    const { notifier } = queryConfig;
-    return useMutation({
-      mutationFn:
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        async ({ error, data }: { error?: Error; data?: any; id?: string }) => {
-          throwIfArrayContainsErrorOrReturn(data);
-          if (error) {
-            throw new Error(JSON.stringify(error));
-          }
-        },
-      onSuccess: () => {
-        notifier?.({
-          type: uploadFilesRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.UPLOAD_FILES },
-        });
-      },
-      onError: (axiosError: Error, { error }) => {
-        notifier?.({
-          type: uploadFilesRoutine.FAILURE,
-          payload: { error: error ?? axiosError },
-        });
-      },
-      onSettled: (_data, _error, { id }) => {
-        const parentKey = getKeyForParentId(id);
-        queryClient.invalidateQueries({ queryKey: parentKey });
-      },
-    });
-  };
 
 /**
  * Mutation to upload files
@@ -120,18 +82,18 @@ export const useUploadFiles = (queryConfig: QueryClientConfig) => () => {
         notifier?.({
           type: uploadFilesRoutine.FAILURE,
           payload: {
-            error: new Error(FAILURE_MESSAGES.UPLOAD_BIG_FILES),
+            error: new Error('UPLOAD_BIG_FILES'),
             data: bigFiles,
           },
         });
       }
 
       if (!validFiles.length) {
-        throw new Error(FAILURE_MESSAGES.UPLOAD_EMPTY_FILE);
+        throw new Error('UPLOAD_EMPTY_FILE');
       }
 
       if (validFiles.length > MAX_NUMBER_OF_FILES_UPLOAD) {
-        throw new Error(FAILURE_MESSAGES.UPLOAD_TOO_MANY_FILES);
+        throw new Error('UPLOAD_TOO_MANY_FILES');
       }
 
       return uploadFiles({ ...args, files: validFiles }, queryConfig);
@@ -139,7 +101,7 @@ export const useUploadFiles = (queryConfig: QueryClientConfig) => () => {
     onSuccess: () => {
       notifier?.({
         type: uploadFilesRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.UPLOAD_FILES },
+        payload: { message: 'UPLOAD_FILES' },
       });
     },
     onError: (error: Error) => {

@@ -1,18 +1,19 @@
+import { useState } from 'react';
+
 import { ItemType, PackedItem, Paginated } from '@graasp/sdk';
 
 import { waitFor } from '@testing-library/dom';
 import { act, renderHook } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
-import { useState } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../../keys.js';
 import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
-} from '../../../test/constants.js';
-import { mockEndpoints, mockHook, setUpTest } from '../../../test/utils.js';
-import { itemKeys } from '../../keys.js';
+} from '../../test/constants.js';
+import { mockEndpoints, mockHook, setUpTest } from '../../test/utils.js';
 import { buildGetAccessibleItems } from '../routes.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

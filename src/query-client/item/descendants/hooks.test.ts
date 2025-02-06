@@ -4,12 +4,12 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../../keys.js';
 import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
-} from '../../../test/constants.js';
-import { mockHook, setUpTest } from '../../../test/utils.js';
-import { itemKeys } from '../../keys.js';
+} from '../../test/constants.js';
+import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildGetItemDescendants } from '../routes.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

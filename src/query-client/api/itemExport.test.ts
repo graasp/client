@@ -2,8 +2,8 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { describe, expect, it } from 'vitest';
 
-import { API_HOST } from '../../test/constants.js';
 import { buildExportItemRoute } from '../routes.js';
+import { API_HOST } from '../test/constants.js';
 import configureAxios from './axios.js';
 import { exportItem } from './itemExport.js';
 

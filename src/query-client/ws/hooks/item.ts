@@ -2,6 +2,8 @@
  * Graasp websocket client
  * React effect hooks to subscribe to real-time updates and mutate query client
  */
+import { useEffect } from 'react';
+
 import {
   Channel,
   DiscriminatedItem,
@@ -13,10 +15,8 @@ import {
   getParentFromPath,
   isOperationEvent,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
 
 import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
@@ -133,43 +133,43 @@ export const configureWsItemHooks = (
             // TODO: still used ?
             case isOperationEvent(event, FeedBackOperation.UPDATE):
               routine = editItemRoutine;
-              message = SUCCESS_MESSAGES.EDIT_ITEM;
+              message = 'EDIT_ITEM';
               // todo: add invalidations for queries related to an update of the itemIds specified
               break;
             case isOperationEvent(event, FeedBackOperation.DELETE):
               routine = deleteItemsRoutine;
-              message = SUCCESS_MESSAGES.DELETE_ITEMS;
+              message = 'DELETE_ITEMS';
               invalidateFeedback[event.op]();
               break;
             case isOperationEvent(event, FeedBackOperation.MOVE): {
               routine = moveItemsRoutine;
-              message = SUCCESS_MESSAGES.MOVE_ITEMS;
+              message = 'MOVE_ITEMS';
               invalidateFeedback[event.op](event);
               break;
             }
             case isOperationEvent(event, FeedBackOperation.COPY):
               routine = copyItemsRoutine;
-              message = SUCCESS_MESSAGES.COPY_ITEMS;
+              message = 'COPY_ITEMS';
               invalidateFeedback[event.op](event);
               break;
             case isOperationEvent(event, FeedBackOperation.EXPORT):
               routine = exportItemRoutine;
-              message = SUCCESS_MESSAGES.DEFAULT_SUCCESS;
+              message = 'DEFAULT_SUCCESS';
               // nothing to invalidate
               break;
             case isOperationEvent(event, FeedBackOperation.RECYCLE):
               routine = recycleItemsRoutine;
-              message = SUCCESS_MESSAGES.RECYCLE_ITEMS;
+              message = 'RECYCLE_ITEMS';
               invalidateFeedback[event.op](event);
               break;
             case isOperationEvent(event, FeedBackOperation.RESTORE):
               routine = restoreItemsRoutine;
-              message = SUCCESS_MESSAGES.RESTORE_ITEMS;
+              message = 'RESTORE_ITEMS';
               invalidateFeedback[event.op]();
               break;
             case isOperationEvent(event, FeedBackOperation.VALIDATE):
               routine = postItemValidationRoutine;
-              message = SUCCESS_MESSAGES.DEFAULT_SUCCESS;
+              message = 'DEFAULT_SUCCESS';
               invalidateFeedback[event.op](itemIds);
               break;
             default: {

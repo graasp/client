@@ -1,12 +1,13 @@
 import { type JSX, createContext, useContext, useMemo } from 'react';
 
-import type { configureQueryClient } from '@graasp/query-client';
 import {
   CurrentAccount,
   DiscriminatedItem,
   ItemGeolocation,
   PackedItem,
 } from '@graasp/sdk';
+
+import type { configureQueryClient } from '@/query-client';
 
 type QueryClientHooks = ReturnType<typeof configureQueryClient>['hooks'];
 type QueryClientMutations = ReturnType<

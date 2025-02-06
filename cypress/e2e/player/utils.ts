@@ -1,4 +1,3 @@
-import { API_ROUTES } from '@graasp/query-client';
 import {
   AppItemType,
   CompleteGuest,
@@ -29,6 +28,7 @@ import {
   buildLinkItemId,
   buildTreeItemClass,
 } from '../../../src/config/selectors';
+import { API_ROUTES } from '../../../src/query-client';
 import { API_HOST } from '../../support/env';
 
 export const buildContentPagePath = ({

@@ -2,11 +2,6 @@ import { StatusCodes } from 'http-status-codes';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import {
-  ITEM_GEOLOCATION,
-  UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
-import {
   buildAddressFromCoordinatesKey,
   buildSuggestionsForAddressKey,
   itemKeys,
@@ -17,6 +12,8 @@ import {
   buildGetAddressFromCoordinatesRoute,
   buildGetSuggestionsForAddressRoute,
 } from '../routes.js';
+import { ITEM_GEOLOCATION, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

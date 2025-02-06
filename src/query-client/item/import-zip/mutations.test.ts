@@ -1,17 +1,12 @@
 import { HttpMethod } from '@graasp/sdk';
-import { REQUEST_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import { describe, expect, it, vi } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { buildImportZipRoute } from '../../routes.js';
+import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { importZipRoutine } from '../routines.js';
 
 const mockedNotifier = vi.fn();
@@ -52,7 +47,7 @@ describe('useImportZip', () => {
 
     expect(mockedNotifier).toHaveBeenCalledWith({
       type: importZipRoutine.SUCCESS,
-      payload: { message: REQUEST_MESSAGES.IMPORT_ZIP },
+      payload: { message: 'IMPORT_ZIP' },
     });
   });
 
@@ -81,7 +76,7 @@ describe('useImportZip', () => {
 
     expect(mockedNotifier).toHaveBeenCalledWith({
       type: importZipRoutine.SUCCESS,
-      payload: { message: REQUEST_MESSAGES.IMPORT_ZIP },
+      payload: { message: 'IMPORT_ZIP' },
     });
   });
 

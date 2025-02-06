@@ -2,13 +2,13 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { buildEmbeddedLinkMetadataKey } from '../keys.js';
+import { buildGetEmbeddedLinkMetadata } from '../routes.js';
 import {
   BAD_REQUEST_RESPONSE,
   UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
-import { buildEmbeddedLinkMetadataKey } from '../keys.js';
-import { buildGetEmbeddedLinkMetadata } from '../routes.js';
+} from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 import { EmbeddedLinkMetadata } from '../types.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

@@ -11,14 +11,6 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  OK_RESPONSE,
-  UNAUTHORIZED_RESPONSE,
-  buildChatMention,
-  buildMemberMentions,
-  buildMentionResponse,
-} from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildMentionKey } from '../keys.js';
 import { buildGetCurrentMemberRoute } from '../member/routes.js';
 import {
@@ -31,6 +23,14 @@ import {
   deleteMentionRoutine,
   patchMentionRoutine,
 } from '../routines/mentions.js';
+import {
+  OK_RESPONSE,
+  UNAUTHORIZED_RESPONSE,
+  buildChatMention,
+  buildMemberMentions,
+  buildMentionResponse,
+} from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 describe('Mention Mutations', () => {
   const mentionId = v4();

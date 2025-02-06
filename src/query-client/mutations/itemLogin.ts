@@ -1,5 +1,4 @@
 import { ItemLoginSchemaStatus, ItemLoginSchemaType, UUID } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -49,7 +48,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: putItemLoginSchemaRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.PUT_ITEM_LOGIN_SCHEMA },
+          payload: { message: 'PUT_ITEM_LOGIN_SCHEMA' },
         });
       },
       onError: (error: Error) => {
@@ -74,7 +73,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: (_, { itemId }) => {
         notifier?.({
           type: deleteItemLoginSchemaRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_LOGIN_SCHEMA },
+          payload: { message: 'DELETE_ITEM_LOGIN_SCHEMA' },
         });
 
         // delete content of item login schema

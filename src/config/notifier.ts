@@ -1,10 +1,9 @@
 import { toast } from 'react-toastify';
 
-import { Notifier, routines } from '@graasp/query-client';
-
 import axios from 'axios';
 
 import { MessageKeys } from '@/@types/i18next';
+import { Notifier, routines } from '@/query-client';
 
 import { NS } from './constants';
 import { SHOW_NOTIFICATIONS } from './env';

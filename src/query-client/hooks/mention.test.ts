@@ -3,11 +3,11 @@ import { MemberFactory } from '@graasp/sdk';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { buildMemberMentions } from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildMentionKey } from '../keys.js';
 import { buildGetCurrentMemberRoute } from '../member/routes.js';
 import { buildGetMemberMentionsRoute } from '../routes.js';
+import { buildMemberMentions } from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

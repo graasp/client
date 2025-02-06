@@ -1,5 +1,4 @@
 import { HttpMethod } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
@@ -7,17 +6,14 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  ITEM_GEOLOCATION,
-  UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { itemKeys, itemsWithGeolocationKeys } from '../keys.js';
 import { buildPutItemGeolocationRoute } from '../routes.js';
 import {
   deleteItemGeolocationRoutine,
   putItemGeolocationRoutine,
 } from '../routines/itemGeolocation.js';
+import { ITEM_GEOLOCATION, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -80,7 +76,7 @@ describe('Item Flag Mutations', () => {
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: putItemGeolocationRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PUT_ITEM_GEOLOCATION },
+        payload: { message: 'PUT_ITEM_GEOLOCATION' },
       });
     });
 
@@ -117,7 +113,7 @@ describe('Item Flag Mutations', () => {
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: putItemGeolocationRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PUT_ITEM_GEOLOCATION },
+        payload: { message: 'PUT_ITEM_GEOLOCATION' },
       });
     });
 
@@ -154,7 +150,7 @@ describe('Item Flag Mutations', () => {
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: putItemGeolocationRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PUT_ITEM_GEOLOCATION },
+        payload: { message: 'PUT_ITEM_GEOLOCATION' },
       });
     });
 
@@ -239,7 +235,7 @@ describe('Item Flag Mutations', () => {
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: deleteItemGeolocationRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_GEOLOCATION },
+        payload: { message: 'DELETE_ITEM_GEOLOCATION' },
       });
     });
 

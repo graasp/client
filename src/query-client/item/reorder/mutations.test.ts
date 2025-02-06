@@ -1,5 +1,4 @@
 import { FolderItemFactory, HttpMethod } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
@@ -7,13 +6,9 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { itemKeys } from '../../keys.js';
+import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildReorderItemRoute } from '../routes.js';
 import { reorderItemRoutine } from '../routines.js';
 
@@ -66,7 +61,7 @@ describe('useReorderItem', () => {
 
     expect(mockedNotifier).toHaveBeenCalledWith({
       type: reorderItemRoutine.SUCCESS,
-      payload: { message: SUCCESS_MESSAGES.REORDER_ITEM },
+      payload: { message: 'REORDER_ITEM' },
     });
   });
 

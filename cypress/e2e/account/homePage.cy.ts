@@ -1,4 +1,3 @@
-import { API_ROUTES } from '@graasp/query-client';
 import {
   HttpMethod,
   PackedFolderItemFactory,
@@ -17,6 +16,7 @@ import {
   MEMBER_CREATED_AT_ID,
   MEMBER_USERNAME_DISPLAY_ID,
 } from '../../../src/config/selectors';
+import { API_ROUTES } from '../../../src/query-client';
 import { MEMBERS, MEMBER_WITH_AVATAR } from '../../fixtures/members';
 import {
   AVATAR_LINK,

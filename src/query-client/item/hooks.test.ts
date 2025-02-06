@@ -11,19 +11,19 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../keys.js';
 import {
   THUMBNAIL_URL_RESPONSE,
   UNAUTHORIZED_RESPONSE,
   buildResultOfData,
   generateFolders,
-} from '../../test/constants.js';
+} from '../test/constants.js';
 import {
   Endpoint,
   mockHook,
   setUpTest,
   splitEndpointByIds,
-} from '../../test/utils.js';
-import { itemKeys } from '../keys.js';
+} from '../test/utils.js';
 import {
   buildDownloadFilesRoute,
   buildGetChildrenRoute,

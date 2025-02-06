@@ -2,9 +2,9 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import { mockHook, setUpTest } from '../../../test/utils.js';
 import { memberKeys } from '../../keys.js';
+import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildGetPasswordStatusRoute } from './routes.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

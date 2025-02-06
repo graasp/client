@@ -2,13 +2,13 @@ import { ChatMessage, FolderItemFactory } from '@graasp/sdk';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { CHAT_MESSAGES } from '../../../test/constants.js';
+import { buildItemChatKey } from '../../keys.js';
+import { CHAT_MESSAGES } from '../../test/constants.js';
 import {
   getHandlerByChannel,
   mockWsHook,
   setUpWsTest,
-} from '../../../test/wsUtils.js';
-import { buildItemChatKey } from '../../keys.js';
+} from '../../test/wsUtils.js';
 import { KINDS, OPS, TOPICS } from '../constants.js';
 import { configureWsChatHooks } from './chat.js';
 

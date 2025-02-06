@@ -1,5 +1,3 @@
-import { SUCCESS_MESSAGES } from '@graasp/translations';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { memberKeys } from '../../keys.js';
@@ -23,7 +21,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: postPublicProfileRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.POST_PROFILE },
+          payload: { message: 'POST_PROFILE' },
         });
         // refetch profile information
         queryClient.invalidateQueries({
@@ -47,7 +45,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: patchPublicProfileRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.PATCH_PROFILE },
+          payload: { message: 'PATCH_PROFILE' },
         });
         // refetch profile information
         queryClient.invalidateQueries({

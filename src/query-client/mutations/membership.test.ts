@@ -5,26 +5,12 @@ import {
   MemberFactory,
   PermissionLevel,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import {
-  ITEM_MEMBERSHIPS_RESPONSE,
-  OK_RESPONSE,
-  UNAUTHORIZED_RESPONSE,
-  buildMockInvitations,
-  buildResultOfData,
-} from '../../test/constants.js';
-import {
-  Endpoint,
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../test/utils.js';
 import { itemKeys } from '../keys.js';
 import {
   buildDeleteItemMembershipRoute,
@@ -37,6 +23,19 @@ import {
   editItemMembershipRoutine,
   shareItemRoutine,
 } from '../routines/membership.js';
+import {
+  ITEM_MEMBERSHIPS_RESPONSE,
+  OK_RESPONSE,
+  UNAUTHORIZED_RESPONSE,
+  buildMockInvitations,
+  buildResultOfData,
+} from '../test/constants.js';
+import {
+  Endpoint,
+  mockMutation,
+  setUpTest,
+  waitForMutation,
+} from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -188,7 +187,7 @@ describe('Membership Mutations', () => {
       ).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: editItemMembershipRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.EDIT_ITEM_MEMBERSHIP },
+        payload: { message: 'EDIT_ITEM_MEMBERSHIP' },
       });
     });
 
@@ -260,7 +259,7 @@ describe('Membership Mutations', () => {
       ).toEqual(memberships.filter(({ id }) => id !== membershipId));
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: deleteItemMembershipRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_MEMBERSHIP },
+        payload: { message: 'DELETE_ITEM_MEMBERSHIP' },
       });
     });
 

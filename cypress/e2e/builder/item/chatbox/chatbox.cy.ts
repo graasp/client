@@ -1,4 +1,3 @@
-import { MockWebSocket } from '@graasp/query-client';
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
@@ -8,6 +7,7 @@ import {
   CHATBOX_INPUT_BOX_ID,
   ITEM_CHATBOX_BUTTON_ID,
 } from '../../../../../src/config/selectors';
+import { MockWebSocket } from '../../../../../src/query-client';
 import { CURRENT_MEMBER, MEMBERS } from '../../../../fixtures/members';
 import { CHATBOX_TIMEOUT } from '../../../../support/constants';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../fixtures/chatbox';

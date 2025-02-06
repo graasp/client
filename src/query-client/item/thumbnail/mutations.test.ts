@@ -4,16 +4,12 @@ import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import { describe, expect, it, vi } from 'vitest';
 
+import { itemKeys } from '../../keys.js';
 import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
-} from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
-import { itemKeys } from '../../keys.js';
+} from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import {
   buildDeleteItemThumbnailRoute,
   buildUploadItemThumbnailRoute,

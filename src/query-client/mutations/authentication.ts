@@ -1,5 +1,4 @@
 import { Password, saveUrlForRedirection } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -26,7 +25,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signInRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_IN },
+          payload: { message: 'SIGN_IN' },
         });
       },
       onError: (error: Error) => {
@@ -49,7 +48,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signInRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_IN },
+          payload: { message: 'SIGN_IN' },
         });
         queryClient.resetQueries();
       },
@@ -74,7 +73,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_IN_WITH_PASSWORD },
+          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
         });
         queryClient.resetQueries();
       },
@@ -99,7 +98,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_IN_WITH_PASSWORD },
+          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
         });
         queryClient.resetQueries();
       },
@@ -125,7 +124,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signUpRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+          payload: { message: 'SIGN_UP' },
         });
       },
       onError: (error: Error) => {
@@ -149,7 +148,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: signUpRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+          payload: { message: 'SIGN_UP' },
         });
       },
       onError: (error: Error) => {
@@ -168,7 +167,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: (_res) => {
         notifier?.({
           type: signOutRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.SIGN_OUT },
+          payload: { message: 'SIGN_OUT' },
         });
         queryClient.resetQueries();
 
@@ -201,7 +200,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: createPasswordResetRequestRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.PASSWORD_RESET_REQUEST },
+          payload: { message: 'PASSWORD_RESET_REQUEST' },
         });
       },
       onError: (error: Error) => {
@@ -219,7 +218,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: resolvePasswordResetRequestRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.PASSWORD_RESET },
+          payload: { message: 'PASSWORD_RESET' },
         });
       },
       onError: (error: Error) => {

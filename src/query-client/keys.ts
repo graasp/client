@@ -10,7 +10,8 @@ import {
   UUID,
   UnionOfConst,
 } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+
+import { DEFAULT_LANG } from '@/config/constants.js';
 
 import { MeiliSearchProps } from './api/search.js';
 import { DEFAULT_THUMBNAIL_SIZE } from './config/constants.js';

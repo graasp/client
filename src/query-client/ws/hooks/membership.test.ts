@@ -6,16 +6,16 @@ import {
 
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../../keys.js';
 import {
   ITEM_MEMBERSHIPS_RESPONSE,
   createMockMembership,
-} from '../../../test/constants.js';
+} from '../../test/constants.js';
 import {
   getHandlerByChannel,
   mockWsHook,
   setUpWsTest,
-} from '../../../test/wsUtils.js';
-import { itemKeys } from '../../keys.js';
+} from '../../test/wsUtils.js';
 import { KINDS, OPS, TOPICS } from '../constants.js';
 import { configureWsMembershipHooks } from './membership.js';
 

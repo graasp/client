@@ -1,16 +1,15 @@
 import { FlagType, FolderItemFactory, HttpMethod } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { ITEM_FLAGS, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { itemKeys } from '../keys.js';
 import { buildPostItemFlagRoute } from '../routes.js';
 import { postItemFlagRoutine } from '../routines/itemFlag.js';
+import { ITEM_FLAGS, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -58,7 +57,7 @@ describe('Item Flag Mutations', () => {
       expect(queryClient.getQueryState(flagKey)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: postItemFlagRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.POST_ITEM_FLAG },
+        payload: { message: 'POST_ITEM_FLAG' },
       });
     });
 

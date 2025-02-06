@@ -4,9 +4,9 @@ import { act } from '@testing-library/react';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { buildExportItemRoute } from '../routes.js';
 import { exportItemRoutine } from '../routines/itemExport.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({

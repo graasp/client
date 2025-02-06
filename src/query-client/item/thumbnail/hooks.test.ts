@@ -4,12 +4,12 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { itemKeys } from '../../keys.js';
 import {
   THUMBNAIL_URL_RESPONSE,
   UNAUTHORIZED_RESPONSE,
-} from '../../../test/constants.js';
-import { mockHook, setUpTest } from '../../../test/utils.js';
-import { itemKeys } from '../../keys.js';
+} from '../../test/constants.js';
+import { mockHook, setUpTest } from '../../test/utils.js';
 import { buildDownloadItemThumbnailRoute } from '../routes.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();

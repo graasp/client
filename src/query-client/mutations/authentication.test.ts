@@ -1,5 +1,4 @@
 import { HttpMethod } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import axios from 'axios';
@@ -7,8 +6,6 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { memberKeys } from '../keys.js';
 import {
   MOBILE_SIGN_IN_ROUTE,
@@ -28,6 +25,8 @@ import {
   signOutRoutine,
   signUpRoutine,
 } from '../routines/authentication.js';
+import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const captcha = 'captcha';
 const email = 'myemail@email.com';
@@ -68,7 +67,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signInRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_IN },
+        payload: { message: 'SIGN_IN' },
       });
     });
 
@@ -123,7 +122,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signInRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_IN },
+        payload: { message: 'SIGN_IN' },
       });
     });
 
@@ -192,7 +191,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signInWithPasswordRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_IN_WITH_PASSWORD },
+        payload: { message: 'SIGN_IN_WITH_PASSWORD' },
       });
     });
 
@@ -261,7 +260,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signInWithPasswordRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_IN_WITH_PASSWORD },
+        payload: { message: 'SIGN_IN_WITH_PASSWORD' },
       });
     });
 
@@ -322,7 +321,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signUpRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+        payload: { message: 'SIGN_UP' },
       });
     });
 
@@ -345,7 +344,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signUpRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+        payload: { message: 'SIGN_UP' },
       });
       expect(postSpy).toHaveBeenCalledWith(
         expect.stringContaining(route),
@@ -422,7 +421,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signUpRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+        payload: { message: 'SIGN_UP' },
       });
     });
 
@@ -453,7 +452,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signUpRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_UP },
+        payload: { message: 'SIGN_UP' },
       });
       expect(postSpy).toHaveBeenCalledWith(
         expect.stringContaining(route),
@@ -527,7 +526,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: signOutRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.SIGN_OUT },
+        payload: { message: 'SIGN_OUT' },
       });
       expect(
         queryClient.getQueryData(memberKeys.current().content),
@@ -593,7 +592,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: createPasswordResetRequestRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PASSWORD_RESET_REQUEST },
+        payload: { message: 'PASSWORD_RESET_REQUEST' },
       });
     });
 
@@ -656,7 +655,7 @@ describe('Authentication Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: resolvePasswordResetRequestRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PASSWORD_RESET },
+        payload: { message: 'PASSWORD_RESET' },
       });
     });
 
@@ -691,62 +690,4 @@ describe('Authentication Mutations', () => {
       );
     });
   });
-
-  // describe('useSwitchMember', () => {
-  //   const mutation = mutations.useSwitchMember;
-  //   const MOCK_SESSIONS = [{ id: 'id1', token: 'token1' }];
-
-  //   it(`Switch Member`, async () => {
-  //     const mockedMutation = await mockMutation({
-  //       mutation,
-  //       wrapper,
-  //     });
-
-  //     (utils.getStoredSessions as jest.Mock).mockReturnValue(MOCK_SESSIONS);
-
-  //     await act(async () => {
-  //       mockedMutation.mutate({
-  //         memberId: MOCK_SESSIONS[0].id,
-  //         domain: DOMAIN,
-  //       });
-  //       await waitForMutation();
-  //     });
-
-  //     expect(queryClient.getQueryData(CURRENT_MEMBER_KEY)).toBeFalsy();
-
-  //     expect(mockedNotifier).toHaveBeenCalledWith({
-  //       type: switchMemberRoutine.SUCCESS,
-  //     });
-
-  //     // cookie management
-  //     expect(utils.getStoredSessions).toHaveBeenCalled();
-  //     expect(utils.setCurrentSession).toHaveBeenCalledWith(
-  //       MOCK_SESSIONS[0].token,
-  //       DOMAIN,
-  //     );
-  //   });
-  //   it(`Throw if session does not exist`, async () => {
-  //     const mockedMutation = await mockMutation({
-  //       mutation,
-  //       wrapper,
-  //     });
-
-  //     (utils.getStoredSessions as jest.Mock).mockReturnValue([]);
-
-  //     await act(async () => {
-  //       mockedMutation.mutate({
-  //         memberId: MOCK_SESSIONS[0].id,
-  //         domain: DOMAIN,
-  //       });
-  //       await waitForMutation();
-  //     });
-
-  //     expect(queryClient.getQueryData(CURRENT_MEMBER_KEY)).toBeFalsy();
-
-  //     expect(mockedNotifier).toHaveBeenCalledWith({
-  //       type: switchMemberRoutine.FAILURE,
-  //       payload: expect.anything(),
-  //     });
-  //   });
-  // });
 });

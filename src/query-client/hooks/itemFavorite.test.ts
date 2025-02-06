@@ -1,13 +1,10 @@
 import { StatusCodes } from 'http-status-codes';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import {
-  BOOKMARKED_ITEM,
-  UNAUTHORIZED_RESPONSE,
-} from '../../test/constants.js';
-import { mockHook, setUpTest } from '../../test/utils.js';
 import { memberKeys } from '../keys.js';
 import { GET_BOOKMARKED_ITEMS_ROUTE } from '../routes.js';
+import { BOOKMARKED_ITEM, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { mockHook, setUpTest } from '../test/utils.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
 

@@ -1,5 +1,3 @@
-import { API_ROUTES } from '@graasp/query-client';
-
 import { StatusCodes } from 'http-status-codes';
 
 import { LOG_IN_PAGE_PATH } from '../../../src/config/paths';
@@ -9,6 +7,7 @@ import {
   PASSWORD_SIGN_IN_BUTTON_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
 } from '../../../src/config/selectors';
+import { API_ROUTES } from '../../../src/query-client';
 import { AUTH_MEMBERS } from '../../fixtures/members';
 import { fillPasswordSignInLayout } from './util';
 

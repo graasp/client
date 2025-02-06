@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { UUID } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -20,7 +20,7 @@ export const useReorderItem = (queryConfig: QueryClientConfig) => () => {
     onSuccess: () => {
       notifier?.({
         type: reorderItemRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.REORDER_ITEM },
+        payload: { message: 'REORDER_ITEM' },
       });
     },
     onError: (error: Error) => {

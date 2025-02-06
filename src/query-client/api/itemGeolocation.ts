@@ -1,5 +1,6 @@
 import { DiscriminatedItem, ItemGeolocation, UUID } from '@graasp/sdk';
-import { DEFAULT_LANG } from '@graasp/translations';
+
+import { DEFAULT_LANG } from '@/config/constants.js';
 
 import {
   buildDeleteItemGeolocationRoute,

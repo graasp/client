@@ -5,14 +5,10 @@ import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 import { describe, expect, it, vi } from 'vitest';
 
-import { UNAUTHORIZED_RESPONSE } from '../../../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  waitForMutation,
-} from '../../../test/utils.js';
 import { itemKeys } from '../../keys.js';
 import { buildImportH5PRoute } from '../../routes.js';
+import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { importH5PRoutine } from '../routines.js';
 
 const mockedNotifier = vi.fn();

@@ -1,5 +1,3 @@
-import { API_ROUTES } from '@graasp/query-client';
-
 import { StatusCodes } from 'http-status-codes';
 
 import {
@@ -10,6 +8,7 @@ import {
   RESEND_EMAIL_BUTTON_ID,
   SUCCESS_CONTENT_ID,
 } from '../../../src/config/selectors';
+import { API_ROUTES } from '../../../src/query-client';
 import { AUTH_MEMBERS } from '../../fixtures/members';
 
 describe('Success Content', () => {

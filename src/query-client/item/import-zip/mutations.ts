@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { DiscriminatedItem } from '@graasp/sdk';
-import { REQUEST_MESSAGES } from '@graasp/translations';
 
 import { useMutation } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
@@ -20,7 +20,7 @@ export const useImportZip = (queryConfig: QueryClientConfig) => () => {
       // send request notification, async endpoint
       notifier?.({
         type: importZipRoutine.SUCCESS,
-        payload: { message: REQUEST_MESSAGES.IMPORT_ZIP },
+        payload: { message: 'IMPORT_ZIP' },
       });
     },
     onError: (error: Error) => {

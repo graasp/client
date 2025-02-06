@@ -6,15 +6,12 @@ import {
   ItemLoginSchemaType,
   MemberFactory,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { ITEM_LOGIN_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
 import { itemKeys, memberKeys } from '../keys.js';
 import {
   buildDeleteItemLoginSchemaRoute,
@@ -26,6 +23,8 @@ import {
   postItemLoginRoutine,
   putItemLoginSchemaRoutine,
 } from '../routines/itemLogin.js';
+import { ITEM_LOGIN_RESPONSE } from '../test/constants.js';
+import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -162,7 +161,7 @@ describe('Item Login Mutations', () => {
       ).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: putItemLoginSchemaRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PUT_ITEM_LOGIN_SCHEMA },
+        payload: { message: 'PUT_ITEM_LOGIN_SCHEMA' },
       });
     });
 
@@ -197,7 +196,7 @@ describe('Item Login Mutations', () => {
       ).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: putItemLoginSchemaRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.PUT_ITEM_LOGIN_SCHEMA },
+        payload: { message: 'PUT_ITEM_LOGIN_SCHEMA' },
       });
     });
 
@@ -280,7 +279,7 @@ describe('Item Login Mutations', () => {
       expect(queryClient.getQueryData(itemLoginKey)).toBeUndefined();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: deleteItemLoginSchemaRoutine.SUCCESS,
-        payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_LOGIN_SCHEMA },
+        payload: { message: 'DELETE_ITEM_LOGIN_SCHEMA' },
       });
     });
 

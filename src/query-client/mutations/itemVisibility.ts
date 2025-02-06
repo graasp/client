@@ -4,7 +4,6 @@ import {
   UUID,
   getParentFromPath,
 } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import {
   QueryClient,
@@ -52,7 +51,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: postItemVisibilityRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.POST_ITEM_VISIBILITY },
+          payload: { message: 'POST_ITEM_VISIBILITY' },
         });
       },
       onError: (error: Error) => {
@@ -92,7 +91,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: deleteItemVisibilityRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_ITEM_VISIBILITY },
+          payload: { message: 'DELETE_ITEM_VISIBILITY' },
         });
       },
       onError: (error: Error, { itemId }, context) => {

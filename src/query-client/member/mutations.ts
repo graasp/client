@@ -4,7 +4,6 @@ import {
   MAX_THUMBNAIL_SIZE,
   Password,
 } from '@graasp/sdk';
-import { FAILURE_MESSAGES, SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
@@ -31,7 +30,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: deleteCurrentMemberRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_MEMBER },
+          payload: { message: 'DELETE_MEMBER' },
         });
 
         queryClient.resetQueries();
@@ -91,7 +90,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: editMemberRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.EDIT_MEMBER },
+          payload: { message: 'EDIT_MEMBER' },
         });
       },
       // If the mutation fails, use the context returned from onMutate to roll back
@@ -123,7 +122,7 @@ export default (queryConfig: QueryClientConfig) => {
         onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
       }) => {
         if (args.file.size > MAX_THUMBNAIL_SIZE) {
-          throw new Error(FAILURE_MESSAGES.UPLOAD_BIG_FILES);
+          throw new Error('UPLOAD_BIG_FILES');
         }
 
         return Api.uploadAvatar(args, queryConfig);
@@ -141,7 +140,7 @@ export default (queryConfig: QueryClientConfig) => {
         }
         notifier?.({
           type: uploadAvatarRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.UPLOAD_AVATAR },
+          payload: { message: 'UPLOAD_AVATAR' },
         });
       },
       onError: (error) => {
@@ -164,7 +163,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: updatePasswordRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.UPDATE_PASSWORD },
+          payload: { message: 'UPDATE_PASSWORD' },
         });
       },
       onError: (error: Error) => {
@@ -187,7 +186,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: updatePasswordRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.UPDATE_PASSWORD },
+          payload: { message: 'UPDATE_PASSWORD' },
         });
       },
       onError: (error: Error) => {
@@ -210,7 +209,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: updateEmailRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.UPDATE_EMAIL },
+          payload: { message: 'UPDATE_EMAIL' },
         });
       },
       onError: (error: Error) => {
@@ -228,7 +227,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: updateEmailRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.VALIDATE_EMAIL },
+          payload: { message: 'VALIDATE_EMAIL' },
         });
       },
       onError: (error: Error) => {

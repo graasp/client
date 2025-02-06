@@ -1,5 +1,4 @@
 import { Member, UUID } from '@graasp/sdk';
-import { SUCCESS_MESSAGES } from '@graasp/translations';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -22,7 +21,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: requestMembershipRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.REQUEST_MEMBERSHIP },
+          payload: { message: 'REQUEST_MEMBERSHIP' },
         });
       },
       onError: (error: Error, _args, _context) => {
@@ -46,7 +45,7 @@ export default (queryConfig: QueryClientConfig) => {
       onSuccess: () => {
         notifier?.({
           type: deleteMembershipRequestRoutine.SUCCESS,
-          payload: { message: SUCCESS_MESSAGES.DELETE_MEMBERSHIP_REQUEST },
+          payload: { message: 'DELETE_MEMBERSHIP_REQUEST' },
         });
       },
       onError: (error: Error, _args, _context) => {
