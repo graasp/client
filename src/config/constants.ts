@@ -28,6 +28,7 @@ export const NS = {
   Chatbox: 'chatbox',
   Common: 'common',
   Enums: 'enums',
+  Home: 'home',
   Landing: 'landing',
   Map: 'map',
   Messages: 'messages',

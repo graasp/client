@@ -1,0 +1,9 @@
+{
+  "MENU": {
+    "HOME": "Accueil",
+    "MY_ITEMS": "Mon Graasp",
+    "BOOKMARKED_ITEMS": "Signets",
+    "PUBLISHED_ITEMS": "Publications",
+    "RECYCLED_ITEMS": "Corbeille"
+  }
+}
