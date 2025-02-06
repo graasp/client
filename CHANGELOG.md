@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.19.7](https://github.com/graasp/client/compare/v2.19.6...v2.19.7) (2025-02-06)
+
+
+### Bug Fixes
+
+* add home page and translation for page titles in common ([#839](https://github.com/graasp/client/issues/839)) ([f708512](https://github.com/graasp/client/commit/f70851228c24a4cec3127cca665f0276e307eaba))
+* add query-client into client ([4bc9379](https://github.com/graasp/client/commit/4bc9379df7372a56eb42ffa08a30aa3f6c0ead1c))
+* **deps:** update deps ([3e99bb3](https://github.com/graasp/client/commit/3e99bb3d06fc4e3c17ad7d0e8492020e84ebaf0c))
+* **deps:** update tanstack-router monorepo to v1.99.8 ([#771](https://github.com/graasp/client/issues/771)) ([5608309](https://github.com/graasp/client/commit/56083091259846a467dbc13d6f266add66cf7d9a))
+* query-client tests ([dfc639b](https://github.com/graasp/client/commit/dfc639b99cc4866da0a821d6926e8aa93d4f5c5a))
+
 ## [2.19.6](https://github.com/graasp/client/compare/v2.19.5...v2.19.6) (2025-02-05)
 
 
