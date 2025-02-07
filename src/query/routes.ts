@@ -7,8 +7,6 @@ import {
   UUID,
 } from '@graasp/sdk';
 
-import { DEFAULT_LANG } from '@/config/constants.js';
-
 import * as itemRoutes from './item/routes.js';
 import * as memberRoutes from './member/routes.js';
 import { AggregateActionsArgs } from './utils/action.js';
@@ -342,16 +340,16 @@ export const buildGetItemsInMapRoute = ({
 export const buildGetAddressFromCoordinatesRoute = ({
   lat,
   lng,
-  lang = DEFAULT_LANG,
-}: Pick<ItemGeolocation, 'lat' | 'lng'> & { lang?: string }) =>
+  lang,
+}: Pick<ItemGeolocation, 'lat' | 'lng'> & { lang: string }) =>
   `${ITEMS_ROUTE}/geolocation/reverse?lat=${lat}&lng=${lng}&lang=${lang}`;
 
 export const buildGetSuggestionsForAddressRoute = ({
   address,
-  lang = DEFAULT_LANG,
+  lang,
 }: {
   address: string;
-  lang?: string;
+  lang: string;
 }) => `${ITEMS_ROUTE}/geolocation/search?query=${address}&lang=${lang}`;
 
 export const buildGetEmbeddedLinkMetadata = (link: string) =>
