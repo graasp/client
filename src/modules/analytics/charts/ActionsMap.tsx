@@ -35,6 +35,8 @@ type BBox =
 const ActionsMap = (): JSX.Element | null => {
   const theme = useTheme();
   const { t } = useTranslation(NS.Analytics);
+  // todo: fix asap
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mapRef = useRef<any>(undefined);
   const [bounds, setBounds] = useState<BBox>();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);

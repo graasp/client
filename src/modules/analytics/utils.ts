@@ -430,6 +430,8 @@ export function filterActions<T>({
   selectedUsers: Member[];
   selectedActionTypes: string[];
   actions: Action[];
+  // todo: fix this any type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   chartFunction: (x: any) => T;
 }): T {
   const shouldFilterByUser = selectedUsers?.length;

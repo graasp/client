@@ -21,18 +21,16 @@ const MockedWebsocket = (handlers: Handler[]) => ({
   unsubscribe: vi.fn(),
 });
 
-export const setUpWsTest = (args?: {
+export const setUpWsTest = <T extends object>(args: {
   enableWebsocket?: boolean;
   notifier?: Notifier;
-  configureWsHooks: (wsClient: WebsocketClient) => any;
+  configureWsHooks: (wsClient: WebsocketClient) => T;
 }) => {
   const {
     notifier = () => {
       // do nothing
     },
-    configureWsHooks = () => {
-      // do nothing
-    },
+    configureWsHooks,
   } = args ?? {};
   const axios = configureAxios();
 
@@ -58,7 +56,7 @@ export const setUpWsTest = (args?: {
     configureQueryClient(queryConfig);
 
   // configure hooks
-  const hooks = configureWsHooks(websocketClient);
+  const hooks = configureWsHooks?.(websocketClient);
 
   const wrapper = ({
     children,

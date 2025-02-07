@@ -31,14 +31,15 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
     item: parent,
   } = useQueryClientContext();
   const { t: commonT } = useTranslation(NS.Common);
-  const { mutate: postItem } = usePostItem();
+  const { mutateAsync: postItem } = usePostItem();
   const { t } = useTranslation(NS.Map);
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const { name, description }: any = Object.fromEntries(formData);
+    const name = formData.get('name') as string;
+    const description = formData.get('description') as string;
     if (location && name) {
       await postItem({
         parentId: parent?.id,

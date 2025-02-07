@@ -399,7 +399,9 @@ export const DefaultMap = {
     //   }) as any,
     // useAddressFromGeolocation: () =>
     //   ({ data: { addressLabel: 'address', country: 'countryName' } }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     handleAddOnClick({ location }) {
@@ -424,7 +426,9 @@ export const MapSignedOut = {
     currentMember: null,
     // useItemsInMap: () => ({ data: [] }) as any,
     // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
@@ -455,7 +459,9 @@ export const MapMobile = {
     //     ],
     //   }) as any,
     // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
@@ -478,7 +484,9 @@ export const MapSignOutMobile = {
     currentMember: null,
     // useItemsInMap: () => ({ data: [] }) as any,
     // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
@@ -498,7 +506,9 @@ export const MapFrench = {
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
     // useItemsInMap: () => ({ data: [] }) as any,
     // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
@@ -528,7 +538,9 @@ export const MapRead = {
     //     ],
     //   }) as any,
     // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
     // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },

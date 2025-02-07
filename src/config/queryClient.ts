@@ -16,7 +16,6 @@ const {
 } = configureQueryClient({
   API_HOST,
   notifier,
-  enableWebsocket: true,
   defaultQueryOptions: {
     keepPreviousData: true,
   },

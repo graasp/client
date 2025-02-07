@@ -32,10 +32,15 @@ export interface QueryClientContextInterface {
 
 export const QueryClientContext = createContext<QueryClientContextInterface>({
   currentMember: undefined,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useRecycleItems: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   usePostItem: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useDeleteItemGeolocation: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   viewItem: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   viewItemInBuilder: () => ({}) as any,
 });
 
