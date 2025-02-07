@@ -7,7 +7,8 @@ import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
+import { useItemGeolocation } from '@/query/hooks/itemGeolocation';
 
 import { BUILDER } from '~builder/langs';
 import MapGeolocationPicker, {
@@ -22,7 +23,7 @@ const GeolocationPicker = ({
   item: DiscriminatedItem;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { data: geoloc } = hooks.useItemGeolocation(item.id);
+  const { data: geoloc } = useItemGeolocation(item.id);
   const { mutate: putGeoloc } = mutations.usePutItemGeolocation();
   const { mutate: deleteGeoloc } = mutations.useDeleteItemGeolocation();
 
@@ -66,7 +67,6 @@ const GeolocationPicker = ({
         <MapGeolocationPicker
           onChangeOption={onChangeOption}
           initialValue={geoloc?.addressLabel ?? undefined}
-          useSuggestionsForAddress={hooks.useSuggestionsForAddress}
           disabled={isDisabled}
         />
         {/* show clear only if not disabled */}

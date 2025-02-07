@@ -1,4 +1,4 @@
-import { configureQueryClient } from '@/query-client';
+import { configureQueryClient } from '@/query';
 
 import { API_HOST, SHOW_NOTIFICATIONS } from './env';
 import notifier from './notifier';

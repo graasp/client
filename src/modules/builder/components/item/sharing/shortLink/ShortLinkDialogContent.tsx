@@ -12,11 +12,12 @@ import {
 import { ShortLink } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import {
   SHORT_LINK_SAVE_BUTTON_ID,
   buildShortLinkCancelBtnId,
 } from '@/config/selectors';
+import { useShortLinkAvailable } from '@/query/hooks/shortLink';
 
 import CancelButton from '~builder/components/common/CancelButton';
 import { useDebouncedCallback } from '~builder/utils/useDebounce';
@@ -27,7 +28,6 @@ import AliasValidation from './AliasValidation';
 const SHORT_LINK_API_CALL_DEBOUNCE_MS = 500;
 
 const { usePostShortLink, usePatchShortLink } = mutations;
-const { useShortLinkAvailable } = hooks;
 
 type Props = {
   itemId: string;

@@ -6,12 +6,12 @@ import { Alert, Skeleton, Typography } from '@mui/material';
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import {
   PASSWORD_DISPLAY_CONTAINER_ID,
   PASSWORD_DISPLAY_INFORMATION_ID,
   PASSWORD_EDIT_BUTTON_ID,
 } from '@/config/selectors';
+import { usePasswordStatus } from '@/query/member/password/hooks';
 
 import CreatePassword from './CreatePassword';
 import EditPassword from './EditPassword';
@@ -22,7 +22,7 @@ export function Password(): JSX.Element {
 
   const [isEditing, setIsEditing] = useState(false);
   const { data: passwordStatus, isPending: isPasswordStatusPending } =
-    hooks.usePasswordStatus();
+    usePasswordStatus();
 
   const handleEditClick = () => {
     setIsEditing(true);

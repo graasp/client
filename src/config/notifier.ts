@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 
 import { MessageKeys } from '@/@types/i18next';
-import { Notifier, routines } from '@/query-client';
+import { Notifier, routines } from '@/query';
 
 import { NS } from './constants';
 import { SHOW_NOTIFICATIONS } from './env';

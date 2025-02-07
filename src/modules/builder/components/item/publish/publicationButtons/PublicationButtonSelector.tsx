@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
-import { hooks } from '@/config/queryClient';
+import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import InvalidButton from './InvalidButton';
 import NotAllowedItemTypeButton from './NotAllowedItemTypeButton';
@@ -16,8 +16,6 @@ type Props = {
   item: PackedItem;
   notifyCoEditors: boolean;
 };
-
-const { usePublicationStatus } = hooks;
 
 export const PublicationButtonSelector = ({
   item,

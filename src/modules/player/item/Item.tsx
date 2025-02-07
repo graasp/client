@@ -35,7 +35,7 @@ import { useAuth } from '@/AuthContext';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
-import { axios, hooks } from '@/config/queryClient';
+import { hooks } from '@/config/queryClient';
 import {
   buildAppId,
   buildCollapsibleId,
@@ -44,7 +44,7 @@ import {
   buildFolderButtonId,
   buildLinkItemId,
 } from '@/config/selectors';
-import { Api } from '@/query-client';
+import { Api } from '@/query';
 import withCollapse from '@/ui/Collapse/withCollapse';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 import AppItem from '@/ui/items/AppItem';
@@ -232,9 +232,7 @@ const AppContent = ({ item }: { item: AppItemType }): JSX.Element => {
         frameId={buildAppId(item.id)}
         item={item}
         memberId={user?.id}
-        requestApiAccessToken={(payload) =>
-          Api.requestApiAccessToken(payload, { API_HOST, axios })
-        }
+        requestApiAccessToken={(payload) => Api.requestApiAccessToken(payload)}
         isResizable={item.settings?.isResizable || DEFAULT_RESIZABLE_SETTING}
         contextPayload={{
           apiHost: API_HOST,

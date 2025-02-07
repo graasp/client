@@ -25,13 +25,13 @@ import {
 import { AuthenticatedMember, useAuth } from '@/AuthContext';
 import { DEFAULT_LANG, NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
-import { axios, hooks } from '@/config/queryClient';
+import { hooks } from '@/config/queryClient';
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_ID,
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
-import { Api } from '@/query-client';
+import { Api } from '@/query';
 import Loader from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';
 import DocumentItem from '@/ui/items/DocumentItem';
@@ -145,7 +145,7 @@ const AppContent = ({
       id: string;
       key: string;
       origin: string;
-    }) => Api.requestApiAccessToken(payload, { API_HOST, axios })}
+    }) => Api.requestApiAccessToken(payload)}
     contextPayload={{
       apiHost: API_HOST,
       itemId: item.id,

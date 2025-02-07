@@ -40,9 +40,6 @@ const checkSuggestions = async (canvas: BoundFunctions<typeof queries>) => {
 };
 
 export const Default = {
-  args: {
-    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
-  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
 
@@ -52,7 +49,6 @@ export const Default = {
 
 export const InitialValue = {
   args: {
-    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     initialValue: 'initial value',
   },
   play: async ({ canvasElement, args }) => {
@@ -67,7 +63,6 @@ export const InitialValue = {
 
 export const Background = {
   args: {
-    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     initialValue: 'initial value',
   },
   parameters: {
@@ -88,7 +83,6 @@ export const Background = {
 
 export const Invisible = {
   args: {
-    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     invisible: true,
   },
   play: async ({ canvasElement }) => {
@@ -100,9 +94,7 @@ export const Invisible = {
 
 // displays above other text fields
 export const Form = {
-  args: {
-    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
-  },
+  args: {},
   decorators: [
     (Story) => (
       <>

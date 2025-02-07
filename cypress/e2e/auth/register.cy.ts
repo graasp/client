@@ -8,7 +8,7 @@ import {
   REGISTER_SAVE_ACTIONS_ID,
   SUCCESS_CONTENT_ID,
 } from '../../../src/config/selectors';
-import { API_ROUTES } from '../../../src/query-client';
+import { buildGetInvitationRoute } from '../../../src/query/routes';
 import { AUTH_MEMBERS } from '../../fixtures/members';
 import { checkInvitationFields, fillSignUpLayout } from './util';
 
@@ -89,12 +89,9 @@ describe('Invitations', () => {
       name: 'name',
       email: 'email',
     };
-    cy.intercept(
-      API_ROUTES.buildGetInvitationRoute(invitation.id),
-      ({ reply }) => {
-        reply(invitation);
-      },
-    );
+    cy.intercept(buildGetInvitationRoute(invitation.id), ({ reply }) => {
+      reply(invitation);
+    });
     const search = new URLSearchParams();
     search.set('invitationId', invitation.id);
     cy.visit(`/auth/register?${search.toString()}`);
@@ -106,7 +103,7 @@ describe('Invitations', () => {
       id: v4(),
       email: 'email',
     };
-    cy.intercept(API_ROUTES.buildGetInvitationRoute(invitation.id), invitation);
+    cy.intercept(buildGetInvitationRoute(invitation.id), invitation);
     const search = new URLSearchParams();
     search.set('invitationId', invitation.id);
     cy.visit(`/auth/register?${search.toString()}`);
@@ -118,7 +115,7 @@ describe('Invitations', () => {
       id: v4(),
       email: 'email',
     };
-    cy.intercept(API_ROUTES.buildGetInvitationRoute(invitation.id), {
+    cy.intercept(buildGetInvitationRoute(invitation.id), {
       statusCode: 404,
       body: { message: 'Invitation not found!' },
     });

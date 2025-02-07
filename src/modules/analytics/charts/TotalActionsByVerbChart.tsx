@@ -16,7 +16,7 @@ import { formatISO } from 'date-fns/formatISO';
 import { Cell, Pie, PieChart, PieLabel, Tooltip } from 'recharts';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { useAggregateActions } from '@/query/hooks/action';
 
 import { DataContext } from '~analytics/context/DataProvider';
 import { ViewDataContext } from '~analytics/context/ViewDataProvider';
@@ -43,7 +43,7 @@ const TotalActionsByVerbChart = (): JSX.Element | null => {
     data: aggregateData,
     isLoading,
     isError,
-  } = hooks.useAggregateActions(itemId, {
+  } = useAggregateActions(itemId, {
     view,
     requestedSampleSize: DEFAULT_REQUEST_SAMPLE_SIZE,
     type: selectedActionTypes,

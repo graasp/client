@@ -11,7 +11,7 @@ import SocialLinks from 'social-links';
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_CONFIGURE_BUTTON_ID,
@@ -19,6 +19,7 @@ import {
   PUBLIC_PROFILE_EDIT_BUTTON_ID,
   PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID,
 } from '@/config/selectors';
+import { useOwnProfile } from '@/query/member/publicProfile/hooks';
 
 import { DisplayLink } from './DisplayLink';
 import { EditPublicProfile, Inputs } from './EditPublicProfile';
@@ -28,7 +29,7 @@ export function PublicProfile(): JSX.Element {
 
   const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { data: publicProfile } = hooks.useOwnProfile();
+  const { data: publicProfile } = useOwnProfile();
 
   const { mutate: postProfile } = mutations.usePostPublicProfile();
   const { mutate: patchProfile } = mutations.usePatchPublicProfile();

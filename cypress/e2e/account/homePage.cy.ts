@@ -16,7 +16,7 @@ import {
   MEMBER_CREATED_AT_ID,
   MEMBER_USERNAME_DISPLAY_ID,
 } from '../../../src/config/selectors';
-import { API_ROUTES } from '../../../src/query-client';
+import { API_ROUTES } from '../../../src/query/routes';
 import { MEMBERS, MEMBER_WITH_AVATAR } from '../../fixtures/members';
 import {
   AVATAR_LINK,

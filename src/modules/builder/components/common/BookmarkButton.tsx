@@ -6,7 +6,8 @@ import { IconButtonProps } from '@mui/material';
 import { DiscriminatedItem, ItemBookmark } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
+import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 import GraaspBookmarkButton from '@/ui/buttons/BookmarkButton/BookmarkButton';
 import { ActionButtonVariant } from '@/ui/types';
 
@@ -32,7 +33,7 @@ const BookmarkButton = ({
   onClick,
   className,
 }: Props): JSX.Element | null => {
-  const { data: bookmarks } = hooks.useBookmarkedItems();
+  const { data: bookmarks } = useBookmarkedItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const addFavorite = mutations.useAddBookmarkedItem();
   const deleteFavorite = mutations.useRemoveBookmarkedItem();

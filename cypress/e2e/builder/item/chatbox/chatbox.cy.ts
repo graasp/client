@@ -7,7 +7,7 @@ import {
   CHATBOX_INPUT_BOX_ID,
   ITEM_CHATBOX_BUTTON_ID,
 } from '../../../../../src/config/selectors';
-import { MockWebSocket } from '../../../../../src/query-client';
+import { MockWebSocket } from '../../../../../src/query/ws/mock-ws-client';
 import { CURRENT_MEMBER, MEMBERS } from '../../../../fixtures/members';
 import { CHATBOX_TIMEOUT } from '../../../../support/constants';
 import { ITEM_WITH_CHATBOX_MESSAGES } from '../../fixtures/chatbox';

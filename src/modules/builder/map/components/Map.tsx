@@ -9,6 +9,8 @@ import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-geosearch/assets/css/leaflet.css';
 import 'leaflet/dist/leaflet.css';
 
+import { useItemsInMap } from '@/query/hooks/itemGeolocation';
+
 import { Country } from '../types';
 import { GeolocationPickerProps } from './GeolocationPicker/GeolocationPicker';
 import LoggedOutWarning from './common/LoggedOutWarning';
@@ -25,9 +27,6 @@ type Props = QueryClientContextInterface;
 export function MapComponent({
   item,
   currentMember,
-  useAddressFromGeolocation,
-  useItemsInMap,
-  useSuggestionsForAddress,
   useRecycleItems,
   usePostItem,
   viewItem,
@@ -109,12 +108,9 @@ export function MapComponent({
       currentPosition={currentPosition}
       handleAddOnClick={handleAddOnClick}
       item={item}
-      useAddressFromGeolocation={useAddressFromGeolocation}
       useDeleteItemGeolocation={useDeleteItemGeolocation}
-      useItemsInMap={useItemsInMap}
       usePostItem={usePostItem}
       useRecycleItems={useRecycleItems}
-      useSuggestionsForAddress={useSuggestionsForAddress}
       viewItem={viewItem}
       viewItemInBuilder={viewItemInBuilder}
     >

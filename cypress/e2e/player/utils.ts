@@ -28,7 +28,7 @@ import {
   buildLinkItemId,
   buildTreeItemClass,
 } from '../../../src/config/selectors';
-import { API_ROUTES } from '../../../src/query-client';
+import { API_ROUTES } from '../../../src/query/routes';
 import { API_HOST } from '../../support/env';
 
 export const buildContentPagePath = ({

@@ -6,7 +6,7 @@ import { FlagType } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
-import { routines } from '@/query-client';
+import { routines } from '@/query';
 import { ItemFlagDialog } from '@/ui/ItemFlag/ItemFlagDialog';
 
 const { postItemFlagRoutine } = routines;

@@ -7,6 +7,7 @@ import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import { useTagsByItem } from '@/query/item/tag/hooks';
 
 const EMPTY_STRING = '';
 type Props = {
@@ -36,7 +37,7 @@ export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
   const [currentValue, setCurrentValue] = useState<string>(EMPTY_STRING);
   const [error, setError] = useState<string | undefined>();
   const debouncedCurrentValue = hooks.useDebounce(currentValue, 500);
-  const { data: tags } = hooks.useTagsByItem({ itemId });
+  const { data: tags } = useTagsByItem({ itemId });
   const {
     mutate: addTag,
     isPending: addTagIsLoading,

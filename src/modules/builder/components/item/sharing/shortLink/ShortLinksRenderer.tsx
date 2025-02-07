@@ -7,6 +7,7 @@ import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import { ClientManager } from '@/lib/ClientManager';
+import { useShortLinksItem } from '@/query/hooks/shortLink';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { randomAlias } from '~builder/utils/shortLink';
@@ -15,7 +16,7 @@ import ShortLinkDialogContent from './ShortLinkDialogContent';
 import ShortLinkDisplay from './ShortLinkDisplay';
 import ShortLinkSkeleton from './ShortLinkSkeleton';
 
-const { useShortLinksItem, useItemPublishedInformation } = hooks;
+const { useItemPublishedInformation } = hooks;
 
 type ShortLinkPlatform = ShortLink['platform'];
 

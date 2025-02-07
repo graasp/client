@@ -12,6 +12,10 @@ import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_MAP_BUTTON_ID } from '@/config/selectors';
 import { ClientManager } from '@/lib/ClientManager';
+import {
+  useItemGeolocation,
+  useItemsInMap,
+} from '@/query/hooks/itemGeolocation';
 
 import { ToolButton } from './customButtons';
 
@@ -22,10 +26,10 @@ const useGeolocationButton = (): { geolocationButton: JSX.Element | null } => {
   // get inherited geoloc
   const { itemId, rootId } = useParams({ from: '/player/$rootId/$itemId' });
   const { data: item } = hooks.useItem(itemId);
-  const { data: allGeoloc } = hooks.useItemsInMap({
+  const { data: allGeoloc } = useItemsInMap({
     parentItemId: rootId,
   });
-  const { data: geoloc } = hooks.useItemGeolocation(item?.id);
+  const { data: geoloc } = useItemGeolocation(item?.id);
 
   if (!allGeoloc?.length) {
     return { geolocationButton: null };

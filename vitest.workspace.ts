@@ -1,7 +1,7 @@
 import { storybookTest } from '@storybook/experimental-addon-test/vitest-plugin';
 import { configDefaults, defineWorkspace } from 'vitest/config';
 
-const queryClientInclude = 'src/query-client/**/*.test.ts';
+const queryClientInclude = 'src/query/**/*.test.ts';
 // More info at: https://storybook.js.org/docs/writing-tests/vitest-plugin
 export default defineWorkspace([
   {
@@ -18,7 +18,7 @@ export default defineWorkspace([
     test: {
       include: [queryClientInclude],
       // it is recommended to define a name when using inline configs
-      name: 'query-client',
+      name: 'query',
       environment: 'jsdom',
     },
   },

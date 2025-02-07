@@ -15,7 +15,8 @@ import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
+import { useItemGeolocation } from '@/query/hooks/itemGeolocation';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '~builder/langs';
@@ -28,7 +29,7 @@ export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
-  const { data: geoloc } = hooks.useItemGeolocation(item.id);
+  const { data: geoloc } = useItemGeolocation(item.id);
   const { mutate: saveGeoloc } = mutations.usePutItemGeolocation();
 
   const helperLabelRef = useRef<HTMLInputElement>(null);

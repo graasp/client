@@ -7,9 +7,8 @@ import {
   PackedItem,
 } from '@graasp/sdk';
 
-import type { configureQueryClient } from '@/query-client';
+import type { configureQueryClient } from '@/query';
 
-type QueryClientHooks = ReturnType<typeof configureQueryClient>['hooks'];
 type QueryClientMutations = ReturnType<
   typeof configureQueryClient
 >['mutations'];
@@ -18,12 +17,9 @@ export interface QueryClientContextInterface {
   item?: PackedItem;
   currentMember?: CurrentAccount | null;
   currentPosition?: { lat: number; lng: number };
-  useAddressFromGeolocation: QueryClientHooks['useAddressFromGeolocation'];
-  useItemsInMap: QueryClientHooks['useItemsInMap'];
   useRecycleItems: QueryClientMutations['useRecycleItems'];
   usePostItem: QueryClientMutations['usePostItem'];
   useDeleteItemGeolocation: QueryClientMutations['useDeleteItemGeolocation'];
-  useSuggestionsForAddress: QueryClientHooks['useSuggestionsForAddress'];
   viewItem: (item: DiscriminatedItem) => void;
   viewItemInBuilder: (item: DiscriminatedItem) => void;
   handleAddOnClick?: ({
@@ -36,18 +32,6 @@ export interface QueryClientContextInterface {
 
 export const QueryClientContext = createContext<QueryClientContextInterface>({
   currentMember: undefined,
-  useAddressFromGeolocation: () =>
-    ({
-      data: { display_name: 'address' },
-    }) as any,
-  useItemsInMap: () =>
-    ({
-      data: [],
-    }) as any,
-  useSuggestionsForAddress: () =>
-    ({
-      data: [],
-    }) as any,
   useRecycleItems: () => ({}) as any,
   usePostItem: () => ({}) as any,
   useDeleteItemGeolocation: () => ({}) as any,
@@ -58,12 +42,9 @@ export const QueryClientContext = createContext<QueryClientContextInterface>({
 export const QueryClientContextProvider = ({
   currentMember,
   children,
-  useAddressFromGeolocation,
-  useItemsInMap,
   useRecycleItems,
   usePostItem,
   useDeleteItemGeolocation,
-  useSuggestionsForAddress,
   viewItem,
   item,
   currentPosition,
@@ -73,26 +54,20 @@ export const QueryClientContextProvider = ({
   const value = useMemo(
     () => ({
       currentMember,
-      useAddressFromGeolocation,
-      useItemsInMap,
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
       viewItem,
       item,
-      useSuggestionsForAddress,
       currentPosition,
       handleAddOnClick,
       viewItemInBuilder,
     }),
     [
       currentMember,
-      useAddressFromGeolocation,
-      useItemsInMap,
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
-      useSuggestionsForAddress,
       viewItem,
       item,
       currentPosition,

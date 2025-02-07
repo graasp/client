@@ -7,7 +7,7 @@ import {
   PASSWORD_SIGN_IN_BUTTON_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
 } from '../../../src/config/selectors';
-import { API_ROUTES } from '../../../src/query-client';
+import { SIGN_IN_WITH_PASSWORD_ROUTE } from '../../../src/query/routes';
 import { AUTH_MEMBERS } from '../../fixtures/members';
 import { fillPasswordSignInLayout } from './util';
 
@@ -16,7 +16,7 @@ describe('Email and Password Validation', () => {
     const redirectionLink = 'http://localhost:3005/mylink';
     cy.intercept(
       {
-        pathname: API_ROUTES.SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
       },
       ({ reply }) => {
         reply({ statusCode: 303, body: { resource: redirectionLink } });
@@ -49,7 +49,7 @@ describe('Email and Password Validation', () => {
   it('Sign In With Wrong Password', () => {
     cy.intercept(
       {
-        pathname: API_ROUTES.SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
       },
       (req) => {
         req.reply({
@@ -72,7 +72,7 @@ describe('Email and Password Validation', () => {
   it('Check errors if  shows success message if no redirect', () => {
     cy.intercept(
       {
-        pathname: API_ROUTES.SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
       },
       (req) => {
         req.reply({ statusCode: 303 });

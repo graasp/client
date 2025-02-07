@@ -6,11 +6,12 @@ import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import {
   CO_EDITOR_SETTINGS_CHECKBOX_ID,
   EMAIL_NOTIFICATION_CHECKBOX,
 } from '@/config/selectors';
+import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import { BUILDER } from '~builder/langs';
@@ -22,8 +23,6 @@ type Props = {
   notifyCoEditors: boolean;
   onNotificationChanged: (enabled: boolean) => void;
 };
-
-const { usePublicationStatus } = hooks;
 
 export const CoEditorsContainer = ({
   item,
