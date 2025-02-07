@@ -92,6 +92,10 @@ describe('useAccessibleItems', () => {
 });
 
 describe('useInfiniteAccessibleItems', () => {
+  afterEach(() => {
+    nock.cleanAll();
+    queryClient.clear();
+  });
   const params = {};
   const pagination = { page: 1 };
   const route = `/${buildGetAccessibleItems(params, pagination)}`;
@@ -112,7 +116,10 @@ describe('useInfiniteAccessibleItems', () => {
   });
 
   it(`calling nextPage accumulate items`, async () => {
-    const endpoints = [{ route, response }];
+    const endpoints = [
+      { route, response },
+      { route: `/${buildGetAccessibleItems(params, { page: 2 })}`, response },
+    ];
     // cannot use mockHook because it prevents getting updated data
     mockEndpoints(endpoints);
 
@@ -126,8 +133,11 @@ describe('useInfiniteAccessibleItems', () => {
     act(() => {
       result.current.fetchNextPage();
     });
-
-    // expect(result.current.data.length).toEqual(items.length * 2);
+    await waitFor(() =>
+      expect(result.current.data?.pages.flatMap((p) => p.data).length).toEqual(
+        items.length * 2,
+      ),
+    );
   });
 
   it(`Reset on change param`, async () => {
