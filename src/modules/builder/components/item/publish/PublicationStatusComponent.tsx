@@ -11,8 +11,8 @@ import { Chip, ChipProps, CircularProgress } from '@mui/material';
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import { buildPublicationStatus } from '@/config/selectors';
+import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { BUILDER } from '~builder/langs';
 
@@ -29,7 +29,6 @@ type PublicationChip = {
 type Props = {
   item: PackedItem;
 };
-const { usePublicationStatus } = hooks;
 export const PublicationStatusComponent = ({ item }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useTranslation(NS.Enums);

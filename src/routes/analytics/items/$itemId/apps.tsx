@@ -10,8 +10,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { type AuthenticatedMember, useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { API_HOST } from '@/config/env';
-import { axios } from '@/config/queryClient';
-import { Api } from '@/query-client';
+import { Api } from '@/query';
 import AppItem from '@/ui/items/AppItem';
 
 import SectionTitle from '~analytics/common/SectionTitle';
@@ -81,7 +80,7 @@ function AppContent({
               id: string;
               key: string;
               origin: string;
-            }) => Api.requestApiAccessToken(payload, { API_HOST, axios })}
+            }) => Api.requestApiAccessToken(payload)}
             contextPayload={{
               apiHost: API_HOST,
               itemId: item.id,

@@ -29,7 +29,7 @@ const MobileTopBar = ({
   tags,
   onChangeOption,
 }: Props): JSX.Element => {
-  const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
+  const { currentMember, useSuggestionsForAddress } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
   const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
@@ -60,11 +60,11 @@ const MobileTopBar = ({
             <>
               <br />
               <GeolocationPicker
-                useSuggestionsForAddress={useSuggestionsForAddress}
                 onChangeOption={(v) => {
                   onChangeOption?.(v);
                   setOpen(false);
                 }}
+                useSuggestionsForAddress={useSuggestionsForAddress}
               />
               <br />
             </>

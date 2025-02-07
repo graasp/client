@@ -13,6 +13,7 @@ import { PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import { usePublicationStatus } from '@/query/item/publication/hooks';
 import { Loader } from '@/ui/Loader/Loader';
 
 import SyncIcon from '~builder/components/common/SyncIcon';
@@ -35,8 +36,6 @@ import { PublishCustomizedTags } from './customizedTags/PublishCustomizedTags';
 import PublicationButtonSelector from './publicationButtons/PublicationButtonSelector';
 
 type StackOrder = { order?: number | SomeBreakPoints<number> };
-
-const { usePublicationStatus } = hooks;
 
 const ItemPublishTab = (): JSX.Element | null => {
   const { t } = useTranslation(NS.Builder);

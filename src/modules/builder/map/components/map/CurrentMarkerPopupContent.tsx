@@ -6,6 +6,7 @@ import { Skeleton } from '@mui/material';
 import { ItemGeolocation } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
+import { useAddressFromGeolocation } from '@/query/hooks/itemGeolocation';
 
 import { useQueryClientContext } from '../context/QueryClientContext';
 import AddItemButton from './AddItemButton';
@@ -18,7 +19,7 @@ const CurrentMarkerPopupContent = ({
   point: Pick<ItemGeolocation, 'lat' | 'lng'>;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Map);
-  const { useAddressFromGeolocation, currentMember } = useQueryClientContext();
+  const { currentMember } = useQueryClientContext();
   const { data: address, isPending } = useAddressFromGeolocation(point, {
     enabled: Boolean(currentMember) && open,
   });

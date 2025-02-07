@@ -39,6 +39,8 @@ const UsersByActionByChart = (): JSX.Element => {
   const allActions = filterActionsByActionTypes(actions, selectedActionTypes);
   const types = [...new Set(allActions.map((a) => a.type))];
 
+  // todo: fix this any type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let formattedUsersByAction: any[] = [];
   const filteredActions = groupBy(
     filterActionsByUsers(allActions, selectedUsers),
@@ -47,6 +49,8 @@ const UsersByActionByChart = (): JSX.Element => {
   allMembers.forEach((user) => {
     const groupedActions = groupBy(filteredActions[user.id], (a) => a.type);
     if (Object.values(groupedActions)?.length) {
+      // todo: fix this any type
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const userActions: any = {
         id: user.id,
         name: user.name,

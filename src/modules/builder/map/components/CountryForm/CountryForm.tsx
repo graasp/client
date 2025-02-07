@@ -1,7 +1,13 @@
-import type { JSX } from 'react';
+import type { JSX, SyntheticEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Autocomplete, Popper, PopperProps, TextField } from '@mui/material';
+import {
+  Autocomplete,
+  AutocompleteChangeReason,
+  Popper,
+  PopperProps,
+  TextField,
+} from '@mui/material';
 
 import countriesISO from 'i18n-iso-countries';
 import arTrans from 'i18n-iso-countries/langs/ar.json';
@@ -54,9 +60,18 @@ const CountryForm = ({
 }: CountryFormProps): JSX.Element => {
   const { t } = useTranslation(NS.Map);
 
-  const handleOnChange = (_event: any, newValue: Country | null) => {
+  const handleOnChange = (
+    _event: SyntheticEvent<Element, Event>,
+    newValue: {
+      name: string;
+      maxBoundary: number[];
+      minBoundary: number[];
+      alpha2: string;
+    } | null,
+    _reason: AutocompleteChangeReason,
+  ) => {
     if (newValue) {
-      onChange?.(newValue);
+      onChange?.(newValue as Country);
     }
   };
 
@@ -71,7 +86,7 @@ const CountryForm = ({
     <div id={MAP_COUNTRY_SELECTION_FORM_ID} style={{ position: 'relative' }}>
       <Autocomplete
         autoSelect
-        onChange={handleOnChange as any}
+        onChange={handleOnChange}
         disablePortal
         defaultValue={countries.find((c) => c.alpha2 === initialValue)}
         options={translatedCountries}

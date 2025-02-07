@@ -4,9 +4,10 @@ import { AccountType } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
+import { isAxiosError } from 'axios';
 import { z } from 'zod';
 
-import { axios, hooks, mutations } from '@/config/queryClient';
+import { hooks, mutations } from '@/config/queryClient';
 import {
   ITEM_LOGIN_PASSWORD_INPUT_ID,
   ITEM_LOGIN_SIGN_IN_BUTTON_ID,
@@ -44,8 +45,7 @@ function ItemPage(): JSX.Element | null {
 
   const { mutate: itemLoginSignIn } = mutations.usePostItemLogin();
 
-  const errorStatusCode =
-    (axios.isAxiosError(itemError) && itemError.status) || null;
+  const errorStatusCode = (isAxiosError(itemError) && itemError.status) || null;
 
   return (
     <ItemLoginWrapper

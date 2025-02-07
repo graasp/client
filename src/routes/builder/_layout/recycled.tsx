@@ -6,11 +6,11 @@ import { Alert, Stack, Typography } from '@mui/material';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import {
   RECYCLED_ITEMS_ERROR_ALERT_ID,
   RECYCLED_ITEMS_ROOT_CONTAINER,
 } from '@/config/selectors';
+import { useInfiniteOwnRecycledItems } from '@/query/item/recycled/hooks';
 import Button from '@/ui/buttons/Button/Button';
 
 import { ITEM_PAGE_SIZE } from '~builder/constants';
@@ -42,7 +42,7 @@ const RecycledItemsScreenContent = (): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { data, fetchNextPage, isLoading, isFetching } =
-    hooks.useInfiniteOwnRecycledItems(
+    useInfiniteOwnRecycledItems(
       // improvement: adapt page size given the user window height
       { pageSize: ITEM_PAGE_SIZE },
     );

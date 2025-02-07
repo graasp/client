@@ -23,6 +23,7 @@ import groupby from 'lodash.groupby';
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import { useItemInvitations } from '@/query/hooks/invitation';
 
 import ErrorAlert from '~builder/components/common/ErrorAlert';
 import { useOutletContext } from '~builder/contexts/OutletContext';
@@ -63,7 +64,7 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
 
   const { item, canAdmin } = useOutletContext();
   const { data: invitations, isLoading: isInvitationsLoading } =
-    hooks.useItemInvitations(item.id, {
+    useItemInvitations(item.id, {
       enabled: canAdmin,
     });
   const {

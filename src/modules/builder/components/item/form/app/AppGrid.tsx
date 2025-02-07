@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Alert } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { useApps } from '@/query/hooks/apps';
 
 import AppCard from '~builder/components/main/AppCard';
 import { sortByName } from '~builder/utils/item';
@@ -19,7 +19,6 @@ type AppGridProps = {
 export function AppGrid({
   searchQuery,
 }: Readonly<AppGridProps>): JSX.Element | JSX.Element[] {
-  const { useApps } = hooks;
   const { data, isLoading } = useApps();
   const { control, reset } = useFormContext<{
     url: string;

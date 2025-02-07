@@ -23,7 +23,7 @@ import {
 } from 'recharts';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { useAggregateActions } from '@/query/hooks/action';
 
 import { DataContext } from '~analytics/context/DataProvider';
 import { ViewDataContext } from '~analytics/context/ViewDataProvider';
@@ -54,7 +54,7 @@ const ActionsByUserChart = (): JSX.Element | null => {
     data: aggregateData,
     isLoading,
     isError,
-  } = hooks.useAggregateActions(itemId, {
+  } = useAggregateActions(itemId, {
     view,
     requestedSampleSize: DEFAULT_REQUEST_SAMPLE_SIZE,
     type: selectedActionTypes,
@@ -86,6 +86,8 @@ const ActionsByUserChart = (): JSX.Element | null => {
 
   // for each action type, further group by member id, and then sum the number of actions
   const groupedActions = groupBy(allActions, (a) => a.type);
+  // todo: remove any type
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formattedData: { type: any; total: any; others: any }[] = [];
 
   for (const [type, actionsByType] of Object.entries(groupedActions)) {
@@ -95,6 +97,7 @@ const ActionsByUserChart = (): JSX.Element | null => {
     }
     const groupedUsers = groupBy(actionsByType, (a) => a?.account?.id);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const userActions: any = {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error

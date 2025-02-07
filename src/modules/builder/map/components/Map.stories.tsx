@@ -398,11 +398,16 @@ export const DefaultMap = {
             item,
           },
         ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       }) as any,
     useAddressFromGeolocation: () =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ({ data: { addressLabel: 'address', country: 'countryName' } }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     handleAddOnClick({ location }) {
       alert(JSON.stringify(location));
@@ -424,10 +429,15 @@ export const MapSignedOut = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: null,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
@@ -455,10 +465,15 @@ export const MapMobile = {
             item,
           },
         ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
@@ -478,10 +493,15 @@ export const MapSignOutMobile = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: null,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
@@ -498,10 +518,15 @@ export const MapFrench = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
@@ -528,10 +553,15 @@ export const MapRead = {
             item,
           },
         ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [

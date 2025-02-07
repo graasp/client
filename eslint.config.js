@@ -94,7 +94,7 @@ export default [
       '@typescript-eslint/no-namespace': 'off',
       'react/jsx-uses-react': 'off',
       'react/react-in-jsx-scope': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-explicit-any': 'error',
       'no-restricted-syntax': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
 

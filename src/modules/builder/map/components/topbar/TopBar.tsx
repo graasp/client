@@ -20,7 +20,7 @@ const TopBar = ({
   onChange: (tags: string[]) => void;
   onChangeOption: GeolocationPickerProps['onChangeOption'];
 }): JSX.Element => {
-  const { useSuggestionsForAddress, currentMember } = useQueryClientContext();
+  const { currentMember, useSuggestionsForAddress } = useQueryClientContext();
 
   const { isMobile } = useMobileView();
 
@@ -62,9 +62,9 @@ const TopBar = ({
       >
         {currentMember ? (
           <GeolocationPicker
-            useSuggestionsForAddress={useSuggestionsForAddress}
             onChangeOption={onChangeOption}
             invisible
+            useSuggestionsForAddress={useSuggestionsForAddress}
           />
         ) : null}
         <Search invisible tags={tags} onChange={onChange} />

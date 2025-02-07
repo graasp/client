@@ -6,10 +6,11 @@ import { Alert } from '@mui/material';
 import { ItemType } from '@graasp/sdk';
 
 import { getRouteApi, useNavigate } from '@tanstack/react-router';
+import { isAxiosError } from 'axios';
 
 import { useAuth } from '@/AuthContext.tsx';
 import { NS } from '@/config/constants.ts';
-import { axios, hooks } from '@/config/queryClient';
+import { hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
 import MainMenu from '@/ui/MainMenu/MainMenu';
 
@@ -87,7 +88,7 @@ const DrawerNavigation = (): JSX.Element | null => {
 
   if (isError) {
     // this is an expected error that can occur if user does not have access to the item
-    if (axios.isAxiosError(error) && error.response?.status === 403) {
+    if (isAxiosError(error) && error.response?.status === 403) {
       return null;
     }
     return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;

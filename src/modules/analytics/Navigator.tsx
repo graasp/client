@@ -31,7 +31,7 @@ export function Navigator({
       backgroundColor={NAVIGATOR_BACKGROUND_COLOR}
       buildBreadcrumbsItemLinkId={buildBreadcrumbsItemLink}
       buildMenuItemId={buildMenuItemId}
-      useChildren={useChildren as any}
+      useChildren={useChildren}
       buildIconId={buildNavigationDropDownId}
     />
   );

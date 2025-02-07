@@ -33,7 +33,7 @@ import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
 import { ITEM_PAGE_SIZE, SETTINGS } from '../../src/modules/builder/constants';
-import { API_ROUTES } from '../../src/query-client';
+import { API_ROUTES } from '../../src/query/routes';
 import { buildInvitation } from '../e2e/builder/fixtures/invitations';
 import {
   AVATAR_LINK,

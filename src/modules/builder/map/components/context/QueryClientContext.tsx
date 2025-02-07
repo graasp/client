@@ -7,9 +7,13 @@ import {
   PackedItem,
 } from '@graasp/sdk';
 
-import type { configureQueryClient } from '@/query-client';
+import type { configureQueryClient } from '@/query';
+import {
+  type useAddressFromGeolocation,
+  type useItemsInMap,
+  type useSuggestionsForAddress,
+} from '@/query/hooks/itemGeolocation';
 
-type QueryClientHooks = ReturnType<typeof configureQueryClient>['hooks'];
 type QueryClientMutations = ReturnType<
   typeof configureQueryClient
 >['mutations'];
@@ -17,13 +21,13 @@ type QueryClientMutations = ReturnType<
 export interface QueryClientContextInterface {
   item?: PackedItem;
   currentMember?: CurrentAccount | null;
+  useAddressFromGeolocation: typeof useAddressFromGeolocation;
+  useItemsInMap: typeof useItemsInMap;
+  useSuggestionsForAddress: typeof useSuggestionsForAddress;
   currentPosition?: { lat: number; lng: number };
-  useAddressFromGeolocation: QueryClientHooks['useAddressFromGeolocation'];
-  useItemsInMap: QueryClientHooks['useItemsInMap'];
   useRecycleItems: QueryClientMutations['useRecycleItems'];
   usePostItem: QueryClientMutations['usePostItem'];
   useDeleteItemGeolocation: QueryClientMutations['useDeleteItemGeolocation'];
-  useSuggestionsForAddress: QueryClientHooks['useSuggestionsForAddress'];
   viewItem: (item: DiscriminatedItem) => void;
   viewItemInBuilder: (item: DiscriminatedItem) => void;
   handleAddOnClick?: ({
@@ -36,33 +40,32 @@ export interface QueryClientContextInterface {
 
 export const QueryClientContext = createContext<QueryClientContextInterface>({
   currentMember: undefined,
-  useAddressFromGeolocation: () =>
-    ({
-      data: { display_name: 'address' },
-    }) as any,
-  useItemsInMap: () =>
-    ({
-      data: [],
-    }) as any,
-  useSuggestionsForAddress: () =>
-    ({
-      data: [],
-    }) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useRecycleItems: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useAddressFromGeolocation: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useItemsInMap: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useSuggestionsForAddress: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   usePostItem: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useDeleteItemGeolocation: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   viewItem: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   viewItemInBuilder: () => ({}) as any,
 });
 
 export const QueryClientContextProvider = ({
   currentMember,
   children,
-  useAddressFromGeolocation,
-  useItemsInMap,
   useRecycleItems,
   usePostItem,
   useDeleteItemGeolocation,
+  useAddressFromGeolocation,
+  useItemsInMap,
   useSuggestionsForAddress,
   viewItem,
   item,
@@ -73,25 +76,25 @@ export const QueryClientContextProvider = ({
   const value = useMemo(
     () => ({
       currentMember,
-      useAddressFromGeolocation,
-      useItemsInMap,
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
+      useAddressFromGeolocation,
+      useItemsInMap,
+      useSuggestionsForAddress,
       viewItem,
       item,
-      useSuggestionsForAddress,
       currentPosition,
       handleAddOnClick,
       viewItemInBuilder,
     }),
     [
       currentMember,
-      useAddressFromGeolocation,
-      useItemsInMap,
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
+      useAddressFromGeolocation,
+      useItemsInMap,
       useSuggestionsForAddress,
       viewItem,
       item,

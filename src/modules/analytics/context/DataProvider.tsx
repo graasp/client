@@ -22,6 +22,8 @@ import { endOfDay } from 'date-fns/endOfDay';
 import { formatISO } from 'date-fns/formatISO';
 
 import { hooks } from '@/config/queryClient';
+import { useActions } from '@/query/hooks/action';
+import { useDescendants } from '@/query/item/descendants/hooks';
 
 import { DateRange } from '~analytics/config/type';
 import { DEFAULT_REQUEST_SAMPLE_SIZE } from '~analytics/constants';
@@ -99,7 +101,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
 
   // todo: have a dynamic value
   const requestedSampleSize = DEFAULT_REQUEST_SAMPLE_SIZE;
-  const { data: appDescendants = [] } = hooks.useDescendants({
+  const { data: appDescendants = [] } = useDescendants({
     id: itemId || '',
     types: [ItemType.APP],
     showHidden: false,
@@ -109,7 +111,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     data: builderData,
     isError: builderIsError,
     isLoading: builderIsLoading,
-  } = hooks.useActions(
+  } = useActions(
     {
       itemId,
       view: Context.Builder,
@@ -124,7 +126,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     data: playerData,
     isError: playerIsError,
     isLoading: playerIsLoading,
-  } = hooks.useActions(
+  } = useActions(
     {
       itemId,
       view: Context.Player,
@@ -139,7 +141,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     data: explorerData,
     isError: explorerIsError,
     isLoading: explorerIsLoading,
-  } = hooks.useActions(
+  } = useActions(
     {
       itemId,
       view: Context.Library,

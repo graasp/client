@@ -10,14 +10,14 @@ import {
 } from '@mui/material';
 
 import { DEFAULT_LANG, NS } from '@/config/constants';
+import { type useSuggestionsForAddress } from '@/query/hooks/itemGeolocation';
 
 import { MAP } from '../../constants';
-import { QueryClientContextInterface } from '../context/QueryClientContext';
 import { useOutsideClick } from './hook';
 
 export type GeolocationPickerProps = {
   disabled?: boolean;
-  useSuggestionsForAddress: QueryClientContextInterface['useSuggestionsForAddress'];
+  useSuggestionsForAddress: typeof useSuggestionsForAddress;
   onChangeOption?: (args: {
     addressLabel: string;
     lat: number;
@@ -32,8 +32,8 @@ export type GeolocationPickerProps = {
 
 const GeolocationPicker = ({
   disabled = false,
-  onChangeOption,
   useSuggestionsForAddress,
+  onChangeOption,
   invisible = false,
   initialValue = '',
   label,

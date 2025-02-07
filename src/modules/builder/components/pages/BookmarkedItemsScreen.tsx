@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { Alert, Stack } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import {
   BOOKMARKED_ITEMS_ERROR_ALERT_ID,
   BOOKMARKED_ITEMS_ID,
 } from '@/config/selectors';
+import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 
 import { Ordering } from '~builder/enums';
 
@@ -31,11 +31,7 @@ const BookmarkedItemsContent = ({
   searchText: string;
 }): JSX.Element | null => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const {
-    data: bookmarkedItems,
-    isLoading,
-    isError,
-  } = hooks.useBookmarkedItems();
+  const { data: bookmarkedItems, isLoading, isError } = useBookmarkedItems();
   const { shouldDisplayItem } = useFilterItemsContext();
 
   const { sortBy, setSortBy, ordering, setOrdering, sortFn } = useSorting({

@@ -4,13 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { SETTINGS } from '../../../constants';
 import { BUILDER } from '../../../langs';
 import { Visibility } from './UpdateVisibilityModal';
-
-const { usePublicationStatus } = hooks;
 
 type Props = {
   itemId: string;

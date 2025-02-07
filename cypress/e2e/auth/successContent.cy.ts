@@ -8,7 +8,7 @@ import {
   RESEND_EMAIL_BUTTON_ID,
   SUCCESS_CONTENT_ID,
 } from '../../../src/config/selectors';
-import { API_ROUTES } from '../../../src/query-client';
+import { SIGN_IN_ROUTE } from '../../../src/query/routes';
 import { AUTH_MEMBERS } from '../../fixtures/members';
 
 describe('Success Content', () => {
@@ -17,7 +17,7 @@ describe('Success Content', () => {
       const { GRAASP, GRAASP_OTHER } = AUTH_MEMBERS;
       cy.visit('/auth/login');
 
-      cy.intercept(API_ROUTES.SIGN_IN_ROUTE, ({ reply }) => {
+      cy.intercept(SIGN_IN_ROUTE, ({ reply }) => {
         return reply({
           statusCode: StatusCodes.NO_CONTENT,
         });
@@ -56,7 +56,7 @@ describe('Success Content', () => {
       const { GRAASP, GRAASP_OTHER } = AUTH_MEMBERS;
       cy.visit('/auth/login');
 
-      cy.intercept(API_ROUTES.SIGN_IN_ROUTE, ({ reply }) => {
+      cy.intercept(SIGN_IN_ROUTE, ({ reply }) => {
         return reply({
           statusCode: StatusCodes.NO_CONTENT,
         });
@@ -69,7 +69,7 @@ describe('Success Content', () => {
       cy.signInByMailAndCheck(GRAASP);
 
       // checks so request body contains correct email
-      cy.intercept(API_ROUTES.SIGN_IN_ROUTE, ({ body }) => {
+      cy.intercept(SIGN_IN_ROUTE, ({ body }) => {
         expect(body.email).to.eq(GRAASP.email);
       });
 
@@ -125,7 +125,7 @@ describe('Success Content', () => {
       cy.signUpAndCheck(AUTH_MEMBERS.GRAASP, true);
 
       // checks so request body contains correct email
-      cy.intercept(API_ROUTES.SIGN_IN_ROUTE, ({ body }) => {
+      cy.intercept(SIGN_IN_ROUTE, ({ body }) => {
         expect(body.email).to.eq(AUTH_MEMBERS.GRAASP.email);
       });
 

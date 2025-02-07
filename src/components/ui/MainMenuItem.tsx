@@ -1,4 +1,4 @@
-import { type JSX, forwardRef } from 'react';
+import { type JSX, MouseEvent, forwardRef } from 'react';
 
 import {
   ListItem,
@@ -29,7 +29,7 @@ const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIListItemButtonProps>(
     const { isMobile } = useMobileView();
     const { setOpen } = useMainMenuOpenContext();
 
-    const onClickHandler = (e: any) => {
+    const onClickHandler = (e: MouseEvent<HTMLDivElement>) => {
       if (isMobile) {
         setOpen(false);
       }

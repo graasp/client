@@ -4,6 +4,8 @@ import MarkerClusterGroup from 'react-leaflet-cluster';
 
 import { Box, CircularProgress, Stack } from '@mui/material';
 
+import { useItemsInMap } from '@/query/hooks/itemGeolocation';
+
 import { useQueryClientContext } from '../context/QueryClientContext';
 import ItemMarker from './ItemMarker';
 
@@ -19,7 +21,7 @@ const ItemsMarkers = ({
     lng2: number;
   };
 }): JSX.Element | JSX.Element[] | undefined => {
-  const { useItemsInMap, item } = useQueryClientContext();
+  const { item } = useQueryClientContext();
   const { data: itemGeolocations, isFetching } = useItemsInMap({
     ...bounds,
     parentItemId: item?.id,

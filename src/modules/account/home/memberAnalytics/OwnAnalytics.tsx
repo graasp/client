@@ -8,7 +8,7 @@ import { formatISO } from 'date-fns/formatISO';
 import groupBy from 'lodash/groupBy';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { useMemberActions } from '@/query/hooks/action';
 import Loader from '@/ui/Loader/Loader';
 
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
@@ -28,7 +28,7 @@ const OwnAnalytics = (): JSX.Element => {
     MyAnalyticsDateRangeDataContext,
   );
 
-  const { data, isLoading } = hooks.useMemberActions({
+  const { data, isLoading } = useMemberActions({
     startDate: formatISO(dateRange.startDate),
     endDate: formatISO(dateRange.endDate),
   });

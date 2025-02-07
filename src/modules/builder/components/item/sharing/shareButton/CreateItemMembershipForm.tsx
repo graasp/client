@@ -26,6 +26,7 @@ import {
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
+import { useItemInvitations } from '@/query/hooks/invitation';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../../../langs';
@@ -46,7 +47,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
 
   const { mutateAsync: shareItem } = mutations.useShareItem();
   const { data: memberships } = hooks.useItemMemberships(item.id);
-  const { data: invitations } = hooks.useItemInvitations(item.id);
+  const { data: invitations } = useItemInvitations(item.id);
 
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);

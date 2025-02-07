@@ -7,7 +7,7 @@ import { zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { useInvitation } from '@/query/hooks/invitation';
 
 import { LeftContentContainer } from '~auth/components/LeftContentContainer';
 import { RegisterForm } from '~auth/components/register/Register';
@@ -32,8 +32,9 @@ function RegisterWithInvitation() {
   const search = Route.useSearch();
   const { t } = useTranslation(NS.Auth);
 
-  const { data: invitation, isPending: isLoadingInvitations } =
-    hooks.useInvitation(search.invitationId);
+  const { data: invitation, isPending: isLoadingInvitations } = useInvitation(
+    search.invitationId,
+  );
 
   if (invitation) {
     return (
