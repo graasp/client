@@ -53,6 +53,7 @@ const StyledMain = styled('main', {
     position: 'relative',
     flexGrow: 1,
     backgroundColor,
+
     // create transition for width and margin property
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.easeIn,
@@ -259,7 +260,14 @@ const MainWithDrawerContent = ({
 // this wrapper is necessary because we use the `useMainMenuOpenContext` in the
 // Content and we need to define the provider before using the hook.
 const MainWithDrawerWrapper = (props: Props): JSX.Element => (
-  <Box height="100vh" overflow="auto" display="flex" flexDirection="column">
+  <Box
+    height="100vh"
+    overflow="auto"
+    display="flex"
+    flexDirection="column"
+    // necessary to prevent scroll because of drag selection
+    sx={{ overflowX: 'hidden' }}
+  >
     <MainMenuOpenContextProvider open={props.open}>
       <MainWithDrawerContent {...props} />
     </MainMenuOpenContextProvider>
