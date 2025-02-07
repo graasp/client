@@ -1,11 +1,16 @@
-import { FolderItemFactory, MembershipRequestStatus } from '@graasp/sdk';
+import {
+  FolderItemFactory,
+  ItemVisibilityType,
+  MembershipRequestStatus,
+} from '@graasp/sdk';
 
 import {
+  ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
-import { CURRENT_MEMBER } from '../../../../../fixtures/members';
+import { CURRENT_MEMBER, MEMBERS } from '../../../../../fixtures/members';
 import { buildItemPath } from '../../../utils';
 
 it('Request membership when signed in', () => {
@@ -26,6 +31,28 @@ it('Request membership when signed in', () => {
 
   // button is disabled
   cy.get(`#${REQUEST_MEMBERSHIP_BUTTON_ID}`).should('be.disabled');
+});
+it('Cannot request membership if item is hidden', () => {
+  const tmp = FolderItemFactory();
+  const item = {
+    ...tmp,
+    visibilities: [
+      {
+        type: ItemVisibilityType.Hidden,
+        item: tmp,
+        creator: MEMBERS.ANNA,
+        createdAt: '2021-08-11T12:56:36.834Z',
+        id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
+      },
+    ],
+  };
+  cy.setUpApi({
+    items: [item],
+  });
+
+  cy.visit(buildItemPath(item.id));
+
+  cy.get(`#${ITEM_LOGIN_SCREEN_FORBIDDEN_ID}`).should('be.visible');
 });
 
 it('Membership request is already sent', () => {

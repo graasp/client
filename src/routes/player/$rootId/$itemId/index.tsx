@@ -41,6 +41,7 @@ function ItemPage(): JSX.Element | null {
   const {
     data: itemLoginSchemaType,
     isFetching: isLoadingItemLoginSchemaType,
+    isError: isItemLoginSchemaTypeError,
   } = hooks.useItemLoginSchemaType({ itemId });
 
   const { mutate: itemLoginSignIn } = mutations.usePostItemLogin();
@@ -61,7 +62,10 @@ function ItemPage(): JSX.Element | null {
       enrollContent={<EnrollContent itemId={itemId} />}
       forbiddenContent={<ItemForbiddenScreen />}
       requestAccessContent={
-        member?.type === AccountType.Individual ? (
+        member?.type === AccountType.Individual &&
+        // member can request a membership if the item login type is null and not an error
+        // item login schema type can error if the item is hidden
+        !isItemLoginSchemaTypeError ? (
           <RequestAccessContent itemId={itemId} member={member} />
         ) : undefined
       }
