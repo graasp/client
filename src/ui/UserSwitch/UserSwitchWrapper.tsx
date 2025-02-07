@@ -9,7 +9,7 @@ import { Divider, ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { AccountType, CurrentAccount, redirect } from '@graasp/sdk';
 
-import { Settings } from 'lucide-react';
+import { SettingsIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 import { NS } from '@/config/constants.js';
@@ -108,7 +108,7 @@ export const UserSwitchWrapper = ({
             </MenuItemLink>,
             <MenuItemLink key="settings" to="/account/settings">
               <ListItemIcon>
-                <Settings />
+                <SettingsIcon />
               </ListItemIcon>
               <Typography variant="subtitle2">
                 {t('USER_SWITCH.SETTINGS')}
