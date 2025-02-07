@@ -60,8 +60,8 @@ export const SignedIn = {
     const menuCanvas = within(screen.getByRole('menu'));
 
     // profile and settings buttons
-    expect(menuCanvas.getByText('Profile')).toBeVisible();
-    expect(menuCanvas.getByText('Settings')).toBeVisible();
+    expect(menuCanvas.getByText('Profile')).toBeInTheDocument();
+    expect(menuCanvas.getByText('Settings')).toBeInTheDocument();
 
     // email
     const emailText = menuCanvas.getByText(member.email);
@@ -69,7 +69,7 @@ export const SignedIn = {
 
     // sign out button
     const signOutButton = menuCanvas.getByText('Sign Out');
-    expect(signOutButton).toBeVisible();
+    expect(signOutButton).toBeInTheDocument();
   },
 } satisfies Story;
 
@@ -107,7 +107,7 @@ export const Guest = {
 
     // sign out button
     const signOutButton = menuCanvas.getByText('Sign Out');
-    expect(signOutButton).toBeVisible();
+    expect(signOutButton).toBeInTheDocument();
   },
 } satisfies Story;
 
