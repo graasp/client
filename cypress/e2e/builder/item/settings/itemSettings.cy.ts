@@ -121,7 +121,9 @@ describe('Item Settings', () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         const langName = LANGS[lang];
-        cy.get(`#${LANGUAGE_SELECTOR_ID}`).should('contain', langName);
+        cy.get(`#${LANGUAGE_SELECTOR_ID}`)
+          .scrollIntoView()
+          .should('contain', langName);
         cy.get(`#${LANGUAGE_SELECTOR_ID}`).click();
         cy.get(`[role="option"][data-value="de"]`).click();
 
