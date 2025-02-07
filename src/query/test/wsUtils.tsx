@@ -1,16 +1,16 @@
 import React, { JSX } from 'react';
 
-import { Channel } from '@graasp/sdk';
+import { Channel, WebsocketClient } from '@graasp/sdk';
 
-import { QueryClient } from '@tanstack/react-query';
 import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
+import { API_HOST } from '@/config/env.js';
 import { configureAxios } from '@/query/api/axios.js';
 
 import configureQueryClient from '../queryClient.js';
 import { Notifier, QueryClientConfig } from '../types.js';
-import { API_HOST, DOMAIN, WS_HOST } from './constants.js';
+import { WS_HOST } from './constants.js';
 
 export type Handler = { channel: Channel; handler: (event: unknown) => void };
 
@@ -24,8 +24,7 @@ const MockedWebsocket = (handlers: Handler[]) => ({
 export const setUpWsTest = (args?: {
   enableWebsocket?: boolean;
   notifier?: Notifier;
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-  configureWsHooks: Function;
+  configureWsHooks: (wsClient: WebsocketClient) => any;
 }) => {
   const {
     notifier = () => {
@@ -36,9 +35,12 @@ export const setUpWsTest = (args?: {
     },
   } = args ?? {};
   const axios = configureAxios();
+
+  const handlers: Handler[] = [];
+  const websocketClient = MockedWebsocket(handlers);
+
   const queryConfig: QueryClientConfig = {
     API_HOST,
-    DOMAIN,
     axios,
     defaultQueryOptions: {
       retry: 0,
@@ -48,19 +50,15 @@ export const setUpWsTest = (args?: {
     SHOW_NOTIFICATIONS: false,
     notifier,
     enableWebsocket: true,
+    wsClient: websocketClient,
     WS_HOST,
   };
 
-  const { QueryClientProvider, useMutation } =
+  const { QueryClientProvider, useMutation, queryClient } =
     configureQueryClient(queryConfig);
-
-  const handlers: Handler[] = [];
-  const websocketClient = MockedWebsocket(handlers);
 
   // configure hooks
   const hooks = configureWsHooks(websocketClient);
-
-  const queryClient = new QueryClient();
 
   const wrapper = ({
     children,

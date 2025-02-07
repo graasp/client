@@ -25,7 +25,6 @@ import {
 import { configureHooks } from './hooks/index.js';
 import configureMutations from './mutations/index.js';
 import type { QueryClientConfig } from './types.js';
-import { getHostname } from './utils/util.js';
 
 /* istanbul ignore next */
 // Query client retry function decides when and how many times a request should be retried
@@ -57,9 +56,8 @@ export type ConfigureQueryClientConfig = Partial<
   Pick<
     QueryClientConfig,
     | 'API_HOST'
-    | 'DOMAIN'
     | 'SHOW_NOTIFICATIONS'
-    | 'enableWebsocket'
+    | 'wsClient'
     | 'WS_HOST'
     | 'notifier'
     | 'defaultQueryOptions'
@@ -70,7 +68,6 @@ export default (config: ConfigureQueryClientConfig) => {
   const baseConfig = {
     API_HOST: config.API_HOST ?? 'http://localhost:3000',
     SHOW_NOTIFICATIONS: config.SHOW_NOTIFICATIONS || false,
-    DOMAIN: config.DOMAIN ?? getHostname(),
   };
 
   const axios = configureAxios();
@@ -83,7 +80,7 @@ export default (config: ConfigureQueryClientConfig) => {
     WS_HOST:
       config.WS_HOST ?? `${baseConfig.API_HOST.replace('http', 'ws')}/ws`,
     // whether websocket support should be enabled
-    enableWebsocket: config.enableWebsocket || false,
+    enableWebsocket: config.wsClient != null,
     notifier: config.notifier,
     // default hooks & mutation config
     defaultQueryOptions: {
@@ -123,9 +120,10 @@ export default (config: ConfigureQueryClientConfig) => {
   const mutations = configureMutations(queryConfig);
 
   // set up hooks given config
-  const websocketClient = queryConfig.enableWebsocket
-    ? configureWebsocketClient(queryConfig.WS_HOST)
-    : undefined;
+  const websocketClient =
+    queryConfig.wsClient != null
+      ? (queryConfig.wsClient ?? configureWebsocketClient(queryConfig.WS_HOST))
+      : undefined;
   const hooks = configureHooks(queryConfig, websocketClient);
 
   // returns the queryClient and relative instances

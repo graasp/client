@@ -21,71 +21,75 @@ export const configureWsChatHooks = (websocketClient: WebsocketClient) => ({
    */
   useItemChatUpdates: (chatId: UUID | null) => {
     const queryClient = useQueryClient();
-    useEffect(() => {
-      if (!chatId) {
-        return () => {
-          // do nothing
+    useEffect(
+      () => {
+        if (!chatId) {
+          return () => {
+            // do nothing
+          };
+        }
+
+        const channel: Channel = {
+          name: chatId,
+          topic: TOPICS.CHAT_ITEM,
         };
-      }
 
-      const channel: Channel = {
-        name: chatId,
-        topic: TOPICS.CHAT_ITEM,
-      };
+        const handler = (event: ChatEvent) => {
+          if (event.kind === KINDS.ITEM) {
+            const chatKey = buildItemChatKey(chatId);
+            const current = queryClient.getQueryData<ChatMessage[]>(chatKey);
 
-      const handler = (event: ChatEvent) => {
-        if (event.kind === KINDS.ITEM) {
-          const chatKey = buildItemChatKey(chatId);
-          const current = queryClient.getQueryData<ChatMessage[]>(chatKey);
+            const { message } = event;
 
-          const { message } = event;
-
-          if (current) {
-            switch (event.op) {
-              case OPS.PUBLISH: {
-                queryClient.setQueryData(chatKey, [...current, message]);
-                break;
-              }
-              case OPS.UPDATE: {
-                const index = current.findIndex(
-                  (m) => m.id === event.message.id,
-                );
-                if (index >= 0) {
-                  const messages = [
-                    ...current.slice(0, index),
-                    message,
-                    ...current.slice(index + 1),
-                  ];
-                  queryClient.setQueryData(chatKey, messages);
+            if (current) {
+              switch (event.op) {
+                case OPS.PUBLISH: {
+                  queryClient.setQueryData(chatKey, [...current, message]);
+                  break;
                 }
-                break;
-              }
-              case OPS.DELETE: {
-                const index = current.findIndex((m) => m.id === message.id);
-                if (index >= 0) {
-                  const mutation = [
-                    ...current.slice(0, index),
-                    ...current.slice(index + 1),
-                  ];
-                  queryClient.setQueryData(chatKey, mutation);
+                case OPS.UPDATE: {
+                  const index = current.findIndex(
+                    (m) => m.id === event.message.id,
+                  );
+                  if (index >= 0) {
+                    const messages = [
+                      ...current.slice(0, index),
+                      message,
+                      ...current.slice(index + 1),
+                    ];
+                    queryClient.setQueryData(chatKey, messages);
+                  }
+                  break;
                 }
-                break;
+                case OPS.DELETE: {
+                  const index = current.findIndex((m) => m.id === message.id);
+                  if (index >= 0) {
+                    const mutation = [
+                      ...current.slice(0, index),
+                      ...current.slice(index + 1),
+                    ];
+                    queryClient.setQueryData(chatKey, mutation);
+                  }
+                  break;
+                }
+                case OPS.CLEAR: {
+                  queryClient.setQueryData(chatKey, []);
+                  break;
+                }
+                default:
+                  break;
               }
-              case OPS.CLEAR: {
-                queryClient.setQueryData(chatKey, []);
-                break;
-              }
-              default:
-                break;
             }
           }
-        }
-      };
-      websocketClient.subscribe(channel, handler);
+        };
+        websocketClient.subscribe(channel, handler);
 
-      return function cleanup() {
-        websocketClient.unsubscribe(channel, handler);
-      };
-    }, [chatId]);
+        return function cleanup() {
+          websocketClient.unsubscribe(channel, handler);
+        };
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [chatId],
+    );
   },
 });

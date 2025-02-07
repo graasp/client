@@ -19,7 +19,7 @@ export default defineWorkspace([
       include: [queryClientInclude],
       // it is recommended to define a name when using inline configs
       name: 'query',
-      environment: 'jsdom',
+      environment: 'happy-dom',
     },
   },
   {

@@ -22,67 +22,71 @@ export const configureWsChatMentionsHooks = (
    */
   useMentionsUpdates: (memberId: UUID | null) => {
     const queryClient = useQueryClient();
-    useEffect(() => {
-      if (!memberId) {
-        return () => {
-          // do nothing
-        };
-      }
-
-      const channel: Channel = {
-        name: memberId,
-        topic: TOPICS.MENTIONS,
-      };
-
-      const handler = (event: MentionEvent): void => {
-        const mentionKey = buildMentionKey();
-        const current: ChatMention[] | undefined =
-          queryClient.getQueryData(mentionKey);
-
-        const { mention } = event;
-
-        if (current) {
-          switch (event.op) {
-            case OPS.PUBLISH: {
-              const mutation = [...current, mention];
-              queryClient.setQueryData(mentionKey, mutation);
-              break;
-            }
-            case OPS.UPDATE: {
-              const index = current.findIndex((m) => m.id === mention.id);
-              if (index >= 0) {
-                const mutation = current
-                  .slice(0, index)
-                  .concat(mention)
-                  .concat(current.slice(index + 1));
-                queryClient.setQueryData(mentionKey, mutation);
-              }
-              break;
-            }
-            case OPS.DELETE: {
-              const index = current.findIndex((m) => m.id === mention.id);
-              if (index >= 0) {
-                const mutation = current
-                  .slice(0, index)
-                  .concat(current.slice(index + 1));
-                queryClient.setQueryData(mentionKey, mutation);
-              }
-              break;
-            }
-            case OPS.CLEAR: {
-              queryClient.setQueryData(mentionKey, []);
-              break;
-            }
-            default:
-              break;
-          }
+    useEffect(
+      () => {
+        if (!memberId) {
+          return () => {
+            // do nothing
+          };
         }
-      };
-      websocketClient.subscribe(channel, handler);
 
-      return function cleanup() {
-        websocketClient.unsubscribe(channel, handler);
-      };
-    }, [memberId]);
+        const channel: Channel = {
+          name: memberId,
+          topic: TOPICS.MENTIONS,
+        };
+
+        const handler = (event: MentionEvent): void => {
+          const mentionKey = buildMentionKey();
+          const current: ChatMention[] | undefined =
+            queryClient.getQueryData(mentionKey);
+
+          const { mention } = event;
+
+          if (current) {
+            switch (event.op) {
+              case OPS.PUBLISH: {
+                const mutation = [...current, mention];
+                queryClient.setQueryData(mentionKey, mutation);
+                break;
+              }
+              case OPS.UPDATE: {
+                const index = current.findIndex((m) => m.id === mention.id);
+                if (index >= 0) {
+                  const mutation = current
+                    .slice(0, index)
+                    .concat(mention)
+                    .concat(current.slice(index + 1));
+                  queryClient.setQueryData(mentionKey, mutation);
+                }
+                break;
+              }
+              case OPS.DELETE: {
+                const index = current.findIndex((m) => m.id === mention.id);
+                if (index >= 0) {
+                  const mutation = current
+                    .slice(0, index)
+                    .concat(current.slice(index + 1));
+                  queryClient.setQueryData(mentionKey, mutation);
+                }
+                break;
+              }
+              case OPS.CLEAR: {
+                queryClient.setQueryData(mentionKey, []);
+                break;
+              }
+              default:
+                break;
+            }
+          }
+        };
+        websocketClient.subscribe(channel, handler);
+
+        return function cleanup() {
+          websocketClient.unsubscribe(channel, handler);
+        };
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [memberId],
+    );
   },
 });

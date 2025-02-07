@@ -23,5 +23,6 @@ export const getDescendants = async ({
   if (showHidden !== undefined) {
     url.searchParams.set('showHidden', showHidden.toString());
   }
+  console.log(url.toString());
   return axios.get<PackedItem[]>(url.toString()).then(({ data }) => data);
 };

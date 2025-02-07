@@ -1,18 +1,22 @@
 import { ItemType } from '@graasp/sdk';
 
+import nock from 'nock';
 import { v4 } from 'uuid';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, it } from 'vitest';
+
+import { API_HOST } from '@/config/env.js';
 
 import { getDescendants } from './api.js';
 
-// const API_HOST = 'https://localhost:3000';
-
 describe('getDescendants', () => {
   it('without parameters', async () => {
-    const mockGet = vi.fn().mockResolvedValue({ data: { value: 'hello' } });
-    // todo: add nock mock
-    await getDescendants({ id: v4() });
-    expect(mockGet).toHaveBeenCalledWith(expect.not.stringContaining('types'));
+    const itemId = v4();
+    const scope = nock(API_HOST)
+      .get(`/items/${itemId}/descendants`)
+      .reply(200, { data: { value: 'hello' } });
+    await getDescendants({ id: itemId });
+    // ensure the request was made
+    scope.done();
   });
 
   it.each([
@@ -35,9 +39,12 @@ describe('getDescendants', () => {
       query: 'types=folder&types=app&showHidden=true',
     },
   ])('With parameters: $inputs', async ({ inputs, query }) => {
-    const mockGet = vi.fn().mockResolvedValue({ data: { value: 'hello' } });
-    // todo: add nock mock
-    await getDescendants({ id: v4(), ...inputs });
-    expect(mockGet).toHaveBeenCalledWith(expect.stringContaining(query));
+    const id = v4();
+    const scope = nock(API_HOST)
+      .get(`/items/${id}/descendants?${query}`)
+      .reply(200, { data: { value: 'hello' } });
+    await getDescendants({ id, ...inputs });
+    // ensure the request was made
+    scope.done();
   });
 });

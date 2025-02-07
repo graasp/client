@@ -22,7 +22,7 @@ import {
   useSuggestionsForAddress,
 } from './itemGeolocation.js';
 
-const { hooks, wrapper, queryClient } = setUpTest();
+const { wrapper, queryClient } = setUpTest();
 
 describe('useItemGeolocation', () => {
   const response = ITEM_GEOLOCATION;
@@ -111,9 +111,11 @@ describe('useAddressFromGeolocation', () => {
   it(`Undefined lat does not fetch`, async () => {
     const { data, isFetched } = await mockHook({
       endpoints,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      hook: () => hooks.useAddressFromGeolocation({ lng: 1, lat: undefined }),
+      hook: () =>
+        useAddressFromGeolocation({
+          lng: 1,
+          lat: undefined!,
+        }),
       wrapper,
       enabled: false,
     });
@@ -128,9 +130,11 @@ describe('useAddressFromGeolocation', () => {
   it(`Undefined lng does not fetch`, async () => {
     const { data, isFetched } = await mockHook({
       endpoints,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      hook: () => hooks.useAddressFromGeolocation({ lat: 1, lng: undefined }),
+      hook: () =>
+        useAddressFromGeolocation({
+          lat: 1,
+          lng: undefined!,
+        }),
       wrapper,
       enabled: false,
     });

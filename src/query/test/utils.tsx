@@ -1,24 +1,35 @@
 import React from 'react';
 
-import { HttpMethod, spliceIntoChunks } from '@graasp/sdk';
+import { Channel, HttpMethod, spliceIntoChunks } from '@graasp/sdk';
 
 import {
-  QueryClient,
   QueryObserverBaseResult,
   UseMutationResult,
 } from '@tanstack/react-query';
 import { RenderHookOptions, renderHook, waitFor } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock, { InterceptFunction, ReplyHeaders, Scope } from 'nock';
-import { expect } from 'vitest';
+import { expect, vi } from 'vitest';
 
+import { API_HOST } from '@/config/env.js';
 import { configureAxios } from '@/query/api/axios.js';
 
-import { configureHooks } from '../hooks/index.js';
+import {
+  CACHE_TIME_MILLISECONDS,
+  STALE_TIME_MILLISECONDS,
+} from '../config/constants.js';
 import configureQueryClient from '../queryClient.js';
 import { Notifier, QueryClientConfig } from '../types.js';
-import { API_HOST, DOMAIN, WS_HOST } from './constants.js';
+import { WS_HOST } from './constants.js';
 
+export type Handler = { channel: Channel; handler: (event: unknown) => void };
+
+const MockedWebsocket = (handlers: Handler[]) => ({
+  subscribe: vi.fn((channel, handler) => {
+    handlers.push({ channel, handler });
+  }),
+  unsubscribe: vi.fn(),
+});
 type Args = { enableWebsocket?: boolean; notifier?: Notifier };
 
 export const setUpTest = (args?: Args) => {
@@ -29,27 +40,27 @@ export const setUpTest = (args?: Args) => {
     },
   } = args ?? {};
   const axios = configureAxios();
+
+  const websocketClient = MockedWebsocket([]);
+
   const queryConfig: QueryClientConfig = {
     API_HOST,
-    DOMAIN,
     axios,
     defaultQueryOptions: {
       retry: 0,
-      gcTime: 0,
-      staleTime: 0,
+      gcTime: CACHE_TIME_MILLISECONDS,
+      staleTime: STALE_TIME_MILLISECONDS,
     },
     SHOW_NOTIFICATIONS: false,
     notifier,
     enableWebsocket,
+    wsClient: enableWebsocket ? websocketClient : null, // use default
     WS_HOST,
   };
 
-  const { mutations, QueryClientProvider } = configureQueryClient(queryConfig);
+  const { mutations, hooks, QueryClientProvider, queryClient } =
+    configureQueryClient(queryConfig);
 
-  // configure hooks
-  const hooks = configureHooks(queryConfig);
-
-  const queryClient = new QueryClient();
   const wrapper = ({ children }: { children: React.ReactNode }) => (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );

@@ -2,8 +2,9 @@ import nock from 'nock';
 import { v4 } from 'uuid';
 import { describe, expect, it } from 'vitest';
 
+import { API_HOST } from '@/config/env.js';
+
 import { buildExportItemRoute } from '../routes.js';
-import { API_HOST } from '../test/constants.js';
 import { exportItem } from './itemExport.js';
 
 describe('itemExport', () => {

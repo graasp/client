@@ -49,8 +49,6 @@ type MockFastifyError = {
 };
 
 export const WS_HOST = 'ws://localhost:3000';
-export const API_HOST = 'http://localhost:3000';
-export const DOMAIN = 'domain';
 export const UNAUTHORIZED_RESPONSE: MockFastifyError = {
   name: 'unauthorized',
   code: 'ERRCODE',

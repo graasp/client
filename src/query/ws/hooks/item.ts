@@ -113,93 +113,97 @@ export const configureWsItemHooks = (
    */
   useItemFeedbackUpdates: (userId?: UUID | null) => {
     const queryClient = useQueryClient();
-    useEffect(() => {
-      if (!userId) {
-        return () => {
-          // do nothing
-        };
-      }
-
-      const channel: Channel = { name: userId, topic: TOPICS.ITEM_MEMBER };
-
-      const handler = (event: ItemOpFeedbackEvent) => {
-        if (event.kind === KINDS.FEEDBACK) {
-          const invalidateFeedback = InvalidateItemOpFeedback(queryClient);
-          let routine: ReturnType<typeof createRoutine> | undefined;
-          let message: string | undefined;
-          const itemIds = event.resource;
-
-          switch (true) {
-            // TODO: still used ?
-            case isOperationEvent(event, FeedBackOperation.UPDATE):
-              routine = editItemRoutine;
-              message = 'EDIT_ITEM';
-              // todo: add invalidations for queries related to an update of the itemIds specified
-              break;
-            case isOperationEvent(event, FeedBackOperation.DELETE):
-              routine = deleteItemsRoutine;
-              message = 'DELETE_ITEMS';
-              invalidateFeedback[event.op]();
-              break;
-            case isOperationEvent(event, FeedBackOperation.MOVE): {
-              routine = moveItemsRoutine;
-              message = 'MOVE_ITEMS';
-              invalidateFeedback[event.op](event);
-              break;
-            }
-            case isOperationEvent(event, FeedBackOperation.COPY):
-              routine = copyItemsRoutine;
-              message = 'COPY_ITEMS';
-              invalidateFeedback[event.op](event);
-              break;
-            case isOperationEvent(event, FeedBackOperation.EXPORT):
-              routine = exportItemRoutine;
-              message = 'DEFAULT_SUCCESS';
-              // nothing to invalidate
-              break;
-            case isOperationEvent(event, FeedBackOperation.RECYCLE):
-              routine = recycleItemsRoutine;
-              message = 'RECYCLE_ITEMS';
-              invalidateFeedback[event.op](event);
-              break;
-            case isOperationEvent(event, FeedBackOperation.RESTORE):
-              routine = restoreItemsRoutine;
-              message = 'RESTORE_ITEMS';
-              invalidateFeedback[event.op]();
-              break;
-            case isOperationEvent(event, FeedBackOperation.VALIDATE):
-              routine = postItemValidationRoutine;
-              message = 'DEFAULT_SUCCESS';
-              invalidateFeedback[event.op](itemIds);
-              break;
-            default: {
-              console.error('unhandled event for useItemFeedbackUpdates');
-              break;
-            }
-          }
-          if (routine && message) {
-            if (event.errors.length > 0) {
-              notifier?.({
-                type: routine.FAILURE,
-                payload: {
-                  error: event.errors[0], // TODO: check what to send if multiple errors
-                },
-              });
-            } else {
-              notifier?.({
-                type: routine.SUCCESS,
-                payload: { message },
-              });
-            }
-          }
+    useEffect(
+      () => {
+        if (!userId) {
+          return () => {
+            // do nothing
+          };
         }
-      };
 
-      websocketClient.subscribe(channel, handler);
+        const channel: Channel = { name: userId, topic: TOPICS.ITEM_MEMBER };
 
-      return function cleanup() {
-        websocketClient.unsubscribe(channel, handler);
-      };
-    }, [userId]);
+        const handler = (event: ItemOpFeedbackEvent) => {
+          if (event.kind === KINDS.FEEDBACK) {
+            const invalidateFeedback = InvalidateItemOpFeedback(queryClient);
+            let routine: ReturnType<typeof createRoutine> | undefined;
+            let message: string | undefined;
+            const itemIds = event.resource;
+
+            switch (true) {
+              // TODO: still used ?
+              case isOperationEvent(event, FeedBackOperation.UPDATE):
+                routine = editItemRoutine;
+                message = 'EDIT_ITEM';
+                // todo: add invalidations for queries related to an update of the itemIds specified
+                break;
+              case isOperationEvent(event, FeedBackOperation.DELETE):
+                routine = deleteItemsRoutine;
+                message = 'DELETE_ITEMS';
+                invalidateFeedback[event.op]();
+                break;
+              case isOperationEvent(event, FeedBackOperation.MOVE): {
+                routine = moveItemsRoutine;
+                message = 'MOVE_ITEMS';
+                invalidateFeedback[event.op](event);
+                break;
+              }
+              case isOperationEvent(event, FeedBackOperation.COPY):
+                routine = copyItemsRoutine;
+                message = 'COPY_ITEMS';
+                invalidateFeedback[event.op](event);
+                break;
+              case isOperationEvent(event, FeedBackOperation.EXPORT):
+                routine = exportItemRoutine;
+                message = 'DEFAULT_SUCCESS';
+                // nothing to invalidate
+                break;
+              case isOperationEvent(event, FeedBackOperation.RECYCLE):
+                routine = recycleItemsRoutine;
+                message = 'RECYCLE_ITEMS';
+                invalidateFeedback[event.op](event);
+                break;
+              case isOperationEvent(event, FeedBackOperation.RESTORE):
+                routine = restoreItemsRoutine;
+                message = 'RESTORE_ITEMS';
+                invalidateFeedback[event.op]();
+                break;
+              case isOperationEvent(event, FeedBackOperation.VALIDATE):
+                routine = postItemValidationRoutine;
+                message = 'DEFAULT_SUCCESS';
+                invalidateFeedback[event.op](itemIds);
+                break;
+              default: {
+                console.error('unhandled event for useItemFeedbackUpdates');
+                break;
+              }
+            }
+            if (routine && message) {
+              if (event.errors.length > 0) {
+                notifier?.({
+                  type: routine.FAILURE,
+                  payload: {
+                    error: event.errors[0], // TODO: check what to send if multiple errors
+                  },
+                });
+              } else {
+                notifier?.({
+                  type: routine.SUCCESS,
+                  payload: { message },
+                });
+              }
+            }
+          }
+        };
+
+        websocketClient.subscribe(channel, handler);
+
+        return function cleanup() {
+          websocketClient.unsubscribe(channel, handler);
+        };
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [userId],
+    );
   },
 });

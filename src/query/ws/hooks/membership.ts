@@ -29,75 +29,79 @@ export const configureWsMembershipHooks = (
    */
   useItemsMembershipsUpdates: (itemIds?: UUID[] | null) => {
     const queryClient = useQueryClient();
-    useEffect(() => {
-      if (!itemIds?.length) {
-        return;
-      }
+    useEffect(
+      () => {
+        if (!itemIds?.length) {
+          return;
+        }
 
-      const unsubscribeFunctions = itemIds.map((itemId) => {
-        const channel: Channel = {
-          name: itemId,
-          topic: TOPICS.MEMBERSHIPS_ITEM,
-        };
-        const itemMembershipsKey = itemKeys.single(itemId).memberships;
+        const unsubscribeFunctions = itemIds.map((itemId) => {
+          const channel: Channel = {
+            name: itemId,
+            topic: TOPICS.MEMBERSHIPS_ITEM,
+          };
+          const itemMembershipsKey = itemKeys.single(itemId).memberships;
 
-        const handler = (event: MembershipEvent): void => {
-          if (event.kind === KINDS.ITEM) {
-            const current =
-              queryClient.getQueryData<ItemMembership[]>(itemMembershipsKey);
-            const { membership } = event;
-            // we handle only direct memberships
-            // since we have only the item id information
-            if (membership.item) {
-              const lastId = getIdsFromPath(membership.item.path).pop();
-              if (current && lastId === itemId) {
-                switch (event.op) {
-                  case OPS.CREATE: {
-                    if (!current.find((m) => m.id === membership.id)) {
-                      const mutation = [...current, membership];
-                      queryClient.setQueryData(itemMembershipsKey, mutation);
+          const handler = (event: MembershipEvent): void => {
+            if (event.kind === KINDS.ITEM) {
+              const current =
+                queryClient.getQueryData<ItemMembership[]>(itemMembershipsKey);
+              const { membership } = event;
+              // we handle only direct memberships
+              // since we have only the item id information
+              if (membership.item) {
+                const lastId = getIdsFromPath(membership.item.path).pop();
+                if (current && lastId === itemId) {
+                  switch (event.op) {
+                    case OPS.CREATE: {
+                      if (!current.find((m) => m.id === membership.id)) {
+                        const mutation = [...current, membership];
+                        queryClient.setQueryData(itemMembershipsKey, mutation);
+                      }
+                      break;
                     }
-                    break;
+                    case OPS.UPDATE: {
+                      const mutation = current.map((m) =>
+                        m.id === membership.id ? membership : m,
+                      );
+                      queryClient.setQueryData(itemMembershipsKey, mutation);
+                      break;
+                    }
+                    case OPS.DELETE: {
+                      const mutation = current.filter(
+                        (m) => m.id !== membership.id,
+                      );
+                      queryClient.setQueryData(itemMembershipsKey, mutation);
+                      break;
+                    }
+                    default:
+                      console.error(
+                        'unhandled event for useItemsMembershipsUpdates',
+                      );
+                      break;
                   }
-                  case OPS.UPDATE: {
-                    const mutation = current.map((m) =>
-                      m.id === membership.id ? membership : m,
-                    );
-                    queryClient.setQueryData(itemMembershipsKey, mutation);
-                    break;
-                  }
-                  case OPS.DELETE: {
-                    const mutation = current.filter(
-                      (m) => m.id !== membership.id,
-                    );
-                    queryClient.setQueryData(itemMembershipsKey, mutation);
-                    break;
-                  }
-                  default:
-                    console.error(
-                      'unhandled event for useItemsMembershipsUpdates',
-                    );
-                    break;
                 }
               }
             }
-          }
-        };
+          };
 
-        websocketClient.subscribe(channel, handler);
+          websocketClient.subscribe(channel, handler);
 
-        return function cleanup() {
-          websocketClient.unsubscribe(channel, handler);
-        };
-      });
-
-      // todo: handle many memberships key
-
-      return () => {
-        unsubscribeFunctions.forEach((f) => {
-          f();
+          return function cleanup() {
+            websocketClient.unsubscribe(channel, handler);
+          };
         });
-      };
-    }, [itemIds]);
+
+        // todo: handle many memberships key
+
+        return () => {
+          unsubscribeFunctions.forEach((f) => {
+            f();
+          });
+        };
+      },
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      [itemIds],
+    );
   },
 });

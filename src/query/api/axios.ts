@@ -3,7 +3,7 @@ import { ResultOf, spliceIntoChunks } from '@graasp/sdk';
 import axios, { AxiosError } from 'axios';
 
 export const configureAxios = () => {
-  axios.defaults.withCredentials = true;
+  // axios.defaults.withCredentials = true;
 
   return axios;
 };

@@ -1,4 +1,4 @@
-import { Password, saveUrlForRedirection } from '@graasp/sdk';
+import { Password } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -13,7 +13,6 @@ import {
   signUpRoutine,
 } from '../routines/authentication.js';
 import { QueryClientConfig } from '../types.js';
-import { isServer } from '../utils/util.js';
 
 export default (queryConfig: QueryClientConfig) => {
   const { notifier } = queryConfig;
@@ -172,14 +171,14 @@ export default (queryConfig: QueryClientConfig) => {
         queryClient.resetQueries();
 
         // cookie operations only if window is defined (operation happens in the frontend)
-        if (!isServer() && queryConfig.DOMAIN) {
-          // save current page for further redirection
-          saveUrlForRedirection(window.location.href, queryConfig.DOMAIN);
-          // remove cookie and stored session from browser when the logout is confirmed
-          // todo: find a way to do something equivalent but with httpOnly cookies
-          // setCurrentSession(null, queryConfig.DOMAIN);
-          // removeSession(currentMemberId, queryConfig.DOMAIN);
-        }
+        // if (!isServer() && queryConfig.DOMAIN) {
+        //   // save current page for further redirection
+        //   saveUrlForRedirection(window.location.href, queryConfig.DOMAIN);
+        //   // remove cookie and stored session from browser when the logout is confirmed
+        //   // todo: find a way to do something equivalent but with httpOnly cookies
+        //   // setCurrentSession(null, queryConfig.DOMAIN);
+        //   // removeSession(currentMemberId, queryConfig.DOMAIN);
+        // }
         // Update when the server confirmed the logout, instead optimistically updating the member
         // This prevents logout loop (redirect to logout -> still cookie -> logs back in)
         queryClient.setQueryData(memberKeys.current().content, undefined);

@@ -80,7 +80,7 @@ describe('Member Mutations', () => {
       queryClient.setQueryData(memberKeys.current().content, member);
       const endpoints = [
         {
-          method: HttpMethod.Get,
+          method: HttpMethod.Delete,
           response: UNAUTHORIZED_RESPONSE,
           statusCode: StatusCodes.UNAUTHORIZED,
           route: `/${buildDeleteCurrentMemberRoute()}`,

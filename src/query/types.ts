@@ -1,4 +1,4 @@
-import { Invitation, Pagination } from '@graasp/sdk';
+import { Invitation, Pagination, WebsocketClient } from '@graasp/sdk';
 
 import { keepPreviousData } from '@tanstack/react-query';
 import { AxiosError, AxiosInstance } from 'axios';
@@ -37,8 +37,8 @@ export type QueryClientConfig = {
   API_HOST: string;
   SHOW_NOTIFICATIONS: boolean;
   WS_HOST: string;
-  DOMAIN?: string;
   enableWebsocket: boolean;
+  wsClient?: WebsocketClient | null;
   notifier?: Notifier;
   axios: AxiosInstance;
   defaultQueryOptions?: {
