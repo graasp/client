@@ -6,7 +6,9 @@ import {
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
+import { v4 } from 'uuid';
 
+import { MOCK_USE_SUGGESTIONS } from '../fixture';
 import { MapComponent } from './Map';
 
 const meta = {
@@ -28,382 +30,385 @@ export const DefaultMap = {
   args: {
     item,
     currentMember: MemberFactory(),
-    // useItemsInMap: () =>
-    //   ({
-    //     data: [
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.511,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.512,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.51,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //       {
-    //         id: v4(),
-    //         lat: 46.41,
-    //         lng: 6.513,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //     ],
-    //   }) as any,
-    // useAddressFromGeolocation: () =>
-    //   ({ data: { addressLabel: 'address', country: 'countryName' } }) as any,
+    useItemsInMap: () =>
+      ({
+        data: [
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.511,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.512,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.51,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+          {
+            id: v4(),
+            lat: 46.41,
+            lng: 6.513,
+            addressLabel: 'EPFL',
+            item,
+          },
+        ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      }) as any,
+    useAddressFromGeolocation: () =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ({ data: { addressLabel: 'address', country: 'countryName' } }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
     handleAddOnClick({ location }) {
       alert(JSON.stringify(location));
     },
@@ -424,13 +429,16 @@ export const MapSignedOut = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: null,
-    // useItemsInMap: () => ({ data: [] }) as any,
-    // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
     (Story) => (
@@ -447,23 +455,26 @@ export const MapMobile = {
   args: {
     item,
     currentMember: MemberFactory(),
-    // useItemsInMap: () =>
-    //   ({
-    //     data: [
-    //       {
-    //         lat: 46.51,
-    //         lng: 6.5,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //     ],
-    //   }) as any,
-    // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    useItemsInMap: () =>
+      ({
+        data: [
+          {
+            lat: 46.51,
+            lng: 6.5,
+            addressLabel: 'EPFL',
+            item,
+          },
+        ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
     (Story) => (
@@ -482,13 +493,16 @@ export const MapSignOutMobile = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: null,
-    // useItemsInMap: () => ({ data: [] }) as any,
-    // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
     (Story) => (
@@ -504,13 +518,16 @@ export const MapFrench = {
   args: {
     item: PackedFolderItemFactory(),
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
-    // useItemsInMap: () => ({ data: [] }) as any,
-    // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useItemsInMap: () => ({ data: [] }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
     (Story) => (
@@ -526,23 +543,26 @@ export const MapRead = {
   args: {
     item: PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
-    // useItemsInMap: () =>
-    //   ({
-    //     data: [
-    //       {
-    //         lat: 46.51,
-    //         lng: 6.5,
-    //         addressLabel: 'EPFL',
-    //         item,
-    //       },
-    //     ],
-    //   }) as any,
-    // useAddressFromGeolocation: () => ({ data: 'address' }) as any,
+    useItemsInMap: () =>
+      ({
+        data: [
+          {
+            lat: 46.51,
+            lng: 6.5,
+            addressLabel: 'EPFL',
+            item,
+          },
+        ],
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useAddressFromGeolocation: () => ({ data: 'address' }) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     usePostItem: () => ({}) as any,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     useRecycleItems: () => ({}) as any,
-    // useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    useSuggestionsForAddress: MOCK_USE_SUGGESTIONS as any,
   },
   decorators: [
     (Story) => (

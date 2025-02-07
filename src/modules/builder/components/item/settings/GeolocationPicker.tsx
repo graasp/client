@@ -8,7 +8,10 @@ import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { useItemGeolocation } from '@/query/hooks/itemGeolocation';
+import {
+  useItemGeolocation,
+  useSuggestionsForAddress,
+} from '@/query/hooks/itemGeolocation';
 
 import { BUILDER } from '~builder/langs';
 import MapGeolocationPicker, {
@@ -65,6 +68,7 @@ const GeolocationPicker = ({
       </Box>
       <Stack direction="row" alignItems="center">
         <MapGeolocationPicker
+          useSuggestionsForAddress={useSuggestionsForAddress}
           onChangeOption={onChangeOption}
           initialValue={geoloc?.addressLabel ?? undefined}
           disabled={isDisabled}

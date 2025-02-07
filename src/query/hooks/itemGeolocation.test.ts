@@ -83,7 +83,7 @@ describe('useItemGeolocation', () => {
 
 describe('useAddressFromGeolocation', () => {
   const response = { addressLabel: 'display_name' };
-  const payload = { lat: 1, lng: 1 };
+  const payload = { lat: 1, lng: 1, lang: 'en' };
   const route = `/${buildGetAddressFromCoordinatesRoute(payload)}`;
   const endpoints = [{ route, response }];
 
@@ -165,7 +165,7 @@ describe('useAddressFromGeolocation', () => {
 
 describe('useSuggestionsForAddress', () => {
   const response = { addressLabel: 'display_name' };
-  const payload = { address: 'address' };
+  const payload = { address: 'address', lang: 'en' };
 
   const route = `/${buildGetSuggestionsForAddressRoute(payload)}`;
   const endpoints = [{ route, response }];

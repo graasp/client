@@ -9,7 +9,11 @@ import 'leaflet-easybutton/src/easy-button.css';
 import 'leaflet-geosearch/assets/css/leaflet.css';
 import 'leaflet/dist/leaflet.css';
 
-import { useItemsInMap } from '@/query/hooks/itemGeolocation';
+import {
+  useAddressFromGeolocation,
+  useItemsInMap,
+  useSuggestionsForAddress,
+} from '@/query/hooks/itemGeolocation';
 
 import { Country } from '../types';
 import { GeolocationPickerProps } from './GeolocationPicker/GeolocationPicker';
@@ -113,6 +117,9 @@ export function MapComponent({
       useRecycleItems={useRecycleItems}
       viewItem={viewItem}
       viewItemInBuilder={viewItemInBuilder}
+      useAddressFromGeolocation={useAddressFromGeolocation}
+      useItemsInMap={useItemsInMap}
+      useSuggestionsForAddress={useSuggestionsForAddress}
     >
       <div
         style={{

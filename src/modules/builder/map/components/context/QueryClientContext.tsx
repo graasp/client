@@ -8,6 +8,11 @@ import {
 } from '@graasp/sdk';
 
 import type { configureQueryClient } from '@/query';
+import {
+  type useAddressFromGeolocation,
+  type useItemsInMap,
+  type useSuggestionsForAddress,
+} from '@/query/hooks/itemGeolocation';
 
 type QueryClientMutations = ReturnType<
   typeof configureQueryClient
@@ -16,6 +21,9 @@ type QueryClientMutations = ReturnType<
 export interface QueryClientContextInterface {
   item?: PackedItem;
   currentMember?: CurrentAccount | null;
+  useAddressFromGeolocation: typeof useAddressFromGeolocation;
+  useItemsInMap: typeof useItemsInMap;
+  useSuggestionsForAddress: typeof useSuggestionsForAddress;
   currentPosition?: { lat: number; lng: number };
   useRecycleItems: QueryClientMutations['useRecycleItems'];
   usePostItem: QueryClientMutations['usePostItem'];
@@ -35,6 +43,12 @@ export const QueryClientContext = createContext<QueryClientContextInterface>({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useRecycleItems: () => ({}) as any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useAddressFromGeolocation: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useItemsInMap: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  useSuggestionsForAddress: () => ({}) as any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   usePostItem: () => ({}) as any,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useDeleteItemGeolocation: () => ({}) as any,
@@ -50,6 +64,9 @@ export const QueryClientContextProvider = ({
   useRecycleItems,
   usePostItem,
   useDeleteItemGeolocation,
+  useAddressFromGeolocation,
+  useItemsInMap,
+  useSuggestionsForAddress,
   viewItem,
   item,
   currentPosition,
@@ -62,6 +79,9 @@ export const QueryClientContextProvider = ({
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
+      useAddressFromGeolocation,
+      useItemsInMap,
+      useSuggestionsForAddress,
       viewItem,
       item,
       currentPosition,
@@ -73,6 +93,9 @@ export const QueryClientContextProvider = ({
       useRecycleItems,
       usePostItem,
       useDeleteItemGeolocation,
+      useAddressFromGeolocation,
+      useItemsInMap,
+      useSuggestionsForAddress,
       viewItem,
       item,
       currentPosition,
