@@ -1,7 +1,7 @@
 import { Pagination, UUID } from '@graasp/sdk';
 
-import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants.js';
-import { ItemChildrenParams, ItemSearchParams } from './types.js';
+import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants';
+import { ItemChildrenParams, ItemSearchParams } from './types';
 
 export const ITEMS_ROUTE = 'items';
 

@@ -7,9 +7,9 @@ import {
   UUID,
 } from '@graasp/sdk';
 
-import * as itemRoutes from './item/routes.js';
-import * as memberRoutes from './member/routes.js';
-import { AggregateActionsArgs } from './utils/action.js';
+import * as itemRoutes from './item/routes';
+import * as memberRoutes from './member/routes';
+import { AggregateActionsArgs } from './utils/action';
 
 export const APPS_ROUTE = 'app-items';
 export const ITEMS_ROUTE = 'items';

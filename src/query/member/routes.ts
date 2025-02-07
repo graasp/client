@@ -1,6 +1,6 @@
 import { Pagination, UUID } from '@graasp/sdk';
 
-import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants.js';
+import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants';
 
 export const MEMBERS_ROUTE = `members`;
 
