@@ -83,8 +83,11 @@ function RouteComponent() {
   } = hooks.useItem(itemId);
   const { data: currentMember, isLoading: currentMemberIsLoading } =
     hooks.useCurrentMember();
-  const { data: itemLoginSchemaType, isLoading: itemLoginSchemaTypeIsLoading } =
-    hooks.useItemLoginSchemaType({ itemId });
+  const {
+    data: itemLoginSchemaType,
+    isLoading: itemLoginSchemaTypeIsLoading,
+    isError: isItemLoginSchemaTypeError,
+  } = hooks.useItemLoginSchemaType({ itemId });
 
   const { mutate: itemLoginSignIn } = mutations.usePostItemLogin();
   const canWrite = item?.permission
@@ -163,7 +166,10 @@ function RouteComponent() {
             itemIsLoading
           }
           requestAccessContent={
-            currentMember?.type === AccountType.Individual ? (
+            currentMember?.type === AccountType.Individual &&
+            // member can request a membership if the item login type is null and not an error
+            // item login schema type can error if the item is hidden
+            !isItemLoginSchemaTypeError ? (
               <RequestAccessContent itemId={itemId} member={currentMember} />
             ) : undefined
           }
