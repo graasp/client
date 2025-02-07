@@ -29,7 +29,7 @@ const MobileTopBar = ({
   tags,
   onChangeOption,
 }: Props): JSX.Element => {
-  const { currentMember } = useQueryClientContext();
+  const { currentMember, useSuggestionsForAddress } = useQueryClientContext();
   const { t } = useTranslation(NS.Map);
   const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
@@ -64,6 +64,7 @@ const MobileTopBar = ({
                   onChangeOption?.(v);
                   setOpen(false);
                 }}
+                useSuggestionsForAddress={useSuggestionsForAddress}
               />
               <br />
             </>

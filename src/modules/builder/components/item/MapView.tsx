@@ -6,6 +6,11 @@ import { type DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
 
 import { hooks, mutations } from '@/config/queryClient';
 import { buildMapViewId } from '@/config/selectors';
+import {
+  useAddressFromGeolocation,
+  useItemsInMap,
+  useSuggestionsForAddress,
+} from '@/query/hooks/itemGeolocation';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { MapComponent } from '~builder/map/components/Map';
@@ -82,6 +87,9 @@ const MapView = ({
                 // use builder modal to add new item if the screen is big enough
                 // todo: always use builder modal when it is responsive
                 handleAddOnClick={isMobile ? undefined : handleAddOnClick}
+                useAddressFromGeolocation={useAddressFromGeolocation}
+                useItemsInMap={useItemsInMap}
+                useSuggestionsForAddress={useSuggestionsForAddress}
               />
             )}
           </div>
