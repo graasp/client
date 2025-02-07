@@ -10,12 +10,15 @@ import {
   UUID,
 } from '@graasp/sdk';
 
-import axios, { AxiosProgressEvent } from 'axios';
+import { AxiosProgressEvent } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
 import { API_HOST } from '@/config/env.js';
+import {
+  axiosClient as axios,
+  verifyAuthentication,
+} from '@/query/api/axios.js';
 
-import { verifyAuthentication } from '../api/axios.js';
 import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants.js';
 import {
   buildDeleteCurrentMemberRoute,

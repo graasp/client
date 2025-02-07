@@ -1,8 +1,7 @@
 import { App, UUID } from '@graasp/sdk';
 
-import axios from 'axios';
-
 import { API_HOST } from '@/config/env.js';
+import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
   buildAppListRoute,

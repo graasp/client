@@ -16,8 +16,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AxiosError } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
-import { configureAxios } from '@/query/api/axios.js';
-
+import { axiosClient } from './api/axios.js';
 import {
   CACHE_TIME_MILLISECONDS,
   STALE_TIME_MILLISECONDS,
@@ -70,12 +69,10 @@ export default (config: ConfigureQueryClientConfig) => {
     SHOW_NOTIFICATIONS: config.SHOW_NOTIFICATIONS || false,
   };
 
-  const axios = configureAxios();
-
   // define config for query client
   const queryConfig: QueryClientConfig = {
     ...baseConfig,
-    axios,
+    axios: axiosClient,
     // derive WS_HOST from API_HOST if needed
     WS_HOST:
       config.WS_HOST ?? `${baseConfig.API_HOST.replace('http', 'ws')}/ws`,
@@ -139,7 +136,7 @@ export default (config: ConfigureQueryClientConfig) => {
     dehydrate,
     Hydrate: HydrationBoundary,
     mutations,
-    axios,
+    axios: axiosClient,
     focusManager,
   };
 };

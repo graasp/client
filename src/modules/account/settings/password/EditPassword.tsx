@@ -7,7 +7,7 @@ import { Alert, Box, Stack, Typography } from '@mui/material';
 
 import { isPasswordStrong } from '@graasp/sdk';
 
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
@@ -73,7 +73,7 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
       confirmNewPasswordErrorMessage,
   );
 
-  const updateNetworkError = axios.isAxiosError(updatePasswordError)
+  const updateNetworkError = isAxiosError(updatePasswordError)
     ? translateMessage(
         updatePasswordError.response?.data.name ?? 'UNEXPECTED_ERROR',
       )

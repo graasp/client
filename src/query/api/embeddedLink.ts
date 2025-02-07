@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { API_HOST } from '@/config/env.js';
+import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildGetEmbeddedLinkMetadata } from '../routes.js';
 import { EmbeddedLinkMetadata } from '../types.js';

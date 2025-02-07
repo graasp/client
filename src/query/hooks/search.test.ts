@@ -1,8 +1,9 @@
 import { HttpMethod, TagCategory } from '@graasp/sdk';
 
-import axios from 'axios';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildFacetKey, itemKeys } from '../keys.js';
 import {

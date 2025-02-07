@@ -2,11 +2,12 @@ import { ResultOf, spliceIntoChunks } from '@graasp/sdk';
 
 import axios, { AxiosError } from 'axios';
 
-export const configureAxios = () => {
-  // axios.defaults.withCredentials = true;
+import { API_HOST } from '@/config/env';
 
-  return axios;
-};
+export const axiosClient = axios.create({
+  withCredentials: true,
+  baseURL: API_HOST,
+});
 
 export function verifyAuthentication<R>(request: () => R) {
   // change: we cannot check if user is authenticated from cookie since it is httpOnly

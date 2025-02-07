@@ -1,10 +1,11 @@
 import { HttpMethod } from '@graasp/sdk';
 
 import { act } from '@testing-library/react';
-import axios from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+
+import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { memberKeys } from '../keys.js';
 import {

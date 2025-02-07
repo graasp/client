@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 
 import { MessageKeys } from '@/@types/i18next';
 import { Notifier, routines } from '@/query';
@@ -25,7 +25,7 @@ const translate = (str: string, _options: { ns: string }) => str;
 export const getErrorMessageFromPayload = (
   payload?: Parameters<Notifier>[0]['payload'],
 ): keyof MessageKeys => {
-  if (payload?.error && axios.isAxiosError(payload.error)) {
+  if (payload?.error && isAxiosError(payload.error)) {
     return ((payload.error.response?.data as { message: string } | undefined)
       ?.message ?? 'UNEXPECTED_ERROR') as keyof MessageKeys;
   }

@@ -5,7 +5,7 @@ import {
   UUID,
 } from '@graasp/sdk';
 
-import axios from 'axios';
+import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildGetEtherpadRoute, buildPostEtherpadRoute } from '../routes.js';
 import { QueryClientConfig } from '../types.js';

@@ -12,8 +12,8 @@ import nock, { InterceptFunction, ReplyHeaders, Scope } from 'nock';
 import { expect, vi } from 'vitest';
 
 import { API_HOST } from '@/config/env.js';
-import { configureAxios } from '@/query/api/axios.js';
 
+import { axiosClient } from '../api/axios.js';
 import {
   CACHE_TIME_MILLISECONDS,
   STALE_TIME_MILLISECONDS,
@@ -39,13 +39,12 @@ export const setUpTest = (args?: Args) => {
       // do nothing
     },
   } = args ?? {};
-  const axios = configureAxios();
 
   const websocketClient = MockedWebsocket([]);
 
   const queryConfig: QueryClientConfig = {
     API_HOST,
-    axios,
+    axios: axiosClient,
     defaultQueryOptions: {
       retry: 0,
       gcTime: CACHE_TIME_MILLISECONDS,

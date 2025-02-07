@@ -6,8 +6,8 @@ import { renderHook } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { API_HOST } from '@/config/env.js';
-import { configureAxios } from '@/query/api/axios.js';
 
+import { axiosClient } from '../api/axios.js';
 import configureQueryClient from '../queryClient.js';
 import { Notifier, QueryClientConfig } from '../types.js';
 import { WS_HOST } from './constants.js';
@@ -32,14 +32,13 @@ export const setUpWsTest = <T extends object>(args: {
     },
     configureWsHooks,
   } = args ?? {};
-  const axios = configureAxios();
 
   const handlers: Handler[] = [];
   const websocketClient = MockedWebsocket(handlers);
 
   const queryConfig: QueryClientConfig = {
     API_HOST,
-    axios,
+    axios: axiosClient,
     defaultQueryOptions: {
       retry: 0,
       gcTime: 0,

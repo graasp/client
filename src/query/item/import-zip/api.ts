@@ -1,10 +1,10 @@
 import { DiscriminatedItem } from '@graasp/sdk';
 
-import axios, { AxiosProgressEvent } from 'axios';
+import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
 
-import { verifyAuthentication } from '../../api/axios.js';
+import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import { buildImportZipRoute } from '../../routes.js';
 
 export const importZip = async (args: {
