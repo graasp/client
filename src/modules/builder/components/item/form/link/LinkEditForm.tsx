@@ -1,14 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Box,
-  Button,
-  DialogActions,
-  DialogContent,
-  Stack,
-  TextField,
-} from '@mui/material';
+import { Box, Button, DialogActions, DialogContent } from '@mui/material';
 
 import { DescriptionPlacementType, DiscriminatedItem } from '@graasp/sdk';
 
@@ -22,7 +15,7 @@ import {
 import CancelButton from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from '../ItemNameField';
-import DescriptionPlacementForm from '../description/DescriptionPlacementForm';
+import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
 
 type Inputs = {
   name: string;
@@ -38,7 +31,6 @@ export function LinkEditForm({
   onClose: () => void;
 }>) {
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { t: translateBuilder } = useTranslation(NS.Builder);
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item.name,
@@ -47,7 +39,6 @@ export function LinkEditForm({
   });
   const {
     handleSubmit,
-    register,
     formState: { isValid, dirtyFields },
   } = methods;
 
@@ -72,18 +63,7 @@ export function LinkEditForm({
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <ItemNameField required />
-          <Stack spacing={2}>
-            <TextField
-              label={translateBuilder('DESCRIPTION.LABEL')}
-              placeholder={translateBuilder('DESCRIPTION.PLACEHOLDER')}
-              variant="filled"
-              multiline
-              minRows={3}
-              maxRows={15}
-              {...register('description')}
-            />
-            <DescriptionPlacementForm />
-          </Stack>
+          <DescriptionAndPlacementForm />
         </DialogContent>
         <DialogActions>
           <CancelButton

@@ -41,7 +41,6 @@ const BaseItemForm = ({
   });
   const { mutateAsync: editItem, isPending } = mutations.useEditItem();
   const {
-    setValue,
     handleSubmit,
     formState: { isValid },
   } = methods;
@@ -65,11 +64,7 @@ const BaseItemForm = ({
       <FormProvider {...methods}>
         <DialogContent>
           <ItemNameField required />
-          <DescriptionAndPlacementForm
-            onDescriptionChange={(newValue) => {
-              setValue('description', newValue);
-            }}
-          />
+          <DescriptionAndPlacementForm />
         </DialogContent>
         <DialogActions>
           <CancelButton
