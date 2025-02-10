@@ -6,7 +6,9 @@ import { Alert, Stack, Typography } from '@mui/material';
 import { AccountType } from '@graasp/sdk';
 
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
+import { SettingsIcon } from 'lucide-react';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import { getLocalForDateFns } from '@/config/langs';
 import { hooks } from '@/config/queryClient';
@@ -46,6 +48,13 @@ export function MemberCard(): JSX.Element | null {
               }),
             })}
           </Typography>
+          <ButtonLink
+            sx={{ width: 'fit-content' }}
+            startIcon={<SettingsIcon />}
+            to="/account/settings"
+          >
+            {t('MAIN_MENU.SETTINGS')}
+          </ButtonLink>
         </Stack>
       </Stack>
     );

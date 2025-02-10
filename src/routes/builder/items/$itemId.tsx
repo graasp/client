@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, styled, useTheme } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 
 import {
   AccountType,
@@ -10,7 +10,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
+import { Outlet, createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import axios from 'axios';
 import { z } from 'zod';
@@ -30,6 +30,7 @@ import {
   ITEM_LOGIN_SIGN_IN_PASSWORD_ID,
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
 } from '@/config/selectors';
+import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -53,20 +54,8 @@ export const Route = createFileRoute('/builder/items/$itemId')({
   component: RouteComponent,
 });
 
-const StyledLink = styled(Link)(() => ({
-  textDecoration: 'none',
-  color: 'inherit',
-  display: 'flex',
-  alignItems: 'center',
-}));
 const LinkComponent = ({ children }: { children: ReactNode }) => (
-  <StyledLink
-    // data-umami-event="header-home-link"
-    // data-umami-event-context={Context.Builder}
-    to="/account"
-  >
-    {children}
-  </StyledLink>
+  <HomeHeaderLink to="/home">{children}</HomeHeaderLink>
 );
 
 function RouteComponent() {

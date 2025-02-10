@@ -1,15 +1,16 @@
 import { type JSX, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { styled, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { Link, getRouteApi } from '@tanstack/react-router';
+import { getRouteApi } from '@tanstack/react-router';
 
 import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
+import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -20,15 +21,8 @@ import { AnalyticsSidebar } from './AnalyticsSidebar';
 
 const itemRoute = getRouteApi('/analytics/items/$itemId');
 
-const StyledLink = styled(Link)(() => ({
-  textDecoration: 'none',
-  color: 'inherit',
-  display: 'flex',
-  alignItems: 'center',
-}));
-
 const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
-  <StyledLink to="/account">{children}</StyledLink>
+  <HomeHeaderLink to="/home">{children}</HomeHeaderLink>
 );
 export function PageWrapper({
   children,

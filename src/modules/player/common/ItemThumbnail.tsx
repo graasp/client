@@ -10,7 +10,8 @@ import {
 import ItemIcon from '@/ui/icons/ItemIcon';
 
 type Props = {
-  item: PackedItem;
+  item: Pick<PackedItem, 'thumbnails' | 'extra' | 'type' | 'name'>;
+
   size?: keyof ThumbnailsBySize;
 };
 const ItemThumbnail = ({

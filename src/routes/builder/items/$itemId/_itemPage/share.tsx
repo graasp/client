@@ -1,13 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  Alert,
-  Box,
-  Container,
-  Divider,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Alert, Box, Divider, Stack, Typography } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 

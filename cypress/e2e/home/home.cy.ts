@@ -1,5 +1,8 @@
+import { ItemBookmarkFactory } from '@graasp/sdk';
+
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
+  BOOKMARKED_ITEMS_ID,
   CREATE_ITEM_BUTTON_ID,
   HOME_LOAD_MORE_BUTTON_SELECTOR,
   ITEM_SEARCH_INPUT_ID,
@@ -17,6 +20,9 @@ import { generateOwnItems } from '../builder/fixtures/items';
 const HOME_PATH = '/home';
 
 const ownItems = generateOwnItems(30);
+const bookmarkedItems = ownItems
+  .slice(0, 3)
+  .map((i) => ({ id: i.id, item: i, createdAt: i.createdAt }));
 
 describe('Empty Home', () => {
   it('visit empty Home', () => {
@@ -28,20 +34,37 @@ describe('Empty Home', () => {
     cy.get(`[role="dropzone"]`).scrollIntoView().should('be.visible');
     cy.get(`#${CREATE_ITEM_BUTTON_ID}`).scrollIntoView().should('be.visible');
   });
+
+  it('Empty bookmarks', () => {
+    cy.setUpApi({
+      items: [],
+      bookmarkedItems: [],
+    });
+
+    cy.visit(HOME_PATH);
+    cy.get(`#${BOOKMARKED_ITEMS_ID}`).should('not.exist');
+  });
 });
 
 describe('Home page features', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: ownItems,
+      bookmarkedItems,
     });
     cy.visit(HOME_PATH);
   });
 
-  it('Enabling show only created by me should trigger refetch', () => {
-    // a first call is done by the "recent items" components
-    cy.wait('@getAccessibleItems');
+  it('Shows bookmarks', () => {
+    const item = bookmarkedItems[0];
+    cy.get(`#${BOOKMARKED_ITEMS_ID}`).scrollIntoView().should('be.visible');
+    cy.get(`#${BOOKMARKED_ITEMS_ID} > div`).should('have.length', 3);
+    // navigate to the builder by clicking the bookmark card
+    cy.get(`#bookmark-${item.id}`).click();
+    cy.url().should('contain', `/builder/items/${item.id}`);
+  });
 
+  it('Enabling show only created by me should trigger refetch', () => {
     // remaining calls are done by the accessible table
     cy.wait('@getAccessibleItems').then(({ request: { url } }) => {
       expect(url).not.to.contain(CURRENT_MEMBER.id);
@@ -55,9 +78,6 @@ describe('Home page features', () => {
   });
 
   it('Sorting & ordering', () => {
-    // a first call is done by the "recent items" components
-    cy.wait('@getAccessibleItems');
-
     // remaining calls are done by the accessible table
     cy.wait('@getAccessibleItems');
 
@@ -84,9 +104,6 @@ describe('Home page features', () => {
 
   describe('Search', () => {
     it('Search should trigger refetch', () => {
-      // a first call is done by the "recent items" components
-      cy.wait('@getAccessibleItems');
-
       // remaining calls are done by the accessible table
       cy.wait('@getAccessibleItems');
 
@@ -100,9 +117,6 @@ describe('Home page features', () => {
 
     it('Search on second page should reset page number', () => {
       const searchText = 'mysearch';
-
-      // a first call is done by the "recent items" components
-      cy.wait('@getAccessibleItems');
 
       // remaining calls are done by the accessible table
       cy.wait('@getAccessibleItems');
