@@ -2,6 +2,8 @@ import {
   GuestFactory,
   ItemLoginSchemaFactory,
   ItemLoginSchemaType,
+  Member,
+  MemberFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
@@ -11,7 +13,6 @@ import { expect, screen, userEvent, within } from '@storybook/test';
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from '../Avatar/Avatar.js';
-import { MOCK_CURRENT_MEMBER } from '../utils/fixtures.js';
 import UserSwitchWrapper from './UserSwitchWrapper.js';
 
 const meta = {
@@ -30,48 +31,50 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const CURRENT_MEMBER = MemberFactory();
+
 export const SignedIn = {
   args: {
-    seeProfileText: 'See Profile',
     signOutText: 'Sign Out',
-    currentMember: MOCK_CURRENT_MEMBER,
+    currentMember: CURRENT_MEMBER,
     avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt={`profile image ${MOCK_CURRENT_MEMBER?.name}`}
+        alt={`profile image ${CURRENT_MEMBER.name}`}
         component={'avatar'}
         sx={{ mx: 1 }}
       />
     ),
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
+    const { currentMember } = args;
+    const member = currentMember as Member;
 
     // open dialog
-    const nameText = canvas.getByLabelText(MOCK_CURRENT_MEMBER.name);
+    const nameText = canvas.getByLabelText(member.name);
     await userEvent.click(nameText);
 
-    const menuCanvas = within(await screen.getByRole('menu'));
+    const menuCanvas = within(screen.getByRole('menu'));
 
-    // profile button
-    const profileButton = menuCanvas.getByText(SignedIn.args!.seeProfileText!);
-    expect(profileButton).toBeInTheDocument();
+    // profile and settings buttons
+    expect(menuCanvas.getByText('Profile')).toBeInTheDocument();
+    expect(menuCanvas.getByText('Settings')).toBeInTheDocument();
 
     // email
-    const emailText = menuCanvas.getByText(MOCK_CURRENT_MEMBER.email);
+    const emailText = menuCanvas.getByText(member.email);
     expect(emailText).toBeInTheDocument();
 
     // sign out button
-    const signOutButton = menuCanvas.getByText(SignedIn.args!.signOutText!);
+    const signOutButton = menuCanvas.getByText('Sign Out');
     expect(signOutButton).toBeInTheDocument();
   },
 } satisfies Story;
 
 export const Guest = {
   args: {
-    seeProfileText: 'See Profile',
     signOutText: 'Sign Out',
     currentMember: GuestFactory({
       itemLoginSchema: ItemLoginSchemaFactory({
@@ -84,7 +87,7 @@ export const Guest = {
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt={`profile image ${MOCK_CURRENT_MEMBER?.name}`}
+        alt={`profile image`}
         component={'avatar'}
         sx={{ mx: 1 }}
       />
@@ -97,20 +100,19 @@ export const Guest = {
     const nameText = canvas.getByLabelText(args.currentMember!.name);
     await userEvent.click(nameText);
 
-    const menuCanvas = within(await screen.getByRole('menu'));
+    const menuCanvas = within(screen.getByRole('menu'));
 
     // have 2 menu items - do not show profile button
     expect(menuCanvas.getAllByRole('menuitem')).toHaveLength(2);
 
     // sign out button
-    const signOutButton = menuCanvas.getByText(SignedIn.args!.signOutText!);
+    const signOutButton = menuCanvas.getByText('Sign Out');
     expect(signOutButton).toBeInTheDocument();
   },
 } satisfies Story;
 
 export const SignedOut = {
   args: {
-    switchMemberText: 'Sign In',
     avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
@@ -130,10 +132,8 @@ export const SignedOut = {
     await userEvent.click(nameText);
 
     // custom content
-    const menuCanvas = within(await screen.getByRole('menu'));
-    const signInButton = menuCanvas.getByText(
-      SignedOut.args!.switchMemberText!,
-    );
+    const menuCanvas = within(screen.getByRole('menu'));
+    const signInButton = menuCanvas.getByText('Sign In');
     expect(signInButton).toBeInTheDocument();
   },
 } satisfies Story;
