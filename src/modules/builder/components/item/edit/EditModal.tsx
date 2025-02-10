@@ -12,8 +12,9 @@ import { EDIT_MODAL_ID } from '@/config/selectors';
 import { BUILDER } from '../../../langs';
 import BaseItemForm from '../form/BaseItemForm';
 import { DocumentEditForm } from '../form/document/DocumentEditForm';
-import FileForm from '../form/file/FileForm';
+import { FileForm } from '../form/file/FileForm';
 import { FolderEditForm } from '../form/folder/FolderEditForm';
+import { LinkEditForm } from '../form/link/LinkEditForm';
 import EditShortcutForm from '../shortcut/EditShortcutForm';
 
 type Props = {
@@ -51,8 +52,10 @@ const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
     if (item.type === ItemType.DOCUMENT) {
       return <DocumentEditForm onClose={onClose} item={item} />;
     }
+    if (item.type === ItemType.LINK) {
+      return <LinkEditForm onClose={onClose} item={item} />;
+    }
     if (
-      item.type === ItemType.LINK ||
       item.type === ItemType.ETHERPAD ||
       item.type === ItemType.APP ||
       item.type === ItemType.H5P

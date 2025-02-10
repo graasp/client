@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -15,8 +14,8 @@ import {
 
 import CancelButton from '~builder/components/common/CancelButton';
 
-import { ItemNameField } from './ItemNameField';
-import { DescriptionAndPlacementForm } from './description/DescriptionAndPlacementForm';
+import { ItemNameField } from '../ItemNameField';
+import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
 
 type Inputs = {
   name: string;
@@ -24,27 +23,27 @@ type Inputs = {
   descriptionPlacement: DescriptionPlacementType;
 };
 
-const BaseItemForm = ({
+export function LinkEditForm({
   item,
   onClose,
-}: {
+}: Readonly<{
   item: DiscriminatedItem;
   onClose: () => void;
-}): JSX.Element => {
+}>) {
   const { t: translateCommon } = useTranslation(NS.Common);
-
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item.name,
       description: item.description ?? '',
     },
   });
-  const { mutateAsync: editItem, isPending } = mutations.useEditItem();
   const {
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, dirtyFields },
   } = methods;
 
+  // TODO: use special endpoint for link
+  const { mutateAsync: editItem } = mutations.useEditItem();
   async function onSubmit(data: Inputs) {
     try {
       await editItem({
@@ -60,8 +59,8 @@ const BaseItemForm = ({
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <ItemNameField required />
           <DescriptionAndPlacementForm />
@@ -72,18 +71,15 @@ const BaseItemForm = ({
             onClick={onClose}
           />
           <Button
-            loading={isPending}
             id={ITEM_FORM_CONFIRM_BUTTON_ID}
-            type="submit"
-            disabled={!isValid}
             variant="contained"
+            type="submit"
+            disabled={!isValid || !Object.keys(dirtyFields).length}
           >
             {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
-      </FormProvider>
-    </Box>
+      </Box>
+    </FormProvider>
   );
-};
-
-export default BaseItemForm;
+}

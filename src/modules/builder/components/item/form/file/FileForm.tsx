@@ -1,4 +1,3 @@
-import { type ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -42,26 +41,29 @@ type Inputs = {
   descriptionPlacement: DescriptionPlacementType;
 };
 
-const FileForm = ({
+export function FileForm({
   item,
   onClose,
-}: {
+}: Readonly<{
   item: LocalFileItemType | S3FileItemType;
   onClose: () => void;
-}): ReactNode => {
+}>) {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const methods = useForm<Inputs>({ defaultValues: { name: item.name } });
+  const methods = useForm<Inputs>({
+    defaultValues: {
+      name: item.name,
+      description: item?.description ?? undefined,
+    },
+  });
   const {
     register,
     watch,
-    setValue,
     handleSubmit,
     formState: { isValid, isSubmitted },
   } = methods;
 
   const altText = watch('altText');
-  const description = watch('description');
   const descriptionPlacement = watch('descriptionPlacement');
 
   const { mimetype, altText: previousAltText } = getExtraFromPartial(item);
@@ -131,12 +133,7 @@ const FileForm = ({
               {...register('altText', { value: previousAltText })}
             />
           )}
-          <DescriptionAndPlacementForm
-            onDescriptionChange={(newValue) => {
-              setValue('description', newValue);
-            }}
-            description={description ?? item?.description ?? ''}
-          />
+          <DescriptionAndPlacementForm />
         </DialogContent>
         <DialogActions>
           <CancelButton
@@ -155,6 +152,4 @@ const FileForm = ({
       </Box>
     </FormProvider>
   );
-};
-
-export default FileForm;
+}

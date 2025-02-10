@@ -9,7 +9,6 @@ import {
   DialogTitle,
   FormControl,
   FormControlLabel,
-  FormLabel,
   Link,
   Radio,
   RadioGroup,
@@ -19,6 +18,7 @@ import {
 } from '@mui/material';
 
 import {
+  DescriptionPlacementType,
   DiscriminatedItem,
   ItemGeolocation,
   ItemType,
@@ -39,7 +39,7 @@ import CancelButton from '~builder/components/common/CancelButton';
 import { BUILDER } from '../../../../langs';
 import { isUrlValid } from '../../../../utils/item';
 import { ItemNameField } from '../ItemNameField';
-import LinkDescriptionField from './LinkDescriptionField';
+import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
 import LinkUrlField from './LinkUrlField';
 import { LinkType, getSettingsFromLinkType, normalizeURL } from './linkUtils';
 
@@ -73,6 +73,7 @@ type Inputs = {
   name: string;
   linkType: UnionOfConst<typeof LinkType>;
   description: string;
+  descriptionPlacement: DescriptionPlacementType;
   url: string;
 };
 
@@ -130,7 +131,10 @@ export const LinkForm = ({
           thumbnails: linkData?.thumbnails,
           icons: linkData?.icons,
         }),
-        settings: getSettingsFromLinkType(data.linkType),
+        settings: {
+          descriptionPlacement: data.descriptionPlacement,
+          ...getSettingsFromLinkType(data.linkType),
+        },
         parentId,
         geolocation,
         previousItemId,
@@ -177,60 +181,68 @@ export const LinkForm = ({
               // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={false}
             />
-            <LinkDescriptionField
-              onRestore={() =>
-                setValue('description', linkData?.description ?? '')
-              }
-              showRestoreButton={
-                Boolean(linkData?.description) &&
-                linkData?.description !== description
-              }
-            />
+            <DescriptionAndPlacementForm />
             {isValidUrl && (
               <FormControl>
-                <FormLabel>
-                  <Typography variant="caption">
-                    {translateBuilder(BUILDER.CREATE_ITEM_LINK_TYPE_TITLE)}
-                  </Typography>
-                  {url ? (
-                    <Controller
-                      control={control}
-                      defaultValue={LinkType.Default}
-                      name="linkType"
-                      render={({ field }) => (
-                        <RadioGroup sx={{ display: 'flex', gap: 2 }} {...field}>
+                <Typography variant="caption">
+                  {translateBuilder(BUILDER.CREATE_ITEM_LINK_TYPE_TITLE)}
+                </Typography>
+                {url ? (
+                  <Controller
+                    control={control}
+                    defaultValue={LinkType.Default}
+                    name="linkType"
+                    render={({ field }) => (
+                      <RadioGroup sx={{ display: 'flex', gap: 2 }} {...field}>
+                        <StyledFormControlLabel
+                          value={LinkType.Default}
+                          label={<Link href={url}>{url}</Link>}
+                          control={<Radio />}
+                        />
+                        <StyledFormControlLabel
+                          value={LinkType.Fancy}
+                          label={
+                            <LinkCard
+                              title={linkData?.title ?? ''}
+                              url={url}
+                              thumbnail={thumbnail}
+                              description={description || ''}
+                            />
+                          }
+                          control={<Radio />}
+                          slotProps={{
+                            typography: { width: '100%', minWidth: '0px' },
+                          }}
+                          sx={{ minWidth: '0px', width: '100%' }}
+                        />
+                        {linkData?.html && linkData.html !== '' && (
                           <StyledFormControlLabel
-                            value={LinkType.Default}
-                            label={<Link href={url}>{url}</Link>}
-                            control={<Radio />}
-                          />
-                          <StyledFormControlLabel
-                            value={LinkType.Fancy}
+                            value={LinkType.Embedded}
                             label={
-                              <LinkCard
-                                title={linkData?.title ?? ''}
-                                url={url}
-                                thumbnail={thumbnail}
-                                description={description || ''}
+                              <StyledDiv
+                                sx={{}}
+                                dangerouslySetInnerHTML={{
+                                  __html: linkData.html,
+                                }}
                               />
                             }
                             control={<Radio />}
                             slotProps={{
-                              typography: { width: '100%', minWidth: '0px' },
+                              typography: {
+                                width: '100%',
+                                minWidth: '0px',
+                              },
                             }}
-                            sx={{ minWidth: '0px', width: '100%' }}
                           />
-                          {linkData?.html && linkData.html !== '' && (
+                        )}
+                        {
+                          // only show this options when embedding is allowed and there is no html code
+                          // as the html will take precedence over showing the site as an iframe
+                          // and some sites like daily motion actually allow both, we want to allow show the html setting
+                          linkData?.isEmbeddingAllowed && !linkData?.html && (
                             <StyledFormControlLabel
                               value={LinkType.Embedded}
-                              label={
-                                <StyledDiv
-                                  sx={{}}
-                                  dangerouslySetInnerHTML={{
-                                    __html: linkData.html,
-                                  }}
-                                />
-                              }
+                              label={embeddedLinkPreview}
                               control={<Radio />}
                               slotProps={{
                                 typography: {
@@ -238,43 +250,25 @@ export const LinkForm = ({
                                   minWidth: '0px',
                                 },
                               }}
+                              sx={{
+                                // this ensure the iframe takes up all horizontal space
+                                '& iframe': {
+                                  width: '100%',
+                                },
+                              }}
                             />
-                          )}
-                          {
-                            // only show this options when embedding is allowed and there is no html code
-                            // as the html will take precedence over showing the site as an iframe
-                            // and some sites like daily motion actually allow both, we want to allow show the html setting
-                            linkData?.isEmbeddingAllowed && !linkData?.html && (
-                              <StyledFormControlLabel
-                                value={LinkType.Embedded}
-                                label={embeddedLinkPreview}
-                                control={<Radio />}
-                                slotProps={{
-                                  typography: {
-                                    width: '100%',
-                                    minWidth: '0px',
-                                  },
-                                }}
-                                sx={{
-                                  // this ensure the iframe takes up all horizontal space
-                                  '& iframe': {
-                                    width: '100%',
-                                  },
-                                }}
-                              />
-                            )
-                          }
-                        </RadioGroup>
-                      )}
-                    />
-                  ) : (
-                    <Typography fontStyle="italic">
-                      {translateBuilder(
-                        BUILDER.CREATE_ITEM_LINK_TYPE_HELPER_TEXT,
-                      )}
-                    </Typography>
-                  )}
-                </FormLabel>
+                          )
+                        }
+                      </RadioGroup>
+                    )}
+                  />
+                ) : (
+                  <Typography fontStyle="italic">
+                    {translateBuilder(
+                      BUILDER.CREATE_ITEM_LINK_TYPE_HELPER_TEXT,
+                    )}
+                  </Typography>
+                )}
               </FormControl>
             )}
           </Stack>

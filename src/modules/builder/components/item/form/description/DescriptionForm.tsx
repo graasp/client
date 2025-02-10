@@ -17,20 +17,20 @@ export function DescriptionForm({
   value = '',
   onChange,
 }: Readonly<DescriptionFormProps>): JSX.Element {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateBuilder } = useTranslation(NS.Builder, {
+    keyPrefix: 'DESCRIPTION',
+  });
 
   return (
     <Box>
       <FormLabel>
-        <Typography variant="caption">
-          {translateBuilder('DESCRIPTION_LABEL')}
-        </Typography>
+        <Typography variant="caption">{translateBuilder('LABEL')}</Typography>
       </FormLabel>
       <TextEditor
         id={id}
         value={value}
         onChange={onChange}
-        showActions={false}
+        placeholderText={translateBuilder('PLACEHOLDER')}
       />
     </Box>
   );

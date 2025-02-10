@@ -26,7 +26,7 @@ export const DocumentContentForm = ({
 }: {
   documentItemId?: string;
   onChange: (v: string) => void;
-  placeholder?: string;
+  placeholder: string;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const {
@@ -82,7 +82,6 @@ export const DocumentContentForm = ({
               value={content}
               onChange={onChange}
               placeholderText={placeholder}
-              showActions={false}
             />
           ),
           flavor,
