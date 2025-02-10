@@ -379,8 +379,8 @@ importers:
         specifier: 26.0.0
         version: 26.0.0
       nock:
-        specifier: 13.5.6
-        version: 13.5.6
+        specifier: 14.0.1
+        version: 14.0.1
       nyc:
         specifier: 17.1.0
         version: 17.1.0
@@ -4959,9 +4959,9 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  nock@13.5.6:
-    resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
-    engines: {node: '>= 10.13'}
+  nock@14.0.1:
+    resolution: {integrity: sha512-IJN4O9pturuRdn60NjQ7YkFt6Rwei7ZKaOwb1tvUIIqTgeD0SDDAX3vrqZD4wcXczeEy/AsUXxpGpP/yHqV7xg==}
+    engines: {node: '>=18.20.0 <20 || >=20.12.1'}
 
   node-preload@0.2.1:
     resolution: {integrity: sha512-RM5oyBy45cLEoHqCeh+MNuFAxO0vTFBLskvQbOKnEE7YTTSN4tbN8QWDIPQ6L+WvKsB/qLEGpYe2ZZ9d4W9OIQ==}
@@ -11985,13 +11985,11 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  nock@13.5.6:
+  nock@14.0.1:
     dependencies:
-      debug: 4.4.0(supports-color@8.1.1)
+      '@mswjs/interceptors': 0.37.5
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
-    transitivePeerDependencies:
-      - supports-color
 
   node-preload@0.2.1:
     dependencies:
