@@ -20,7 +20,7 @@ import {
 import { DisplayItems } from './DisplayItems';
 
 // should be a multiple of 6 to create full pages that split into 2, 3 and 6 columns
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 6;
 
 export function RecentItems() {
   const { t } = useTranslation(NS.Player);

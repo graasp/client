@@ -13,9 +13,9 @@ on:
   # Allow to manually trigger the workflow
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: false
+# concurrency:
+#   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+#   cancel-in-progress: false
 
 jobs:
   build:
@@ -97,7 +97,6 @@ jobs:
           browser: chrome
           quiet: true
           config-file: cypress.config.ts
-          cache-key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
         env:
           VITE_PORT: ${{ vars.VITE_PORT }}
           VITE_VERSION: ${{ vars.VITE_VERSION }}
