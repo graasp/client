@@ -1,5 +1,3 @@
-import { ItemBookmarkFactory } from '@graasp/sdk';
-
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
   BOOKMARKED_ITEMS_ID,
