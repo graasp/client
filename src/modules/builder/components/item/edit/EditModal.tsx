@@ -23,7 +23,11 @@ type Props = {
   open: boolean;
 };
 
-const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
+export function EditModal({
+  item,
+  onClose,
+  open,
+}: Readonly<Props>): JSX.Element {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateMessage } = useTranslation(NS.Messages);
 
@@ -82,5 +86,4 @@ const EditModal = ({ item, onClose, open }: Props): JSX.Element => {
       {renderContent()}
     </Dialog>
   );
-};
-export default EditModal;
+}

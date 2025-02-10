@@ -26,7 +26,7 @@ import useModalStatus from '../hooks/useModalStatus';
 import CopyButton from '../item/copy/CopyButton';
 import { CopyModal } from '../item/copy/CopyModal';
 import EditButton from '../item/edit/EditButton';
-import EditModal from '../item/edit/EditModal';
+import { EditModal } from '../item/edit/EditModal';
 import MoveButton from '../item/move/MoveButton';
 import { MoveModal } from '../item/move/MoveModal';
 import ItemSettingsButton from '../item/settings/ItemSettingsButton';

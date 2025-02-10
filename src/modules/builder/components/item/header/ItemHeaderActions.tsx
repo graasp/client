@@ -19,11 +19,10 @@ import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DownloadButton from '~builder/components/main/DownloadButton';
 import { ITEM_TYPES_WITH_CAPTIONS } from '~builder/constants';
 
-import { BUILDER } from '../../../langs';
 import PublishButton from '../../common/PublishButton';
 import ShareButton from '../../common/ShareButton';
 import EditButton from '../edit/EditButton';
-import EditModal from '../edit/EditModal';
+import { EditModal } from '../edit/EditModal';
 import ItemSettingsButton from '../settings/ItemSettingsButton';
 import Actions from './Actions';
 
@@ -82,7 +81,7 @@ const ItemHeaderActions = ({
         <ShareButton itemId={item.id} />
         <ChatboxButton
           showChat={isChatboxOpen}
-          tooltip={translateBuilder(BUILDER.ITEM_CHATBOX_TITLE, {
+          tooltip={translateBuilder('ITEM_CHATBOX_TITLE', {
             name: item.name,
           })}
           id={ITEM_CHATBOX_BUTTON_ID}
