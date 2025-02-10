@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@mui/material';
 
-import groupBy from 'lodash/groupBy';
+import groupBy from 'lodash.groupBy';
 import {
   Bar,
   CartesianGrid,

@@ -56,12 +56,6 @@ importers:
       '@tanstack/zod-adapter':
         specifier: 1.102.1
         version: 1.102.1(@tanstack/react-router@1.102.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(zod@3.24.1)
-      '@types/papaparse':
-        specifier: 5.3.15
-        version: 5.3.15
-      '@types/validator':
-        specifier: 13.12.2
-        version: 13.12.2
       axios:
         specifier: 1.7.9
         version: 1.7.9
@@ -98,21 +92,24 @@ importers:
       leaflet:
         specifier: 1.9.4
         version: 1.9.4
-      leaflet-easybutton:
-        specifier: 2.4.0
-        version: 2.4.0
-      leaflet-geosearch:
-        specifier: 4.2.0
-        version: 4.2.0
-      lodash:
-        specifier: 4.17.21
-        version: 4.17.21
+      lodash.countby:
+        specifier: 4.6.0
+        version: 4.6.0
       lodash.debounce:
         specifier: 4.0.8
         version: 4.0.8
+      lodash.frompairs:
+        specifier: 4.0.1
+        version: 4.0.1
       lodash.groupby:
         specifier: 4.6.0
         version: 4.6.0
+      lodash.orderby:
+        specifier: 4.6.0
+        version: 4.6.0
+      lodash.topairs:
+        specifier: 4.3.0
+        version: 4.3.0
       lodash.truncate:
         specifier: 4.4.2
         version: 4.4.2
@@ -282,18 +279,30 @@ importers:
       '@types/leaflet':
         specifier: 1.9.16
         version: 1.9.16
-      '@types/lodash':
-        specifier: 4.17.15
-        version: 4.17.15
+      '@types/lodash.countby':
+        specifier: 4.6.9
+        version: 4.6.9
       '@types/lodash.debounce':
+        specifier: 4.0.9
+        version: 4.0.9
+      '@types/lodash.frompairs':
         specifier: 4.0.9
         version: 4.0.9
       '@types/lodash.groupby':
         specifier: 4.6.9
         version: 4.6.9
+      '@types/lodash.orderby':
+        specifier: 4.6.9
+        version: 4.6.9
+      '@types/lodash.topairs':
+        specifier: 4.3.9
+        version: 4.3.9
       '@types/lodash.truncate':
         specifier: 4.4.9
         version: 4.4.9
+      '@types/papaparse':
+        specifier: 5.3.15
+        version: 5.3.15
       '@types/react':
         specifier: 19.0.8
         version: 19.0.8
@@ -309,6 +318,9 @@ importers:
       '@types/stylis':
         specifier: 4.2.7
         version: 4.2.7
+      '@types/validator':
+        specifier: 13.12.2
+        version: 13.12.2
       '@typescript-eslint/eslint-plugin':
         specifier: 8.23.0
         version: 8.23.0(@typescript-eslint/parser@8.23.0(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3)
@@ -375,9 +387,6 @@ importers:
       jose:
         specifier: 5.9.6
         version: 5.9.6
-      jsdom:
-        specifier: 26.0.0
-        version: 26.0.0
       nock:
         specifier: 13.5.6
         version: 13.5.6
@@ -2411,11 +2420,23 @@ packages:
   '@types/leaflet@1.9.16':
     resolution: {integrity: sha512-wzZoyySUxkgMZ0ihJ7IaUIblG8Rdc8AbbZKLneyn+QjYsj5q1QU7TEKYqwTr10BGSzY5LI7tJk9Ifo+mEjdFRw==}
 
+  '@types/lodash.countby@4.6.9':
+    resolution: {integrity: sha512-9KPA3nQsnAeaaIHKEPBucaUnII51lKfh89dCQh00Nq+Rk+gifnsqGEhluidGrcukjhP8NRYJ3EEqw2zHBsJtJA==}
+
   '@types/lodash.debounce@4.0.9':
     resolution: {integrity: sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==}
 
+  '@types/lodash.frompairs@4.0.9':
+    resolution: {integrity: sha512-OZ7YqENr/kRqpDqXlU1RxGWSQ4Ha5gLFcz9v2OhxrrspHCeQ4PfC7SobvLJ8vCvftiEv7IEfZNpaLhHYkVB5SA==}
+
   '@types/lodash.groupby@4.6.9':
     resolution: {integrity: sha512-z2xtCX2ko7GrqORnnYea4+ksT7jZNAvaOcLd6mP9M7J09RHvJs06W8BGdQQAX8ARef09VQLdeRilSOcfHlDQJQ==}
+
+  '@types/lodash.orderby@4.6.9':
+    resolution: {integrity: sha512-T9o2wkIJOmxXwVTPTmwJ59W6eTi2FseiLR369fxszG649Po/xe9vqFNhf/MtnvT5jrbDiyWKxPFPZbpSVK0SVQ==}
+
+  '@types/lodash.topairs@4.3.9':
+    resolution: {integrity: sha512-NdBMVWnsaL1pAug9jLnwPfaC3XoQRcyw+wxZzSCcOJALu2iN+Q014V49oiB2bBm2cD1BM9ScY0JWHJrSbDBBcg==}
 
   '@types/lodash.truncate@4.4.9':
     resolution: {integrity: sha512-pR5sV0zOomdGgh5nAv5nLlnU0iHX8IJuVqIdACQjO1I6sKsB1v4tFR6HySu8peoHg74RItfvTihDUYax0fB9Kg==}
@@ -4585,12 +4606,6 @@ packages:
     resolution: {integrity: sha512-cc8oEVoctTvsFZ/Oje/kGnHbpWHYBe8IAJe4C0QNc3t8uM/0Y8+erSz/7Y1ALuXTEZTMvxXwO6YbX1ey3ujiZw==}
     engines: {node: '> 0.8'}
 
-  leaflet-easybutton@2.4.0:
-    resolution: {integrity: sha512-O+qsQq4zTF6ds8VClnytobTH/MKalctlPpiA8L+bNKHP14J3lgJpvEd/jSpq9mHTI6qOzRAvbQX6wS6qNwThvg==}
-
-  leaflet-geosearch@4.2.0:
-    resolution: {integrity: sha512-UWNhFSaUcLlAP5UQY75ziWCl3cp0UCcmcFczPHLHjuAVPOHoPTe0nSgHJuI3pSTJBQm46NYoZOlgonrWceUznQ==}
-
   leaflet.markercluster@1.5.3:
     resolution: {integrity: sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==}
     peerDependencies:
@@ -4644,11 +4659,17 @@ packages:
   lodash.clonedeep@4.5.0:
     resolution: {integrity: sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==}
 
+  lodash.countby@4.6.0:
+    resolution: {integrity: sha512-RhdqSKPeVL9zWY5jSYHA2PHrV+lm2x/NfZd1uCUMEJXZoqFJ14MlSjnm+otBVdmlrkJ3trLKM07wuMszZ5GIbA==}
+
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
   lodash.flattendeep@4.4.0:
     resolution: {integrity: sha512-uHaJFihxmJcEX3kT4I23ABqKKalJ/zDrDg0lsFtc1h+3uw49SIJ5beyhx5ExVRti3AvKoOJngIj7xz3oylPdWQ==}
+
+  lodash.frompairs@4.0.1:
+    resolution: {integrity: sha512-dvqe2I+cO5MzXCMhUnfYFa9MD+/760yx2aTAN1lqEcEkf896TxgrX373igVdqSJj6tQd0jnSLE1UMuKufqqxFw==}
 
   lodash.groupby@4.6.0:
     resolution: {integrity: sha512-5dcWxm23+VAoz+awKmBaiBvzox8+RqMgFhi7UvX9DHZr2HdxHXM/Wrf8cfKpsW37RNrvtPn6hSwNqurSILbmJw==}
@@ -4672,11 +4693,17 @@ packages:
   lodash.once@4.1.1:
     resolution: {integrity: sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==}
 
+  lodash.orderby@4.6.0:
+    resolution: {integrity: sha512-T0rZxKmghOOf5YPnn8EY5iLYeWCpZq8G41FfqoVHH5QDTAFaghJRmAdLiadEDq+ztgM2q5PjA+Z1fOwGrLgmtg==}
+
   lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
 
   lodash.startcase@4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
+
+  lodash.topairs@4.3.0:
+    resolution: {integrity: sha512-qrRMbykBSEGdOgQLJJqVSdPWMD7Q+GJJ5jMRfQYb+LTLsw3tYVIabnCzRqTJb2WTo17PG5gNzXuFaZgYH/9SAQ==}
 
   lodash.truncate@4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
@@ -6602,6 +6629,7 @@ snapshots:
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
       lru-cache: 10.4.3
+    optional: true
 
   '@babel/code-frame@7.26.2':
     dependencies:
@@ -7446,12 +7474,14 @@ snapshots:
       '@types/conventional-commits-parser': 5.0.1
       chalk: 5.4.1
 
-  '@csstools/color-helpers@5.0.1': {}
+  '@csstools/color-helpers@5.0.1':
+    optional: true
 
   '@csstools/css-calc@2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
+    optional: true
 
   '@csstools/css-color-parser@3.0.7(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)':
     dependencies:
@@ -7459,12 +7489,15 @@ snapshots:
       '@csstools/css-calc': 2.1.1(@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3))(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-parser-algorithms': 3.0.4(@csstools/css-tokenizer@3.0.3)
       '@csstools/css-tokenizer': 3.0.3
+    optional: true
 
   '@csstools/css-parser-algorithms@3.0.4(@csstools/css-tokenizer@3.0.3)':
     dependencies:
       '@csstools/css-tokenizer': 3.0.3
+    optional: true
 
-  '@csstools/css-tokenizer@3.0.3': {}
+  '@csstools/css-tokenizer@3.0.3':
+    optional: true
 
   '@cypress/code-coverage@3.13.11(@babel/core@7.26.0)(@babel/preset-env@7.26.0(@babel/core@7.26.0))(babel-loader@9.2.1(@babel/core@7.26.0)(webpack@5.97.1(esbuild@0.24.2)))(cypress@14.0.2)(webpack@5.97.1(esbuild@0.24.2))':
     dependencies:
@@ -8848,11 +8881,27 @@ snapshots:
     dependencies:
       '@types/geojson': 7946.0.15
 
+  '@types/lodash.countby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.15
+
   '@types/lodash.debounce@4.0.9':
     dependencies:
       '@types/lodash': 4.17.15
 
+  '@types/lodash.frompairs@4.0.9':
+    dependencies:
+      '@types/lodash': 4.17.15
+
   '@types/lodash.groupby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.15
+
+  '@types/lodash.orderby@4.6.9':
+    dependencies:
+      '@types/lodash': 4.17.15
+
+  '@types/lodash.topairs@4.3.9':
     dependencies:
       '@types/lodash': 4.17.15
 
@@ -9257,7 +9306,8 @@ snapshots:
 
   acorn@8.14.0: {}
 
-  agent-base@7.1.3: {}
+  agent-base@7.1.3:
+    optional: true
 
   aggregate-error@3.1.0:
     dependencies:
@@ -9780,6 +9830,7 @@ snapshots:
     dependencies:
       '@asamuzakjp/css-color': 2.8.3
       rrweb-cssom: 0.8.0
+    optional: true
 
   csstype@3.1.3: {}
 
@@ -9883,6 +9934,7 @@ snapshots:
     dependencies:
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.1.0
+    optional: true
 
   data-view-buffer@1.0.2:
     dependencies:
@@ -9922,7 +9974,8 @@ snapshots:
 
   decimal.js-light@2.5.1: {}
 
-  decimal.js@10.5.0: {}
+  decimal.js@10.5.0:
+    optional: true
 
   decode-named-character-reference@1.0.2:
     dependencies:
@@ -10031,7 +10084,8 @@ snapshots:
       ansi-colors: 4.1.3
       strip-ansi: 6.0.1
 
-  entities@4.5.0: {}
+  entities@4.5.0:
+    optional: true
 
   env-cmd@10.1.0:
     dependencies:
@@ -10941,6 +10995,7 @@ snapshots:
   html-encoding-sniffer@4.0.0:
     dependencies:
       whatwg-encoding: 3.1.1
+    optional: true
 
   html-escaper@2.0.2: {}
 
@@ -10956,6 +11011,7 @@ snapshots:
       debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   http-signature@1.4.0:
     dependencies:
@@ -10971,6 +11027,7 @@ snapshots:
       debug: 4.4.0(supports-color@8.1.1)
     transitivePeerDependencies:
       - supports-color
+    optional: true
 
   human-signals@1.1.1: {}
 
@@ -10995,6 +11052,7 @@ snapshots:
   iconv-lite@0.6.3:
     dependencies:
       safer-buffer: 2.1.2
+    optional: true
 
   ieee754@1.2.1: {}
 
@@ -11159,7 +11217,8 @@ snapshots:
 
   is-plain-obj@4.1.0: {}
 
-  is-potential-custom-element-name@1.0.1: {}
+  is-potential-custom-element-name@1.0.1:
+    optional: true
 
   is-regex@1.2.1:
     dependencies:
@@ -11350,6 +11409,7 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
+    optional: true
 
   jsesc@3.0.2: {}
 
@@ -11419,15 +11479,6 @@ snapshots:
 
   lazy-ass@1.6.0: {}
 
-  leaflet-easybutton@2.4.0:
-    dependencies:
-      leaflet: 1.9.4
-
-  leaflet-geosearch@4.2.0:
-    optionalDependencies:
-      '@googlemaps/js-api-loader': 1.16.8
-      leaflet: 1.9.4
-
   leaflet.markercluster@1.5.3(leaflet@1.9.4):
     dependencies:
       leaflet: 1.9.4
@@ -11480,9 +11531,13 @@ snapshots:
 
   lodash.clonedeep@4.5.0: {}
 
+  lodash.countby@4.6.0: {}
+
   lodash.debounce@4.0.8: {}
 
   lodash.flattendeep@4.4.0: {}
+
+  lodash.frompairs@4.0.1: {}
 
   lodash.groupby@4.6.0: {}
 
@@ -11498,9 +11553,13 @@ snapshots:
 
   lodash.once@4.1.1: {}
 
+  lodash.orderby@4.6.0: {}
+
   lodash.snakecase@4.1.1: {}
 
   lodash.startcase@4.4.0: {}
+
+  lodash.topairs@4.3.0: {}
 
   lodash.truncate@4.4.2: {}
 
@@ -11530,7 +11589,8 @@ snapshots:
 
   loupe@3.1.2: {}
 
-  lru-cache@10.4.3: {}
+  lru-cache@10.4.3:
+    optional: true
 
   lru-cache@5.1.1:
     dependencies:
@@ -12013,7 +12073,8 @@ snapshots:
     dependencies:
       path-key: 3.1.1
 
-  nwsapi@2.2.16: {}
+  nwsapi@2.2.16:
+    optional: true
 
   nyc@15.1.0:
     dependencies:
@@ -12222,6 +12283,7 @@ snapshots:
   parse5@7.2.1:
     dependencies:
       entities: 4.5.0
+    optional: true
 
   path-exists@4.0.0: {}
 
@@ -12777,7 +12839,8 @@ snapshots:
       '@rollup/rollup-win32-x64-msvc': 4.34.4
       fsevents: 2.3.3
 
-  rrweb-cssom@0.8.0: {}
+  rrweb-cssom@0.8.0:
+    optional: true
 
   run-parallel@1.2.0:
     dependencies:
@@ -12813,6 +12876,7 @@ snapshots:
   saxes@6.0.0:
     dependencies:
       xmlchars: 2.2.0
+    optional: true
 
   scheduler@0.23.2:
     dependencies:
@@ -13114,7 +13178,8 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
-  symbol-tree@3.2.4: {}
+  symbol-tree@3.2.4:
+    optional: true
 
   tapable@2.2.1: {}
 
@@ -13197,6 +13262,7 @@ snapshots:
   tr46@5.0.0:
     dependencies:
       punycode: 2.3.1
+    optional: true
 
   tree-kill@1.2.2: {}
 
@@ -13630,6 +13696,7 @@ snapshots:
   w3c-xmlserializer@5.0.0:
     dependencies:
       xml-name-validator: 5.0.0
+    optional: true
 
   watchpack@2.4.2:
     dependencies:
@@ -13675,15 +13742,18 @@ snapshots:
   whatwg-encoding@3.1.1:
     dependencies:
       iconv-lite: 0.6.3
+    optional: true
 
   whatwg-mimetype@3.0.0: {}
 
-  whatwg-mimetype@4.0.0: {}
+  whatwg-mimetype@4.0.0:
+    optional: true
 
   whatwg-url@14.1.0:
     dependencies:
       tr46: 5.0.0
       webidl-conversions: 7.0.0
+    optional: true
 
   which-boxed-primitive@1.1.1:
     dependencies:
@@ -13761,9 +13831,11 @@ snapshots:
 
   ws@8.18.0: {}
 
-  xml-name-validator@5.0.0: {}
+  xml-name-validator@5.0.0:
+    optional: true
 
-  xmlchars@2.2.0: {}
+  xmlchars@2.2.0:
+    optional: true
 
   y18n@4.0.3: {}
 

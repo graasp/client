@@ -12,7 +12,7 @@ import {
 
 import { endOfDay } from 'date-fns/endOfDay';
 import { formatISO } from 'date-fns/formatISO';
-import groupBy from 'lodash/groupBy';
+import groupBy from 'lodash.groupBy';
 import {
   Bar,
   CartesianGrid,
