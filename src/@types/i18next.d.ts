@@ -8,6 +8,7 @@ import builder from '../locales/en/builder.json';
 import chatbox from '../locales/en/chatbox.json';
 import common from '../locales/en/common.json';
 import enums from '../locales/en/enums.json';
+import home from '../locales/en/home.json';
 import landing from '../locales/en/landing.json';
 import map from '../locales/en/map.json';
 import messages from '../locales/en/messages.json';
@@ -23,6 +24,7 @@ declare module 'i18next' {
       chatbox: typeof chatbox;
       common: typeof common;
       enums: typeof enums;
+      home: typeof home;
       landing: typeof landing;
       map: typeof map;
       messages: typeof messages;

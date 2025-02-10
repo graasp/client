@@ -76,7 +76,7 @@ type Props = {
   /**
    * Content to display inside the drawer / sidebar
    */
-  drawerContent: ReactNode;
+  drawerContent?: ReactNode;
   /**
    * Content to display inside the footer
    */
@@ -115,7 +115,7 @@ type Props = {
    * Aria label to put on the button that opens and closes the drawer
    * This should be a translated string reading i.e: `open drawer`
    */
-  drawerOpenAriaLabel: string;
+  drawerOpenAriaLabel?: string;
   /**
    * Color of the background
    */
@@ -185,17 +185,19 @@ const MainWithDrawerContent = ({
               minWidth={0}
               spacing={1}
             >
-              <IconButton
-                color="inherit"
-                aria-label={drawerOpenAriaLabel}
-                onClick={handleDrawerToggle}
-                edge="start"
-                data-umami-event="header-drawer-toggle"
-                data-umami-event-context={context}
-                data-umami-event-open={open}
-              >
-                {open ? <MenuOpen /> : <MenuIcon />}
-              </IconButton>
+              {drawerContent && (
+                <IconButton
+                  color="inherit"
+                  aria-label={drawerOpenAriaLabel}
+                  onClick={handleDrawerToggle}
+                  edge="start"
+                  data-umami-event="header-drawer-toggle"
+                  data-umami-event-context={context}
+                  data-umami-event-open={open}
+                >
+                  {open ? <MenuOpen /> : <MenuIcon />}
+                </IconButton>
+              )}
               {LinkComponent?.({ children: <LogoHeader /> })}
               {PlatformComponent}
               {headerLeftContent}
@@ -204,44 +206,49 @@ const MainWithDrawerContent = ({
           </Stack>
         </Toolbar>
       </AppBar>
-      <Box component="nav" aria-label="navigation">
-        <Drawer
-          variant="temporary"
-          open={open}
-          onClose={handleDrawerClose}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
-              backgroundColor,
-            },
-          }}
-        >
-          <Toolbar />
-          {drawerContent}
-        </Drawer>
-        <Drawer
-          variant="persistent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
-              width: DRAWER_WIDTH,
-              backgroundColor,
-            },
-          }}
-          open={open}
-        >
-          <Toolbar />
-          {drawerContent}
-        </Drawer>
-      </Box>
+      {drawerContent && (
+        <Box component="nav" aria-label="navigation">
+          <Drawer
+            variant="temporary"
+            open={open}
+            onClose={handleDrawerClose}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: 'block', sm: 'none' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: DRAWER_WIDTH,
+                backgroundColor,
+              },
+            }}
+          >
+            <Toolbar />
+            {drawerContent}
+          </Drawer>
+          <Drawer
+            variant="persistent"
+            sx={{
+              display: { xs: 'none', sm: 'block' },
+              '& .MuiDrawer-paper': {
+                boxSizing: 'border-box',
+                width: DRAWER_WIDTH,
+                backgroundColor,
+              },
+            }}
+            open={open}
+          >
+            <Toolbar />
+            {drawerContent}
+          </Drawer>
+        </Box>
+      )}
       <Toolbar />
-      <StyledMain open={open} backgroundColor={backgroundColor}>
+      <StyledMain
+        open={open && Boolean(drawerContent)}
+        backgroundColor={backgroundColor}
+      >
         {children}
       </StyledMain>
       <StyledFooter open={open}>{footerContent}</StyledFooter>
