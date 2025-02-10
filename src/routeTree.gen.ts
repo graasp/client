@@ -18,6 +18,7 @@ import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as MemberOnlyImport } from './routes/_memberOnly'
 import { Route as LandingImport } from './routes/_landing'
 import { Route as PlayerIndexImport } from './routes/player/index'
+import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
@@ -101,6 +102,12 @@ const PlayerIndexRoute = PlayerIndexImport.update({
   id: '/player/',
   path: '/player/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthIndexRoute = AuthIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthRoute,
 } as any)
 
 const AnalyticsIndexRoute = AnalyticsIndexImport.update({
@@ -540,6 +547,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsIndexImport
       parentRoute: typeof AnalyticsImport
     }
+    '/auth/': {
+      id: '/auth/'
+      path: '/'
+      fullPath: '/auth/'
+      preLoaderRoute: typeof AuthIndexImport
+      parentRoute: typeof AuthImport
+    }
     '/player/': {
       id: '/player/'
       path: '/player'
@@ -796,6 +810,7 @@ interface AuthRouteChildren {
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSigninRoute: typeof AuthSigninRoute
   AuthSuccessRoute: typeof AuthSuccessRoute
+  AuthIndexRoute: typeof AuthIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -805,6 +820,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSigninRoute: AuthSigninRoute,
   AuthSuccessRoute: AuthSuccessRoute,
+  AuthIndexRoute: AuthIndexRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -912,6 +928,7 @@ export interface FileRoutesByFullPath {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/auth/': typeof AuthIndexRoute
   '/player': typeof PlayerIndexRoute
   '/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/account/stats': typeof MemberOnlyAccountStatsRoute
@@ -939,7 +956,6 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '': typeof MemberOnlyRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
   '/builder': typeof BuilderLayoutIndexRoute
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
@@ -960,6 +976,7 @@ export interface FileRoutesByTo {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
+  '/auth': typeof AuthIndexRoute
   '/player': typeof PlayerIndexRoute
   '/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/account/stats': typeof MemberOnlyAccountStatsRoute
@@ -1008,6 +1025,7 @@ export interface FileRoutesById {
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/auth/': typeof AuthIndexRoute
   '/player/': typeof PlayerIndexRoute
   '/_memberOnly/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
@@ -1060,6 +1078,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics/'
+    | '/auth/'
     | '/player'
     | '/account/settings'
     | '/account/stats'
@@ -1086,7 +1105,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
-    | '/auth'
     | '/builder'
     | '/signin'
     | '/about-us'
@@ -1107,6 +1125,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics'
+    | '/auth'
     | '/player'
     | '/account/settings'
     | '/account/stats'
@@ -1153,6 +1172,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/_landing/'
     | '/analytics/'
+    | '/auth/'
     | '/player/'
     | '/_memberOnly/account/settings'
     | '/_memberOnly/account/stats'
@@ -1265,7 +1285,8 @@ export const routeTree = rootRoute
         "/auth/register",
         "/auth/reset-password",
         "/auth/signin",
-        "/auth/success"
+        "/auth/success",
+        "/auth/"
       ]
     },
     "/builder": {
@@ -1359,6 +1380,10 @@ export const routeTree = rootRoute
     "/analytics/": {
       "filePath": "analytics/index.tsx",
       "parent": "/analytics"
+    },
+    "/auth/": {
+      "filePath": "auth/index.tsx",
+      "parent": "/auth"
     },
     "/player/": {
       "filePath": "player/index.tsx"
