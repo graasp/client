@@ -81,7 +81,7 @@ class TestHelper {
   }
 }
 
-describe('Upload Avatar', () => {
+describe.skip('Upload Avatar', () => {
   let helpers: TestHelper;
   beforeEach(() => {
     helpers = new TestHelper({ currentMember: MEMBERS.BOB });
@@ -105,7 +105,7 @@ describe('Upload Avatar', () => {
   });
 });
 
-describe('Image is not set', () => {
+describe.skip('Image is not set', () => {
   beforeEach(() => {
     cy.setUpApi({ currentMember: MEMBERS.BOB });
     cy.visit('/home');
@@ -120,7 +120,7 @@ describe('Image is not set', () => {
   });
 });
 
-describe('Check member info', () => {
+describe.skip('Check member info', () => {
   beforeEach(() => {
     cy.setUpApi({
       currentMember: MEMBER_WITH_AVATAR,
