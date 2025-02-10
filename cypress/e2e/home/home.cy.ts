@@ -25,8 +25,8 @@ describe('Empty Home', () => {
     });
 
     cy.visit(HOME_PATH);
-    cy.get(`[role="dropzone"]`).should('be.visible');
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
+    cy.get(`[role="dropzone"]`).scrollIntoView().should('be.visible');
+    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).scrollIntoView().should('be.visible');
   });
 });
 
@@ -61,10 +61,9 @@ describe('Home page features', () => {
     // remaining calls are done by the accessible table
     cy.wait('@getAccessibleItems');
 
-    cy.get(`${SORTING_SELECT_SELECTOR} input`).should(
-      'have.value',
-      SortingOptions.ItemUpdatedAt,
-    );
+    cy.get(`${SORTING_SELECT_SELECTOR} input`)
+      .scrollIntoView()
+      .should('have.value', SortingOptions.ItemUpdatedAt);
     cy.get(SORTING_ORDERING_SELECTOR_DESC).should('be.visible');
 
     // change sorting
