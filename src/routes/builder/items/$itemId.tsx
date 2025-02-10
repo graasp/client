@@ -149,58 +149,60 @@ function RouteComponent() {
     >
       <MemberValidationBanner />
       <FilterItemsContextProvider>
-        <ItemLoginWrapper
-          item={item}
-          itemErrorStatusCode={errorStatusCode}
-          currentAccount={currentMember}
-          enrollContent={<EnrollContent itemId={itemId} />}
-          signInButtonId={ITEM_LOGIN_SIGN_IN_BUTTON_ID}
-          usernameInputId={ITEM_LOGIN_SIGN_IN_USERNAME_ID}
-          passwordInputId={ITEM_LOGIN_SIGN_IN_PASSWORD_ID}
-          signIn={itemLoginSignIn}
-          itemLoginSchemaType={itemLoginSchemaType}
-          itemId={itemId}
-          isLoading={
-            currentMemberIsLoading ||
-            itemLoginSchemaTypeIsLoading ||
-            itemIsLoading
-          }
-          requestAccessContent={
-            currentMember?.type === AccountType.Individual &&
-            // member can request a membership if the item login type is null and not an error
-            // item login schema type can error if the item is hidden
-            !isItemLoginSchemaTypeError ? (
-              <RequestAccessContent itemId={itemId} member={currentMember} />
-            ) : undefined
-          }
-          forbiddenContent={
-            <Stack
-              id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID}
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-              height="100%"
-              flex={1}
-              gap={2}
-            >
-              <ForbiddenContent id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID} />
-              <ButtonLink to="/auth/login">
-                {translateCommon('LOG_IN.BUTTON_TEXT')}
-              </ButtonLink>
-            </Stack>
-          }
-        >
-          <OutletContext.Provider
-            value={{
-              item: item!,
-              permission: item?.permission,
-              canWrite,
-              canAdmin,
-            }}
+        <Stack maxWidth="xl" mx="auto" width="100%" height="100%">
+          <ItemLoginWrapper
+            item={item}
+            itemErrorStatusCode={errorStatusCode}
+            currentAccount={currentMember}
+            enrollContent={<EnrollContent itemId={itemId} />}
+            signInButtonId={ITEM_LOGIN_SIGN_IN_BUTTON_ID}
+            usernameInputId={ITEM_LOGIN_SIGN_IN_USERNAME_ID}
+            passwordInputId={ITEM_LOGIN_SIGN_IN_PASSWORD_ID}
+            signIn={itemLoginSignIn}
+            itemLoginSchemaType={itemLoginSchemaType}
+            itemId={itemId}
+            isLoading={
+              currentMemberIsLoading ||
+              itemLoginSchemaTypeIsLoading ||
+              itemIsLoading
+            }
+            requestAccessContent={
+              currentMember?.type === AccountType.Individual &&
+              // member can request a membership if the item login type is null and not an error
+              // item login schema type can error if the item is hidden
+              !isItemLoginSchemaTypeError ? (
+                <RequestAccessContent itemId={itemId} member={currentMember} />
+              ) : undefined
+            }
+            forbiddenContent={
+              <Stack
+                id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID}
+                direction="column"
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+                flex={1}
+                gap={2}
+              >
+                <ForbiddenContent id={ITEM_LOGIN_SCREEN_FORBIDDEN_ID} />
+                <ButtonLink to="/auth/login">
+                  {translateCommon('LOG_IN.BUTTON_TEXT')}
+                </ButtonLink>
+              </Stack>
+            }
           >
-            <Outlet />
-          </OutletContext.Provider>
-        </ItemLoginWrapper>
+            <OutletContext.Provider
+              value={{
+                item: item!,
+                permission: item?.permission,
+                canWrite,
+                canAdmin,
+              }}
+            >
+              <Outlet />
+            </OutletContext.Provider>
+          </ItemLoginWrapper>
+        </Stack>
       </FilterItemsContextProvider>
     </Main>
   );

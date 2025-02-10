@@ -7,7 +7,7 @@ import { RECAPTCHA_SITE_KEY } from '@/config/env';
 export const Route = createFileRoute('/auth')({
   beforeLoad: ({ context }) => {
     // check if the user is authenticated.
-    // if already authenticated, redirect to `/account`
+    // if already authenticated, redirect to `/builder`
     if (context.auth.isAuthenticated) {
       throw redirect({
         // TODO: we redirect to the builder while we work on the home page.

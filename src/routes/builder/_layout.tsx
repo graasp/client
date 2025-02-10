@@ -7,14 +7,12 @@ import {
   Container,
   Stack,
   Typography,
-  styled,
   useTheme,
 } from '@mui/material';
 
 import { AccountType, Context } from '@graasp/sdk';
 
 import {
-  Link,
   Outlet,
   createFileRoute,
   redirect,
@@ -32,6 +30,7 @@ import {
   HEADER_APP_BAR_ID,
   PREVENT_GUEST_MESSAGE_ID,
 } from '@/config/selectors';
+import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
 import GraaspMain from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -54,20 +53,14 @@ export const Route = createFileRoute('/builder/_layout')({
   component: RouteComponent,
 });
 
-const StyledLink = styled(Link)(() => ({
-  textDecoration: 'none',
-  color: 'inherit',
-  display: 'flex',
-  alignItems: 'center',
-}));
 const LinkComponent = ({ children }: { children: ReactNode }) => (
-  <StyledLink
+  <HomeHeaderLink
     // data-umami-event="header-home-link"
     // data-umami-event-context={Context.Builder}
-    to="/account"
+    to="/home"
   >
     {children}
-  </StyledLink>
+  </HomeHeaderLink>
 );
 
 function RouteComponent() {
@@ -134,7 +127,16 @@ function RouteComponent() {
     >
       <MemberValidationBanner />
       <FilterItemsContextProvider>
-        <Outlet />
+        <Stack
+          id="toto"
+          width="100%"
+          height="100%"
+          maxWidth="xl"
+          p={2}
+          m="auto"
+        >
+          <Outlet />
+        </Stack>
       </FilterItemsContextProvider>
     </GraaspMain>
   );

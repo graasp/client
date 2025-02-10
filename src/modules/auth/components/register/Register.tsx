@@ -146,10 +146,7 @@ type RegisterProps = {
   };
 };
 
-const defaultRedirection = new URL(
-  '/account',
-  window.location.origin,
-).toString();
+const defaultRedirection = new URL('/home', window.location.origin).toString();
 
 export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
   const { t, i18n } = useTranslation(NS.Auth);
