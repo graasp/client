@@ -400,7 +400,7 @@ export const mockGetItemLoginSchemaType = (items: ItemForTest[]): void => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
       const item = items.find(({ id }) => itemId === id);
       if (
-        item.visibilities?.some(
+        item?.visibilities?.some(
           ({ type }) => type === ItemVisibilityType.Hidden,
         )
       ) {
