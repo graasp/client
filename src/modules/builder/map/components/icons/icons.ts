@@ -1,5 +1,4 @@
 import L from 'leaflet';
-import 'leaflet-easybutton';
 
 import currentMarker from './currentLocationMarker.svg';
 import markerIcon from './marker.svg';

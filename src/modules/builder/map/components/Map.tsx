@@ -5,8 +5,6 @@ import { Alert } from '@mui/material';
 
 import { ErrorBoundary } from '@sentry/react';
 import { LatLngTuple, type Map } from 'leaflet';
-import 'leaflet-easybutton/src/easy-button.css';
-import 'leaflet-geosearch/assets/css/leaflet.css';
 import 'leaflet/dist/leaflet.css';
 
 import {

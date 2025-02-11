@@ -7,8 +7,8 @@ import { Action } from '@graasp/sdk';
 
 import { format } from 'date-fns/format';
 import { intervalToDuration } from 'date-fns/intervalToDuration';
-import countBy from 'lodash/countBy';
-import groupBy from 'lodash/groupBy';
+import countBy from 'lodash.countby';
+import groupBy from 'lodash.groupby';
 import {
   Bar,
   CartesianGrid,
