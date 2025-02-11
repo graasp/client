@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "Erhalten Sie immer E-Mail-Benachrichtigungen",
   "DISABLE_EMAILS": "E-Mail-Benachrichtigungen deaktivieren",
-  "GENERAL_PAGE_WELCOME_TEXT": "Willkommen {{name}}",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "Um den Löschvorgang zu bestätigen, geben Sie unten „{{text}}“ ein:",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "löschen",
   "USERNAME_EMPTY_ERROR": "Das Feld darf nicht leer sein",

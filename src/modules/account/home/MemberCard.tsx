@@ -36,7 +36,7 @@ export function MemberCard(): JSX.Element | null {
         </Stack>
         <Stack>
           <Typography variant="h4" id={MEMBER_USERNAME_DISPLAY_ID}>
-            {t('GENERAL_PAGE_WELCOME_TEXT', { name: member.name })}
+            {member.name}
           </Typography>
 
           <Typography id={MEMBER_CREATED_AT_ID} variant="caption">

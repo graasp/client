@@ -15,7 +15,13 @@ export function MenuTabs() {
   const { t } = useTranslation(NS.Home, { keyPrefix: 'MENU' });
 
   return (
-    <Stack direction="row" gap={{ xs: 1, sm: 2 }} flexWrap="wrap">
+    <Stack
+      direction="row"
+      gap={{ xs: 1, sm: 2 }}
+      flexWrap="wrap"
+      justifyContent="flex-end"
+      width="100%"
+    >
       <MenuTab
         icon={<HomeIcon fontSize="" />}
         title={t('HOME')}

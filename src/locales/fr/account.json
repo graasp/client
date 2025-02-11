@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "Toujours recevoir les notifications par email",
   "DISABLE_EMAILS": "Désactiver les notifications par email",
-  "GENERAL_PAGE_WELCOME_TEXT": "Bienvenue {{name}}",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "Pour confirmer la suppression, tapez \"{{text}}\" ci-dessous :",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "supprimer",
   "USERNAME_EMPTY_ERROR": "Le champ ne peut pas être vide",

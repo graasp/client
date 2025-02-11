@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "تلقي دائما إشعارات البريد الإلكتروني",
   "DISABLE_EMAILS": "تعطيل إشعارات البريد الإلكتروني",
-  "GENERAL_PAGE_WELCOME_TEXT": "{{name}} مرحباً",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "لتأكيد الحذف، اكتب \"{{text}}\" أدناه:",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "يمسح",
   "USERNAME_EMPTY_ERROR": "لا يمكن أن يكون الحقل فارغاً",

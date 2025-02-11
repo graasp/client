@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "Ricevi sempre notifiche via e-mail",
   "DISABLE_EMAILS": "Disabilita le notifiche via e-mail",
-  "GENERAL_PAGE_WELCOME_TEXT": "Benvenuto {{name}}",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "Per confermare l'eliminazione, digita \"{{text}}\" di seguito:",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "Elimina",
   "USERNAME_EMPTY_ERROR": "Il campo non può essere vuoto",

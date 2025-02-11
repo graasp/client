@@ -7,7 +7,6 @@ import { createFileRoute } from '@tanstack/react-router';
 import { NS } from '@/config/constants';
 import { MenuTabs } from '@/modules/home/MenuTabs';
 
-import { MemberCard } from '~account/home/MemberCard';
 import { RecentItems } from '~account/home/recentItems/RecentItems';
 import { useItemSearch } from '~builder/components/item/ItemSearch';
 import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
@@ -29,7 +28,6 @@ function HomeRoute() {
 
   return (
     <Stack gap={4} alignItems="center">
-      <MemberCard />
       <MenuTabs />
       <Divider flexItem />
       <RecentItems />

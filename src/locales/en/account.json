@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "Always receive email notifications",
   "DISABLE_EMAILS": "Disable email notifications",
-  "GENERAL_PAGE_WELCOME_TEXT": "Welcome {{name}}",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "To confirm the deletion, type \"{{text}}\" below:",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "delete",
   "USERNAME_EMPTY_ERROR": "The field cannot be empty",
