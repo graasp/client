@@ -364,7 +364,6 @@
   "FLAG_REASON_DESCRIPTION": "Wählen Sie den Grund für die Meldung dieses Inhaltes aus",
   "FLAG_MODAL_TITLE": "Inhalt melden",
   "FLAG_MODAL_CONFIRM": "Melden",
-  "TUTORIALS": "Tutorials",
   "NEW_SHORT_LINK_BUTTON": "Neuer Kurzlink",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "Unterdrückung des Kurzlinks bestätigen?",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "Sie entfernen den Kurzlink {{shortLink}}. Möchten Sie fortfahren?",

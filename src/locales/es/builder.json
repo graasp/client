@@ -355,7 +355,6 @@
   "FLAG_REASON_DESCRIPTION": "Seleccione el motivo para marcar este elemento",
   "FLAG_MODAL_TITLE": "Artículo de bandera",
   "FLAG_MODAL_CONFIRM": "Bandera",
-  "TUTORIALS": "Tutoriales",
   "NEW_SHORT_LINK_BUTTON": "Nuevo enlace corto",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "¿Confirmar la supresión del enlace corto?",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "Estás eliminando el enlace corto {{shortLink}}, ¿quieres continuar?",

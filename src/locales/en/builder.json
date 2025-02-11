@@ -368,7 +368,6 @@
   "FLAG_REASON_DESCRIPTION": "Select reason for flagging this item",
   "FLAG_MODAL_TITLE": "Flag Item",
   "FLAG_MODAL_CONFIRM": "Flag",
-  "TUTORIALS": "Tutorials",
   "NEW_SHORT_LINK_BUTTON": "New short link",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "Confirm the suppression of the short link ?",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "You are removing the short link {{shortLink}}, do you want to continue ?",
@@ -529,5 +528,6 @@
   "TAGS_LEVEL_HELPERTEXT": "Example: elementary, high school, undergraduate",
   "TAGS_RESOURCE_TYPE_HELPERTEXT": "Example: article, video, quiz",
   "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Item type {{type}} could not be handled",
-  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item."
+  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item.",
+  "RETURN_HOME": "Return to Home"
 }
