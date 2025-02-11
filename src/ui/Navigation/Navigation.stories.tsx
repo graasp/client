@@ -12,8 +12,7 @@ import { CogIcon } from 'lucide-react';
 
 import { MOCK_MEMBER } from '../utils/fixtures.js';
 import ExtraItemsMenu from './ExtraItemsMenu.js';
-import HomeMenu from './HomeMenu.js';
-import { ItemMenu, ItemMenuProps, Navigation } from './Navigation.js';
+import { ItemMenuProps, Navigation } from './Navigation.js';
 
 const buildItem = (name: string): LocalFileItemType =>
   LocalFileItemFactory({
@@ -70,64 +69,12 @@ const folder = FolderItemFactory({
   creator: MOCK_MEMBER,
 });
 
-const menu = [
-  { name: 'Home', id: 'home', to: 'home' },
-  { name: 'Shared Items', id: 'shared', to: 'shared' },
-];
-
-export const HomeRoot = {
-  args: {
-    itemPath,
-    useChildren,
-
-    renderRoot: () => {
-      return (
-        <>
-          <HomeMenu selected={menu[0]} elements={menu} />
-          <ItemMenu
-            itemId={item.id}
-            useChildren={() => {
-              return {
-                data: [buildItem('Home item 1'), buildItem('Home item 2')],
-              } as UseChildrenHookType;
-            }}
-            itemPath="/itemPath"
-          />
-        </>
-      );
-    },
-  },
-
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    // 2 x Home
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(2);
-  },
-} satisfies Story;
-
 export const FolderWithParents = {
   args: {
     itemPath,
     useChildren,
     item: folder,
 
-    renderRoot: () => {
-      return (
-        <>
-          <HomeMenu selected={menu[0]} elements={menu} />
-          <ItemMenu
-            itemId={item.id}
-            useChildren={() => {
-              return {
-                data: [buildItem('Home item 1'), buildItem('Home item 2')],
-              } as UseChildrenHookType;
-            }}
-            itemPath={itemPath}
-          />
-        </>
-      );
-    },
     parents,
   },
 
@@ -154,22 +101,6 @@ export const FileWithParents = {
     useChildren,
     item,
 
-    renderRoot: () => {
-      return (
-        <>
-          <HomeMenu selected={menu[0]} elements={menu} />
-          <ItemMenu
-            itemId={item.id}
-            useChildren={() => {
-              return {
-                data: [buildItem('Home item 1'), buildItem('Home item 2')],
-              } as UseChildrenHookType;
-            }}
-            itemPath={itemPath}
-          />
-        </>
-      );
-    },
     parents,
   },
 
@@ -209,22 +140,6 @@ export const FolderWithParentsWithExtraItems = {
     useChildren,
     item: folder,
     maxItems: 10,
-    renderRoot: () => {
-      return (
-        <>
-          <HomeMenu selected={menu[0]} elements={menu} />
-          <ItemMenu
-            itemId={item.id}
-            useChildren={() => {
-              return {
-                data: [buildItem('Home item 1'), buildItem('Home item 2')],
-              } as UseChildrenHookType;
-            }}
-            itemPath={itemPath}
-          />
-        </>
-      );
-    },
     parents,
     children: extraItems,
   },
