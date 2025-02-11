@@ -36,7 +36,7 @@ export function ItemCard({ item }: Readonly<Props>): JSX.Element {
         width="100%"
       >
         <CardActionAreaLink
-          id={`recentItemCardAction-${item.id}`}
+          id={`bookmarkCardAction-${item.id}`}
           to="/builder/items/$itemId"
           params={{ itemId: itemId }}
           sx={{

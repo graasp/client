@@ -151,42 +151,28 @@ describe('Check member info', () => {
   });
 });
 
-describe('Recent items', () => {
+describe('Bookmarked items', () => {
   beforeEach(() => {
     cy.setUpApi({
       currentMember: MEMBER_WITH_AVATAR,
-      items: [shortcutItem, targetItem],
+      items: [targetItem],
+      bookmarkedItems: [
+        {
+          id: shortcutItem.id,
+          item: shortcutItem,
+          createdAt: shortcutItem.createdAt,
+        },
+      ],
     });
     cy.visit('/home');
     cy.wait('@getCurrentMember');
   });
 
-  it('Shortcut item links to target item', () => {
-    cy.get(`#recentItem-${shortcutItem.id}`).should('be.visible');
-    cy.get(`#recentItem-${targetItem.id}`).should('be.visible');
+  it('Shortcut item in bookmarks links to target item', () => {
+    cy.get(`#bookmark-${shortcutItem.id}`).should('be.visible');
 
     // card action on the shortcut directs to the target item
-    cy.get(`a#recentItemCardAction-${shortcutItem.id}`).click();
-    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
-
-    // builder link
-    cy.visit('/home');
-    cy.get(`a#recentItemBuilder-${shortcutItem.id}`).click();
+    cy.get(`a#bookmarkCardAction-${shortcutItem.id}`).click();
     cy.url().should('contain', `/builder/items/${targetItem.id}`);
-
-    // player link
-    cy.visit('/home');
-    cy.get(`a#recentItemPlayer-${shortcutItem.id}`).click();
-    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
-
-    // analytics link
-    cy.visit('/home');
-    cy.get(`a#recentItemAnalytics-${shortcutItem.id}`).click();
-    cy.url().should('contain', `/analytics/items/${targetItem.id}`);
-
-    // the target item directs to the target item
-    cy.visit('/home');
-    cy.get(`a#recentItemCardAction-${targetItem.id}`).click();
-    cy.url().should('contain', `/player/${targetItem.id}/${targetItem.id}`);
   });
 });
