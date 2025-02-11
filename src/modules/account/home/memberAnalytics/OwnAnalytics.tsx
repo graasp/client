@@ -5,7 +5,7 @@ import { Alert, Stack, Typography } from '@mui/material';
 
 import { format } from 'date-fns/format';
 import { formatISO } from 'date-fns/formatISO';
-import groupBy from 'lodash.groupBy';
+import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants';
 import { useMemberActions } from '@/query/hooks/action';

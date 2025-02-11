@@ -10,11 +10,11 @@ import { startOfDay } from 'date-fns/startOfDay';
 import { startOfMonth } from 'date-fns/startOfMonth';
 import { startOfWeek } from 'date-fns/startOfWeek';
 import { startOfYear } from 'date-fns/startOfYear';
-import countBy from 'lodash.countBy';
-import fromPairs from 'lodash.fromPairs';
-import groupBy from 'lodash.groupBy';
-import orderBy from 'lodash.orderBy';
-import toPairs from 'lodash.toPairs';
+import countBy from 'lodash.countby';
+import fromPairs from 'lodash.frompairs';
+import groupBy from 'lodash.groupby';
+import orderBy from 'lodash.orderby';
+import toPairs from 'lodash.topairs';
 import truncate from 'lodash.truncate';
 
 import { ITEM_NAME_MAX_LENGTH } from '@/config/constants';
