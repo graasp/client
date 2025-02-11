@@ -9,7 +9,7 @@ import { Divider, ListItemIcon, MenuItem, Typography } from '@mui/material';
 
 import { AccountType, CurrentAccount, redirect } from '@graasp/sdk';
 
-import { SettingsIcon } from 'lucide-react';
+import { CircleHelpIcon, SettingsIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 import { NS } from '@/config/constants.js';
@@ -115,6 +115,14 @@ export const UserSwitchWrapper = ({
               </Typography>
             </MenuItemLink>,
             <Divider key="divider" />,
+            <MenuItemLink key="help" to="/support">
+              <ListItemIcon>
+                <CircleHelpIcon />
+              </ListItemIcon>
+              <Typography variant="subtitle2">
+                {t('USER_SWITCH.NEED_HELP')}
+              </Typography>
+            </MenuItemLink>,
           ]
         : [];
 

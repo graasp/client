@@ -360,7 +360,6 @@
   "FLAG_REASON_DESCRIPTION": "Sélectionnez la raison du signalement de cet élément",
   "FLAG_MODAL_TITLE": "Signalez cet élément",
   "FLAG_MODAL_CONFIRM": "Signaler",
-  "TUTORIALS": "Tutoriels",
   "NEW_SHORT_LINK_BUTTON": "Nouveau lien rapide",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "Confirmez-vous la suppression du lien rapide ?",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "Vous êtes sur le point de supprimer le lien rapide {{shortLink}}, voulez-vous continuer ?",

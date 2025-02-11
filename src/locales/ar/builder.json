@@ -364,7 +364,6 @@
   "FLAG_REASON_DESCRIPTION": "حدد سبب وضع علامة على هذا العنصر",
   "FLAG_MODAL_TITLE": "إبلاغ عن العنصر",
   "FLAG_MODAL_CONFIRM": "إبلاغ",
-  "TUTORIALS": "دروس",
   "NEW_SHORT_LINK_BUTTON": "رابط قصير جديد",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "تأكيد قمع الارتباط القصير؟",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "أنت تقوم بإزالة الرابط القصير {{shortLink}}، هل تريد المتابعة؟",

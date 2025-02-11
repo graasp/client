@@ -64,6 +64,7 @@
     "PROFILE": "Profile",
     "SETTINGS": "Settings",
     "STORAGE": "Storage",
-    "SIGN_IN": "Sign In"
+    "SIGN_IN": "Sign In",
+    "NEED_HELP": "Need help?"
   }
 }

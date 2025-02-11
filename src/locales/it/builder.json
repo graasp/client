@@ -365,7 +365,6 @@
   "FLAG_REASON_DESCRIPTION": "Seleziona il motivo per cui segnalare questo elemento",
   "FLAG_MODAL_TITLE": "Elemento segnalato",
   "FLAG_MODAL_CONFIRM": "Segnala",
-  "TUTORIALS": "Tutorial",
   "NEW_SHORT_LINK_BUTTON": "Nuovo link breve",
   "CONFIRM_DELETE_SHORT_LINK_TITLE": "Confermi l'eliminazione del link breve?",
   "CONFIRM_DELETE_SHORT_LINK_MSG": "Stai rimuovendo il link breve {{shortLink}}, vuoi continuare?",

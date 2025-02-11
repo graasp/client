@@ -39,7 +39,6 @@ export type NavigationProps = {
   id?: string;
   item?: DiscriminatedItem;
   parents?: DiscriminatedItem[];
-  renderRoot?: (item?: DiscriminatedItem) => JSX.Element | null;
   sx?: SxProps;
   useChildren: UseChildrenType;
   maxItems?: number;
@@ -59,7 +58,6 @@ export function Navigation({
   id,
   item,
   parents,
-  renderRoot,
   sx,
   useChildren,
   buildMenuId,
@@ -75,9 +73,6 @@ export function Navigation({
       aria-label="breadcrumb"
       style={{ backgroundColor }}
     >
-      <Stack direction="row" alignItems="center" justifyContent="center">
-        {renderRoot?.(item)}
-      </Stack>
       {item?.id && parents && (
         <ParentsNavigation
           useChildren={useChildren}

@@ -14,7 +14,6 @@ import {
 import { AccountType } from '@graasp/sdk';
 
 import {
-  BookOpenTextIcon,
   BookmarkIcon,
   HomeIcon,
   LibraryBigIcon,
@@ -26,22 +25,18 @@ import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
 import { DRAWER_WIDTH } from '@/ui/constants';
 
-import { TUTORIALS_LINK } from '../../constants';
-import { BUILDER } from '../../langs';
-
 const ResourceLinks = () => {
   const { t } = useTranslation(NS.Builder);
   return (
     <ListItem disablePadding>
       <ListItemButton
-        href={TUTORIALS_LINK}
-        target="_blank"
+        href={'/home'}
         // data-umami-event="sidebar-tutorials"
       >
         <ListItemIcon>
-          <BookOpenTextIcon />
+          <HomeIcon />
         </ListItemIcon>
-        <ListItemText>{t(BUILDER.TUTORIALS)}</ListItemText>
+        <ListItemText>{t('RETURN_HOME')}</ListItemText>
       </ListItemButton>
     </ListItem>
   );
