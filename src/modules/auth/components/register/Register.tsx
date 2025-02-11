@@ -146,8 +146,6 @@ type RegisterProps = {
   };
 };
 
-const defaultRedirection = new URL('/home', window.location.origin).toString();
-
 export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
   const { t, i18n } = useTranslation(NS.Auth);
   const { t: translateCommon } = useTranslation(NS.Common, {
@@ -198,7 +196,7 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
           name,
           email,
           captcha: token,
-          url: search.url ?? defaultRedirection,
+          url: search.url,
           lang: i18n.language,
           enableSaveActions: inputs.enableSaveActions,
         }));

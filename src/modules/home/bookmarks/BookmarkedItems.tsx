@@ -2,6 +2,8 @@ import { type JSX, type ReactNode } from 'react';
 
 import { Alert, Grid2 as Grid, Skeleton } from '@mui/material';
 
+import { v4 } from 'uuid';
+
 import { BOOKMARKED_ITEMS_ID } from '@/config/selectors';
 import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 
@@ -10,14 +12,9 @@ import { ItemCard } from './ItemCard';
 const GridWrapper = ({ children }: { children: ReactNode }): JSX.Element => (
   <Grid size={{ xs: 12, sm: 4, md: 3, xl: 2 }}>{children}</Grid>
 );
-const placeholderItems = [
-  { id: '6a704d93-3f00-4ff6-a142-77bf4192aef6' },
-  { id: '8507cea8-a95f-4650-8cdd-d4065488f1dc' },
-  { id: 'dbb1a033-c056-4753-8fd4-a4691581f3ad' },
-  { id: '8d8ad96d-a7b5-40d9-9a51-1472a126e35e' },
-  { id: '9858060a-0a22-457e-9f64-0d0f61360a0a' },
-  { id: '652fa7f0-1653-4baf-8a00-e533dafc6655' },
-];
+
+// mock data for placeholder skeleton
+const placeholderItems = Array(6).map(() => ({ id: v4() }));
 
 export function BookmarkedItems() {
   const { data: bookmarkedItems, isPending, isError } = useBookmarkedItems();
@@ -61,10 +58,11 @@ export function BookmarkedItems() {
   if (isError) {
     return (
       <Alert severity="error">
-        There was an issue retrieving your favorite items.
+        There was an issue retrieving your bookmarked items.
       </Alert>
     );
   }
 
   // else we have nothing to show
+  return null;
 }
