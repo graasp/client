@@ -31,6 +31,7 @@ const CURRENT_MEMBER = {
 
 export const SignedIn = {
   args: {
+    buttonId: 'popup-button',
     signOutText: 'Sign Out',
     currentMember: CURRENT_MEMBER,
     avatar: (
@@ -46,12 +47,9 @@ export const SignedIn = {
   },
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
-    const { currentMember } = args;
-    const member = currentMember;
 
     // open dialog
-    const nameText = canvas.getByLabelText(member.name);
-    await userEvent.click(nameText);
+    await userEvent.click(canvas.getByRole('button'));
 
     const menuCanvas = within(screen.getByRole('menu'));
 
@@ -60,8 +58,7 @@ export const SignedIn = {
     expect(menuCanvas.getByText('Settings')).toBeInTheDocument();
 
     // sign out button
-    const signOutButton = menuCanvas.getByText('Sign Out');
-    expect(signOutButton).toBeInTheDocument();
+    expect(menuCanvas.getByText(args.signOutText)).toBeInTheDocument();
   },
 } satisfies Story;
 
@@ -80,20 +77,18 @@ export const Guest = {
       />
     ),
   },
-  play: async ({ args, canvasElement }) => {
+  play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement);
 
     // open dialog
-    const nameText = canvas.getByLabelText(args.currentMember.name);
-    await userEvent.click(nameText);
+    await userEvent.click(canvas.getByRole('button'));
 
     const menuCanvas = within(screen.getByRole('menu'));
 
-    // have 2 menu items - do not show profile button
-    expect(menuCanvas.getAllByRole('menuitem')).toHaveLength(2);
+    // only has the signout menu item
+    expect(menuCanvas.getAllByRole('menuitem')).toHaveLength(1);
 
     // sign out button
-    const signOutButton = menuCanvas.getByText('Sign Out');
-    expect(signOutButton).toBeInTheDocument();
+    expect(menuCanvas.getByText(args.signOutText)).toBeInTheDocument();
   },
 } satisfies Story;
