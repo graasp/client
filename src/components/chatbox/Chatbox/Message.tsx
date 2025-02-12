@@ -18,7 +18,7 @@ import {
   MAX_USERNAME_LENGTH,
 } from '../constants.js';
 import { messageIdCyWrapper } from '../selectors.js';
-import MessageBody from './MessageBody.js';
+import { MessageBody } from './MessageBody.js';
 
 const MessageWrapper = styled(Box)(({ theme }) => ({
   background: colors.grey[100],

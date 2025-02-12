@@ -1,19 +1,8 @@
 import { PartialMemberDisplay } from './types.js';
 
-/**
- * @deprecated This function is vulnerable to usernames with special characters.
- * Please use the new `getIdMention()`
- * @param textContent text in which to search for a mention
- * @returns a match or null
- */
-export const getMention = (textContent: string): RegExpMatchArray | null =>
-  textContent.match(
-    /<!@(?<name>[\s\w]+)>\[(?<id>[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12})]/i,
-  );
-
 export const getIdMention = (textContent: string): RegExpMatchArray | null =>
-  textContent.match(
-    /<!@(?<id>[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12})>/i,
+  /<!@(?<id>[\da-f]{8}-[\da-f]{4}-4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12})>/i.exec(
+    textContent,
   );
 
 export const normalizeMentions = (message: string): string => {
