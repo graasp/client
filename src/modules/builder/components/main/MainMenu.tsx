@@ -63,7 +63,6 @@ export function MainMenu(): JSX.Element | null {
             icon={<HomeIcon />}
             to="/home"
           />
-          ;
         </Box>
       </Stack>
     );
