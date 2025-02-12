@@ -73,3 +73,8 @@ export const memberActionsOptions = (args: {
     queryKey: memberKeys.current().actions(args),
     queryFn: () => Api.getMemberActions(args),
   });
+
+export const useMemberActions = (args: {
+  startDate: string;
+  endDate: string;
+}) => useQuery(memberActionsOptions(args));
