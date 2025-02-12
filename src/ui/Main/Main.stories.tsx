@@ -11,7 +11,7 @@ import MainMenu from '@/ui/MainMenu/MainMenu.js';
 import MenuItem from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories.js';
-import * as UserSwitchStories from '../UserSwitch/UserSwitch.stories.js';
+import * as UserSwitchStories from '../UserSwitch.stories.js';
 import Main from './Main.js';
 
 const { SignedIn } = composeStories(UserSwitchStories);

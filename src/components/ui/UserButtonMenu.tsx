@@ -1,26 +1,22 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Stack } from '@mui/material';
+
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
-import { UserSwitchWrapper as GraaspUserSwitch } from '@/ui/UserSwitch/UserSwitchWrapper';
+import UserSwitch from '@/ui/UserSwitch';
 
+import { ButtonLink } from './ButtonLink';
 import LanguageSwitch from './LanguageSwitch';
 import MemberAvatar from './MemberAvatar';
 
-type Props = {
-  ButtonContent?: JSX.Element;
-};
-
-export function UserButtonMenu({
-  ButtonContent,
-}: Readonly<Props>): JSX.Element | null {
-  const { i18n } = useTranslation(NS.Account);
+export function UserButtonMenu(): JSX.Element | null {
+  const { i18n, t } = useTranslation(NS.Common, { keyPrefix: 'USER_SWITCH' });
   const { isAuthenticated, user, logout } = useAuth();
 
-  const { data: member, isLoading } = hooks.useCurrentMember();
   const { mutate } = mutations.useEditCurrentMember();
 
   const handleLanguageChange = (lang: string) => {
@@ -30,24 +26,22 @@ export function UserButtonMenu({
 
   if (isAuthenticated) {
     return (
-      <>
+      <Stack direction="row" gap={2}>
         <LanguageSwitch
           lang={i18n.languages[0]}
           onChange={handleLanguageChange}
         />
 
-        <GraaspUserSwitch
+        <UserSwitch
           buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
-          ButtonContent={ButtonContent}
           signOut={logout}
-          currentMember={member}
-          isCurrentMemberLoading={isLoading}
+          currentMember={user}
           avatar={<MemberAvatar id={user.id} />}
-          redirectPath="/auth/login"
-          userMenuItems={[]}
+          dataUmamiEvent="user-menu"
+          signOutText={t('LOG_OUT')}
         />
-      </>
+      </Stack>
     );
   }
-  return null;
+  return <ButtonLink to="/auth/login">{t('LOG_IN')}</ButtonLink>;
 }
