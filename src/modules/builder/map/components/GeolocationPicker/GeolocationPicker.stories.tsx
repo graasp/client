@@ -9,7 +9,6 @@ import { MOCK_USE_SUGGESTIONS } from '../../fixture';
 import GeolocationPicker from './GeolocationPicker';
 
 const meta = {
-  title: 'GeolocationPicker',
   component: GeolocationPicker,
 
   argTypes: {

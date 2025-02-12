@@ -1,6 +1,6 @@
 import { UUID } from '@graasp/sdk';
 
-import { useQuery } from '@tanstack/react-query';
+import { queryOptions, useQuery } from '@tanstack/react-query';
 
 import * as Api from '../api/action.js';
 import { UndefinedArgument } from '../config/errors.js';
@@ -65,11 +65,11 @@ export const useAggregateActions = <T extends (keyof MappedAggregateBy)[]>(
   });
 };
 
-export const useMemberActions = (args: {
+export const memberActionsOptions = (args: {
   startDate: string;
   endDate: string;
 }) =>
-  useQuery({
+  queryOptions({
     queryKey: memberKeys.current().actions(args),
     queryFn: () => Api.getMemberActions(args),
   });

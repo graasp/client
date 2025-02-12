@@ -6,7 +6,6 @@ import { Cog, Home, Snowflake } from 'lucide-react';
 import { MenuTab } from './MenuTab';
 
 const meta = {
-  title: 'MenuTab',
   component: MenuTab,
 
   argTypes: {

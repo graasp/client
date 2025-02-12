@@ -12,7 +12,6 @@ import { MOCK_USE_SUGGESTIONS } from '../fixture';
 import { MapComponent } from './Map';
 
 const meta = {
-  title: 'Map',
   component: MapComponent,
   args: {
     viewItem: fn(),
@@ -415,7 +414,7 @@ export const DefaultMap = {
   },
   decorators: [
     (Story) => (
-      <div style={{ margin: 'auto', width: '95vw', height: '95vh' }}>
+      <div style={{ margin: 'auto', width: '100vw', height: '95vh' }}>
         <Story />
       </div>
     ),
