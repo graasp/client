@@ -60,7 +60,6 @@
   },
   "ALWAYS_RECEIVE_EMAILS": "Siempre recibe notificaciones por correo.",
   "DISABLE_EMAILS": "Desactivar notificaciones por correo electrónico",
-  "GENERAL_PAGE_WELCOME_TEXT": "Bienvenido {{name}}",
   "PROFILE_DELETE_TYPE_CONFIRMATION_TEXT": "Para confirmar la eliminación, escribe \"{{text}}\" a continuación:",
   "PROFILE_DELETE_CONFIRMATION_VALUE": "eliminar",
   "USERNAME_EMPTY_ERROR": "El campo no puede estar vacío.",

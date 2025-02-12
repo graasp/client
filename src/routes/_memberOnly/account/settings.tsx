@@ -7,6 +7,7 @@ import { ScreenLayout } from '@/components/layout/ScreenLayout';
 import { NS } from '@/config/constants';
 import { SETTINGS_PAGE_CONTAINER_ID } from '@/config/selectors';
 
+import { MemberCard } from '~account/home/MemberCard';
 import { DeleteMemberSection } from '~account/settings/DeleteMemberSection';
 import { ExportMemberData } from '~account/settings/ExportMemberData';
 import { Password } from '~account/settings/password/Password';
@@ -26,6 +27,7 @@ function SettingsRoute(): JSX.Element {
       id={SETTINGS_PAGE_CONTAINER_ID}
       title={t('MAIN_MENU.SETTINGS')}
     >
+      <MemberCard />
       <PersonalInformation />
       <Password />
       <PublicProfile />

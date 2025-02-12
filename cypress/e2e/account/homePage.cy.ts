@@ -86,7 +86,7 @@ describe('Upload Avatar', () => {
   beforeEach(() => {
     helpers = new TestHelper({ currentMember: MEMBERS.BOB });
     helpers.setupServer();
-    cy.visit('/home');
+    cy.visit('/account/settings');
   });
 
   it('Upload a new thumbnail', () => {
@@ -108,7 +108,7 @@ describe('Upload Avatar', () => {
 describe('Image is not set', () => {
   beforeEach(() => {
     cy.setUpApi({ currentMember: MEMBERS.BOB });
-    cy.visit('/home');
+    cy.visit('/account/settings');
   });
 
   it('Image is not set', () => {
@@ -125,7 +125,7 @@ describe('Check member info', () => {
     cy.setUpApi({
       currentMember: MEMBER_WITH_AVATAR,
     });
-    cy.visit('/home');
+    cy.visit('/account/settings');
     cy.wait('@getCurrentMember');
   });
 
