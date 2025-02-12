@@ -3,7 +3,6 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  Box,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -80,7 +79,12 @@ export function FolderCreateForm({
 
   return (
     <FormProvider {...methods}>
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        component="form"
+        direction="column"
+        onSubmit={handleSubmit(onSubmit)}
+        flex={1}
+      >
         <DialogTitle>
           {translateBuilder('CREATE_ITEM_NEW_FOLDER_TITLE')}
         </DialogTitle>
@@ -116,7 +120,7 @@ export function FolderCreateForm({
             {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
-      </Box>
+      </Stack>
     </FormProvider>
   );
 }
