@@ -3,7 +3,7 @@ import ReactMarkdown, { ExtraProps } from 'react-markdown';
 
 import { styled } from '@mui/material';
 
-import { Highlight, Language, themes } from 'prism-react-renderer';
+import { Highlight, themes } from 'prism-react-renderer';
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 
@@ -14,7 +14,7 @@ import {
 } from '../constants.js';
 import { useCurrentMemberContext } from '../context/CurrentMemberContext.js';
 import { useMessagesContext } from '../context/MessagesContext.js';
-import { getIdMention, getMention } from '../utils.js';
+import { getIdMention } from '../utils.js';
 
 const StyledReactMarkdown = styled(ReactMarkdown)(({ theme }) => ({
   fontFamily: theme.typography.fontFamily,
@@ -84,84 +84,78 @@ type Props = {
   messageBody: string;
 };
 
-const MessageBody = ({ messageBody }: Props) => {
+function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
+  const { className: language, children, ...rest } = props;
+
   const currentMember = useCurrentMemberContext();
   const { members = [] } = useMessagesContext();
 
-  function code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
-    const { className: language, children, ...rest } = props;
+  const match = /language-(\w+)/.exec(language ?? '');
+  const mentionText = String(children).replace(/\n$/, '');
+  // try to match a legacy mention
+  const mention = getIdMention(mentionText);
+  if (mention?.groups) {
+    const userId = mention.groups?.id;
+    const userName =
+      [...members, ALL_MEMBERS_MEMBER].find((m) => m.id === userId)?.name ??
+      UNKNOWN_USER_NAME;
 
-    const match = /language-(\w+)/.exec(language || '');
-    const mentionText = String(children).replace(/\n$/, '');
-    // try to match a legacy mention
-    const legacyMention = getMention(mentionText);
-    const mention = getIdMention(mentionText);
-    if (
-      (legacyMention && legacyMention.groups) ||
-      (mention && mention.groups)
-    ) {
-      const userId = mention?.groups?.id || legacyMention?.groups?.id;
-      const userName =
-        [...members, ALL_MEMBERS_MEMBER].find((m) => m.id === userId)?.name ||
-        UNKNOWN_USER_NAME;
-
-      return (
-        <span
-          style={{
-            ...((userId === currentMember?.id || userId === ALL_MEMBERS_ID) && {
-              backgroundColor: '#e3c980',
-            }),
-            fontWeight: 'bold',
-          }}
-        >
-          @{userName}
-        </span>
-      );
-    }
-    return match ? (
-      <Highlight
-        theme={themes.vsLight}
-        code={String(children).replace(/\n$/, '')}
-        language={match[1] as Language}
-        {...props}
+    return (
+      <span
+        style={{
+          ...((userId === currentMember?.id || userId === ALL_MEMBERS_ID) && {
+            backgroundColor: '#e3c980',
+          }),
+          fontWeight: 'bold',
+        }}
       >
-        {({ className, tokens, getLineProps, getTokenProps }): JSX.Element => (
-          <div className={className}>
-            {tokens.map((line, i) => (
-              <div
-                {...getLineProps({
-                  line,
-                  key: i,
-                })}
-              >
-                {line.map((token, key) => (
-                  <span
-                    {...getTokenProps({
-                      token,
-                      key,
-                    })}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        )}
-      </Highlight>
-    ) : (
-      <code className={language} {...rest}>
-        {children}
-      </code>
+        @{userName}
+      </span>
     );
   }
+  return match ? (
+    <Highlight
+      theme={themes.vsLight}
+      code={String(children).replace(/\n$/, '')}
+      language={match[1]}
+      {...props}
+    >
+      {({ className, tokens, getLineProps, getTokenProps }): JSX.Element => (
+        <div className={className}>
+          {tokens.map((line, i) => (
+            <div
+              {...getLineProps({
+                line,
+                key: i,
+              })}
+            >
+              {line.map((token, key) => (
+                <span
+                  {...getTokenProps({
+                    token,
+                    key,
+                  })}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </Highlight>
+  ) : (
+    <code className={language} {...rest}>
+      {children}
+    </code>
+  );
+}
 
+export function MessageBody({ messageBody }: Readonly<Props>) {
   return (
     <StyledReactMarkdown
       remarkPlugins={[remarkGfm, remarkBreaks]}
-      components={{ code }}
+      components={{ code: Code }}
     >
       {messageBody}
     </StyledReactMarkdown>
   );
-};
-
-export default MessageBody;
+}

@@ -24,7 +24,7 @@ import { useAuth } from '@/AuthContext.js';
 import { NS } from '@/config/constants.js';
 import { mutations } from '@/config/queryClient.js';
 
-import MessageBody from '../Chatbox/MessageBody.js';
+import { MessageBody } from '../Chatbox/MessageBody.js';
 import { ConfirmationDialog } from './ConfirmationDialog.js';
 
 const StyledRow = styled(TableRow)({
