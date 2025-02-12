@@ -35,7 +35,6 @@ import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 describe('Mention Mutations', () => {
   const mentionId = v4();
   const account = AccountFactory();
-  const memberId = account.id;
   const currentMemberRoute = `/${buildGetCurrentMemberRoute()}`;
   const key = buildMentionKey();
   const MENTIONS = buildMemberMentions();
@@ -83,7 +82,6 @@ describe('Mention Mutations', () => {
 
         await act(async () => {
           mockedMutation.mutate({
-            memberId,
             id: mentionId,
             status: MentionStatus.Read,
           });
@@ -118,7 +116,6 @@ describe('Mention Mutations', () => {
 
         await act(async () => {
           mockedMutation.mutate({
-            memberId,
             id: mentionId,
             status: MentionStatus.Read,
           });
@@ -310,7 +307,6 @@ describe('Mention Mutations', () => {
 
         await act(async () => {
           mockedMutation.mutate({
-            memberId,
             id: mentionId,
             status: MentionStatus.Read,
           });
