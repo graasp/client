@@ -36,7 +36,7 @@ function RouteComponent(): JSX.Element {
           <title>{item.name}</title>
         </Helmet>
         <Stack direction="row" className={ITEM_MAIN_CLASS} height="100%">
-          <Stack p={2} width="100%">
+          <Stack p={2} width="100%" maxWidth="xl" mx="auto">
             <ItemHeader
               showNavigation
               isChatboxOpen={isChatboxOpen}

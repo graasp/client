@@ -1,13 +1,7 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Container,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { PublicationStatus } from '@graasp/sdk';
 
@@ -144,33 +138,25 @@ const ItemPublishTab = (): JSX.Element | null => {
     </Stack>
   );
 
-  const buildView = () => {
-    if (
-      !publicationStatus ||
-      publicationStatus === PublicationStatus.ItemTypeNotAllowed
-    ) {
-      return buildPublicationStack();
-    }
-
-    return (
-      <Stack direction={{ xs: 'column', md: 'row' }} gap={6}>
-        {buildPreviewSection({ order: { xs: 1, md: 0 } })}
-        {isMobile ? (
-          <>
-            {buildPublicationHeader({ order: { xs: 0 } })}
-            {buildPublicationSection({ order: { xs: 2 } })}
-          </>
-        ) : (
-          buildPublicationStack()
-        )}
-      </Stack>
-    );
-  };
+  if (
+    !publicationStatus ||
+    publicationStatus === PublicationStatus.ItemTypeNotAllowed
+  ) {
+    return buildPublicationStack();
+  }
 
   return (
-    <Container disableGutters sx={{ mt: 2 }}>
-      {buildView()}
-    </Container>
+    <Stack direction={{ xs: 'column', md: 'row' }} gap={6}>
+      {buildPreviewSection({ order: { xs: 1, md: 0 } })}
+      {isMobile ? (
+        <>
+          {buildPublicationHeader({ order: { xs: 0 } })}
+          {buildPublicationSection({ order: { xs: 2 } })}
+        </>
+      ) : (
+        buildPublicationStack()
+      )}
+    </Stack>
   );
 };
 

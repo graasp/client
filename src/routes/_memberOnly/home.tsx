@@ -6,8 +6,8 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { MenuTabs } from '@/modules/home/MenuTabs';
+import { BookmarkedItems } from '@/modules/home/bookmarks/BookmarkedItems';
 
-import { RecentItems } from '~account/home/recentItems/RecentItems';
 import { useItemSearch } from '~builder/components/item/ItemSearch';
 import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
 import NewItemButton from '~builder/components/main/NewItemButton';
@@ -29,8 +29,7 @@ function HomeRoute() {
   return (
     <Stack gap={4} alignItems="center">
       <MenuTabs />
-      <Divider flexItem />
-      <RecentItems />
+      <BookmarkedItems />
       <Divider flexItem />
       <BuilderPageLayout
         title={t('MY_GRAASP')}

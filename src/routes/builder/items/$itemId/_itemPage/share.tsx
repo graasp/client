@@ -1,13 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  Alert,
-  Box,
-  Container,
-  Divider,
-  Stack,
-  Typography,
-} from '@mui/material';
+import { Alert, Box, Divider, Stack, Typography } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
@@ -38,45 +31,43 @@ function RouteComponent() {
   const { data: memberships } = hooks.useItemMemberships(itemId);
 
   return (
-    <Container disableGutters component="div">
-      <Stack gap={2} mb={5}>
-        <Box>
-          <Typography variant="h5">
-            {translateBuilder('SHARING_TITLE')}
-          </Typography>
-          <ShortLinksRenderer
-            itemId={itemId}
-            canAdminShortLink={Boolean(memberships && canAdmin)}
-          />
-        </Box>
-        <Divider />
-        {user?.type === AccountType.Individual ? (
-          <>
-            <Stack gap={2}>
-              <Typography variant="h6">
-                {translateBuilder('ITEM_SETTINGS_VISIBILITY_TITLE')}
-              </Typography>
-              <DeleteItemLoginSchemaButton itemId={itemId} />
-              {item?.hidden ? (
-                <Alert
-                  id={VISIBILITY_HIDDEN_ALERT_ID}
-                  sx={{ my: 1 }}
-                  severity="info"
-                >
-                  {translateBuilder(
-                    'ITEM_SETTINGS_VISIBILITY_HIDDEN_INFORMATION',
-                  )}
-                </Alert>
-              ) : (
-                <VisibilitySelect item={item} edit={canAdmin} />
-              )}
-              <HideSettingCheckbox item={item} />
-            </Stack>
-            <Divider />
-          </>
-        ) : null}
-        <MembershipTabs />
-      </Stack>
-    </Container>
+    <Stack gap={2} mb={5}>
+      <Box>
+        <Typography variant="h5">
+          {translateBuilder('SHARING_TITLE')}
+        </Typography>
+        <ShortLinksRenderer
+          itemId={itemId}
+          canAdminShortLink={Boolean(memberships && canAdmin)}
+        />
+      </Box>
+      <Divider />
+      {user?.type === AccountType.Individual ? (
+        <>
+          <Stack gap={2}>
+            <Typography variant="h6">
+              {translateBuilder('ITEM_SETTINGS_VISIBILITY_TITLE')}
+            </Typography>
+            <DeleteItemLoginSchemaButton itemId={itemId} />
+            {item?.hidden ? (
+              <Alert
+                id={VISIBILITY_HIDDEN_ALERT_ID}
+                sx={{ my: 1 }}
+                severity="info"
+              >
+                {translateBuilder(
+                  'ITEM_SETTINGS_VISIBILITY_HIDDEN_INFORMATION',
+                )}
+              </Alert>
+            ) : (
+              <VisibilitySelect item={item} edit={canAdmin} />
+            )}
+            <HideSettingCheckbox item={item} />
+          </Stack>
+          <Divider />
+        </>
+      ) : null}
+      <MembershipTabs />
+    </Stack>
   );
 }

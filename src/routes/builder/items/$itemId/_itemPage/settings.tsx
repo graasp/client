@@ -1,4 +1,4 @@
-import { Container, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import { Navigate, createFileRoute } from '@tanstack/react-router';
 
@@ -23,17 +23,15 @@ function RouteComponent() {
 
   if (canWrite) {
     return (
-      <Container disableGutters sx={{ mt: 2, mb: 4 }}>
-        <Stack gap={4}>
-          <ThumbnailSetting item={item} />
-          <ItemMetadataContent />
-          <CustomizedTagsSettings item={item} />
-          <ItemSettingsProperties item={item} />
-          <AdminChatSettings item={item} />
-          <ItemLicenseSettings />
-          <GeolocationPicker item={item} />
-        </Stack>
-      </Container>
+      <Stack gap={4} mb={4}>
+        <ThumbnailSetting item={item} />
+        <ItemMetadataContent />
+        <CustomizedTagsSettings item={item} />
+        <ItemSettingsProperties item={item} />
+        <AdminChatSettings item={item} />
+        <ItemLicenseSettings />
+        <GeolocationPicker item={item} />
+      </Stack>
     );
   }
 
