@@ -1,15 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Stack,
-} from '@mui/material';
+import { Box, List, Stack } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
@@ -23,24 +15,8 @@ import {
 import { useAuth } from '@/AuthContext';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
+import { NAVIGATION_HOME_ID } from '@/config/selectors';
 import { DRAWER_WIDTH } from '@/ui/constants';
-
-const ResourceLinks = () => {
-  const { t } = useTranslation(NS.Builder);
-  return (
-    <ListItem disablePadding>
-      <ListItemButton
-        href={'/home'}
-        // data-umami-event="sidebar-tutorials"
-      >
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText>{t('RETURN_HOME')}</ListItemText>
-      </ListItemButton>
-    </ListItem>
-  );
-};
 
 export function MainMenu(): JSX.Element | null {
   const { t } = useTranslation(NS.Builder, { keyPrefix: 'MENU' });
@@ -81,7 +57,13 @@ export function MainMenu(): JSX.Element | null {
           ) : null}
         </List>
         <Box>
-          <ResourceLinks />
+          <MainMenuItem
+            id={NAVIGATION_HOME_ID}
+            text={t('RETURN_HOME')}
+            icon={<HomeIcon />}
+            to="/home"
+          />
+          ;
         </Box>
       </Stack>
     );
