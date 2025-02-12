@@ -1,5 +1,5 @@
 import { JSX, ReactNode, Suspense, lazy, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 
 import { CssBaseline, Direction, ThemeProvider } from '@mui/material';
@@ -8,13 +8,20 @@ import rtlPlugin from '@graasp/stylis-plugin-rtl';
 
 import createCache, { EmotionCache } from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
+import { QueryClient } from '@tanstack/react-query';
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 import { Meta, Scripts } from '@tanstack/start';
+import i18n from 'i18next';
 import { prefixer } from 'stylis';
 
-import { AuthContextType, AuthProvider } from '@/AuthContext';
+import {
+  AuthContextType,
+  AuthProvider,
+  currentMemberOptions,
+} from '@/AuthContext';
 import { DefaultCatchBoundary } from '@/components/DefaultCatchBoundary';
 import { NotFoundComponent } from '@/components/NotFoundComponent';
+import '@/config/i18n';
 import { ReactQueryDevtools } from '@/config/queryClient';
 import { theme } from '@/ui/theme';
 
@@ -22,7 +29,17 @@ import { PreviewContextProvider } from '~landing/preview/PreviewModeContext';
 
 import appCss from '../app.css?url';
 
-export const Route = createRootRouteWithContext<{ auth: AuthContextType }>()({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+  auth: AuthContextType;
+}>()({
+  beforeLoad: async ({ context }) => {
+    await context.queryClient.prefetchQuery(currentMemberOptions);
+    const member = context.queryClient.getQueryData(
+      currentMemberOptions.queryKey,
+    );
+    return { auth: { isAuthenticated: Boolean(member) } };
+  },
   head: () => ({
     meta: [
       {
@@ -100,20 +117,22 @@ function RootDocument() {
         <Meta />
       </head>
       <body>
-        <ThemeWrapper>
-          <CssBaseline />
-          <AuthProvider>
-            <ToastContainer stacked position="bottom-left" />
-            <PreviewContextProvider>
-              <Outlet />
-            </PreviewContextProvider>
-          </AuthProvider>
-        </ThemeWrapper>
-        {import.meta.env.MODE !== 'test' && <ReactQueryDevtools />}
-        <Suspense>
-          <TanStackRouterDevtools />
-        </Suspense>
-        <Scripts />
+        <I18nextProvider i18n={i18n.cloneInstance()}>
+          <ThemeWrapper>
+            <CssBaseline />
+            <AuthProvider>
+              <ToastContainer stacked position="bottom-left" />
+              <PreviewContextProvider>
+                <Outlet />
+              </PreviewContextProvider>
+            </AuthProvider>
+          </ThemeWrapper>
+          {import.meta.env.MODE !== 'test' && <ReactQueryDevtools />}
+          <Suspense>
+            <TanStackRouterDevtools />
+          </Suspense>
+          <Scripts />
+        </I18nextProvider>
       </body>
     </html>
   );

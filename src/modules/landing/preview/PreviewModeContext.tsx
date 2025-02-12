@@ -7,6 +7,8 @@ import {
   useState,
 } from 'react';
 
+import { isServer } from '@tanstack/react-query';
+
 const PREVIEW_STORAGE_KEY = 'graasp-preview';
 
 type PreviewContextType = {
@@ -19,10 +21,13 @@ const PreviewContext = createContext<PreviewContextType>({
 });
 
 const isPreviewEnabled = () => {
-  // only check if the element is present, value is not checked for the moment
-  // maybe if we extend the feature later we will need to
-  const isPresent = localStorage.getItem(PREVIEW_STORAGE_KEY) != null;
-  return isPresent;
+  if (!isServer) {
+    // only check if the element is present, value is not checked for the moment
+    // maybe if we extend the feature later we will need to
+    const isPresent = localStorage.getItem(PREVIEW_STORAGE_KEY) != null;
+    return isPresent;
+  }
+  return false;
 };
 
 export function PreviewContextProvider({
@@ -45,12 +50,14 @@ export function PreviewContextProvider({
   const value = useMemo(
     () => ({
       togglePreview: () => {
-        if (isPreviewEnabled()) {
-          window.localStorage.removeItem(PREVIEW_STORAGE_KEY);
-          setIsEnabled(false);
-        } else {
-          window.localStorage.setItem(PREVIEW_STORAGE_KEY, 'enabled');
-          setIsEnabled(true);
+        if (!isServer) {
+          if (isPreviewEnabled()) {
+            window.localStorage.removeItem(PREVIEW_STORAGE_KEY);
+            setIsEnabled(false);
+          } else {
+            window.localStorage.setItem(PREVIEW_STORAGE_KEY, 'enabled');
+            setIsEnabled(true);
+          }
         }
       },
       isEnabled,

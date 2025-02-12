@@ -1,9 +1,13 @@
 import { Schema, ValidateEnv } from '@julr/vite-plugin-validate-env';
 import { defineConfig } from '@tanstack/start/config';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import svgr from 'vite-plugin-svgr';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  tsr: {
+    appDirectory: 'src',
+  },
   server: {
     preset: 'node-server',
   },
@@ -30,6 +34,9 @@ export default defineConfig({
         : undefined,
       tsConfigPaths({
         projects: ['./tsconfig.json'],
+      }),
+      viteStaticCopy({
+        targets: [{ src: 'src/locales', dest: '' }],
       }),
       svgr(),
     ],
