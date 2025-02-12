@@ -116,7 +116,7 @@ function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
   return match ? (
     <Highlight
       theme={themes.vsLight}
-      code={String(children).replace(/\n$/, '')}
+      code={mentionText}
       language={match[1]}
       {...props}
     >
