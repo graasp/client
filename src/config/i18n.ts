@@ -5,7 +5,6 @@ import LangDetector from 'i18next-browser-languagedetector';
 import Fetch from 'i18next-fetch-backend';
 
 i18n
-  .createInstance()
   .use(Fetch)
   .use(LangDetector)
   .use(initReactI18next)
@@ -28,6 +27,6 @@ i18n
     },
     react: {
       // prevent the translations from using the react suspense and thus making the interface flicker
-      useSuspense: false,
+      // useSuspense: false,
     },
   });

@@ -11,9 +11,12 @@ import {
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
+import { isServer, queryOptions, useQuery } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from './config/constants';
-import { hooks, mutations } from './config/queryClient';
+import { mutations } from './config/queryClient';
+import { memberKeys } from './query/keys';
+import { getCurrentMember } from './query/member/api';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 
 type LoginInput = {
@@ -46,12 +49,17 @@ export type AuthContextType = AuthContextLoggedMember | AuthContextSignedOut;
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
+export const currentMemberOptions = queryOptions({
+  queryKey: memberKeys.current().content,
+  queryFn: getCurrentMember,
+});
+
 export function AuthProvider({
   children,
 }: Readonly<{
   children: ReactNode;
 }>): JSX.Element {
-  const { data: currentMember, isPending } = hooks.useCurrentMember();
+  const { data: currentMember, isPending } = useQuery(currentMemberOptions);
   const useLogin = mutations.useSignIn();
   const useLogout = mutations.useSignOut();
 
@@ -111,7 +119,7 @@ export function AuthProvider({
   }, [currentMember, login, logout]);
 
   // if the query has not resolved yet, we can not render the rest of the tree
-  if (isPending) {
+  if (!isServer && isPending) {
     return <CustomInitialLoader />;
   }
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

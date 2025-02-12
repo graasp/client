@@ -1,32 +1,20 @@
-import { type ReactNode, StrictMode, useEffect } from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-import { HelmetProvider } from 'react-helmet-async';
-import { useTranslation } from 'react-i18next';
 import { ToastContainer } from 'react-toastify';
 
-import {
-  CssBaseline,
-  Direction,
-  ThemeProvider as MuiThemeProvider,
-} from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
-import { Context } from '@graasp/sdk';
-import rtlPlugin from '@graasp/stylis-plugin-rtl';
+import { ClientManager, Context } from '@graasp/sdk';
 
-import createCache from '@emotion/cache';
-import { CacheProvider, EmotionCache } from '@emotion/react';
 import {
   init as SentryInit,
   browserTracingIntegration,
   replayIntegration,
 } from '@sentry/react';
-import { RouterProvider, createRouter } from '@tanstack/react-router';
-import { prefixer } from 'stylis';
 
 import '@/config/i18n';
-import { theme } from '@/ui/theme';
 
-import { AuthProvider, useAuth } from './AuthContext';
+import { AuthProvider } from './AuthContext';
 import './app.css';
 import {
   APP_VERSION,
@@ -35,8 +23,6 @@ import {
   SENTRY_ENV,
 } from './config/env';
 import { QueryClientProvider, queryClient } from './config/queryClient';
-import { ClientManager } from './lib/ClientManager';
-import { routeTree } from './routeTree.gen';
 
 SentryInit({
   dsn: SENTRY_DSN,
@@ -61,86 +47,25 @@ SentryInit({
 });
 
 const clientManager = ClientManager.getInstance();
-clientManager.addPrefix(Context.Builder, '/builder/items');
-clientManager.addPrefix(Context.Analytics, '/analytics/items');
-clientManager.addPrefix(Context.Player, '/player');
-clientManager.addHost(Context.Library, new URL(GRAASP_LIBRARY_HOST));
-clientManager.addPrefix(Context.Library, '/collections');
+clientManager.addHost(Context.Library, GRAASP_LIBRARY_HOST);
 
-// Set up a Router instance
-const router = createRouter({
-  routeTree,
-  defaultPreload: 'intent',
-  context: {
-    // at this stage, we set it to `undefined`. A more appropriate value will be set later in AuthProvider when we wrap the app.
-    auth: undefined!,
-  },
-});
+// function InnerApp() {
+//   const auth = useAuth();
 
-// Register things for typesafety
-declare module '@tanstack/react-router' {
-  interface Register {
-    router: typeof router;
-  }
-}
-
-function InnerApp() {
-  const auth = useAuth();
-
-  return <RouterProvider router={router} context={{ auth }} />;
-}
-
-type ThemeWrapperProps = {
-  children: ReactNode;
-};
-
-const getCacheForDirection = (direction?: Direction): EmotionCache =>
-  createCache({
-    key: `mui-dir-${direction}`,
-    stylisPlugins: [prefixer, ...(direction === 'rtl' ? [rtlPlugin] : [])],
-  });
-
-function ThemeWrapper({ children }: Readonly<ThemeWrapperProps>) {
-  // use the hook as it allows to use the correct instance of i18n
-  const { i18n: i18nInstance } = useTranslation();
-  const direction = i18nInstance.dir(i18nInstance.language);
-
-  // needed to set the right attribute on the HTML
-  useEffect(
-    () => {
-      const dir = i18nInstance.dir(i18nInstance.language);
-      console.debug(
-        `Language changed to ${i18nInstance.language}, updating direction to ${dir}`,
-      );
-      document.documentElement.setAttribute('dir', dir);
-    },
-    // here we need to react to the change of the language, the instance does not change.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [i18nInstance.language],
-  );
-
-  return (
-    <MuiThemeProvider theme={{ ...theme, direction }}>
-      <CacheProvider value={getCacheForDirection(direction)}>
-        {children}
-      </CacheProvider>
-    </MuiThemeProvider>
-  );
-}
+//   return <RouterProvider router={router} context={{ auth }} />;
+// }
 
 function App() {
   return (
-    <HelmetProvider>
-      <QueryClientProvider client={queryClient}>
-        <ThemeWrapper>
-          <CssBaseline />
-          <AuthProvider>
-            <ToastContainer stacked position="bottom-left" />
-            <InnerApp />
-          </AuthProvider>
-        </ThemeWrapper>
-      </QueryClientProvider>
-    </HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      {/* <ThemeWrapper> */}
+      <CssBaseline />
+      <AuthProvider>
+        <ToastContainer stacked position="bottom-left" />
+        {/* <InnerApp /> */}
+      </AuthProvider>
+      {/* </ThemeWrapper> */}
+    </QueryClientProvider>
   );
 }
 
