@@ -6,7 +6,7 @@ import { Alert, Stack, Typography } from '@mui/material';
 import { AccountType } from '@graasp/sdk';
 
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
-import { SettingsIcon } from 'lucide-react';
+import { ChartColumnBigIcon, DatabaseIcon } from 'lucide-react';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
@@ -36,7 +36,7 @@ export function MemberCard(): JSX.Element | null {
         <Stack alignItems="center" gap={2}>
           <AvatarUploader />
         </Stack>
-        <Stack>
+        <Stack direction="column">
           <Typography variant="h4" id={MEMBER_USERNAME_DISPLAY_ID}>
             {member.name}
           </Typography>
@@ -48,13 +48,17 @@ export function MemberCard(): JSX.Element | null {
               }),
             })}
           </Typography>
-          <ButtonLink
-            sx={{ width: 'fit-content' }}
-            startIcon={<SettingsIcon />}
-            to="/account/settings"
-          >
-            {t('MAIN_MENU.SETTINGS')}
-          </ButtonLink>
+          <Stack direction="row" gap={1}>
+            <ButtonLink
+              to="/account/storage"
+              startIcon={<DatabaseIcon fontSize={24} />}
+            >
+              {t('MAIN_MENU.STORAGE')}
+            </ButtonLink>
+            <ButtonLink to="/account/stats" startIcon={<ChartColumnBigIcon />}>
+              {t('MAIN_MENU.STATS')}
+            </ButtonLink>
+          </Stack>
         </Stack>
       </Stack>
     );
