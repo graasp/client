@@ -150,7 +150,7 @@ const components = {
   MuiButton: {
     styleOverrides: {
       root: {
-        textTransform: 'capitalize',
+        textTransform: 'none',
       },
     },
   },

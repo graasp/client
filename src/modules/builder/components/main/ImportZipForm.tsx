@@ -38,38 +38,40 @@ export function ImportZipForm({
     <Stack direction="column" flex={1}>
       <DialogTitle>{translateBuilder(BUILDER.IMPORT_ZIP_TITLE)}</DialogTitle>
       <DialogContent>
-        <Typography variant="body1">
-          {translateBuilder(BUILDER.IMPORT_ZIP_INFORMATION)}
-        </Typography>
-        <Typography variant="body1">
-          {translateBuilder(BUILDER.IMPORT_ZIP_WARNING)}
-        </Typography>
-        <Typography variant="body1">
-          {translateBuilder(BUILDER.IMPORT_ZIP_LIMITATIONS_TEXT, {
-            maxSize: formatFileSize(MAX_ZIP_FILE_SIZE),
-          })}
-        </Typography>
-        <UploadFileButton
-          isLoading={false}
-          onChange={(e) => {
-            if (e.target.files?.length) {
-              importZip({
-                onUploadProgress: update,
-                id: itemId,
-                file: e.target.files[0],
-              })
-                .then(() => {
-                  closeNotification();
+        <Stack gap={1}>
+          <Typography variant="body1">
+            {translateBuilder(BUILDER.IMPORT_ZIP_INFORMATION)}
+          </Typography>
+          <Typography variant="body1">
+            {translateBuilder(BUILDER.IMPORT_ZIP_WARNING)}
+          </Typography>
+          <Typography variant="body1">
+            {translateBuilder(BUILDER.IMPORT_ZIP_LIMITATIONS_TEXT, {
+              maxSize: formatFileSize(MAX_ZIP_FILE_SIZE),
+            })}
+          </Typography>
+          <UploadFileButton
+            isLoading={false}
+            onChange={(e) => {
+              if (e.target.files?.length) {
+                importZip({
+                  onUploadProgress: update,
+                  id: itemId,
+                  file: e.target.files[0],
                 })
-                .catch((error) => {
-                  closeNotification(error);
-                });
-            }
-          }}
-          accept=".zip"
-          id={ZIP_DASHBOARD_UPLOADER_ID}
-          text={translateBuilder(BUILDER.IMPORT_ZIP_BUTTON)}
-        />
+                  .then(() => {
+                    closeNotification();
+                  })
+                  .catch((error) => {
+                    closeNotification(error);
+                  });
+              }
+            }}
+            accept=".zip"
+            id={ZIP_DASHBOARD_UPLOADER_ID}
+            text={translateBuilder(BUILDER.IMPORT_ZIP_BUTTON)}
+          />
+        </Stack>
       </DialogContent>
       <DialogActions>
         <Button id={CREATE_ITEM_CLOSE_BUTTON_ID} onClick={onClose}>
