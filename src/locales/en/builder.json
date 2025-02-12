@@ -3,7 +3,8 @@
     "MY_ITEMS": "My Graasp",
     "BOOKMARKED_ITEMS": "Bookmarks",
     "PUBLISHED_ITEMS": "Published",
-    "RECYCLED_ITEMS": "Trash"
+    "RECYCLED_ITEMS": "Trash",
+    "RETURN_HOME": "Return to Home"
   },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Navigate to redirection",
@@ -528,6 +529,5 @@
   "TAGS_LEVEL_HELPERTEXT": "Example: elementary, high school, undergraduate",
   "TAGS_RESOURCE_TYPE_HELPERTEXT": "Example: article, video, quiz",
   "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Item type {{type}} could not be handled",
-  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item.",
-  "RETURN_HOME": "Return to Home"
+  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item."
 }

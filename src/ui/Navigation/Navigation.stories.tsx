@@ -58,7 +58,7 @@ const useChildren: ItemMenuProps['useChildren'] = () => {
   return { data: children } as UseChildrenHookType;
 };
 const itemPath = '/itemPath';
-const dataTestId = 'NavigateNextIcon';
+const navigateNextIconDataTestId = 'NavigateNextIcon';
 const folder = FolderItemFactory({
   id: 'folder-id',
   name: 'folder',
@@ -90,8 +90,8 @@ export const FolderWithParents = {
       expect(b).toBeInTheDocument();
     }
 
-    // 4 = 2 parents + 2 x Home + current item is a folder
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(5);
+    // 3 = 2 parents + current item is a folder
+    expect(canvas.getAllByTestId(navigateNextIconDataTestId)).toHaveLength(3);
   },
 } satisfies Story;
 
@@ -116,8 +116,8 @@ export const FileWithParents = {
       expect(b).toBeInTheDocument();
     }
 
-    // 4 = 2 parents + 2 x Home
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(4);
+    // 2 parents
+    expect(canvas.getAllByTestId(navigateNextIconDataTestId)).toHaveLength(2);
   },
 } satisfies Story;
 
@@ -156,7 +156,7 @@ export const FolderWithParentsWithExtraItems = {
       expect(b).toBeInTheDocument();
     }
 
-    // 4 = 2 parents + 2 x Home + current item is a folder + 1 extra item
-    expect(canvas.getAllByTestId(dataTestId)).toHaveLength(5);
+    // 3 = 2 parents + current item is a folder + 1 extra item
+    expect(canvas.getAllByTestId(navigateNextIconDataTestId)).toHaveLength(3);
   },
 } satisfies Story;
