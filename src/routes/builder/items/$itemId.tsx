@@ -16,9 +16,8 @@ import axios from 'axios';
 import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
-import { MentionButton } from '@/components/chatbox/Mentions/MentionButton';
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
+import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks, mutations } from '@/config/queryClient';
@@ -118,12 +117,7 @@ function RouteComponent() {
       context={Context.Builder}
       headerId={HEADER_APP_BAR_ID}
       drawerOpenAriaLabel={t('ARIA_OPEN_DRAWER')}
-      headerRightContent={
-        <Stack direction="row" alignItems="center">
-          <MentionButton color="white" badgeColor="primary" />
-          <UserButtonMenu />
-        </Stack>
-      }
+      headerRightContent={<HeaderRightContent />}
       drawerContent={<MainMenu />}
       LinkComponent={LinkComponent}
       PlatformComponent={

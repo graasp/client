@@ -7,7 +7,7 @@ import { Context } from '@graasp/sdk';
 
 import { getRouteApi } from '@tanstack/react-router';
 
-import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
+import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
@@ -53,7 +53,7 @@ export function PageWrapper({
       context={Context.Analytics}
       drawerContent={<AnalyticsSidebar itemId={itemId} />}
       drawerOpenAriaLabel={t('DRAWER_OPEN_ARIA')}
-      headerRightContent={<UserButtonMenu />}
+      headerRightContent={<HeaderRightContent />}
       PlatformComponent={
         <PlatformSwitch
           CustomMobileIcon={AnalyticsIcon}

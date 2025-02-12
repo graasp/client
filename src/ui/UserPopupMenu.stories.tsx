@@ -6,18 +6,17 @@ import { expect, fn, screen, userEvent, within } from '@storybook/test';
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from './Avatar/Avatar.js';
-import { UserSwitch } from './UserSwitch.js';
+import { UserPopupMenu } from './UserPopupMenu.js';
 
 const meta = {
-  title: 'Common/UserSwitch/UserSwitch',
-  component: UserSwitch,
+  component: UserPopupMenu,
   argTypes: {
     signOut: { action: 'signOut' },
   },
   args: {
     signOut: fn(),
   },
-} satisfies Meta<typeof UserSwitch>;
+} satisfies Meta<typeof UserPopupMenu>;
 
 export default meta;
 

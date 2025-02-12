@@ -11,10 +11,10 @@ import MainMenu from '@/ui/MainMenu/MainMenu.js';
 import MenuItem from '@/ui/MainMenu/MenuItem/MenuItem.js';
 
 import * as PlatformSwitchStories from '../PlatformSwitch/PlatformSwitch.stories.js';
-import * as UserSwitchStories from '../UserSwitch.stories.js';
+import * as UserPopupMenu from '../UserPopupMenu.stories.js';
 import Main from './Main.js';
 
-const { SignedIn } = composeStories(UserSwitchStories);
+const { SignedIn } = composeStories(UserPopupMenu);
 const { Dark } = composeStories(PlatformSwitchStories);
 
 const meta = {

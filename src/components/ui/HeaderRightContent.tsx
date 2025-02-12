@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
@@ -7,13 +6,14 @@ import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
-import UserSwitch from '@/ui/UserSwitch';
+import { UserPopupMenu } from '@/ui/UserPopupMenu';
 
+import { MentionButton } from '../chatbox/Mentions/MentionButton';
 import { ButtonLink } from './ButtonLink';
 import LanguageSwitch from './LanguageSwitch';
 import MemberAvatar from './MemberAvatar';
 
-export function UserButtonMenu(): JSX.Element | null {
+export function HeaderRightContent() {
   const { i18n, t } = useTranslation(NS.Common, { keyPrefix: 'USER_SWITCH' });
   const { isAuthenticated, user, logout } = useAuth();
 
@@ -26,13 +26,15 @@ export function UserButtonMenu(): JSX.Element | null {
 
   if (isAuthenticated) {
     return (
-      <Stack direction="row" gap={2}>
+      <Stack direction="row" gap={2} alignItems="center">
+        <MentionButton color="white" badgeColor="primary" />
+
         <LanguageSwitch
           lang={i18n.languages[0]}
           onChange={handleLanguageChange}
         />
 
-        <UserSwitch
+        <UserPopupMenu
           buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
           signOut={logout}
           currentMember={user}
@@ -43,5 +45,7 @@ export function UserButtonMenu(): JSX.Element | null {
       </Stack>
     );
   }
+
+  // in case the user is not authenticated, we show a login button
   return <ButtonLink to="/auth/login">{t('LOG_IN')}</ButtonLink>;
 }

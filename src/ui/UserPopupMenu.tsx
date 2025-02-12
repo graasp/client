@@ -43,7 +43,7 @@ type Props = {
   signOut: () => Promise<void>;
 };
 
-export function UserSwitch({
+export function UserPopupMenu({
   buttonId,
   currentMember,
   seeProfileButtonId,
@@ -57,8 +57,6 @@ export function UserSwitch({
     null,
   );
   const { t } = useTranslation(NS.Common);
-
-  // const memberName = currentMember?.name;
 
   const handleClick: MouseEventHandler = (event) => {
     setAnchorEl(event.currentTarget);
@@ -83,21 +81,6 @@ export function UserSwitch({
         {avatar}
       </IconButton>
       <Menu anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
-        {/* <Stack gap={2} direction="row" mx={2} py={1} alignItems="center">
-          {avatar}
-          <Stack direction="column">
-            <Typography variant="h6" noWrap>
-              {memberName}
-            </Typography>
-
-            {currentMember.type !== AccountType.Individual && (
-              <Typography variant="subtitle2" noWrap fontStyle="italic">
-                {t('Guest')}
-              </Typography>
-            )}
-          </Stack>
-        </Stack>
-        <Divider flexItem /> */}
         {currentMember.type === AccountType.Individual && (
           <>
             <MenuItemLink
@@ -146,5 +129,3 @@ export function UserSwitch({
     </>
   );
 }
-
-export default UserSwitch;

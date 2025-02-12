@@ -6,7 +6,7 @@ import { Context } from '@graasp/sdk';
 
 import { Link } from '@tanstack/react-router';
 
-import { UserButtonMenu } from '@/components/ui/UserButtonMenu';
+import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import Main from '@/ui/Main/Main';
 
 const StyledLink = styled(Link)(() => ({
@@ -29,7 +29,7 @@ export function PageWrapper({
     <Main
       context={Context.Account}
       LinkComponent={LinkComponent}
-      headerRightContent={<UserButtonMenu />}
+      headerRightContent={<HeaderRightContent />}
     >
       {children}
     </Main>
