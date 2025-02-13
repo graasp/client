@@ -23,6 +23,8 @@ import { AuthenticatedMember } from '@/AuthContext';
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { NS } from '@/config/constants';
 
+const MENU_ARIA_ID = 'account-menu';
+
 type Props = {
   buttonId?: string;
   avatar: JSX.Element;
@@ -73,14 +75,19 @@ export function UserPopupMenu({
         onClick={handleClick}
         size="small"
         id={buttonId}
-        aria-controls={open ? 'account-menu' : undefined}
+        aria-controls={open ? MENU_ARIA_ID : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         data-umami-event={dataUmamiEvent}
       >
         {avatar}
       </IconButton>
-      <Menu anchorEl={anchorEl} keepMounted open={open} onClose={handleClose}>
+      <Menu
+        id={MENU_ARIA_ID}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+      >
         {currentMember.type === AccountType.Individual && (
           <>
             <MenuItemLink
