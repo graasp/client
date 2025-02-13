@@ -7,12 +7,6 @@ import { ErrorBoundary } from '@sentry/react';
 import { LatLngTuple, type Map } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import {
-  useAddressFromGeolocation,
-  useItemsInMap,
-  useSuggestionsForAddress,
-} from '@/query/hooks/itemGeolocation';
-
 import { Country } from '../types';
 import { GeolocationPickerProps } from './GeolocationPicker/GeolocationPicker';
 import LoggedOutWarning from './common/LoggedOutWarning';
@@ -33,6 +27,9 @@ export function MapComponent({
   usePostItem,
   viewItem,
   useDeleteItemGeolocation,
+  useAddressFromGeolocation,
+  useItemsInMap,
+  useSuggestionsForAddress,
   handleAddOnClick,
   currentPosition,
   viewItemInBuilder,
@@ -123,6 +120,7 @@ export function MapComponent({
         style={{
           width: '100%',
           height: '100%',
+          // necessary so the logged out warning background only shows on the map container
           position: 'relative',
         }}
       >

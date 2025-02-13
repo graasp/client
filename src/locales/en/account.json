@@ -10,9 +10,9 @@
   "CROP_IMAGE_MODAL_UNEXPECTED_ERROR": "An unexpected error occurred when trying to crop the image, please try again later",
   "MAIN_MENU": {
     "HOME": "Home",
-    "STATS": "Statistics",
+    "STATS": "Usage Statistics",
     "SETTINGS": "Settings",
-    "STORAGE": "Storage",
+    "STORAGE": "Storage Quota",
     "LANDING": "Landing page"
   },
   "SAVE_ACTIONS_TOGGLE_TOOLTIP": "We collect analytics data to improve your user experience while browsing Graasp.",

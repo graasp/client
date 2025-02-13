@@ -1,10 +1,11 @@
-import { type JSX, useContext } from 'react';
+import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { Action } from '@graasp/sdk';
 
+import { type Duration } from 'date-fns';
 import { format } from 'date-fns/format';
 import { intervalToDuration } from 'date-fns/intervalToDuration';
 import countBy from 'lodash.countby';
@@ -28,8 +29,21 @@ import {
   MAX_BARS_SMALL_SCREEN,
   getColorForActionTriggerType,
 } from '~analytics/constants';
-import { MyAnalyticsDateRangeDataContext } from '~analytics/context/MyAnalyticsDateRangeContext';
 import { groupActions } from '~analytics/utils';
+
+function getGroupInterval(duration: Duration) {
+  if (duration.years && duration.years >= 1) {
+    return GroupByInterval.Year;
+  }
+  if (duration.months && duration.months > 2) {
+    return GroupByInterval.Month;
+  }
+  if (duration.days && duration.days < 8) {
+    return GroupByInterval.Day;
+  } else {
+    return GroupByInterval.Week;
+  }
+}
 
 function getFreqFromData(actions: [string, Action[]][]) {
   const { months, days, years } = intervalToDuration({
@@ -51,8 +65,10 @@ function getFreqFromData(actions: [string, Action[]][]) {
 
 export function MemberActionsChart({
   actions,
+  dateRange,
 }: Readonly<{
   actions: Action[];
+  dateRange: { startDate: Date; endDate: Date };
 }>): JSX.Element {
   const { t } = useTranslation(NS.Analytics);
   const { t: translateAction } = useTranslation(NS.Common);
@@ -62,10 +78,12 @@ export function MemberActionsChart({
 
   const isLargeScreen = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const { groupInterval, dateRange } = useContext(
-    MyAnalyticsDateRangeDataContext,
+  const groupInterval = getGroupInterval(
+    intervalToDuration({
+      start: dateRange.startDate,
+      end: dateRange.endDate,
+    }),
   );
-
   const groupedActionsByInterval = groupActions(
     actions,
     groupInterval,

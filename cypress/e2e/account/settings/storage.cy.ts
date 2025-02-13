@@ -7,11 +7,20 @@ import {
   MEMBER_STORAGE_PARENT_FOLDER_ID,
   STORAGE_BAR_LABEL_ID,
   getCellId,
-} from '../../../src/config/selectors';
-import { CURRENT_MEMBER } from '../../fixtures/members';
-import { MEMBER_STORAGE_ITEM_RESPONSE } from '../../fixtures/storage';
+} from '../../../../src/config/selectors';
+import { CURRENT_MEMBER } from '../../../fixtures/members';
+import { MEMBER_STORAGE_ITEM_RESPONSE } from '../../../fixtures/storage';
 
 describe('Storage', () => {
+  it('Can open the storage view from settings page', () => {
+    cy.setUpApi({ currentMember: CURRENT_MEMBER });
+    cy.visit('/account/settings');
+
+    // navigate to the storage page
+    cy.get(`a[href="/account/storage"]`).click();
+    cy.url().should('contain', '/account/storage');
+  });
+
   it('Display storage interface', () => {
     const storageAmountInBytes = 698789;
     cy.setUpApi({ currentMember: CURRENT_MEMBER, storageAmountInBytes });

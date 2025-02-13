@@ -1,86 +1,130 @@
-import { type JSX, useContext } from 'react';
+import { type JSX, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Stack, Typography } from '@mui/material';
+import { Alert, Grid2, Skeleton, Stack, Typography } from '@mui/material';
 
+import { ActionTriggers } from '@graasp/sdk';
+
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { addDays } from 'date-fns';
 import { format } from 'date-fns/format';
 import { formatISO } from 'date-fns/formatISO';
 import groupBy from 'lodash.groupby';
+import { v4 } from 'uuid';
 
 import { NS } from '@/config/constants';
-import { useMemberActions } from '@/query/hooks/action';
-import Loader from '@/ui/Loader/Loader';
+import { memberActionsOptions } from '@/query/hooks/action';
 
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
 import DateRange from '~analytics/common/DateRangeInput';
 import SectionTitle from '~analytics/common/SectionTitle';
-import MyAnalyticsDateRangeProvider, {
-  MyAnalyticsDateRangeDataContext,
-} from '~analytics/context/MyAnalyticsDateRangeContext';
 
 import { MemberActionsChart } from './MemberActionsChart';
-import { MemberGeneralStatisticsCards } from './MemberGeneralStatisticsCards';
+import { MemberStatsCard } from './MemberStatsCard';
 
-const OwnAnalytics = (): JSX.Element => {
+export function OwnAnalyticsWrapper(): JSX.Element {
   const { t } = useTranslation(NS.Analytics);
-
-  const { dateRange, setDateRange } = useContext(
-    MyAnalyticsDateRangeDataContext,
-  );
-
-  const { data, isLoading } = useMemberActions({
-    startDate: formatISO(dateRange.startDate),
-    endDate: formatISO(dateRange.endDate),
+  const [dateRange, setDateRange] = useState({
+    startDate: addDays(new Date(), -30),
+    endDate: new Date(),
+    key: 'selection',
   });
 
-  const formattedStartDate = format(dateRange.startDate, 'MMMM d, yyyy');
-  const formattedEndDate = format(dateRange.endDate, 'MMMM d, yyyy');
+  return (
+    <Stack gap={1} width="100%" height="100%">
+      <Stack
+        direction={{ sm: 'column', md: 'row' }}
+        justifyContent={{ sm: 'center', md: 'space-between' }}
+        gap={1}
+      >
+        <SectionTitle title={t('MY_ANALYTICS')} />
+        <DateRange dateRange={dateRange} setDateRange={setDateRange} />
+      </Stack>
+      <Suspense fallback={<MemberStatsLoading />}>
+        <MemberStats dateRange={dateRange} />
+      </Suspense>
+    </Stack>
+  );
+}
 
-  const inputValue = `${formattedStartDate} - ${formattedEndDate}`;
+function fmtDate(date: Date) {
+  return format(date, 'MMMM d, yyyy');
+}
 
-  if (data) {
-    const actionsGroupedByTypes = groupBy(data, 'type');
+// mock data with ids to render skeletons
+const placeholder = Array(4).fill(() => v4());
+function MemberStatsLoading() {
+  return (
+    <Grid2 container spacing={2}>
+      {placeholder.map((id) => (
+        <Grid2 key={id} size={3}>
+          <Skeleton variant="rounded" height="80px" width="100%" />
+        </Grid2>
+      ))}
+      <Grid2 size={12}>
+        <Skeleton variant="rounded" height="450px" />
+      </Grid2>
+    </Grid2>
+  );
+}
 
+function MemberStats({
+  dateRange,
+}: Readonly<{ dateRange: { startDate: Date; endDate: Date } }>): JSX.Element {
+  const { t } = useTranslation(NS.Analytics);
+
+  const { data, error } = useSuspenseQuery(
+    memberActionsOptions({
+      startDate: formatISO(dateRange.startDate),
+      endDate: formatISO(dateRange.endDate),
+    }),
+  );
+
+  if (error) {
+    return <Alert severity="error">{t('ERROR_FETCHING_DATA')}</Alert>;
+  }
+
+  const actionsGroupedByTypes = groupBy(data, 'type');
+
+  if (data.length) {
     return (
       <>
-        <Stack spacing={1} width="100%">
-          <Stack
-            direction={{ sm: 'column', md: 'row' }}
-            justifyContent={{ sm: 'center', md: 'space-between' }}
-            spacing={1}
-          >
-            <SectionTitle title={t('MY_ANALYTICS')} />
-            <DateRange dateRange={dateRange} setDateRange={setDateRange} />
+        <Stack gap={2}>
+          <Stack direction={{ xs: 'column', md: 'row' }} gap={2}>
+            <MemberStatsCard
+              title={t('GENERAL_STATISTIC_ITEMS_CREATED')}
+              stat={actionsGroupedByTypes[ActionTriggers.Create]?.length ?? 0}
+            />
+            <MemberStatsCard
+              title={t('GENERAL_STATISTIC_LIKED_ITEMS')}
+              stat={actionsGroupedByTypes[ActionTriggers.ItemLike]?.length ?? 0}
+            />
+            <MemberStatsCard
+              title={t('GENERAL_STATISTIC_DOWNLOADED_ITEMS')}
+              stat={
+                actionsGroupedByTypes[ActionTriggers.ItemDownload]?.length ?? 0
+              }
+            />
+            <MemberStatsCard
+              title={t('GENERAL_STATISTIC_CHAT_CREATED')}
+              stat={
+                actionsGroupedByTypes[ActionTriggers.ChatCreate]?.length ?? 0
+              }
+            />
           </Stack>
-          {data.length ? (
-            <>
-              <MemberGeneralStatisticsCards
-                actionsGroupedByTypes={actionsGroupedByTypes}
-              />
-              <MemberActionsChart actions={data} />
-            </>
-          ) : (
-            <Typography>
-              {t('NO_RESULTS_FOUND', { period: inputValue })}
-            </Typography>
-          )}
+
+          <MemberActionsChart actions={data} dateRange={dateRange} />
         </Stack>
         <ActionsLegend actionsTypes={Object.keys(actionsGroupedByTypes)} />
       </>
     );
   }
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  return <Alert severity="error">{t('ERROR_FETCHING_DATA')}</Alert>;
-};
-
-export function OwnAnalyticsWrapper(): JSX.Element {
   return (
-    <MyAnalyticsDateRangeProvider>
-      <OwnAnalytics />
-    </MyAnalyticsDateRangeProvider>
+    <Typography>
+      {t('NO_RESULTS_FOUND', {
+        period: `${fmtDate(dateRange.startDate)} - ${fmtDate(dateRange.endDate)}`,
+      })}
+    </Typography>
   );
 }

@@ -4,7 +4,6 @@ import { fn } from '@storybook/test';
 import CountryForm from './CountryForm';
 
 const meta = {
-  title: 'CountryForm',
   component: CountryForm,
 
   argTypes: {},

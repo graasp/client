@@ -16,7 +16,7 @@ const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIButtonProps>(
         component={'a'}
         ref={ref}
         {...props}
-        sx={{ textTransform: 'none', ...props.sx }}
+        sx={{ textTransform: 'none', minWidth: 'unset', ...props.sx }}
       />
     );
   },
