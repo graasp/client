@@ -45,7 +45,7 @@ function RouteComponent() {
 
   return (
     <PageWrapper>
-      <Container maxWidth="xl" sx={{ p: 2, height: '100%' }}>
+      <Container maxWidth="lg" sx={{ p: 2, height: '100%' }}>
         <Outlet />
       </Container>
     </PageWrapper>
