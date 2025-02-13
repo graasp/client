@@ -8,11 +8,16 @@ import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
 import { ButtonLink } from '../../../components/ui/ButtonLink';
-import { BeLEARN } from './icons/BeLEARN';
-import { Epfl } from './icons/EPFL';
-import { EdTech } from './icons/EdTech';
-import { GoLab } from './icons/GoLab';
-import { Unine } from './icons/Unine';
+import {
+  BeLEARN,
+  EdTech,
+  Epfl,
+  GoLab,
+  SDC,
+  SupporterLink,
+  SwissUniversities,
+  Unine,
+} from './supporterIcons';
 
 export function TitleSection(): JSX.Element {
   const { t } = useTranslation(NS.Landing);
@@ -100,14 +105,50 @@ export function TitleSection(): JSX.Element {
           flexWrap="wrap"
           alignItems="center"
         >
-          <Epfl width="150px" height="3rem" />
-          <BeLEARN width="150px" height="3rem" />
-          <EdTech width="150px" height="3rem" />
-          <Unine width="150px" height="3rem" />
-          <GoLab width="150px" height="3rem" />
-          {/* <span>GOGA</span>
-              <span>IHUB4SCHOOL</span>
-              <span>UNCTAD</span> */}
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={Epfl}
+            href="https://www.epfl.ch"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={BeLEARN}
+            href="https://belearn.swiss/en/"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={EdTech}
+            href="https://www.edtech-collider.ch"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={Unine}
+            href="https://www.unine.ch/imi/en/"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={GoLab}
+            href="https://www.golabz.eu/"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={SwissUniversities}
+            href="https://www.swissuniversities.ch/fr/themes/digitalisation/open-education-digital-competencies/projets-soutenus"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={SDC}
+            href="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html"
+          />
+          {/* <Swissuniversities width="150px" height="3rem" /> */}
+          {/* <SDC width="150px" height="3rem" /> */}
         </Stack>
       </Stack>
     </Stack>
