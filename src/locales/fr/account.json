@@ -10,9 +10,9 @@
   "CROP_IMAGE_MODAL_UNEXPECTED_ERROR": "Une erreur inattendue s'est produite lors de la tentative de recadrage de l'image. Veuillez réessayer plus tard.",
   "MAIN_MENU": {
     "HOME": "Accueil",
-    "STATS": "Statistiques",
+    "STATS": "Statistiques d'utilisation",
     "SETTINGS": "Paramètres",
-    "STORAGE": "Stockage",
+    "STORAGE": "Quota de stockage",
     "LANDING": "Page d'accueil"
   },
   "SAVE_ACTIONS_TOGGLE_TOOLTIP": "Nous recueillons des données analytiques afin d'améliorer votre expérience utilisateur lorsque vous naviguez sur Graasp.",
@@ -114,5 +114,9 @@
   "LOGOUT_BUTTON": "Se déconnecter",
   "HERE_BUTTON": "Ici",
   "TEMPORARY_MOVED_ACCOUNT_HOME_PAGE_MESSAGE": "La page d'accueil du compte a été déplacée",
-  "DRAWER_OPEN_ARIA_LABEL": "Ouvrir le tiroir"
+  "DRAWER_OPEN_ARIA_LABEL": "Ouvrir le tiroir",
+  "GUEST_AUTH": {
+    "TITLE": "Les invités ne peuvent pas accéder à cette page",
+    "DESCRIPTION": "Vous êtes actuellement connecté avec un compte invité. Ces comptes ne peuvent pas gérer les paramètres et les configurations. Créez un compte pour utiliser ces fonctionnalités."
+  }
 }

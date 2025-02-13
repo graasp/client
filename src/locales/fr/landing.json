@@ -410,6 +410,14 @@
       "HOW_TO_GET_STARTED": {
         "QUESTION": "Comment commencer à utiliser la plateforme ?",
         "RESPONSE": "Vous pouvez créer un compte gratuitement."
+      },
+      "BUILDER_PLAYER_DIFFERENCE": {
+        "QUESTION": "Quelle est la différence entre Builder et Player ?",
+        "RESPONSE": "Builder et Player sont deux interfaces disponibles dans Graasp. Les utilisateurs choisissent l'interface qu'ils souhaitent utiliser en fonction de leur utilisation. Traditionnellement, Builder est le mieux adapté pour créer le contenu éducatif, construire les leçons, ajouter des éléments et mettre à jour leurs paramètres. Player est principalement utilisé lors de la consommation du contenu créé. Le public principal de cette interface est constitué des étudiants et autres consommateurs."
+      },
+      "IMPORT_FROM_OTHER_PLATFORM": {
+        "QUESTION": "Comment importer mon contenu existant depuis une autre plateforme dans Graasp ?",
+        "RESPONSE": "Vous pouvez glisser-déposer des documents, des images et d'autres médias enrichis. Nous prenons en charge le contenu H5P et une large gamme de contenus multimédias, audio, vidéo, images et liens Web. Nous n'avons actuellement pas de procédures spéciales pour importer à partir de plateformes spécifiques."
       }
     },
     "TUTORIALS": {
