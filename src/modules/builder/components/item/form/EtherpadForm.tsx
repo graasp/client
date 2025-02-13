@@ -3,10 +3,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import {
-  Box,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Stack,
   Typography,
 } from '@mui/material';
 
@@ -48,7 +48,12 @@ export function EtherpadForm({
 
   return (
     <FormProvider {...methods}>
-      <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        direction="column"
+        component="form"
+        onSubmit={handleSubmit(onSubmit)}
+        flex={1}
+      >
         <DialogTitle>
           {translateBuilder(BUILDER.CREATE_NEW_ITEM_ETHERPAD_TITLE)}
         </DialogTitle>
@@ -68,7 +73,7 @@ export function EtherpadForm({
             {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>
         </DialogActions>
-      </Box>
+      </Stack>
     </FormProvider>
   );
 }

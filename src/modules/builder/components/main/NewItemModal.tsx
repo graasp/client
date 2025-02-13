@@ -1,17 +1,11 @@
-import { type JSX, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { type JSX, ReactNode, useState } from 'react';
 
-import { Dialog, Stack, Typography } from '@mui/material';
+import { Dialog, Stack } from '@mui/material';
 
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 
-import { NS } from '@/config/constants';
-import { CREATE_ITEM_CLOSE_BUTTON_ID } from '@/config/selectors';
-import Button from '@/ui/buttons/Button/Button';
-
-import { BUILDER } from '../../langs';
 import { InternalItemType, NewItemTabType } from '../../types';
 import { EtherpadForm } from '../item/form/EtherpadForm';
 import AppForm from '../item/form/app/AppForm';
@@ -20,7 +14,7 @@ import { UploadFileModalContent } from '../item/form/file/UploadFileModalContent
 import { FolderCreateForm } from '../item/form/folder/FolderCreateForm';
 import { LinkForm } from '../item/form/link/LinkForm';
 import ImportH5P from './ImportH5P';
-import ImportZip from './ImportZip';
+import { ImportZipForm } from './ImportZipForm';
 import ItemTypeTabs from './ItemTypeTabs';
 
 type Props = {
@@ -40,10 +34,8 @@ function NewItemModalContent({
     selectedItemType: NewItemTabType;
   }
 >) {
-  const { t: translateBuilder } = useTranslation(NS.Builder);
-
   const { itemId: parentId } = useParams({ strict: false });
-  let content = null;
+  let content: ReactNode = null;
 
   switch (selectedItemType) {
     case ItemType.FOLDER: {
@@ -112,22 +104,12 @@ function NewItemModalContent({
     }
     case InternalItemType.ZIP:
     default: {
-      content = (
-        <>
-          <Typography variant="h6" color="primary">
-            {translateBuilder(BUILDER.IMPORT_ZIP_TITLE)}
-          </Typography>
-          <ImportZip />
-          <Button id={CREATE_ITEM_CLOSE_BUTTON_ID} onClick={handleClose}>
-            {translateBuilder('CLOSE_BUTTON')}
-          </Button>
-        </>
-      );
+      content = <ImportZipForm onClose={handleClose} />;
     }
   }
 
   return (
-    <Stack direction="column" px={2} width="100%" overflow="hidden">
+    <Stack direction="column" width="100%" overflow="hidden">
       {content}
     </Stack>
   );
