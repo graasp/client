@@ -3,8 +3,12 @@
     "MY_ITEMS": "Mon Graasp",
     "BOOKMARKED_ITEMS": "Signets",
     "PUBLISHED_ITEMS": "Publications",
-    "RECYCLED_ITEMS": "Corbeille"
+    "RECYCLED_ITEMS": "Corbeille",
+    "RETURN_HOME": "Retour à l'accueil"
   },
+  "REDIRECTION_TEXT": "Redirection",
+  "REDIRECTION_BUTTON": "Accéder à la redirection",
+  "AVATAR_DEFAULT_ALT": "avatar",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "Cet élément permet de s'y connecter directement. Les nouveaux utilisateurs peuvent accéder à cet élément s'ils utilisent cette authentification.",
   "ACCESS_ITEM_LOGIN_TAG": "N'importe quel visiteur authentifié avec le lien",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "Cet élément est public. N'importe qui peut y accéder.",
@@ -67,7 +71,10 @@
   "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Maximum 15 fichiers de 1 Go chacun",
   "DROPZONE_HELPER_ACTION": "Parcourir les fichiers",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "ou",
-  "DESCRIPTION_LABEL": "Description",
+  "DESCRIPTION": {
+    "LABEL": "Description",
+    "PLACEHOLDER": "Écrivez une courte description pour donner plus de contexte à votre élément..."
+  },
   "EDIT_BUTTON_TOOLTIP": "Modifier",
   "EDIT_FOLDER_DESCRIPTION_PLACEHOLDER": "Entrer la description du dossier ici…",
   "EDIT_ITEM_BUTTON": "Modifier",
@@ -237,6 +244,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "Où déplacer {{name}} ?",
   "MOVE_ITEM_MODAL_TITLE_other": "Où déplacer {{name}} et {{count}} autres éléments ?",
   "SELECT_TEMPLATE_TITLE": "Quel dossier choisirez-vous comme modèle ?",
+  "SELECT_MY_ITEMS": "Mes articles",
   "NEW_ITEM_APP_TAB_TEXT": "Application",
   "NEW_ITEM_BUTTON_TOOLTIP": "Créer un nouvel élément",
   "NEW_ITEM_BUTTON": "Nouvel Élément",
@@ -357,6 +365,7 @@
   "CREATE_CUSTOM_APP_HELPER_TEXT": "Si vous connaissez l'URL d'une application interactive pouvant exploiter l'API de Graasp, vous pouvez la saisir ici.",
   "CREATE_NEW_APP_BACK_TO_APP_LIST_BUTTON": "Retour à la liste des applications",
   "APP_LIST_LOADING_FAILED": "Une erreur s'est produite lors de l'obtention de la liste des applications. Veuillez réessayer plus tard.",
+  "APP_REQUIRED_ERROR": "Vous devez choisir une application à ajouter.",
   "FLAG_REASON_DESCRIPTION": "Sélectionnez la raison du signalement de cet élément",
   "FLAG_MODAL_TITLE": "Signalez cet élément",
   "FLAG_MODAL_CONFIRM": "Signaler",
@@ -445,11 +454,23 @@
   "UPLOAD_NOTIFICATION_LOADING": "Téléversement en cours…",
   "UPLOAD_NOTIFICATION_COMPLETE": "Téléversement terminé!",
   "SORT_BY_LABEL": "Trier par",
-  "item.updated_at": "Date d'édition",
-  "item.creator.name": "Créateur",
-  "item.type": "Type",
-  "item.name": "Nom",
-  "order": "Ordre",
+  "item": {
+    "updated_at": "Mis à jour à",
+    "creator": {
+      "name": "Créateur"
+    },
+    "type": "Taper",
+    "name": "Nom",
+    "order": "Commande"
+  },
+  "CHAT": {
+    "SHOW": "Afficher le chat",
+    "HIDE": "Masquer le chat",
+    "CLEAR_BUTTON_TEXT": "Clair",
+    "CLEAR_ALL": "Effacer le chat",
+    "CLEAR_ALL_TITLE": "Effacer le contenu du chat",
+    "CLEAR_ALL_CONTENT": "Vous pouvez supprimer tous les messages du chat. Assurez-vous d'avoir téléchargé une copie si vous souhaitez conserver les messages. Vous ne pouvez pas annuler cette action."
+  },
   "TRASH_NO_ITEM": "La poubelle est vide.",
   "BOOKMARKS_NO_ITEM": "Aucun élément ajouté aux signets",
   "BOOKMARKS_NO_ITEM_SEARCH": "Aucun favori ne correspond à {{search}}",
@@ -508,5 +529,7 @@
   "TAGS_DESCRITPION": "Les tags sont des mots-clés ou des termes qui peuvent être attachés aux éléments. Ils permettent de décrire le sujet, contexte, projet, ou l'audience de votre collection. Ils aident les autres utilisateurs à trouver votre contenu quand ils cherchent dans la librairie, si votre collection est publiée. Vous pouvez en apprendre plus sur les tags dans <1>la documentation</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Exemple: mathématiques, histoire, biologie",
   "TAGS_LEVEL_HELPERTEXT": "Exemple: école primaire, université, école préparatoire",
-  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Exemple: article, vidéo, quiz"
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Exemple: article, vidéo, quiz",
+  "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Le type d'élément {{type}} n'a pas pu être traité",
+  "SHORTCUT_FETCHING_ISSUE": "Un problème est survenu lors de la récupération du contenu de cet élément de raccourci."
 }
