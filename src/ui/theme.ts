@@ -43,6 +43,7 @@ export const AccentColors: {
   [Context.Analytics]: '#FA5B7D',
   [Context.Account]: '#F2C955',
   [Context.Auth]: PRIMARY_COLOR,
+  [Context.Home]: PRIMARY_COLOR,
 } as const;
 
 // add custom typography variants, based on the design guideline
