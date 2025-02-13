@@ -17,7 +17,7 @@ describe('Header', () => {
       cy.visit('/builder');
       // sign out
       cy.get(`#${HEADER_MEMBER_MENU_BUTTON_ID}`).click();
-      cy.get('li').contains('Sign Out').click();
+      cy.get('li').contains('Log out').click();
       cy.url().should('include', '/auth/login');
     });
   });

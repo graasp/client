@@ -5,11 +5,19 @@ import {
   useContext,
   useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Badge, IconButton, Stack, SwipeableDrawer } from '@mui/material';
+import {
+  Badge,
+  Button,
+  IconButton,
+  Stack,
+  SwipeableDrawer,
+} from '@mui/material';
 
 import { Filter } from 'lucide-react';
 
+import { NS } from '@/config/constants';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import DateRangeInput from '~analytics/common/DateRangeInput';
@@ -22,6 +30,7 @@ import ViewSelect from '../functionality/ViewSelect';
 
 const ChartsHeader = (): JSX.Element => {
   const { isMobile } = useMobileView();
+  const { t } = useTranslation(NS.Common);
 
   const { dateRange, setDateRange, selectedUsers, selectedActionTypes } =
     useContext(DataContext);
@@ -97,6 +106,9 @@ const ChartsHeader = (): JSX.Element => {
           <UsersSelect />
           <ActionsSelect />
         </Stack>
+        <Button onClick={() => setOpenDrawer(false)}>
+          {t('CLOSE.BUTTON_TEXT')}
+        </Button>
       </SwipeableDrawer>
     </>
   );

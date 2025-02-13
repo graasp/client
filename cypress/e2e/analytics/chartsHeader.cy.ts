@@ -163,7 +163,10 @@ describe('Select users', () => {
       MOCK_MEMBERS[0].name,
     );
 
-    cy.get('.MuiBackdrop-root').eq(2).click({ force: true });
+    // close panel
+    cy.get('button').contains('Close').click();
+    cy.get(`#${buildSidebarListItemId(TAB_USERS)}`).click();
+
     cy.get(`#${buildSidebarListItemId(TAB_USERS)}`).click();
 
     // open filter drawers
@@ -193,7 +196,8 @@ describe('Select actions', () => {
       `#${buildSelectedActionChipId(MOCK_ACTION_DATA.actions[0].type)}`,
     ).should('contain.text', MOCK_ACTION_DATA.actions[0].type);
 
-    cy.get('.MuiBackdrop-root').eq(2).click({ force: true });
+    // close panel
+    cy.get('button').contains('Close').click();
     cy.get(`#${buildSidebarListItemId(TAB_USERS)}`).click();
 
     // open filter drawers

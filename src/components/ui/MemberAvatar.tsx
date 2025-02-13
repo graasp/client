@@ -37,7 +37,6 @@ const MemberAvatar = ({
       component={component}
       maxWidth={maxWidth}
       maxHeight={maxHeight}
-      sx={{ mx: 1 }}
     />
   );
 };

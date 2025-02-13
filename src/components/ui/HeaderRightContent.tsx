@@ -1,26 +1,22 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
+
+import { Stack } from '@mui/material';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import { HEADER_MEMBER_MENU_BUTTON_ID } from '@/config/selectors';
-import { UserSwitchWrapper as GraaspUserSwitch } from '@/ui/UserSwitch/UserSwitchWrapper';
+import { UserPopupMenu } from '@/ui/UserPopupMenu';
 
+import { MentionButton } from '../chatbox/Mentions/MentionButton';
+import { ButtonLink } from './ButtonLink';
 import LanguageSwitch from './LanguageSwitch';
 import MemberAvatar from './MemberAvatar';
 
-type Props = {
-  ButtonContent?: JSX.Element;
-};
-
-export function UserButtonMenu({
-  ButtonContent,
-}: Readonly<Props>): JSX.Element | null {
-  const { i18n } = useTranslation(NS.Account);
+export function HeaderRightContent() {
+  const { i18n, t } = useTranslation(NS.Common, { keyPrefix: 'USER_SWITCH' });
   const { isAuthenticated, user, logout } = useAuth();
 
-  const { data: member, isLoading } = hooks.useCurrentMember();
   const { mutate } = mutations.useEditCurrentMember();
 
   const handleLanguageChange = (lang: string) => {
@@ -30,24 +26,26 @@ export function UserButtonMenu({
 
   if (isAuthenticated) {
     return (
-      <>
+      <Stack direction="row" gap={2} alignItems="center">
+        <MentionButton color="white" badgeColor="primary" />
+
         <LanguageSwitch
           lang={i18n.languages[0]}
           onChange={handleLanguageChange}
         />
 
-        <GraaspUserSwitch
+        <UserPopupMenu
           buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
-          ButtonContent={ButtonContent}
           signOut={logout}
-          currentMember={member}
-          isCurrentMemberLoading={isLoading}
+          user={user}
           avatar={<MemberAvatar id={user.id} />}
-          redirectPath="/auth/login"
-          userMenuItems={[]}
+          dataUmamiEvent="user-menu"
+          signOutText={t('LOG_OUT')}
         />
-      </>
+      </Stack>
     );
   }
-  return null;
+
+  // in case the user is not authenticated, we show a login button
+  return <ButtonLink to="/auth/login">{t('LOG_IN')}</ButtonLink>;
 }
