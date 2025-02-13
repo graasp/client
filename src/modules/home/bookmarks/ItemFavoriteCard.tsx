@@ -19,7 +19,7 @@ type Props = {
   item: PackedItem;
 };
 
-export function ItemCard({ item }: Readonly<Props>): JSX.Element {
+export function ItemFavoriteCard({ item }: Readonly<Props>): JSX.Element {
   const { i18n } = useTranslation(NS.Player);
 
   const itemId =
@@ -28,12 +28,13 @@ export function ItemCard({ item }: Readonly<Props>): JSX.Element {
       : item.id;
 
   return (
-    <Card id={`bookmark-${item.id}`}>
+    <Card sx={{ height: '100%' }} id={`bookmark-${item.id}`}>
       <Stack
         direction="row"
         alignItems="stretch"
         justifyContent="space-between"
         width="100%"
+        height="100%"
       >
         <CardActionAreaLink
           id={`bookmarkCardAction-${item.id}`}
