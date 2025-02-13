@@ -14,6 +14,7 @@ const meta = {
     signOut: { action: 'signOut' },
   },
   args: {
+    avatarButtonId: 'popup-button',
     signOut: fn(),
   },
 } satisfies Meta<typeof UserPopupMenu>;
@@ -31,7 +32,6 @@ const CURRENT_USER = {
 
 export const SignedIn = {
   args: {
-    buttonId: 'popup-button',
     signOutText: 'Sign Out',
     user: CURRENT_USER,
     avatar: (
@@ -54,7 +54,7 @@ export const SignedIn = {
     const menuCanvas = within(screen.getByRole('menu'));
 
     // profile and settings buttons
-    expect(menuCanvas.getByText('Profile')).toBeInTheDocument();
+    expect(menuCanvas.getByText('Home')).toBeInTheDocument();
     expect(menuCanvas.getByText('Settings')).toBeInTheDocument();
 
     // sign out button
