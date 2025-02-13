@@ -37,7 +37,7 @@ export function HeaderRightContent() {
         <UserPopupMenu
           buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
           signOut={logout}
-          currentMember={user}
+          user={user}
           avatar={<MemberAvatar id={user.id} />}
           dataUmamiEvent="user-menu"
           signOutText={t('LOG_OUT')}

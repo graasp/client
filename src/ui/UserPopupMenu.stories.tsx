@@ -22,7 +22,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const CURRENT_MEMBER = {
+const CURRENT_USER = {
   id: 'some-id',
   name: 'bob',
   lang: 'en',
@@ -33,13 +33,13 @@ export const SignedIn = {
   args: {
     buttonId: 'popup-button',
     signOutText: 'Sign Out',
-    currentMember: CURRENT_MEMBER,
+    user: CURRENT_USER,
     avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}
         maxHeight={SMALL_AVATAR_SIZE}
         url={'https://picsum.photos/100'}
-        alt={`profile image ${CURRENT_MEMBER.name}`}
+        alt={`profile image ${CURRENT_USER.name}`}
         component={'avatar'}
         sx={{ mx: 1 }}
       />
@@ -65,7 +65,7 @@ export const SignedIn = {
 export const Guest = {
   args: {
     signOutText: 'Sign Out',
-    currentMember: { ...CURRENT_MEMBER, type: AccountType.Guest },
+    user: { ...CURRENT_USER, type: AccountType.Guest },
     avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}

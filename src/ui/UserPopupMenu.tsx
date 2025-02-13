@@ -28,7 +28,7 @@ const MENU_ARIA_ID = 'account-menu';
 type Props = {
   buttonId?: string;
   avatar: JSX.Element;
-  currentMember: AuthenticatedMember;
+  user: AuthenticatedMember;
   seeProfileButtonId?: string;
   signOutMenuItemId?: string;
   signOutText: string;
@@ -47,7 +47,7 @@ type Props = {
 
 export function UserPopupMenu({
   buttonId,
-  currentMember,
+  user,
   seeProfileButtonId,
   signOutMenuItemId,
   avatar,
@@ -88,7 +88,7 @@ export function UserPopupMenu({
         open={open}
         onClose={handleClose}
       >
-        {currentMember.type === AccountType.Individual && (
+        {user.type === AccountType.Individual && (
           <>
             <MenuItemLink
               key="seeProfile"
