@@ -12,6 +12,9 @@ const meta = {
     to: { type: 'string' },
   },
   args: { to: '/path' },
+  parameters: {
+    router: { routes: ['/settings', '/home'], initialEntries: ['/home'] },
+  },
 } satisfies Meta<typeof MenuTab>;
 
 export default meta;
@@ -23,7 +26,7 @@ export const Default = {
 } satisfies Story;
 
 export const Active = {
-  args: { title: 'Home', icon: <Home />, active: true, to: '/home' },
+  args: { title: 'Home', icon: <Home />, to: '/home' },
 } satisfies Story;
 
 export const ManyTabs = {
