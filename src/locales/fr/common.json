@@ -56,8 +56,16 @@
   "UNKNOWN_DATE": "Inconnu",
   "PAGE_TITLES": {
     "MY_GRAASP": "Mon Graasp",
-    "BOOKMARKED_ITEMS_TITLE": "Signets",
+    "BOOKMARKED_ITEMS": "Signets",
     "PUBLISHED_ITEMS": "Éléments publiés",
     "TRASH": "Poubelle"
+  },
+  "USER_SWITCH": {
+    "PROFILE": "Profil",
+    "SETTINGS": "Paramètres",
+    "STORAGE": "Stockage",
+    "LOG_IN": "Se connecter",
+    "LOG_OUT": "Se déconnecter",
+    "NEED_HELP": "Besoin d'aide ?"
   }
 }
