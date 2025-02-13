@@ -20,7 +20,7 @@ import { TreeNode } from './Node';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
 import { ItemMetaData, getItemTree } from './utils';
 
-export const GRAASP_MENU_ITEMS: string[] = [ItemType.FOLDER, ItemType.SHORTCUT];
+export const GRAASP_MENU_ITEMS = [ItemType.FOLDER, ItemType.SHORTCUT];
 
 type TreeViewProps = {
   id: string;
@@ -32,6 +32,10 @@ type TreeViewProps = {
   firstLevelStyle?: object;
   sx?: SxProps;
   itemId: string;
+  /**
+   * Item whose type is not in the list is filtered out. If the array is empty, no item is filtered.
+   */
+  allowedTypes?: DiscriminatedItem['type'][];
 };
 
 export function TreeView({
@@ -40,13 +44,13 @@ export function TreeView({
   items,
   rootItems,
   onTreeItemSelect,
-  onlyShowContainerItems = true,
+  allowedTypes = [],
   firstLevelStyle,
   sx = {},
   itemId,
 }: Readonly<TreeViewProps>): JSX.Element {
   const itemsToShow = items?.filter((item) =>
-    onlyShowContainerItems ? GRAASP_MENU_ITEMS.includes(item.type) : true,
+    allowedTypes.length ? allowedTypes.includes(item.type) : true,
   );
   const focusedItem = itemsToShow?.find((i) => i.id === itemId);
 
@@ -75,7 +79,7 @@ export function TreeView({
     />
   );
 
-  const itemTree = getItemTree(itemsToShow ?? [], rootItems);
+  const itemTree = getItemTree(itemsToShow ?? [], rootItems, allowedTypes);
   const tree = Object.values(itemTree);
 
   const defaultExpandedIds = rootItems[0]?.id ? [rootItems[0].id] : [];

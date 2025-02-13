@@ -45,7 +45,7 @@ const MainScreen = (): JSX.Element | null => {
   }
 
   if (isError) {
-    return <Alert severity="error">helllo{t('ERROR_FETCHING_ITEM')}</Alert>;
+    return <Alert severity="error">{t('ERROR_FETCHING_ITEM')}</Alert>;
   }
 
   return null;

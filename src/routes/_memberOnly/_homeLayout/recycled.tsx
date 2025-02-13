@@ -93,7 +93,6 @@ function RecycledItemsScreenContent() {
                     item={item}
                     onThumbnailClick={() => toggleSelection(item.id)}
                     isSelected={selectedIds.includes(item.id)}
-                    allowNavigation={false}
                     footer={
                       <Stack justifyContent="right" direction="row">
                         <RestoreButton itemIds={[item.id]} />

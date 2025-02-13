@@ -11,8 +11,6 @@ import {
   styled,
 } from '@mui/material';
 
-import { Link } from '@tanstack/react-router';
-
 import { PRIMARY_COLOR } from '@/ui/theme.js';
 
 import type { DraggableAndDroppableProps } from '../draggable/types.js';
@@ -68,29 +66,12 @@ type CardProps = {
   menu?: JSX.Element;
   content?: string | JSX.Element | JSX.Element[];
 
-  to?: string;
   type?: CardThumbnailProps['type'];
+
+  CardLink?: ({ children }: { children: ReactNode }) => ReactNode;
 
   onThumbnailClick?: () => void;
 } & Partial<DraggableAndDroppableProps>;
-
-const Wrapper = ({
-  children,
-  to,
-}: {
-  children?: string | JSX.Element | JSX.Element[];
-  to?: string;
-}): JSX.Element => {
-  if (!to) {
-    return <>{children}</>;
-  }
-
-  return (
-    <Link to={to} style={{ textDecoration: 'none', color: 'unset' }}>
-      {children}
-    </Link>
-  );
-};
 
 const Card = ({
   footer,
@@ -106,7 +87,7 @@ const Card = ({
   elevation = true,
   content,
   alt,
-  to,
+  CardLink = ({ children }) => <>{children}</>,
   type,
   isOver = false,
   isDragging = false,
@@ -171,7 +152,7 @@ const Card = ({
               alignItems="start"
               boxSizing="border-box"
             >
-              <Wrapper to={to}>
+              <CardLink>
                 <Stack minWidth={0}>
                   <Typography noWrap variant={dense ? 'h5' : 'h3'}>
                     {name}
@@ -186,13 +167,13 @@ const Card = ({
                     </Typography>
                   )}
                 </Stack>
-              </Wrapper>
+              </CardLink>
             </Grid>
             <Grid
               size={{ sm: 4, xs: 0, md: 5 }}
               display={{ xs: 'none', sm: 'block' }}
             >
-              <Wrapper to={to}>{content}</Wrapper>
+              <CardLink>{content}</CardLink>
             </Grid>
             <Grid size={{ xs: 3, sm: 3, md: 2 }} justifyContent="flex-end">
               <CardActions sx={{ p: 0, justifyContent: 'flex-end' }}>
@@ -247,7 +228,7 @@ const Card = ({
             alignItems="start"
             boxSizing="border-box"
           >
-            <Wrapper to={to}>
+            <CardLink>
               <Stack minWidth={0} direction="column">
                 <Typography noWrap variant={dense ? 'h5' : 'h3'}>
                   {name}
@@ -262,7 +243,7 @@ const Card = ({
                   </Typography>
                 )}
               </Stack>
-            </Wrapper>
+            </CardLink>
             {menu}
           </Stack>
           <Typography
