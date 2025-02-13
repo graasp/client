@@ -54,7 +54,7 @@ export const SignedIn = {
     const menuCanvas = within(screen.getByRole('menu'));
 
     // profile and settings buttons
-    expect(menuCanvas.getByText('Profile')).toBeInTheDocument();
+    expect(menuCanvas.getByText('Home')).toBeInTheDocument();
     expect(menuCanvas.getByText('Settings')).toBeInTheDocument();
 
     // sign out button
