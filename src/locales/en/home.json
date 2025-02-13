@@ -5,5 +5,9 @@
     "BOOKMARKED_ITEMS": "Bookmarks",
     "PUBLISHED_ITEMS": "Published",
     "RECYCLED_ITEMS": "Trash"
+  },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "Show less",
+    "SHOW_MORE": "Show more"
   }
 }
