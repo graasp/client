@@ -147,8 +147,6 @@ export function TitleSection(): JSX.Element {
             Icon={SDC}
             href="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html"
           />
-          {/* <Swissuniversities width="150px" height="3rem" /> */}
-          {/* <SDC width="150px" height="3rem" /> */}
         </Stack>
       </Stack>
     </Stack>
