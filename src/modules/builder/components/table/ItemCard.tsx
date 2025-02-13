@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Grid2 as Grid, Typography } from '@mui/material';
@@ -24,9 +24,9 @@ type Props = {
   disabled?: boolean;
   menu?: JSX.Element;
   isSelected?: boolean;
-  allowNavigation?: boolean;
   onThumbnailClick?: () => void;
   thumbnailUrl?: string;
+  CardLink?: ({ children }: { children: ReactNode }) => ReactNode;
 };
 
 const ItemCard = ({
@@ -38,9 +38,9 @@ const ItemCard = ({
   isSelected = false,
   disabled,
   menu,
-  allowNavigation = true,
   thumbnailUrl,
   onThumbnailClick,
+  CardLink,
 }: Props): JSX.Element => {
   const { t: translateCommon, i18n } = useTranslation(NS.Common);
 
@@ -49,11 +49,6 @@ const ItemCard = ({
       locale: i18n.language,
       defaultValue: translateCommon('UNKNOWN_DATE'),
     });
-
-  const to =
-    item.type === ItemType.SHORTCUT
-      ? `/builder/items/${item.extra.shortcut.target}`
-      : `/builder/items/${item.id}`;
 
   const content = (
     <Grid
@@ -112,7 +107,6 @@ const ItemCard = ({
         dense={dense}
         elevation={false}
         thumbnail={thumbnail}
-        to={allowNavigation ? to : undefined}
         name={item.name}
         alt={item.name}
         type={item.type}
@@ -124,6 +118,7 @@ const ItemCard = ({
         isDragging={isDragging}
         isOver={isOver}
         isSelected={isSelected}
+        CardLink={CardLink}
       />
     </Box>
   );

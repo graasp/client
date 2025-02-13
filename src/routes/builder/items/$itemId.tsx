@@ -10,7 +10,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { Outlet, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import axios from 'axios';
 import { z } from 'zod';
@@ -39,11 +39,13 @@ import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
 import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import ModalProviders from '~builder/components/context/ModalProviders';
-import { MainMenu } from '~builder/components/main/MainMenu';
 import { OutletContext } from '~builder/contexts/OutletContext';
 import { ItemLayoutMode } from '~builder/enums';
+import ItemNavigation from '~player/ItemNavigation';
 import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
+import { LoadingTree } from '~player/tree/LoadingTree';
+import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
 
 const schema = z.object({
   chatOpen: z.boolean().optional(),
@@ -60,12 +62,13 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
 );
 
 function RouteComponent() {
+  const { itemId } = Route.useParams();
+
   const { user } = useAuth();
   const { t } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
   const theme = useTheme();
   const { isMobile } = useMobileView();
-  const { itemId } = Route.useParams();
   const {
     data: item,
     isLoading: itemIsLoading,
@@ -78,6 +81,10 @@ function RouteComponent() {
     isLoading: itemLoginSchemaTypeIsLoading,
     isError: isItemLoginSchemaTypeError,
   } = hooks.useItemLoginSchemaType({ itemId });
+  const { data: parents, isLoading: isParentsLoading } = hooks.useParents({
+    id: item?.id,
+    enabled: Boolean(item?.id),
+  });
 
   hooks.useItemFeedbackUpdates?.(user?.id);
 
@@ -95,7 +102,7 @@ function RouteComponent() {
 
   const platformProps = {
     [Platform.Builder]: {
-      disabled: true,
+      href: `/builder/items/${itemId}`,
     },
     [Platform.Player]: {
       href: `/player/${itemId}/${itemId}`,
@@ -107,6 +114,30 @@ function RouteComponent() {
       href: `/analytics/items/${itemId}`,
     },
   };
+
+  const navigate = useNavigate();
+  const handleNavigationOnClick = (newItemId: string) => {
+    navigate({
+      to: '/builder/items/$itemId',
+      params: {
+        itemId: newItemId,
+      },
+    });
+  };
+
+  // warning: since the item data is async, getting parents is also async.
+  // we avoid rendering the tree to soon with the current item id and wait for parents to fetch
+  const drawerContent = isParentsLoading ? (
+    <LoadingTree />
+  ) : (
+    <ItemNavigation
+      rootId={parents?.[0]?.id ?? itemId}
+      itemId={itemId}
+      showHidden
+      types={GRAASP_MENU_ITEMS}
+      handleNavigationOnClick={handleNavigationOnClick}
+    />
+  );
 
   return (
     <ModalProviders>
@@ -123,7 +154,7 @@ function RouteComponent() {
         headerId={HEADER_APP_BAR_ID}
         drawerOpenAriaLabel={t('ARIA_OPEN_DRAWER')}
         headerRightContent={<HeaderRightContent />}
-        drawerContent={<MainMenu />}
+        drawerContent={drawerContent}
         LinkComponent={LinkComponent}
         PlatformComponent={
           <PlatformSwitch

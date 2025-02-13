@@ -5,7 +5,7 @@ import { Box, Typography, useTheme } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { Outlet, createFileRoute } from '@tanstack/react-router';
+import { Outlet, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { fallback, zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
@@ -20,6 +20,7 @@ import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import ItemNavigation from '~player/ItemNavigation';
+import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
 
 const playerSchema = z.object({
   shuffle: z.boolean().optional(),
@@ -46,7 +47,8 @@ const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
 );
 
 function PlayerWrapper(): JSX.Element {
-  const { fullscreen } = Route.useSearch();
+  const search = Route.useSearch();
+  const { fullscreen, shuffle } = search;
   const { t } = useTranslation(NS.Player);
   const theme = useTheme();
   const { isMobile } = useMobileView();
@@ -68,6 +70,18 @@ function PlayerWrapper(): JSX.Element {
     },
   };
 
+  const navigate = useNavigate();
+  const handleNavigationOnClick = (newItemId: string) => {
+    navigate({
+      to: '/player/$rootId/$itemId',
+      params: {
+        rootId,
+        itemId: newItemId,
+      },
+      search,
+    });
+  };
+
   if (fullscreen) {
     return (
       /* necessary for item login screen to be centered */
@@ -87,7 +101,15 @@ function PlayerWrapper(): JSX.Element {
         Boolean(rootId)
       }
       context={Context.Player}
-      drawerContent={<ItemNavigation />}
+      drawerContent={
+        <ItemNavigation
+          rootId={rootId}
+          itemId={itemId}
+          shuffle={shuffle}
+          types={GRAASP_MENU_ITEMS}
+          handleNavigationOnClick={handleNavigationOnClick}
+        />
+      }
       drawerOpenAriaLabel={t('DRAWER_ARIAL_LABEL')}
       LinkComponent={LinkComponent}
       PlatformComponent={

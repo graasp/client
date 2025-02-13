@@ -92,8 +92,11 @@ const buildItemsTree = (
 export const getItemTree = (
   data: DiscriminatedItem[],
   rootItems: DiscriminatedItem[],
+  allowedTypes: DiscriminatedItem['type'][] = [],
 ): TreeNode => {
-  const res = data.filter((ele) => ele.type === ItemType.FOLDER);
+  const res = allowedTypes.length
+    ? data.filter((ele) => allowedTypes.includes(ele.type))
+    : data;
   const rootItemTree = buildItemsTree(res, rootItems);
   return rootItemTree;
 };

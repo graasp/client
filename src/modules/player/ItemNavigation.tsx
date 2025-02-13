@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
-import { getRouteApi, useNavigate } from '@tanstack/react-router';
 import { isAxiosError } from 'axios';
 
 import { useAuth } from '@/AuthContext.tsx';
@@ -19,36 +18,33 @@ import { TreeView } from './tree/TreeView';
 import { combineUuids, shuffleAllButLastItemInArray } from './utils/shuffle';
 
 const { useItem, useDescendants } = hooks;
-const playerRoute = getRouteApi('/player/$rootId/$itemId');
 
-const DrawerNavigation = (): JSX.Element | null => {
-  const { rootId, itemId } = playerRoute.useParams();
-  const search = playerRoute.useSearch();
-  const navigate = useNavigate();
+const DrawerNavigation = ({
+  rootId,
+  itemId,
+  shuffle = false,
+  types,
+  showHidden = false,
+  handleNavigationOnClick,
+}: {
+  rootId: string;
+  itemId: string;
+  shuffle?: boolean;
+  types?: DiscriminatedItem['type'][];
+  showHidden?: boolean;
+  handleNavigationOnClick: (newItemId: string) => void;
+}): JSX.Element | null => {
   const { user } = useAuth();
-
-  const { shuffle } = search;
 
   const { t } = useTranslation(NS.Common);
 
   const { data: descendants, isLoading: isLoadingTree } = useDescendants({
     id: rootId ?? '',
-    types: [ItemType.FOLDER],
-    // remove hidden
-    showHidden: false,
+    types,
+    showHidden,
   });
 
   const { data: rootItem, isLoading, isError, error } = useItem(rootId);
-  const handleNavigationOnClick = (newItemId: string) => {
-    navigate({
-      to: '/player/$rootId/$itemId',
-      params: {
-        rootId,
-        itemId: newItemId,
-      },
-      search,
-    });
-  };
 
   let shuffledDescendants = [...(descendants || [])];
   if (shuffle) {
@@ -73,6 +69,7 @@ const DrawerNavigation = (): JSX.Element | null => {
             firstLevelStyle={{ fontWeight: 'bold' }}
             onTreeItemSelect={handleNavigationOnClick}
             itemId={itemId}
+            allowedTypes={types}
           />
         </MainMenu>
       );

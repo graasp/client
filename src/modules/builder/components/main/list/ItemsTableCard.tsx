@@ -1,10 +1,11 @@
-import type { JSX } from 'react';
+import type { JSX, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Stack } from '@mui/material';
 
 import { PackedItem } from '@graasp/sdk';
 
+import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import type { DroppedFile } from '@/ui/draggable/types';
 
@@ -16,6 +17,18 @@ import Badges, { ItemsStatuses } from '../../table/Badges';
 import ItemActions from '../../table/ItemActions';
 import ItemCard from '../../table/ItemCard';
 import ItemMenuContent from '../ItemMenuContent';
+
+const LinkComponent =
+  ({ itemId }: { itemId: string }) =>
+  ({ children }: { children: ReactNode }) => (
+    <CustomLink
+      to="/builder/items/$itemId"
+      params={{ itemId }}
+      style={{ textDecoration: 'none', color: 'unset' }}
+    >
+      {children}
+    </CustomLink>
+  );
 
 type Props = {
   item: PackedItem | DroppedFile;
@@ -65,6 +78,9 @@ const ItemsTableCard = ({
         isDragging={isDragging}
         isSelected={isSelected}
         thumbnailUrl={thumbnailUrl}
+        CardLink={LinkComponent({
+          itemId: item.id,
+        })}
         menu={<ItemMenuContent item={item} />}
         footer={
           <Stack
