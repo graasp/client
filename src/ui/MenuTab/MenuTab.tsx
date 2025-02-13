@@ -1,45 +1,57 @@
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 
 import { Stack, styled } from '@mui/material';
 
-import { Link } from '@tanstack/react-router';
+import { LinkComponent, createLink } from '@tanstack/react-router';
 
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '../theme';
 
-const StyledLink = styled(Link)(() => ({
-  textDecoration: 'none',
-  color: 'inherit',
-}));
-
 type Props = {
-  active?: boolean;
   title: string;
   icon: ReactNode;
-  to: string;
 };
 
-export function MenuTab({ icon, title, to, active = false }: Readonly<Props>) {
+const StyledStack = styled(Stack)({
+  textDecoration: 'none',
+  color: 'inherit',
+}) as typeof Stack;
+
+const MUILinkComponent = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
+  const { icon, title, ...restProps } = props;
+
   return (
-    <StyledLink to={to}>
-      <Stack
-        direction="row"
-        gap={1}
-        width="auto"
-        px={2}
-        py={1}
-        borderRadius={5}
-        sx={
-          active
-            ? { background: DEFAULT_LIGHT_PRIMARY_COLOR.main }
-            : {
-                borderWidth: 1,
-                borderStyle: 'solid',
-                borderColor: DEFAULT_LIGHT_PRIMARY_COLOR.main,
-              }
-        }
-      >
-        {icon} {title}
-      </Stack>
-    </StyledLink>
+    <StyledStack
+      component="a"
+      ref={ref}
+      direction="row"
+      gap={1}
+      width="auto"
+      px={2}
+      py={1}
+      borderRadius={5}
+      sx={{
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: DEFAULT_LIGHT_PRIMARY_COLOR.main,
+      }}
+      {...restProps}
+    >
+      {icon}
+      {title}
+    </StyledStack>
   );
-}
+});
+
+const CreatedLinkComponent = createLink(MUILinkComponent);
+
+export const MenuTab: LinkComponent<typeof MUILinkComponent> = (props) => {
+  return (
+    <CreatedLinkComponent
+      preload="intent"
+      activeProps={() => ({
+        sx: { background: DEFAULT_LIGHT_PRIMARY_COLOR.main },
+      })}
+      {...props}
+    />
+  );
+};
