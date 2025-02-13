@@ -1,4 +1,9 @@
-import { type JSX, type MouseEventHandler, useState } from 'react';
+import {
+  ComponentProps,
+  type JSX,
+  type MouseEventHandler,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -15,8 +20,8 @@ import { AccountType } from '@graasp/sdk';
 import {
   CircleHelpIcon,
   DoorOpenIcon,
+  HomeIcon,
   SettingsIcon,
-  UserCircle2Icon,
 } from 'lucide-react';
 
 import { AuthenticatedMember } from '@/AuthContext';
@@ -26,10 +31,9 @@ import { NS } from '@/config/constants';
 const MENU_ARIA_ID = 'account-menu';
 
 type Props = {
-  buttonId?: string;
+  avatarButtonId: string;
   avatar: JSX.Element;
   user: AuthenticatedMember;
-  seeProfileButtonId?: string;
   signOutMenuItemId?: string;
   signOutText: string;
   /**
@@ -46,9 +50,8 @@ type Props = {
 };
 
 export function UserPopupMenu({
-  buttonId,
+  avatarButtonId,
   user,
-  seeProfileButtonId,
   signOutMenuItemId,
   avatar,
   dataUmamiEvent,
@@ -68,13 +71,19 @@ export function UserPopupMenu({
     setAnchorEl(null);
   };
 
+  const activeProps: ComponentProps<
+    typeof MenuItemLink
+  >['activeProps'] = () => ({
+    selected: true,
+  });
+
   const open = Boolean(anchorEl);
   return (
     <>
       <IconButton
         onClick={handleClick}
         size="small"
-        id={buttonId}
+        id={avatarButtonId}
         aria-controls={open ? MENU_ARIA_ID : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -91,21 +100,20 @@ export function UserPopupMenu({
         {user.type === AccountType.Individual && (
           <>
             <MenuItemLink
-              key="seeProfile"
-              id={seeProfileButtonId}
               to="/home"
+              activeProps={activeProps}
               onClick={handleClose}
             >
               <ListItemIcon>
-                <UserCircle2Icon />
+                <HomeIcon />
               </ListItemIcon>
               <Typography variant="subtitle2">
-                {t('USER_SWITCH.PROFILE')}
+                {t('USER_SWITCH.HOME')}
               </Typography>
             </MenuItemLink>
             <MenuItemLink
-              key="settings"
               to="/account/settings"
+              activeProps={activeProps}
               onClick={handleClose}
             >
               <ListItemIcon>
@@ -115,8 +123,12 @@ export function UserPopupMenu({
                 {t('USER_SWITCH.SETTINGS')}
               </Typography>
             </MenuItemLink>
-            <Divider key="divider" />
-            <MenuItemLink key="help" to="/support" onClick={handleClose}>
+            <Divider />
+            <MenuItemLink
+              to="/support"
+              activeProps={activeProps}
+              onClick={handleClose}
+            >
               <ListItemIcon>
                 <CircleHelpIcon />
               </ListItemIcon>
