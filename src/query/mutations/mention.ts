@@ -15,7 +15,7 @@ export default (queryConfig: QueryClientConfig) => {
   const usePatchMention = () => {
     const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: (args: { id: UUID; memberId: UUID; status: string }) =>
+      mutationFn: (args: { id: UUID; status: string }) =>
         Api.patchMemberMentionsStatus(args),
       onError: (error: Error) => {
         queryConfig.notifier?.({

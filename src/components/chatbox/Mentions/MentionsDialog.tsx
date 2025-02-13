@@ -24,7 +24,7 @@ export function MentionsDialog({
   return (
     <Dialog open={open} onClose={(): void => setOpen(false)} maxWidth="lg">
       <DialogTitle>
-        <Stack direction="row" spacing={1} alignItems="center">
+        <Stack direction="row" gap={2} alignItems="center">
           <BellIcon color={color} />
           {t('NOTIFICATIONS_DIALOG_TITLE')}
         </Stack>
