@@ -7,6 +7,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
+  PUBLISHED_ITEMS_EMPTY_ID,
+  PUBLISHED_ITEMS_EMPTY_SEARCH_RESULT_ID,
   PUBLISHED_ITEMS_ERROR_ALERT_ID,
   PUBLISHED_ITEMS_ID,
 } from '@/config/selectors';
@@ -101,7 +103,7 @@ function RouteComponent() {
               enableMoveInBetween={false}
             />
           ) : (
-            <Alert severity="info">
+            <Alert severity="info" id={PUBLISHED_ITEMS_EMPTY_SEARCH_RESULT_ID}>
               {translateBuilder('PUBLISHED_ITEMS_NOT_FOUND_SEARCH', {
                 search: text,
               })}
@@ -122,7 +124,9 @@ function RouteComponent() {
 
   if (!publishedItems?.length) {
     return (
-      <Alert severity="info">{translateBuilder('PUBLISHED_ITEMS_EMPTY')}</Alert>
+      <Alert severity="info" id={PUBLISHED_ITEMS_EMPTY_ID}>
+        {translateBuilder('PUBLISHED_ITEMS_EMPTY')}
+      </Alert>
     );
   }
 

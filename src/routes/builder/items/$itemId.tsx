@@ -37,15 +37,16 @@ import { useMobileView } from '@/ui/hooks/useMobileView';
 import ForbiddenContent from '@/ui/itemLogin/ForbiddenContent';
 import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
-import { MemberValidationBanner } from '~builder/components/alerts/MemberValidationBanner';
 import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import { MainMenu } from '~builder/components/main/MainMenu';
 import { OutletContext } from '~builder/contexts/OutletContext';
+import { ItemLayoutMode } from '~builder/enums';
 import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
 
 const schema = z.object({
   chatOpen: z.boolean().optional(),
+  mode: z.nativeEnum(ItemLayoutMode).optional(),
 });
 
 export const Route = createFileRoute('/builder/items/$itemId')({
@@ -91,7 +92,7 @@ function RouteComponent() {
 
   const platformProps = {
     [Platform.Builder]: {
-      href: '/builder',
+      disabled: true,
     },
     [Platform.Player]: {
       href: `/player/${itemId}/${itemId}`,
@@ -130,7 +131,6 @@ function RouteComponent() {
         />
       }
     >
-      <MemberValidationBanner />
       <FilterItemsContextProvider>
         <Stack maxWidth="xl" mx="auto" width="100%" height="100%">
           <ItemLoginWrapper

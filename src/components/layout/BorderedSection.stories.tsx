@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { SettingItem } from '~account/common/SettingItem';
-import { Default as SettingItemDefault } from '~account/common/SettingItem.stories';
+import { SettingItem } from '~account/settings/SettingItem';
+import { Default as SettingItemDefault } from '~account/settings/SettingItem.stories';
 
 import { BorderedSection } from './BorderedSection';
 

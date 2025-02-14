@@ -5,12 +5,7 @@ import { Box, List, Stack } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
-import {
-  BookmarkIcon,
-  HomeIcon,
-  LibraryBigIcon,
-  TrashIcon,
-} from 'lucide-react';
+import { HomeIcon, LibraryBigIcon, TrashIcon } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
@@ -34,11 +29,6 @@ export function MainMenu(): JSX.Element | null {
           <MainMenuItem to="/home" icon={<HomeIcon />} text={t('MY_ITEMS')} />
           {user.type === AccountType.Individual ? (
             <>
-              <MainMenuItem
-                to="/builder/bookmarks"
-                text={t('BOOKMARKED_ITEMS')}
-                icon={<BookmarkIcon />}
-              />
               <MainMenuItem
                 to="/published"
                 text={t('PUBLISHED_ITEMS')}

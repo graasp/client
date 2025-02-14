@@ -31,7 +31,7 @@ import LogoHeader from './LogoHeader.js';
 const DRAWER_WIDTH = 240;
 
 const buildHeaderGradient = (color: string): string =>
-  `linear-gradient(90deg, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
+  `linear-gradient(to right in oklch, ${PRIMARY_COLOR} 35%, ${color} 100%);`;
 const openDrawerStyles = (theme: Theme) => ({
   width: '100%',
   // conditional styles applied when screen is larger than mobile

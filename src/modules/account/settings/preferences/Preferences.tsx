@@ -15,7 +15,7 @@ import {
   PREFERENCES_LANGUAGE_DISPLAY_ID,
 } from '@/config/selectors';
 
-import { SettingItem } from '~account/common/SettingItem';
+import { SettingItem } from '~account/settings/SettingItem';
 
 import { EditPreferences } from './EditPreferences';
 

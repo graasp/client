@@ -62,7 +62,7 @@ const DeleteItemMembershipDialog = ({
       }).then(() => {
         // if current user deleted their own membership navigate them to the home
         if (membershipToDelete.account.id === member?.id) {
-          navigate({ to: '/builder' });
+          navigate({ to: '/home' });
         }
       });
 

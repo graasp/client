@@ -5,7 +5,10 @@ import { Alert, Stack, Typography } from '@mui/material';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { RECYCLED_ITEMS_ERROR_ALERT_ID } from '@/config/selectors';
+import {
+  RECYCLED_ITEMS_EMPTY_ID,
+  RECYCLED_ITEMS_ERROR_ALERT_ID,
+} from '@/config/selectors';
 import { useInfiniteOwnRecycledItems } from '@/query/item/recycled/hooks';
 import Button from '@/ui/buttons/Button/Button';
 
@@ -118,7 +121,9 @@ function RecycledItemsScreenContent() {
       );
     }
     return (
-      <Alert severity="info">{translateBuilder(BUILDER.TRASH_NO_ITEM)}</Alert>
+      <Alert severity="info" id={RECYCLED_ITEMS_EMPTY_ID}>
+        {translateBuilder(BUILDER.TRASH_NO_ITEM)}
+      </Alert>
     );
   }
 

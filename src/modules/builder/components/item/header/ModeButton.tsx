@@ -34,7 +34,10 @@ const ModeButton = (): JSX.Element | null => {
     setAnchorEl(event.currentTarget);
   };
 
-  const isHomePath = useMatch({ from: '/builder', shouldThrow: false });
+  const isHomePath = useMatch({
+    from: '/_memberOnly/_homeLayout',
+    shouldThrow: false,
+  });
   const isItemPath = useMatch({
     from: '/builder/items/$itemId',
     shouldThrow: false,

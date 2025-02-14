@@ -39,7 +39,8 @@ const FOLDER2 = PackedFolderItemFactory();
 const ITEMS = [IMAGE_ITEM, FOLDER, FOLDER2, FOLDER_CHILD, IMAGE_ITEM_CHILD];
 
 describe('Home', () => {
-  it('visit Home on map by default', () => {
+  // COMMENT: This has been deactivated for now, as the home does not provide the map view for the moment.
+  it.skip('visit Home on map by default', () => {
     cy.setUpApi({
       items: generateOwnItems(30),
     });

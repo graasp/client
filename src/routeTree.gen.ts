@@ -12,7 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SigninImport } from './routes/signin'
-import { Route as BuilderImport } from './routes/builder'
 import { Route as AuthImport } from './routes/auth'
 import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as MemberOnlyImport } from './routes/_memberOnly'
@@ -22,7 +21,6 @@ import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
 import { Route as BuilderMapImport } from './routes/builder.map'
-import { Route as BuilderLayoutImport } from './routes/builder/_layout'
 import { Route as AuthSuccessImport } from './routes/auth/success'
 import { Route as AuthSigninImport } from './routes/auth/signin'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
@@ -40,7 +38,6 @@ import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
 import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
 import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
 import { Route as BuilderItemsItemIdImport } from './routes/builder/items/$itemId'
-import { Route as BuilderLayoutBookmarksImport } from './routes/builder/_layout/bookmarks'
 import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
 import { Route as MemberOnlyAccountStorageImport } from './routes/_memberOnly/account/storage'
 import { Route as MemberOnlyAccountStatsImport } from './routes/_memberOnly/account/stats'
@@ -66,12 +63,6 @@ import { Route as BuilderItemsItemIdItemPagePublishImport } from './routes/build
 const SigninRoute = SigninImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BuilderRoute = BuilderImport.update({
-  id: '/builder',
-  path: '/builder',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -122,14 +113,9 @@ const EmailChangeRoute = EmailChangeImport.update({
 } as any)
 
 const BuilderMapRoute = BuilderMapImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => BuilderRoute,
-} as any)
-
-const BuilderLayoutRoute = BuilderLayoutImport.update({
-  id: '/_layout',
-  getParentRoute: () => BuilderRoute,
+  id: '/builder/map',
+  path: '/builder/map',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const AuthSuccessRoute = AuthSuccessImport.update({
@@ -228,15 +214,9 @@ const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
 } as any)
 
 const BuilderItemsItemIdRoute = BuilderItemsItemIdImport.update({
-  id: '/items/$itemId',
-  path: '/items/$itemId',
-  getParentRoute: () => BuilderRoute,
-} as any)
-
-const BuilderLayoutBookmarksRoute = BuilderLayoutBookmarksImport.update({
-  id: '/bookmarks',
-  path: '/bookmarks',
-  getParentRoute: () => BuilderLayoutRoute,
+  id: '/builder/items/$itemId',
+  path: '/builder/items/$itemId',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdImport.update({
@@ -394,13 +374,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
-    '/builder': {
-      id: '/builder'
-      path: '/builder'
-      fullPath: '/builder'
-      preLoaderRoute: typeof BuilderImport
-      parentRoute: typeof rootRoute
-    }
     '/signin': {
       id: '/signin'
       path: '/signin'
@@ -506,19 +479,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSuccessImport
       parentRoute: typeof AuthImport
     }
-    '/builder/_layout': {
-      id: '/builder/_layout'
-      path: ''
-      fullPath: '/builder'
-      preLoaderRoute: typeof BuilderLayoutImport
-      parentRoute: typeof BuilderImport
-    }
     '/builder/map': {
       id: '/builder/map'
-      path: '/map'
+      path: '/builder/map'
       fullPath: '/builder/map'
       preLoaderRoute: typeof BuilderMapImport
-      parentRoute: typeof BuilderImport
+      parentRoute: typeof rootRoute
     }
     '/email/change': {
       id: '/email/change'
@@ -597,19 +563,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsItemsItemIdImport
       parentRoute: typeof AnalyticsImport
     }
-    '/builder/_layout/bookmarks': {
-      id: '/builder/_layout/bookmarks'
-      path: '/bookmarks'
-      fullPath: '/builder/bookmarks'
-      preLoaderRoute: typeof BuilderLayoutBookmarksImport
-      parentRoute: typeof BuilderLayoutImport
-    }
     '/builder/items/$itemId': {
       id: '/builder/items/$itemId'
-      path: '/items/$itemId'
+      path: '/builder/items/$itemId'
       fullPath: '/builder/items/$itemId'
       preLoaderRoute: typeof BuilderItemsItemIdImport
-      parentRoute: typeof BuilderImport
+      parentRoute: typeof rootRoute
     }
     '/player/$rootId/$itemId': {
       id: '/player/$rootId/$itemId'
@@ -825,18 +784,6 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-interface BuilderLayoutRouteChildren {
-  BuilderLayoutBookmarksRoute: typeof BuilderLayoutBookmarksRoute
-}
-
-const BuilderLayoutRouteChildren: BuilderLayoutRouteChildren = {
-  BuilderLayoutBookmarksRoute: BuilderLayoutBookmarksRoute,
-}
-
-const BuilderLayoutRouteWithChildren = BuilderLayoutRoute._addFileChildren(
-  BuilderLayoutRouteChildren,
-)
-
 interface BuilderItemsItemIdItemPageRouteChildren {
   BuilderItemsItemIdItemPagePublishRoute: typeof BuilderItemsItemIdItemPagePublishRoute
   BuilderItemsItemIdItemPageSettingsRoute: typeof BuilderItemsItemIdItemPageSettingsRoute
@@ -870,21 +817,6 @@ const BuilderItemsItemIdRouteChildren: BuilderItemsItemIdRouteChildren = {
 const BuilderItemsItemIdRouteWithChildren =
   BuilderItemsItemIdRoute._addFileChildren(BuilderItemsItemIdRouteChildren)
 
-interface BuilderRouteChildren {
-  BuilderLayoutRoute: typeof BuilderLayoutRouteWithChildren
-  BuilderMapRoute: typeof BuilderMapRoute
-  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
-}
-
-const BuilderRouteChildren: BuilderRouteChildren = {
-  BuilderLayoutRoute: BuilderLayoutRouteWithChildren,
-  BuilderMapRoute: BuilderMapRoute,
-  BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
-}
-
-const BuilderRouteWithChildren =
-  BuilderRoute._addFileChildren(BuilderRouteChildren)
-
 interface PlayerRootIdItemIdRouteChildren {
   PlayerRootIdItemIdAutoLoginRoute: typeof PlayerRootIdItemIdAutoLoginRoute
   PlayerRootIdItemIdIndexRoute: typeof PlayerRootIdItemIdIndexRoute
@@ -902,7 +834,6 @@ export interface FileRoutesByFullPath {
   '': typeof MemberOnlyHomeLayoutRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderLayoutRouteWithChildren
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -929,7 +860,6 @@ export interface FileRoutesByFullPath {
   '/account/stats': typeof MemberOnlyAccountStatsRoute
   '/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
   '/player/$rootId': typeof PlayerRootIdIndexRoute
@@ -949,7 +879,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '': typeof MemberOnlyHomeLayoutRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderLayoutRouteWithChildren
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -975,7 +904,6 @@ export interface FileRoutesByTo {
   '/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/account/stats': typeof MemberOnlyAccountStatsRoute
   '/account/storage': typeof MemberOnlyAccountStorageRoute
-  '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -996,7 +924,6 @@ export interface FileRoutesById {
   '/_memberOnly': typeof MemberOnlyRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderRouteWithChildren
   '/signin': typeof SigninRoute
   '/_landing/about-us': typeof LandingAboutUsRoute
   '/_landing/contact-us': typeof LandingContactUsRoute
@@ -1012,7 +939,6 @@ export interface FileRoutesById {
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signin': typeof AuthSigninRoute
   '/auth/success': typeof AuthSuccessRoute
-  '/builder/_layout': typeof BuilderLayoutRouteWithChildren
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
@@ -1025,7 +951,6 @@ export interface FileRoutesById {
   '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
   '/_memberOnly/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/_layout/bookmarks': typeof BuilderLayoutBookmarksRoute
   '/builder/items/$itemId': typeof BuilderItemsItemIdRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
   '/player/$rootId/': typeof PlayerRootIdIndexRoute
@@ -1049,7 +974,6 @@ export interface FileRouteTypes {
     | ''
     | '/analytics'
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -1076,7 +1000,6 @@ export interface FileRouteTypes {
     | '/account/stats'
     | '/account/storage'
     | '/analytics/items/$itemId'
-    | '/builder/bookmarks'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
     | '/player/$rootId'
@@ -1095,7 +1018,6 @@ export interface FileRouteTypes {
   to:
     | ''
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -1121,7 +1043,6 @@ export interface FileRouteTypes {
     | '/account/settings'
     | '/account/stats'
     | '/account/storage'
-    | '/builder/bookmarks'
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -1140,7 +1061,6 @@ export interface FileRouteTypes {
     | '/_memberOnly'
     | '/analytics'
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/_landing/about-us'
     | '/_landing/contact-us'
@@ -1156,7 +1076,6 @@ export interface FileRouteTypes {
     | '/auth/reset-password'
     | '/auth/signin'
     | '/auth/success'
-    | '/builder/_layout'
     | '/builder/map'
     | '/email/change'
     | '/_landing/'
@@ -1169,7 +1088,6 @@ export interface FileRouteTypes {
     | '/_memberOnly/account/stats'
     | '/_memberOnly/account/storage'
     | '/analytics/items/$itemId'
-    | '/builder/_layout/bookmarks'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
     | '/player/$rootId/'
@@ -1193,10 +1111,11 @@ export interface RootRouteChildren {
   MemberOnlyRoute: typeof MemberOnlyRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
-  BuilderRoute: typeof BuilderRouteWithChildren
   SigninRoute: typeof SigninRoute
+  BuilderMapRoute: typeof BuilderMapRoute
   EmailChangeRoute: typeof EmailChangeRoute
   PlayerIndexRoute: typeof PlayerIndexRoute
+  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
   PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
   PlayerRootIdIndexRoute: typeof PlayerRootIdIndexRoute
 }
@@ -1206,10 +1125,11 @@ const rootRouteChildren: RootRouteChildren = {
   MemberOnlyRoute: MemberOnlyRouteWithChildren,
   AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
-  BuilderRoute: BuilderRouteWithChildren,
   SigninRoute: SigninRoute,
+  BuilderMapRoute: BuilderMapRoute,
   EmailChangeRoute: EmailChangeRoute,
   PlayerIndexRoute: PlayerIndexRoute,
+  BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
   PlayerRootIdItemIdRoute: PlayerRootIdItemIdRouteWithChildren,
   PlayerRootIdIndexRoute: PlayerRootIdIndexRoute,
 }
@@ -1228,10 +1148,11 @@ export const routeTree = rootRoute
         "/_memberOnly",
         "/analytics",
         "/auth",
-        "/builder",
         "/signin",
+        "/builder/map",
         "/email/change",
         "/player/",
+        "/builder/items/$itemId",
         "/player/$rootId/$itemId",
         "/player/$rootId/"
       ]
@@ -1274,14 +1195,6 @@ export const routeTree = rootRoute
         "/auth/reset-password",
         "/auth/signin",
         "/auth/success"
-      ]
-    },
-    "/builder": {
-      "filePath": "builder.tsx",
-      "children": [
-        "/builder/_layout",
-        "/builder/map",
-        "/builder/items/$itemId"
       ]
     },
     "/signin": {
@@ -1348,16 +1261,8 @@ export const routeTree = rootRoute
       "filePath": "auth/success.tsx",
       "parent": "/auth"
     },
-    "/builder/_layout": {
-      "filePath": "builder/_layout.tsx",
-      "parent": "/builder",
-      "children": [
-        "/builder/_layout/bookmarks"
-      ]
-    },
     "/builder/map": {
-      "filePath": "builder.map.tsx",
-      "parent": "/builder"
+      "filePath": "builder.map.tsx"
     },
     "/email/change": {
       "filePath": "email.change.tsx"
@@ -1408,13 +1313,8 @@ export const routeTree = rootRoute
         "/analytics/items/$itemId/"
       ]
     },
-    "/builder/_layout/bookmarks": {
-      "filePath": "builder/_layout/bookmarks.tsx",
-      "parent": "/builder/_layout"
-    },
     "/builder/items/$itemId": {
       "filePath": "builder/items/$itemId.tsx",
-      "parent": "/builder",
       "children": [
         "/builder/items/$itemId/_itemPage",
         "/builder/items/$itemId/"

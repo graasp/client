@@ -8,7 +8,8 @@ import { HOME_PATH } from '../../utils';
 
 const ITEMS = generateOwnItems(30);
 
-describe('Home screen', () => {
+// COMMENT: layout modes have been removed from the new home on `/home` so these tests are skipped.
+describe.skip('Home screen', () => {
   beforeEach(() => {
     cy.setUpApi({
       items: ITEMS,
