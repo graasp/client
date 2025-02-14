@@ -14,11 +14,13 @@ import {
 import { Outlet, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import axios from 'axios';
+import { HomeIcon } from 'lucide-react';
 import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
+import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks, mutations } from '@/config/queryClient';
@@ -29,6 +31,7 @@ import {
   ITEM_LOGIN_SIGN_IN_BUTTON_ID,
   ITEM_LOGIN_SIGN_IN_PASSWORD_ID,
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
+  NAVIGATION_HOME_ID,
 } from '@/config/selectors';
 import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
 import Main from '@/ui/Main/Main';
@@ -123,27 +126,35 @@ function RouteComponent() {
   const drawerContent = isParentsLoading ? (
     <LoadingTree />
   ) : (
-    <ItemNavigation
-      rootId={parents?.[0]?.id ?? itemId}
-      itemId={
-        // if the current item is not a folder, the item is not displayed in the tree
-        // so we highlight the parent (if it has parents)
-        item?.type !== ItemType.FOLDER && parents?.length
-          ? parents[parents.length - 1].id
-          : itemId
-      }
-      showHidden
-      types={GRAASP_MENU_ITEMS}
-      handleNavigationOnClick={(newItemId: string) => {
-        navigate({
-          to: '/builder/items/$itemId',
-          params: {
-            itemId: newItemId,
-          },
-          search,
-        });
-      }}
-    />
+    <Stack justifyContent="space-between" height="100%">
+      <ItemNavigation
+        rootId={parents?.[0]?.id ?? itemId}
+        itemId={
+          // if the current item is not a folder, the item is not displayed in the tree
+          // so we highlight the parent (if it has parents)
+          item?.type !== ItemType.FOLDER && parents?.length
+            ? parents[parents.length - 1].id
+            : itemId
+        }
+        showHidden
+        types={GRAASP_MENU_ITEMS}
+        handleNavigationOnClick={(newItemId: string) => {
+          navigate({
+            to: '/builder/items/$itemId',
+            params: {
+              itemId: newItemId,
+            },
+            search,
+          });
+        }}
+      />
+      <MainMenuItem
+        id={NAVIGATION_HOME_ID}
+        text={t('MENU.RETURN_HOME')}
+        icon={<HomeIcon />}
+        to="/home"
+      />
+    </Stack>
   );
 
   return (
