@@ -57,7 +57,7 @@ export function DocumentCreateForm({
   });
   const {
     handleSubmit,
-    setValue,
+    reset,
     formState: { isValid, isSubmitted },
   } = methods;
 
@@ -93,7 +93,8 @@ export function DocumentCreateForm({
           <DocumentContentForm
             documentItemId={ITEM_FORM_DOCUMENT_TEXT_ID}
             onChange={(v) => {
-              setValue('content', v);
+              // bug: setValue does not trigger isValid to be recomputed, probably because of TextEditor handling
+              reset({ content: v });
             }}
             placeholder={translateBuilder('TEXT_EDITOR_PLACEHOLDER')}
           />

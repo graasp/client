@@ -5,7 +5,10 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { ITEM_FORM_CONFIRM_BUTTON_ID } from '../../../../../src/config/selectors';
+import {
+  ITEM_FORM_CONFIRM_BUTTON_ID,
+  ITEM_FORM_DOCUMENT_TEXT_ID,
+} from '../../../../../src/config/selectors';
 import { createDocument } from '../../../../support/createUtils';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -92,6 +95,35 @@ describe('Create Document', () => {
       'disabled',
       true,
     );
+  });
+
+  it('try to create empty document then fill it and save', () => {
+    cy.setUpApi();
+    cy.visit(HOME_PATH);
+
+    createDocument(
+      DocumentItemFactory({
+        name: 'name',
+        extra: {
+          [ItemType.DOCUMENT]: {
+            content: '',
+          },
+        },
+      }),
+      { confirm: false },
+    );
+
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should(
+      'have.prop',
+      'disabled',
+      true,
+    );
+
+    cy.get(`#${ITEM_FORM_DOCUMENT_TEXT_ID}`).type('something');
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+
+    cy.wait('@postItem');
   });
 
   it('create document with flavor', () => {
