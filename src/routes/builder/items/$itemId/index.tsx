@@ -1,33 +1,33 @@
-import { type JSX, useState } from 'react'
-import { Helmet } from 'react-helmet-async'
-import { useTranslation } from 'react-i18next'
+import { type JSX, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 
-import { Divider, Stack, Typography } from '@mui/material'
+import { Divider, Stack, Typography } from '@mui/material';
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
-import { NS } from '@/config/constants'
-import { ITEM_MAIN_CLASS } from '@/config/selectors'
-import CustomInitialLoader from '@/ui/CustomInitialLoader/CustomInitialLoader'
-import DrawerHeader from '@/ui/DrawerHeader/DrawerHeader'
+import { NS } from '@/config/constants';
+import { ITEM_MAIN_CLASS } from '@/config/selectors';
+import CustomInitialLoader from '@/ui/CustomInitialLoader/CustomInitialLoader';
+import DrawerHeader from '@/ui/DrawerHeader/DrawerHeader';
 
-import Chatbox from '~builder/components/common/Chatbox'
-import { ItemContent } from '~builder/components/item/ItemContent'
-import ItemPanel from '~builder/components/item/ItemPanel'
-import ItemHeader from '~builder/components/item/header/ItemHeader'
-import { useOutletContext } from '~builder/contexts/OutletContext'
+import Chatbox from '~builder/components/common/Chatbox';
+import { ItemContent } from '~builder/components/item/ItemContent';
+import ItemPanel from '~builder/components/item/ItemPanel';
+import ItemHeader from '~builder/components/item/header/ItemHeader';
+import { useOutletContext } from '~builder/contexts/OutletContext';
 
 export const Route = createFileRoute('/builder/items/$itemId/')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent(): JSX.Element {
-  const { item } = useOutletContext()
-  const { t: translateBuilder } = useTranslation(NS.Builder)
-  const { chatOpen: chatIsOpen } = Route.useSearch()
+  const { item } = useOutletContext();
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { chatOpen: chatIsOpen } = Route.useSearch();
 
-  const [isChatboxOpen, setIsChatboxOpen] = useState(chatIsOpen ?? false)
-  const toggleChatbox = () => setIsChatboxOpen((s) => !s)
+  const [isChatboxOpen, setIsChatboxOpen] = useState(chatIsOpen ?? false);
+  const toggleChatbox = () => setIsChatboxOpen((s) => !s);
 
   if (item) {
     return (
@@ -49,7 +49,7 @@ function RouteComponent(): JSX.Element {
             <ItemPanel open={isChatboxOpen}>
               <DrawerHeader
                 handleDrawerClose={() => {
-                  setIsChatboxOpen(false)
+                  setIsChatboxOpen(false);
                 }}
               >
                 <Typography variant="h6">
@@ -64,7 +64,7 @@ function RouteComponent(): JSX.Element {
           )}
         </Stack>
       </>
-    )
+    );
   }
-  return <CustomInitialLoader />
+  return <CustomInitialLoader />;
 }

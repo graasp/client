@@ -63,6 +63,7 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
 
 function RouteComponent() {
   const { itemId } = Route.useParams();
+  const navigate = useNavigate();
 
   const { user } = useAuth();
   const { t } = useTranslation(NS.Builder);
@@ -115,16 +116,6 @@ function RouteComponent() {
     },
   };
 
-  const navigate = useNavigate();
-  const handleNavigationOnClick = (newItemId: string) => {
-    navigate({
-      to: '/builder/items/$itemId',
-      params: {
-        itemId: newItemId,
-      },
-    });
-  };
-
   // warning: since the item data is async, getting parents is also async.
   // we avoid rendering the tree to soon with the current item id and wait for parents to fetch
   const drawerContent = isParentsLoading ? (
@@ -135,7 +126,14 @@ function RouteComponent() {
       itemId={itemId}
       showHidden
       types={GRAASP_MENU_ITEMS}
-      handleNavigationOnClick={handleNavigationOnClick}
+      handleNavigationOnClick={(newItemId: string) => {
+        navigate({
+          to: '/builder/items/$itemId',
+          params: {
+            itemId: newItemId,
+          },
+        });
+      }}
     />
   );
 
