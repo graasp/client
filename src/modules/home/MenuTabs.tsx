@@ -17,6 +17,7 @@ export function MenuTabs() {
       flex={1}
       flexWrap="wrap"
       justifyContent="flex-end"
+      alignItems="center"
     >
       <MenuTab icon={<HomeIcon />} title={t('HOME')} to="/home" />
       <MenuTab
