@@ -55,13 +55,13 @@
   },
   "UNKNOWN_DATE": "Inconnu",
   "PAGE_TITLES": {
-    "MY_GRAASP": "Mon Graasp",
+    "MY_GRAASP": "Accueil",
     "BOOKMARKED_ITEMS": "Signets",
-    "PUBLISHED_ITEMS": "Éléments publiés",
+    "PUBLISHED_ITEMS": "Publications",
     "TRASH": "Poubelle"
   },
   "USER_SWITCH": {
-    "PROFILE": "Profil",
+    "HOME": "Accueil",
     "SETTINGS": "Paramètres",
     "STORAGE": "Stockage",
     "LOG_IN": "Se connecter",

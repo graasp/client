@@ -129,7 +129,7 @@
   "ITEM_METADATA_SIZE_TITLE": "Taille",
   "ITEM_METADATA_TITLE": "Informations",
   "ITEM_METADATA_TYPE_TITLE": "Type",
-  "ITEM_METADATA_UPDATED_AT_TITLE": "Mis à jour à",
+  "ITEM_METADATA_UPDATED_AT_TITLE": "Dernière mise à jour",
   "ITEM_METADATA_LANGUAGE_TITLE": "Langue",
   "ITEM_SEARCH_NO_RESULTS_MESSAGE": "Aucun résultat ne correspond à la recherche.",
   "ITEM_SEARCH_PLACEHOLDER": "Recherche…",
@@ -182,7 +182,7 @@
   "ITEMS_TABLE_SELECTION_TEXT_one": "{{count}} sélectionné",
   "ITEMS_TABLE_SELECTION_TEXT_other": "{{count}} sélectionnés",
   "ITEMS_TABLE_TYPE_HEADER": "Type",
-  "ITEMS_TABLE_UPDATED_AT_HEADER": "Mis à jour à",
+  "ITEMS_TABLE_UPDATED_AT_HEADER": "Mis à jour",
   "ITEMS_TREE_OWN_ITEMS_LABEL": "Mes Éléments",
   "LAYOUT_MODE_GRID_LABEL": "Afficher en grille",
   "LAYOUT_MODE_LIST_LABEL": "Afficher en liste",
@@ -455,23 +455,23 @@
   "UPLOAD_NOTIFICATION_COMPLETE": "Téléversement terminé!",
   "SORT_BY_LABEL": "Trier par",
   "item": {
-    "updated_at": "Mis à jour à",
+    "updated_at": "Dernière mise à jour",
     "creator": {
       "name": "Créateur"
     },
-    "type": "Taper",
+    "type": "Type",
     "name": "Nom",
-    "order": "Commande"
+    "order": "Ordre"
   },
   "CHAT": {
     "SHOW": "Afficher le chat",
     "HIDE": "Masquer le chat",
-    "CLEAR_BUTTON_TEXT": "Clair",
+    "CLEAR_BUTTON_TEXT": "Effacer tout",
     "CLEAR_ALL": "Effacer le chat",
     "CLEAR_ALL_TITLE": "Effacer le contenu du chat",
     "CLEAR_ALL_CONTENT": "Vous pouvez supprimer tous les messages du chat. Assurez-vous d'avoir téléchargé une copie si vous souhaitez conserver les messages. Vous ne pouvez pas annuler cette action."
   },
-  "TRASH_NO_ITEM": "La poubelle est vide.",
+  "TRASH_NO_ITEM": "La corbeille est vide.",
   "BOOKMARKS_NO_ITEM": "Aucun élément ajouté aux signets",
   "BOOKMARKS_NO_ITEM_SEARCH": "Aucun favori ne correspond à {{search}}",
   "UPLOAD_BETWEEN_FILES": "Téléchargez votre (vos) fichier(s) ici",
@@ -485,7 +485,6 @@
   "HOME_SCREEN_LOAD_MORE_BUTTON": "Afficher plus",
   "PUBLISHED_ITEMS_EMPTY": "Vous n'avez publié aucun élément.",
   "PUBLISHED_ITEMS_NOT_FOUND_SEARCH": "Aucun élément publié ne correspond à {{search}}",
-  "item.order": "Ordre",
   "MEMBER_VALIDATION_TITLE": "Votre adresse e-mail doit être vérifiée",
   "MEMBER_VALIDATION_DESCRIPTION": "Afin d'utiliser toutes les fonctionnalités de Graasp, vous devez valider l'e-mail de votre compte. Vous trouverez plus d’informations dans le lien ci-dessous.",
   "MEMBER_VALIDATION_LINK_TEXT": "Plus de détails",
