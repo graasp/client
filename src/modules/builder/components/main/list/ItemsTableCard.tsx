@@ -5,6 +5,8 @@ import { Box, Stack } from '@mui/material';
 
 import { ItemType, PackedItem } from '@graasp/sdk';
 
+import { useLocation } from '@tanstack/react-router';
+
 import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import type { DroppedFile } from '@/ui/draggable/types';
@@ -18,17 +20,22 @@ import ItemActions from '../../table/ItemActions';
 import ItemCard from '../../table/ItemCard';
 import ItemMenuContent from '../ItemMenuContent';
 
-const LinkComponent =
-  ({ itemId }: { itemId: string }) =>
-  ({ children }: { children: ReactNode }) => (
-    <CustomLink
-      to="/builder/items/$itemId"
-      params={{ itemId }}
-      style={{ textDecoration: 'none', color: 'unset' }}
-    >
-      {children}
-    </CustomLink>
-  );
+const LinkComponent = ({ itemId }: { itemId: string }) => {
+  const { search } = useLocation();
+
+  return ({ children }: { children: ReactNode }) => {
+    return (
+      <CustomLink
+        to="/builder/items/$itemId"
+        params={{ itemId }}
+        style={{ textDecoration: 'none', color: 'unset' }}
+        search={search}
+      >
+        {children}
+      </CustomLink>
+    );
+  };
+};
 
 type Props = {
   item: PackedItem | DroppedFile;
@@ -56,7 +63,6 @@ const ItemsTableCard = ({
   onThumbnailClick,
 }: Props): JSX.Element => {
   const { mode } = useLayoutContext();
-
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const dense = mode === ItemLayoutMode.List;
