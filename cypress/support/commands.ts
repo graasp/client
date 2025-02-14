@@ -807,11 +807,9 @@ Cypress.Commands.add('attachFiles', (selector, filenames, options = {}) => {
   selector.selectFile(correctFilenames, options);
 });
 
-Cypress.Commands.add('goToItemInCard', (id, {mode = ItemLayoutMode.List}={}) => {
+Cypress.Commands.add('goToItemInCard', (id: string) => {
   // card component might have many click zone
-  cy.get(
-    `#${buildItemCard(id)} a[href="${buildItemPath(id, { mode })}"]`,
-  )
+  cy.get(`#${buildItemCard(id)} a[href^="${buildItemPath(id)}"]`)
     .first()
     .click();
 });
