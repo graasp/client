@@ -15,8 +15,6 @@ const {
   updateEmailRoutine,
   exportMemberDataRoutine,
   getInvitationRoutine,
-  signInRoutine,
-  signInWithPasswordRoutine,
 } = routines;
 
 // todo: find a way to use the i18n instance instead
@@ -29,8 +27,7 @@ export const getErrorMessageFromPayload = (
     return ((payload.error.response?.data as { message: string } | undefined)
       ?.message ?? 'UNEXPECTED_ERROR') as keyof MessageKeys;
   }
-
-  return (payload?.error?.message ?? 'UNEXPECTED_ERROR') as keyof MessageKeys;
+  return (payload?.message ?? 'UNEXPECTED_ERROR') as keyof MessageKeys;
 };
 
 type ErrorPayload = Parameters<Notifier>[0]['payload'] & {
@@ -62,8 +59,6 @@ export default ({
   switch (type) {
     // error messages
     // auth
-    case signInRoutine.FAILURE:
-    case signInWithPasswordRoutine.FAILURE:
     case getInvitationRoutine.FAILURE:
     case updatePasswordRoutine.FAILURE:
     case postPublicProfileRoutine.FAILURE:
@@ -76,8 +71,6 @@ export default ({
 
     // success messages
     // auth
-    case signInRoutine.SUCCESS:
-    case signInWithPasswordRoutine.SUCCESS:
     case updatePasswordRoutine.SUCCESS:
     case postPublicProfileRoutine.SUCCESS:
     case updateEmailRoutine.SUCCESS:
