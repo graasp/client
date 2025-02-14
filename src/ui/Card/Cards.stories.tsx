@@ -91,7 +91,6 @@ export const GridOfDenseWithClickCards = {
             <Dense
               creator={i.creator?.name}
               name={i.name}
-              to={'to'}
               content={
                 <Grid container columns={{ xs: 12 }}>
                   <Grid size={{ xs: 12, md: 6 }}>{i.type}</Grid>

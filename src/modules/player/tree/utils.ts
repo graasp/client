@@ -43,7 +43,7 @@ type TreeNode = {
 };
 
 // handle item children tree
-const buildItemsTree = (
+export const buildItemsTree = (
   data: DiscriminatedItem[],
   rootItems: DiscriminatedItem[],
 ) => {
@@ -87,16 +87,4 @@ const buildItemsTree = (
   });
 
   return tree;
-};
-
-export const getItemTree = (
-  data: DiscriminatedItem[],
-  rootItems: DiscriminatedItem[],
-  allowedTypes: DiscriminatedItem['type'][] = [],
-): TreeNode => {
-  const res = allowedTypes.length
-    ? data.filter((ele) => allowedTypes.includes(ele.type))
-    : data;
-  const rootItemTree = buildItemsTree(res, rootItems);
-  return rootItemTree;
 };

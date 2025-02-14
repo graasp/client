@@ -18,7 +18,7 @@ import { ErrorBoundary } from '@sentry/react';
 
 import { TreeNode } from './Node';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
-import { ItemMetaData, getItemTree } from './utils';
+import { ItemMetaData, buildItemsTree } from './utils';
 
 export const GRAASP_MENU_ITEMS = [ItemType.FOLDER, ItemType.SHORTCUT];
 
@@ -79,7 +79,7 @@ export function TreeView({
     />
   );
 
-  const itemTree = getItemTree(itemsToShow ?? [], rootItems, allowedTypes);
+  const itemTree = buildItemsTree(itemsToShow ?? [], rootItems);
   const tree = Object.values(itemTree);
 
   const defaultExpandedIds = rootItems[0]?.id ? [rootItems[0].id] : [];

@@ -55,7 +55,6 @@ export const Default = {
           content={el.description?.slice(0, 55) ?? ''}
           fullWidth
           footer={<ItemBadges isCollapsible isHidden />}
-          to={el.name}
           isDragging={isDragging}
           isOver={isOver}
         />
