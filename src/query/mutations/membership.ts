@@ -162,10 +162,9 @@ export default (queryConfig: QueryClientConfig) => {
           itemId,
           invitations,
         }),
-      onSuccess: (results) => {
+      onSuccess: () => {
         notifier?.({
           type: shareItemRoutine.SUCCESS,
-          payload: results,
         });
       },
       onError: (error: Error) => {
