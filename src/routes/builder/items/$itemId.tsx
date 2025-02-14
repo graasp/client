@@ -65,6 +65,7 @@ const LinkComponent = ({ children }: { children: ReactNode }) => (
 function RouteComponent() {
   const { itemId } = Route.useParams();
   const navigate = useNavigate();
+  const search = Route.useSearch();
 
   const { user } = useAuth();
   const { t } = useTranslation(NS.Builder);
@@ -139,6 +140,7 @@ function RouteComponent() {
           params: {
             itemId: newItemId,
           },
+          search,
         });
       }}
     />
