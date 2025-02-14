@@ -153,7 +153,7 @@ describe('Move Items', () => {
     });
 
     // go to children item
-    cy.visit('/builder');
+    cy.visit('/home');
 
     folders.forEach((item) => {
       cy.selectItem(item.id);

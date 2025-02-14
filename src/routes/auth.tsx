@@ -10,9 +10,7 @@ export const Route = createFileRoute('/auth')({
     // if already authenticated, redirect to `/builder`
     if (context.auth.isAuthenticated) {
       throw redirect({
-        // TODO: we redirect to the builder while we work on the home page.
-        // it should be changed once the home page is a bit more like the home of the builder.
-        to: '/builder',
+        to: '/home',
       });
     }
   },
