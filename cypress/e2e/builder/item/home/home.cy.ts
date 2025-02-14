@@ -16,7 +16,6 @@ import {
   SORTING_ORDERING_SELECTOR_DESC,
   SORTING_SELECT_SELECTOR,
   buildItemCard,
-  buildMapViewId,
 } from '../../../../../src/config/selectors';
 import { SortingOptions } from '../../../../../src/modules/builder/components/table/types';
 import { ITEM_PAGE_SIZE } from '../../../../../src/modules/builder/constants';
@@ -39,16 +38,6 @@ const FOLDER2 = PackedFolderItemFactory();
 const ITEMS = [IMAGE_ITEM, FOLDER, FOLDER2, FOLDER_CHILD, IMAGE_ITEM_CHILD];
 
 describe('Home', () => {
-  // COMMENT: This has been deactivated for now, as the home does not provide the map view for the moment.
-  it.skip('visit Home on map by default', () => {
-    cy.setUpApi({
-      items: generateOwnItems(30),
-    });
-    cy.visit(`${HOME_PATH}?mode=map`);
-
-    cy.get(`#${buildMapViewId()}`, { timeout: 10000 }).should('be.visible');
-  });
-
   it('visit empty Home', () => {
     cy.setUpApi({
       items: [],

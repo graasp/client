@@ -222,16 +222,3 @@ describe('Folder Layout mode', () => {
     );
   });
 });
-
-// COMMENT: Home does not support map view currently
-it.skip('visit Home on map by default', () => {
-  cy.setUpApi({
-    items: [parentItem, child1],
-  });
-  // access map directly
-  cy.visit(buildItemPath(parentItem.id, { mode: ItemLayoutMode.Map }));
-
-  cy.get(`#${buildMapViewId(parentItem.id)}`, { timeout: 10000 }).should(
-    'be.visible',
-  );
-});

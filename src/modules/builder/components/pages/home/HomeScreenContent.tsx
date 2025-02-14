@@ -47,7 +47,6 @@ export function HomeScreenContent({
   const [showOnlyMe, setShowOnlyMe] = useState(false);
 
   const { selectedIds } = useSelectionContext();
-  // const { mode } = useLayoutContext();
   const { sortBy, setSortBy, ordering, setOrdering } = useSorting({
     sortBy: SortingOptions.ItemUpdatedAt,
     ordering: Ordering.DESC,
@@ -77,17 +76,6 @@ export function HomeScreenContent({
   const onShowOnlyMeChange: ShowOnlyMeChangeType = (checked) => {
     setShowOnlyMe(checked);
   };
-
-  // if (mode === ItemLayoutMode.Map) {
-  //   return (
-  //     <>
-  //       <Stack direction="row" justifyContent="flex-end">
-  //         <ModeButton />
-  //       </Stack>
-  //       <DesktopMap />
-  //     </>
-  //   );
-  // }
 
   if (data?.pages?.length) {
     const sortingOptions = Object.values(SortingOptions).sort((t1, t2) =>
@@ -135,7 +123,6 @@ export function HomeScreenContent({
                     options={sortingOptions}
                   />
                 )}
-                {/* <ModeButton /> */}
               </Stack>
             </Stack>
           )}
