@@ -35,7 +35,7 @@ export function HeaderRightContent() {
         />
 
         <UserPopupMenu
-          buttonId={HEADER_MEMBER_MENU_BUTTON_ID}
+          avatarButtonId={HEADER_MEMBER_MENU_BUTTON_ID}
           signOut={logout}
           user={user}
           avatar={<MemberAvatar id={user.id} />}
