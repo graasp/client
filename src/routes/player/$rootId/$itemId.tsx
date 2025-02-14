@@ -1,4 +1,4 @@
-import { type JSX, type ReactNode } from 'react';
+import { type JSX, type ReactNode, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Typography, useTheme } from '@mui/material';
@@ -14,6 +14,7 @@ import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
+import { MAIN_WITH_DRAWER_ID } from '@/config/selectors';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -68,6 +69,16 @@ function PlayerWrapper(): JSX.Element {
     },
   };
 
+  // reset scroll on navigation
+  useEffect(() => {
+    const mainComponent = document.getElementById(MAIN_WITH_DRAWER_ID);
+    mainComponent?.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, [itemId]);
+
   if (fullscreen) {
     return (
       /* necessary for item login screen to be centered */
@@ -90,6 +101,7 @@ function PlayerWrapper(): JSX.Element {
       drawerContent={<ItemNavigation />}
       drawerOpenAriaLabel={t('DRAWER_ARIAL_LABEL')}
       LinkComponent={LinkComponent}
+      id={MAIN_WITH_DRAWER_ID}
       PlatformComponent={
         <PlatformSwitch
           selected={Platform.Player}
