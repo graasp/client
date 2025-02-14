@@ -4,7 +4,7 @@ import { FolderItemFactory, FolderItemType } from '@graasp/sdk';
 
 import { type Meta, type StoryObj } from '@storybook/react';
 
-import Card from '@/ui/Card/Card.js';
+import { Card } from '@/ui/Card/Card.js';
 import ItemBadges from '@/ui/ItemBadges/ItemBadges.js';
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 

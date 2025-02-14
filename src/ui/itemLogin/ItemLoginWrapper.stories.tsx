@@ -10,7 +10,7 @@ import { expect, fn, within } from '@storybook/test';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import Card from '@/ui/Card/Card.js';
+import { Card } from '@/ui/Card/Card.js';
 
 import ItemLoginWrapper from './ItemLoginWrapper.js';
 import { FORBIDDEN_TEXT } from './constants.js';
