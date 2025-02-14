@@ -2,11 +2,7 @@ import { Suspense, lazy } from 'react';
 
 import { Stack } from '@mui/material';
 
-import {
-  Outlet,
-  ScrollRestoration,
-  createRootRouteWithContext,
-} from '@tanstack/react-router';
+import { Outlet, createRootRouteWithContext } from '@tanstack/react-router';
 
 import { AuthContextType } from '@/AuthContext';
 import { DefaultCatchBoundary } from '@/components/DefaultCatchBoundary';
@@ -43,7 +39,6 @@ const TanStackRouterDevtools =
 function RootComponent() {
   return (
     <Stack id="__root" minHeight="100vh">
-      <ScrollRestoration />
       <PreviewContextProvider>
         <Outlet />
       </PreviewContextProvider>

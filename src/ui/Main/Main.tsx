@@ -70,6 +70,8 @@ const StyledFooter = styled('footer', {
 }));
 
 type Props = {
+  id?: string;
+
   /**
    * Platform value which defines what color to use in the header.
    */
@@ -267,6 +269,7 @@ const MainWithDrawerWrapper = (props: Props): JSX.Element => (
     flexDirection="column"
     // necessary to prevent scroll because of drag selection
     sx={{ overflowX: 'hidden' }}
+    id={props.id}
   >
     <MainMenuOpenContextProvider open={props.open}>
       <MainWithDrawerContent {...props} />

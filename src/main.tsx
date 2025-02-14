@@ -75,6 +75,7 @@ const router = createRouter({
     // at this stage, we set it to `undefined`. A more appropriate value will be set later in AuthProvider when we wrap the app.
     auth: undefined!,
   },
+  scrollRestoration: true,
 });
 
 // Register things for typesafety
