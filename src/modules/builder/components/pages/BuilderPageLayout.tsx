@@ -21,7 +21,7 @@ export function BuilderPageLayout({
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Stack id={id} height="100%">
+      <Stack id={id} height="100%" width="100%">
         <Stack
           mb={2}
           direction="row"

@@ -12,8 +12,16 @@ import { AuthContextType } from '@/AuthContext';
 import { DefaultCatchBoundary } from '@/components/DefaultCatchBoundary';
 import { NotFoundComponent } from '@/components/NotFoundComponent';
 import { ReactQueryDevtools } from '@/config/queryClient';
+import common from '@/locales/en/common.json';
 
 import { PreviewContextProvider } from '~landing/preview/PreviewModeContext';
+
+// add a page title to the static data
+declare module '@tanstack/react-router' {
+  interface StaticDataRouteOption {
+    pageTitle?: keyof (typeof common)['PAGE_TITLES'];
+  }
+}
 
 export const Route = createRootRouteWithContext<{ auth: AuthContextType }>()({
   component: RootComponent,

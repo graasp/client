@@ -31,11 +31,7 @@ export function MainMenu(): JSX.Element | null {
         height="100%"
       >
         <List sx={{ width: DRAWER_WIDTH }}>
-          <MainMenuItem
-            to="/builder"
-            icon={<HomeIcon />}
-            text={t('MY_ITEMS')}
-          />
+          <MainMenuItem to="/home" icon={<HomeIcon />} text={t('MY_ITEMS')} />
           {user.type === AccountType.Individual ? (
             <>
               <MainMenuItem
@@ -44,12 +40,12 @@ export function MainMenu(): JSX.Element | null {
                 icon={<BookmarkIcon />}
               />
               <MainMenuItem
-                to="/builder/published"
+                to="/published"
                 text={t('PUBLISHED_ITEMS')}
                 icon={<LibraryBigIcon />}
               />
               <MainMenuItem
-                to="/builder/recycled"
+                to="/recycled"
                 text={t('RECYCLED_ITEMS')}
                 icon={<TrashIcon />}
               />
