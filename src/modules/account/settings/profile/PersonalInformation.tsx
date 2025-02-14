@@ -17,7 +17,7 @@ import {
   PERSONAL_INFO_USERNAME_DISPLAY_ID,
 } from '@/config/selectors';
 
-import { SettingItem } from '~account/common/SettingItem';
+import { SettingItem } from '~account/settings/SettingItem';
 
 import { EditPersonalInformation } from './EditPersonalInformation';
 

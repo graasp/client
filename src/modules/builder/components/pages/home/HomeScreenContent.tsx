@@ -15,9 +15,7 @@ import Button from '@/ui/buttons/Button/Button';
 
 import SelectTypes from '~builder/components/common/SelectTypes';
 import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';
-import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { FileUploader } from '~builder/components/file/FileUploader';
-import ModeButton from '~builder/components/item/header/ModeButton';
 import LoadingScreen from '~builder/components/layout/LoadingScreen';
 import NewItemButton from '~builder/components/main/NewItemButton';
 import ItemsTable from '~builder/components/main/list/ItemsTable';
@@ -26,13 +24,12 @@ import {
   DragContainerStack,
   useDragSelection,
 } from '~builder/components/main/list/useDragSelection';
-import { DesktopMap } from '~builder/components/map/DesktopMap';
 import ShowOnlyMeButton from '~builder/components/table/ShowOnlyMeButton';
 import SortingSelect from '~builder/components/table/SortingSelect';
 import { SortingOptions } from '~builder/components/table/types';
 import { useSorting } from '~builder/components/table/useSorting';
 import { ITEM_PAGE_SIZE } from '~builder/constants';
-import { ItemLayoutMode, Ordering } from '~builder/enums';
+import { Ordering } from '~builder/enums';
 
 import NoItemFilters from '../NoItemFilters';
 import HomeSelectionToolbar from './HomeSelectionToolbar';
@@ -50,7 +47,6 @@ export function HomeScreenContent({
   const [showOnlyMe, setShowOnlyMe] = useState(false);
 
   const { selectedIds } = useSelectionContext();
-  const { mode } = useLayoutContext();
   const { sortBy, setSortBy, ordering, setOrdering } = useSorting({
     sortBy: SortingOptions.ItemUpdatedAt,
     ordering: Ordering.DESC,
@@ -80,17 +76,6 @@ export function HomeScreenContent({
   const onShowOnlyMeChange: ShowOnlyMeChangeType = (checked) => {
     setShowOnlyMe(checked);
   };
-
-  if (mode === ItemLayoutMode.Map) {
-    return (
-      <>
-        <Stack direction="row" justifyContent="flex-end">
-          <ModeButton />
-        </Stack>
-        <DesktopMap />
-      </>
-    );
-  }
 
   if (data?.pages?.length) {
     const sortingOptions = Object.values(SortingOptions).sort((t1, t2) =>
@@ -138,7 +123,6 @@ export function HomeScreenContent({
                     options={sortingOptions}
                   />
                 )}
-                <ModeButton />
               </Stack>
             </Stack>
           )}

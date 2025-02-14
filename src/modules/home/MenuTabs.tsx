@@ -14,20 +14,21 @@ export function MenuTabs() {
     <Stack
       direction="row"
       gap={{ xs: 1, sm: 2 }}
+      flex={1}
       flexWrap="wrap"
       justifyContent="flex-end"
-      width="100%"
+      alignItems="center"
     >
       <MenuTab icon={<HomeIcon />} title={t('HOME')} to="/home" />
       <MenuTab
         icon={<LibraryBigIcon />}
         title={t('PUBLISHED_ITEMS')}
-        to="/builder/published"
+        to="/published"
       />
       <MenuTab
         icon={<TrashIcon />}
         title={t('RECYCLED_ITEMS')}
-        to="/builder/recycled"
+        to="/recycled"
       />
     </Stack>
   );

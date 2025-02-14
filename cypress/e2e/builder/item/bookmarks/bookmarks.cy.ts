@@ -35,8 +35,8 @@ const removefromBookmark = (itemId: string) => {
 const addToBookmark = (itemId: string) => {
   cy.get(`#${buildItemCard(itemId)} ${BOOKMARK_ICON_SELECTOR}`).click();
 };
-
-describe('Bookmarked Item', () => {
+// COMMENT: bookmarks have been removed as a standalone feature and are now on the home page
+describe.skip('Bookmarked Item', () => {
   it('Show message for guest', () => {
     const item = PackedFolderItemFactory();
     const guest = GuestFactory({

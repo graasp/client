@@ -16,9 +16,11 @@ import { LockIcon } from 'lucide-react';
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { LOG_IN_PAGE_PATH } from '@/config/paths';
+import { PREVENT_GUEST_MESSAGE_ID } from '@/config/selectors';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { PageWrapper } from '~account/PageWrapper';
+import { MemberValidationBanner } from '~account/alerts/MemberValidationBanner';
 
 export const Route = createFileRoute('/_memberOnly')({
   beforeLoad: ({ context }) => {
@@ -45,6 +47,7 @@ function RouteComponent() {
 
   return (
     <PageWrapper>
+      <MemberValidationBanner />
       <Container maxWidth="lg" sx={{ p: 2, height: '100%' }}>
         <Outlet />
       </Container>
@@ -60,6 +63,7 @@ function GuestNotAuthorized() {
   const canGoBack = useCanGoBack();
   return (
     <Stack
+      id={PREVENT_GUEST_MESSAGE_ID}
       height="100vh"
       alignItems="center"
       justifyContent="center"

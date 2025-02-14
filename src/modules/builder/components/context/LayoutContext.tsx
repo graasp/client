@@ -2,7 +2,11 @@ import { type JSX, createContext, useContext, useMemo } from 'react';
 
 import { useSearch } from '@tanstack/react-router';
 
-import { ItemLayoutMode, ItemLayoutModeType } from '~builder/enums';
+import {
+  DEFAULT_ITEM_LAYOUT_MODE,
+  ItemLayoutMode,
+  ItemLayoutModeType,
+} from '~builder/enums';
 
 interface LayoutContextInterface {
   mode: ItemLayoutModeType;
@@ -17,11 +21,11 @@ export const LayoutContextProvider = ({
 }: {
   children: JSX.Element;
 }): JSX.Element => {
-  const { mode } = useSearch({ from: '/builder' });
+  const { mode } = useSearch({ from: '/builder/items/$itemId' });
 
   const value: LayoutContextInterface = useMemo(
     () => ({
-      mode,
+      mode: mode ?? DEFAULT_ITEM_LAYOUT_MODE,
     }),
     [mode],
   );

@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Alert, Stack, Typography } from '@mui/material';
@@ -7,38 +6,47 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import {
+  RECYCLED_ITEMS_EMPTY_ID,
   RECYCLED_ITEMS_ERROR_ALERT_ID,
-  RECYCLED_ITEMS_ROOT_CONTAINER,
 } from '@/config/selectors';
 import { useInfiniteOwnRecycledItems } from '@/query/item/recycled/hooks';
 import Button from '@/ui/buttons/Button/Button';
 
-import { ITEM_PAGE_SIZE } from '~builder/constants';
-
-import DeleteButton from '../../../modules/builder/components/common/DeleteButton';
-import ErrorAlert from '../../../modules/builder/components/common/ErrorAlert';
-import RestoreButton from '../../../modules/builder/components/common/RestoreButton';
-import LoadingScreen from '../../../modules/builder/components/layout/LoadingScreen';
+import DeleteButton from '~builder/components/common/DeleteButton';
+import ErrorAlert from '~builder/components/common/ErrorAlert';
+import RestoreButton from '~builder/components/common/RestoreButton';
+import LoadingScreen from '~builder/components/layout/LoadingScreen';
 import {
   SelectionContextProvider,
   useSelectionContext,
-} from '../../../modules/builder/components/main/list/SelectionContext';
+} from '~builder/components/main/list/SelectionContext';
 import {
   DragContainerStack,
   useDragSelection,
-} from '../../../modules/builder/components/main/list/useDragSelection';
-import { BuilderPageLayout } from '../../../modules/builder/components/pages/BuilderPageLayout';
-import RecycleBinToolbar from '../../../modules/builder/components/pages/recycleBin/RecycleBinSelectionToolbar';
-import ItemCard from '../../../modules/builder/components/table/ItemCard';
-import { BUILDER } from '../../../modules/builder/langs';
+} from '~builder/components/main/list/useDragSelection';
+import RecycleBinToolbar from '~builder/components/pages/recycleBin/RecycleBinSelectionToolbar';
+import ItemCard from '~builder/components/table/ItemCard';
+import { ITEM_PAGE_SIZE } from '~builder/constants';
+import { BUILDER } from '~builder/langs';
 
 const CONTAINER_ID = 'recycle-items-container';
 
-export const Route = createFileRoute('/builder/_layout/recycled')({
-  component: RecycledItemsScreen,
+export const Route = createFileRoute('/_memberOnly/_homeLayout/recycled')({
+  component: RouteComponent,
+  staticData: {
+    pageTitle: 'TRASH',
+  },
 });
 
-const RecycledItemsScreenContent = (): JSX.Element => {
+function RouteComponent() {
+  return (
+    <SelectionContextProvider>
+      <RecycledItemsScreenContent />
+    </SelectionContextProvider>
+  );
+}
+
+function RecycledItemsScreenContent() {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { data, fetchNextPage, isLoading, isFetching } =
@@ -113,7 +121,9 @@ const RecycledItemsScreenContent = (): JSX.Element => {
       );
     }
     return (
-      <Alert severity="info">{translateBuilder(BUILDER.TRASH_NO_ITEM)}</Alert>
+      <Alert severity="info" id={RECYCLED_ITEMS_EMPTY_ID}>
+        {translateBuilder(BUILDER.TRASH_NO_ITEM)}
+      </Alert>
     );
   }
 
@@ -122,16 +132,4 @@ const RecycledItemsScreenContent = (): JSX.Element => {
   }
 
   return <ErrorAlert id={RECYCLED_ITEMS_ERROR_ALERT_ID} />;
-};
-
-function RecycledItemsScreen(): JSX.Element | null {
-  const { t } = useTranslation(NS.Common, { keyPrefix: 'PAGE_TITLES' });
-
-  return (
-    <BuilderPageLayout title={t('TRASH')} id={RECYCLED_ITEMS_ROOT_CONTAINER}>
-      <SelectionContextProvider>
-        <RecycledItemsScreenContent />
-      </SelectionContextProvider>
-    </BuilderPageLayout>
-  );
 }

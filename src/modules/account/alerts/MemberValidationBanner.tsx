@@ -13,7 +13,7 @@ import {
   MEMBER_VALIDATION_BANNER_ID,
 } from '@/config/selectors';
 
-import useModalStatus from '../hooks/useModalStatus';
+import useModalStatus from '../../builder/components/hooks/useModalStatus';
 
 const DOCUMENTATION_ORIGIN = 'https://graasp.github.io/docs';
 const MEMBER_VALIDATION_DOCUMENTATION_LINK = '/user/account/validation';

@@ -206,6 +206,7 @@ export const ITEM_CHATBOX_ID = 'chatbox';
 export const PREVENT_GUEST_MESSAGE_ID = 'prevent-guests';
 
 export const RECYCLED_ITEMS_ROOT_CONTAINER = 'recycledItemsPageRootContainer';
+export const RECYCLED_ITEMS_EMPTY_ID = 'recycledItemsEmpty';
 export const HEADER_APP_BAR_ID = 'headerAppBar';
 export const ITEM_DELETE_BUTTON_CLASS = 'itemDeleteButton';
 export const ITEM_COPY_BUTTON_CLASS = 'itemCopyButton';
@@ -272,6 +273,9 @@ export const ITEM_MAIN_CLASS = 'itemMain';
 export const HOME_ERROR_ALERT_ID = 'homeErrorAlert';
 export const BOOKMARKED_ITEMS_ERROR_ALERT_ID = 'bookmarkedItemsErrorAlert';
 export const PUBLISHED_ITEMS_ERROR_ALERT_ID = 'publishedItemsErrorAlert';
+export const PUBLISHED_ITEMS_EMPTY_ID = 'publishedItemsEmpty';
+export const PUBLISHED_ITEMS_EMPTY_SEARCH_RESULT_ID =
+  'publishedItemsEmptySearch';
 export const RECYCLED_ITEMS_ERROR_ALERT_ID = 'recycledItemsErrorAlert';
 export const ITEM_MENU_SHORTCUT_BUTTON_CLASS = 'itemMenuShortcutButton';
 export const ITEM_MENU_DUPLICATE_BUTTON_CLASS = 'itemMenuDuplicateButton';

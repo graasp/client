@@ -11,7 +11,7 @@ describe('Authentication', () => {
       cy.setUpApi({ currentMember: null });
     });
     it('Home', () => {
-      cy.visit('/builder');
+      cy.visit('/home');
       cy.url().should('include', '/auth/login');
     });
   });
@@ -25,7 +25,7 @@ describe('Authentication', () => {
 
     describe('Load page correctly', () => {
       it('Home', () => {
-        cy.visit('/builder');
+        cy.visit('/home');
         cy.get(`#${HEADER_APP_BAR_ID}`).should('be.visible');
       });
       it('Item', () => {

@@ -7,8 +7,8 @@ import {
 
 import {
   PREVENT_GUEST_MESSAGE_ID,
+  RECYCLED_ITEMS_EMPTY_ID,
   RECYCLED_ITEMS_ERROR_ALERT_ID,
-  RECYCLED_ITEMS_ROOT_CONTAINER,
   buildItemCard,
 } from '../../../../../src/config/selectors';
 import { RECYCLE_BIN_PATH } from '../../utils';
@@ -36,7 +36,7 @@ describe('View trash', () => {
         items: recycledItemData.map(({ item }) => item),
       });
       cy.visit(RECYCLE_BIN_PATH);
-      cy.get(`#${RECYCLED_ITEMS_ROOT_CONTAINER}`).should(
+      cy.get(`#${RECYCLED_ITEMS_EMPTY_ID}`).should(
         'contain',
         'You trash is empty.',
       );

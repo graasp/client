@@ -12,7 +12,6 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SigninImport } from './routes/signin'
-import { Route as BuilderImport } from './routes/builder'
 import { Route as AuthImport } from './routes/auth'
 import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as MemberOnlyImport } from './routes/_memberOnly'
@@ -22,14 +21,13 @@ import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
 import { Route as BuilderMapImport } from './routes/builder.map'
-import { Route as BuilderLayoutImport } from './routes/builder/_layout'
 import { Route as AuthSuccessImport } from './routes/auth/success'
 import { Route as AuthSigninImport } from './routes/auth/signin'
 import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
 import { Route as AuthRegisterImport } from './routes/auth/register'
 import { Route as AuthLoginImport } from './routes/auth/login'
 import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
-import { Route as MemberOnlyHomeImport } from './routes/_memberOnly/home'
+import { Route as MemberOnlyHomeLayoutImport } from './routes/_memberOnly/_homeLayout'
 import { Route as LandingTermsImport } from './routes/_landing/terms'
 import { Route as LandingSupportImport } from './routes/_landing/support'
 import { Route as LandingPolicyImport } from './routes/_landing/policy'
@@ -38,16 +36,15 @@ import { Route as LandingDisclaimerImport } from './routes/_landing/disclaimer'
 import { Route as LandingContactUsImport } from './routes/_landing/contact-us'
 import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
 import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
-import { Route as BuilderLayoutIndexImport } from './routes/builder/_layout/index'
 import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
 import { Route as BuilderItemsItemIdImport } from './routes/builder/items/$itemId'
-import { Route as BuilderLayoutRecycledImport } from './routes/builder/_layout/recycled'
-import { Route as BuilderLayoutPublishedImport } from './routes/builder/_layout/published'
-import { Route as BuilderLayoutBookmarksImport } from './routes/builder/_layout/bookmarks'
 import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
 import { Route as MemberOnlyAccountStorageImport } from './routes/_memberOnly/account/storage'
 import { Route as MemberOnlyAccountStatsImport } from './routes/_memberOnly/account/stats'
 import { Route as MemberOnlyAccountSettingsImport } from './routes/_memberOnly/account/settings'
+import { Route as MemberOnlyHomeLayoutRecycledImport } from './routes/_memberOnly/_homeLayout/recycled'
+import { Route as MemberOnlyHomeLayoutPublishedImport } from './routes/_memberOnly/_homeLayout/published'
+import { Route as MemberOnlyHomeLayoutHomeImport } from './routes/_memberOnly/_homeLayout/home'
 import { Route as PlayerRootIdItemIdIndexImport } from './routes/player/$rootId/$itemId/index'
 import { Route as BuilderItemsItemIdIndexImport } from './routes/builder/items/$itemId/index'
 import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
@@ -66,12 +63,6 @@ import { Route as BuilderItemsItemIdItemPagePublishImport } from './routes/build
 const SigninRoute = SigninImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const BuilderRoute = BuilderImport.update({
-  id: '/builder',
-  path: '/builder',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -122,14 +113,9 @@ const EmailChangeRoute = EmailChangeImport.update({
 } as any)
 
 const BuilderMapRoute = BuilderMapImport.update({
-  id: '/map',
-  path: '/map',
-  getParentRoute: () => BuilderRoute,
-} as any)
-
-const BuilderLayoutRoute = BuilderLayoutImport.update({
-  id: '/_layout',
-  getParentRoute: () => BuilderRoute,
+  id: '/builder/map',
+  path: '/builder/map',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const AuthSuccessRoute = AuthSuccessImport.update({
@@ -168,9 +154,8 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
-const MemberOnlyHomeRoute = MemberOnlyHomeImport.update({
-  id: '/home',
-  path: '/home',
+const MemberOnlyHomeLayoutRoute = MemberOnlyHomeLayoutImport.update({
+  id: '/_homeLayout',
   getParentRoute: () => MemberOnlyRoute,
 } as any)
 
@@ -222,12 +207,6 @@ const PlayerRootIdIndexRoute = PlayerRootIdIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const BuilderLayoutIndexRoute = BuilderLayoutIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => BuilderLayoutRoute,
-} as any)
-
 const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
   id: '/player/$rootId/$itemId',
   path: '/player/$rootId/$itemId',
@@ -235,27 +214,9 @@ const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
 } as any)
 
 const BuilderItemsItemIdRoute = BuilderItemsItemIdImport.update({
-  id: '/items/$itemId',
-  path: '/items/$itemId',
-  getParentRoute: () => BuilderRoute,
-} as any)
-
-const BuilderLayoutRecycledRoute = BuilderLayoutRecycledImport.update({
-  id: '/recycled',
-  path: '/recycled',
-  getParentRoute: () => BuilderLayoutRoute,
-} as any)
-
-const BuilderLayoutPublishedRoute = BuilderLayoutPublishedImport.update({
-  id: '/published',
-  path: '/published',
-  getParentRoute: () => BuilderLayoutRoute,
-} as any)
-
-const BuilderLayoutBookmarksRoute = BuilderLayoutBookmarksImport.update({
-  id: '/bookmarks',
-  path: '/bookmarks',
-  getParentRoute: () => BuilderLayoutRoute,
+  id: '/builder/items/$itemId',
+  path: '/builder/items/$itemId',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdImport.update({
@@ -280,6 +241,26 @@ const MemberOnlyAccountSettingsRoute = MemberOnlyAccountSettingsImport.update({
   id: '/account/settings',
   path: '/account/settings',
   getParentRoute: () => MemberOnlyRoute,
+} as any)
+
+const MemberOnlyHomeLayoutRecycledRoute =
+  MemberOnlyHomeLayoutRecycledImport.update({
+    id: '/recycled',
+    path: '/recycled',
+    getParentRoute: () => MemberOnlyHomeLayoutRoute,
+  } as any)
+
+const MemberOnlyHomeLayoutPublishedRoute =
+  MemberOnlyHomeLayoutPublishedImport.update({
+    id: '/published',
+    path: '/published',
+    getParentRoute: () => MemberOnlyHomeLayoutRoute,
+  } as any)
+
+const MemberOnlyHomeLayoutHomeRoute = MemberOnlyHomeLayoutHomeImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => MemberOnlyHomeLayoutRoute,
 } as any)
 
 const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
@@ -393,13 +374,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
-    '/builder': {
-      id: '/builder'
-      path: '/builder'
-      fullPath: '/builder'
-      preLoaderRoute: typeof BuilderImport
-      parentRoute: typeof rootRoute
-    }
     '/signin': {
       id: '/signin'
       path: '/signin'
@@ -456,11 +430,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LandingTermsImport
       parentRoute: typeof LandingImport
     }
-    '/_memberOnly/home': {
-      id: '/_memberOnly/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof MemberOnlyHomeImport
+    '/_memberOnly/_homeLayout': {
+      id: '/_memberOnly/_homeLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof MemberOnlyHomeLayoutImport
       parentRoute: typeof MemberOnlyImport
     }
     '/auth/forgot-password': {
@@ -505,19 +479,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSuccessImport
       parentRoute: typeof AuthImport
     }
-    '/builder/_layout': {
-      id: '/builder/_layout'
-      path: ''
-      fullPath: '/builder'
-      preLoaderRoute: typeof BuilderLayoutImport
-      parentRoute: typeof BuilderImport
-    }
     '/builder/map': {
       id: '/builder/map'
-      path: '/map'
+      path: '/builder/map'
       fullPath: '/builder/map'
       preLoaderRoute: typeof BuilderMapImport
-      parentRoute: typeof BuilderImport
+      parentRoute: typeof rootRoute
     }
     '/email/change': {
       id: '/email/change'
@@ -547,6 +514,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlayerIndexImport
       parentRoute: typeof rootRoute
     }
+    '/_memberOnly/_homeLayout/home': {
+      id: '/_memberOnly/_homeLayout/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutHomeImport
+      parentRoute: typeof MemberOnlyHomeLayoutImport
+    }
+    '/_memberOnly/_homeLayout/published': {
+      id: '/_memberOnly/_homeLayout/published'
+      path: '/published'
+      fullPath: '/published'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutPublishedImport
+      parentRoute: typeof MemberOnlyHomeLayoutImport
+    }
+    '/_memberOnly/_homeLayout/recycled': {
+      id: '/_memberOnly/_homeLayout/recycled'
+      path: '/recycled'
+      fullPath: '/recycled'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutRecycledImport
+      parentRoute: typeof MemberOnlyHomeLayoutImport
+    }
     '/_memberOnly/account/settings': {
       id: '/_memberOnly/account/settings'
       path: '/account/settings'
@@ -575,33 +563,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsItemsItemIdImport
       parentRoute: typeof AnalyticsImport
     }
-    '/builder/_layout/bookmarks': {
-      id: '/builder/_layout/bookmarks'
-      path: '/bookmarks'
-      fullPath: '/builder/bookmarks'
-      preLoaderRoute: typeof BuilderLayoutBookmarksImport
-      parentRoute: typeof BuilderLayoutImport
-    }
-    '/builder/_layout/published': {
-      id: '/builder/_layout/published'
-      path: '/published'
-      fullPath: '/builder/published'
-      preLoaderRoute: typeof BuilderLayoutPublishedImport
-      parentRoute: typeof BuilderLayoutImport
-    }
-    '/builder/_layout/recycled': {
-      id: '/builder/_layout/recycled'
-      path: '/recycled'
-      fullPath: '/builder/recycled'
-      preLoaderRoute: typeof BuilderLayoutRecycledImport
-      parentRoute: typeof BuilderLayoutImport
-    }
     '/builder/items/$itemId': {
       id: '/builder/items/$itemId'
-      path: '/items/$itemId'
+      path: '/builder/items/$itemId'
       fullPath: '/builder/items/$itemId'
       preLoaderRoute: typeof BuilderItemsItemIdImport
-      parentRoute: typeof BuilderImport
+      parentRoute: typeof rootRoute
     }
     '/player/$rootId/$itemId': {
       id: '/player/$rootId/$itemId'
@@ -609,13 +576,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/player/$rootId/$itemId'
       preLoaderRoute: typeof PlayerRootIdItemIdImport
       parentRoute: typeof rootRoute
-    }
-    '/builder/_layout/': {
-      id: '/builder/_layout/'
-      path: '/'
-      fullPath: '/builder/'
-      preLoaderRoute: typeof BuilderLayoutIndexImport
-      parentRoute: typeof BuilderLayoutImport
     }
     '/player/$rootId/': {
       id: '/player/$rootId/'
@@ -738,15 +698,30 @@ const LandingRouteChildren: LandingRouteChildren = {
 const LandingRouteWithChildren =
   LandingRoute._addFileChildren(LandingRouteChildren)
 
+interface MemberOnlyHomeLayoutRouteChildren {
+  MemberOnlyHomeLayoutHomeRoute: typeof MemberOnlyHomeLayoutHomeRoute
+  MemberOnlyHomeLayoutPublishedRoute: typeof MemberOnlyHomeLayoutPublishedRoute
+  MemberOnlyHomeLayoutRecycledRoute: typeof MemberOnlyHomeLayoutRecycledRoute
+}
+
+const MemberOnlyHomeLayoutRouteChildren: MemberOnlyHomeLayoutRouteChildren = {
+  MemberOnlyHomeLayoutHomeRoute: MemberOnlyHomeLayoutHomeRoute,
+  MemberOnlyHomeLayoutPublishedRoute: MemberOnlyHomeLayoutPublishedRoute,
+  MemberOnlyHomeLayoutRecycledRoute: MemberOnlyHomeLayoutRecycledRoute,
+}
+
+const MemberOnlyHomeLayoutRouteWithChildren =
+  MemberOnlyHomeLayoutRoute._addFileChildren(MemberOnlyHomeLayoutRouteChildren)
+
 interface MemberOnlyRouteChildren {
-  MemberOnlyHomeRoute: typeof MemberOnlyHomeRoute
+  MemberOnlyHomeLayoutRoute: typeof MemberOnlyHomeLayoutRouteWithChildren
   MemberOnlyAccountSettingsRoute: typeof MemberOnlyAccountSettingsRoute
   MemberOnlyAccountStatsRoute: typeof MemberOnlyAccountStatsRoute
   MemberOnlyAccountStorageRoute: typeof MemberOnlyAccountStorageRoute
 }
 
 const MemberOnlyRouteChildren: MemberOnlyRouteChildren = {
-  MemberOnlyHomeRoute: MemberOnlyHomeRoute,
+  MemberOnlyHomeLayoutRoute: MemberOnlyHomeLayoutRouteWithChildren,
   MemberOnlyAccountSettingsRoute: MemberOnlyAccountSettingsRoute,
   MemberOnlyAccountStatsRoute: MemberOnlyAccountStatsRoute,
   MemberOnlyAccountStorageRoute: MemberOnlyAccountStorageRoute,
@@ -809,24 +784,6 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
-interface BuilderLayoutRouteChildren {
-  BuilderLayoutBookmarksRoute: typeof BuilderLayoutBookmarksRoute
-  BuilderLayoutPublishedRoute: typeof BuilderLayoutPublishedRoute
-  BuilderLayoutRecycledRoute: typeof BuilderLayoutRecycledRoute
-  BuilderLayoutIndexRoute: typeof BuilderLayoutIndexRoute
-}
-
-const BuilderLayoutRouteChildren: BuilderLayoutRouteChildren = {
-  BuilderLayoutBookmarksRoute: BuilderLayoutBookmarksRoute,
-  BuilderLayoutPublishedRoute: BuilderLayoutPublishedRoute,
-  BuilderLayoutRecycledRoute: BuilderLayoutRecycledRoute,
-  BuilderLayoutIndexRoute: BuilderLayoutIndexRoute,
-}
-
-const BuilderLayoutRouteWithChildren = BuilderLayoutRoute._addFileChildren(
-  BuilderLayoutRouteChildren,
-)
-
 interface BuilderItemsItemIdItemPageRouteChildren {
   BuilderItemsItemIdItemPagePublishRoute: typeof BuilderItemsItemIdItemPagePublishRoute
   BuilderItemsItemIdItemPageSettingsRoute: typeof BuilderItemsItemIdItemPageSettingsRoute
@@ -860,21 +817,6 @@ const BuilderItemsItemIdRouteChildren: BuilderItemsItemIdRouteChildren = {
 const BuilderItemsItemIdRouteWithChildren =
   BuilderItemsItemIdRoute._addFileChildren(BuilderItemsItemIdRouteChildren)
 
-interface BuilderRouteChildren {
-  BuilderLayoutRoute: typeof BuilderLayoutRouteWithChildren
-  BuilderMapRoute: typeof BuilderMapRoute
-  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
-}
-
-const BuilderRouteChildren: BuilderRouteChildren = {
-  BuilderLayoutRoute: BuilderLayoutRouteWithChildren,
-  BuilderMapRoute: BuilderMapRoute,
-  BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
-}
-
-const BuilderRouteWithChildren =
-  BuilderRoute._addFileChildren(BuilderRouteChildren)
-
 interface PlayerRootIdItemIdRouteChildren {
   PlayerRootIdItemIdAutoLoginRoute: typeof PlayerRootIdItemIdAutoLoginRoute
   PlayerRootIdItemIdIndexRoute: typeof PlayerRootIdItemIdIndexRoute
@@ -889,10 +831,9 @@ const PlayerRootIdItemIdRouteWithChildren =
   PlayerRootIdItemIdRoute._addFileChildren(PlayerRootIdItemIdRouteChildren)
 
 export interface FileRoutesByFullPath {
-  '': typeof MemberOnlyRouteWithChildren
+  '': typeof MemberOnlyHomeLayoutRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderLayoutRouteWithChildren
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -901,7 +842,6 @@ export interface FileRoutesByFullPath {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/home': typeof MemberOnlyHomeRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -913,16 +853,15 @@ export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
+  '/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
   '/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/account/stats': typeof MemberOnlyAccountStatsRoute
   '/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
-  '/builder/published': typeof BuilderLayoutPublishedRoute
-  '/builder/recycled': typeof BuilderLayoutRecycledRoute
   '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/builder/': typeof BuilderLayoutIndexRoute
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -938,9 +877,8 @@ export interface FileRoutesByFullPath {
 }
 
 export interface FileRoutesByTo {
-  '': typeof MemberOnlyRouteWithChildren
+  '': typeof MemberOnlyHomeLayoutRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderLayoutIndexRoute
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -949,7 +887,6 @@ export interface FileRoutesByTo {
   '/policy': typeof LandingPolicyRoute
   '/support': typeof LandingSupportRoute
   '/terms': typeof LandingTermsRoute
-  '/home': typeof MemberOnlyHomeRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
@@ -961,12 +898,12 @@ export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
   '/player': typeof PlayerIndexRoute
+  '/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
   '/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/account/stats': typeof MemberOnlyAccountStatsRoute
   '/account/storage': typeof MemberOnlyAccountStorageRoute
-  '/builder/bookmarks': typeof BuilderLayoutBookmarksRoute
-  '/builder/published': typeof BuilderLayoutPublishedRoute
-  '/builder/recycled': typeof BuilderLayoutRecycledRoute
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -987,7 +924,6 @@ export interface FileRoutesById {
   '/_memberOnly': typeof MemberOnlyRouteWithChildren
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
-  '/builder': typeof BuilderRouteWithChildren
   '/signin': typeof SigninRoute
   '/_landing/about-us': typeof LandingAboutUsRoute
   '/_landing/contact-us': typeof LandingContactUsRoute
@@ -996,29 +932,27 @@ export interface FileRoutesById {
   '/_landing/policy': typeof LandingPolicyRoute
   '/_landing/support': typeof LandingSupportRoute
   '/_landing/terms': typeof LandingTermsRoute
-  '/_memberOnly/home': typeof MemberOnlyHomeRoute
+  '/_memberOnly/_homeLayout': typeof MemberOnlyHomeLayoutRouteWithChildren
   '/auth/forgot-password': typeof AuthForgotPasswordRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
   '/auth/reset-password': typeof AuthResetPasswordRoute
   '/auth/signin': typeof AuthSigninRoute
   '/auth/success': typeof AuthSuccessRoute
-  '/builder/_layout': typeof BuilderLayoutRouteWithChildren
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/player/': typeof PlayerIndexRoute
+  '/_memberOnly/_homeLayout/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/_memberOnly/_homeLayout/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/_memberOnly/_homeLayout/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
   '/_memberOnly/account/settings': typeof MemberOnlyAccountSettingsRoute
   '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
   '/_memberOnly/account/storage': typeof MemberOnlyAccountStorageRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/_layout/bookmarks': typeof BuilderLayoutBookmarksRoute
-  '/builder/_layout/published': typeof BuilderLayoutPublishedRoute
-  '/builder/_layout/recycled': typeof BuilderLayoutRecycledRoute
   '/builder/items/$itemId': typeof BuilderItemsItemIdRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/builder/_layout/': typeof BuilderLayoutIndexRoute
   '/player/$rootId/': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
@@ -1040,7 +974,6 @@ export interface FileRouteTypes {
     | ''
     | '/analytics'
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -1049,7 +982,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/home'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1061,16 +993,15 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics/'
     | '/player'
+    | '/home'
+    | '/published'
+    | '/recycled'
     | '/account/settings'
     | '/account/stats'
     | '/account/storage'
     | '/analytics/items/$itemId'
-    | '/builder/bookmarks'
-    | '/builder/published'
-    | '/builder/recycled'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
-    | '/builder/'
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -1087,7 +1018,6 @@ export interface FileRouteTypes {
   to:
     | ''
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -1096,7 +1026,6 @@ export interface FileRouteTypes {
     | '/policy'
     | '/support'
     | '/terms'
-    | '/home'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
@@ -1108,12 +1037,12 @@ export interface FileRouteTypes {
     | '/'
     | '/analytics'
     | '/player'
+    | '/home'
+    | '/published'
+    | '/recycled'
     | '/account/settings'
     | '/account/stats'
     | '/account/storage'
-    | '/builder/bookmarks'
-    | '/builder/published'
-    | '/builder/recycled'
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -1132,7 +1061,6 @@ export interface FileRouteTypes {
     | '/_memberOnly'
     | '/analytics'
     | '/auth'
-    | '/builder'
     | '/signin'
     | '/_landing/about-us'
     | '/_landing/contact-us'
@@ -1141,29 +1069,27 @@ export interface FileRouteTypes {
     | '/_landing/policy'
     | '/_landing/support'
     | '/_landing/terms'
-    | '/_memberOnly/home'
+    | '/_memberOnly/_homeLayout'
     | '/auth/forgot-password'
     | '/auth/login'
     | '/auth/register'
     | '/auth/reset-password'
     | '/auth/signin'
     | '/auth/success'
-    | '/builder/_layout'
     | '/builder/map'
     | '/email/change'
     | '/_landing/'
     | '/analytics/'
     | '/player/'
+    | '/_memberOnly/_homeLayout/home'
+    | '/_memberOnly/_homeLayout/published'
+    | '/_memberOnly/_homeLayout/recycled'
     | '/_memberOnly/account/settings'
     | '/_memberOnly/account/stats'
     | '/_memberOnly/account/storage'
     | '/analytics/items/$itemId'
-    | '/builder/_layout/bookmarks'
-    | '/builder/_layout/published'
-    | '/builder/_layout/recycled'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
-    | '/builder/_layout/'
     | '/player/$rootId/'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
@@ -1185,10 +1111,11 @@ export interface RootRouteChildren {
   MemberOnlyRoute: typeof MemberOnlyRouteWithChildren
   AnalyticsRoute: typeof AnalyticsRouteWithChildren
   AuthRoute: typeof AuthRouteWithChildren
-  BuilderRoute: typeof BuilderRouteWithChildren
   SigninRoute: typeof SigninRoute
+  BuilderMapRoute: typeof BuilderMapRoute
   EmailChangeRoute: typeof EmailChangeRoute
   PlayerIndexRoute: typeof PlayerIndexRoute
+  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
   PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
   PlayerRootIdIndexRoute: typeof PlayerRootIdIndexRoute
 }
@@ -1198,10 +1125,11 @@ const rootRouteChildren: RootRouteChildren = {
   MemberOnlyRoute: MemberOnlyRouteWithChildren,
   AnalyticsRoute: AnalyticsRouteWithChildren,
   AuthRoute: AuthRouteWithChildren,
-  BuilderRoute: BuilderRouteWithChildren,
   SigninRoute: SigninRoute,
+  BuilderMapRoute: BuilderMapRoute,
   EmailChangeRoute: EmailChangeRoute,
   PlayerIndexRoute: PlayerIndexRoute,
+  BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
   PlayerRootIdItemIdRoute: PlayerRootIdItemIdRouteWithChildren,
   PlayerRootIdIndexRoute: PlayerRootIdIndexRoute,
 }
@@ -1220,10 +1148,11 @@ export const routeTree = rootRoute
         "/_memberOnly",
         "/analytics",
         "/auth",
-        "/builder",
         "/signin",
+        "/builder/map",
         "/email/change",
         "/player/",
+        "/builder/items/$itemId",
         "/player/$rootId/$itemId",
         "/player/$rootId/"
       ]
@@ -1244,7 +1173,7 @@ export const routeTree = rootRoute
     "/_memberOnly": {
       "filePath": "_memberOnly.tsx",
       "children": [
-        "/_memberOnly/home",
+        "/_memberOnly/_homeLayout",
         "/_memberOnly/account/settings",
         "/_memberOnly/account/stats",
         "/_memberOnly/account/storage"
@@ -1266,14 +1195,6 @@ export const routeTree = rootRoute
         "/auth/reset-password",
         "/auth/signin",
         "/auth/success"
-      ]
-    },
-    "/builder": {
-      "filePath": "builder.tsx",
-      "children": [
-        "/builder/_layout",
-        "/builder/map",
-        "/builder/items/$itemId"
       ]
     },
     "/signin": {
@@ -1307,9 +1228,14 @@ export const routeTree = rootRoute
       "filePath": "_landing/terms.tsx",
       "parent": "/_landing"
     },
-    "/_memberOnly/home": {
-      "filePath": "_memberOnly/home.tsx",
-      "parent": "/_memberOnly"
+    "/_memberOnly/_homeLayout": {
+      "filePath": "_memberOnly/_homeLayout.tsx",
+      "parent": "/_memberOnly",
+      "children": [
+        "/_memberOnly/_homeLayout/home",
+        "/_memberOnly/_homeLayout/published",
+        "/_memberOnly/_homeLayout/recycled"
+      ]
     },
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.tsx",
@@ -1335,19 +1261,8 @@ export const routeTree = rootRoute
       "filePath": "auth/success.tsx",
       "parent": "/auth"
     },
-    "/builder/_layout": {
-      "filePath": "builder/_layout.tsx",
-      "parent": "/builder",
-      "children": [
-        "/builder/_layout/bookmarks",
-        "/builder/_layout/published",
-        "/builder/_layout/recycled",
-        "/builder/_layout/"
-      ]
-    },
     "/builder/map": {
-      "filePath": "builder.map.tsx",
-      "parent": "/builder"
+      "filePath": "builder.map.tsx"
     },
     "/email/change": {
       "filePath": "email.change.tsx"
@@ -1362,6 +1277,18 @@ export const routeTree = rootRoute
     },
     "/player/": {
       "filePath": "player/index.tsx"
+    },
+    "/_memberOnly/_homeLayout/home": {
+      "filePath": "_memberOnly/_homeLayout/home.tsx",
+      "parent": "/_memberOnly/_homeLayout"
+    },
+    "/_memberOnly/_homeLayout/published": {
+      "filePath": "_memberOnly/_homeLayout/published.tsx",
+      "parent": "/_memberOnly/_homeLayout"
+    },
+    "/_memberOnly/_homeLayout/recycled": {
+      "filePath": "_memberOnly/_homeLayout/recycled.tsx",
+      "parent": "/_memberOnly/_homeLayout"
     },
     "/_memberOnly/account/settings": {
       "filePath": "_memberOnly/account/settings.tsx",
@@ -1386,21 +1313,8 @@ export const routeTree = rootRoute
         "/analytics/items/$itemId/"
       ]
     },
-    "/builder/_layout/bookmarks": {
-      "filePath": "builder/_layout/bookmarks.tsx",
-      "parent": "/builder/_layout"
-    },
-    "/builder/_layout/published": {
-      "filePath": "builder/_layout/published.tsx",
-      "parent": "/builder/_layout"
-    },
-    "/builder/_layout/recycled": {
-      "filePath": "builder/_layout/recycled.tsx",
-      "parent": "/builder/_layout"
-    },
     "/builder/items/$itemId": {
       "filePath": "builder/items/$itemId.tsx",
-      "parent": "/builder",
       "children": [
         "/builder/items/$itemId/_itemPage",
         "/builder/items/$itemId/"
@@ -1412,10 +1326,6 @@ export const routeTree = rootRoute
         "/player/$rootId/$itemId/autoLogin",
         "/player/$rootId/$itemId/"
       ]
-    },
-    "/builder/_layout/": {
-      "filePath": "builder/_layout/index.tsx",
-      "parent": "/builder/_layout"
     },
     "/player/$rootId/": {
       "filePath": "player/$rootId/index.tsx"

@@ -8,6 +8,8 @@ import {
   CREATE_ITEM_BUTTON_ID,
   ITEM_SEARCH_INPUT_ID,
   PREVENT_GUEST_MESSAGE_ID,
+  PUBLISHED_ITEMS_EMPTY_ID,
+  PUBLISHED_ITEMS_EMPTY_SEARCH_RESULT_ID,
   PUBLISHED_ITEMS_ERROR_ALERT_ID,
   PUBLISHED_ITEMS_ID,
   SORTING_ORDERING_SELECTOR_ASC,
@@ -45,14 +47,14 @@ describe('Published Items', () => {
       });
       cy.visit(PUBLISHED_ITEMS_PATH);
 
-      cy.get(`#${PUBLISHED_ITEMS_ID}`).should(
+      cy.get(`#${PUBLISHED_ITEMS_EMPTY_ID}`).should(
         'contain',
         "You didn't publish any items.",
       );
     });
   });
 
-  describe('Member has recycled items', () => {
+  describe('Member has published items', () => {
     beforeEach(() => {
       cy.setUpApi({
         items,
@@ -69,7 +71,7 @@ describe('Published Items', () => {
         .should('not.be.disabled')
         .type(searchText);
 
-      cy.get(`#${PUBLISHED_ITEMS_ID}`).should(
+      cy.get(`#${PUBLISHED_ITEMS_EMPTY_SEARCH_RESULT_ID}`).should(
         'contain',
         `No published item found for ${searchText}`,
       );

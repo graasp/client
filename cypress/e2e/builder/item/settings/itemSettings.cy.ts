@@ -456,7 +456,7 @@ describe('Item Settings', () => {
           items: [item],
           currentMember: MEMBERS.BOB,
         });
-        cy.visit('/builder');
+        cy.visit('/home');
       });
       it('does not have access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
@@ -474,7 +474,7 @@ describe('Item Settings', () => {
           items: [item],
           currentMember: MEMBERS.ANNA,
         });
-        cy.visit('/builder');
+        cy.visit('/home');
       });
       it('has access to settings', () => {
         cy.get(buildItemsGridMoreButtonSelector(itemId)).click();

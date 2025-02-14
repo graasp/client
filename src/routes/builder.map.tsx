@@ -51,7 +51,6 @@ function MapItemScreen(): JSX.Element | null {
       navigate({
         to: '/builder/items/$itemId',
         params: { itemId: item.id },
-        search,
       });
     }
   };
