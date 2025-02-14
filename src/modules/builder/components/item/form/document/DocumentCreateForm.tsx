@@ -58,6 +58,7 @@ export function DocumentCreateForm({
   const {
     handleSubmit,
     reset,
+    getValues,
     formState: { isValid, isSubmitted },
   } = methods;
 
@@ -94,7 +95,8 @@ export function DocumentCreateForm({
             documentItemId={ITEM_FORM_DOCUMENT_TEXT_ID}
             onChange={(v) => {
               // bug: setValue does not trigger isValid to be recomputed, probably because of TextEditor handling
-              reset({ content: v });
+              // bug: setting the flavor is needed because otherwise it gets reset
+              reset({ content: v, flavor: getValues().flavor });
             }}
             placeholder={translateBuilder('TEXT_EDITOR_PLACEHOLDER')}
           />
