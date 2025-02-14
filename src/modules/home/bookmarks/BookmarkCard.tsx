@@ -19,7 +19,7 @@ type Props = {
   item: PackedItem;
 };
 
-export function ItemFavoriteCard({ item }: Readonly<Props>): JSX.Element {
+export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
   const { i18n } = useTranslation(NS.Player);
 
   const itemId =

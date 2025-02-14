@@ -16,7 +16,7 @@ import { NS } from '@/config/constants';
 import { BOOKMARKED_ITEMS_ID } from '@/config/selectors';
 import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 
-import { ItemFavoriteCard } from './ItemFavoriteCard';
+import { BookmarkCard } from './BookmarkCard';
 
 const GridWrapper = ({ children }: { children: ReactNode }): JSX.Element => (
   <Grid size={{ xs: 12, sm: 4, md: 3, xl: 2 }}>{children}</Grid>
@@ -66,7 +66,7 @@ export function BookmarkedItems() {
         >
           {shownBookmarks.map(({ item }) => (
             <GridWrapper key={item.id}>
-              <ItemFavoriteCard key={item.id} item={item} />
+              <BookmarkCard key={item.id} item={item} />
             </GridWrapper>
           ))}
         </Grid>
