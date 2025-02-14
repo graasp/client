@@ -1,12 +1,12 @@
 import { Box, IconButton, Stack } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { expect, fn, within } from '@storybook/test';
 import { Grip, Snowflake } from 'lucide-react';
 
 import ItemBadges from '../ItemBadges/ItemBadges.js';
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
-import Card from './Card.js';
+import { Card } from './Card.js';
 
 const meta = {
   title: 'Common/Card',
@@ -28,6 +28,15 @@ export const Example: Story = {
   args: {
     name: 'my card title',
     alt: 'my card title',
+    CardLink: ({ children }) => (
+      <a
+        data-testid="link"
+        style={{ textDecoration: 'none', color: 'unset' }}
+        href="to"
+      >
+        {children}
+      </a>
+    ),
     content: (
       <span>
         'my card description might be really long that is why we cut it after
@@ -60,6 +69,11 @@ export const Example: Story = {
       </Stack>
     ),
   },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    expect(canvas.getByTestId('link')).toBeVisible();
+  },
 } satisfies Story;
 
 export const Dense: Story = {
@@ -71,7 +85,11 @@ export const Dense: Story = {
     elevation: false,
     creator: 'graasp',
     alt: 'graasp',
-    to: 'graasp',
+    CardLink: ({ children }) => (
+      <a style={{ textDecoration: 'none', color: 'unset' }} href="to">
+        {children}
+      </a>
+    ),
     footer: (
       <>
         <IconButton>
