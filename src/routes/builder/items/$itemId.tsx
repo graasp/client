@@ -6,6 +6,7 @@ import { Stack, useTheme } from '@mui/material';
 import {
   AccountType,
   Context,
+  ItemType,
   PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
@@ -123,7 +124,13 @@ function RouteComponent() {
   ) : (
     <ItemNavigation
       rootId={parents?.[0]?.id ?? itemId}
-      itemId={itemId}
+      itemId={
+        // if the current item is not a folder, the item is not displayed in the tree
+        // so we highlight the parent (if it has parents)
+        item?.type !== ItemType.FOLDER && parents?.length
+          ? parents[parents.length - 1].id
+          : itemId
+      }
       showHidden
       types={GRAASP_MENU_ITEMS}
       handleNavigationOnClick={(newItemId: string) => {
