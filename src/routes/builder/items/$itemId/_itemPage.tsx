@@ -1,24 +1,24 @@
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next';
 
-import { Box, IconButton, Tooltip } from '@mui/material'
+import { Box, IconButton, Tooltip } from '@mui/material';
 
-import { Link, Outlet, createFileRoute } from '@tanstack/react-router'
-import { ArrowLeftCircle } from 'lucide-react'
+import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
+import { ArrowLeftCircle } from 'lucide-react';
 
-import { NS } from '@/config/constants'
+import { NS } from '@/config/constants';
 
-import ErrorAlert from '~builder/components/common/ErrorAlert'
-import Navigation from '~builder/components/layout/Navigation'
-import { useOutletContext } from '~builder/contexts/OutletContext'
+import ErrorAlert from '~builder/components/common/ErrorAlert';
+import Navigation from '~builder/components/layout/Navigation';
+import { useOutletContext } from '~builder/contexts/OutletContext';
 
 export const Route = createFileRoute('/builder/items/$itemId/_itemPage')({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  const { t } = useTranslation(NS.Builder)
-  const { itemId } = Route.useParams()
-  const outletContext = useOutletContext()
+  const { t } = useTranslation(NS.Builder);
+  const { itemId } = Route.useParams();
+  const outletContext = useOutletContext();
 
   if (outletContext.item) {
     return (
@@ -41,8 +41,8 @@ function RouteComponent() {
           <Outlet />
         </Box>
       </Box>
-    )
+    );
   }
 
-  return <ErrorAlert />
+  return <ErrorAlert />;
 }

@@ -47,6 +47,7 @@ const LinkComponent = ({ children }: { children: ReactNode }): JSX.Element => (
 );
 
 function PlayerWrapper(): JSX.Element {
+  const navigate = useNavigate();
   const search = Route.useSearch();
   const { fullscreen, shuffle } = search;
   const { t } = useTranslation(NS.Player);
@@ -68,18 +69,6 @@ function PlayerWrapper(): JSX.Element {
     [Platform.Analytics]: {
       href: `/analytics/items/${itemId}`,
     },
-  };
-
-  const navigate = useNavigate();
-  const handleNavigationOnClick = (newItemId: string) => {
-    navigate({
-      to: '/player/$rootId/$itemId',
-      params: {
-        rootId,
-        itemId: newItemId,
-      },
-      search,
-    });
   };
 
   if (fullscreen) {
@@ -107,7 +96,16 @@ function PlayerWrapper(): JSX.Element {
           itemId={itemId}
           shuffle={shuffle}
           types={GRAASP_MENU_ITEMS}
-          handleNavigationOnClick={handleNavigationOnClick}
+          handleNavigationOnClick={(newItemId: string) => {
+            navigate({
+              to: '/player/$rootId/$itemId',
+              params: {
+                rootId,
+                itemId: newItemId,
+              },
+              search,
+            });
+          }}
         />
       }
       drawerOpenAriaLabel={t('DRAWER_ARIAL_LABEL')}

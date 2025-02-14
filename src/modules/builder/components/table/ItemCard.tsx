@@ -1,4 +1,4 @@
-import type { JSX, ReactNode } from 'react';
+import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Grid2 as Grid, Typography } from '@mui/material';
@@ -12,7 +12,7 @@ import {
 
 import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
-import Card from '@/ui/Card/Card';
+import { Card, type CardProps } from '@/ui/Card/Card';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
   isSelected?: boolean;
   onThumbnailClick?: () => void;
   thumbnailUrl?: string;
-  CardLink?: ({ children }: { children: ReactNode }) => ReactNode;
+  CardLink?: CardProps['CardLink'];
 };
 
 const ItemCard = ({

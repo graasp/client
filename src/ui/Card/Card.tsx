@@ -34,7 +34,7 @@ const StyledCard = styled(MuiCard, {
   outline: isOver || isSelected ? `2px solid ${PRIMARY_COLOR}` : 'none',
 }));
 
-type CardProps = {
+export type CardProps = {
   name: string | JSX.Element;
   alt: string;
   id?: string;
@@ -73,7 +73,7 @@ type CardProps = {
   onThumbnailClick?: () => void;
 } & Partial<DraggableAndDroppableProps>;
 
-const Card = ({
+export function Card({
   footer,
   id,
   creator,
@@ -94,7 +94,7 @@ const Card = ({
   isSelected = false,
   className,
   onThumbnailClick,
-}: CardProps): JSX.Element => {
+}: CardProps): JSX.Element {
   let height = heightProp;
   if (!height) {
     height = dense ? 60 : DEFAULT_CARD_HEIGHT;
@@ -282,6 +282,4 @@ const Card = ({
       </Stack>
     </StyledCard>
   );
-};
-
-export default Card;
+}
