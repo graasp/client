@@ -14,7 +14,7 @@ import { LINK_REGEX } from '~builder/utils/item';
 const LinkUrlField = (): JSX.Element => {
   const {
     register,
-    reset,
+    setValue,
     getValues,
     formState: { errors },
   } = useFormContext<{ url: string }>();
@@ -32,7 +32,7 @@ const LinkUrlField = (): JSX.Element => {
         input: {
           endAdornment: (
             <IconButton
-              onClick={() => reset({ url: '' })}
+              onClick={() => setValue('url', '')}
               sx={{
                 visibility: getValues().url ? 'visible' : 'hidden',
               }}

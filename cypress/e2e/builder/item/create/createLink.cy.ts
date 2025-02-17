@@ -1,4 +1,4 @@
-import { ItemType, PackedFolderItemFactory } from '@graasp/sdk';
+import { HttpMethod, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   CREATE_ITEM_BUTTON_ID,
@@ -7,7 +7,6 @@ import {
   ITEM_FORM_LINK_INPUT_ID,
   ITEM_FORM_NAME_INPUT_ID,
 } from '../../../../../src/config/selectors';
-import { CREATE_ITEM_PAUSE } from '../../../../support/constants';
 import { buildItemPath } from '../../utils';
 
 const openLinkModal = () => {
@@ -24,6 +23,13 @@ const createLink = ({ url }: { url: string }): void => {
 };
 
 describe('Create Link', () => {
+  beforeEach(() => {
+    cy.intercept({
+      method: HttpMethod.Post,
+      url: /\/items\/embedded-links\//,
+    }).as('postItemLink');
+  });
+
   it('create link in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
@@ -38,7 +44,7 @@ describe('Create Link', () => {
     createLink({ url: 'https://graasp.org' });
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
 
-    cy.wait('@postItem').then(({ request: { url } }) => {
+    cy.wait('@postItemLink').then(({ request: { url } }) => {
       expect(url).to.contain(FOLDER.id);
       // add after child
       expect(url).to.contain(CHILD.id);
@@ -62,10 +68,8 @@ describe('Create Link', () => {
     createLink({ url: 'graasp.org' });
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
 
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      // check item is created and displayed
-      cy.wait(CREATE_ITEM_PAUSE);
-      expect(body.extra[ItemType.LINK].url).to.contain('http');
+    cy.wait('@postItemLink').then(({ request: { body } }) => {
+      expect(body.url).to.contain('http');
       // expect update
       cy.wait('@getItem').its('response.url').should('contain', id);
     });
