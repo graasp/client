@@ -14,10 +14,10 @@ import {
 
 import { formatDate, formatFileSize } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import {
   MEMBER_STORAGE_FILE_NAME_ID,
   MEMBER_STORAGE_FILE_SIZE_ID,
@@ -25,11 +25,14 @@ import {
   MEMBER_STORAGE_PARENT_FOLDER_ID,
   getCellId,
 } from '@/config/selectors';
+import { getStorageFilesOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 export const StorageFiles = (): JSX.Element | null => {
   const { t, i18n } = useTranslation(NS.Account);
   const [pagination, setPagination] = useState({ page: 1, pageSize: 10 });
-  const { data, isLoading } = hooks.useMemberStorageFiles(pagination);
+  const { data, isPending } = useQuery(
+    getStorageFilesOptions({ query: pagination }),
+  );
 
   const handlePageChange = (_: unknown, newPage: number) => {
     setPagination((prev) => {
@@ -116,7 +119,7 @@ export const StorageFiles = (): JSX.Element | null => {
     );
   }
 
-  if (isLoading) {
+  if (isPending) {
     return <Skeleton />;
   }
 
