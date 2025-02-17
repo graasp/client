@@ -353,7 +353,6 @@ describe('Membership Mutations', () => {
       // check notification trigger
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: shareItemRoutine.SUCCESS,
-        payload: expect.anything(),
       });
     });
 
