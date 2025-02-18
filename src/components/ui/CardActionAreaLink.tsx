@@ -5,19 +5,19 @@ import { CardActionArea, CardActionAreaProps } from '@mui/material';
 import { LinkComponent, createLink } from '@tanstack/react-router';
 
 interface MUICardActionAreaProps extends Omit<CardActionAreaProps, 'href'> {
-  dataUmamiEvent: string;
+  onClick: () => void;
 }
 
 const MUICardActionAreaComponent = forwardRef<
   HTMLAnchorElement,
   MUICardActionAreaProps
 >((props, ref) => {
-  const { dataUmamiEvent, ...restProps } = props;
+  const { onClick, ...restProps } = props;
   return (
     <CardActionArea
       component={'a'}
       ref={ref}
-      data-umami-event={dataUmamiEvent}
+      onClick={onClick}
       {...restProps}
     />
   );
