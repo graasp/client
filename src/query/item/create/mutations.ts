@@ -83,7 +83,6 @@ export const useUploadFiles = (queryConfig: QueryClientConfig) => () => {
           type: uploadFilesRoutine.FAILURE,
           payload: {
             error: new Error('UPLOAD_BIG_FILES'),
-            data: bigFiles,
           },
         });
       }

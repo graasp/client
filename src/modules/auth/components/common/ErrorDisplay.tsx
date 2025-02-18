@@ -12,7 +12,7 @@ export function ErrorDisplay({
 }: Readonly<{
   error: Error | null;
 }>): JSX.Element | null {
-  const { t: translateMessages } = useTranslation(NS.Messages);
+  const { t } = useTranslation(NS.Messages);
 
   if (!error) {
     return null;
@@ -20,7 +20,7 @@ export function ErrorDisplay({
 
   return (
     <Alert id={ERROR_DISPLAY_ID} severity="error">
-      {translateMessages(getErrorMessageFromPayload({ payload: error }))}
+      {t(getErrorMessageFromPayload({ error }))}
     </Alert>
   );
 }

@@ -27,7 +27,6 @@ export type Notifier = (
     payload?: {
       error?: Error | AxiosError;
       message?: string;
-      [key: string]: unknown;
     };
   },
   options?: NotifierOptions,
