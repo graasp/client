@@ -40,7 +40,9 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
           id={`bookmarkCardAction-${item.id}`}
           to="/builder/items/$itemId"
           params={{ itemId: itemId }}
-          dataUmamiEvent="bookmark-card"
+          onClick={() => {
+            window.umami.track('bookmark-card');
+          }}
           sx={{
             minWidth: 0,
             width: '100%',
