@@ -261,6 +261,7 @@ const MainWithDrawerContent = ({
 // Content and we need to define the provider before using the hook.
 const MainWithDrawerWrapper = (props: Props): JSX.Element => (
   <Box
+    id="main"
     height="100vh"
     overflow="auto"
     display="flex"
