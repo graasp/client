@@ -30,7 +30,7 @@ import CancelButton from '~builder/components/common/CancelButton';
 import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
-import LinkLayout from './LinkLayout';
+import { LinkTypeFormControl } from './LinkTypeFormControl';
 import LinkUrlField from './LinkUrlField';
 import { LinkType, getSettingsFromLinkType, normalizeURL } from './linkUtils';
 
@@ -117,7 +117,7 @@ export const LinkForm = ({
               autoFocus={false}
             />
             <DescriptionAndPlacementForm />
-            <LinkLayout />
+            <LinkTypeFormControl />
           </Stack>
         </DialogContent>
         <DialogActions>

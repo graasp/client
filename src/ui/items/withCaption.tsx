@@ -99,6 +99,8 @@ export const CaptionWrapper = <T extends WithCaptionItem>({
       alignItems={alignItems}
       width="100%"
       height="100%"
+      // align on top the items, even when the direction is column reversed
+      justifyContent="start"
     >
       {children}
       <TextDisplay content={description} />

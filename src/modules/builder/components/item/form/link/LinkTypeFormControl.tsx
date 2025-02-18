@@ -48,7 +48,7 @@ const StyledDiv = styled('div')(() => ({
   },
 }));
 
-function LinkLayout() {
+export function LinkTypeFormControl() {
   const { control, watch, getValues, setValue } = useFormContext<{
     linkType: UnionOfConst<typeof LinkType>;
     url: string;
@@ -195,5 +195,3 @@ function LinkLayout() {
 
   return null;
 }
-
-export default LinkLayout;

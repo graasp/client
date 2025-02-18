@@ -31,7 +31,7 @@ import CancelButton from '~builder/components/common/CancelButton';
 
 import { ItemNameField } from '../ItemNameField';
 import { DescriptionAndPlacementForm } from '../description/DescriptionAndPlacementForm';
-import LinkLayout from './LinkLayout';
+import { LinkTypeFormControl } from './LinkTypeFormControl';
 import LinkUrlField from './LinkUrlField';
 import {
   LinkType,
@@ -113,7 +113,7 @@ export function LinkEditForm({
             <LinkUrlField />
             <ItemNameField required />
             <DescriptionAndPlacementForm />
-            <LinkLayout />
+            <LinkTypeFormControl />
           </Stack>
         </DialogContent>
         <DialogActions>
