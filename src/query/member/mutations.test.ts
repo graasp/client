@@ -19,7 +19,6 @@ import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 import {
   buildDeleteCurrentMemberRoute,
   buildPatchCurrentMemberRoute,
-  buildPatchMemberPasswordRoute,
   buildPostMemberPasswordRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
@@ -328,68 +327,6 @@ describe('Member Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({ type: uploadAvatarRoutine.FAILURE }),
-      );
-    });
-  });
-
-  describe('useUpdatePassword', () => {
-    const route = `/${buildPatchMemberPasswordRoute()}`;
-    const mutation = mutations.useUpdatePassword;
-    const password = 'ASDasd123';
-    const currentPassword = 'ASDasd123';
-
-    it(`Update password`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: {},
-          statusCode: StatusCodes.NO_CONTENT,
-          method: HttpMethod.Patch,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ currentPassword, password });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: updatePasswordRoutine.SUCCESS,
-        payload: { message: 'UPDATE_PASSWORD' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Patch,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ password, currentPassword });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: updatePasswordRoutine.FAILURE,
-        }),
       );
     });
   });

@@ -1,18 +1,19 @@
 import type { JSX } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { LoadingButton } from '@mui/lab';
 import { Alert, Box, Stack, Typography } from '@mui/material';
 
 import { isPasswordStrong } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   PASSWORD_EDIT_CONTAINER_ID,
   PASSWORD_INPUT_CONFIRM_PASSWORD_ID,
@@ -20,6 +21,7 @@ import {
   PASSWORD_INPUT_NEW_PASSWORD_ID,
   PASSWORD_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { patchPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { PasswordField } from './PasswordField';
 
@@ -48,14 +50,21 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
     mutateAsync: updatePassword,
     error: updatePasswordError,
     isPending: isUpdatePasswordLoading,
-  } = mutations.useUpdatePassword();
+  } = useMutation({
+    ...patchPasswordMutation(),
+    onSuccess: () => {
+      toast.success(translateMessage('UPDATE_PASSWORD', { ns: NS.Messages }));
+    },
+  });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       // perform password update
       await updatePassword({
-        password: data.newPassword,
-        currentPassword: data.currentPassword,
+        body: {
+          password: data.newPassword,
+          currentPassword: data.currentPassword,
+        },
       });
 
       onClose();

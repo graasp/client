@@ -149,31 +149,6 @@ export default (queryConfig: QueryClientConfig) => {
   };
 
   /**
-   * Mutation to update the member password
-   * @param {Password} password new password that user wants to set
-   * @param {Password} currentPassword current password already stored, needs to match old password
-   */
-  const useUpdatePassword = () =>
-    useMutation({
-      mutationFn: (payload: {
-        password: Password;
-        currentPassword: Password;
-      }) => Api.updatePassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: updatePasswordRoutine.SUCCESS,
-          payload: { message: 'UPDATE_PASSWORD' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: updatePasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-
-  /**
    * Mutation to create a member password
    * @param {Password} password new password to set on current member
    */
@@ -244,7 +219,6 @@ export default (queryConfig: QueryClientConfig) => {
      * @deprecated use useEditCurrentMember
      */
     useEditMember: useEditCurrentMember,
-    useUpdatePassword,
     useCreatePassword,
     useUpdateMemberEmail,
     useValidateEmailUpdate,
