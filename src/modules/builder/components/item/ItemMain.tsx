@@ -39,7 +39,6 @@ const ItemMain = ({ id, children }: Props): JSX.Element => {
       <Stack direction="row" id={id} className={ITEM_MAIN_CLASS} height="100%">
         <Stack p={2} width="100%">
           <ItemHeader
-            showNavigation
             isChatboxOpen={isChatboxOpen}
             toggleChatbox={toggleChatbox}
           />

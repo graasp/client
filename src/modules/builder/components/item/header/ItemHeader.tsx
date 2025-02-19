@@ -13,7 +13,6 @@ import Navigation from '~builder/components/layout/Navigation';
 import ItemHeaderActions from './ItemHeaderActions';
 
 type Props = {
-  showNavigation?: boolean;
   isChatboxOpen: boolean;
   toggleChatbox: () => void;
 };
@@ -21,7 +20,6 @@ type Props = {
 const ItemHeader = ({
   isChatboxOpen,
   toggleChatbox,
-  showNavigation = false,
 }: Readonly<Props>): JSX.Element | null => {
   const { itemId } = useParams({ strict: false });
   const { t: translateBuilder } = useTranslation(NS.Builder);
@@ -33,14 +31,15 @@ const ItemHeader = ({
       mb={1}
       id={ITEM_HEADER_ID}
     >
-      {/* display empty div to render actions on the right */}
-      {showNavigation ? <Navigation /> : <div />}
+      <Navigation />
       {itemId ? (
-        <ItemHeaderActions
-          itemId={itemId}
-          isChatboxOpen={isChatboxOpen}
-          toggleChatbox={toggleChatbox}
-        />
+        <Stack flexGrow={1} alignItems="flex-end">
+          <ItemHeaderActions
+            itemId={itemId}
+            isChatboxOpen={isChatboxOpen}
+            toggleChatbox={toggleChatbox}
+          />
+        </Stack>
       ) : (
         <Alert severity="error">{translateBuilder('ERROR_MESSAGE')}</Alert>
       )}

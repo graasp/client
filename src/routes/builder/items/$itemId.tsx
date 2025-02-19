@@ -1,7 +1,7 @@
 import { type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, useTheme } from '@mui/material';
+import { Divider, Stack, useTheme } from '@mui/material';
 
 import {
   AccountType,
@@ -126,7 +126,14 @@ function RouteComponent() {
   const drawerContent = isParentsLoading ? (
     <LoadingTree />
   ) : (
-    <Stack justifyContent="space-between" height="100%">
+    <Stack height="100%">
+      <MainMenuItem
+        id={NAVIGATION_HOME_ID}
+        text={t('MENU.RETURN_HOME')}
+        icon={<HomeIcon />}
+        to="/home"
+      />
+      <Divider />
       <ItemNavigation
         rootId={parents?.[0]?.id ?? itemId}
         itemId={
@@ -147,12 +154,6 @@ function RouteComponent() {
             search,
           });
         }}
-      />
-      <MainMenuItem
-        id={NAVIGATION_HOME_ID}
-        text={t('MENU.RETURN_HOME')}
-        icon={<HomeIcon />}
-        to="/home"
       />
     </Stack>
   );
