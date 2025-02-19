@@ -18,7 +18,7 @@ import withResizing from './withResizing.js';
 
 const AppIFrame = styled('iframe')<{
   isResizable?: boolean;
-}>(({ isResizable }) => ({
+}>(({ isResizable, height }) => ({
   ...iframeCommonStyles,
   /**
    * IMPORTANT The height set here will have a class precedence.
@@ -26,7 +26,7 @@ const AppIFrame = styled('iframe')<{
    *  of the element itself giving it a higher precedence
    * thus overriding this value. This is what we want.
    */
-  height: !isResizable ? '70vh' : '100%',
+  height: !isResizable ? height : '100%',
   width: '100%',
 }));
 
@@ -135,6 +135,7 @@ const AppItem = ({
       src={appUrlWithQuery}
       sx={{ visibility: isIFrameLoading ? 'hidden' : 'visible' }}
       title={item?.name}
+      height={height ?? '80vh'}
       allow="fullscreen"
     />
   );

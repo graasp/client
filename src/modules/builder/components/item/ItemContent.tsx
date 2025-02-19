@@ -140,7 +140,7 @@ const AppContent = ({
   <AppItem
     isResizable={false}
     item={item}
-    height={ITEM_DEFAULT_HEIGHT}
+    height="100%"
     requestApiAccessToken={(payload: {
       id: string;
       key: string;
