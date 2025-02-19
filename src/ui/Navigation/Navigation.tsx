@@ -64,6 +64,10 @@ export function Navigation({
   maxItems = 4,
   children,
 }: Readonly<NavigationProps>): JSX.Element | null {
+  if (!parents?.length) {
+    return null;
+  }
+
   return (
     <StyledBreadcrumbs
       sx={sx}

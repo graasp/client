@@ -135,7 +135,7 @@ describe('view Folder as admin', () => {
     const searchText = child1.name;
     cy.visit(buildItemPath(id, { mode: ItemLayoutMode.Grid }));
     // initial call in the page
-    cy.wait(['@getChildren', '@getChildren']);
+    cy.wait(['@getChildren']);
 
     cy.get(`#${buildItemCard(child1.id)}`).should('be.visible');
 
