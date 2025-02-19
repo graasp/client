@@ -2,7 +2,6 @@ import {
   CompleteMember,
   CurrentAccount,
   MAX_THUMBNAIL_SIZE,
-  Password,
 } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -15,7 +14,6 @@ import {
   deleteCurrentMemberRoutine,
   editMemberRoutine,
   updateEmailRoutine,
-  updatePasswordRoutine,
   uploadAvatarRoutine,
 } from './routines.js';
 
@@ -148,35 +146,6 @@ export default (queryConfig: QueryClientConfig) => {
     });
   };
 
-  /**
-   * Mutation to create a member password
-   * @param {Password} password new password to set on current member
-   */
-  const useCreatePassword = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: { password: Password }) =>
-        Api.createPassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: updatePasswordRoutine.SUCCESS,
-          payload: { message: 'UPDATE_PASSWORD' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: updatePasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries({
-          queryKey: memberKeys.current().passwordStatus,
-        });
-      },
-    });
-  };
-
   const useUpdateMemberEmail = () =>
     useMutation({
       mutationFn: (newEmail: string) => Api.updateEmail(newEmail),
@@ -219,7 +188,6 @@ export default (queryConfig: QueryClientConfig) => {
      * @deprecated use useEditCurrentMember
      */
     useEditMember: useEditCurrentMember,
-    useCreatePassword,
     useUpdateMemberEmail,
     useValidateEmailUpdate,
   };

@@ -19,10 +19,9 @@ import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 import {
   buildDeleteCurrentMemberRoute,
   buildPatchCurrentMemberRoute,
-  buildPostMemberPasswordRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
-import { updatePasswordRoutine, uploadAvatarRoutine } from './routines.js';
+import { uploadAvatarRoutine } from './routines.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -327,67 +326,6 @@ describe('Member Mutations', () => {
 
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({ type: uploadAvatarRoutine.FAILURE }),
-      );
-    });
-  });
-
-  describe('useCreatePassword', () => {
-    const route = `/${buildPostMemberPasswordRoute()}`;
-    const mutation = mutations.useCreatePassword;
-    const password = 'ASDasd123';
-
-    it(`Update password`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: {},
-          statusCode: StatusCodes.NO_CONTENT,
-          method: HttpMethod.Post,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ password });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: updatePasswordRoutine.SUCCESS,
-        payload: { message: 'UPDATE_PASSWORD' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ password });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: updatePasswordRoutine.FAILURE,
-        }),
       );
     });
   });
