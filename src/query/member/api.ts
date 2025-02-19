@@ -6,7 +6,6 @@ import {
   MemberStorageItem,
   Paginated,
   Pagination,
-  Password,
   UUID,
 } from '@graasp/sdk';
 
@@ -30,7 +29,6 @@ import {
   buildGetMemberStorageRoute,
   buildPatchCurrentMemberRoute,
   buildPostMemberEmailUpdateRoute,
-  buildPostMemberPasswordRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
 
@@ -108,11 +106,6 @@ export const deleteCurrentMember = async () =>
       .delete<void>(`${API_HOST}/${buildDeleteCurrentMemberRoute()}`)
       .then(({ data }) => data),
   );
-
-export const createPassword = async (payload: { password: Password }) =>
-  axios
-    .post<void>(`${API_HOST}/${buildPostMemberPasswordRoute()}`, payload)
-    .then((data) => data);
 
 export const uploadAvatar = async (args: {
   file: Blob;

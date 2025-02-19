@@ -53,7 +53,10 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
   } = useMutation({
     ...patchPasswordMutation(),
     onSuccess: () => {
-      toast.success(translateMessage('UPDATE_PASSWORD', { ns: NS.Messages }));
+      toast.success(translateMessage('UPDATE_PASSWORD'));
+    },
+    onError: (e) => {
+      toast.error(e.message);
     },
   });
 

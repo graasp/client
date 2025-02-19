@@ -7,6 +7,5 @@ export const deleteCurrentMemberRoutine = createRoutine(
   'DELETE_CURRENT_MEMBER',
 );
 export const uploadAvatarRoutine = createRoutine('UPLOAD_AVATAR');
-export const updatePasswordRoutine = createRoutine('UPDATE_PASSWORD');
 export const updateEmailRoutine = createRoutine('UPDATE_EMAIL');
 export const exportMemberDataRoutine = createRoutine('EXPORT_DATA');
