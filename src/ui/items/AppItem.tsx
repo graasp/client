@@ -18,18 +18,19 @@ import withResizing from './withResizing.js';
 
 const AppIFrame = styled('iframe')<{
   isResizable?: boolean;
-}>(({ isResizable }) => ({
+}>(({ isResizable, height }) => ({
   ...iframeCommonStyles,
   /**
-   * IMPORTANT to not override the height when using dynamic sizing
-   * The present styles are applied with higher specificity, so the dynamic height
-   * provided by the app using the resizing mechanism is ignored.
+   * IMPORTANT The height set here will have a class precedence.
+   * The auto height hook will set the height on the style property
+   *  of the element itself giving it a higher precedence
+   * thus overriding this value. This is what we want.
    */
-  height: !isResizable ? undefined : '100%',
+  height: !isResizable ? height : '100%',
+  width: '100%',
 }));
 
-const DEFAULT_APP_HEIGHT = 400;
-const APP_ITEM_WIDTH = '100%';
+const DEFAULT_RESIZING_HEIGHT = 400;
 /**
  * This query param is added to the fetched url to fix an issue where the browser
  * is able to aggressively cache the `index.html` file for the app.
@@ -90,7 +91,7 @@ const AppItem = ({
   item,
   contextPayload,
   requestApiAccessToken,
-  height = DEFAULT_APP_HEIGHT,
+  height,
   frameId,
   memberId,
   isResizable = false,
@@ -134,13 +135,13 @@ const AppItem = ({
       src={appUrlWithQuery}
       sx={{ visibility: isIFrameLoading ? 'hidden' : 'visible' }}
       title={item?.name}
-      width={APP_ITEM_WIDTH}
+      height={height ?? '80vh'}
       allow="fullscreen"
     />
   );
 
   const ResizableIframe = withResizing({
-    height,
+    height: height ?? DEFAULT_RESIZING_HEIGHT,
     memberId: memberId,
     itemId: item.id,
     component: iframe,
