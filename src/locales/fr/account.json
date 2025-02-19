@@ -98,7 +98,7 @@
   "EXPORT_INFORMATIONS_TITLE": "Télécharger une copie de vos données",
   "EXPORT_INFORMATIONS_DESCRIPTION": "Vous pouvez télécharger une copie de vos données.",
   "EXPORT_INFORMATIONS_BUTTON_TEXT": "Télécharger vos données",
-  "EXPORT_SUCCESS_MESSAGE": "Vous avez demandé vos données avec succès. Vous recevrez un e-mail avec vos données dans quelques minutes",
+  "EXPORT_SUCCESS_MESSAGE": "Vous avez demandé vos données avec succès. Vous recevrez un e-mail avec vos données dans quelques minutes.",
   "EXPORT_ERROR_MESSAGE": "Une erreur inattendue est survenue",
   "NOT_FOUND_PAGE_TEXT": "Page non trouvée",
   "NOT_FOUND_PAGE_MESSAGE": "Désolé, nous n'avons pas pu trouver cette page.",

@@ -14,7 +14,6 @@ import * as Api from './api.js';
 import {
   deleteCurrentMemberRoutine,
   editMemberRoutine,
-  exportMemberDataRoutine,
   updateEmailRoutine,
   updatePasswordRoutine,
   uploadAvatarRoutine,
@@ -237,21 +236,6 @@ export default (queryConfig: QueryClientConfig) => {
       },
     });
 
-  const useExportMemberData = () =>
-    useMutation({
-      mutationFn: () => Api.exportMemberData(),
-      onSuccess: () => {
-        notifier?.({
-          type: exportMemberDataRoutine.SUCCESS,
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: exportMemberDataRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
   return {
     useDeleteCurrentMember,
     useUploadAvatar,
@@ -264,6 +248,5 @@ export default (queryConfig: QueryClientConfig) => {
     useCreatePassword,
     useUpdateMemberEmail,
     useValidateEmailUpdate,
-    useExportMemberData,
   };
 };

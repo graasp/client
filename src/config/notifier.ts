@@ -13,7 +13,6 @@ const {
   postPublicProfileRoutine,
   patchPublicProfileRoutine,
   updateEmailRoutine,
-  exportMemberDataRoutine,
   getInvitationRoutine,
 } = routines;
 
@@ -63,8 +62,7 @@ export default ({
     case updatePasswordRoutine.FAILURE:
     case postPublicProfileRoutine.FAILURE:
     case updateEmailRoutine.FAILURE:
-    case patchPublicProfileRoutine.FAILURE:
-    case exportMemberDataRoutine.FAILURE: {
+    case patchPublicProfileRoutine.FAILURE: {
       message = getErrorMessageFromPayload(payload);
       break;
     }
@@ -74,8 +72,7 @@ export default ({
     case updatePasswordRoutine.SUCCESS:
     case postPublicProfileRoutine.SUCCESS:
     case updateEmailRoutine.SUCCESS:
-    case patchPublicProfileRoutine.SUCCESS:
-    case exportMemberDataRoutine.SUCCESS: {
+    case patchPublicProfileRoutine.SUCCESS: {
       message = getSuccessMessageFromPayload(payload);
       break;
     }
