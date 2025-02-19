@@ -91,7 +91,9 @@ const useAppCommunication = ({
               if (typeof payload !== 'number') {
                 return;
               }
-              iFrameRef.current.height = payload.toString();
+              // set the element height using the style prop
+              // we use the style prop since it allows us to have higher precedence than when using the height prop
+              iFrameRef.current.style.height = `${payload}px`;
               break;
             }
           }
