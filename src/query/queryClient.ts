@@ -1,5 +1,3 @@
-import { configureWebsocketClient } from '@graasp/sdk';
-
 import {
   HydrationBoundary,
   QueryCache,
@@ -57,7 +55,6 @@ export type ConfigureQueryClientConfig = Partial<
     | 'API_HOST'
     | 'SHOW_NOTIFICATIONS'
     | 'wsClient'
-    | 'WS_HOST'
     | 'notifier'
     | 'defaultQueryOptions'
   >
@@ -68,16 +65,12 @@ export default (config: ConfigureQueryClientConfig) => {
     API_HOST: config.API_HOST ?? 'http://localhost:3000',
     SHOW_NOTIFICATIONS: config.SHOW_NOTIFICATIONS || false,
   };
-
   // define config for query client
   const queryConfig: QueryClientConfig = {
     ...baseConfig,
     axios: axiosClient,
-    // derive WS_HOST from API_HOST if needed
-    WS_HOST:
-      config.WS_HOST ?? `${baseConfig.API_HOST.replace('http', 'ws')}/ws`,
     // whether websocket support should be enabled
-    enableWebsocket: config.wsClient != null,
+    enableWebsocket: Boolean(config.wsClient),
     notifier: config.notifier,
     // default hooks & mutation config
     defaultQueryOptions: {
@@ -117,10 +110,9 @@ export default (config: ConfigureQueryClientConfig) => {
   const mutations = configureMutations(queryConfig);
 
   // set up hooks given config
-  const websocketClient =
-    queryConfig.wsClient != null
-      ? (queryConfig.wsClient ?? configureWebsocketClient(queryConfig.WS_HOST))
-      : undefined;
+  const websocketClient = queryConfig.enableWebsocket
+    ? config.wsClient
+    : undefined;
   const hooks = configureHooks(queryConfig, websocketClient);
 
   // returns the queryClient and relative instances
