@@ -10,7 +10,6 @@ import { API_HOST } from '@/config/env.js';
 import { axiosClient } from '../api/axios.js';
 import configureQueryClient from '../queryClient.js';
 import { Notifier, QueryClientConfig } from '../types.js';
-import { WS_HOST } from './constants.js';
 
 export type Handler = { channel: Channel; handler: (event: unknown) => void };
 
@@ -48,7 +47,6 @@ export const setUpWsTest = <T extends object>(args: {
     notifier,
     enableWebsocket: true,
     wsClient: websocketClient,
-    WS_HOST,
   };
 
   const { QueryClientProvider, useMutation, queryClient } =

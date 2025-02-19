@@ -20,7 +20,6 @@ import {
 } from '../config/constants.js';
 import configureQueryClient from '../queryClient.js';
 import { Notifier, QueryClientConfig } from '../types.js';
-import { WS_HOST } from './constants.js';
 
 export type Handler = { channel: Channel; handler: (event: unknown) => void };
 
@@ -53,8 +52,7 @@ export const setUpTest = (args?: Args) => {
     SHOW_NOTIFICATIONS: false,
     notifier,
     enableWebsocket,
-    wsClient: enableWebsocket ? websocketClient : null, // use default
-    WS_HOST,
+    wsClient: enableWebsocket ? websocketClient : undefined, // use default
   };
 
   const { mutations, hooks, QueryClientProvider, queryClient } =

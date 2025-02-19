@@ -35,9 +35,8 @@ export type Notifier = (
 export type QueryClientConfig = {
   API_HOST: string;
   SHOW_NOTIFICATIONS: boolean;
-  WS_HOST: string;
   enableWebsocket: boolean;
-  wsClient?: WebsocketClient | null;
+  wsClient?: WebsocketClient;
   notifier?: Notifier;
   axios: AxiosInstance;
   defaultQueryOptions?: {

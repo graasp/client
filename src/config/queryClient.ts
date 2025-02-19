@@ -1,3 +1,5 @@
+import { configureWebsocketClient } from '@graasp/sdk';
+
 import { configureQueryClient } from '@/query';
 
 import { API_HOST, SHOW_NOTIFICATIONS } from './env';
@@ -20,6 +22,7 @@ const {
     keepPreviousData: true,
   },
   SHOW_NOTIFICATIONS,
+  wsClient: configureWebsocketClient(`${API_HOST.replace('http', 'ws')}/ws`),
 });
 export {
   useQueryClient,
