@@ -1,5 +1,60 @@
 # Changelog
 
+## [2.20.0](https://github.com/graasp/client/compare/v2.19.6...v2.20.0) (2025-02-19)
+
+
+### Features
+
+* add accessible items on home page ([#853](https://github.com/graasp/client/issues/853)) ([fcb0fd4](https://github.com/graasp/client/commit/fcb0fd47362feb6b780aa7db4d8b56e3ced265e5))
+* add bookmarks in home ([#871](https://github.com/graasp/client/issues/871)) ([da3e3ce](https://github.com/graasp/client/commit/da3e3ce3e21e62052d8dbc04ade2a728bb6977b0))
+* add generated client api ([a70eafb](https://github.com/graasp/client/commit/a70eafb930213542d481d6c5073a59b96a8ba7ed))
+* add menu tabs, remove drawer from home ([#855](https://github.com/graasp/client/issues/855)) ([c371c19](https://github.com/graasp/client/commit/c371c190fa818fa4059b43d4d7d9083610184f63))
+* add new supporters and refactor to add links to project websites ([#913](https://github.com/graasp/client/issues/913)) ([6294db9](https://github.com/graasp/client/commit/6294db9805d12132dd25e8ea31d3092b3cd128c9))
+* add settings in member drop down ([#844](https://github.com/graasp/client/issues/844)) ([633a892](https://github.com/graasp/client/commit/633a89204cc6a4318bb7c256f33a1b1f28edae7b))
+* add storage in account ([#909](https://github.com/graasp/client/issues/909)) ([9ad9711](https://github.com/graasp/client/commit/9ad971117959be67a0964132c5cad9d29f4b6f7a))
+* improve popup user menu ([#906](https://github.com/graasp/client/issues/906)) ([ae2ae6e](https://github.com/graasp/client/commit/ae2ae6ee1cae05af38e82ef90363ad9b96907740))
+* move home button to top, remove unused showNavigation prop ([#937](https://github.com/graasp/client/issues/937)) ([5d9de60](https://github.com/graasp/client/commit/5d9de6029774d1d2845cac7a7da5354feda2ca8c))
+* move member welcome card in settings ([#875](https://github.com/graasp/client/issues/875)) ([389bb88](https://github.com/graasp/client/commit/389bb88ff21e4a0bfcec85d90df3d938537d87c5))
+* move tutorials in user drop down, add return home button ([3aa58b9](https://github.com/graasp/client/commit/3aa58b95c5e7e5869c69ea6026aa205a8caf6f60))
+* show item tree navigation in builder ([c34f80e](https://github.com/graasp/client/commit/c34f80eb02bf061f5bf1d971a9df29ea450d57b6))
+* update sdk, use max width lg ([#915](https://github.com/graasp/client/issues/915)) ([b77f2f0](https://github.com/graasp/client/commit/b77f2f09cf1f676f6c70a921719daa7942d3c756))
+
+
+### Bug Fixes
+
+* add home page and translation for page titles in common ([#839](https://github.com/graasp/client/issues/839)) ([f708512](https://github.com/graasp/client/commit/f70851228c24a4cec3127cca665f0276e307eaba))
+* add limit on bookmarks shown ([#916](https://github.com/graasp/client/issues/916)) ([1cfa568](https://github.com/graasp/client/commit/1cfa5680986350a7529dc2d4822ea27d16c75e7f))
+* add query-client into client ([4bc9379](https://github.com/graasp/client/commit/4bc9379df7372a56eb42ffa08a30aa3f6c0ead1c))
+* add scroll restoration in player ([a265db8](https://github.com/graasp/client/commit/a265db883e1567ac3a34da330af13fabf1fbe17c))
+* add umami data on bookmark card ([#924](https://github.com/graasp/client/issues/924)) ([5d7a914](https://github.com/graasp/client/commit/5d7a914c9cdb8102528ddbbfeb85fcdea1e578dc))
+* app resizing issue ([#939](https://github.com/graasp/client/issues/939)) ([bb757da](https://github.com/graasp/client/commit/bb757da0a9350e45ace3043ea6a4adfd10120ed2))
+* change profile to home in user menu popup ([#918](https://github.com/graasp/client/issues/918)) ([fd248b7](https://github.com/graasp/client/commit/fd248b74308cd66e2599e60ec8405816d15f4217))
+* **deps:** update dependency leaflet-geosearch to v4.2.0 ([#860](https://github.com/graasp/client/issues/860)) ([d452a4a](https://github.com/graasp/client/commit/d452a4a94323405d2d652e09a7f3907e96644102))
+* **deps:** update dependency lucide-react to v0.475.0 ([#859](https://github.com/graasp/client/issues/859)) ([c671777](https://github.com/graasp/client/commit/c6717779e83f4a25e5c2204704152b64a588b017))
+* **deps:** update deps ([3e99bb3](https://github.com/graasp/client/commit/3e99bb3d06fc4e3c17ad7d0e8492020e84ebaf0c))
+* **deps:** update tanstack-router monorepo to v1.102.1 ([#861](https://github.com/graasp/client/issues/861)) ([d355fb3](https://github.com/graasp/client/commit/d355fb3fa57c04083bc75c2b85a1e32510dba8a0))
+* **deps:** update tanstack-router monorepo to v1.99.8 ([#771](https://github.com/graasp/client/issues/771)) ([5608309](https://github.com/graasp/client/commit/56083091259846a467dbc13d6f266add66cf7d9a))
+* do not allow membership request for hidden items ([d78b483](https://github.com/graasp/client/commit/d78b483af0697aaece3b76b114fc6acadd2ca68b))
+* fix tutoiement in french translations, inclusive texts ([#869](https://github.com/graasp/client/issues/869)) ([7a63609](https://github.com/graasp/client/commit/7a6360917b5353ee926c54607693a324c186b9f3))
+* **french:** change some translations ([#926](https://github.com/graasp/client/issues/926)) ([126e597](https://github.com/graasp/client/commit/126e5971d02f835bec0a9a32bea2b189d11dc451))
+* **french:** update translations ([#917](https://github.com/graasp/client/issues/917)) ([6edbfa1](https://github.com/graasp/client/commit/6edbfa1e3c3f6b52b4ef3c4979d2c27bd696aaeb))
+* link description ([#769](https://github.com/graasp/client/issues/769)) ([73b0863](https://github.com/graasp/client/commit/73b0863230bd48651ee58555dd51bac8e458ee9c))
+* make nested pages for home ([#920](https://github.com/graasp/client/issues/920)) ([ca022bb](https://github.com/graasp/client/commit/ca022bb84d4e6999e92901e8309e80a5549f2c0a))
+* mention link styling ([#907](https://github.com/graasp/client/issues/907)) ([b8577a4](https://github.com/graasp/client/commit/b8577a49231e88bef620637e842a88997fa64ef9))
+* new item modal archive display ([#911](https://github.com/graasp/client/issues/911)) ([0375a04](https://github.com/graasp/client/commit/0375a04fcd9d85edd5e48b1242970b41c59e5c04))
+* notifications and login errors ([#927](https://github.com/graasp/client/issues/927)) ([60c34b8](https://github.com/graasp/client/commit/60c34b85c06327f213f09704c37af255537aa6ec))
+* overflow issue in new item modal ([7654a2b](https://github.com/graasp/client/commit/7654a2b00e2ce1fa932ce014b93ca886c1899ae3))
+* query-client tests ([dfc639b](https://github.com/graasp/client/commit/dfc639b99cc4866da0a821d6926e8aa93d4f5c5a))
+* refactor menuTabs to use tsr link ([#919](https://github.com/graasp/client/issues/919)) ([0573eea](https://github.com/graasp/client/commit/0573eea5e9bbccedcde050d874ac4d320f921ed9))
+* remove unused deps and optimize package usage ([#866](https://github.com/graasp/client/issues/866)) ([0b06b43](https://github.com/graasp/client/commit/0b06b43e2365c50f0a438bbebf889250a2e9671d))
+* remove view modes in home ([ca022bb](https://github.com/graasp/client/commit/ca022bb84d4e6999e92901e8309e80a5549f2c0a))
+* simplify query-client ([#857](https://github.com/graasp/client/issues/857)) ([f898211](https://github.com/graasp/client/commit/f8982113fd16d2ee62b00ca9cfe059098a30b8d3))
+* simplify ws config in query client, define a ws client for prod ([#938](https://github.com/graasp/client/issues/938)) ([d506223](https://github.com/graasp/client/commit/d5062234d4177c35083d4d257cbad929e7730d60))
+* sonar-cloud issues in MessageBody ([#903](https://github.com/graasp/client/issues/903)) ([41b46a0](https://github.com/graasp/client/commit/41b46a0a4eec8f1632d60cc5b31b42c381b7420f))
+* update dependencies ([#876](https://github.com/graasp/client/issues/876)) ([fb21ee4](https://github.com/graasp/client/commit/fb21ee48d81682c65c2ca1bca2c8016c2422490d))
+* update validation for text on description change ([9516e9d](https://github.com/graasp/client/commit/9516e9da00ce4d3249a14385c90c7ab74be7e2d8))
+* use umami in onclick event for bookmark cards ([21f0d0c](https://github.com/graasp/client/commit/21f0d0c6bda3393fd2870f5813f60f0d55a1b756))
+
 ## [2.19.6](https://github.com/graasp/client/compare/v2.19.5...v2.19.6) (2025-02-05)
 
 
