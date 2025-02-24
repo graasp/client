@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.21.0](https://github.com/graasp/client/compare/v2.20.0...v2.21.0) (2025-02-24)
+
+
+### Features
+
+* use export member data generation, remove notification ([#941](https://github.com/graasp/client/issues/941)) ([1fbdc3c](https://github.com/graasp/client/commit/1fbdc3cf94879ee67eac9724eb27155c35a07770))
+
 ## [2.20.0](https://github.com/graasp/client/compare/v2.19.6...v2.20.0) (2025-02-19)
 
 
