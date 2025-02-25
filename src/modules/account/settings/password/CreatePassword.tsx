@@ -9,7 +9,6 @@ import { Alert, Stack, Typography } from '@mui/material';
 import { isPasswordStrong } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
@@ -60,10 +59,12 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
   } = useMutation({
     ...postPasswordMutation(),
     onSuccess: () => {
+      // toast success on another page because the form will be closed
       toast.success(translateMessage('UPDATE_PASSWORD'));
     },
     onError: (e) => {
-      toast.error(e.message);
+      // error will be shown below
+      console.error(e);
     },
     onSettled: () => {
       queryClient.invalidateQueries({
@@ -89,11 +90,13 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     newPasswordErrorMessage ?? confirmNewPasswordErrorMessage,
   );
 
-  const createNetworkError = isAxiosError(createPasswordError)
-    ? translateMessage(
-        createPasswordError.response?.data.name ?? 'UNEXPECTED_ERROR',
-      )
+  const createNetworkError: string | null = createPasswordError?.message
+    ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      (translateMessage(createPasswordError?.message) ??
+      translateMessage('UNEXPECTED_ERROR'))
     : null;
+
   return (
     <BorderedSection
       id={PASSWORD_CREATE_CONTAINER_ID}
