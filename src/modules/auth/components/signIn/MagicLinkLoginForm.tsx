@@ -7,6 +7,7 @@ import { Stack } from '@mui/material';
 import { RecaptchaAction } from '@graasp/sdk';
 
 import { useLocation, useNavigate } from '@tanstack/react-router';
+import isEmail from 'validator/lib/isEmail';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -16,7 +17,6 @@ import {
 } from '@/config/selectors';
 
 import { AUTH } from '~auth/langs';
-import { isEmailValid } from '~auth/validation';
 
 import { executeCaptcha } from '../../context/RecaptchaContext';
 import { useMobileAppLogin } from '../../hooks/useMobileAppLogin';
@@ -85,6 +85,7 @@ export function MagicLinkLoginForm({
       console.error(e);
     }
   };
+
   const emailError = errors.email?.message;
 
   return (
@@ -102,7 +103,12 @@ export function MagicLinkLoginForm({
         form={register('email', {
           required: t('REQUIRED_FIELD_ERROR'),
           validate: {
-            email: (value) => isEmailValid(value) || t('INVALID_EMAIL_ERROR'),
+            email: (value) => {
+              if (!value) {
+                return t('EMPTY_EMAIL_ERROR');
+              }
+              return isEmail(value, {}) ? true : t('INVALID_EMAIL_ERROR');
+            },
           },
         })}
         placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}

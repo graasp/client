@@ -669,7 +669,9 @@ export const mockCreatePassword = (shouldThrowError: boolean): void => {
     },
     ({ reply }) => {
       if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST });
+        return reply({
+          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        });
       }
 
       return reply({ status: StatusCodes.NO_CONTENT });
