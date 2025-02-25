@@ -16,6 +16,7 @@ import Button from '@/ui/buttons/Button/Button';
 import SelectTypes from '~builder/components/common/SelectTypes';
 import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';
 import { FileUploader } from '~builder/components/file/FileUploader';
+import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
 import LoadingScreen from '~builder/components/layout/LoadingScreen';
 import NewItemButton from '~builder/components/main/NewItemButton';
 import ItemsTable from '~builder/components/main/list/ItemsTable';
@@ -188,7 +189,7 @@ function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
         {data.pages[0].totalCount === totalFetchedItems && (
           // avoids button fullwidth
           <Stack alignItems="center" mb={2}>
-            <NewItemButton type="icon" />
+            <NewFolderButton type="icon" />
           </Stack>
         )}
       </DragContainerStack>
@@ -200,7 +201,7 @@ function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
   // default show upload zone
   return (
     <Box mt={2}>
-      <FileUploader buttons={<NewItemButton />} />
+      <FileUploader buttons={<NewFolderButton size="small" />} />
     </Box>
   );
 }
