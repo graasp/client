@@ -7,7 +7,6 @@ import {
 
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
-  CREATE_ITEM_BUTTON_ID,
   DROPZONE_SELECTOR,
   HOME_LOAD_MORE_BUTTON_SELECTOR,
   ITEM_SEARCH_INPUT_ID,
@@ -38,16 +37,6 @@ const FOLDER2 = PackedFolderItemFactory();
 const ITEMS = [IMAGE_ITEM, FOLDER, FOLDER2, FOLDER_CHILD, IMAGE_ITEM_CHILD];
 
 describe('Home', () => {
-  it('visit empty Home', () => {
-    cy.setUpApi({
-      items: [],
-    });
-
-    cy.visit(HOME_PATH);
-    cy.get(`[role="dropzone"]`).should('be.visible');
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
-  });
-
   describe('Features', () => {
     beforeEach(() => {
       cy.setUpApi({

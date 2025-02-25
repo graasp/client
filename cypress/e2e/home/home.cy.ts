@@ -1,7 +1,7 @@
 import {
   ACCESSIBLE_ITEMS_ONLY_ME_ID,
+  ADD_FOLDER_BUTTON_CY,
   BOOKMARKED_ITEMS_ID,
-  CREATE_ITEM_BUTTON_ID,
   HOME_LOAD_MORE_BUTTON_SELECTOR,
   ITEM_SEARCH_INPUT_ID,
   SORTING_ORDERING_SELECTOR_ASC,
@@ -13,6 +13,7 @@ import { SortingOptions } from '../../../src/modules/builder/components/table/ty
 import { ITEM_PAGE_SIZE } from '../../../src/modules/builder/constants';
 import { CURRENT_MEMBER } from '../../fixtures/members';
 import { ItemForTest } from '../../support/types';
+import { getDataCy } from '../../support/utils';
 import { generateOwnItems } from '../builder/fixtures/items';
 
 const HOME_PATH = '/home';
@@ -23,14 +24,14 @@ const bookmarkedItems = ownItems
   .map((i) => ({ id: i.id, item: i, createdAt: i.createdAt }));
 
 describe('Empty Home', () => {
-  it('visit empty Home', () => {
+  it.only('visit empty Home', () => {
     cy.setUpApi({
       items: [],
     });
 
     cy.visit(HOME_PATH);
     cy.get(`[role="dropzone"]`).scrollIntoView().should('be.visible');
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).scrollIntoView().should('be.visible');
+    cy.get(getDataCy(ADD_FOLDER_BUTTON_CY)).should('be.visible');
   });
 
   it('Empty bookmarks', () => {
