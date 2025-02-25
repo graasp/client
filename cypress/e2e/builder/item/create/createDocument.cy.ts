@@ -10,49 +10,10 @@ import {
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '../../../../../src/config/selectors';
 import { createDocument } from '../../../../support/createUtils';
-import { HOME_PATH, buildItemPath } from '../../utils';
+import { buildItemPath } from '../../utils';
 
 describe('Create Document', () => {
-  it('create document on Home', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // create
-    const document = DocumentItemFactory({
-      extra: { document: { content: 'my content' } },
-    });
-    createDocument(document);
-
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      expect(body.extra.document.content).to.contain(
-        document.extra.document.content,
-      );
-      // should update view
-      cy.wait('@getAccessibleItems');
-    });
-  });
-
-  it('create html document on Home', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // create
-    const document = DocumentItemFactory({
-      extra: { document: { content: 'my content', isRaw: true } },
-    });
-    createDocument(document);
-
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      expect(body.extra.document.isRaw).to.equal(true);
-      expect(body.extra.document.content).to.equal(
-        document.extra.document.content,
-      );
-      // should update view
-      cy.wait('@getAccessibleItems');
-    });
-  });
-
-  it('create document in item', () => {
+  it('create document', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
     cy.setUpApi({ items: [FOLDER, CHILD] });
@@ -73,9 +34,39 @@ describe('Create Document', () => {
     });
   });
 
+  it('create html document', () => {
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+
+    // go to children item
+    cy.visit(buildItemPath(id));
+
+    // create
+    const document = DocumentItemFactory({
+      extra: { document: { content: 'my content', isRaw: true } },
+    });
+    createDocument(document);
+
+    cy.wait('@postItem').then(({ request: { body } }) => {
+      expect(body.extra.document.isRaw).to.equal(true);
+      expect(body.extra.document.content).to.equal(
+        document.extra.document.content,
+      );
+      // should update view
+      cy.wait('@getItem').its('response.url').should('contain', id);
+    });
+  });
+
   it('cannot create Document with blank name', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+
+    // go to children item
+    cy.visit(buildItemPath(id));
 
     createDocument(
       DocumentItemFactory({
@@ -98,8 +89,13 @@ describe('Create Document', () => {
   });
 
   it('try to create empty document then fill it and save', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+
+    // go to children item
+    cy.visit(buildItemPath(id));
 
     createDocument(
       DocumentItemFactory({
@@ -127,8 +123,13 @@ describe('Create Document', () => {
   });
 
   it('create document with flavor', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+
+    // go to children item
+    cy.visit(buildItemPath(id));
 
     const documentToCreate = DocumentItemFactory({
       name: 'document',

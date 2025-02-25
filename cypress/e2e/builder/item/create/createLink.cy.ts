@@ -8,7 +8,7 @@ import {
   ITEM_FORM_NAME_INPUT_ID,
 } from '../../../../../src/config/selectors';
 import { CREATE_ITEM_PAUSE } from '../../../../support/constants';
-import { HOME_PATH, buildItemPath } from '../../utils';
+import { buildItemPath } from '../../utils';
 
 const openLinkModal = () => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
@@ -24,55 +24,6 @@ const createLink = ({ url }: { url: string }): void => {
 };
 
 describe('Create Link', () => {
-  it('create link on Home', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // create
-    createLink({ url: 'https://graasp.org' });
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
-
-    cy.wait('@postItem').then(() => {
-      // check item is created and displayed
-      cy.wait(CREATE_ITEM_PAUSE);
-
-      // expect update
-      cy.wait('@getAccessibleItems');
-    });
-  });
-
-  it('create link without protocol on Home', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // create
-    createLink({ url: 'graasp.org' });
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
-
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      // check item is created and displayed
-      cy.wait(CREATE_ITEM_PAUSE);
-      expect(body.extra[ItemType.LINK].url).to.contain('http');
-      // expect update
-      cy.wait('@getAccessibleItems');
-    });
-  });
-
-  it('enter valid link, then reset link', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // enter valid data
-    createLink({ url: 'graasp.org' });
-    cy.get(`#${ITEM_FORM_NAME_INPUT_ID} input`).should('not.be.empty');
-
-    // type a wrong link and cannot save
-    cy.get(`#${ITEM_FORM_LINK_INPUT_ID}`).clear().type('something');
-    cy.get(`#${ITEM_FORM_NAME_INPUT_ID} input`).should('not.be.empty');
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
-  });
-
   it('create link in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
@@ -97,10 +48,58 @@ describe('Create Link', () => {
     });
   });
 
+  it('create link without protocol on Home', () => {
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+
+    // go to child item
+    cy.visit(buildItemPath(id));
+
+    // create
+    createLink({ url: 'graasp.org' });
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+
+    cy.wait('@postItem').then(({ request: { body } }) => {
+      // check item is created and displayed
+      cy.wait(CREATE_ITEM_PAUSE);
+      expect(body.extra[ItemType.LINK].url).to.contain('http');
+      // expect update
+      cy.wait('@getItem').its('response.url').should('contain', id);
+    });
+  });
+
+  it('enter valid link, then reset link', () => {
+    const FOLDER = PackedFolderItemFactory();
+    const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+
+    cy.setUpApi({ items: [FOLDER, CHILD] });
+    const { id } = FOLDER;
+    // go to child item
+    cy.visit(buildItemPath(id));
+
+    // enter valid data
+    createLink({ url: 'graasp.org' });
+    cy.get(`#${ITEM_FORM_NAME_INPUT_ID} input`).should('not.be.empty');
+
+    // type a wrong link and cannot save
+    cy.get(`#${ITEM_FORM_LINK_INPUT_ID}`).clear().type('something');
+    cy.get(`#${ITEM_FORM_NAME_INPUT_ID} input`).should('not.be.empty');
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
+  });
+
   describe('Error handling', () => {
     it('cannot add an invalid link', () => {
-      cy.setUpApi();
-      cy.visit(HOME_PATH);
+      const FOLDER = PackedFolderItemFactory();
+      const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+
+      cy.setUpApi({ items: [FOLDER, CHILD] });
+      const { id } = FOLDER;
+      // go to child item
+      cy.visit(buildItemPath(id));
 
       // fill link and name
       openLinkModal();
@@ -116,8 +115,13 @@ describe('Create Link', () => {
     });
 
     it('cannot have an empty name', () => {
-      cy.setUpApi();
-      cy.visit(HOME_PATH);
+      const FOLDER = PackedFolderItemFactory();
+      const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
+
+      cy.setUpApi({ items: [FOLDER, CHILD] });
+      const { id } = FOLDER;
+      // go to child item
+      cy.visit(buildItemPath(id));
 
       // fill link and clear name
       createLink({ url: 'https://graasp.org' });
