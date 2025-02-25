@@ -18,7 +18,6 @@ import { useFilterItemsContext } from '~builder/components/context/FilterItemsCo
 import { FileUploader } from '~builder/components/file/FileUploader';
 import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
 import LoadingScreen from '~builder/components/layout/LoadingScreen';
-import NewItemButton from '~builder/components/main/NewItemButton';
 import ItemsTable from '~builder/components/main/list/ItemsTable';
 import { useSelectionContext } from '~builder/components/main/list/SelectionContext';
 import {
