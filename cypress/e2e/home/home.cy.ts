@@ -24,7 +24,7 @@ const bookmarkedItems = ownItems
   .map((i) => ({ id: i.id, item: i, createdAt: i.createdAt }));
 
 describe('Empty Home', () => {
-  it.only('visit empty Home', () => {
+  it('visit empty Home', () => {
     cy.setUpApi({
       items: [],
     });
