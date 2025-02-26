@@ -1,7 +1,6 @@
-import { type JSX, useRef } from 'react';
+import { type JSX, ReactNode, useRef } from 'react';
 import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
-import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -12,10 +11,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { CloudUploadIcon, HelpCircleIcon } from 'lucide-react';
-
-import { CustomLink } from '@/components/ui/CustomLink.js';
-import { NS } from '@/config/constants.js';
+import { CloudUploadIcon } from 'lucide-react';
 
 import UploadFileButton, {
   UploadFileButtonProps,
@@ -38,7 +34,7 @@ export type FileDropperProps = {
   /**
    * Smaller text to show, such as limits
    */
-  hints?: string;
+  hints?: string | ReactNode;
   /**
    * Text of the browsing button
    */
@@ -84,7 +80,6 @@ const FileDropperComponent = ({
   isLoading = false,
 }: FileDropperProps) => {
   const theme = useTheme();
-  const { t } = useTranslation(NS.Builder);
   const dropRef = useRef<HTMLDivElement>(null);
 
   const [{ canDrop, isOver }, drop] = useDrop({
@@ -170,12 +165,6 @@ const FileDropperComponent = ({
           </Stack>
           {hints && <Typography variant="caption">{hints}</Typography>}
           {error && <Alert severity="error">{error}</Alert>}
-          <Stack direction="row" alignItems="center" gap={1}>
-            <HelpCircleIcon size={20} />
-            <CustomLink variant="subtitle2" to="/support">
-              {t('DROPZONE_HELPER_TUTORIALS')}
-            </CustomLink>
-          </Stack>
         </>
       )}
     </Stack>
