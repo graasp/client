@@ -69,6 +69,7 @@
   "DROP_DOWN_PLACEHOLDER": "Please Choose From List",
   "DROPZONE_HELPER_TEXT": "Drop your files here to upload",
   "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Max 15 files of 1GB",
+  "DROPZONE_HELPER_TUTORIALS": "Where should you start? Click here for more information",
   "DROPZONE_HELPER_ACTION": "Browse Files",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "or",
   "DESCRIPTION": {
