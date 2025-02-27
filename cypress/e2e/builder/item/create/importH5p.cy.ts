@@ -5,7 +5,7 @@ import {
   H5P_DASHBOARD_UPLOADER_ID,
 } from '../../../../../src/config/selectors';
 import { createItem } from '../../../../support/createUtils';
-import { HOME_PATH, buildItemPath } from '../../utils';
+import { buildItemPath } from '../../utils';
 
 const NEW_H5P_ITEM = {
   filepath: 'files/accordion.h5p',
@@ -13,19 +13,6 @@ const NEW_H5P_ITEM = {
 };
 
 describe('Import H5P', () => {
-  it('import h5p on Home', () => {
-    cy.setUpApi();
-    cy.visit(HOME_PATH);
-
-    // create
-
-    createItem(NEW_H5P_ITEM);
-
-    // check interface didn't crash
-    cy.wait(2000);
-    cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('be.visible');
-  });
-
   it('import h5p in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });

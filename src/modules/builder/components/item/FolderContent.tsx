@@ -131,7 +131,14 @@ const Content = ({
   ) {
     return (
       <Box mt={1}>
-        <FileUploader buttons={<NewItemButton key="newButton" />} />
+        <FileUploader
+          buttons={
+            <>
+              <NewFolderButton size="small" key="newFolder" />
+              <NewItemButton size="small" key="newButton" />
+            </>
+          }
+        />
       </Box>
     );
   }
