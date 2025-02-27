@@ -20,11 +20,7 @@ export function MenuTabs() {
       alignItems="center"
     >
       <MenuTab icon={<HomeIcon />} title={t('HOME')} to="/home" />
-      <MenuTab
-        icon={<LibraryBigIcon />}
-        title={t('PUBLISHED_ITEMS')}
-        to="/published"
-      />
+      <MenuTab icon={<LibraryBigIcon />} title={t('LIBRARY')} to="/published" />
       <MenuTab
         icon={<TrashIcon />}
         title={t('RECYCLED_ITEMS')}

@@ -3,7 +3,14 @@
     "HOME": "Accueil",
     "MY_ITEMS": "Mon Graasp",
     "BOOKMARKED_ITEMS": "Signets",
-    "PUBLISHED_ITEMS": "Publications",
+    "LIBRARY": "Bibliothèque",
     "RECYCLED_ITEMS": "Corbeille"
+  },
+  "LIBRARY": {
+    "CARD": {
+      "TITLE": "Bibliothèque Graasp",
+      "SUBTITLE": "Partager et Découvrir des Ressources Éducatives Libres dans la Bibliothèque",
+      "BUTTON_TEXT": "Explorer"
+    }
   }
 }
