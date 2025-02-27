@@ -1,16 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
-import {
-  Button,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
 import { ArrowRightIcon } from 'lucide-react';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import LibraryIcon from '@/ui/icons/LibraryIcon';
 import { AccentColors } from '@/ui/theme';
 
@@ -42,13 +38,14 @@ function LibraryCard() {
             <LibraryIcon primaryColor="white" />
           </Stack>
           <Typography color="white">{t('SUBTITLE')}</Typography>
-          <Button
+          <ButtonLink
             sx={{ background: 'white', color: AccentColors.library }}
             variant="contained"
             endIcon={<ArrowRightIcon size={20} />}
+            to={GRAASP_LIBRARY_HOST}
           >
             {t('BUTTON_TEXT')}
-          </Button>
+          </ButtonLink>
         </Stack>
       </Stack>
     </Stack>
