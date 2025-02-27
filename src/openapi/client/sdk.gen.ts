@@ -1168,7 +1168,7 @@ export const createEtherpad = <ThrowOnError extends boolean = false>(options: Op
 
 /**
  * Update etherpad
- * Update etherpad permission of readers.
+ * Update etherpad properties, including permission of readers.
  */
 export const updateEtherpad = <ThrowOnError extends boolean = false>(options: Options<UpdateEtherpadData, ThrowOnError>) => {
     return (options?.client ?? _heyApiClient).patch<UpdateEtherpadResponse, UpdateEtherpadError, ThrowOnError>({

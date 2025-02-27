@@ -10,19 +10,23 @@ import {
   Typography,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
+import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import { createEtherpadMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { getKeyForParentId } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
 
 import { CancelButton } from '~builder/components/common/CancelButton';
 
-import { BUILDER } from '../../../langs';
-import { ItemNameField } from './ItemNameField';
+import { BUILDER } from '../../../../langs';
+import { ItemNameField } from '../ItemNameField';
+import EtherpadSettings from './EtherpadSettings';
 
-type Inputs = { name: string };
+type Inputs = { name: string; allowReaderToWrite: boolean };
 
 export function EtherpadForm({
   parentId,
@@ -31,8 +35,15 @@ export function EtherpadForm({
   parentId?: DiscriminatedItem['id'];
   onClose: () => void;
 }>): JSX.Element {
+  const queryClient = useQueryClient();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { mutateAsync: postEtherpad } = mutations.usePostEtherpad();
+  const { mutateAsync: postEtherpad } = useMutation({
+    ...createEtherpadMutation(),
+    onSettled: () => {
+      const parentKey = getKeyForParentId(parentId);
+      queryClient.invalidateQueries({ queryKey: parentKey });
+    },
+  });
   const { t: translateCommon } = useTranslation(NS.Common);
 
   const methods = useForm<Inputs>();
@@ -41,7 +52,17 @@ export function EtherpadForm({
     formState: { isSubmitted, isValid },
   } = methods;
   const onSubmit = async (data: Inputs) => {
-    await postEtherpad({ parentId, name: data.name });
+    await postEtherpad({
+      query: {
+        parentId,
+      },
+      body: {
+        name: data.name,
+        readerPermission: data.allowReaderToWrite
+          ? PermissionLevel.Write
+          : PermissionLevel.Read,
+      },
+    });
 
     onClose();
   };
@@ -62,6 +83,7 @@ export function EtherpadForm({
             {translateBuilder(BUILDER.CREATE_NEW_ITEM_ETHERPAD_INFORMATIONS)}
           </Typography>
           <ItemNameField required />
+          <EtherpadSettings />
         </DialogContent>
         <DialogActions>
           <CancelButton onClick={onClose} />

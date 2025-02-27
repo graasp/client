@@ -7,9 +7,9 @@ import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
 import { useParams } from '@tanstack/react-router';
 
 import { InternalItemType, NewItemTabType } from '../../types';
-import { EtherpadForm } from '../item/form/EtherpadForm';
 import AppForm from '../item/form/app/AppForm';
 import { DocumentCreateForm } from '../item/form/document/DocumentCreateForm';
+import { EtherpadForm } from '../item/form/etherpad/EtherpadForm';
 import { UploadFileModalContent } from '../item/form/file/UploadFileModalContent';
 import { FolderCreateForm } from '../item/form/folder/FolderCreateForm';
 import { LinkForm } from '../item/form/link/LinkForm';

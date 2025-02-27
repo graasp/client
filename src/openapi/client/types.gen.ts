@@ -1315,6 +1315,9 @@ export type DownloadAvatarData = {
         size: 'small' | 'medium' | 'large' | 'original';
     };
     query: {
+        /**
+         * @deprecated
+         */
         replyUrl: boolean;
     };
     url: '/members/{id}/avatar/{size}';
@@ -1335,7 +1338,7 @@ export type DownloadAvatarError = DownloadAvatarErrors[keyof DownloadAvatarError
 
 export type DownloadAvatarResponses = {
     /**
-     * Url string of the avatar if replyUrl is true
+     * Url string of the avatar
      */
     200: string;
     /**
@@ -3033,6 +3036,9 @@ export type DownloadFileData = {
         id: string;
     };
     query: {
+        /**
+         * @deprecated
+         */
         replyUrl: boolean;
     };
     url: '/items/{id}/download';
@@ -3829,6 +3835,7 @@ export type ImportH5pResponse = ImportH5pResponses[keyof ImportH5pResponses];
 export type CreateEtherpadData = {
     body: {
         name: string;
+        readerPermission?: 'read' | 'write';
     };
     path?: never;
     query?: {
@@ -3856,8 +3863,37 @@ export type CreateEtherpadResponses = {
 export type CreateEtherpadResponse = CreateEtherpadResponses[keyof CreateEtherpadResponses];
 
 export type UpdateEtherpadData = {
-    body: {
-        readerPermission: 'read' | 'write';
+    body?: {
+        name?: string;
+        description?: null | string;
+        lang?: string;
+        /**
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings?: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        readerPermission?: 'read' | 'write';
     };
     path: {
         id: string;
@@ -4121,6 +4157,9 @@ export type UpdateLinkData = {
         name?: string;
         description?: null | string;
         lang?: string;
+        /**
+         * Parameters, mostly visual, common to all types of items.
+         */
         settings?: {
             /**
              * @deprecated
@@ -4143,9 +4182,6 @@ export type UpdateLinkData = {
             showLinkButton?: boolean;
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
-        } & {
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
         };
         url?: string;
         showLinkIframe?: boolean;

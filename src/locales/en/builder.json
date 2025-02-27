@@ -42,6 +42,7 @@
   "CREATE_NEW_ITEM_ETHERPAD_INFORMATIONS": "Etherpad is a collaborative real-time text editor",
   "CREATE_NEW_ITEM_ETHERPAD_LABEL": "Name",
   "CREATE_NEW_ITEM_ETHERPAD_TITLE": "Add an Etherpad",
+  "ETHERPAG_ALLOW_READER_TO_WRITE_SETTING": "Allow readers to edit etherpad",
   "CREATE_NEW_ITEM_NAME_LABEL": "Name",
   "CREATE_SHORTCUT_BUTTON": "Create shortcut",
   "CREATE_SHORTCUT_BUTTON_zero": "Create shortcut",
