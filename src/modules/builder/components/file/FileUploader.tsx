@@ -12,6 +12,7 @@ import { HelpCircleIcon } from 'lucide-react';
 import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
 
 type Props = {
@@ -39,7 +40,7 @@ export function FileUploader({
   const [error, setError] = useState<string>();
 
   const { mutateAsync: uploadFiles, isPending } = mutations.useUploadFiles();
-
+  const { color } = useButtonColor('primary');
   const [totalProgress, setTotalProgress] = useState(0);
 
   // send n request as long as the backend cannot handle multi files
@@ -92,7 +93,7 @@ export function FileUploader({
         {t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT')}
       </Typography>
       <Stack direction="row" alignItems="center" gap={1}>
-        <HelpCircleIcon size={20} />
+        <HelpCircleIcon size={20} color={color} />
         <CustomLink variant="subtitle2" to="/support">
           {t('DROPZONE_HELPER_TUTORIALS')}
         </CustomLink>
