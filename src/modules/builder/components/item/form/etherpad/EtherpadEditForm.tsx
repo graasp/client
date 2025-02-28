@@ -23,7 +23,7 @@ import { CancelButton } from '~builder/components/common/CancelButton';
 import { ItemNameField } from '../ItemNameField';
 import EtherpadSettings from './EtherpadSettings';
 
-type Inputs = { name: string; allowReaderToWrite: boolean };
+type Inputs = { name: string; allowReadersToWrite: boolean };
 
 export function EtherpadEditForm({
   item,
@@ -47,7 +47,7 @@ export function EtherpadEditForm({
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item.name,
-      allowReaderToWrite:
+      allowReadersToWrite:
         item.extra.etherpad.readerPermission === PermissionLevel.Write,
     },
   });
@@ -59,7 +59,7 @@ export function EtherpadEditForm({
     await updateEtherpad({
       body: {
         name: data.name,
-        readerPermission: data.allowReaderToWrite
+        readerPermission: data.allowReadersToWrite
           ? PermissionLevel.Write
           : PermissionLevel.Read,
       },

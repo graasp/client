@@ -26,7 +26,7 @@ import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';
 import EtherpadSettings from './EtherpadSettings';
 
-type Inputs = { name: string; allowReaderToWrite: boolean };
+type Inputs = { name: string; allowReadersToWrite: boolean };
 
 export function EtherpadForm({
   parentId,
@@ -58,7 +58,7 @@ export function EtherpadForm({
       },
       body: {
         name: data.name,
-        readerPermission: data.allowReaderToWrite
+        readerPermission: data.allowReadersToWrite
           ? PermissionLevel.Write
           : PermissionLevel.Read,
       },

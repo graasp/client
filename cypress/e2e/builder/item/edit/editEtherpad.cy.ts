@@ -1,45 +1,110 @@
-import { PackedEtherpadItemFactory } from '@graasp/sdk';
+import {
+  EtherpadReaderPermission,
+  PackedEtherpadItemFactory,
+  PackedFolderItemFactory,
+} from '@graasp/sdk';
 
-import { buildItemsGridMoreButtonSelector } from '../../../../../src/config/selectors';
-import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
-import { editItem } from '../../../../support/editUtils';
-import { HOME_PATH } from '../../utils';
+import {
+  EDIT_ITEM_BUTTON_CLASS,
+  ETHERPAD_ALLOW_READER_TO_WRITE_SETTING_ID,
+  ITEM_FORM_CONFIRM_BUTTON_ID,
+  ITEM_FORM_NAME_INPUT_ID,
+  buildItemsGridMoreButtonSelector,
+} from '../../../../../src/config/selectors';
+import { HOME_PATH, buildItemPath } from '../../utils';
 
-const EDITED_FIELDS = {
-  name: 'new name',
+const editEtherpad = (
+  {
+    name,
+    toggleAllowReadersToWrite,
+  }: {
+    name?: string;
+    toggleAllowReadersToWrite?: boolean;
+  },
+  { confirm = true }: { confirm?: boolean } = {},
+) => {
+  cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
+
+  if (name) {
+    cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).type(`{selectall}{backspace}${name}`);
+  }
+
+  if (toggleAllowReadersToWrite) {
+    cy.get(`#${ETHERPAD_ALLOW_READER_TO_WRITE_SETTING_ID}`).click();
+  }
+
+  if (confirm) {
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+  }
 };
 
-const GRAASP_ETHERPAD_ITEM = PackedEtherpadItemFactory();
-
 describe('Edit Etherpad', () => {
-  beforeEach(() => {
-    cy.setUpApi({ items: [GRAASP_ETHERPAD_ITEM] });
-  });
-
   it('edit etherpad on Home', () => {
+    const itemToEdit = PackedEtherpadItemFactory({
+      extra: {
+        etherpad: {
+          padID: 'padId',
+          groupID: 'groupId',
+          readerPermission: EtherpadReaderPermission.Read,
+        },
+      },
+    });
+    cy.setUpApi({ items: [itemToEdit] });
     cy.visit(HOME_PATH);
 
-    const itemToEdit = GRAASP_ETHERPAD_ITEM;
+    cy.intercept(`/items/etherpad/${itemToEdit.id}`, (request) => {
+      request.reply(itemToEdit);
+    }).as('editEtherpad');
 
     // edit
     cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
-    editItem({
-      ...itemToEdit,
-      ...EDITED_FIELDS,
+    editEtherpad({
+      name: 'newName',
+      toggleAllowReadersToWrite: true,
     });
 
-    cy.wait('@editItem').then(
+    cy.wait('@editEtherpad').then(
       ({
-        response: {
-          body: { id, name },
+        request: {
+          body: { name, readerPermission },
         },
       }) => {
-        // check item is edited and updated
-        cy.wait(EDIT_ITEM_PAUSE);
+        // check item is edited
         cy.get('@getAccessibleItems');
-        expect(id).to.equal(itemToEdit.id);
-        expect(name).to.equal(EDITED_FIELDS.name);
+        expect(name).to.equal('newName');
+        expect(readerPermission).to.eq('write');
       },
     );
+  });
+
+  it('edit reader permission of etherpad', () => {
+    const parentItem = PackedFolderItemFactory();
+    const itemToEdit = PackedEtherpadItemFactory({
+      parentItem,
+      extra: {
+        etherpad: {
+          padID: 'padId',
+          groupID: 'groupId',
+          readerPermission: EtherpadReaderPermission.Read,
+        },
+      },
+    });
+    cy.setUpApi({ items: [parentItem, itemToEdit] });
+    cy.intercept(`/items/etherpad/${itemToEdit.id}`, (request) => {
+      request.reply(itemToEdit);
+    }).as('editEtherpad');
+
+    // go in child item
+    cy.visit(buildItemPath(itemToEdit.id));
+
+    // edit reader permission
+    // cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    editEtherpad({ toggleAllowReadersToWrite: true });
+
+    cy.wait('@editEtherpad').then(({ request: { body } }) => {
+      // check item is edited
+      cy.get('@getAccessibleItems');
+      expect(body.readerPermission).to.equal('write');
+    });
   });
 });

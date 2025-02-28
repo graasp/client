@@ -17,7 +17,6 @@ import { ActionButton } from '@/ui/types';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DownloadButton from '~builder/components/main/DownloadButton';
-import { ITEM_TYPES_WITH_CAPTIONS } from '~builder/constants';
 
 import PublishButton from '../../common/PublishButton';
 import ShareButton from '../../common/ShareButton';
@@ -56,13 +55,9 @@ const ItemHeaderActions = ({
 
   // if id is defined, we are looking at an item
   if (item && item?.id) {
-    // show edition only for allowed types
-    const showEditButton =
-      ITEM_TYPES_WITH_CAPTIONS.includes(item.type) && canWrite;
-
     return (
       <Stack direction="row">
-        {showEditButton && (
+        {canWrite && (
           <>
             <EditModal
               onClose={closeEditModal}

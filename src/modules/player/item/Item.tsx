@@ -89,7 +89,8 @@ type EtherpadContentProps = {
 const EtherpadContent = ({ item }: EtherpadContentProps) => {
   const { t } = useTranslation(NS.Common);
   // get etherpad url if type is etherpad
-  const etherpadQuery = useEtherpad(item, 'read');
+  // server will return read view if no write access allowed
+  const etherpadQuery = useEtherpad(item, 'write');
 
   if (etherpadQuery?.isLoading) {
     return (
