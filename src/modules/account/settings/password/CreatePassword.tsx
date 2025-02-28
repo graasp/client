@@ -90,11 +90,12 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     newPasswordErrorMessage ?? confirmNewPasswordErrorMessage,
   );
 
-  const createNetworkError: string | null = createPasswordError?.message
-    ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      (translateMessage(createPasswordError?.message) ??
-      translateMessage('UNEXPECTED_ERROR'))
+  const createNetworkError = createPasswordError
+    ? (translateMessage(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        createPasswordError?.message ?? translateMessage('UNEXPECTED_ERROR'),
+      ) satisfies string)
     : null;
 
   return (

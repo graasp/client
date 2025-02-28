@@ -9,7 +9,6 @@ import { Alert, Box, Stack, Typography } from '@mui/material';
 import { isPasswordStrong } from '@graasp/sdk';
 
 import { useMutation } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
@@ -62,14 +61,12 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      // perform password update
       await updatePassword({
         body: {
           password: data.newPassword,
           currentPassword: data.currentPassword,
         },
       });
-
       onClose();
     } catch (e) {
       console.error(e);
@@ -80,15 +77,17 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
   const newPasswordErrorMessage = errors.newPassword?.message;
   const confirmNewPasswordErrorMessage = errors.confirmNewPassword?.message;
   const hasErrors = Boolean(
-    currentPasswordErrorMessage ||
-      newPasswordErrorMessage ||
+    currentPasswordErrorMessage ??
+      newPasswordErrorMessage ??
       confirmNewPasswordErrorMessage,
   );
 
-  const updateNetworkError = isAxiosError(updatePasswordError)
-    ? translateMessage(
-        updatePasswordError.response?.data.name ?? 'UNEXPECTED_ERROR',
-      )
+  const updateNetworkError = updatePasswordError
+    ? (translateMessage(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        updatePasswordError?.message ?? 'UNEXPECTED_ERROR',
+      ) satisfies string)
     : null;
 
   return (
