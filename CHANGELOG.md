@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.21.0](https://github.com/graasp/client/compare/v2.20.0...v2.21.0) (2025-02-28)
+
+
+### Features
+
+* add tutorial links in dropzone ([#945](https://github.com/graasp/client/issues/945)) ([07480ac](https://github.com/graasp/client/commit/07480ac9c1118e642b036305dae79aa7b88b6599))
+* remove add new item on home page ([#943](https://github.com/graasp/client/issues/943)) ([50b2449](https://github.com/graasp/client/commit/50b24498e6fd72ce4524184c4907f28aa34852e2))
+* use export member data generation, remove notification ([#941](https://github.com/graasp/client/issues/941)) ([1fbdc3c](https://github.com/graasp/client/commit/1fbdc3cf94879ee67eac9724eb27155c35a07770))
+* use library for published tab ([#944](https://github.com/graasp/client/issues/944)) ([fdf5cf6](https://github.com/graasp/client/commit/fdf5cf61a8469f7b50b670c4571854121c77731a))
+
 ## [2.20.0](https://github.com/graasp/client/compare/v2.19.6...v2.20.0) (2025-02-19)
 
 
