@@ -1,15 +1,18 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 
 import { DiscriminatedItem, MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 import { AxiosProgressEvent } from 'axios';
+import { HelpCircleIcon } from 'lucide-react';
 
+import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
 
 type Props = {
@@ -37,7 +40,7 @@ export function FileUploader({
   const [error, setError] = useState<string>();
 
   const { mutateAsync: uploadFiles, isPending } = mutations.useUploadFiles();
-
+  const { color } = useButtonColor('primary');
   const [totalProgress, setTotalProgress] = useState(0);
 
   // send n request as long as the backend cannot handle multi files
@@ -84,6 +87,20 @@ export function FileUploader({
     onComplete?.();
   };
 
+  const hints = (
+    <Stack gap={2}>
+      <Typography variant="subtitle2" textAlign="center">
+        {t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT')}
+      </Typography>
+      <Stack direction="row" alignItems="center" gap={1}>
+        <HelpCircleIcon size={20} color={color} />
+        <CustomLink variant="subtitle2" to="/support">
+          {t('DROPZONE_HELPER_TUTORIALS')}
+        </CustomLink>
+      </Stack>
+    </Stack>
+  );
+
   return (
     <Box width="100%" id={id} height="100%">
       <FileDropper
@@ -100,7 +117,7 @@ export function FileUploader({
         onDrop={onDrop}
         error={error}
         buttonText={t('DROPZONE_HELPER_ACTION')}
-        hints={t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT')}
+        hints={hints}
         buttons={buttons}
       />
     </Box>

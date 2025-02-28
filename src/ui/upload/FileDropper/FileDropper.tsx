@@ -1,4 +1,4 @@
-import { type JSX, useRef } from 'react';
+import { type JSX, ReactNode, useRef } from 'react';
 import { DndProvider, DropTargetMonitor, useDrop } from 'react-dnd';
 import { HTML5Backend, NativeTypes } from 'react-dnd-html5-backend';
 
@@ -34,7 +34,7 @@ export type FileDropperProps = {
   /**
    * Smaller text to show, such as limits
    */
-  hints?: string;
+  hints?: string | ReactNode;
   /**
    * Text of the browsing button
    */
