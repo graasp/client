@@ -8,13 +8,8 @@ import { Notifier, routines } from '@/query';
 import { NS } from './constants';
 import { SHOW_NOTIFICATIONS } from './env';
 
-const {
-  updatePasswordRoutine,
-  postPublicProfileRoutine,
-  patchPublicProfileRoutine,
-  updateEmailRoutine,
-  getInvitationRoutine,
-} = routines;
+const { updatePasswordRoutine, updateEmailRoutine, getInvitationRoutine } =
+  routines;
 
 // todo: find a way to use the i18n instance instead
 const translate = (str: string, _options: { ns: string }) => str;
@@ -60,9 +55,7 @@ export default ({
     // auth
     case getInvitationRoutine.FAILURE:
     case updatePasswordRoutine.FAILURE:
-    case postPublicProfileRoutine.FAILURE:
-    case updateEmailRoutine.FAILURE:
-    case patchPublicProfileRoutine.FAILURE: {
+    case updateEmailRoutine.FAILURE: {
       message = getErrorMessageFromPayload(payload);
       break;
     }
@@ -70,9 +63,7 @@ export default ({
     // success messages
     // auth
     case updatePasswordRoutine.SUCCESS:
-    case postPublicProfileRoutine.SUCCESS:
-    case updateEmailRoutine.SUCCESS:
-    case patchPublicProfileRoutine.SUCCESS: {
+    case updateEmailRoutine.SUCCESS: {
       message = getSuccessMessageFromPayload(payload);
       break;
     }

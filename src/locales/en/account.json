@@ -56,7 +56,8 @@
     "BIO_ERROR_MSG": "Bio is a required field",
     "BIO_EMPTY_MSG": "No biography has been specified",
     "VISIBILITY_LABEL": "Make this profile public",
-    "CHECK_TEXT": "Check Profile"
+    "CHECK_TEXT": "Check Profile",
+    "PATCH_SUCCESS_MESSAGE": "The profile has been successfully updated."
   },
   "ALWAYS_RECEIVE_EMAILS": "Always receive email notifications",
   "DISABLE_EMAILS": "Disable email notifications",
