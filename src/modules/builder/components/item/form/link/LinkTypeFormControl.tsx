@@ -34,7 +34,7 @@ const StyledFormControlLabel = styled(FormControlLabel)(({ theme }) => ({
   margin: 0,
   padding: theme.spacing(2),
   borderRadius: theme.spacing(2),
-  // this allows to apply a style to the current element if if contains an input element that is checked
+  // this allows to apply a style to the current element if it contains an input element that is checked
   '&:has(input:checked)': {
     // here we added a bit of opacity to the color used on the background of the icons cards
     backgroundColor: '#E4DFFFB3',
