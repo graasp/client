@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { LoadingButton } from '@mui/lab';
 import { Stack } from '@mui/material';
 
-import { RecaptchaAction } from '@graasp/sdk';
+import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { useLocation, useNavigate } from '@tanstack/react-router';
-import isEmail from 'validator/lib/isEmail';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -38,6 +37,9 @@ export function MagicLinkLoginForm({
 }: Readonly<MagicLinkLoginFormProps>) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t: translateCommon } = useTranslation(NS.Common, {
+    keyPrefix: 'FIELD_ERROR',
+  });
   const { t } = useTranslation(NS.Auth);
 
   const {
@@ -101,15 +103,9 @@ export function MagicLinkLoginForm({
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         form={register('email', {
-          required: t('REQUIRED_FIELD_ERROR'),
-          validate: {
-            email: (value) => {
-              if (!value) {
-                return t('EMPTY_EMAIL_ERROR');
-              }
-              return isEmail(value, {}) ? true : t('INVALID_EMAIL_ERROR');
-            },
-          },
+          required: translateCommon('REQUIRED'),
+          validate: (email) =>
+            isEmail(email, {}) || translateCommon('INVALID_EMAIL'),
         })}
         placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
         error={emailError}
