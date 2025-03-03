@@ -1,7 +1,4 @@
-import {
-  EtherpadReaderPermission,
-  PackedEtherpadItemFactory,
-} from '@graasp/sdk';
+import { EtherpadPermission, PackedEtherpadItemFactory } from '@graasp/sdk';
 
 import { buildItemPath } from '../../utils';
 
@@ -12,7 +9,7 @@ describe('Etherpad', () => {
         etherpad: {
           padID: 'padId',
           groupID: 'groupId',
-          readerPermission: EtherpadReaderPermission.Read,
+          readerPermission: EtherpadPermission.Read,
         },
       },
     });
@@ -34,7 +31,7 @@ describe('Etherpad', () => {
         etherpad: {
           padID: 'padId',
           groupID: 'groupId',
-          readerPermission: EtherpadReaderPermission.Write,
+          readerPermission: EtherpadPermission.Write,
         },
       },
     });

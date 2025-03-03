@@ -1,5 +1,5 @@
 import {
-  EtherpadReaderPermission,
+  EtherpadPermission,
   PackedEtherpadItemFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
@@ -45,7 +45,7 @@ describe('Edit Etherpad', () => {
         etherpad: {
           padID: 'padId',
           groupID: 'groupId',
-          readerPermission: EtherpadReaderPermission.Read,
+          readerPermission: EtherpadPermission.Read,
         },
       },
     });
@@ -85,7 +85,7 @@ describe('Edit Etherpad', () => {
         etherpad: {
           padID: 'padId',
           groupID: 'groupId',
-          readerPermission: EtherpadReaderPermission.Read,
+          readerPermission: EtherpadPermission.Read,
         },
       },
     });
