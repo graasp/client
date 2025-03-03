@@ -5,12 +5,11 @@ import { Alert, LoadingButton } from '@mui/lab';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
-import { NS } from '@/config/constants';
+import { ADMIN_CONTACT, NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import { ADMIN_CONTACT } from '~builder/constants';
 import { BUILDER } from '~builder/langs';
 
 import PublicVisibilityModal from '../PublicVisibilityModal';

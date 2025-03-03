@@ -3,9 +3,8 @@ import type { JSX } from 'react';
 import { Divider, Drawer, Toolbar, Typography, styled } from '@mui/material';
 
 import DrawerHeader from '@/ui/DrawerHeader/DrawerHeader';
+import { DRAWER_WIDTH } from '@/ui/constants';
 import { DEFAULT_BACKGROUND_COLOR } from '@/ui/theme';
-
-import { DRAWER_WIDTH } from '~player/config/constants';
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   width: DRAWER_WIDTH,

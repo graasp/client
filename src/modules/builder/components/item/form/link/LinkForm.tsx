@@ -26,6 +26,7 @@ import { getKeyForParentId, itemsWithGeolocationKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
+import { isUrlValid } from '~builder/utils/item';
 
 import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';

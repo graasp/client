@@ -13,12 +13,13 @@ export const emailFrequency = {
 export const AVATAR_SIZE = 128;
 
 export const ADMIN_CONTACT = 'admin@graasp.org';
+export const PRIVACY_EMAIL = 'privacy@graasp.org';
+/**
+ * Email used when requesting help for account procedures
+ */
+export const HELP_EMAIL = 'help@graasp.org';
 
 export const GRAASP_BLOG_URL = 'https://graasp.github.io/docs/blog';
-
-export const LINKEDIN_DOMAIN = 'linkedin';
-export const FACEBOOK_DOMAIN = 'facebook';
-export const TWITTER_DOMAIN = 'twitter';
 
 export const NS = {
   Account: 'account',
@@ -34,8 +35,6 @@ export const NS = {
   Messages: 'messages',
   Player: 'player',
 } as const;
-
-export const PRIVACY_EMAIL = 'privacy@graasp.org';
 
 export const DEFAULT_LINK_SHOW_BUTTON = true;
 export const DEFAULT_LINK_SHOW_IFRAME = false;

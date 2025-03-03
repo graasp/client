@@ -1,6 +1,3 @@
-export const isObject = (value: unknown) =>
-  typeof value === 'object' && !Array.isArray(value) && value !== null;
-
 export const isServer = () =>
   !(typeof window !== 'undefined' && window.document);
 
