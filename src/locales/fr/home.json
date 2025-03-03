@@ -6,6 +6,13 @@
     "LIBRARY": "Bibliothèque",
     "RECYCLED_ITEMS": "Corbeille"
   },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "Montrer moins",
+    "SHOW_MORE": "Montrer plus",
+    "MANAGE_BUTTON": "Modifier",
+    "CANCEL_BUTTON": "Retour",
+    "TITLE": "Signets"
+  },
   "LIBRARY": {
     "CARD": {
       "TITLE": "Bibliothèque Graasp",
