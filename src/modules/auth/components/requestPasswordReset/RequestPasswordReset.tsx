@@ -7,7 +7,7 @@ import { Alert, Stack, TextField } from '@mui/material';
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { TypographyLink } from '@/components/ui/TypographyLink';
-import { NS } from '@/config/constants';
+import { HELP_EMAIL, NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   REQUEST_PASSWORD_RESET_EMAIL_FIELD_HELPER_ID,
@@ -17,7 +17,6 @@ import {
   REQUEST_PASSWORD_RESET_SUCCESS_MESSAGE_ID,
 } from '@/config/selectors';
 
-import { HELP_EMAIL } from '~auth/constants';
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
 import { AUTH } from '~auth/langs';
 
