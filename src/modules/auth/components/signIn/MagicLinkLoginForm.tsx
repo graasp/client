@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { LoadingButton } from '@mui/lab';
 import { Stack } from '@mui/material';
 
-import { RecaptchaAction } from '@graasp/sdk';
+import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
@@ -16,7 +16,6 @@ import {
 } from '@/config/selectors';
 
 import { AUTH } from '~auth/langs';
-import { isEmailValid } from '~auth/validation';
 
 import { executeCaptcha } from '../../context/RecaptchaContext';
 import { useMobileAppLogin } from '../../hooks/useMobileAppLogin';
@@ -38,6 +37,9 @@ export function MagicLinkLoginForm({
 }: Readonly<MagicLinkLoginFormProps>) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t: translateCommon } = useTranslation(NS.Common, {
+    keyPrefix: 'FIELD_ERROR',
+  });
   const { t } = useTranslation(NS.Auth);
 
   const {
@@ -85,6 +87,7 @@ export function MagicLinkLoginForm({
       console.error(e);
     }
   };
+
   const emailError = errors.email?.message;
 
   return (
@@ -100,10 +103,9 @@ export function MagicLinkLoginForm({
         // eslint-disable-next-line jsx-a11y/no-autofocus
         autoFocus
         form={register('email', {
-          required: t('REQUIRED_FIELD_ERROR'),
-          validate: {
-            email: (value) => isEmailValid(value) || t('INVALID_EMAIL_ERROR'),
-          },
+          required: translateCommon('REQUIRED'),
+          validate: (email) =>
+            isEmail(email, {}) || translateCommon('INVALID_EMAIL'),
         })}
         placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
         error={emailError}

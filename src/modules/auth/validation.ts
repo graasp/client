@@ -42,13 +42,6 @@ export const emailValidator = (email?: string) => {
   return isEmail(email, {}) ? null : INVALID_EMAIL_ERROR;
 };
 
-export const isEmailValid = (email?: string) => {
-  if (!email) {
-    return EMPTY_EMAIL_ERROR;
-  }
-  return isEmail(email, {}) ? true : INVALID_EMAIL_ERROR;
-};
-
 export const passwordValidator = (password?: string) => {
   if (!password || password.trim().length == 0) {
     return PASSWORD_EMPTY_ERROR;

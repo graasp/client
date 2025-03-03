@@ -1,24 +1,26 @@
 import type { JSX } from 'react';
 import { FieldError, SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { LoadingButton } from '@mui/lab';
 import { Alert, Stack, Typography } from '@mui/material';
 
 import { isPasswordStrong } from '@graasp/sdk';
 
-import { isAxiosError } from 'axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   PASSWORD_CREATE_CONTAINER_ID,
   PASSWORD_INPUT_CONFIRM_PASSWORD_ID,
   PASSWORD_INPUT_NEW_PASSWORD_ID,
   PASSWORD_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { postPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 
 import { PasswordField } from './PasswordField';
 
@@ -44,6 +46,7 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const queryClient = useQueryClient();
 
   const { t } = useTranslation(NS.Account);
   const { t: translateMessage } = useTranslation(NS.Messages);
@@ -53,11 +56,26 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     mutateAsync: createPassword,
     error: createPasswordError,
     isPending: isCreatePasswordLoading,
-  } = mutations.useCreatePassword();
+  } = useMutation({
+    ...postPasswordMutation(),
+    onSuccess: () => {
+      // toast success on another page because the form will be closed
+      toast.success(translateMessage('UPDATE_PASSWORD'));
+    },
+    onError: (e) => {
+      // error will be shown below
+      console.error(e);
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: memberKeys.current().passwordStatus,
+      });
+    },
+  });
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      await createPassword({ password: data.newPassword });
+      await createPassword({ body: { password: data.newPassword } });
       onClose();
     } catch (e) {
       console.error(e);
@@ -72,11 +90,14 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     newPasswordErrorMessage ?? confirmNewPasswordErrorMessage,
   );
 
-  const createNetworkError = isAxiosError(createPasswordError)
-    ? translateMessage(
-        createPasswordError.response?.data.name ?? 'UNEXPECTED_ERROR',
-      )
+  const createNetworkError = createPasswordError
+    ? (translateMessage(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        createPasswordError?.message ?? translateMessage('UNEXPECTED_ERROR'),
+      ) satisfies string)
     : null;
+
   return (
     <BorderedSection
       id={PASSWORD_CREATE_CONTAINER_ID}

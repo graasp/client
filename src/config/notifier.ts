@@ -9,7 +9,6 @@ import { NS } from './constants';
 import { SHOW_NOTIFICATIONS } from './env';
 
 const {
-  updatePasswordRoutine,
   postPublicProfileRoutine,
   patchPublicProfileRoutine,
   updateEmailRoutine,
@@ -59,7 +58,6 @@ export default ({
     // error messages
     // auth
     case getInvitationRoutine.FAILURE:
-    case updatePasswordRoutine.FAILURE:
     case postPublicProfileRoutine.FAILURE:
     case updateEmailRoutine.FAILURE:
     case patchPublicProfileRoutine.FAILURE: {
@@ -69,7 +67,6 @@ export default ({
 
     // success messages
     // auth
-    case updatePasswordRoutine.SUCCESS:
     case postPublicProfileRoutine.SUCCESS:
     case updateEmailRoutine.SUCCESS:
     case patchPublicProfileRoutine.SUCCESS: {
