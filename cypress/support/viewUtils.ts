@@ -17,7 +17,6 @@ import {
   buildSettingsButtonId,
   buildShareButtonId,
 } from '../../src/config/selectors';
-import { ITEM_TYPES_WITH_CAPTIONS } from '../../src/modules/builder/constants';
 import { getHighestPermissionForMemberFromMemberships } from '../../src/modules/builder/utils/item';
 import { CURRENT_MEMBER } from '../fixtures/members';
 import { ItemForTest, MemberForTest } from './types';
@@ -25,7 +24,7 @@ import { ItemForTest, MemberForTest } from './types';
 const BR_REGEX = /<br(?:\s*\/?)>/g;
 
 export const expectItemHeaderLayout = ({
-  item: { id, type, memberships, path },
+  item: { id, memberships, path },
   currentMember,
 }: {
   item: ItemForTest;
@@ -45,9 +44,7 @@ export const expectItemHeaderLayout = ({
     : false;
 
   if (canEditSettings) {
-    if (ITEM_TYPES_WITH_CAPTIONS.includes(type)) {
-      header.get(`#${buildEditButtonId(id)}`).should('exist');
-    }
+    header.get(`#${buildEditButtonId(id)}`).should('exist');
     header.get(`#${buildSettingsButtonId(id)}`).should('exist');
   }
 };

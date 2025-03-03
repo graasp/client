@@ -1,4 +1,4 @@
-import { ItemLoginSchemaType, ItemType } from '@graasp/sdk';
+import { ItemLoginSchemaType } from '@graasp/sdk';
 
 export const APP_NAME = 'Graasp';
 
@@ -26,15 +26,6 @@ export const SETTINGS = {
 export const SETTINGS_ITEM_LOGIN_DEFAULT = ItemLoginSchemaType.Username;
 export const SETTINGS_ITEM_LOGIN_SIGN_IN_MODE_DEFAULT =
   SETTINGS.ITEM_LOGIN.SIGN_IN_MODE.PSEUDONYM;
-
-export const ITEM_TYPES_WITH_CAPTIONS: string[] = [
-  ItemType.FOLDER,
-  ItemType.S3_FILE,
-  ItemType.LOCAL_FILE,
-  ItemType.APP,
-  ItemType.LINK,
-  ItemType.DOCUMENT,
-];
 
 export const SHORT_LINK_COLOR = 'black';
 export const SHORT_LINK_CONTAINER_BORDER_WIDTH = 1;

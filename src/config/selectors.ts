@@ -294,6 +294,8 @@ export const CREATE_ITEM_ZIP_ID = 'createItemZip';
 export const CREATE_ITEM_H5P_ID = 'createItemH5P';
 export const CREATE_ITEM_ETHERPAD_ID = 'createItemEtherpad';
 export const ITEM_FORM_ETHERPAD_NAME_INPUT_ID = 'itemFormEtherpadNameInputId';
+export const ETHERPAD_ALLOW_READER_TO_WRITE_SETTING_ID =
+  'etherpadAllowReaderToWriteSetting';
 export const ITEM_FORM_APP_URL_ID = 'itemFormAppUrl';
 export const buildItemFormAppOptionId = (id?: string): string =>
   `app-option-${id}`;

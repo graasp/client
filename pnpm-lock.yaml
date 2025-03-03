@@ -27,8 +27,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
       '@graasp/sdk':
-        specifier: 5.9.1
-        version: 5.9.1(date-fns@4.1.0)(uuid@11.0.5)
+        specifier: 5.10.1
+        version: 5.10.1(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -1623,8 +1623,8 @@ packages:
   '@googlemaps/js-api-loader@1.16.8':
     resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
 
-  '@graasp/sdk@5.9.1':
-    resolution: {integrity: sha512-/4OgmGPqkuSVQV5GcfSAJ1YKSKGRqNjJDnRIy/4AwlTzuy65v8Kv1sNmqRtadcXJk46zaA/14aUZKpECTK9dSQ==}
+  '@graasp/sdk@5.10.1':
+    resolution: {integrity: sha512-m87McMBDHVOwOXuCyR+SuuPBZbrL3E5F4O59k3juB7A+NpbAiCTutYGZ0vGhGCO5BA+Lia9g+AYxllnln7FdLQ==}
     peerDependencies:
       date-fns: ^4
       uuid: ^9 || ^10 || ^11.0.0
@@ -8276,7 +8276,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/sdk@5.9.1(date-fns@4.1.0)(uuid@11.0.5)':
+  '@graasp/sdk@5.10.1(date-fns@4.1.0)(uuid@11.0.5)':
     dependencies:
       '@faker-js/faker': 9.5.0
       date-fns: 4.1.0

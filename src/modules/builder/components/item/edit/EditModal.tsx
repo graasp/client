@@ -12,6 +12,7 @@ import { EDIT_MODAL_ID } from '@/config/selectors';
 import { BUILDER } from '../../../langs';
 import BaseItemForm from '../form/BaseItemForm';
 import { DocumentEditForm } from '../form/document/DocumentEditForm';
+import { EtherpadEditForm } from '../form/etherpad/EtherpadEditForm';
 import { FileForm } from '../form/file/FileForm';
 import { FolderEditForm } from '../form/folder/FolderEditForm';
 import { LinkEditForm } from '../form/link/LinkEditForm';
@@ -56,14 +57,13 @@ export function EditModal({
     if (item.type === ItemType.DOCUMENT) {
       return <DocumentEditForm onClose={onClose} item={item} />;
     }
+    if (item.type === ItemType.ETHERPAD) {
+      return <EtherpadEditForm onClose={onClose} item={item} />;
+    }
     if (item.type === ItemType.LINK) {
       return <LinkEditForm onClose={onClose} item={item} />;
     }
-    if (
-      item.type === ItemType.ETHERPAD ||
-      item.type === ItemType.APP ||
-      item.type === ItemType.H5P
-    ) {
+    if (item.type === ItemType.APP || item.type === ItemType.H5P) {
       return <BaseItemForm onClose={onClose} item={item} />;
     }
 
