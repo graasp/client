@@ -16,13 +16,11 @@ import {
   ITEM_FULLSCREEN_BUTTON_ID,
   ITEM_PINNED_ID,
 } from '@/config/selectors';
+import { DRAWER_WIDTH } from '@/ui/constants';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import Chatbox from '~player/Chatbox';
-import {
-  DRAWER_WIDTH,
-  FLOATING_BUTTON_Z_INDEX,
-} from '~player/config/constants';
+import { FLOATING_BUTTON_Z_INDEX } from '~player/config/constants';
 import { useLayoutContext } from '~player/contexts/LayoutContext';
 import { ItemContentWrapper } from '~player/item/Item';
 

@@ -22,9 +22,6 @@ export const ENTER_KEY = 'Enter';
 // Height of container in ActionsByDayChart
 export const CONTAINER_HEIGHT = 450;
 
-// Milliseconds after which additional text appears under loading spinner
-export const LOADER_TEXT_DELAY = 5000;
-
 // Used in api.js and then the ActionsByVerb piechart
 // for visual purposes, all verbs with < 3 percent of total actions are consolidated into an entry 'other'
 export const MIN_PERCENTAGE_TO_SHOW_VERB = 3;
@@ -32,7 +29,6 @@ export const MIN_PERCENTAGE_TO_SHOW_VERB = 3;
 // 'other' verb used in api.js
 export const OTHER_VERB = 'Other';
 
-export const MEMBER_AVATAR_MAX_DIMENSIONS = 40;
 // colors used to fill the segments of the ActionsByVerb piechart
 export const COLORS = [
   '#3066BE',
@@ -113,8 +109,6 @@ export const ActionViewContext = {
 export type ActionViewContextUnion = UnionOfConst<typeof ActionViewContext>;
 
 export const NAVIGATOR_BACKGROUND_COLOR = '#f6f6f6';
-
-export const ITEM_PAGE_SIZE = 10;
 
 export const MAX_BARS_SMALL_SCREEN = 5;
 export const MAX_BARS_LARGE_SCREEN = 8;

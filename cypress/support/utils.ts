@@ -1,5 +1,7 @@
 import {
   ChatMessage,
+  DiscriminatedItem,
+  ItemMembership,
   ItemVisibilityType,
   Member,
   PermissionLevel,
@@ -208,3 +210,35 @@ export const getChildren = (
       isChildOf(newItem.path, item.path) &&
       checkMemberHasAccess({ item: newItem, items, member }) === undefined,
   );
+
+// todo: to remove
+// get highest permission a member have over an item,
+// longer the itemPath, deeper is the permission, thus highest
+export const getHighestPermissionForMemberFromMemberships = ({
+  memberships,
+  memberId,
+  itemPath,
+}: {
+  memberships?: ItemMembership[];
+  memberId?: string;
+  itemPath: DiscriminatedItem['path'];
+}): null | ItemMembership => {
+  if (!memberId) {
+    return null;
+  }
+
+  const itemMemberships = memberships?.filter(
+    ({ item: { path: mPath }, account: { id: mId } }) =>
+      mId === memberId && itemPath.includes(mPath),
+  );
+  if (!itemMemberships || itemMemberships.length === 0) {
+    return null;
+  }
+
+  const sorted = [...itemMemberships];
+
+  // sort memberships by the closest to you first (longest path)
+  sorted?.sort((a, b) => (a.item.path.length > b.item.path.length ? -1 : 1));
+
+  return sorted[0];
+};

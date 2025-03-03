@@ -20,13 +20,12 @@ import { z } from 'zod';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { TypographyLink } from '@/components/ui/TypographyLink';
-import { NS } from '@/config/constants';
+import { HELP_EMAIL, NS } from '@/config/constants';
 
 import { PasswordAdornment } from '~auth/components/common/adornments';
 import { CenteredContent } from '~auth/components/layout/CenteredContent';
 import { DialogHeader } from '~auth/components/layout/DialogHeader';
 import { InvalidTokenScreen } from '~auth/components/requestPasswordReset/InvalidTokenScreen';
-import { HELP_EMAIL } from '~auth/constants';
 import { useValidateJWTToken } from '~auth/hooks/useValidateJWTToken';
 
 import { mutations } from '../../config/queryClient';

@@ -1,10 +1,9 @@
-import { PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedFolderItemFactory, getIdsFromPath } from '@graasp/sdk';
 
 import {
   ITEM_MENU_DUPLICATE_BUTTON_CLASS,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
-import { getParentsIdsFromPath } from '../../../../../src/modules/builder/utils/item';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const duplicateItem = ({ id }: { id: string }): void => {
@@ -35,7 +34,7 @@ describe('duplicate Item in item', () => {
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
     cy.setUpApi({ items: [FOLDER, CHILD] });
     const { id, path } = FOLDER;
-    const parentsIds = getParentsIdsFromPath(path);
+    const parentsIds = getIdsFromPath(path);
 
     // go to children item
     cy.visit(buildItemPath(id));

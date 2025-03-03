@@ -7,7 +7,6 @@ import {
   ITEM_LOGIN_SIGN_IN_USERNAME_ID,
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
-import { SETTINGS_ITEM_LOGIN_DEFAULT } from '../../../../../../src/modules/builder/constants';
 import { MEMBERS } from '../../../../../fixtures/members';
 import { ITEM_LOGIN_PAUSE } from '../../../../../support/constants';
 import { buildItemPath } from '../../../utils';
@@ -16,7 +15,7 @@ import { addItemLoginSchema } from './utils';
 const checkItemLoginScreenLayout = (
   itemLoginSchema:
     | ItemLoginSchemaType
-    | `${ItemLoginSchemaType}` = SETTINGS_ITEM_LOGIN_DEFAULT,
+    | `${ItemLoginSchemaType}` = ItemLoginSchemaType.Username,
 ) => {
   cy.get(`#${ITEM_LOGIN_SIGN_IN_USERNAME_ID}`).should('exist');
   if (itemLoginSchema === ItemLoginSchemaType.UsernameAndPassword) {

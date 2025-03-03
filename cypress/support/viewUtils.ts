@@ -17,9 +17,9 @@ import {
   buildSettingsButtonId,
   buildShareButtonId,
 } from '../../src/config/selectors';
-import { getHighestPermissionForMemberFromMemberships } from '../../src/modules/builder/utils/item';
 import { CURRENT_MEMBER } from '../fixtures/members';
 import { ItemForTest, MemberForTest } from './types';
+import { getHighestPermissionForMemberFromMemberships } from './utils';
 
 const BR_REGEX = /<br(?:\s*\/?)>/g;
 
