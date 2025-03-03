@@ -8,7 +8,10 @@
   },
   "BOOKMARKED_ITEMS": {
     "SHOW_LESS": "Show less",
-    "SHOW_MORE": "Show more"
+    "SHOW_MORE": "Show more",
+    "MANAGE_BUTTON": "Manage",
+    "CANCEL_BUTTON": "Back",
+    "TITLE": "Bookmarks"
   },
   "LIBRARY": {
     "CARD": {

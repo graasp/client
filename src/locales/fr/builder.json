@@ -245,7 +245,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "Où déplacer {{name}} ?",
   "MOVE_ITEM_MODAL_TITLE_other": "Où déplacer {{name}} et {{count}} autres éléments ?",
   "SELECT_TEMPLATE_TITLE": "Quel dossier choisirez-vous comme modèle ?",
-  "SELECT_MY_ITEMS": "Mes articles",
+  "SELECT_MY_ITEMS": "Mes éléments",
   "NEW_ITEM_APP_TAB_TEXT": "Application",
   "NEW_ITEM_BUTTON_TOOLTIP": "Créer un nouvel élément",
   "NEW_ITEM_BUTTON": "Nouvel Élément",
