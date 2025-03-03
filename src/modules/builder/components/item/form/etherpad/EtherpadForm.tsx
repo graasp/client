@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import { DiscriminatedItem, EtherpadPermission } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -59,8 +59,8 @@ export function EtherpadForm({
       body: {
         name: data.name,
         readerPermission: data.allowReadersToWrite
-          ? PermissionLevel.Write
-          : PermissionLevel.Read,
+          ? EtherpadPermission.Write
+          : EtherpadPermission.Read,
       },
     });
 

@@ -6,7 +6,7 @@ import { DialogActions, DialogContent, Stack } from '@mui/material';
 
 import {
   EtherpadItemType,
-  PermissionLevel,
+  EtherpadPermission,
   getParentFromPath,
 } from '@graasp/sdk';
 
@@ -48,7 +48,7 @@ export function EtherpadEditForm({
     defaultValues: {
       name: item.name,
       allowReadersToWrite:
-        item.extra.etherpad.readerPermission === PermissionLevel.Write,
+        item.extra.etherpad.readerPermission === EtherpadPermission.Write,
     },
   });
   const {
@@ -60,8 +60,8 @@ export function EtherpadEditForm({
       body: {
         name: data.name,
         readerPermission: data.allowReadersToWrite
-          ? PermissionLevel.Write
-          : PermissionLevel.Read,
+          ? EtherpadPermission.Write
+          : EtherpadPermission.Read,
       },
       path: { id: item.id },
     });
