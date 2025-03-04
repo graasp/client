@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.22.0](https://github.com/graasp/client/compare/v2.21.0...v2.22.0) (2025-03-04)
+
+
+### Features
+
+* add setting to allow reader to edit etherpad ([#946](https://github.com/graasp/client/issues/946)) ([b9a745c](https://github.com/graasp/client/commit/b9a745cfeeb3003029759c525d0d474507a46a7d))
+* allow to edit link url ([#932](https://github.com/graasp/client/issues/932)) ([06c6866](https://github.com/graasp/client/commit/06c68667375449ec8da89f3e71f4bc8b450ec866))
+
+
+### Bug Fixes
+
+* redirect builder to home ([#958](https://github.com/graasp/client/issues/958)) ([4265a7d](https://github.com/graasp/client/commit/4265a7dbd3174343664e91d246f3ee9e6e5582b2))
+* use update password generation to fix translation ([#940](https://github.com/graasp/client/issues/940)) ([e4b0e71](https://github.com/graasp/client/commit/e4b0e719fed077fce2d8aa8b6500db6ab133e579))
+
 ## [2.21.0](https://github.com/graasp/client/compare/v2.20.0...v2.21.0) (2025-02-28)
 
 
