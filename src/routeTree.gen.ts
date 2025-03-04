@@ -17,6 +17,7 @@ import { Route as AnalyticsImport } from './routes/analytics'
 import { Route as MemberOnlyImport } from './routes/_memberOnly'
 import { Route as LandingImport } from './routes/_landing'
 import { Route as PlayerIndexImport } from './routes/player/index'
+import { Route as BuilderIndexImport } from './routes/builder/index'
 import { Route as AnalyticsIndexImport } from './routes/analytics/index'
 import { Route as LandingIndexImport } from './routes/_landing/index'
 import { Route as EmailChangeImport } from './routes/email.change'
@@ -91,6 +92,12 @@ const LandingRoute = LandingImport.update({
 const PlayerIndexRoute = PlayerIndexImport.update({
   id: '/player/',
   path: '/player/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BuilderIndexRoute = BuilderIndexImport.update({
+  id: '/builder/',
+  path: '/builder/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -507,6 +514,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsIndexImport
       parentRoute: typeof AnalyticsImport
     }
+    '/builder/': {
+      id: '/builder/'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/player/': {
       id: '/player/'
       path: '/player'
@@ -852,6 +866,7 @@ export interface FileRoutesByFullPath {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/builder': typeof BuilderIndexRoute
   '/player': typeof PlayerIndexRoute
   '/home': typeof MemberOnlyHomeLayoutHomeRoute
   '/published': typeof MemberOnlyHomeLayoutPublishedRoute
@@ -897,6 +912,7 @@ export interface FileRoutesByTo {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
+  '/builder': typeof BuilderIndexRoute
   '/player': typeof PlayerIndexRoute
   '/home': typeof MemberOnlyHomeLayoutHomeRoute
   '/published': typeof MemberOnlyHomeLayoutPublishedRoute
@@ -943,6 +959,7 @@ export interface FileRoutesById {
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/builder/': typeof BuilderIndexRoute
   '/player/': typeof PlayerIndexRoute
   '/_memberOnly/_homeLayout/home': typeof MemberOnlyHomeLayoutHomeRoute
   '/_memberOnly/_homeLayout/published': typeof MemberOnlyHomeLayoutPublishedRoute
@@ -992,6 +1009,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics/'
+    | '/builder'
     | '/player'
     | '/home'
     | '/published'
@@ -1036,6 +1054,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics'
+    | '/builder'
     | '/player'
     | '/home'
     | '/published'
@@ -1080,6 +1099,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/_landing/'
     | '/analytics/'
+    | '/builder/'
     | '/player/'
     | '/_memberOnly/_homeLayout/home'
     | '/_memberOnly/_homeLayout/published'
@@ -1114,6 +1134,7 @@ export interface RootRouteChildren {
   SigninRoute: typeof SigninRoute
   BuilderMapRoute: typeof BuilderMapRoute
   EmailChangeRoute: typeof EmailChangeRoute
+  BuilderIndexRoute: typeof BuilderIndexRoute
   PlayerIndexRoute: typeof PlayerIndexRoute
   BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
   PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
@@ -1128,6 +1149,7 @@ const rootRouteChildren: RootRouteChildren = {
   SigninRoute: SigninRoute,
   BuilderMapRoute: BuilderMapRoute,
   EmailChangeRoute: EmailChangeRoute,
+  BuilderIndexRoute: BuilderIndexRoute,
   PlayerIndexRoute: PlayerIndexRoute,
   BuilderItemsItemIdRoute: BuilderItemsItemIdRouteWithChildren,
   PlayerRootIdItemIdRoute: PlayerRootIdItemIdRouteWithChildren,
@@ -1151,6 +1173,7 @@ export const routeTree = rootRoute
         "/signin",
         "/builder/map",
         "/email/change",
+        "/builder/",
         "/player/",
         "/builder/items/$itemId",
         "/player/$rootId/$itemId",
@@ -1274,6 +1297,9 @@ export const routeTree = rootRoute
     "/analytics/": {
       "filePath": "analytics/index.tsx",
       "parent": "/analytics"
+    },
+    "/builder/": {
+      "filePath": "builder/index.tsx"
     },
     "/player/": {
       "filePath": "player/index.tsx"
