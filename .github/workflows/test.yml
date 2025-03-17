@@ -62,8 +62,8 @@ jobs:
           path: |
             ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
-      - name: Install playwright
-        run: pnpm dlx playwright install --with-deps
+      - name: Install playwright with deps
+        run: pnpm exec playwright install --with-deps
 
       - name: Unit tests
         run: pnpm test:unit
