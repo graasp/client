@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { Skeleton, Typography } from '@mui/material';
+import { Alert, Skeleton, Typography } from '@mui/material';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import SocialLinks from 'social-links';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_CONFIGURE_BUTTON_ID,
@@ -19,6 +19,11 @@ import {
   PUBLIC_PROFILE_EDIT_BUTTON_ID,
   PUBLIC_PROFILE_NOT_CONFIGURED_CONTAINER_ID,
 } from '@/config/selectors';
+import {
+  createOwnProfileMutation,
+  updateOwnProfileMutation,
+} from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 import { useOwnProfile } from '@/query/member/publicProfile/hooks';
 
 import { DisplayLink } from './DisplayLink';
@@ -29,10 +34,32 @@ export function PublicProfile(): JSX.Element {
 
   const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const { data: publicProfile } = useOwnProfile();
+  const queryClient = useQueryClient();
 
-  const { mutate: postProfile } = mutations.usePostPublicProfile();
-  const { mutate: patchProfile } = mutations.usePatchPublicProfile();
+  const {
+    mutate: postProfile,
+    isSuccess: isSuccessPostPublicProfile,
+    isError: isErrorPostPublicProfile,
+    error: errorPostProfile,
+  } = useMutation({
+    ...createOwnProfileMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+    },
+  });
+  const {
+    mutate: patchProfile,
+    isSuccess: isSuccessPatchPublicProfile,
+    isError: isErrorPatchPublicProfile,
+    error: errorPatchProfile,
+  } = useMutation({
+    ...updateOwnProfileMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+    },
+  });
 
   const { bio, linkedinID, twitterID, facebookID } = publicProfile || {};
 
@@ -41,9 +68,9 @@ export function PublicProfile(): JSX.Element {
   const onClose = (newProfile?: Inputs) => {
     if (newProfile) {
       if (publicProfile) {
-        patchProfile(newProfile);
+        patchProfile({ body: newProfile });
       } else {
-        postProfile(newProfile);
+        postProfile({ body: newProfile });
       }
     }
     setIsEditing(false);
@@ -99,6 +126,25 @@ export function PublicProfile(): JSX.Element {
             href={socialLinks.sanitize('facebook', facebookID)}
             content={facebookID}
           />
+        )}
+        {(isSuccessPatchPublicProfile || isSuccessPostPublicProfile) && (
+          <Alert severity="success">{t('PATCH_SUCCESS_MESSAGE')}</Alert>
+        )}
+        {isErrorPatchPublicProfile && (
+          <Alert severity="error">
+            {errorPatchProfile?.message
+              ? // @ts-expect-error error string comes from the server
+                translateMessage(errorPatchProfile?.message)
+              : translateMessage('UNEXPECTED_ERROR')}
+          </Alert>
+        )}
+        {isErrorPostPublicProfile && (
+          <Alert severity="error">
+            {errorPostProfile?.message
+              ? // @ts-expect-error error string comes from the server
+                translateMessage(errorPostProfile?.message)
+              : translateMessage('UNEXPECTED_ERROR')}
+          </Alert>
         )}
       </BorderedSection>
     );
