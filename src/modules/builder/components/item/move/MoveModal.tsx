@@ -1,13 +1,11 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
+import { DiscriminatedItem, PackedItem, getParentFromPath } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import type { NavigationElement } from '@/ui/Tree/types';
-
-import { getDirectParentId } from '~builder/utils/item';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -48,13 +46,13 @@ export const MoveModal = ({
 
       // cannot move in same direct parent
       // todo: not opti because we only have the ids from the table
-      const directParentIds = itemsArray.map((i) => getDirectParentId(i.path));
+      const directParentIds = itemsArray.map((i) => getParentFromPath(i.path));
       const moveInDirectParent = directParentIds.includes(item.id);
 
       // cannot move to home if was already on home
       let moveToHome = false;
 
-      moveToHome = item.id === homeId && !getDirectParentId(itemsArray[0].path);
+      moveToHome = item.id === homeId && !getParentFromPath(itemsArray[0].path);
 
       return moveInSelf || moveInDirectParent || moveToHome;
     }

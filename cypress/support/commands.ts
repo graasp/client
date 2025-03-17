@@ -8,6 +8,7 @@ import {
   PublicationStatus,
   getAppExtra,
   getDocumentExtra,
+  getIdsFromPath,
 } from '@graasp/sdk';
 
 import {
@@ -43,7 +44,6 @@ import {
   buildTreeItemId,
 } from '../../src/config/selectors';
 import { ItemLayoutMode } from '../../src/modules/builder/enums';
-import { getParentsIdsFromPath } from '../../src/modules/builder/utils/item';
 import {
   fillPasswordSignInLayout,
   fillSignInByMailLayout,
@@ -764,9 +764,7 @@ Cypress.Commands.add(
   'handleTreeMenu',
   (toItemPath, treeRootId = HOME_MODAL_ITEM_ID) => {
     const ids =
-      toItemPath === MY_GRAASP_ITEM_PATH
-        ? []
-        : getParentsIdsFromPath(toItemPath);
+      toItemPath === MY_GRAASP_ITEM_PATH ? [] : getIdsFromPath(toItemPath);
 
     [MY_GRAASP_ITEM_PATH, ...ids].forEach((value, idx, array) => {
       cy.get(`#${treeRootId}`).then(($tree) => {
