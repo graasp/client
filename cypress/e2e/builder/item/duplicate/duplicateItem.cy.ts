@@ -1,4 +1,4 @@
-import { PackedFolderItemFactory, getIdsFromPath } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   ITEM_MENU_DUPLICATE_BUTTON_CLASS,
@@ -33,11 +33,9 @@ describe('duplicate Item in item', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
     cy.setUpApi({ items: [FOLDER, CHILD] });
-    const { id, path } = FOLDER;
-    const parentsIds = getIdsFromPath(path);
 
     // go to children item
-    cy.visit(buildItemPath(id));
+    cy.visit(buildItemPath(FOLDER.id));
 
     // duplicate
     const { id: duplicateItemId } = CHILD;
@@ -45,7 +43,7 @@ describe('duplicate Item in item', () => {
 
     cy.wait('@copyItems').then(({ request: { url, body } }) => {
       expect(url).to.contain(duplicateItemId);
-      expect(body.parentId).to.equal(parentsIds[0]);
+      expect(body.parentId).to.equal(FOLDER.id);
     });
   });
 });
