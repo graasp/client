@@ -30,7 +30,7 @@
     "@tanstack/react-router": "1.105.0",
     "@tanstack/router-devtools": "1.105.0",
     "@tanstack/zod-adapter": "1.105.0",
-    "axios": "1.7.9",
+    "axios": "1.8.2",
     "date-fns": "4.1.0",
     "google-map-react": "2.2.1",
     "http-status-codes": "2.3.0",
