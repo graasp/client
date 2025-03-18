@@ -23,8 +23,10 @@ i18n
     supportedLngs: ['fr', 'de', 'it', 'es', 'ar', 'en'],
     // options for the language detector
     detection: {
-      order: ['localStorage', 'navigator', 'querystring'],
+      order: ['querystring', 'localStorage', 'navigator'],
       caches: ['localStorage'],
+      // the name of the query parameter to look for the language
+      lookupQuerystring: 'lang',
     },
     react: {
       // prevent the translations from using the react suspense and thus making the interface flicker
