@@ -1,46 +1,45 @@
 import {
   DiscriminatedItem,
   ItemVisibility,
+  ItemVisibilityOptionsType,
   ItemVisibilityType,
-  Member,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
 
 import { DEFAULT_FOLDER_ITEM } from './items';
-import { CURRENT_MEMBER } from './members';
 import { MockItemTag } from './mockTypes';
 
 export const mockItemTag = ({
-  item,
-  creator = CURRENT_MEMBER,
+  itemPath,
+  // creator = CURRENT_MEMBER,
   type,
 }: {
-  item: DiscriminatedItem;
-  type: ItemVisibilityType;
-  creator?: Member;
+  itemPath: string;
+  type: ItemVisibilityOptionsType;
+  // creator?: Member;
 }): ItemVisibility => ({
   id: v4(),
-  item,
+  itemPath,
   type,
   createdAt: new Date().toISOString(),
-  creator,
+  // creator,
 });
 export const mockHiddenTag = (
   item?: DiscriminatedItem,
-  creator?: Member,
+  // creator?: Member,
 ): MockItemTag =>
   mockItemTag({
-    item: item ?? DEFAULT_FOLDER_ITEM,
-    creator,
+    itemPath: item.path ?? DEFAULT_FOLDER_ITEM.path,
+    // creator,
     type: ItemVisibilityType.Hidden,
   });
 export const mockPublicTag = (
   item?: DiscriminatedItem,
-  creator?: Member,
+  // creator?: Member,
 ): MockItemTag =>
   mockItemTag({
-    item: item ?? DEFAULT_FOLDER_ITEM,
-    creator,
+    itemPath: item.path ?? DEFAULT_FOLDER_ITEM.path,
+    // creator,
     type: ItemVisibilityType.Public,
   });

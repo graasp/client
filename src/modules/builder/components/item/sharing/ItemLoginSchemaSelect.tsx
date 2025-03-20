@@ -62,6 +62,7 @@ const ItemLoginSchemaSelect = ({
       onChange={handleLoginSchemaChange}
       disabled={isDisabled}
       id={SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}
+      size="small"
     >
       <MenuItem value={ItemLoginSchemaType.Username}>
         {translateBuilder(

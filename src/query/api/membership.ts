@@ -21,7 +21,7 @@ import { verifyAuthentication } from './axios.js';
 export const getMembershipsForItems = async (ids: UUID[]) =>
   axios
     .get<
-      ResultOf<ItemMembership[]>
+      ItemMembership[]
     >(`${API_HOST}/${buildGetItemMembershipsForItemsRoute(ids)}`)
     .then(({ data }) => data);
 

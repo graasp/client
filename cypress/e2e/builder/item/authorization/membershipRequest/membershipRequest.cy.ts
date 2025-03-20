@@ -10,7 +10,7 @@ import {
   REQUEST_MEMBERSHIP_BUTTON_ID,
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
-import { CURRENT_MEMBER, MEMBERS } from '../../../../../fixtures/members';
+import { CURRENT_MEMBER } from '../../../../../fixtures/members';
 import { buildItemPath } from '../../../utils';
 
 it('Request membership when signed in', () => {
@@ -39,8 +39,8 @@ it('Cannot request membership if item is hidden', () => {
     visibilities: [
       {
         type: ItemVisibilityType.Hidden,
-        item: tmp,
-        creator: MEMBERS.ANNA,
+        itemPath: tmp.path,
+        // creator: MEMBERS.ANNA,
         createdAt: '2021-08-11T12:56:36.834Z',
         id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
       },

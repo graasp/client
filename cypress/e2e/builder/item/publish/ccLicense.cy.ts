@@ -61,9 +61,9 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
         type: ItemVisibilityType.Public,
-        item: itemCCLicenseCCBY,
+        itemPath: itemCCLicenseCCBY.path,
         createdAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
+        // creator: MEMBERS.ANNA,
       },
     ],
     published: {
@@ -80,9 +80,9 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
         type: ItemVisibilityType.Public,
-        item: itemCCLicenseCCBYNC,
+        itemPath: itemCCLicenseCCBYNC.path,
         createdAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
+        // creator: MEMBERS.ANNA,
       },
     ],
     published: {
@@ -99,9 +99,9 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
         type: ItemVisibilityType.Public,
-        item: itemCCLicenseCCBYSA,
+        itemPath: itemCCLicenseCCBYSA.path,
         createdAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
+        // creator: MEMBERS.ANNA,
       },
     ],
     published: {
@@ -118,9 +118,9 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
         type: ItemVisibilityType.Public,
-        item: itemCCLicenseCCBYNCND,
+        itemPath: itemCCLicenseCCBYNCND.path,
         createdAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
+        // creator: MEMBERS.ANNA,
       },
     ],
     published: {

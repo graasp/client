@@ -11,7 +11,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { ChatMessage } from '@graasp/sdk';
+import { ChatMessageWithCreator } from '@graasp/sdk';
 
 import { NS } from '@/config/constants.js';
 
@@ -25,7 +25,7 @@ import {
 import { DeleteMessageFunctionType } from '../types.js';
 
 type Props = {
-  message: ChatMessage;
+  message: ChatMessageWithCreator;
   isOwn?: boolean;
   deleteMessageFunction?: DeleteMessageFunctionType;
 };
@@ -57,7 +57,7 @@ const MessageActions = ({
   };
 
   const handleDeleteMessage = (): void => {
-    deleteMessageFunction?.({ itemId: message.item.id, messageId: message.id });
+    deleteMessageFunction?.({ itemId: message.itemId, messageId: message.id });
     handleOnCloseMenu();
   };
 

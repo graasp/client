@@ -20,7 +20,7 @@ import { verifyAuthentication } from './axios.js';
 
 export const getItemChat = async (id: UUID) =>
   axios
-    .get<ChatMessage[]>(`${API_HOST}/${buildGetItemChatRoute(id)}`)
+    .get<ChatMessageWithCreator[]>(`${API_HOST}/${buildGetItemChatRoute(id)}`)
     .then(({ data }) => data);
 
 export const postItemChatMessage = async ({

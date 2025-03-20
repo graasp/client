@@ -13,6 +13,7 @@ import {
   ItemMembership,
   ItemPublished,
   ItemValidationGroup,
+  ItemVisibilityOptionsType,
   ItemVisibilityType,
   Member,
   PermissionLevel,
@@ -450,7 +451,6 @@ export const mockDeleteItemMembershipForItem = (): void => {
 
 export const mockPostItemVisibility = (
   items: ItemForTest[],
-  currentMember: Member,
   shouldThrowError: boolean,
 ): void => {
   // mock all tag type
@@ -473,7 +473,7 @@ export const mockPostItemVisibility = (
         const itemId = url.slice(API_HOST.length).split('/')[2];
         const tagType = url
           .slice(API_HOST.length)
-          .split('/')[4] as ItemVisibilityType;
+          .split('/')[4] as ItemVisibilityOptionsType;
         const item = items.find(({ id }) => itemId === id);
 
         if (!item?.visibilities) {
@@ -482,10 +482,9 @@ export const mockPostItemVisibility = (
         item.visibilities.push({
           id: v4(),
           type: tagType,
-          // avoid circular dependency
-          item: { id: item.id, path: item.path } as DiscriminatedItem,
+          itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
-          creator: currentMember,
+          // creator: currentMember,
         });
         reply(body);
       },
@@ -1072,7 +1071,7 @@ export const mockDownloadItemChat = (
 
       const messages = item?.chat?.map((c) => ({
         ...c,
-        creatorName: Object.values(MEMBERS).find((m) => m.id === c.creator.id)
+        creatorName: Object.values(MEMBERS).find((m) => m.id === c.creatorId)
           ?.name,
       }));
       return reply({

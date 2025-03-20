@@ -146,9 +146,9 @@ describe('Tags permissions', () => {
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
           type: ItemVisibilityType.Public,
-          item,
+          itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
+          // creator: MEMBERS.ANNA,
         },
       ],
       published: {
@@ -181,9 +181,9 @@ describe('Tags permissions', () => {
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
           type: ItemVisibilityType.Public,
-          item,
+          itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
+          // creator: MEMBERS.ANNA,
         },
       ],
       published: {

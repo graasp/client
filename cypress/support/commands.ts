@@ -444,7 +444,7 @@ Cypress.Commands.add(
 
     mockGetItemMembershipsForItem(items, currentMember);
 
-    mockPostItemVisibility(cachedItems, currentMember, postItemVisibilityError);
+    mockPostItemVisibility(cachedItems, postItemVisibilityError);
 
     mockDeleteItemVisibility(deleteItemVisibilityError);
 

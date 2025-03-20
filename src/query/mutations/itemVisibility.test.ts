@@ -3,6 +3,7 @@ import {
   FolderItemFactory,
   HttpMethod,
   ItemVisibilityType,
+  getIdsFromPath,
 } from '@graasp/sdk';
 
 import { act } from '@testing-library/react';
@@ -116,8 +117,8 @@ describe('Item Visibility Mutations', () => {
 
   describe('useDeleteItemVisibility', () => {
     const visibility = ITEM_VISIBILITIES[0];
-    const { item, type: visibilityType } = visibility;
-    const itemId = item.id;
+    const { itemPath, type: visibilityType } = visibility;
+    const itemId = getIdsFromPath(itemPath).at(-1)!;
     const route = `/${buildDeleteItemVisibilityRoute({ itemId, type: visibilityType })}`;
     const mutation = mutations.useDeleteItemVisibility;
     const itemVisibilityKey = itemKeys.single(itemId).visibilities;

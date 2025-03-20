@@ -37,7 +37,7 @@ type Props = {
   sendMessageFunction?: SendMessageFunctionType;
   deleteMessageFunction?: DeleteMessageFunctionType;
   editMessageFunction?: EditMessageFunctionType;
-  chatId: string;
+  itemId: string;
   showAdminTools?: boolean;
   currentMember?: CurrentAccount | null;
   members?: Account[];
@@ -50,7 +50,7 @@ export function Chatbox({
   deleteMessageFunction,
   editMessageFunction,
   messages,
-  chatId,
+  itemId,
   showAdminTools = false,
   currentMember,
   members,
@@ -58,11 +58,7 @@ export function Chatbox({
   return (
     <EditingContextProvider>
       <CurrentMemberContextProvider currentMember={currentMember}>
-        <MessagesContextProvider
-          chatId={chatId}
-          members={members}
-          messages={messages}
-        >
+        <MessagesContextProvider itemId={itemId} messages={messages}>
           <ChatboxContainer id={id}>
             <Messages
               currentMember={currentMember}

@@ -20,16 +20,13 @@ type Props = {
 
 const Chatbox = ({ item }: Props): JSX.Element | null => {
   const { data: chatMessages, isLoading: isChatLoading } = useItemChat(item.id);
-  const { data: itemPermissions, isLoading: isLoadingItemPermissions } =
-    useItemMemberships(item.id);
-  const members = itemPermissions?.map(({ account }) => account);
   const { data: currentMember, isLoading: isLoadingCurrentMember } =
     hooks.useCurrentMember();
   const { mutate: sendMessage } = usePostItemChatMessage();
   const { mutate: editMessage } = usePatchItemChatMessage();
   const { mutate: deleteMessage } = useDeleteItemChatMessage();
 
-  if (isChatLoading || isLoadingItemPermissions || isLoadingCurrentMember) {
+  if (isChatLoading || isLoadingCurrentMember) {
     return <Loader />;
   }
 
@@ -44,10 +41,9 @@ const Chatbox = ({ item }: Props): JSX.Element | null => {
   return (
     <GraaspChatbox
       id={CHATBOX_ID}
-      members={members}
       sendMessageBoxId={CHATBOX_INPUT_BOX_ID}
       currentMember={currentMember}
-      chatId={item.id}
+      itemId={item.id}
       messages={chatMessages}
       showAdminTools={isAdmin}
       sendMessageFunction={sendMessage}

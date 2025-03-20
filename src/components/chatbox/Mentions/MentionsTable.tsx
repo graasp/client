@@ -15,7 +15,7 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { ChatMention, MentionStatus, getIdsFromPath } from '@graasp/sdk';
+import { ChatMention, MentionStatus } from '@graasp/sdk';
 
 import { useNavigate } from '@tanstack/react-router';
 
@@ -104,7 +104,7 @@ export function MentionsTable({ mentions }: Readonly<Props>) {
                   navigate({
                     to: '/builder/items/$itemId',
                     params: {
-                      itemId: getIdsFromPath(m.message.item.path).slice(-1)[0],
+                      itemId: m.message.itemId,
                     },
                     search: { chatOpen: true },
                   });
@@ -118,7 +118,12 @@ export function MentionsTable({ mentions }: Readonly<Props>) {
                 <TableCell>
                   <MessageBody messageBody={m.message.body} />
                 </TableCell>
-                <TableCell>{m.message.creator?.name}</TableCell>
+                <TableCell>
+                  {
+                    // FIXME: send the user that created the message along side the message data
+                    m.message.creatorId
+                  }
+                </TableCell>
                 <TableCell>
                   <Grid container direction="row">
                     <Grid>

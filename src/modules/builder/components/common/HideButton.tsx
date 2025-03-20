@@ -37,7 +37,7 @@ const HideButton = ({
   // since children items are hidden because parent is hidden, the hidden tag should be removed from the root item
   // if hiddenVisibility is undefined -> the item is not hidden
   const isOriginalHiddenItem =
-    !hiddenVisibility || hiddenVisibility?.item?.path === item.path;
+    !hiddenVisibility || hiddenVisibility?.itemPath === item.path;
 
   const handleToggleHide = () => {
     if (hiddenVisibility) {

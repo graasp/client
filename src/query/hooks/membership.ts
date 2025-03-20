@@ -34,7 +34,7 @@ export default (
             throw new UndefinedArgument();
           }
 
-          return Api.getMembershipsForItems([id]).then((data) => data.data[id]);
+          return Api.getMembershipsForItems([id]);
         },
         enabled: Boolean(id),
         ...defaultQueryOptions,
