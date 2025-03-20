@@ -23,8 +23,15 @@ i18n
     supportedLngs: ['fr', 'de', 'it', 'es', 'ar', 'en'],
     // options for the language detector
     detection: {
-      order: ['localStorage', 'navigator', 'querystring'],
+      // The priority order is defined as:
+      // 1. querystring: users coming from an external link may want to see the page in the language set by the link
+      // 2. localstorage: users that have an item in their localstorage (already visited the page with an account)
+      // 3. navigator: use the the user preferred interface language as a last resort.
+      order: ['querystring', 'localStorage', 'navigator'],
+      // store the language in the localstorage for persistance
       caches: ['localStorage'],
+      // the name of the query parameter to look for the language (default: lng)
+      lookupQuerystring: 'lang',
     },
     react: {
       // prevent the translations from using the react suspense and thus making the interface flicker
