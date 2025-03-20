@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.22.1](https://github.com/graasp/client/compare/v2.22.0...v2.22.1) (2025-03-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v1.8.2 [security] ([#961](https://github.com/graasp/client/issues/961)) ([7cbe41e](https://github.com/graasp/client/commit/7cbe41ec440929a995b79e7d4ab8639b584ef43e))
+* show inline notifications for public profile ([#952](https://github.com/graasp/client/issues/952)) ([867e558](https://github.com/graasp/client/commit/867e5586cb4c13af68c47c76aef8fbcee0fd0102))
+* use language query string when present ([#962](https://github.com/graasp/client/issues/962)) ([4db0dc9](https://github.com/graasp/client/commit/4db0dc995efb0c1e81b42ec5dda11e0f26f4fbce))
+
 ## [2.22.0](https://github.com/graasp/client/compare/v2.21.0...v2.22.0) (2025-03-04)
 
 
