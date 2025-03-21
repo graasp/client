@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Typography, styled } from '@mui/material';
 
-import {
-  ChatMessage,
-  ChatMessageWithCreator,
-  CurrentAccount,
-} from '@graasp/sdk';
+import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
 
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
@@ -78,7 +74,7 @@ export function Messages({
   }, [ref, messages, open]);
 
   const isOwn = (message: ChatMessageWithCreator): boolean =>
-    message.creator.id === currentMember?.id;
+    message.creator?.id === currentMember?.id;
 
   const messagesByDay = Object.entries(
     groupBy(messages, ({ createdAt }) =>

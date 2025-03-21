@@ -7,7 +7,7 @@ import { hooks, mutations } from '@/config/queryClient';
 import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
 import Loader from '@/ui/Loader/Loader';
 
-const { useItemChat, useItemMemberships } = hooks;
+const { useItemChat } = hooks;
 const {
   usePostItemChatMessage,
   usePatchItemChatMessage,

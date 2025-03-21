@@ -1,5 +1,6 @@
 import {
   ChatMessage,
+  ChatMessageWithCreator,
   DeleteChatMessageParamType,
   PatchChatMessageParamType,
   PostChatMessageParamType,

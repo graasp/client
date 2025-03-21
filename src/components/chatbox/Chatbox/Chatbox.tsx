@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { styled } from '@mui/material';
 
-import { Account, ChatMessage, CurrentAccount } from '@graasp/sdk';
+import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
 
 import { CONTAINER_HEIGHT_SAFETY_MARGIN } from '../constants.js';
 import { CurrentMemberContextProvider } from '../context/CurrentMemberContext.js';
@@ -33,14 +33,13 @@ const InputContainer = styled('div')({
 type Props = {
   id?: string;
   sendMessageBoxId?: string;
-  messages?: ChatMessage[];
+  messages?: ChatMessageWithCreator[];
   sendMessageFunction?: SendMessageFunctionType;
   deleteMessageFunction?: DeleteMessageFunctionType;
   editMessageFunction?: EditMessageFunctionType;
   itemId: string;
   showAdminTools?: boolean;
   currentMember?: CurrentAccount | null;
-  members?: Account[];
 };
 
 export function Chatbox({
@@ -53,7 +52,6 @@ export function Chatbox({
   itemId,
   showAdminTools = false,
   currentMember,
-  members,
 }: Readonly<Props>): JSX.Element {
   return (
     <EditingContextProvider>
