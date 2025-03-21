@@ -4,6 +4,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { BookmarkedItems } from '@/modules/home/bookmarks/BookmarkedItems';
 
+import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
 import { useItemSearch } from '~builder/components/item/ItemSearch';
 import { NewFolderButton } from '~builder/components/item/form/folder/NewFolderButton';
 import { SelectionContextProvider } from '~builder/components/main/list/SelectionContext';
@@ -34,7 +35,9 @@ function HomeRoute() {
           {itemSearch.input}
           <NewFolderButton type={isMd ? 'button' : 'icon'} />
         </Stack>
-        <HomeScreenContent searchText={itemSearch.text} />
+        <FilterItemsContextProvider>
+          <HomeScreenContent searchText={itemSearch.text} />
+        </FilterItemsContextProvider>
       </SelectionContextProvider>
     </>
   );
