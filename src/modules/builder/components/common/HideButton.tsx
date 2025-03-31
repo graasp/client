@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { ItemVisibilityType, PackedItem } from '@graasp/sdk';
+import { ItemVisibilityType, PackedItem, getParentFromPath } from '@graasp/sdk';
 
+import { useQueryClient } from '@tanstack/react-query';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -13,6 +14,7 @@ import {
   HIDDEN_ITEM_BUTTON_CLASS,
   buildHideButtonId,
 } from '@/config/selectors';
+import { itemKeys } from '@/query/keys';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs';
@@ -30,6 +32,7 @@ const HideButton = ({
 }: HideButtonProps): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
+  const queryClient = useQueryClient();
   const postVisibility = mutations.usePostItemVisibility();
   const deleteVisibility = mutations.useDeleteItemVisibility();
 
@@ -39,16 +42,22 @@ const HideButton = ({
   const isOriginalHiddenItem =
     !hiddenVisibility || hiddenVisibility?.itemPath === item.path;
 
-  const handleToggleHide = () => {
+  const handleToggleHide = async () => {
     if (hiddenVisibility) {
-      deleteVisibility.mutate({
+      await deleteVisibility.mutateAsync({
         itemId: item.id,
         type: ItemVisibilityType.Hidden,
       });
     } else {
-      postVisibility.mutate({
+      await postVisibility.mutateAsync({
         itemId: item.id,
         type: ItemVisibilityType.Hidden,
+      });
+    }
+    const parentId = getParentFromPath(item.path);
+    if (parentId) {
+      queryClient.invalidateQueries({
+        queryKey: itemKeys.single(parentId).allChildren,
       });
     }
     onClick?.();

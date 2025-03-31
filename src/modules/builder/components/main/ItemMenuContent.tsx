@@ -110,7 +110,17 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ) : (
       false
     ),
-    canWrite ? <DuplicateButton key="duplicate" item={item} /> : false,
+    canWrite ? (
+      <DuplicateButton
+        key="duplicate"
+        item={item}
+        onClick={() => {
+          closeMenu();
+        }}
+      />
+    ) : (
+      false
+    ),
     canAdmin ? (
       <MoveButton
         key="move"
