@@ -24,25 +24,25 @@ export const getPublicProfile = (memberId: UUID) =>
 
 export type PostPublicProfilePayloadType = {
   bio: string;
-  twitterID?: string;
-  facebookID?: string;
-  linkedinID?: string;
+  twitterId?: string;
+  facebookId?: string;
+  linkedinId?: string;
   visibility?: boolean;
 };
 
 export const postPublicProfile = async ({
   bio,
-  twitterID,
-  facebookID,
-  linkedinID,
+  twitterId,
+  facebookId,
+  linkedinId,
   visibility = false,
 }: PostPublicProfilePayloadType) =>
   axios
     .post(`${API_HOST}/${buildPostPublicProfileRoute()}`, {
       bio,
-      twitterID,
-      facebookID,
-      linkedinID,
+      twitterId,
+      facebookId,
+      linkedinId,
       visibility,
     })
     .then(({ data }) => data);

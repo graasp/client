@@ -17,9 +17,9 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 const newProfile = {
   bio: 'text',
-  twitterID: 'twitter_handle',
-  facebookID: 'fb_handle',
-  linkedinID: 'linkedin_handle',
+  twitterId: 'twitter_handle',
+  facebookId: 'fb_handle',
+  linkedinId: 'linkedin_handle',
   visibility: false,
 };
 describe('Public Profile Mutations', () => {

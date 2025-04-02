@@ -55,34 +55,11 @@ export default (queryConfig: QueryClientConfig) => {
         enableSaveActions?: boolean;
         extra?: CompleteMember['extra'];
       }) => Api.editCurrentMember(payload),
-      onMutate: async (member) => {
+      onMutate: async () => {
         // Cancel any outgoing refetch (so they don't overwrite our optimistic update)
         await queryClient.cancelQueries({
           queryKey: memberKeys.current().content,
         });
-
-        // Snapshot the previous value
-        const previousMember = queryClient.getQueryData<CompleteMember>(
-          memberKeys.current().content,
-        );
-
-        // Optimistically update to the new value
-        const newMember = previousMember;
-        if (newMember) {
-          if (member.name) {
-            newMember.name = member.name.trim();
-          }
-          if (typeof member.enableSaveActions === 'boolean') {
-            newMember.enableSaveActions = member.enableSaveActions;
-          }
-          if (member.extra) {
-            newMember.extra = member.extra;
-          }
-          queryClient.setQueryData(memberKeys.current().content, newMember);
-        }
-
-        // Return a context object with the snapshotted value
-        return { previousMember };
       },
       onSuccess: () => {
         notifier?.({
@@ -91,12 +68,8 @@ export default (queryConfig: QueryClientConfig) => {
         });
       },
       // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (error: Error, _, context) => {
+      onError: (error: Error, _) => {
         notifier?.({ type: editMemberRoutine.FAILURE, payload: { error } });
-        queryClient.setQueryData(
-          memberKeys.current().content,
-          context?.previousMember,
-        );
       },
       // Always refetch after error or success:
       onSettled: () => {
@@ -166,12 +139,6 @@ export default (queryConfig: QueryClientConfig) => {
   const useValidateEmailUpdate = () =>
     useMutation({
       mutationFn: (token: string) => Api.validateEmailUpdate(token),
-      onSuccess: () => {
-        notifier?.({
-          type: updateEmailRoutine.SUCCESS,
-          payload: { message: 'VALIDATE_EMAIL' },
-        });
-      },
       onError: (error: Error) => {
         notifier?.({
           type: updateEmailRoutine.FAILURE,

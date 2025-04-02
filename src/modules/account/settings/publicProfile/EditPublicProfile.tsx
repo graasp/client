@@ -42,7 +42,7 @@ type EditPublicProfileProps = {
 
 export type Inputs = Pick<
   PublicProfile,
-  'bio' | 'visibility' | 'twitterID' | 'facebookID' | 'linkedinID'
+  'bio' | 'visibility' | 'twitterId' | 'facebookId' | 'linkedinId'
 >;
 
 export function EditPublicProfile({
@@ -63,28 +63,28 @@ export function EditPublicProfile({
     mode: 'onChange',
     defaultValues: {
       bio: profile?.bio,
-      twitterID: profile?.twitterID,
-      facebookID: profile?.facebookID,
-      linkedinID: profile?.linkedinID,
+      twitterId: profile?.twitterId,
+      facebookId: profile?.facebookId,
+      linkedinId: profile?.linkedinId,
       visibility: profile?.visibility ?? false,
     },
   });
 
   const socialNetworks = [
     {
-      fieldName: 'facebookID',
+      fieldName: 'facebookId',
       socialProfile: 'facebook',
       Icon: FacebookIcon,
       label: 'FACEBOOK_LINK',
     },
     {
-      fieldName: 'twitterID',
+      fieldName: 'twitterId',
       socialProfile: 'twitter',
       Icon: TwitterIcon,
       label: 'TWITTER_LINK',
     },
     {
-      fieldName: 'linkedinID',
+      fieldName: 'linkedinId',
       socialProfile: 'linkedin',
       Icon: LinkedInIcon,
       label: 'LINKEDIN_LINK',

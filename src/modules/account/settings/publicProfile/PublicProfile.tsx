@@ -61,7 +61,7 @@ export function PublicProfile(): JSX.Element {
     },
   });
 
-  const { bio, linkedinID, twitterID, facebookID } = publicProfile || {};
+  const { bio, linkedinId, twitterId, facebookId } = publicProfile || {};
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -103,28 +103,28 @@ export function PublicProfile(): JSX.Element {
         <Typography variant="body1" id={PUBLIC_PROFILE_BIO_ID}>
           {bio ?? t('BIO_EMPTY_MSG')}
         </Typography>
-        {linkedinID && (
+        {linkedinId && (
           <DisplayLink
             icon={<LinkedInIcon />}
-            contentId="linkedinID"
-            href={socialLinks.sanitize('linkedin', linkedinID)}
-            content={linkedinID}
+            contentId="linkedinId"
+            href={socialLinks.sanitize('linkedin', linkedinId)}
+            content={linkedinId}
           />
         )}
-        {twitterID && (
+        {twitterId && (
           <DisplayLink
             icon={<TwitterIcon />}
-            contentId="twitterID"
-            href={socialLinks.sanitize('twitter', twitterID)}
-            content={twitterID}
+            contentId="twitterId"
+            href={socialLinks.sanitize('twitter', twitterId)}
+            content={twitterId}
           />
         )}
-        {facebookID && (
+        {facebookId && (
           <DisplayLink
             icon={<FacebookIcon />}
             contentId="facebookID"
-            href={socialLinks.sanitize('facebook', facebookID)}
-            content={facebookID}
+            href={socialLinks.sanitize('facebook', facebookId)}
+            content={facebookId}
           />
         )}
         {(isSuccessPatchPublicProfile || isSuccessPostPublicProfile) && (

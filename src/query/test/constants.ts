@@ -436,9 +436,9 @@ export const MEMBER_PUBLIC_PROFILE = {
   updatedAt: new Date().toISOString(),
   bio: 'some random bio',
   visibility: true,
-  linkedinID: 'user',
-  facebookID: 'user',
-  twitterID: 'user',
+  linkedinId: 'user',
+  facebookId: 'user',
+  twitterId: 'user',
 } satisfies PublicProfile;
 
 export const AGGREGATE_ACTIONS_DATA = [
