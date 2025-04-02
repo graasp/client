@@ -28,7 +28,7 @@ describe('useAccessibleItems', () => {
   const pagination = {};
   const route = `/${buildGetAccessibleItems(params, pagination)}`;
   const items = generateFolders();
-  const response = { data: items, totalCount: items.length };
+  const response = { data: items };
   const hook = () => hooks.useAccessibleItems();
   const key = itemKeys.accessiblePage(params, pagination);
 
@@ -100,7 +100,7 @@ describe('useInfiniteAccessibleItems', () => {
   const pagination = { page: 1 };
   const route = `/${buildGetAccessibleItems(params, pagination)}`;
   const items = generateFolders();
-  const response = { data: items, totalCount: items.length };
+  const response = { data: items };
   const hook = () => hooks.useInfiniteAccessibleItems(params);
   const key = itemKeys.infiniteAccessible(params);
 

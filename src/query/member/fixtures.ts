@@ -33,7 +33,6 @@ export const MEMBER_STORAGE_ITEM_RESPONSE: Paginated<MemberStorageItem> = {
       // the item has no parent
     },
   ],
-  totalCount: 2,
   pagination: {
     page: 1,
     pageSize: 2,

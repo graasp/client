@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { LoadingButton } from '@mui/lab';
 import { Alert, Box, LinearProgress, Stack } from '@mui/material';
 
 import { PackedItem, Paginated } from '@graasp/sdk';
@@ -11,7 +12,6 @@ import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ACCESSIBLE_ITEMS_TABLE_ID } from '@/config/selectors';
-import Button from '@/ui/buttons/Button/Button';
 
 import SelectTypes from '~builder/components/common/SelectTypes';
 import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';
@@ -54,7 +54,7 @@ export function HomeScreenContent({
 
   const { user } = useAuth();
   const { itemTypes } = useFilterItemsContext();
-  const { data, fetchNextPage, isLoading, isFetching } =
+  const { data, fetchNextPage, isLoading, isFetching, hasNextPage } =
     hooks.useInfiniteAccessibleItems(
       {
         // todo: in the future this can be any member from creators
@@ -130,8 +130,10 @@ export function HomeScreenContent({
         <Stack height="100%">
           <Content
             data={data}
+            isFetching={isFetching}
             fetchNextPage={fetchNextPage}
             searchText={searchText}
+            hasNextPage={hasNextPage}
           />
           {data && isFetching && (
             <Box sx={{ width: '100%' }}>
@@ -154,8 +156,16 @@ type ContentProps = {
   data: InfiniteData<Paginated<PackedItem>>;
   fetchNextPage: () => void;
   searchText: string;
+  hasNextPage: boolean;
+  isFetching: boolean;
 };
-function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
+function Content({
+  data,
+  fetchNextPage,
+  searchText,
+  hasNextPage,
+  isFetching,
+}: Readonly<ContentProps>) {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { itemTypes } = useFilterItemsContext();
 
@@ -163,10 +173,6 @@ function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
     useSelectionContext();
 
   if (data.pages[0].data.length) {
-    const totalFetchedItems = data
-      ? data.pages.map(({ data: d }) => d.length).reduce((a, b) => a + b, 0)
-      : 0;
-
     return (
       <DragContainerStack id={CONTAINER_ID}>
         <ItemsTable
@@ -178,14 +184,19 @@ function Content({ data, fetchNextPage, searchText }: Readonly<ContentProps>) {
           selectedIds={selectedIds}
           onMove={clearSelection}
         />
-        {data.pages[0].totalCount > totalFetchedItems && (
+        {hasNextPage && (
           <Stack textAlign="center" alignItems="center">
-            <Button variant="outlined" onClick={fetchNextPage} role="feed">
+            <LoadingButton
+              variant="outlined"
+              onClick={fetchNextPage}
+              role="feed"
+              loading={isFetching}
+            >
               {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
-            </Button>
+            </LoadingButton>
           </Stack>
         )}
-        {data.pages[0].totalCount === totalFetchedItems && (
+        {!hasNextPage && (
           // avoids button fullwidth
           <Stack alignItems="center" mb={2}>
             <NewFolderButton type="icon" />
