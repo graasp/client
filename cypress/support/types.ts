@@ -135,7 +135,7 @@ export type ApiConfig = {
   postShortLinkError?: boolean;
   getShortLinkAvailable?: boolean;
   getShortLinksItemError?: boolean;
-  deleteFavoriteError?: boolean;
-  addFavoriteError?: boolean;
-  getFavoriteError?: boolean;
+  deleteBookmarkError?: boolean;
+  addBookmarkError?: boolean;
+  getBookmarkError?: boolean;
 };

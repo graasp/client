@@ -2,7 +2,6 @@ import {
   Account,
   ItemMembership,
   PermissionLevelOptions,
-  ResultOf,
   UUID,
 } from '@graasp/sdk';
 
@@ -14,7 +13,6 @@ import {
   buildEditItemMembershipRoute,
   buildGetItemMembershipsForItemsRoute,
   buildPostItemMembershipRoute,
-  buildPostManyItemMembershipsRoute,
 } from '../routes.js';
 import { verifyAuthentication } from './axios.js';
 
@@ -24,24 +22,6 @@ export const getMembershipsForItems = async (ids: UUID[]) =>
       ItemMembership[]
     >(`${API_HOST}/${buildGetItemMembershipsForItemsRoute(ids)}`)
     .then(({ data }) => data);
-
-export const postManyItemMemberships = async ({
-  memberships,
-  itemId,
-}: {
-  itemId: UUID;
-  memberships: Partial<ItemMembership>[];
-}) =>
-  verifyAuthentication(() =>
-    axios
-      .post<ResultOf<ItemMembership>>(
-        `${API_HOST}/${buildPostManyItemMembershipsRoute(itemId)}`,
-        {
-          memberships,
-        },
-      )
-      .then(({ data }) => data),
-  );
 
 export const postItemMembership = async ({
   id,

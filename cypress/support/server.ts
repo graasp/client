@@ -5,7 +5,6 @@ import {
   CompleteGuest,
   CompleteMember,
   CompleteMembershipRequest,
-  DiscriminatedItem,
   HttpMethod,
   Invitation,
   ItemBookmark,
@@ -17,7 +16,6 @@ import {
   Member,
   PermissionLevel,
   PermissionLevelCompare,
-  PermissionLevelOptions,
   PublicProfile,
   PublicationStatus,
   RecycledItemData,
@@ -86,7 +84,6 @@ const {
   buildEditItemRoute,
   buildItemUnpublishRoute,
   buildGetMemberRoute,
-  buildPostManyItemMembershipsRoute,
   ITEMS_ROUTE,
   buildUploadFilesRoute,
   GET_BOOKMARKED_ITEMS_ROUTE,
@@ -310,7 +307,7 @@ export const mockPostItemLogin = (
 };
 
 export const mockPutItemLoginSchema = (
-  items: ItemForTest[],
+  _items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -318,17 +315,15 @@ export const mockPutItemLoginSchema = (
       method: HttpMethod.Put,
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         reply({ statusCode: StatusCodes.BAD_REQUEST });
         return;
       }
 
-      // check query match item login schema
-      const id = url.slice(API_HOST.length).split('/')[2];
-      const item = getItemById(items, id);
-
-      reply(item);
+      reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('putItemLoginSchema');
 };
@@ -339,11 +334,12 @@ export const mockDeleteItemLoginSchema = (): void => {
       method: HttpMethod.Delete,
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       // check query match item login schema
-      const id = url.slice(API_HOST.length).split('/')[2];
 
-      reply(id);
+      reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('deleteItemLoginSchema');
 };
@@ -428,8 +424,9 @@ export const mockEditItemMembershipForItem = (): void => {
       ),
     },
     ({ reply }) => {
-      // this mock intercept does nothing
-      reply('true');
+      reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('editItemMembership');
 };
@@ -443,8 +440,9 @@ export const mockDeleteItemMembershipForItem = (): void => {
       ),
     },
     ({ reply }) => {
-      // this mock intercept does nothing
-      reply('true');
+      reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('deleteItemMembership');
 };
@@ -465,7 +463,7 @@ export const mockPostItemVisibility = (
           })}$`,
         ),
       },
-      ({ reply, url, body }) => {
+      ({ reply, url }) => {
         if (shouldThrowError) {
           reply({ statusCode: StatusCodes.BAD_REQUEST });
           return;
@@ -486,7 +484,9 @@ export const mockPostItemVisibility = (
           createdAt: '2021-08-11T12:56:36.834Z',
           // creator: currentMember,
         });
-        reply(body);
+        reply({
+          statusCode: StatusCodes.NO_CONTENT,
+        });
       },
     ).as(`postItemVisibility-${type}`);
   });
@@ -505,13 +505,15 @@ export const mockDeleteItemVisibility = (shouldThrowError: boolean): void => {
           })}$`,
         ),
       },
-      ({ reply, body }) => {
+      ({ reply }) => {
         if (shouldThrowError) {
           reply({ statusCode: StatusCodes.BAD_REQUEST });
           return;
         }
 
-        reply(body);
+        reply({
+          statusCode: StatusCodes.NO_CONTENT,
+        });
       },
     ).as(`deleteItemVisibility-${type}`);
   });
@@ -526,12 +528,14 @@ export const mockPostItemFlag = (
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/${buildPostItemFlagRoute(ID_FORMAT)}$`),
     },
-    ({ reply, body }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply(body);
+      reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('postItemFlag');
 };
@@ -621,7 +625,6 @@ export const mockGetMemberStorageFiles = (
             page,
             pageSize,
           },
-          totalCount: files.length,
         },
       });
     },
@@ -639,7 +642,7 @@ export const mockPostAvatar = (shouldThrowError: boolean): void => {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply({ statusCode: StatusCodes.OK });
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('uploadAvatar');
 };
@@ -655,7 +658,7 @@ export const mockUpdatePassword = (shouldThrowError: boolean): void => {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply('update password');
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('updatePassword');
 };
@@ -812,7 +815,7 @@ export const mockGetAccessibleItems = (items: ItemForTest[]): void => {
 
       const result = root.slice((page - 1) * pageSize, page * pageSize);
 
-      reply({ data: result, totalCount: root.length });
+      reply({ data: result });
     },
   ).as('getAccessibleItems');
 };
@@ -844,7 +847,6 @@ export const mockGetOwnRecycledItemData = (
 
       reply({
         data: result.map(({ item }) => item),
-        totalCount: recycledItemData.length,
         pagination: { page: 1, pageSize: ITEM_PAGE_SIZE },
       });
     },
@@ -915,7 +917,6 @@ export const mockRecycleItems = (
 
       return reply({
         statusCode: StatusCodes.ACCEPTED,
-        // body: ids.map((id) => getItemById(items, id)),
       });
     },
   ).as('recycleItems');
@@ -1100,7 +1101,7 @@ export const mockPostItemChatMessage = (shouldThrowError: boolean): void => {
 };
 
 export const mockClearItemChat = (
-  { items }: { items: ItemForTest[] },
+  _d: { items: ItemForTest[] },
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1108,14 +1109,11 @@ export const mockClearItemChat = (
       method: HttpMethod.Delete,
       url: new RegExp(`${API_HOST}/${buildClearItemChatRoute(ID_FORMAT)}$`),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
-
-      const itemId = url.slice(API_HOST.length).split('/')[2];
-      const item = items.find(({ id }) => itemId === id);
-      return reply({ id: itemId, messages: item?.chat });
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('clearItemChat');
 };
@@ -1183,7 +1181,7 @@ export const mockPostItemThumbnail = (
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply({ statusCode: StatusCodes.OK });
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('uploadItemThumbnail');
 };
@@ -1338,28 +1336,14 @@ export const mockRemoveTag = (): void => {
   ).as('removeTag');
 };
 
-export const mockGetItemValidationGroups = (
-  itemValidationGroups: ItemValidationGroup[],
-): void => {
-  cy.intercept(
-    {
-      method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/validations/groups/${ID_FORMAT}`),
-    },
-    ({ reply }) => {
-      reply(itemValidationGroups);
-    },
-  ).as('getItemValidationGroups');
-};
-
 export const mockPostItemValidation = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/${buildPostItemValidationRoute(ID_FORMAT)}`),
     },
-    ({ reply, body }) => {
-      reply(body);
+    ({ reply }) => {
+      reply({ status: StatusCodes.ACCEPTED });
     },
   ).as('postItemValidation');
 };
@@ -1394,8 +1378,8 @@ export const mockGetLatestValidationGroup = (
   ).as('getLatestValidationGroup');
 };
 
-export const mockGetItemFavorites = (
-  itemFavorites: ItemBookmark[],
+export const mockGetItemBookmarks = (
+  itemBookmarks: ItemBookmark[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1408,12 +1392,12 @@ export const mockGetItemFavorites = (
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply(itemFavorites);
+      return reply(itemBookmarks);
     },
   ).as('getBookmarkedItems');
 };
 
-export const mockAddFavorite = (
+export const mockAddBookmark = (
   _items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
@@ -1422,28 +1406,28 @@ export const mockAddFavorite = (
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/${GET_BOOKMARKED_ITEMS_ROUTE}/${ID_FORMAT}`),
     },
-    ({ reply, body }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply(body);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('bookmarkItem');
 };
 
-export const mockDeleteFavorite = (shouldThrowError: boolean): void => {
+export const mockDeleteBookmark = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
       url: new RegExp(`${API_HOST}/${GET_BOOKMARKED_ITEMS_ROUTE}/${ID_FORMAT}`),
     },
-    ({ reply, body }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply(body);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('unbookmarkItem');
 };
@@ -1484,7 +1468,7 @@ export const mockPostInvitations = (
           result.data[inv.email] = buildInvitation(inv);
         }
       });
-      return reply(result);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('postInvitations');
 };
@@ -1538,7 +1522,7 @@ export const mockResendInvitation = (
 };
 
 export const mockPatchInvitation = (
-  items: ItemForTest[],
+  _items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1551,25 +1535,18 @@ export const mockPatchInvitation = (
         })}`,
       ),
     },
-    ({ reply, body, url }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      const itemId = url.slice(API_HOST.length).split('/')[2];
-      const invitationId = url.slice(API_HOST.length).split('/')[4];
-      const item = items.find(({ id }) => id === itemId);
-      const invitation = item?.invitations?.find(
-        ({ id }) => id === invitationId,
-      );
-      const newInvitation = { ...invitation, ...body };
-      return reply(newInvitation);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('patchInvitation');
 };
 
 export const mockDeleteInvitation = (
-  items: ItemForTest[],
+  _items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1582,24 +1559,18 @@ export const mockDeleteInvitation = (
         })}`,
       ),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      const itemId = url.slice(API_HOST.length).split('/')[2];
-      const invitationId = url.slice(API_HOST.length).split('/')[4];
-      const item = items.find(({ id }) => id === itemId);
-      const invitation = item?.invitations?.find(
-        ({ id }) => id === invitationId,
-      );
-      return reply(invitation);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('deleteInvitation');
 };
 
 export const mockUploadInvitationCSV = (
-  items: ItemForTest[],
+  _items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1607,13 +1578,14 @@ export const mockUploadInvitationCSV = (
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/${buildPostUserCSVUploadRoute(ID_FORMAT)}`),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
-      const itemId = url.split('/').at(-3);
-      const item = items.find(({ id }) => id === itemId);
-      return reply({ memberships: item.memberships });
+      // const itemId = url.split('/').at(-3);
+      // const item = items.find(({ id }) => id === itemId);
+      // return reply({ memberships: item.memberships });
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('uploadCSV');
 };
@@ -1631,7 +1603,8 @@ export const mockUploadInvitationCSVWithTemplate = (
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
-      return reply([{ groupName: 'A', memberships: [], invitations: [] }]);
+      // return reply([{ groupName: 'A', memberships: [], invitations: [] }]);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('uploadCSVWithTemplate');
 };
@@ -1662,7 +1635,7 @@ export const mockPublishItem = (items: ItemForTest[]): void => {
         return reply({ statusCode: StatusCodes.NOT_FOUND });
       }
 
-      return reply(searchItem);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('publishItem');
 };
@@ -1682,7 +1655,7 @@ export const mockUnpublishItem = (items: ItemForTest[]): void => {
         return reply({ statusCode: StatusCodes.NOT_FOUND });
       }
 
-      return reply(searchItem);
+      return reply({ status: StatusCodes.NO_CONTENT });
     },
   ).as('unpublishItem');
 };
@@ -1820,12 +1793,14 @@ export const mockPostItemMembership = (
       method: HttpMethod.Post,
       url: `${API_HOST}/item-memberships?*`,
     },
-    ({ reply, body }) => {
+    ({ reply }) => {
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
 
-      return reply(body);
+      return reply({
+        statusCode: StatusCodes.NO_CONTENT,
+      });
     },
   ).as('postItemMembership');
 };
@@ -1847,68 +1822,6 @@ export const mockEditItem = (
       return reply(body);
     },
   ).as('editItem');
-};
-
-export const mockPostManyItemMemberships = (
-  args: { items: ItemForTest[]; members: MemberForTest[] },
-  shouldThrowError: boolean,
-): void => {
-  const { items, members } = args;
-  cy.intercept(
-    {
-      method: HttpMethod.Post,
-      url: new RegExp(
-        `${API_HOST}/${buildPostManyItemMembershipsRoute(ID_FORMAT)}`,
-      ),
-    },
-    ({ reply, body, url }) => {
-      if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST });
-      }
-      const itemId = url.split('/')[4];
-      const itemMemberships = items.find(
-        ({ id }) => id === itemId,
-      )?.memberships;
-
-      // return membership or error if membership
-      // for member id already exists
-      const result: {
-        data: {
-          [key: string]: {
-            permission: PermissionLevelOptions;
-            member: Member;
-            item: DiscriminatedItem;
-          };
-        };
-        errors: { statusCode: number; message: string; data: unknown }[];
-      } = { data: {}, errors: [] };
-
-      body.memberships.forEach(
-        (m: {
-          itemPath: string;
-          permission: PermissionLevelOptions;
-          memberId: string;
-        }) => {
-          const thisM = itemMemberships?.find(
-            ({ account }) => m.memberId === account.id,
-          );
-          if (thisM) {
-            result.errors.push({
-              statusCode: StatusCodes.BAD_REQUEST,
-              message: 'membership already exists',
-              data: thisM,
-            });
-          }
-          result.data[m.memberId] = {
-            permission: m.permission,
-            member: members?.find(({ id }) => m.memberId === id),
-            item: items?.find(({ path }) => m.itemPath === path),
-          };
-        },
-      );
-      return reply(result);
-    },
-  ).as('postManyItemMemberships');
 };
 
 export const mockGetMember = (members: Member[]): void => {
@@ -2437,7 +2350,7 @@ export const mockRequestMembership = (): void => {
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
     },
-    ({ reply }) => reply({ statusCode: StatusCodes.OK }),
+    ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('requestMembership');
 };
 
@@ -2466,7 +2379,7 @@ export const mockRejectMembershipRequest = (): void => {
       ),
     },
     ({ reply }) => {
-      reply({ statusCode: StatusCodes.OK });
+      reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('rejectMembershipRequest');
 };
@@ -2478,7 +2391,7 @@ export const mockEnroll = (): void => {
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/enroll`),
     },
     ({ reply }) => {
-      reply({ statusCode: StatusCodes.OK });
+      reply({ statusCode: StatusCodes.NO_CONTENT });
     },
   ).as('enroll');
 };
