@@ -413,7 +413,7 @@ Cypress.Commands.add(
 
     mockGetAppListRoute(APPS_LIST);
 
-    mockGetParents({ items, currentMember });
+    mockGetParents({ items });
     mockGetChildren({ items: cachedItems });
 
     mockMoveItems(cachedItems, moveItemsError);

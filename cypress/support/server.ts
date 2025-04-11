@@ -1254,13 +1254,7 @@ export const mockGetChildren = ({ items }: { items: ItemForTest[] }): void => {
   ).as('getChildren');
 };
 
-export const mockGetParents = ({
-  items,
-  currentMember,
-}: {
-  items: ItemForTest[];
-  currentMember: Member;
-}): void => {
+export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
