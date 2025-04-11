@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { TableCell, Typography } from '@mui/material';
 
-import { DiscriminatedItem, Invitation, PermissionLevel } from '@graasp/sdk';
+import {
+  DiscriminatedItem,
+  Invitation,
+  PermissionLevelOptions,
+} from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -33,7 +37,7 @@ const InvitationTableRow = ({
   const { mutate: postInvitations } = mutations.usePostInvitations();
   const { mutate: deleteInvitation } = mutations.useDeleteInvitation();
 
-  const changePermission = (permission: PermissionLevel) => {
+  const changePermission = (permission: PermissionLevelOptions) => {
     if (data.item.path === item.path) {
       editInvitation({
         id: data.id,

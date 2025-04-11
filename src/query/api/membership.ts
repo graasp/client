@@ -1,7 +1,7 @@
 import {
   Account,
   ItemMembership,
-  PermissionLevel,
+  PermissionLevelOptions,
   ResultOf,
   UUID,
 } from '@graasp/sdk';
@@ -50,7 +50,7 @@ export const postItemMembership = async ({
 }: {
   id: UUID;
   accountId: Account['id'];
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) => {
   return verifyAuthentication(() =>
     axios
@@ -68,7 +68,7 @@ export const editItemMembership = async ({
   permission,
 }: {
   id: UUID;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) =>
   verifyAuthentication(() =>
     axios

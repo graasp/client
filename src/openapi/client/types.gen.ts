@@ -997,12 +997,25 @@ export type GetMembersActionsData = {
     url: '/members/actions';
 };
 
+export type GetMembersActionsErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetMembersActionsError = GetMembersActionsErrors[keyof GetMembersActionsErrors];
+
 export type GetMembersActionsResponses = {
     /**
      * Default Response
      */
-    200: unknown;
+    200: Array<{
+        [key: string]: unknown;
+    }>;
 };
+
+export type GetMembersActionsResponse = GetMembersActionsResponses[keyof GetMembersActionsResponses];
 
 export type DeleteMembersMembersByIdDeleteData = {
     body?: never;
@@ -1673,7 +1686,7 @@ export type CreateAppDataResponses = {
     /**
      * Default Response
      */
-    204: void;
+    204: AppData;
 };
 
 export type CreateAppDataResponse = CreateAppDataResponses[keyof CreateAppDataResponses];
@@ -1733,7 +1746,7 @@ export type UpdateAppDataResponses = {
     /**
      * Default Response
      */
-    204: void;
+    204: AppData;
 };
 
 export type UpdateAppDataResponse = UpdateAppDataResponses[keyof UpdateAppDataResponses];
@@ -5325,40 +5338,6 @@ export type PatchChatMessageResponses = {
 
 export type PatchChatMessageResponse = PatchChatMessageResponses[keyof PatchChatMessageResponses];
 
-export type GetItemActionsData = {
-    body?: never;
-    path: {
-        id: string;
-    };
-    query?: {
-        requestedSampleSize?: number;
-        view?: 'builder' | 'player' | 'library' | 'analytics' | 'account' | 'auth' | 'home' | 'unknown';
-        startDate?: string;
-        endDate?: string;
-    };
-    url: '/items/{id}/actions';
-};
-
-export type GetItemActionsErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type GetItemActionsError = GetItemActionsErrors[keyof GetItemActionsErrors];
-
-export type GetItemActionsResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        [key: string]: unknown;
-    };
-};
-
-export type GetItemActionsResponse = GetItemActionsResponses[keyof GetItemActionsResponses];
-
 export type PostActionData = {
     body: {
         type: string;
@@ -5425,6 +5404,102 @@ export type ExportActionsResponses = {
 };
 
 export type ExportActionsResponse = ExportActionsResponses[keyof ExportActionsResponses];
+
+export type GetItemActionsByDayData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        startDate?: string;
+        endDate?: string;
+    };
+    url: '/items/{id}/actions/actions-by-day';
+};
+
+export type GetItemActionsByDayErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetItemActionsByDayError = GetItemActionsByDayErrors[keyof GetItemActionsByDayErrors];
+
+export type GetItemActionsByDayResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        [key: string]: unknown;
+    };
+};
+
+export type GetItemActionsByDayResponse = GetItemActionsByDayResponses[keyof GetItemActionsByDayResponses];
+
+export type GetItemActionsByHourData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        startDate?: string;
+        endDate?: string;
+    };
+    url: '/items/{id}/actions/actions-by-hour';
+};
+
+export type GetItemActionsByHourErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetItemActionsByHourError = GetItemActionsByHourErrors[keyof GetItemActionsByHourErrors];
+
+export type GetItemActionsByHourResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        [key: string]: unknown;
+    };
+};
+
+export type GetItemActionsByHourResponse = GetItemActionsByHourResponses[keyof GetItemActionsByHourResponses];
+
+export type GetItemActionsByWeekdayData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: {
+        startDate?: string;
+        endDate?: string;
+    };
+    url: '/items/{id}/actions/actions-by-weekday';
+};
+
+export type GetItemActionsByWeekdayErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetItemActionsByWeekdayError = GetItemActionsByWeekdayErrors[keyof GetItemActionsByWeekdayErrors];
+
+export type GetItemActionsByWeekdayResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        [key: string]: unknown;
+    };
+};
+
+export type GetItemActionsByWeekdayResponse = GetItemActionsByWeekdayResponses[keyof GetItemActionsByWeekdayResponses];
 
 export type DeleteGeolocationData = {
     body?: never;
@@ -6308,7 +6383,6 @@ export type GetChildrenData = {
         id: string;
     };
     query?: {
-        ordered?: boolean;
         keywords?: Array<string>;
         types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 's3File' | 'shortcut' | 'h5p' | 'etherpad'>;
     };

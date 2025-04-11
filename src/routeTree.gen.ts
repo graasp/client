@@ -51,8 +51,6 @@ import { Route as BuilderItemsItemIdIndexImport } from './routes/builder/items/$
 import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
 import { Route as PlayerRootIdItemIdAutoLoginImport } from './routes/player/$rootId/$itemId/autoLogin'
 import { Route as BuilderItemsItemIdItemPageImport } from './routes/builder/items/$itemId/_itemPage'
-import { Route as AnalyticsItemsItemIdUsersImport } from './routes/analytics/items/$itemId/users'
-import { Route as AnalyticsItemsItemIdItemsImport } from './routes/analytics/items/$itemId/items'
 import { Route as AnalyticsItemsItemIdExportImport } from './routes/analytics/items/$itemId/export'
 import { Route as AnalyticsItemsItemIdAppsImport } from './routes/analytics/items/$itemId/apps'
 import { Route as BuilderItemsItemIdItemPageShareImport } from './routes/builder/items/$itemId/_itemPage/share'
@@ -301,18 +299,6 @@ const BuilderItemsItemIdItemPageRoute = BuilderItemsItemIdItemPageImport.update(
     getParentRoute: () => BuilderItemsItemIdRoute,
   } as any,
 )
-
-const AnalyticsItemsItemIdUsersRoute = AnalyticsItemsItemIdUsersImport.update({
-  id: '/users',
-  path: '/users',
-  getParentRoute: () => AnalyticsItemsItemIdRoute,
-} as any)
-
-const AnalyticsItemsItemIdItemsRoute = AnalyticsItemsItemIdItemsImport.update({
-  id: '/items',
-  path: '/items',
-  getParentRoute: () => AnalyticsItemsItemIdRoute,
-} as any)
 
 const AnalyticsItemsItemIdExportRoute = AnalyticsItemsItemIdExportImport.update(
   {
@@ -612,20 +598,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AnalyticsItemsItemIdExportImport
       parentRoute: typeof AnalyticsItemsItemIdImport
     }
-    '/analytics/items/$itemId/items': {
-      id: '/analytics/items/$itemId/items'
-      path: '/items'
-      fullPath: '/analytics/items/$itemId/items'
-      preLoaderRoute: typeof AnalyticsItemsItemIdItemsImport
-      parentRoute: typeof AnalyticsItemsItemIdImport
-    }
-    '/analytics/items/$itemId/users': {
-      id: '/analytics/items/$itemId/users'
-      path: '/users'
-      fullPath: '/analytics/items/$itemId/users'
-      preLoaderRoute: typeof AnalyticsItemsItemIdUsersImport
-      parentRoute: typeof AnalyticsItemsItemIdImport
-    }
     '/builder/items/$itemId/_itemPage': {
       id: '/builder/items/$itemId/_itemPage'
       path: ''
@@ -748,16 +720,12 @@ const MemberOnlyRouteWithChildren = MemberOnlyRoute._addFileChildren(
 interface AnalyticsItemsItemIdRouteChildren {
   AnalyticsItemsItemIdAppsRoute: typeof AnalyticsItemsItemIdAppsRoute
   AnalyticsItemsItemIdExportRoute: typeof AnalyticsItemsItemIdExportRoute
-  AnalyticsItemsItemIdItemsRoute: typeof AnalyticsItemsItemIdItemsRoute
-  AnalyticsItemsItemIdUsersRoute: typeof AnalyticsItemsItemIdUsersRoute
   AnalyticsItemsItemIdIndexRoute: typeof AnalyticsItemsItemIdIndexRoute
 }
 
 const AnalyticsItemsItemIdRouteChildren: AnalyticsItemsItemIdRouteChildren = {
   AnalyticsItemsItemIdAppsRoute: AnalyticsItemsItemIdAppsRoute,
   AnalyticsItemsItemIdExportRoute: AnalyticsItemsItemIdExportRoute,
-  AnalyticsItemsItemIdItemsRoute: AnalyticsItemsItemIdItemsRoute,
-  AnalyticsItemsItemIdUsersRoute: AnalyticsItemsItemIdUsersRoute,
   AnalyticsItemsItemIdIndexRoute: AnalyticsItemsItemIdIndexRoute,
 }
 
@@ -880,8 +848,6 @@ export interface FileRoutesByFullPath {
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
-  '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
   '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
@@ -923,8 +889,6 @@ export interface FileRoutesByTo {
   '/player/$rootId': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
-  '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
   '/builder/items/$itemId': typeof BuilderItemsItemIdIndexRoute
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdIndexRoute
@@ -973,8 +937,6 @@ export interface FileRoutesById {
   '/player/$rootId/': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/analytics/items/$itemId/items': typeof AnalyticsItemsItemIdItemsRoute
-  '/analytics/items/$itemId/users': typeof AnalyticsItemsItemIdUsersRoute
   '/builder/items/$itemId/_itemPage': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
   '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
@@ -1023,8 +985,6 @@ export interface FileRouteTypes {
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
-    | '/analytics/items/$itemId/items'
-    | '/analytics/items/$itemId/users'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId/'
     | '/builder/items/$itemId/'
@@ -1065,8 +1025,6 @@ export interface FileRouteTypes {
     | '/player/$rootId'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
-    | '/analytics/items/$itemId/items'
-    | '/analytics/items/$itemId/users'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId'
@@ -1113,8 +1071,6 @@ export interface FileRouteTypes {
     | '/player/$rootId/'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
-    | '/analytics/items/$itemId/items'
-    | '/analytics/items/$itemId/users'
     | '/builder/items/$itemId/_itemPage'
     | '/player/$rootId/$itemId/autoLogin'
     | '/analytics/items/$itemId/'
@@ -1334,8 +1290,6 @@ export const routeTree = rootRoute
       "children": [
         "/analytics/items/$itemId/apps",
         "/analytics/items/$itemId/export",
-        "/analytics/items/$itemId/items",
-        "/analytics/items/$itemId/users",
         "/analytics/items/$itemId/"
       ]
     },
@@ -1362,14 +1316,6 @@ export const routeTree = rootRoute
     },
     "/analytics/items/$itemId/export": {
       "filePath": "analytics/items/$itemId/export.tsx",
-      "parent": "/analytics/items/$itemId"
-    },
-    "/analytics/items/$itemId/items": {
-      "filePath": "analytics/items/$itemId/items.tsx",
-      "parent": "/analytics/items/$itemId"
-    },
-    "/analytics/items/$itemId/users": {
-      "filePath": "analytics/items/$itemId/users.tsx",
       "parent": "/analytics/items/$itemId"
     },
     "/builder/items/$itemId/_itemPage": {

@@ -7,8 +7,7 @@ import {
   AccountType,
   DiscriminatedItem,
   ItemLoginSchemaStatus,
-  ItemMembership,
-  PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
@@ -17,6 +16,7 @@ import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
 } from '@/config/selectors';
+import { ItemMembership } from '@/openapi/client';
 import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
@@ -41,7 +41,7 @@ const ItemMembershipTableRow = ({
   const { mutate: editItemMembership } = mutations.useEditItemMembership();
   const { mutate: shareItem } = mutations.usePostItemMembership();
 
-  const changePermission = (newPermission: PermissionLevel) => {
+  const changePermission = (newPermission: PermissionLevelOptions) => {
     if (data.item.path === item.path) {
       editItemMembership({
         id: data.id,

@@ -2,6 +2,7 @@ import {
   ItemMembership,
   PackedFolderItemFactory,
   PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import {
@@ -21,7 +22,7 @@ const openPermissionSelect = ({
   permission,
 }: {
   id: ItemMembership['id'];
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) => {
   cy.get(`#${buildItemMembershipRowEditButtonId(id)}`).click();
   const select = cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`);
@@ -36,7 +37,7 @@ const editItemMembership = ({
 }: {
   id: string;
   itemId: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) => {
   cy.get(`#${buildShareButtonId(itemId)}`).click();
   openPermissionSelect({ id, permission });

@@ -2,7 +2,9 @@ import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
 import { Account, ChatMessageWithCreator } from '@graasp/sdk';
 
-import { hooks } from '@/config/queryClient';
+import { useQuery } from '@tanstack/react-query';
+
+import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 export type MessagesContextType = {
   messages?: ChatMessageWithCreator[];
@@ -26,7 +28,9 @@ export const MessagesContextProvider = ({
   messages,
   itemId,
 }: Props): JSX.Element => {
-  const { data: itemPermissions } = hooks.useItemMemberships(itemId);
+  const { data: itemPermissions } = useQuery(
+    getItemMembershipsForItemOptions({ query: { itemId } }),
+  );
   const members = itemPermissions?.map(({ account }) => account);
 
   const value = {

@@ -4,7 +4,7 @@ import {
   DiscriminatedItem,
   DocumentItemExtra,
   Member,
-  PermissionLevel,
+  PermissionLevelOptions,
   PublicationStatus,
   getAppExtra,
   getDocumentExtra,
@@ -210,7 +210,7 @@ declare global {
 
       fillShareForm(args: {
         email: string;
-        permission: PermissionLevel;
+        permission: PermissionLevelOptions;
         submit?: boolean;
         selector?: string;
       }): void;

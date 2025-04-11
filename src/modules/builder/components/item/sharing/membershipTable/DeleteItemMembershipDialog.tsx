@@ -10,17 +10,14 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  ItemMembership,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 
 import { useNavigate } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
+import { ItemMembership } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../../../langs';

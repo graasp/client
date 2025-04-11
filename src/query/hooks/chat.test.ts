@@ -21,9 +21,9 @@ describe('Chat Hooks', () => {
     const itemId = FolderItemFactory().id;
     const mockMessage: ChatMessage = {
       id: 'some-messageId',
-      item: FolderItemFactory(),
+      itemId: FolderItemFactory().id,
       body: 'some content',
-      creator: AccountFactory(),
+      creatorId: AccountFactory().id,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
     };
@@ -77,9 +77,9 @@ describe('Chat Hooks', () => {
     const itemId = FolderItemFactory().id;
     const mockMessage: ChatMessage = {
       id: 'some-messageId',
-      item: FolderItemFactory(),
+      itemId: FolderItemFactory().id,
       body: 'some content',
-      creator: AccountFactory(),
+      creatorId: AccountFactory().id,
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
     };

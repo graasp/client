@@ -33,30 +33,30 @@ describe('Display public profile', () => {
       );
 
       // displays the correct member linkedIn
-      cy.get(`#linkedinID`).should('contain', MEMBER_PUBLIC_PROFILE.linkedinID);
+      cy.get(`#linkedinID`).should('contain', MEMBER_PUBLIC_PROFILE.linkedinId);
       // displays the correct member linkedIn link
       cy.get(`#linkedinID a`).should(
         'have.attr',
         'href',
-        `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinID}`,
+        `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinId}`,
       );
 
       // displays the correct member twitter
-      cy.get(`#twitterID`).should('contain', MEMBER_PUBLIC_PROFILE.twitterID);
+      cy.get(`#twitterID`).should('contain', MEMBER_PUBLIC_PROFILE.twitterId);
       // displays the correct member twitter link
       cy.get(`#twitterID a`).should(
         'have.attr',
         'href',
-        `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterID}`,
+        `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterId}`,
       );
 
       // displays the correct member facebook
-      cy.get(`#facebookID`).should('contain', MEMBER_PUBLIC_PROFILE.facebookID);
+      cy.get(`#facebookID`).should('contain', MEMBER_PUBLIC_PROFILE.facebookId);
       // displays the correct member facebook link
       cy.get(`#facebookID a`).should(
         'have.attr',
         'href',
-        `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookID}`,
+        `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookId}`,
       );
     });
   });
@@ -108,14 +108,14 @@ describe('Edit public profile', () => {
     // displays the correct member linkedin value
     cy.get(`#linkedinID`).should(
       'have.value',
-      MEMBER_PUBLIC_PROFILE.linkedinID,
+      MEMBER_PUBLIC_PROFILE.linkedinId,
     );
     // displays the correct member twitter value
-    cy.get(`#twitterID`).should('have.value', MEMBER_PUBLIC_PROFILE.twitterID);
+    cy.get(`#twitterID`).should('have.value', MEMBER_PUBLIC_PROFILE.twitterId);
     // displays the correct member facebook value
     cy.get(`#facebookID`).should(
       'have.value',
-      MEMBER_PUBLIC_PROFILE.facebookID,
+      MEMBER_PUBLIC_PROFILE.facebookId,
     );
   });
 

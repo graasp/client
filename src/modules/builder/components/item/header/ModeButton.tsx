@@ -63,7 +63,7 @@ const ModeButton = (): JSX.Element | null => {
           <MenuItemLink
             key={value}
             to="."
-            search={(prev) => ({ ...prev, mode: value })}
+            search={(prev: object) => ({ ...prev, mode: value })}
             onClick={() => handleClose()}
             value={value}
           >

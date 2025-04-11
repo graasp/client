@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Alert, Skeleton, Typography } from '@mui/material';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import SocialLinks from 'social-links';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
@@ -21,10 +21,10 @@ import {
 } from '@/config/selectors';
 import {
   createOwnProfileMutation,
+  getOwnProfileOptions,
   updateOwnProfileMutation,
 } from '@/openapi/client/@tanstack/react-query.gen';
 import { memberKeys } from '@/query/keys';
-import { useOwnProfile } from '@/query/member/publicProfile/hooks';
 
 import { DisplayLink } from './DisplayLink';
 import { EditPublicProfile, Inputs } from './EditPublicProfile';
@@ -35,7 +35,7 @@ export function PublicProfile(): JSX.Element {
   const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateMessage } = useTranslation(NS.Messages);
-  const { data: publicProfile } = useOwnProfile();
+  const { data: publicProfile } = useQuery(getOwnProfileOptions());
   const queryClient = useQueryClient();
 
   const {
@@ -61,7 +61,7 @@ export function PublicProfile(): JSX.Element {
     },
   });
 
-  const { bio, linkedinId, twitterId, facebookId } = publicProfile || {};
+  const { bio, linkedinId, twitterId, facebookId } = publicProfile ?? {};
 
   const [isEditing, setIsEditing] = useState(false);
 

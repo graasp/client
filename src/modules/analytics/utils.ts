@@ -56,7 +56,7 @@ export const formatActionsByDay = (actionsByDayObject: {
 };
 
 export const mapActionsToGeoJsonFeatureObjects = (
-  actions: Action[],
+  actions: { id: string; geolocation: { ll: number[] } }[],
 ): {
   type: 'Feature';
   geometry: {
@@ -70,7 +70,7 @@ export const mapActionsToGeoJsonFeatureObjects = (
   actions
     .filter((action) => action.geolocation)
     .map((action) => {
-      const { ll } = action.geolocation as { ll: number[] };
+      const { ll } = action.geolocation;
       return {
         type: 'Feature',
         properties: { cluster: false, actionId: action.id },

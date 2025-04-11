@@ -6,6 +6,7 @@ import {
   Member,
   PackedFolderItemFactory,
   PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import {
@@ -49,7 +50,7 @@ const membershipsWithoutAdmin = [
 ];
 
 const getLocalizedPermissionText = (
-  permission: 'disabled' | PermissionLevel,
+  permission: 'disabled' | PermissionLevelOptions,
 ) => {
   switch (permission) {
     case 'disabled':
@@ -72,7 +73,7 @@ const checkItemMembershipRow = ({
 }: {
   id: string;
   name: string;
-  permission: 'disabled' | PermissionLevel;
+  permission: 'disabled' | PermissionLevelOptions;
 }): void => {
   cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
     .should('contain', name)

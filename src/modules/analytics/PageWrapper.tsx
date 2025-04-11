@@ -1,5 +1,4 @@
 import { type JSX, type ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { useTheme } from '@mui/material';
 
@@ -8,7 +7,6 @@ import { Context } from '@graasp/sdk';
 import { getRouteApi } from '@tanstack/react-router';
 
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
-import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { HomeHeaderLink } from '@/ui/Main/HomeHeaderLink';
 import Main from '@/ui/Main/Main';
@@ -16,8 +14,6 @@ import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 import AnalyticsIcon from '@/ui/icons/AnalyticsIcon';
-
-import { AnalyticsSidebar } from './AnalyticsSidebar';
 
 const itemRoute = getRouteApi('/analytics/items/$itemId');
 
@@ -29,7 +25,6 @@ export function PageWrapper({
 }: Readonly<{
   children: ReactNode;
 }>): JSX.Element {
-  const { t } = useTranslation(NS.Analytics);
   const { itemId } = itemRoute.useParams();
   const { isMobile } = useMobileView();
   const theme = useTheme();
@@ -51,8 +46,6 @@ export function PageWrapper({
   return (
     <Main
       context={Context.Analytics}
-      drawerContent={<AnalyticsSidebar itemId={itemId} />}
-      drawerOpenAriaLabel={t('DRAWER_OPEN_ARIA')}
       headerRightContent={<HeaderRightContent />}
       PlatformComponent={
         <PlatformSwitch

@@ -30,7 +30,7 @@
   },
   "NO_USER_SELECTED": "No user selected",
   "OTHER_ACTION_TYPE": "Other",
-  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Displaying '{{view}} view' actions from a maximum requested sample size of {{requestedSampleSize}} actions.",
+  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Displaying actions from a maximum requested sample size of {{requestedSampleSize}} actions.",
   "SAMPLE_ACTIONS_MESSAGE": "By default, a sample of maximum {{requestedSampleSize}} actions is requested and displayed in the charts below, in order to provide a general overview of activity in this item.",
   "TAB_MY_ANALYTICS": "My analytics",
   "TAB_GENERAL": "General",
@@ -129,5 +129,7 @@
   "EXPORTING_DONE": "{{format}} request sent",
   "LAST_THREE_MONTHS_LABEL": "Last three months",
   "Count": "Count: {{count}}",
-  "CHART_DATA_UNAVAILABLE": "Could not get the data for this chart"
+  "CHART_DATA_UNAVAILABLE": "Could not get the data for this chart",
+  "All": "All",
+  "Me": "Me"
 }

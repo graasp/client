@@ -1,5 +1,4 @@
 import {
-  AggregateBy,
   DiscriminatedItem,
   ItemGeolocation,
   ItemType,
@@ -16,7 +15,6 @@ import { DEFAULT_LANG } from '@/config/constants.js';
 import { MeiliSearchProps } from './api/search.js';
 import { DEFAULT_THUMBNAIL_SIZE } from './config/constants.js';
 import { ItemSearchParams } from './item/types.js';
-import { AggregateActionsArgs } from './utils/action.js';
 
 /**
  * Contexts
@@ -45,6 +43,7 @@ export const itemKeys = {
     const allChildren = [...singleBaseKey, 'children'] as const;
     const itemLoginSchema = [...singleBaseKey, 'loginSchema'] as const;
     const allThumbnails = [...singleBaseKey, 'thumbnails'] as const;
+    const allDescendants = [...singleBaseKey, 'descendants'] as const;
 
     return {
       // data for one item
@@ -70,10 +69,11 @@ export const itemKeys = {
       paginatedChildren: [...allChildren, 'paginated'] as const,
 
       // descendants
+      allDescendants,
       descendants: (options?: {
         types?: ItemTypeUnion[];
         showHidden?: boolean;
-      }) => [...singleBaseKey, 'descendants', options].filter(Boolean),
+      }) => [...allDescendants, options].filter(Boolean),
 
       // parents
       parents: [...singleBaseKey, 'parents'] as const,
@@ -300,11 +300,6 @@ export const buildActionsKey = (args: {
     endDate: args.endDate,
   },
 ];
-
-export const buildAggregateActionsKey = <K extends AggregateBy[]>(
-  itemId: string | undefined,
-  args: Omit<AggregateActionsArgs<K>, 'itemId'>,
-) => ['aggregateActions', itemId, args];
 
 export const buildInvitationKey = (id?: UUID) => ['invitations', id];
 

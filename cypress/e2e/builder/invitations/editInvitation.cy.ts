@@ -1,4 +1,4 @@
-import { PermissionLevel } from '@graasp/sdk';
+import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
 
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
@@ -16,7 +16,7 @@ const editInvitation = ({
 }: {
   itemId: string;
   id: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) => {
   cy.get(`#${buildShareButtonId(itemId)}`).click();
   cy.get(`#${buildInvitationTableRowId(id)} [aria-label="Edit"]`).click();

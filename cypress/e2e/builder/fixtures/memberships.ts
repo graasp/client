@@ -6,6 +6,7 @@ import {
   MemberFactory,
   PackedFolderItemFactory,
   PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
@@ -14,7 +15,7 @@ import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
 
 export const buildItemMembership = (args: {
-  permission?: PermissionLevel;
+  permission?: PermissionLevelOptions;
   item: DiscriminatedItem;
   account: Partial<Account>;
   creator?: Member;

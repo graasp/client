@@ -7,7 +7,7 @@ import {
   AccountType,
   Invitation,
   ItemMembership,
-  PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { AxiosError } from 'axios';
@@ -33,7 +33,7 @@ const LineDisplay = ({
   permission,
 }: {
   email: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 }) => (
   <Stack direction="row" gap={1}>
     <Typography>{email}</Typography>

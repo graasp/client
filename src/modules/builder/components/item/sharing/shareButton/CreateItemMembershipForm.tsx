@@ -13,19 +13,26 @@ import {
   Typography,
 } from '@mui/material';
 
-import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import {
+  AccountType,
+  DiscriminatedItem,
+  PermissionLevel,
+  PermissionLevelOptions,
+} from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
 import truncate from 'lodash.truncate';
 import validator from 'validator';
 
 import { ITEM_NAME_MAX_LENGTH, NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { mutations } from '@/config/queryClient';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   SHARE_ITEM_CANCEL_BUTTON_CY,
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
+import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { useItemInvitations } from '@/query/hooks/invitation';
 import Button from '@/ui/buttons/Button/Button';
 
@@ -39,14 +46,16 @@ type ContentProps = {
 
 type Inputs = {
   email: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 };
 
 const Content = ({ handleClose, item }: ContentProps) => {
   const itemId = item.id;
 
   const { mutateAsync: shareItem } = mutations.useShareItem();
-  const { data: memberships } = hooks.useItemMemberships(item.id);
+  const { data: memberships } = useQuery(
+    getItemMembershipsForItemOptions({ query: { itemId } }),
+  );
   const { data: invitations } = useItemInvitations(item.id);
 
   const { t: translateCommon } = useTranslation(NS.Common);
@@ -131,7 +140,10 @@ const Content = ({ handleClose, item }: ContentProps) => {
               value={permission}
               onChange={(event) => {
                 if (event.target.value) {
-                  setValue('permission', event.target.value as PermissionLevel);
+                  setValue(
+                    'permission',
+                    event.target.value as PermissionLevelOptions,
+                  );
                 }
               }}
               size="medium"
