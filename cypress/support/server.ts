@@ -118,12 +118,7 @@ const {
   buildImportH5PRoute,
 } = API_ROUTES;
 
-const checkMembership = ({
-  item,
-}: {
-  item: ItemForTest;
-  currentMember: Member;
-}) => {
+const checkMembership = ({ item }: { item: ItemForTest }) => {
   return PermissionLevelCompare.gte(item?.permission, PermissionLevel.Read);
 };
 
@@ -976,7 +971,7 @@ export const mockGetItem = (
         });
       }
 
-      if (!checkMembership({ item, currentMember })) {
+      if (!checkMembership({ item })) {
         if (!currentMember) {
           return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
         }
@@ -991,13 +986,7 @@ export const mockGetItem = (
   ).as('getItem');
 };
 
-export const mockGetItems = ({
-  items,
-  currentMember,
-}: {
-  items: ItemForTest[];
-  currentMember: Member;
-}): void => {
+export const mockGetItems = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
@@ -1013,7 +1002,7 @@ export const mockGetItems = ({
       itemIds.forEach((id) => {
         const item = getItemById(items, id);
 
-        const haveMembership = checkMembership({ item, currentMember });
+        const haveMembership = checkMembership({ item });
 
         if (!haveMembership) {
           result.errors.push({
@@ -1236,13 +1225,7 @@ export const mockGetAvatarUrl = (
   ).as('downloadAvatarUrl');
 };
 
-export const mockGetChildren = ({
-  items,
-  currentMember,
-}: {
-  items: ItemForTest[];
-  currentMember: Member;
-}): void => {
+export const mockGetChildren = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
@@ -1263,7 +1246,7 @@ export const mockGetChildren = ({
         return reply(children);
       }
 
-      if (!checkMembership({ item, currentMember })) {
+      if (!checkMembership({ item })) {
         return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
       }
       return reply(children);
@@ -1287,7 +1270,7 @@ export const mockGetParents = ({
       const id = url.slice(API_HOST.length).split('/')[2];
       const item = getItemById(items, id);
 
-      if (!checkMembership({ item, currentMember })) {
+      if (!checkMembership({ item })) {
         return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
       }
 
@@ -2414,15 +2397,10 @@ export const mockGetItemMembershipsForItem = (
       // otherwise it should return an error
       const isCreator = creator.id === currentMember?.id;
 
-      // if the defined memberships does not contain currentMember, it should throw
-      const currentMemberHasMembership = memberships?.find(
-        ({ account }) => account.id === currentMember?.id,
-      );
       // no membership
-      if (!currentMemberHasMembership && !isCreator) {
+      if (!checkMembership({ item }) && !isCreator) {
         reply({ statusCode: StatusCodes.UNAUTHORIZED });
       }
-
       // return defined memberships or default membership
       const result = memberships || [
         {

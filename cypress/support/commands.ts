@@ -414,7 +414,7 @@ Cypress.Commands.add(
     mockGetAppListRoute(APPS_LIST);
 
     mockGetParents({ items, currentMember });
-    mockGetChildren({ items: cachedItems, currentMember });
+    mockGetChildren({ items: cachedItems });
 
     mockMoveItems(cachedItems, moveItemsError);
 
@@ -450,7 +450,7 @@ Cypress.Commands.add(
 
     mockPostItemFlag(cachedItems, postItemFlagError);
 
-    mockGetItems({ items, currentMember });
+    mockGetItems({ items });
 
     mockGetItemChat({ items }, getItemChatError);
 
