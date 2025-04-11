@@ -72,9 +72,9 @@ export default (queryConfig: QueryClientConfig) => {
         notifier?.({ type: editMemberRoutine.FAILURE, payload: { error } });
       },
       // Always refetch after error or success:
-      onSettled: () => {
+      onSettled: async () => {
         // invalidate all queries
-        queryClient.invalidateQueries({
+        await queryClient.invalidateQueries({
           queryKey: memberKeys.current().content,
         });
       },

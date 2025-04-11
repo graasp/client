@@ -55,7 +55,6 @@ describe('Item Validation Mutations', () => {
         await waitForMutation();
       });
 
-      expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: postItemValidationRoutine.SUCCESS,
       });

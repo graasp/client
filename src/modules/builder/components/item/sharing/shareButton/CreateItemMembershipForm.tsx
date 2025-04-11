@@ -20,19 +20,17 @@ import {
   PermissionLevelOptions,
 } from '@graasp/sdk';
 
-import { useQuery } from '@tanstack/react-query';
 import truncate from 'lodash.truncate';
 import validator from 'validator';
 
 import { ITEM_NAME_MAX_LENGTH, NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
+import { hooks, mutations } from '@/config/queryClient';
 import {
   CREATE_MEMBERSHIP_FORM_ID,
   SHARE_ITEM_CANCEL_BUTTON_CY,
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
-import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { useItemInvitations } from '@/query/hooks/invitation';
 import Button from '@/ui/buttons/Button/Button';
 
@@ -53,9 +51,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
   const itemId = item.id;
 
   const { mutateAsync: shareItem } = mutations.useShareItem();
-  const { data: memberships } = useQuery(
-    getItemMembershipsForItemOptions({ query: { itemId } }),
-  );
+  const { data: memberships } = hooks.useItemMemberships(itemId);
   const { data: invitations } = useItemInvitations(item.id);
 
   const { t: translateCommon } = useTranslation(NS.Common);

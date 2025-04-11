@@ -4,13 +4,12 @@ import { Alert, Box, Divider, Stack, Typography } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
-import { useQuery } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
+import { hooks } from '@/config/queryClient';
 import { VISIBILITY_HIDDEN_ALERT_ID } from '@/config/selectors';
-import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import DeleteItemLoginSchemaButton from '~builder/components/item/sharing/DeleteItemLoginSchemaButton';
 import HideSettingCheckbox from '~builder/components/item/sharing/HideSettingCheckbox';
@@ -29,9 +28,7 @@ function RouteComponent() {
   const { item, canAdmin } = useOutletContext();
 
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { data: memberships } = useQuery(
-    getItemMembershipsForItemOptions({ query: { itemId } }),
-  );
+  const { data: memberships } = hooks.useItemMemberships(itemId);
 
   return (
     <Stack gap={2} mb={5}>

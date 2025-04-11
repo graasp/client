@@ -130,10 +130,8 @@ describe('Member Mutations', () => {
       expect(patchSpy).toHaveBeenCalledWith(expect.anything(), newMember);
 
       // verify cache keys
-      const newData = queryClient.getQueryData<CompleteMember>(
-        memberKeys.current().content,
-      );
-      expect(newData).toMatchObject(response);
+      const newData = queryClient.getQueryState(memberKeys.current().content);
+      expect(newData?.isInvalidated).toBeTruthy();
     });
 
     it(`Successfully edit member's username and ensures trimming`, async () => {
@@ -168,10 +166,8 @@ describe('Member Mutations', () => {
       expect(payload.name).toEqual(trimmedUsername);
 
       // verify cache keys
-      const newData = queryClient.getQueryData<CompleteMember>(
-        memberKeys.current().content,
-      );
-      expect(newData).toMatchObject(response);
+      const newData = queryClient.getQueryState(memberKeys.current().content);
+      expect(newData?.isInvalidated).toBeTruthy();
     });
 
     it(`Successfully enable saveActions`, async () => {
