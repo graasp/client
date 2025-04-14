@@ -122,7 +122,7 @@ export function PublicProfile(): JSX.Element {
         {facebookId && (
           <DisplayLink
             icon={<FacebookIcon />}
-            contentId="facebookID"
+            contentId="facebookId"
             href={socialLinks.sanitize('facebook', facebookId)}
             content={facebookId}
           />

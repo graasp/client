@@ -1580,8 +1580,7 @@ export const mockUploadInvitationCSVWithTemplate = (
       if (shouldThrowError) {
         return reply({ statusCode: StatusCodes.BAD_REQUEST });
       }
-      // return reply([{ groupName: 'A', memberships: [], invitations: [] }]);
-      return reply({ status: StatusCodes.NO_CONTENT });
+      return reply([{ groupName: 'A', memberships: [], invitations: [] }]);
     },
   ).as('uploadCSVWithTemplate');
 };
