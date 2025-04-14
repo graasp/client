@@ -99,13 +99,20 @@ type NockMethodType = Exclude<
   undefined
 >;
 
-export const mockEndpoints = (endpoints: Endpoint[]) => {
+export const mockEndpoints = (
+  endpoints: Endpoint[],
+  persist: boolean = false,
+) => {
   // mock endpoint with given response
   const server = nock(API_HOST);
   endpoints.forEach(({ route, method, statusCode, response, headers }) => {
-    server[(method || HttpMethod.Get).toLowerCase() as NockMethodType](
-      route,
-    ).reply(statusCode || StatusCodes.OK, response, headers);
+    const mock = server[
+      (method || HttpMethod.Get).toLowerCase() as NockMethodType
+    ](route).reply(statusCode || StatusCodes.OK, response, headers);
+
+    if (persist) {
+      mock.persist();
+    }
   });
   return server;
 };

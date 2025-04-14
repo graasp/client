@@ -48,14 +48,12 @@ describe('Storage files', () => {
     const filesPerPage = 10;
     const numberPages = Math.ceil(files.length / filesPerPage);
 
-    for (let i = 0; i < numberPages; i += 1) {
-      const startIndex = i * filesPerPage;
-      const endIndex = Math.min(startIndex + filesPerPage, files.length);
-      const shouldDisplay = files.slice(startIndex, endIndex);
+    for (let i = 1; i <= numberPages; i += 1) {
+      const currentNbOfFiles =
+        files.length > i * filesPerPage ? i * filesPerPage : files.length;
+      cy.get('tbody tr').should('have.length', currentNbOfFiles);
 
-      cy.get('tbody tr').should('have.length', shouldDisplay.length);
-
-      shouldDisplay.forEach((file, fileIndex) => {
+      files.slice(0, currentNbOfFiles).forEach((file, fileIndex) => {
         cy.get('tbody tr')
           .eq(fileIndex)
           .scrollIntoView()
@@ -75,9 +73,10 @@ describe('Storage files', () => {
             ).should('contain', file.parent?.name ?? '-');
           });
       });
-      if (i !== numberPages - 1) {
-        cy.get('button[aria-label="Go to next page"]').click();
+      if (i !== numberPages) {
+        cy.get('button[role="feed"]').click();
       }
+      break;
     }
   });
 });
