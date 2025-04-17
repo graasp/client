@@ -348,7 +348,7 @@ const ITEM_VISIBILITY_2: ItemVisibility = createMockItemVisibilities({
 
 export const ITEM_VISIBILITIES = [ITEM_VISIBILITY_1, ITEM_VISIBILITY_2];
 
-export const CHAT_MESSAGES: ChatMessage[] = [
+export const CHAT_MESSAGES: RawChatMessage[] = [
   {
     id: v4(),
     itemId: v4(),
