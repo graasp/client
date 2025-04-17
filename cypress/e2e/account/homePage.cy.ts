@@ -1,5 +1,6 @@
 import {
   HttpMethod,
+  MemberFactory,
   PackedFolderItemFactory,
   PackedShortcutItemFactory,
 } from '@graasp/sdk';
@@ -123,7 +124,13 @@ describe('Image is not set', () => {
 describe('Check member info', () => {
   beforeEach(() => {
     cy.setUpApi({
-      currentMember: MEMBER_WITH_AVATAR,
+      currentMember: {
+        ...MemberFactory({
+          extra: { lang: 'en', hasAvatar: true },
+        }),
+        // this only exists for test
+        thumbnails: AVATAR_LINK,
+      },
     });
     cy.visit('/account/settings');
     cy.wait('@getCurrentMember');
@@ -154,7 +161,7 @@ describe('Check member info', () => {
 describe('Bookmarked items', () => {
   beforeEach(() => {
     cy.setUpApi({
-      currentMember: MEMBER_WITH_AVATAR,
+      currentMember: MemberFactory(),
       items: [targetItem],
       bookmarkedItems: [
         {

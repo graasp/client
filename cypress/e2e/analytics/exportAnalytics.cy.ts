@@ -1,15 +1,14 @@
-import { ExportActionsFormatting } from '@graasp/sdk';
+import { ExportActionsFormatting, MemberFactory } from '@graasp/sdk';
 
 import {
   EXPORT_ACTIONS_BUTTON_ID,
   buildSelectExportFormatID,
 } from '../../../src/modules/analytics/config/selectors';
 import { ITEM_TO_EXPORT } from '../../fixtures/analytics/items';
-import MOCK_MEMBERS from '../../fixtures/analytics/members';
 
 describe('Check exporting analytics for allowed formats', () => {
   beforeEach(() => {
-    cy.setUpApi({ items: [ITEM_TO_EXPORT], currentMember: MOCK_MEMBERS[0] });
+    cy.setUpApi({ items: [ITEM_TO_EXPORT], currentMember: MemberFactory() });
   });
 
   [ExportActionsFormatting.CSV, ExportActionsFormatting.JSON].forEach(

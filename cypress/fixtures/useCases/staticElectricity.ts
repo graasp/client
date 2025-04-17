@@ -13,10 +13,11 @@ import {
   buildLinkExtra,
 } from '@graasp/sdk';
 
+import { v4 } from 'uuid';
+
 import { ItemForTest } from '../../support/types';
 import { MOCK_IMAGE_URL } from '../fileLinks';
 import { CURRENT_MEMBER } from '../members';
-import { mockItemTag } from '../tags';
 
 export const STATIC_ELECTRICITY: {
   items: ItemForTest[];
@@ -236,7 +237,12 @@ PUBLIC_STATIC_ELECTRICITY.items = PUBLIC_STATIC_ELECTRICITY.items.map(
     const newItem = {
       ...item,
       visibilities: [
-        mockItemTag({ itemPath: item.path, type: ItemVisibilityType.Public }),
+        {
+          id: v4(),
+          itemPath: item.path,
+          type: ItemVisibilityType.Public,
+          createdAt: new Date().toISOString(),
+        },
       ],
     };
     return newItem;

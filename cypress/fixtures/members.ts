@@ -6,19 +6,7 @@ import {
   PublicProfile,
 } from '@graasp/sdk';
 
-import { MemberForTest } from '../support/types';
 import { AVATAR_LINK } from './thumbnails/links';
-
-export const MEMBER_WITH_AVATAR: MemberForTest = {
-  ...MemberFactory({
-    id: 'ecafbd2a-5642-31fb-ae93-0242ac130004',
-    name: 'bob',
-    email: 'bob@email.com',
-    extra: { lang: 'en', hasAvatar: true },
-  }),
-  // this only exists for test
-  thumbnails: AVATAR_LINK,
-};
 
 export const MEMBER_PUBLIC_PROFILE: PublicProfile = {
   id: 'ecafbd2a-5642-31fb-ae93-0242ac130004',
