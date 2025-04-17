@@ -18,7 +18,7 @@ import {
   MEMBER_USERNAME_DISPLAY_ID,
 } from '../../../src/config/selectors';
 import { API_ROUTES } from '../../../src/query/routes';
-import { MEMBERS, MEMBER_WITH_AVATAR } from '../../fixtures/members';
+import { MEMBERS } from '../../fixtures/members';
 import {
   AVATAR_LINK,
   THUMBNAIL_MEDIUM_PATH,
@@ -122,15 +122,17 @@ describe('Image is not set', () => {
 });
 
 describe('Check member info', () => {
+  const currentMember = {
+    ...MemberFactory({
+      extra: { lang: 'en', hasAvatar: true },
+    }),
+    // this only exists for test
+    thumbnails: AVATAR_LINK,
+  };
+
   beforeEach(() => {
     cy.setUpApi({
-      currentMember: {
-        ...MemberFactory({
-          extra: { lang: 'en', hasAvatar: true },
-        }),
-        // this only exists for test
-        thumbnails: AVATAR_LINK,
-      },
+      currentMember,
     });
     cy.visit('/account/settings');
     cy.wait('@getCurrentMember');
@@ -142,16 +144,16 @@ describe('Check member info', () => {
     cy.get(`#${MEMBER_AVATAR_IMAGE_ID}`).should(
       'have.attr',
       'src',
-      MEMBER_WITH_AVATAR.thumbnails,
+      currentMember.thumbnails,
     );
     // displays the correct member name
     cy.get(`#${MEMBER_USERNAME_DISPLAY_ID}`).should(
       'contain',
-      MEMBER_WITH_AVATAR.name,
+      currentMember.name,
     );
-    const lang = MEMBER_WITH_AVATAR.extra.lang ?? 'en';
+    const lang = currentMember.extra.lang ?? 'en';
     // displays the correct creation date
-    const formattedDate = formatDistanceToNow(MEMBER_WITH_AVATAR.createdAt, {
+    const formattedDate = formatDistanceToNow(currentMember.createdAt, {
       locale: getLocalForDateFns(lang),
     });
     cy.get(`#${MEMBER_CREATED_AT_ID}`).should('contain', formattedDate);
