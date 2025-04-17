@@ -1,8 +1,10 @@
-import { AccountFactory, ChatMessage, FolderItemFactory } from '@graasp/sdk';
+import { AccountFactory, FolderItemFactory } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import { type RawChatMessage } from '@/openapi/client/types.gen.js';
 
 import { buildItemChatKey } from '../keys.js';
 import { buildGetItemChatRoute } from '../routes.js';
@@ -19,7 +21,7 @@ describe('Chat Hooks', () => {
 
   describe('useItemChat', () => {
     const itemId = FolderItemFactory().id;
-    const mockMessage: ChatMessage = {
+    const mockMessage: RawChatMessage = {
       id: 'some-messageId',
       itemId: FolderItemFactory().id,
       body: 'some content',
@@ -75,7 +77,7 @@ describe('Chat Hooks', () => {
 
   describe('useItemChat with arguments', () => {
     const itemId = FolderItemFactory().id;
-    const mockMessage: ChatMessage = {
+    const mockMessage: RawChatMessage = {
       id: 'some-messageId',
       itemId: FolderItemFactory().id,
       body: 'some content',

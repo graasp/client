@@ -6,7 +6,6 @@ import {
   ActionData,
   App,
   ChatMention,
-  ChatMessage,
   Context,
   ExportedChatMessage,
   FlagType,
@@ -39,6 +38,8 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
+
+import { RawChatMessage } from '@/openapi/client';
 
 type MockFastifyError = {
   name: string;
@@ -223,8 +224,8 @@ const APP_2: App = {
 export const APPS = [APP_1, APP_2];
 
 export const createMockChatMessage = (
-  message?: Partial<ChatMessage>,
-): ChatMessage => ({
+  message?: Partial<RawChatMessage>,
+): RawChatMessage => ({
   id: '',
   body: 'some text',
   itemId: v4(),
