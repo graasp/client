@@ -2138,7 +2138,6 @@ export const mockGetItemsInMap = (
 
 // Intercept ShortLinks calls
 export const mockGetShortLinksItem = (
-  itemId: string,
   shortLinks: ShortLink[],
   shouldThrowError: boolean,
 ): void => {
@@ -2153,17 +2152,9 @@ export const mockGetShortLinksItem = (
       }
 
       return reply(
-        shortLinks
-          .filter(({ itemId: id }) => id === itemId)
-          .reduce<ShortLinksOfItem>((acc, s) => {
-            if (acc[s.platform]) {
-              throw new Error(
-                `Duplication of platform ${s} in shortlinks for item ${itemId}!`,
-              );
-            }
-
-            return { ...acc, [s.platform]: s.alias };
-          }, {}),
+        shortLinks.reduce<ShortLinksOfItem>((acc, s) => {
+          return { ...acc, [s.platform]: s.alias };
+        }, {}),
       );
     },
   ).as('getShortLinksItem');

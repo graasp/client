@@ -2,12 +2,13 @@ import {
   ItemValidation,
   ItemValidationProcess,
   ItemValidationStatus,
+  PackedFolderItemFactory,
   Tag,
   TagCategory,
 } from '@graasp/sdk';
 
 import { ItemForTest } from '../../../support/types';
-import { PUBLISHED_ITEM } from './items';
+import { PublishedItemFactory } from './items';
 
 export const SAMPLE_TAGS: Tag[] = [
   {
@@ -38,7 +39,7 @@ export const SAMPLE_TAGS: Tag[] = [
 ];
 
 export const ITEM_WITH_TAGS: ItemForTest = {
-  ...PUBLISHED_ITEM,
+  ...PublishedItemFactory(PackedFolderItemFactory()),
   settings: {
     displayCoEditors: true,
   },
@@ -57,7 +58,6 @@ export const ITEM_WITH_TAGS_CONTEXT = {
         {
           id: 'id1',
           item: ITEM_WITH_TAGS,
-          // itemValidationGroup: iVG,
           process: ItemValidationProcess.BadWordsDetection,
           status: ItemValidationStatus.Success,
           result: '',

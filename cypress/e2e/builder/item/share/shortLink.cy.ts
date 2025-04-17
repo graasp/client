@@ -21,7 +21,7 @@ import {
   buildShortLinkMenuBtnId,
   buildShortLinkShortenBtnId,
 } from '../../../../../src/config/selectors';
-import { PUBLISHED_ITEM } from '../../fixtures/items';
+import { PublishedItemFactory } from '../../fixtures/items';
 import {
   expectNumberOfShortLinks,
   expectShortLinksEquals,
@@ -43,7 +43,6 @@ describe('Short links', () => {
           items,
           getShortLinkAvailable: true, // indicates that the short link is available
           shortLinks,
-          itemId,
         });
       });
 
@@ -144,7 +143,6 @@ describe('Short links', () => {
           items,
           getShortLinkAvailable: true, // indicates that the short link is available
           shortLinks,
-          itemId,
         });
       });
 
@@ -272,7 +270,6 @@ describe('Short links', () => {
           items,
           getShortLinkAvailable: false, // indicates that the short link is not available
           shortLinks,
-          itemId,
         });
       });
 
@@ -340,21 +337,19 @@ describe('Short links', () => {
     });
 
     describe('Published Item', () => {
-      let itemId: string;
+      const item = PublishedItemFactory(PackedFolderItemFactory());
       beforeEach(() => {
         const shortLinks: ShortLink[] = [];
 
-        itemId = PUBLISHED_ITEM.id;
-
         cy.setUpApi({
-          items: [PUBLISHED_ITEM],
+          items: [item],
           getShortLinkAvailable: true, // indicates that the short link is available
           shortLinks,
-          itemId,
         });
       });
 
       it('POST Library short link', () => {
+        const itemId = item.id;
         cy.visit(buildItemPath(itemId));
         cy.get(`#${buildShareButtonId(itemId)}`).click();
 
@@ -391,17 +386,15 @@ describe('Short links', () => {
   });
 
   describe('Read permission', () => {
-    let itemId: string;
     let shortLinks: ShortLink[];
 
     const READ_ITEMS = [
       PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
       PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
     ];
+    const itemId = READ_ITEMS[0].id;
 
     beforeEach(() => {
-      itemId = READ_ITEMS[0].id;
-
       shortLinks = [
         {
           alias: 'test-1',
@@ -414,7 +407,6 @@ describe('Short links', () => {
         items: READ_ITEMS,
         getShortLinkAvailable: true, // indicates that the short link is available
         shortLinks,
-        itemId,
       });
     });
 
