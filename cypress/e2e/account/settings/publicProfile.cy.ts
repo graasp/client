@@ -9,9 +9,9 @@ import {
 import { MEMBERS, MEMBER_PUBLIC_PROFILE } from '../../../fixtures/members';
 
 const SocialProfile = {
-  Linkedin: 'linkedinID',
-  Twitter: 'twitterID',
-  Facebook: 'facebookID',
+  Linkedin: 'linkedinId',
+  Twitter: 'twitterId',
+  Facebook: 'facebookId',
 } as const;
 
 describe('Display public profile', () => {
@@ -33,30 +33,30 @@ describe('Display public profile', () => {
       );
 
       // displays the correct member linkedIn
-      cy.get(`#linkedinID`).should('contain', MEMBER_PUBLIC_PROFILE.linkedinID);
+      cy.get(`#linkedinId`).should('contain', MEMBER_PUBLIC_PROFILE.linkedinId);
       // displays the correct member linkedIn link
-      cy.get(`#linkedinID a`).should(
+      cy.get(`#linkedinId a`).should(
         'have.attr',
         'href',
-        `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinID}`,
+        `https://linkedin.com/in/${MEMBER_PUBLIC_PROFILE.linkedinId}`,
       );
 
       // displays the correct member twitter
-      cy.get(`#twitterID`).should('contain', MEMBER_PUBLIC_PROFILE.twitterID);
+      cy.get(`#twitterId`).should('contain', MEMBER_PUBLIC_PROFILE.twitterId);
       // displays the correct member twitter link
-      cy.get(`#twitterID a`).should(
+      cy.get(`#twitterId a`).should(
         'have.attr',
         'href',
-        `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterID}`,
+        `https://twitter.com/${MEMBER_PUBLIC_PROFILE.twitterId}`,
       );
 
       // displays the correct member facebook
-      cy.get(`#facebookID`).should('contain', MEMBER_PUBLIC_PROFILE.facebookID);
+      cy.get(`#facebookId`).should('contain', MEMBER_PUBLIC_PROFILE.facebookId);
       // displays the correct member facebook link
-      cy.get(`#facebookID a`).should(
+      cy.get(`#facebookId a`).should(
         'have.attr',
         'href',
-        `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookID}`,
+        `https://facebook.com/${MEMBER_PUBLIC_PROFILE.facebookId}`,
       );
     });
   });
@@ -106,16 +106,16 @@ describe('Edit public profile', () => {
       MEMBER_PUBLIC_PROFILE.bio,
     );
     // displays the correct member linkedin value
-    cy.get(`#linkedinID`).should(
+    cy.get(`#linkedinId`).should(
       'have.value',
-      MEMBER_PUBLIC_PROFILE.linkedinID,
+      MEMBER_PUBLIC_PROFILE.linkedinId,
     );
     // displays the correct member twitter value
-    cy.get(`#twitterID`).should('have.value', MEMBER_PUBLIC_PROFILE.twitterID);
+    cy.get(`#twitterId`).should('have.value', MEMBER_PUBLIC_PROFILE.twitterId);
     // displays the correct member facebook value
-    cy.get(`#facebookID`).should(
+    cy.get(`#facebookId`).should(
       'have.value',
-      MEMBER_PUBLIC_PROFILE.facebookID,
+      MEMBER_PUBLIC_PROFILE.facebookId,
     );
   });
 

@@ -60,6 +60,9 @@ export default (queryConfig: QueryClientConfig) => {
         queryClient.invalidateQueries({
           queryKey: itemKeys.single(itemId).memberships,
         });
+        queryClient.invalidateQueries({
+          queryKey: itemKeys.single(itemId).allChildren,
+        });
       },
     });
   };

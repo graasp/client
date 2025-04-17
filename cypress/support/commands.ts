@@ -4,7 +4,7 @@ import {
   DiscriminatedItem,
   DocumentItemExtra,
   Member,
-  PermissionLevel,
+  PermissionLevelOptions,
   PublicationStatus,
   getAppExtra,
   getDocumentExtra,
@@ -67,7 +67,7 @@ import {
 } from '../fixtures/members';
 import { MEMBER_STORAGE_ITEM_RESPONSE } from '../fixtures/storage';
 import {
-  mockAddFavorite,
+  mockAddBookmark,
   mockAddTag,
   mockAppApiAccessToken,
   mockCheckShortLink,
@@ -76,8 +76,8 @@ import {
   mockCreatePassword,
   mockDefaultDownloadFile,
   mockDeleteAppData,
+  mockDeleteBookmark,
   mockDeleteCurrentMember,
-  mockDeleteFavorite,
   mockDeleteInvitation,
   mockDeleteItemLoginSchema,
   mockDeleteItemMembershipForItem,
@@ -103,15 +103,14 @@ import {
   mockGetCurrentMemberAvatar,
   mockGetDescendants,
   mockGetItem,
+  mockGetItemBookmarks,
   mockGetItemChat,
-  mockGetItemFavorites,
   mockGetItemGeolocation,
   mockGetItemInvitations,
   mockGetItemLoginSchema,
   mockGetItemLoginSchemaType,
   mockGetItemMembershipsForItem,
   mockGetItemThumbnailUrl,
-  mockGetItemValidationGroups,
   mockGetItems,
   mockGetItemsInMap,
   mockGetLatestValidationGroup,
@@ -150,7 +149,6 @@ import {
   mockPostItemThumbnail,
   mockPostItemValidation,
   mockPostItemVisibility,
-  mockPostManyItemMemberships,
   mockPostShortLink,
   mockPublishItem,
   mockPutItemLoginSchema,
@@ -210,7 +208,7 @@ declare global {
 
       fillShareForm(args: {
         email: string;
-        permission: PermissionLevel;
+        permission: PermissionLevelOptions;
         submit?: boolean;
         selector?: string;
       }): void;
@@ -333,9 +331,9 @@ Cypress.Commands.add(
     clearItemChatError = false,
     getMemberMentionsError = false,
     getAppLinkError = false,
-    getFavoriteError = false,
-    addFavoriteError = false,
-    deleteFavoriteError = false,
+    getBookmarkError = false,
+    addBookmarkError = false,
+    deleteBookmarkError = false,
     itemId,
     getShortLinksItemError = false,
     getShortLinkAvailable = true,
@@ -415,16 +413,12 @@ Cypress.Commands.add(
 
     mockGetAppListRoute(APPS_LIST);
 
-    mockGetParents({ items, currentMember });
-    mockGetChildren({ items: cachedItems, currentMember });
+    mockGetParents({ items });
+    mockGetChildren({ items: cachedItems });
 
     mockMoveItems(cachedItems, moveItemsError);
 
     mockPostItemMembership(cachedItems, shareItemError);
-    mockPostManyItemMemberships(
-      { items: cachedItems, members },
-      shareItemError,
-    );
 
     mockGetMember(cachedMembers);
 
@@ -444,7 +438,7 @@ Cypress.Commands.add(
 
     mockGetItemMembershipsForItem(items, currentMember);
 
-    mockPostItemVisibility(cachedItems, currentMember, postItemVisibilityError);
+    mockPostItemVisibility(cachedItems, postItemVisibilityError);
 
     mockDeleteItemVisibility(deleteItemVisibilityError);
 
@@ -456,7 +450,7 @@ Cypress.Commands.add(
 
     mockPostItemFlag(cachedItems, postItemFlagError);
 
-    mockGetItems({ items, currentMember });
+    mockGetItems({ items });
 
     mockGetItemChat({ items }, getItemChatError);
 
@@ -489,8 +483,6 @@ Cypress.Commands.add(
     mockRemoveTag();
     mockAddTag();
 
-    mockGetItemValidationGroups(itemValidationGroups);
-
     mockPostItemValidation();
 
     mockPostInvitations(items, postInvitationsError);
@@ -513,11 +505,11 @@ Cypress.Commands.add(
 
     mockGetLatestValidationGroup(items, itemValidationGroups);
 
-    mockGetItemFavorites(bookmarkedItems, getFavoriteError);
+    mockGetItemBookmarks(bookmarkedItems, getBookmarkError);
 
-    mockAddFavorite(cachedItems, addFavoriteError);
+    mockAddBookmark(cachedItems, addBookmarkError);
 
-    mockDeleteFavorite(deleteFavoriteError);
+    mockDeleteBookmark(deleteBookmarkError);
 
     mockGetShortLinksItem(itemId, cachedShortLinks, getShortLinksItemError);
 

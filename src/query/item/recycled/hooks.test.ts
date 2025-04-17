@@ -27,7 +27,7 @@ describe('useInfiniteOwnRecycledItems', () => {
   const pagination = { page: 1 };
   const route = `/${buildGetOwnRecycledItemRoute(pagination)}`;
   const items = generateFolders();
-  const response = { data: items, totalCount: items.length };
+  const response = { data: items };
   const hook = () => useInfiniteOwnRecycledItems(pagination);
   const key = memberKeys.current().infiniteRecycledItemData();
 

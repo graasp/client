@@ -1,4 +1,9 @@
-import { ItemType, Member, PermissionLevel, UnionOfConst } from '@graasp/sdk';
+import {
+  ItemType,
+  Member,
+  PermissionLevelOptions,
+  UnionOfConst,
+} from '@graasp/sdk';
 
 export type ItemSearchParams = {
   creatorId?: Member['id'];
@@ -9,7 +14,7 @@ export type ItemSearchParams = {
     | 'item.creator.name'
     | 'item.created_at'
     | 'item.updated_at';
-  permissions?: PermissionLevel[];
+  permissions?: PermissionLevelOptions[];
   types?: UnionOfConst<typeof ItemType>[];
   keywords?: string;
 };

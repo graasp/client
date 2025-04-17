@@ -72,6 +72,7 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
     hasOnlyOneAdmin,
     isLoading: isMembershipsLoading,
   } = useHighestMemberships({ canAdmin, item });
+
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({
     itemId: item.id,
   });

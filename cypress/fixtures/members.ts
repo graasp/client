@@ -23,9 +23,9 @@ export const MEMBER_WITH_AVATAR: MemberForTest = {
 export const MEMBER_PUBLIC_PROFILE: PublicProfile = {
   id: 'ecafbd2a-5642-31fb-ae93-0242ac130004',
   bio: 'text',
-  twitterID: 'twitter_handle',
-  facebookID: 'fb_handle',
-  linkedinID: 'linkedin_handle',
+  twitterId: 'twitter_handle',
+  facebookId: 'fb_handle',
+  linkedinId: 'linkedin_handle',
   createdAt: '2021-04-13 14:56:34.749946',
   updatedAt: '2021-04-13 14:56:34.749946',
   visibility: false,

@@ -1,6 +1,7 @@
-import { AccountType, DiscriminatedItem, ItemMembership } from '@graasp/sdk';
+import { AccountType, type DiscriminatedItem } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
+import { ItemMembership } from '@/openapi/client';
 
 export function useGuestMemberships(itemId: DiscriminatedItem['id']): {
   isLoading: boolean;

@@ -1,20 +1,21 @@
-import { ChangeEvent, type JSX, useState } from 'react';
+import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { LoadingButton } from '@mui/lab';
 import {
   Alert,
   Skeleton,
+  Stack,
   Table,
   TableBody,
   TableCell,
   TableHead,
-  TablePagination,
   TableRow,
 } from '@mui/material';
 
 import { formatDate, formatFileSize } from '@graasp/sdk';
 
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
@@ -25,40 +26,39 @@ import {
   MEMBER_STORAGE_PARENT_FOLDER_ID,
   getCellId,
 } from '@/config/selectors';
+import { getStorageFiles } from '@/openapi/client';
 import { getStorageFilesOptions } from '@/openapi/client/@tanstack/react-query.gen';
+
+const PAGE_SIZE = 10;
 
 export const StorageFiles = (): JSX.Element | null => {
   const { t, i18n } = useTranslation(NS.Account);
-  const [pagination, setPagination] = useState({ page: 1, pageSize: 10 });
-  const { data, isPending } = useQuery(
-    getStorageFilesOptions({ query: pagination }),
-  );
-
-  const handlePageChange = (_: unknown, newPage: number) => {
-    setPagination((prev) => {
-      if (prev.page !== newPage + 1) {
-        return { ...prev, page: newPage + 1 };
-      }
-      return prev;
+  const { data, isPending, hasNextPage, fetchNextPage, isFetching } =
+    useInfiniteQuery({
+      queryKey: getStorageFilesOptions({
+        query: { pageSize: PAGE_SIZE, page: 1 },
+      }).queryKey,
+      queryFn: async ({ pageParam }) =>
+        (
+          await getStorageFiles({
+            query: { page: pageParam ?? 1, pageSize: PAGE_SIZE },
+          })
+        ).data,
+      getNextPageParam: (lastPage, pages) => {
+        return lastPage && lastPage.data.length < PAGE_SIZE
+          ? undefined
+          : pages.length + 1;
+      },
+      refetchOnWindowFocus: () => false,
+      initialPageParam: 1,
     });
-  };
-
-  const handlePageSizeChange = (
-    event: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
-  ) => {
-    const newSize = parseInt(event.target.value, 10);
-    setPagination((prev) => {
-      if (prev.pageSize !== newSize) {
-        return { page: 1, pageSize: newSize };
-      }
-      return prev;
-    });
-  };
 
   if (data) {
-    if (data.data.length === 0) {
+    if (data.pages.length === 0) {
       return <Alert severity="info">{t('MEMBER_STORAGE_FILES_EMPTY')}</Alert>;
     }
+
+    const files = data.pages.flatMap((page) => page?.data ?? []);
 
     return (
       <>
@@ -72,7 +72,7 @@ export const StorageFiles = (): JSX.Element | null => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.data.map((file) => (
+            {files.map((file) => (
               <TableRow key={file.id}>
                 <TableCell
                   id={getCellId(`${MEMBER_STORAGE_FILE_NAME_ID}`, file.id)}
@@ -106,15 +106,18 @@ export const StorageFiles = (): JSX.Element | null => {
             ))}
           </TableBody>
         </Table>
-        <TablePagination
-          component="div"
-          count={data.totalCount} // total number of files
-          page={pagination.page - 1} // current page
-          onPageChange={(event, newPage) => handlePageChange(event, newPage)}
-          rowsPerPage={pagination.pageSize}
-          onRowsPerPageChange={handlePageSizeChange}
-          rowsPerPageOptions={[5, 10, 25, 50]}
-        />
+        {hasNextPage && (
+          <Stack textAlign="center" alignItems="center">
+            <LoadingButton
+              loading={isFetching}
+              variant="outlined"
+              onClick={() => fetchNextPage()}
+              role="feed"
+            >
+              {t('STORAGE_LOAD_MORE_FILES')}
+            </LoadingButton>
+          </Stack>
+        )}
       </>
     );
   }

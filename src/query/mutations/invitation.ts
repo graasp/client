@@ -1,4 +1,4 @@
-import { Invitation, PermissionLevel, UUID } from '@graasp/sdk';
+import { Invitation, PermissionLevelOptions, UUID } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -48,31 +48,9 @@ export default (queryConfig: QueryClientConfig) => {
       }: {
         itemId: UUID;
         id: UUID;
-        permission: PermissionLevel;
+        permission: PermissionLevelOptions;
         name?: string;
       }) => Api.patchInvitation({ itemId, id }, { permission, name }),
-      //     onMutate: async ({ itemId, id, permission, name }) => {
-      //       const key = buildItemInvitationsKey(itemId);
-
-      //       const prevValue = queryClient.getQueryData<List<Invitation>>(key);
-
-      //       // update invitation from list
-      //       if (prevValue) {
-      //         queryClient.setQueryData(
-      //           key,
-      //           prevValue.update((arr) => {
-      //             const idx = arr.findIndex(({ id: thisId }) => thisId === id)
-      //             const prev = arr.get(idx)
-      //             const updated = prev.
-      //             arr.update(idx, inv => { ...inv,
-      //               permission: permission ?? inv.permission,
-      //                name: name ?? inv.name })
-
-      //           }),
-      //         );
-      // }
-      // return { invitations: prevValue };
-      //     },
       onSuccess: () => {
         queryConfig.notifier?.({
           type: patchInvitationRoutine.SUCCESS,

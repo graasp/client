@@ -6,12 +6,7 @@ import { Stack } from '@mui/material';
 
 import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
 
-import {
-  ChartPieIcon,
-  FileChartPieIcon,
-  FolderIcon,
-  UsersRoundIcon,
-} from 'lucide-react';
+import { ChartPieIcon, FileChartPieIcon } from 'lucide-react';
 
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
@@ -20,8 +15,6 @@ import { hooks } from '@/config/queryClient';
 import {
   APP_ITEM,
   TAB_GENERAL,
-  TAB_ITEMS,
-  TAB_USERS,
   buildSidebarListItemId,
 } from '~analytics/config/selectors';
 import { DataContext } from '~analytics/context/DataProvider';
@@ -42,22 +35,6 @@ export function AnalyticsSidebar({
       text={t('TAB_GENERAL')}
       icon={<ChartPieIcon />}
       to="/analytics/items/$itemId"
-      params={{ itemId }}
-    />,
-    <MainMenuItem
-      key="users"
-      id={buildSidebarListItemId(TAB_USERS)}
-      text={t('TAB_USERS')}
-      icon={<UsersRoundIcon />}
-      to="/analytics/items/$itemId/users"
-      params={{ itemId }}
-    />,
-    <MainMenuItem
-      key="items"
-      id={buildSidebarListItemId(TAB_ITEMS)}
-      text={t('TAB_ITEMS')}
-      icon={<FolderIcon />}
-      to="/analytics/items/$itemId/items"
       params={{ itemId }}
     />,
   );

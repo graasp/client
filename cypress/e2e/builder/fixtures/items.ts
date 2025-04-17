@@ -103,8 +103,8 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
           type: ItemVisibilityType.Public,
-          item: samplePublicItems[0],
-          creator: MEMBERS.ANNA,
+          itemPath: samplePublicItems[0].path,
+          // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
         },
       ],
@@ -149,8 +149,8 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
           type: ItemVisibilityType.Public,
-          item: samplePublicItems[0],
-          creator: MEMBERS.ANNA,
+          itemPath: samplePublicItems[0].path,
+          // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
         },
       ],
@@ -171,8 +171,8 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       visibilities: [
         {
           type: ItemVisibilityType.Public,
-          item: samplePublicItems[3],
-          creator: MEMBERS.ANNA,
+          itemPath: samplePublicItems[3].path,
+          // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
           id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
         },
@@ -203,8 +203,8 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       visibilities: [
         {
           type: ItemVisibilityType.Public,
-          item: samplePublicItems[4],
-          creator: MEMBERS.ANNA,
+          itemPath: samplePublicItems[4].path,
+          // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
           id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
         },
@@ -215,8 +215,8 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       visibilities: [
         {
           type: ItemVisibilityType.Public,
-          item: samplePublicItems[5],
-          creator: MEMBERS.ANNA,
+          itemPath: samplePublicItems[5].path,
+          // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
           id: 'ecbfbd2a-9644-12de-ae93-0242ac130002',
         },
@@ -261,9 +261,9 @@ export const PUBLISHED_ITEM: ItemForTest = {
     {
       id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
       type: ItemVisibilityType.Public,
-      item,
+      itemPath: item.path,
       createdAt: '2021-08-11T12:56:36.834Z',
-      creator: MEMBERS.ANNA,
+      // creator: MEMBERS.ANNA,
     },
   ],
   published: {

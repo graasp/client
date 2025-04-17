@@ -2,7 +2,7 @@ import {
   Account,
   Invitation,
   ItemMembership,
-  PermissionLevel,
+  PermissionLevelOptions,
   UUID,
 } from '@graasp/sdk';
 
@@ -29,7 +29,7 @@ export default (queryConfig: QueryClientConfig) => {
       mutationFn: (payload: {
         id: UUID;
         accountId: Account['id'];
-        permission: PermissionLevel;
+        permission: PermissionLevelOptions;
       }) => Api.postItemMembership(payload),
       onSuccess: () => {
         notifier?.({
@@ -73,7 +73,7 @@ export default (queryConfig: QueryClientConfig) => {
       }: {
         itemId: UUID;
         id: UUID;
-        permission: PermissionLevel;
+        permission: PermissionLevelOptions;
       }) => Api.editItemMembership({ id, permission }),
       onSuccess: () => {
         notifier?.({

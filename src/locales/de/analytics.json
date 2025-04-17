@@ -29,7 +29,6 @@
   },
   "NO_USER_SELECTED": "Kein Benutzer ausgewählt",
   "OTHER_ACTION_TYPE": "Andere",
-  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Anzeige von „{{view}} Ansicht“-Aktionen aus einer maximal angeforderten Stichprobengröße von {{requestedSampleSize}} Aktionen.",
   "SAMPLE_ACTIONS_MESSAGE": "Standardmäßig wird eine Stichprobe der maximalen {{requestedSampleSize}}-Aktionen angefordert und in den Diagrammen unten angezeigt, um einen allgemeinen Überblick über die Aktivität in diesem Element zu geben.",
   "TAB_MY_ANALYTICS": "Meine Analysen",
   "TAB_GENERAL": "Allgemein",

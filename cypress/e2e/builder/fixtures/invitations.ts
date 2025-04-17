@@ -3,6 +3,7 @@ import {
   Invitation,
   PackedFolderItemFactory,
   PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
@@ -13,7 +14,7 @@ import { ApiConfig } from '../../../support/types';
 export const buildInvitation = (args: {
   item: DiscriminatedItem;
   email?: string;
-  permission?: PermissionLevel;
+  permission?: PermissionLevelOptions;
 }): Invitation => {
   const { item, email, permission } = args;
   return {

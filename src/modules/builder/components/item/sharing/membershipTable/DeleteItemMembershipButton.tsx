@@ -1,10 +1,11 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem, ItemMembership } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { buildItemMembershipRowDeleteButtonId } from '@/config/selectors';
+import { ItemMembership } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';

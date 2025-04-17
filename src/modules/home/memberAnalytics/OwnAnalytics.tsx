@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Grid2, Skeleton, Stack, Typography } from '@mui/material';
 
-import { ActionTriggers } from '@graasp/sdk';
+import { Action, ActionTriggers } from '@graasp/sdk';
 
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { addDays } from 'date-fns';
@@ -13,7 +13,7 @@ import groupBy from 'lodash.groupby';
 import { v4 } from 'uuid';
 
 import { NS } from '@/config/constants';
-import { memberActionsOptions } from '@/query/hooks/action';
+import { getMembersActionsOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import ActionsLegend from '~analytics/charts-layout/ActionsLegend';
 import DateRange from '~analytics/common/DateRangeInput';
@@ -74,9 +74,11 @@ function MemberStats({
   const { t } = useTranslation(NS.Analytics);
 
   const { data, error } = useSuspenseQuery(
-    memberActionsOptions({
-      startDate: formatISO(dateRange.startDate),
-      endDate: formatISO(dateRange.endDate),
+    getMembersActionsOptions({
+      query: {
+        startDate: formatISO(dateRange.startDate),
+        endDate: formatISO(dateRange.endDate),
+      },
     }),
   );
 
@@ -84,9 +86,8 @@ function MemberStats({
     return <Alert severity="error">{t('ERROR_FETCHING_DATA')}</Alert>;
   }
 
-  const actionsGroupedByTypes = groupBy(data, 'type');
-
-  if (data.length) {
+  if (data) {
+    const actionsGroupedByTypes = groupBy(data, 'type');
     return (
       <>
         <Stack gap={2}>
@@ -113,7 +114,10 @@ function MemberStats({
             />
           </Stack>
 
-          <MemberActionsChart actions={data} dateRange={dateRange} />
+          <MemberActionsChart
+            actions={data as Action[]}
+            dateRange={dateRange}
+          />
         </Stack>
         <ActionsLegend actionsTypes={Object.keys(actionsGroupedByTypes)} />
       </>

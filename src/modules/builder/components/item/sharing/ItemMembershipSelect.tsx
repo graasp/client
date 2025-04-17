@@ -3,7 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectProps } from '@mui/material';
 
-import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import {
+  PermissionLevel,
+  PermissionLevelCompare,
+  PermissionLevelOptions,
+} from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
@@ -19,7 +23,7 @@ import { BUILDER } from '../../../langs';
  * Undefined keys are considered as not disabled.
  */
 type DisabledMap = {
-  [key in PermissionLevel]?: boolean;
+  [key in PermissionLevelOptions]?: boolean;
 };
 
 const defaultDisabledMap: DisabledMap = {
@@ -29,7 +33,7 @@ const defaultDisabledMap: DisabledMap = {
 };
 
 export type ItemMembershipSelectProps = {
-  value?: PermissionLevel;
+  value?: PermissionLevelOptions;
   onChange?: SelectProps['onChange'];
   color?: SelectProps['color'];
   showLabel?: boolean;

@@ -14,6 +14,7 @@ import {
   LocalFileItemType,
   PackedItem,
   PermissionLevel,
+  PermissionLevelOptions,
   S3FileItemType,
   ShortcutItemType,
   buildPdfViewerLink,
@@ -135,7 +136,7 @@ const AppContent = ({
 }: {
   item: AppItemType;
   member?: AuthenticatedMember | null;
-  permission?: PermissionLevel | null;
+  permission?: PermissionLevelOptions | null;
 }): JSX.Element => (
   <AppItem
     isResizable={false}

@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import { Alert, Skeleton, Typography } from '@mui/material';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import SocialLinks from 'social-links';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
@@ -21,10 +21,9 @@ import {
 } from '@/config/selectors';
 import {
   createOwnProfileMutation,
+  getOwnProfileOptions,
   updateOwnProfileMutation,
 } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
-import { useOwnProfile } from '@/query/member/publicProfile/hooks';
 
 import { DisplayLink } from './DisplayLink';
 import { EditPublicProfile, Inputs } from './EditPublicProfile';
@@ -35,7 +34,7 @@ export function PublicProfile(): JSX.Element {
   const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateMessage } = useTranslation(NS.Messages);
-  const { data: publicProfile } = useOwnProfile();
+  const { data: publicProfile } = useQuery(getOwnProfileOptions());
   const queryClient = useQueryClient();
 
   const {
@@ -46,7 +45,9 @@ export function PublicProfile(): JSX.Element {
   } = useMutation({
     ...createOwnProfileMutation(),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+      queryClient.invalidateQueries({
+        queryKey: getOwnProfileOptions().queryKey,
+      });
     },
   });
   const {
@@ -57,11 +58,13 @@ export function PublicProfile(): JSX.Element {
   } = useMutation({
     ...updateOwnProfileMutation(),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+      queryClient.invalidateQueries({
+        queryKey: getOwnProfileOptions().queryKey,
+      });
     },
   });
 
-  const { bio, linkedinID, twitterID, facebookID } = publicProfile || {};
+  const { bio, linkedinId, twitterId, facebookId } = publicProfile ?? {};
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -103,28 +106,28 @@ export function PublicProfile(): JSX.Element {
         <Typography variant="body1" id={PUBLIC_PROFILE_BIO_ID}>
           {bio ?? t('BIO_EMPTY_MSG')}
         </Typography>
-        {linkedinID && (
+        {linkedinId && (
           <DisplayLink
             icon={<LinkedInIcon />}
-            contentId="linkedinID"
-            href={socialLinks.sanitize('linkedin', linkedinID)}
-            content={linkedinID}
+            contentId="linkedinId"
+            href={socialLinks.sanitize('linkedin', linkedinId)}
+            content={linkedinId}
           />
         )}
-        {twitterID && (
+        {twitterId && (
           <DisplayLink
             icon={<TwitterIcon />}
-            contentId="twitterID"
-            href={socialLinks.sanitize('twitter', twitterID)}
-            content={twitterID}
+            contentId="twitterId"
+            href={socialLinks.sanitize('twitter', twitterId)}
+            content={twitterId}
           />
         )}
-        {facebookID && (
+        {facebookId && (
           <DisplayLink
             icon={<FacebookIcon />}
-            contentId="facebookID"
-            href={socialLinks.sanitize('facebook', facebookID)}
-            content={facebookID}
+            contentId="facebookId"
+            href={socialLinks.sanitize('facebook', facebookId)}
+            content={facebookId}
           />
         )}
         {(isSuccessPatchPublicProfile || isSuccessPostPublicProfile) && (

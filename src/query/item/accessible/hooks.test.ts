@@ -28,7 +28,7 @@ describe('useAccessibleItems', () => {
   const pagination = {};
   const route = `/${buildGetAccessibleItems(params, pagination)}`;
   const items = generateFolders();
-  const response = { data: items, totalCount: items.length };
+  const response = { data: items };
   const hook = () => hooks.useAccessibleItems();
   const key = itemKeys.accessiblePage(params, pagination);
 
@@ -97,15 +97,16 @@ describe('useInfiniteAccessibleItems', () => {
     queryClient.clear();
   });
   const params = {};
-  const pagination = { page: 1 };
-  const route = `/${buildGetAccessibleItems(params, pagination)}`;
-  const items = generateFolders();
-  const response = { data: items, totalCount: items.length };
-  const hook = () => hooks.useInfiniteAccessibleItems(params);
+  const pageSize = 5;
+  const route = `/${buildGetAccessibleItems(params, { page: 1, pageSize })}`;
+  const items = generateFolders(pageSize);
+  const response = { data: items };
   const key = itemKeys.infiniteAccessible(params);
 
   it(`Receive accessible items`, async () => {
     const endpoints = [{ route, response }];
+    const hook = () =>
+      hooks.useInfiniteAccessibleItems(params, { page: 1, pageSize });
     const { data } = await mockHook({ endpoints, hook, wrapper });
     expect(data!.pages[0]).toMatchObject(response);
     // verify cache keys
@@ -116,13 +117,17 @@ describe('useInfiniteAccessibleItems', () => {
   });
 
   it(`calling nextPage accumulate items`, async () => {
+    const hook = () =>
+      hooks.useInfiniteAccessibleItems(params, { page: 1, pageSize });
     const endpoints = [
       { route, response },
-      { route: `/${buildGetAccessibleItems(params, { page: 2 })}`, response },
+      {
+        route: `/${buildGetAccessibleItems(params, { pageSize, page: 2 })}`,
+        response,
+      },
     ];
     // cannot use mockHook because it prevents getting updated data
-    mockEndpoints(endpoints);
-
+    mockEndpoints(endpoints, true);
     // wait for rendering hook
     const { result } = renderHook(hook, { wrapper });
 
@@ -142,23 +147,26 @@ describe('useInfiniteAccessibleItems', () => {
 
   it(`Reset on change param`, async () => {
     const creatorId = 'old';
-    const route1 = `/${buildGetAccessibleItems({ ...params, creatorId }, pagination)}`;
-    const route2 = `/${buildGetAccessibleItems({ ...params, creatorId }, { page: 2 })}`;
+    const route1 = `/${buildGetAccessibleItems({ ...params, creatorId }, { page: 1, pageSize })}`;
+    const route2 = `/${buildGetAccessibleItems({ ...params, creatorId }, { page: 2, pageSize })}`;
     const newCreatorId = 'new';
-    const route3 = `/${buildGetAccessibleItems({ ...params, creatorId: newCreatorId }, pagination)}`;
+    const route3 = `/${buildGetAccessibleItems({ ...params, creatorId: newCreatorId }, { page: 1, pageSize })}`;
     const endpoints = [
       { route: route1, response },
       { route: route2, response },
       { route: route3, response },
     ];
     // cannot use mockHook because it prevents getting updated data
-    mockEndpoints(endpoints);
+    mockEndpoints(endpoints, true);
 
     // // wait for rendering hook
     const { result } = renderHook(
       () => {
         const [c, setCreatorId] = useState(creatorId);
-        const res = hooks.useInfiniteAccessibleItems({ creatorId: c });
+        const res = hooks.useInfiniteAccessibleItems(
+          { creatorId: c },
+          { pageSize },
+        );
         return { ...res, setCreatorId };
       },
       { wrapper },
@@ -184,6 +192,8 @@ describe('useInfiniteAccessibleItems', () => {
   });
 
   it(`Unauthorized`, async () => {
+    const hook = () =>
+      hooks.useInfiniteAccessibleItems(params, { page: 1, pageSize });
     const endpoints = [
       {
         route,

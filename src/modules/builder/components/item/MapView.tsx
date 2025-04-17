@@ -99,7 +99,11 @@ const MapView = ({
         <NewItemModal
           open={open}
           handleClose={handleClose}
-          geolocation={geolocation}
+          geolocation={
+            geolocation
+              ? { lat: geolocation.lat, lng: geolocation.lng }
+              : undefined
+          }
         />
       )}
     </>

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Stack, Typography } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Alert, Stack } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -10,7 +11,6 @@ import {
   RECYCLED_ITEMS_ERROR_ALERT_ID,
 } from '@/config/selectors';
 import { useInfiniteOwnRecycledItems } from '@/query/item/recycled/hooks';
-import Button from '@/ui/buttons/Button/Button';
 
 import DeleteButton from '~builder/components/common/DeleteButton';
 import ErrorAlert from '~builder/components/common/ErrorAlert';
@@ -49,7 +49,7 @@ function RouteComponent() {
 function RecycledItemsScreenContent() {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const { data, fetchNextPage, isLoading, isFetching } =
+  const { data, fetchNextPage, isLoading, hasNextPage, isFetching } =
     useInfiniteOwnRecycledItems(
       // improvement: adapt page size given the user window height
       { pageSize: ITEM_PAGE_SIZE },
@@ -64,8 +64,6 @@ function RecycledItemsScreenContent() {
     if (data.pages[0].data.length) {
       const fetchedItems = data.pages.flatMap((p) => p.data);
 
-      const totalFetchedItems = fetchedItems.length;
-
       const hasSelection = Boolean(selectedIds.length && fetchedItems.length);
       return (
         <>
@@ -76,15 +74,7 @@ function RecycledItemsScreenContent() {
               gap={1}
               width="100%"
             >
-              {hasSelection ? (
-                <RecycleBinToolbar items={fetchedItems} />
-              ) : (
-                <Typography variant="body1">
-                  {translateBuilder(BUILDER.TRASH_COUNT, {
-                    count: data.pages[0].totalCount,
-                  })}
-                </Typography>
-              )}
+              {hasSelection ? <RecycleBinToolbar items={fetchedItems} /> : null}
             </Stack>
             <DragContainerStack id={CONTAINER_ID}>
               {fetchedItems.map((item) => (
@@ -102,15 +92,16 @@ function RecycledItemsScreenContent() {
                   />
                 </Stack>
               ))}
-              {!isFetching && data.pages[0].totalCount > totalFetchedItems && (
+              {hasNextPage && (
                 <Stack textAlign="center" alignItems="center">
-                  <Button
+                  <LoadingButton
                     variant="outlined"
-                    onClick={fetchNextPage}
+                    onClick={() => fetchNextPage()}
                     role="feed"
+                    loading={isFetching}
                   >
                     {translateBuilder(BUILDER.HOME_SCREEN_LOAD_MORE_BUTTON)}
-                  </Button>
+                  </LoadingButton>
                 </Stack>
               )}
             </DragContainerStack>

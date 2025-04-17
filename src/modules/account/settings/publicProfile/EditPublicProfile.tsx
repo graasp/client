@@ -11,8 +11,6 @@ import {
   Typography,
 } from '@mui/material';
 
-import { PublicProfile } from '@graasp/sdk';
-
 import { Config, SocialLinks } from 'social-links';
 
 import { useAuth } from '@/AuthContext';
@@ -24,6 +22,7 @@ import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { NullableProfile } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '~landing/footer/icons';
@@ -37,12 +36,12 @@ const socialLinks = new SocialLinks(config);
 
 type EditPublicProfileProps = {
   onClose: (value?: Inputs) => void;
-  profile?: PublicProfile | null;
+  profile?: NullableProfile;
 };
 
 export type Inputs = Pick<
-  PublicProfile,
-  'bio' | 'visibility' | 'twitterID' | 'facebookID' | 'linkedinID'
+  NullableProfile,
+  'bio' | 'visibility' | 'twitterId' | 'facebookId' | 'linkedinId'
 >;
 
 export function EditPublicProfile({
@@ -61,30 +60,31 @@ export function EditPublicProfile({
     formState: { errors, isValid },
   } = useForm<Inputs>({
     mode: 'onChange',
+
     defaultValues: {
       bio: profile?.bio,
-      twitterID: profile?.twitterID,
-      facebookID: profile?.facebookID,
-      linkedinID: profile?.linkedinID,
+      twitterId: profile?.twitterId,
+      facebookId: profile?.facebookId,
+      linkedinId: profile?.linkedinId,
       visibility: profile?.visibility ?? false,
     },
   });
 
   const socialNetworks = [
     {
-      fieldName: 'facebookID',
+      fieldName: 'facebookId',
       socialProfile: 'facebook',
       Icon: FacebookIcon,
       label: 'FACEBOOK_LINK',
     },
     {
-      fieldName: 'twitterID',
+      fieldName: 'twitterId',
       socialProfile: 'twitter',
       Icon: TwitterIcon,
       label: 'TWITTER_LINK',
     },
     {
-      fieldName: 'linkedinID',
+      fieldName: 'linkedinId',
       socialProfile: 'linkedin',
       Icon: LinkedInIcon,
       label: 'LINKEDIN_LINK',

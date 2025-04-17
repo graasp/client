@@ -1,35 +1,38 @@
 import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
-import { Account, ChatMessage } from '@graasp/sdk';
+import { Account, ChatMessageWithCreator } from '@graasp/sdk';
+
+import { hooks } from '@/config/queryClient';
 
 export type MessagesContextType = {
-  messages?: ChatMessage[];
-  chatId: string;
-  members?: Account[];
+  messages?: ChatMessageWithCreator[];
+  itemId: string;
+  members: Account[];
 };
 
 export const MessagesContext = createContext<MessagesContextType>({
-  chatId: '',
+  itemId: '',
   members: [],
 });
 
 type Props = {
-  messages?: ChatMessage[];
-  chatId: string;
-  members?: Account[];
+  messages?: ChatMessageWithCreator[];
+  itemId: string;
   children: ReactNode;
 };
 
 export const MessagesContextProvider = ({
   children,
   messages,
-  chatId,
-  members = [],
+  itemId,
 }: Props): JSX.Element => {
+  const { data: itemPermissions } = hooks.useItemMemberships(itemId);
+  const members = itemPermissions?.map(({ account }) => account);
+
   const value = {
     messages,
-    chatId,
-    members,
+    members: members ?? [],
+    itemId,
   };
 
   return (

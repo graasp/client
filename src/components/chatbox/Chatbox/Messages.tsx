@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Typography, styled } from '@mui/material';
 
-import { ChatMessage, CurrentAccount } from '@graasp/sdk';
+import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
 
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
@@ -59,7 +59,7 @@ export function Messages({
   const { i18n } = useTranslation(NS.Chatbox);
   const ref = useRef<HTMLDivElement>(null);
   const { open } = useEditingContext();
-  const { messages, members } = useMessagesContext();
+  const { messages } = useMessagesContext();
 
   // scroll down to last message at start, on new message and on editing message
   useEffect(() => {
@@ -73,8 +73,9 @@ export function Messages({
     }
   }, [ref, messages, open]);
 
-  const isOwn = (message: ChatMessage): boolean =>
+  const isOwn = (message: ChatMessageWithCreator): boolean =>
     message.creator?.id === currentMember?.id;
+
   const messagesByDay = Object.entries(
     groupBy(messages, ({ createdAt }) =>
       format(createdAt, DEFAULT_DATE_FORMAT, {
@@ -93,6 +94,7 @@ export function Messages({
             </Box>
             {m?.map((message) => {
               const isOwnMessage = isOwn(message);
+
               return (
                 <SingleMessageContainer
                   key={message.id}
@@ -100,13 +102,7 @@ export function Messages({
                     justifyContent: isOwnMessage ? 'flex-end' : 'flex-start',
                   }}
                 >
-                  <Message
-                    currentMember={currentMember}
-                    message={message}
-                    member={members?.find(
-                      ({ id }) => id === message.creator?.id,
-                    )}
-                  />
+                  <Message currentMember={currentMember} message={message} />
                   {(isOwnMessage || isAdmin) && (
                     <MessageActions
                       message={message}

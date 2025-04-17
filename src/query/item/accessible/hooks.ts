@@ -3,6 +3,8 @@ import { Pagination } from '@graasp/sdk';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
+import { ITEM_PAGE_SIZE } from '~builder/constants.js';
+
 import useDebounce from '../../hooks/useDebounce.js';
 import { itemKeys } from '../../keys.js';
 import { QueryClientConfig } from '../../types.js';
@@ -56,7 +58,12 @@ export const useInfiniteAccessibleItems =
           page: pageParam ?? 1,
           ...pagination,
         }),
-      getNextPageParam: (_lastPage, pages) => pages.length + 1,
+      getNextPageParam: (lastPage, pages) => {
+        // return next page number if last page is full (migth still have more to show)
+        return lastPage.data.length < (pagination?.pageSize ?? ITEM_PAGE_SIZE)
+          ? undefined
+          : pages.length + 1;
+      },
       refetchOnWindowFocus: () => false,
       initialPageParam: 1,
       ...queryConfig.defaultQueryOptions,

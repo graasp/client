@@ -42,7 +42,7 @@ function RouteComponent() {
         />
       </Box>
       <Divider />
-      {user?.type === AccountType.Individual ? (
+      {user?.type === AccountType.Individual && canAdmin ? (
         <>
           <Stack gap={2}>
             <Typography variant="h6">

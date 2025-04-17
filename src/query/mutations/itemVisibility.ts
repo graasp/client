@@ -1,6 +1,6 @@
 import {
   ItemVisibility,
-  ItemVisibilityType,
+  ItemVisibilityOptionsType,
   UUID,
   getParentFromPath,
 } from '@graasp/sdk';
@@ -32,8 +32,8 @@ export default (queryConfig: QueryClientConfig) => {
       queryKey: itemKeys.single(itemId).content,
     });
     // because with use PackedItem, we also have to invalidate parent item for tables
-    const parentPath = data?.item
-      ? getParentFromPath(data.item.path)
+    const parentPath = data?.itemPath
+      ? getParentFromPath(data.itemPath)
       : undefined;
     const parentKey = getKeyForParentId(parentPath);
 
@@ -46,7 +46,7 @@ export default (queryConfig: QueryClientConfig) => {
       mutationFn: (payload: {
         creator?: UUID;
         itemId: UUID;
-        type: ItemVisibilityType;
+        type: ItemVisibilityOptionsType;
       }) => Api.postItemVisibility(payload),
       onSuccess: () => {
         notifier?.({

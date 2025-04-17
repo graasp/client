@@ -7,7 +7,6 @@ import { Tooltip, styled } from '@mui/material';
 import { NS } from '@/config/constants';
 
 import { DataContext } from '~analytics/context/DataProvider';
-import { ViewDataContext } from '~analytics/context/ViewDataProvider';
 
 import StyledAlert from '../common/StyledAlert';
 
@@ -30,7 +29,6 @@ const AlertsTooltip = styled(Tooltip)(({ theme }) => ({
 
 const ChartsAlerts = (): JSX.Element => {
   const { t } = useTranslation(NS.Analytics);
-  const { view } = useContext(ViewDataContext);
   const { requestedSampleSize } = useContext(DataContext);
 
   // adding a tooltip to an Alert is tricky; this hack uses the Alert's built-in 'action' prop to do this
@@ -50,7 +48,6 @@ const ChartsAlerts = (): JSX.Element => {
         }
       >
         {t('SAMPLE_ACTIONS_CHARTS_MESSAGE', {
-          view,
           requestedSampleSize,
         })}
       </StyledAlert>

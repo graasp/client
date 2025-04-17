@@ -49,7 +49,7 @@ const VisibilitySelect = ({ item, edit }: Props): JSX.Element | null => {
     return <Loader />;
   }
 
-  const renderVisiblityIndication = () => {
+  const renderVisibilityIndication = () => {
     switch (visibility) {
       case SETTINGS.ITEM_LOGIN.name:
         return (
@@ -79,7 +79,7 @@ const VisibilitySelect = ({ item, edit }: Props): JSX.Element | null => {
 
   return (
     <>
-      <Stack direction="row" alignItems="center">
+      <Stack direction="row" alignItems="center" gap={1}>
         {isModalOpen && (
           <UpdateVisibilityModal
             isOpen={isModalOpen}
@@ -94,7 +94,7 @@ const VisibilitySelect = ({ item, edit }: Props): JSX.Element | null => {
             onChange={(e) => onVisibilityChange(e.target.value)}
             disabled={isDisabled}
             id={SHARE_ITEM_VISIBILITY_SELECT_ID}
-            sx={{ mr: 1 }}
+            size="small"
           >
             <MenuItem value={SETTINGS.ITEM_PRIVATE.name}>
               {translateBuilder(BUILDER.ITEM_SETTINGS_VISIBILITY_PRIVATE_LABEL)}
@@ -109,7 +109,7 @@ const VisibilitySelect = ({ item, edit }: Props): JSX.Element | null => {
             </MenuItem>
           </Select>
         )}
-        {renderVisiblityIndication()}
+        {renderVisibilityIndication()}
       </Stack>
       {isDisabled && (
         <Alert severity="info">

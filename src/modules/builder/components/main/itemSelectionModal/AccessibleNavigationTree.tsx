@@ -1,9 +1,12 @@
-import { type JSX, useState } from 'react';
+import { type JSX } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Alert, Pagination, Skeleton, Stack } from '@mui/material';
+import { LoadingButton } from '@mui/lab';
+import { Alert, Skeleton, Stack } from '@mui/material';
 
 import { ItemType, PermissionLevel } from '@graasp/sdk';
 
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   buildItemRowArrowId,
@@ -27,21 +30,25 @@ const AccessibleNavigationTree = ({
   onNavigate,
   selectedId,
 }: AccessibleNavigationTreeProps): JSX.Element => {
+  const { t: translateBuilder } = useTranslation(NS.Builder);
+
   // todo: to change with real recent items (most used)
-  const [page, setPage] = useState(1);
-  const { data: accessibleItems, isLoading } = hooks.useAccessibleItems(
+  const {
+    data: accessibleItems,
+    isLoading,
+    hasNextPage,
+    fetchNextPage,
+    isFetching,
+  } = hooks.useInfiniteAccessibleItems(
     {
       permissions: [PermissionLevel.Write, PermissionLevel.Admin],
       types: [ItemType.FOLDER],
     },
-    { page },
+    { pageSize: PAGE_SIZE },
   );
 
-  const nbPages = accessibleItems
-    ? Math.ceil(accessibleItems.totalCount / PAGE_SIZE)
-    : 0;
-
-  if (accessibleItems?.data) {
+  if (accessibleItems?.pages) {
+    const allItems = accessibleItems.pages.flatMap((page) => page.data);
     return (
       <Stack
         height="100%"
@@ -51,7 +58,7 @@ const AccessibleNavigationTree = ({
       >
         <Stack>
           <RowMenus
-            elements={accessibleItems.data}
+            elements={allItems}
             onNavigate={onNavigate}
             selectedId={selectedId}
             onClick={onClick}
@@ -60,17 +67,19 @@ const AccessibleNavigationTree = ({
             buildRowMenuArrowId={buildItemRowArrowId}
           />
         </Stack>
-        <Stack direction="row" justifyContent="end">
-          {nbPages > 1 && (
-            <Pagination
-              sx={{ justifyContent: 'end' }}
+        {hasNextPage && (
+          <Stack textAlign="center" alignItems="center">
+            <LoadingButton
+              variant="text"
+              onClick={() => fetchNextPage()}
+              role="feed"
               size="small"
-              count={nbPages}
-              page={page}
-              onChange={(_, p) => setPage(p)}
-            />
-          )}
-        </Stack>
+              loading={isFetching}
+            >
+              {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
+            </LoadingButton>
+          </Stack>
+        )}
       </Stack>
     );
   }

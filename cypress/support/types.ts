@@ -16,7 +16,7 @@ import {
   LocalFileItemType,
   MemberStorageItem,
   MembershipRequestStatus,
-  PermissionLevel,
+  PermissionLevelOptions,
   PublicProfile,
   PublicationStatus,
   RecycledItemData,
@@ -37,7 +37,7 @@ export type ItemForTest = DiscriminatedItem & {
   memberships?: ItemMembership[];
   invitations?: Partial<Invitation>[];
   published?: ItemPublished;
-  permission?: PermissionLevel | null;
+  permission?: PermissionLevelOptions | null;
   public?: ItemVisibility;
 };
 
@@ -135,7 +135,7 @@ export type ApiConfig = {
   postShortLinkError?: boolean;
   getShortLinkAvailable?: boolean;
   getShortLinksItemError?: boolean;
-  deleteFavoriteError?: boolean;
-  addFavoriteError?: boolean;
-  getFavoriteError?: boolean;
+  deleteBookmarkError?: boolean;
+  addBookmarkError?: boolean;
+  getBookmarkError?: boolean;
 };

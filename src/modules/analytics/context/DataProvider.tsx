@@ -9,7 +9,6 @@ import {
 } from 'react';
 
 import {
-  Action,
   Context,
   DiscriminatedItem,
   ItemType,
@@ -18,11 +17,8 @@ import {
 } from '@graasp/sdk';
 
 import { addDays } from 'date-fns/addDays';
-import { endOfDay } from 'date-fns/endOfDay';
-import { formatISO } from 'date-fns/formatISO';
 
 import { hooks } from '@/config/queryClient';
-import { useActions } from '@/query/hooks/action';
 import { useDescendants } from '@/query/item/descendants/hooks';
 
 import { DateRange } from '~analytics/config/type';
@@ -31,8 +27,7 @@ import { DEFAULT_REQUEST_SAMPLE_SIZE } from '~analytics/constants';
 import { ViewDataContext } from './ViewDataProvider';
 
 const defaultValue: {
-  actions: Action[];
-  allMembers: Member[];
+  // allMembers: Member[];
   selectedUsers: Member[];
   setSelectedUsers: Dispatch<Member[]>;
   selectedActionTypes: string[];
@@ -47,8 +42,7 @@ const defaultValue: {
   setDateRange: (view: DateRange) => void;
   itemId: string | undefined;
 } = {
-  actions: [],
-  allMembers: [],
+  // allMembers: [],
   selectedUsers: [],
   itemChildren: [],
   setSelectedUsers: () => {
@@ -89,12 +83,9 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     [Context.Player]: false,
     [Context.Library]: false,
   });
-  const [actions, setActions] = useState<Action[]>([]);
-  const [allMembers, setAllMembers] = useState<Member[]>([]);
   const [selectedUsers, setSelectedUsers] = useState<Member[]>([]);
   const [selectedActionTypes, setSelectedActionTypes] = useState<string[]>([]);
   const [error, setError] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { view } = useContext(ViewDataContext);
 
   const [dateRange, setDateRange] = useState(defaultValue.dateRange);
@@ -106,51 +97,6 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     types: [ItemType.APP],
     showHidden: false,
   });
-
-  const {
-    data: builderData,
-    isError: builderIsError,
-    isLoading: builderIsLoading,
-  } = useActions(
-    {
-      itemId,
-      view: Context.Builder,
-      requestedSampleSize,
-      startDate: formatISO(dateRange.startDate),
-      endDate: formatISO(endOfDay(dateRange.endDate)),
-    },
-    { enabled: Boolean(enabledArray[Context.Builder]) },
-  );
-
-  const {
-    data: playerData,
-    isError: playerIsError,
-    isLoading: playerIsLoading,
-  } = useActions(
-    {
-      itemId,
-      view: Context.Player,
-      requestedSampleSize,
-      startDate: formatISO(dateRange.startDate),
-      endDate: formatISO(endOfDay(dateRange.endDate)),
-    },
-    { enabled: Boolean(enabledArray[Context.Player]) },
-  );
-
-  const {
-    data: explorerData,
-    isError: explorerIsError,
-    isLoading: explorerIsLoading,
-  } = useActions(
-    {
-      itemId,
-      view: Context.Library,
-      requestedSampleSize,
-      startDate: formatISO(dateRange.startDate),
-      endDate: formatISO(endOfDay(dateRange.endDate)),
-    },
-    { enabled: Boolean(enabledArray[Context.Library]) },
-  );
 
   const {
     data: itemData,
@@ -176,28 +122,6 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
   }, [itemIsError]);
 
   useEffect(() => {
-    if (enabledArray[Context.Builder]) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setIsLoading(builderIsLoading);
-    } else if (enabledArray[Context.Player]) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setIsLoading(playerIsLoading);
-    } else if (enabledArray[Context.Library]) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setIsLoading(explorerIsLoading);
-    }
-  }, [
-    enabledArray,
-    itemIsLoading,
-    builderIsLoading,
-    playerIsLoading,
-    explorerIsLoading,
-  ]);
-
-  useEffect(() => {
     // fetch corresponding data only when view is shown
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -208,64 +132,9 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     }
   }, [view, enabledArray]);
 
-  useEffect(() => {
-    if (
-      builderData &&
-      view === Context.Builder &&
-      actions.length !== builderData?.actions?.length
-    ) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setActions(builderData?.actions ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setAllMembers(builderData?.members ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setError(builderIsError);
-    }
-  }, [builderData, view, actions, builderIsError]);
-
-  useEffect(() => {
-    if (
-      playerData &&
-      view === Context.Player &&
-      actions.length !== playerData?.actions?.length
-    ) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setActions(playerData?.actions ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setAllMembers(playerData?.members ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setError(playerIsError);
-    }
-  }, [playerData, view, actions, playerIsError]);
-
-  useEffect(() => {
-    if (
-      explorerData &&
-      view === Context.Library &&
-      actions.length !== explorerData?.actions?.length
-    ) {
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setActions(explorerData?.actions ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setAllMembers(explorerData?.members ?? []);
-      // TODO: fix this issue
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setError(explorerIsError);
-    }
-  }, [explorerData, view, actions, explorerIsError]);
-
   const value = useMemo(
     () => ({
-      actions,
-      allMembers,
+      // allMembers,
       selectedUsers,
       setSelectedUsers,
       selectedActionTypes,
@@ -273,7 +142,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       error,
       itemData,
       itemChildren,
-      isLoading,
+      isLoading: itemIsLoading,
       requestedSampleSize,
       descendantApps,
       dateRange,
@@ -281,13 +150,12 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       itemId,
     }),
     [
-      actions,
-      allMembers,
+      // allMembers,
       error,
       selectedUsers,
       selectedActionTypes,
       itemData,
-      isLoading,
+      itemIsLoading,
       itemChildren,
       requestedSampleSize,
       descendantApps,

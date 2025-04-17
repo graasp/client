@@ -67,7 +67,7 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
 
     // disable setting if item is public and is not defined on the current item
     const shouldPublicBeDisabled =
-      item?.public && item?.public?.item?.path !== item?.path;
+      item?.public && item?.public?.itemPath !== item?.path;
 
     // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
     setIsDisabled(Boolean(shouldItemLoginBeDisabled || shouldPublicBeDisabled));

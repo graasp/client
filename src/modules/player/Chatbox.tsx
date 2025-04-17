@@ -8,7 +8,7 @@ import Loader from '@/ui/Loader/Loader';
 
 import { ITEM_CHATBOX_ID } from '../../config/selectors';
 
-const { useItemChat, useItemMemberships, useCurrentMember } = hooks;
+const { useItemChat, useCurrentMember } = hooks;
 const {
   usePostItemChatMessage,
   usePatchItemChatMessage,
@@ -21,24 +21,20 @@ type Props = {
 
 const Chatbox = ({ item }: Props): JSX.Element => {
   const { data: messages, isLoading: isChatLoading } = useItemChat(item.id);
-  const { data: itemPermissions, isLoading: isLoadingItemPermissions } =
-    useItemMemberships(item.id);
-  const members = itemPermissions?.map((m) => m.account);
   const { data: currentMember } = useCurrentMember();
   const { mutate: sendMessage } = usePostItemChatMessage();
   const { mutate: editMessage } = usePatchItemChatMessage();
   const { mutate: deleteMessage } = useDeleteItemChatMessage();
 
-  if (isChatLoading || isLoadingItemPermissions) {
+  if (isChatLoading) {
     return <Loader />;
   }
 
   return (
     <GraaspChatbox
       id={ITEM_CHATBOX_ID}
-      members={members}
       currentMember={currentMember}
-      chatId={item.id}
+      itemId={item.id}
       messages={messages}
       sendMessageFunction={sendMessage}
       editMessageFunction={editMessage}

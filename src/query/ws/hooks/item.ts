@@ -12,6 +12,7 @@ import {
   ItemOpFeedbackEvent as OpFeedbackEvent,
   UUID,
   WebsocketClient,
+  getIdsFromPath,
   getParentFromPath,
   isOperationEvent,
 } from '@graasp/sdk';
@@ -32,6 +33,17 @@ import {
 import createRoutine from '../../routines/utils.js';
 import { Notifier } from '../../types.js';
 import { KINDS, TOPICS } from '../constants.js';
+
+const invalidateRootDescendants = (
+  queryClient: QueryClient,
+  itemPath: string,
+) => {
+  // invalidate descendants
+  const rootId = getIdsFromPath(itemPath)[0];
+  queryClient.invalidateQueries({
+    queryKey: itemKeys.single(rootId).descendants(),
+  });
+};
 
 /**
  * Events from asynchronous background operations on given items
@@ -65,9 +77,12 @@ const InvalidateItemOpFeedback = (queryClient: QueryClient) => ({
     if (event.result) {
       const { copies } = event.result;
 
-      const newParentKey = getKeyForParentId(getParentFromPath(copies[0].path));
+      const firstItemPath = copies[0].path;
+      const newParentKey = getKeyForParentId(getParentFromPath(firstItemPath));
       // invalidate queries for the destination
       queryClient.invalidateQueries({ queryKey: newParentKey });
+
+      invalidateRootDescendants(queryClient, firstItemPath);
     }
   },
   [FeedBackOperation.RECYCLE]: (
@@ -75,11 +90,16 @@ const InvalidateItemOpFeedback = (queryClient: QueryClient) => ({
   ) => {
     if (event.result) {
       const items = event.result;
-      const parentKey = getKeyForParentId(
-        getParentFromPath(Object.values(items)[0].path),
-      );
+      const firstPath = Object.values(items)[0].path;
+      const parentKey = getKeyForParentId(getParentFromPath(firstPath));
       // invalidate queries for the parent
       queryClient.invalidateQueries({ queryKey: parentKey });
+
+      invalidateRootDescendants(queryClient, firstPath);
+
+      queryClient.resetQueries({
+        queryKey: memberKeys.current().allRecycled,
+      });
     }
   },
   [FeedBackOperation.RESTORE]: () => {

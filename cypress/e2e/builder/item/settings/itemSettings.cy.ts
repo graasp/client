@@ -194,18 +194,18 @@ describe('Item Settings', () => {
             {
               id: '78ad2166-3862-4593-a10c-d380e7b66674',
               body: 'message1',
-              item,
+              itemId: item.id,
               createdAt: '2021-08-11T12:56:36.834Z',
               updatedAt: '2021-08-11T12:56:36.834Z',
-              creator: CURRENT_MEMBER,
+              creatorId: CURRENT_MEMBER.id,
             },
             {
               id: '78ad1166-3862-1593-a10c-d380e7b66674',
               body: 'message2',
-              item,
+              itemId: item.id,
               createdAt: '2021-08-11T12:56:36.834Z',
               updatedAt: '2021-08-11T12:56:36.834Z',
-              creator: MEMBERS.BOB,
+              creatorId: MEMBERS.BOB.id,
             },
           ],
         };

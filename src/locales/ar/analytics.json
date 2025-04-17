@@ -30,7 +30,6 @@
   },
   "NO_USER_SELECTED": "لم يتم تحديد أي مستخدم",
   "OTHER_ACTION_TYPE": "أخرى",
-  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "عرض إجراءات \"عرض {{view}}\" من الحد الأقصى لحجم العينة المطلوب لإجراءات {{requestedSampleSize}}.",
   "SAMPLE_ACTIONS_MESSAGE": "بشكل افتراضي، يتم طلب عينة من \n الإجراءات بشكل أقصى {{requestedSampleSize}} ويتم عرضها في المخططات أدناه، وذلك لتوفير نظرة عامة على النشاط في هذا العنصر.",
   "TAB_MY_ANALYTICS": "تحليلاتي",
   "TAB_GENERAL": "عام",

@@ -147,7 +147,7 @@ describe.skip('Bookmarked Item', () => {
     it('check bookmarked items view with server error', () => {
       cy.setUpApi({
         items: ITEMS,
-        getFavoriteError: true,
+        getBookmarkError: true,
       });
       cy.visit(BOOKMARKED_ITEMS_PATH);
 

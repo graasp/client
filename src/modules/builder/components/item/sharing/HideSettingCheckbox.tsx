@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ItemVisibilityType, PackedItem } from '@graasp/sdk';
+import { ItemVisibilityType, PackedItem, getIdsFromPath } from '@graasp/sdk';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
@@ -18,7 +18,8 @@ const HideSettingCheckbox = ({ item }: { item: PackedItem }): JSX.Element => {
   const { mutate: deleteItemVisibility } = mutations.useDeleteItemVisibility();
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const isDisabled = item.hidden && item.hidden.item.id !== item.id;
+  const isDisabled =
+    item.hidden && getIdsFromPath(item.hidden.itemPath).at(-1) !== item.id;
 
   const onClick = (checked: boolean): void => {
     if (!checked) {

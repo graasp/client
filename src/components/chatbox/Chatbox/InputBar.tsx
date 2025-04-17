@@ -24,7 +24,7 @@ export function InputBar({
   const { open, body, messageId, cancelEdit } = useEditingContext();
   const [textInput, setTextInput] = useState(open ? body : '');
   const inputRef = useRef<HTMLTextAreaElement>(null);
-  const { chatId } = useMessagesContext();
+  const { itemId } = useMessagesContext();
 
   useEffect(
     () => {
@@ -49,12 +49,12 @@ export function InputBar({
     if (open) {
       editMessageFunction?.({
         messageId: messageId,
-        itemId: chatId,
-        // todo: here we only send an update of the text and leave out the mention update
+        itemId,
+        // TODO: here we only send an update of the text and leave out the mention update
         body: newBody.body,
       });
     } else {
-      sendMessageFunction?.({ itemId: chatId, ...newBody });
+      sendMessageFunction?.({ itemId, ...newBody });
     }
     // reset editing
     cancelEdit();

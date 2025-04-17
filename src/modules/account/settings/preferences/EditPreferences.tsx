@@ -30,9 +30,9 @@ export function EditPreferences({
   member,
   onClose,
 }: EditPreferencesProp): JSX.Element {
-  const { t } = useTranslation(NS.Account);
+  const { i18n, t } = useTranslation(NS.Account);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { mutate: editMember } = mutations.useEditCurrentMember();
+  const { mutateAsync: editMember } = mutations.useEditCurrentMember();
 
   const memberLang = member?.extra?.lang ?? DEFAULT_LANG;
   const memberEmailFreq = member?.extra?.emailFreq ?? DEFAULT_EMAIL_FREQUENCY;
@@ -47,14 +47,17 @@ export function EditPreferences({
     const { checked } = event.target;
     setSwitchedSaveActions(checked);
   };
-  const saveSettings = () => {
-    editMember({
+  const saveSettings = async () => {
+    await editMember({
       extra: {
         lang: selectedLang,
         emailFreq: selectedEmailFreq,
       },
       enableSaveActions: switchedSaveActions,
     });
+    if (selectedLang !== memberLang) {
+      i18n.changeLanguage(selectedLang);
+    }
     onClose();
   };
 

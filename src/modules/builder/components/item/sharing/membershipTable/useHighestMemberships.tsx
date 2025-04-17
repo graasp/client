@@ -1,11 +1,7 @@
-import {
-  AccountType,
-  DiscriminatedItem,
-  ItemMembership,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
+import { ItemMembership } from '@/openapi/client';
 
 import { selectHighestMemberships } from '~builder/utils/membership';
 
@@ -23,7 +19,7 @@ export const useHighestMemberships = ({
   const { data: currentMember } = hooks.useCurrentMember();
 
   const { data: rawMemberships, isLoading: isMembershipsLoading } =
-    hooks.useItemMemberships(item?.id);
+    hooks.useItemMemberships(item.id);
 
   const hasOnlyOneAdmin =
     rawMemberships?.filter((per) => per.permission === PermissionLevel.Admin)

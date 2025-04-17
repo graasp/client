@@ -10,7 +10,11 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
 
-import { getKeyForParentId, itemsWithGeolocationKeys } from '../../keys.js';
+import {
+  getKeyForParentId,
+  itemKeys,
+  itemsWithGeolocationKeys,
+} from '../../keys.js';
 import { QueryClientConfig } from '../../types.js';
 import {
   PostItemPayloadType,
@@ -45,6 +49,13 @@ export const usePostItem = (queryConfig: QueryClientConfig) => () => {
     onSettled: (_data, _error, { geolocation, parentId }) => {
       const key = getKeyForParentId(parentId);
       queryClient.invalidateQueries({ queryKey: key });
+
+      // invalidate descendants for tree
+      if (parentId) {
+        queryClient.invalidateQueries({
+          queryKey: itemKeys.single(parentId).descendants(),
+        });
+      }
 
       // if item has geolocation, invalidate map related keys
       if (geolocation) {

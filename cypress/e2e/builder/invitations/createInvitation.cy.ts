@@ -1,4 +1,8 @@
-import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
+import {
+  PackedFolderItemFactory,
+  PermissionLevel,
+  PermissionLevelOptions,
+} from '@graasp/sdk';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -17,7 +21,7 @@ const inviteItem = ({
 }: {
   id: string;
   email: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
   submit?: boolean;
 }) => {
   cy.get(`#${buildShareButtonId(id)}`).click();

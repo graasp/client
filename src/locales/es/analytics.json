@@ -30,7 +30,6 @@
   },
   "NO_USER_SELECTED": "Ningún usuario seleccionado",
   "OTHER_ACTION_TYPE": "Otro",
-  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Mostrando acciones '{{view}} view' de un tamaño de muestra máximo solicitado de {{requestedSampleSize}} acciones.",
   "SAMPLE_ACTIONS_MESSAGE": "De forma predeterminada, se solicita una muestra de acciones máximas de {{requestedSampleSize}} y se muestra en los cuadros siguientes para proporcionar una descripción general de la actividad en este archivo.",
   "TAB_MY_ANALYTICS": "Mis analíticas",
   "TAB_GENERAL": "General",

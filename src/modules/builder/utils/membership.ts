@@ -1,4 +1,6 @@
-import { ItemMembership, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
+
+import { ItemMembership } from '@/openapi/client';
 
 // todo: better check with typescript
 export const isError = (

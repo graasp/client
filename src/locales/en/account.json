@@ -94,6 +94,7 @@
   "MEMBER_STORAGE_FILE_UPDATED_AT": "Last update",
   "MEMBER_STORAGE_PARENT_FOLDER": "Parent folder",
   "MEMBER_STORAGE_NO_PARENT": "-",
+  "STORAGE_LOAD_MORE_FILES": "Load More",
   "MEMBER_STORAGE_FILES_ERROR": "Oops, an error occurred while fetching storage files. Please try again later.",
   "MEMBER_STORAGE_FILES_EMPTY": "You didn't upload any file.",
   "EXPORT_INFORMATIONS_TITLE": "Download a copy of your data",

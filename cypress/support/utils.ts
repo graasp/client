@@ -107,7 +107,7 @@ export const getChatMessagesById = (
   chatMessages: ChatMessage[],
   targetId: string,
 ): ChatMessage[] | undefined =>
-  chatMessages.filter(({ item }) => targetId === item.id);
+  chatMessages.filter(({ itemId }) => targetId === itemId);
 
 export const DEFAULT_GET = {
   credentials: 'include',

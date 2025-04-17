@@ -2,6 +2,7 @@ import {
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
   PermissionLevel,
+  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import {
@@ -24,7 +25,7 @@ const shareItem = ({
   submit,
 }: {
   email: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
   submit?: boolean;
   id: string;
 }) => {

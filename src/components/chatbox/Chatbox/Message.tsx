@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography, colors, styled } from '@mui/material';
 
-import { Account, ChatMessage, CurrentAccount } from '@graasp/sdk';
+import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
 
 import { format } from 'date-fns';
 import truncate from 'lodash.truncate';
@@ -37,25 +37,24 @@ const TimeText = styled(Typography)({
 });
 
 type Props = {
-  message: ChatMessage;
+  message: ChatMessageWithCreator;
   currentMember?: CurrentAccount | null;
-  member?: Account;
 };
 
-const Message = ({ message, currentMember, member }: Props) => {
+const Message = ({ message, currentMember }: Props) => {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,
     isLoading: isLoadingAvatar,
     isFetching: isFetchingAvatar,
   } = hooks.useAvatarUrl({
-    id: member?.id,
+    id: message.creator?.id,
     size: 'small',
   });
-  const creatorId = message.creator?.id;
-  const isOwnMessage = creatorId === currentMember?.id;
-  const creatorName = member?.name
-    ? truncate(member?.name, { length: MAX_USERNAME_LENGTH })
+  const { creator } = message;
+  const isOwnMessage = creator.id === currentMember?.id;
+  const creatorName = creator?.name
+    ? truncate(creator?.name, { length: MAX_USERNAME_LENGTH })
     : DEFAULT_USER_NAME;
   const time = format(message.createdAt, 'HH:mm aaa', {
     locale: getLocalForDateFns(i18n.language),
@@ -79,7 +78,7 @@ const Message = ({ message, currentMember, member }: Props) => {
           width="100%"
           gap={1}
         >
-          {member?.id && (
+          {creator?.id && (
             <Avatar
               variant={'circular'}
               alt={creatorName}

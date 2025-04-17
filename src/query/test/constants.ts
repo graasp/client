@@ -6,7 +6,6 @@ import {
   ActionData,
   App,
   ChatMention,
-  ChatMessage,
   Context,
   ExportedChatMessage,
   FlagType,
@@ -39,6 +38,8 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
+
+import { RawChatMessage } from '@/openapi/client';
 
 type MockFastifyError = {
   name: string;
@@ -223,14 +224,14 @@ const APP_2: App = {
 export const APPS = [APP_1, APP_2];
 
 export const createMockChatMessage = (
-  message?: Partial<ChatMessage>,
-): ChatMessage => ({
+  message?: Partial<RawChatMessage>,
+): RawChatMessage => ({
   id: '',
   body: 'some text',
-  creator: AccountFactory(),
+  itemId: v4(),
+  creatorId: v4(),
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',
-  item: FolderItemFactory(),
   ...message,
 });
 
@@ -273,11 +274,11 @@ export const buildChatMention = ({
   status,
   message: {
     id: 'anotherid',
-    item: FolderItemFactory(),
+    itemId: v4(),
+    creatorId: v4(),
     createdAt: '2023-09-06T11:50:32.894Z',
     updatedAt: '2023-09-06T11:50:32.894Z',
     body: 'somemessage here',
-    creator: AccountFactory(),
   },
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',
@@ -289,11 +290,11 @@ export const buildMemberMentions = (): ChatMention[] => {
       id: 'someid',
       message: {
         id: 'anotherid',
-        item: FolderItemFactory(),
+        itemId: v4(),
+        creatorId: v4(),
         createdAt: '2023-09-06T11:50:32.894Z',
         updatedAt: '2023-09-06T11:50:32.894Z',
         body: 'somemessage here',
-        creator: AccountFactory(),
       },
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -304,11 +305,11 @@ export const buildMemberMentions = (): ChatMention[] => {
       id: 'someOtherId',
       message: {
         id: 'anotherid',
-        item: FolderItemFactory(),
+        itemId: v4(),
+        creatorId: v4(),
         createdAt: '2023-09-06T11:50:32.894Z',
         updatedAt: '2023-09-06T11:50:32.894Z',
         body: 'somemessage here',
-        creator: AccountFactory(),
       },
       createdAt: '2023-09-06T11:50:32.894Z',
       updatedAt: '2023-09-06T11:50:32.894Z',
@@ -321,10 +322,10 @@ export const buildMemberMentions = (): ChatMention[] => {
 
 const defaultItemVisibilitiesValues: ItemVisibility = {
   id: 'tag-id',
-  item: FolderItemFactory(),
+  itemPath: 'item-path',
   type: ItemVisibilityType.Public,
   createdAt: '2023-09-06T11:50:32.894Z',
-  creator: MemberFactory(),
+  // creator: MemberFactory(),
 };
 const createMockItemVisibilities = (
   values: Partial<ItemVisibility>,
@@ -335,31 +336,31 @@ const createMockItemVisibilities = (
 
 const ITEM_VISIBILITY_1: ItemVisibility = createMockItemVisibilities({
   id: 'visibility-id',
-  item: FolderItemFactory(),
+  itemPath: 'visibility-path',
   type: ItemVisibilityType.Public,
 });
 
 const ITEM_VISIBILITY_2: ItemVisibility = createMockItemVisibilities({
   id: 'visibility-id1',
-  item: FolderItemFactory(),
+  itemPath: 'visibility-path',
   type: ItemVisibilityType.Public,
 });
 
 export const ITEM_VISIBILITIES = [ITEM_VISIBILITY_1, ITEM_VISIBILITY_2];
 
-export const CHAT_MESSAGES: ChatMessage[] = [
+export const CHAT_MESSAGES: RawChatMessage[] = [
   {
     id: v4(),
-    item: FolderItemFactory(),
-    creator: AccountFactory(),
+    itemId: v4(),
+    creatorId: v4(),
     createdAt: '2023-09-06T11:50:32.894Z',
     updatedAt: '2023-09-06T11:50:32.894Z',
     body: 'text',
   },
   {
     id: v4(),
-    item: FolderItemFactory(),
-    creator: AccountFactory(),
+    itemId: v4(),
+    creatorId: v4(),
     createdAt: '2023-09-06T11:50:32.894Z',
     updatedAt: '2023-09-06T11:50:32.894Z',
     body: 'text of second message',
@@ -436,9 +437,9 @@ export const MEMBER_PUBLIC_PROFILE = {
   updatedAt: new Date().toISOString(),
   bio: 'some random bio',
   visibility: true,
-  linkedinID: 'user',
-  facebookID: 'user',
-  twitterID: 'user',
+  linkedinId: 'user',
+  facebookId: 'user',
+  twitterId: 'user',
 } satisfies PublicProfile;
 
 export const AGGREGATE_ACTIONS_DATA = [

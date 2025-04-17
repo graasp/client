@@ -15,7 +15,9 @@ import { BUILDER } from '~builder/langs';
 
 const DuplicateButton = ({
   item,
+  onClick,
 }: {
+  onClick?: () => void;
   item: DiscriminatedItem;
 }): JSX.Element => {
   const { mutate: copyItems } = mutations.useCopyItems();
@@ -28,6 +30,8 @@ const DuplicateButton = ({
       ids: [item.id],
       to,
     });
+
+    onClick?.();
   };
 
   return (

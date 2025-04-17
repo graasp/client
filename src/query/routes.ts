@@ -1,5 +1,4 @@
 import {
-  AggregateBy,
   DiscriminatedItem,
   ExportActionsFormatting,
   ItemGeolocation,
@@ -9,13 +8,12 @@ import {
 
 import * as itemRoutes from './item/routes';
 import * as memberRoutes from './member/routes';
-import { AggregateActionsArgs } from './utils/action';
 
 export const APPS_ROUTE = 'app-items';
 export const ITEMS_ROUTE = 'items';
 export const ITEM_MEMBERSHIPS_ROUTE = 'item-memberships';
 export const INVITATIONS_ROUTE = `invitations`;
-export const GET_BOOKMARKED_ITEMS_ROUTE = `${ITEMS_ROUTE}/favorite`;
+export const GET_BOOKMARKED_ITEMS_ROUTE = `${ITEMS_ROUTE}/bookmarks`;
 export const CATEGORIES_ROUTE = `${ITEMS_ROUTE}/categories`;
 export const ETHERPAD_ROUTE = `${ITEMS_ROUTE}/etherpad`;
 export const COLLECTIONS_ROUTE = `collections`;
@@ -180,41 +178,6 @@ export const buildPostItemValidationRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/validate`;
 export const buildUpdateItemValidationReviewRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${VALIDATION_ROUTE}/${id}/review`;
-export const buildGetActions = (
-  itemId: UUID,
-  options: {
-    requestedSampleSize: number;
-    view: string;
-    startDate: string;
-    endDate: string;
-  },
-) =>
-  `${ITEMS_ROUTE}/${itemId}/actions?${new URLSearchParams({
-    requestedSampleSize: options.requestedSampleSize.toString(),
-    view: options.view,
-    startDate: options.startDate,
-    endDate: options.endDate,
-  })}`;
-
-export const buildGetAggregateActions = <K extends AggregateBy[]>(
-  args: AggregateActionsArgs<K>,
-) => {
-  const route = `${ITEMS_ROUTE}/${args.itemId}/actions/aggregation`;
-  const search = new URLSearchParams({
-    requestedSampleSize: args.requestedSampleSize.toString(),
-    view: args.view,
-    aggregateFunction: args.aggregateFunction,
-    aggregateMetric: args.aggregateMetric,
-    startDate: args.startDate,
-    endDate: args.endDate,
-  });
-  args.aggregateBy.forEach((by) => search.append('aggregateBy', by));
-  args.countGroupBy.forEach((by) => search.append('countGroupBy', by));
-  if (args.type) {
-    args.type.forEach((t) => search.append('type', t));
-  }
-  return `${route}?${search}`;
-};
 export const buildExportActions = (
   itemId: UUID,
   format: ExportActionsFormatting,
@@ -383,7 +346,6 @@ export const API_ROUTES = {
   buildExportItemChatRoute,
   buildExportItemRoute,
   buildBookmarkedItemRoute,
-  buildGetActions,
   buildGetAllPublishedItemsRoute,
   buildGetApiAccessTokenRoute,
   buildGetCategoriesRoute,

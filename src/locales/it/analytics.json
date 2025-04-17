@@ -30,7 +30,6 @@
   },
   "NO_USER_SELECTED": "Nessun utente selezionato",
   "OTHER_ACTION_TYPE": "Altro",
-  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Visualizzazione delle azioni '{{view}}' da un campione massimo richiesto di {{requestedSampleSize}} azioni.",
   "SAMPLE_ACTIONS_MESSAGE": "Per impostazione predefinita, un campione di azioni massime di {{requestedSampleSize}} viene richiesto e visualizzato nei seguenti grafici, al fine di fornire una panoramica generale dell'attività in questo elemento.",
   "TAB_MY_ANALYTICS": "Le mie analisi",
   "TAB_GENERAL": "Generale",

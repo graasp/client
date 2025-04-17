@@ -13,7 +13,12 @@ import {
   Typography,
 } from '@mui/material';
 
-import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import {
+  AccountType,
+  DiscriminatedItem,
+  PermissionLevel,
+  PermissionLevelOptions,
+} from '@graasp/sdk';
 
 import truncate from 'lodash.truncate';
 import validator from 'validator';
@@ -39,14 +44,14 @@ type ContentProps = {
 
 type Inputs = {
   email: string;
-  permission: PermissionLevel;
+  permission: PermissionLevelOptions;
 };
 
 const Content = ({ handleClose, item }: ContentProps) => {
   const itemId = item.id;
 
   const { mutateAsync: shareItem } = mutations.useShareItem();
-  const { data: memberships } = hooks.useItemMemberships(item.id);
+  const { data: memberships } = hooks.useItemMemberships(itemId);
   const { data: invitations } = useItemInvitations(item.id);
 
   const { t: translateCommon } = useTranslation(NS.Common);
@@ -131,7 +136,10 @@ const Content = ({ handleClose, item }: ContentProps) => {
               value={permission}
               onChange={(event) => {
                 if (event.target.value) {
-                  setValue('permission', event.target.value as PermissionLevel);
+                  setValue(
+                    'permission',
+                    event.target.value as PermissionLevelOptions,
+                  );
                 }
               }}
               size="medium"
