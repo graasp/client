@@ -24,7 +24,6 @@ import {
   getOwnProfileOptions,
   updateOwnProfileMutation,
 } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
 
 import { DisplayLink } from './DisplayLink';
 import { EditPublicProfile, Inputs } from './EditPublicProfile';
@@ -46,7 +45,9 @@ export function PublicProfile(): JSX.Element {
   } = useMutation({
     ...createOwnProfileMutation(),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+      queryClient.invalidateQueries({
+        queryKey: getOwnProfileOptions().queryKey,
+      });
     },
   });
   const {
@@ -57,7 +58,9 @@ export function PublicProfile(): JSX.Element {
   } = useMutation({
     ...updateOwnProfileMutation(),
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: memberKeys.current().profile });
+      queryClient.invalidateQueries({
+        queryKey: getOwnProfileOptions().queryKey,
+      });
     },
   });
 
