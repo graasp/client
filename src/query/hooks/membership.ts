@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
 
+import { itemKeys } from '../keys.js';
 import { QueryClientConfig } from '../types.js';
 import { configureWsMembershipHooks } from '../ws/index.js';
 
@@ -27,7 +28,10 @@ export default (
         getUpdates ? [itemId] : null,
       );
 
-      return useQuery(getItemMembershipsForItemOptions({ query: { itemId } }));
+      return useQuery({
+        ...getItemMembershipsForItemOptions({ query: { itemId } }),
+        queryKey: itemKeys.single(itemId).memberships as never,
+      });
     },
   };
 };
