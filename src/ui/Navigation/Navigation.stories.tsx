@@ -3,6 +3,7 @@ import {
   ItemType,
   LocalFileItemFactory,
   LocalFileItemType,
+  MemberFactory,
   MimeTypes,
 } from '@graasp/sdk';
 
@@ -10,7 +11,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 import { CogIcon } from 'lucide-react';
 
-import { MOCK_MEMBER } from '../utils/fixtures.js';
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { ItemMenuProps, Navigation } from './Navigation.js';
 
@@ -66,7 +66,7 @@ const folder = FolderItemFactory({
   description: 'my image description',
   path: 'item-path',
   settings: {},
-  creator: MOCK_MEMBER,
+  creator: MemberFactory(),
 });
 
 export const FolderWithParents = {

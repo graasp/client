@@ -3,13 +3,13 @@ import {
   ItemType,
   LocalFileItemFactory,
   MaxWidth,
+  MemberFactory,
   MimeTypes,
   UnionOfConst,
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { MOCK_MEMBER } from '../utils/fixtures.js';
 import FileItem from './FileItem.js';
 
 const meta = {
@@ -54,7 +54,7 @@ const buildImageStory = (
         description: 'my image description',
         path: 'item-path',
         settings: descriptionPlacement ? { descriptionPlacement } : {},
-        creator: MOCK_MEMBER,
+        creator: MemberFactory(),
       }),
     },
   }) satisfies Story;
@@ -92,7 +92,7 @@ export const BigContainedImage = {
       settings: {
         maxWidth: MaxWidth.Small,
       },
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
   },
 } satisfies Story;
@@ -126,7 +126,7 @@ export const SmallContainedImage = {
       settings: {
         maxWidth: MaxWidth.Large,
       },
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
   },
 } satisfies Story;
@@ -155,7 +155,7 @@ export const ImageSVG = {
       description: 'my svg description',
       path: 'item-path',
       settings: {},
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
   },
 } satisfies Story;
@@ -184,7 +184,7 @@ export const ImageWebP = {
       description: 'my webp description',
       path: 'item-path',
       settings: {},
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
   },
 } satisfies Story;
@@ -212,7 +212,7 @@ export const WAVAudio = {
       description: 'my audio description',
       path: 'item-path',
       settings: {},
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
   },
 } satisfies Story;

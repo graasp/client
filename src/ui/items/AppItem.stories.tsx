@@ -2,13 +2,13 @@ import {
   AppItemFactory,
   Context,
   ItemType,
+  MemberFactory,
   PermissionLevel,
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from '@storybook/test';
 
-import { MOCK_MEMBER } from '../utils/fixtures.js';
 import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem.js';
 
 const meta = {
@@ -34,7 +34,7 @@ export const Example = {
       type: 'app',
       path: 'item-path',
       settings: {},
-      creator: MOCK_MEMBER,
+      creator: MemberFactory(),
     }),
     frameId: 'app-iframe-test-id',
     requestApiAccessToken: async () => ({ token: 'token' }),

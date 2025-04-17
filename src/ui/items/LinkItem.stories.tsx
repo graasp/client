@@ -1,9 +1,8 @@
-import { ItemType, LinkItemFactory } from '@graasp/sdk';
+import { ItemType, LinkItemFactory, MemberFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from '@storybook/test';
 
-import { MOCK_MEMBER } from '../utils/fixtures.js';
 import LinkItem from './LinkItem.js';
 
 const item = LinkItemFactory({
@@ -49,7 +48,7 @@ const itemWithHTMLDescription = LinkItemFactory({
     },
   },
   settings: {},
-  creator: MOCK_MEMBER,
+  creator: MemberFactory(),
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',
   description:
