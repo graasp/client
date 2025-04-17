@@ -13,13 +13,6 @@ import { v4 } from 'uuid';
 
 import { DEFAULT_LANG } from '../../src/config/constants';
 import { ItemForTest } from '../support/types';
-import {
-  GRAASP_DOCUMENT_ITEM,
-  GRAASP_DOCUMENT_ITEM_HIDDEN,
-  GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN,
-  GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE,
-  GRAASP_DOCUMENT_ITEM_VISIBLE,
-} from './documents';
 import { CURRENT_MEMBER } from './members';
 
 export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
@@ -375,7 +368,6 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
           icons: [],
         },
       },
-      // public: mockPublicTag(),
     },
     {
       ...DEFAULT_FOLDER_ITEM,
@@ -386,7 +378,6 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
         isPinned: true,
         showChatbox: false,
       },
-      // public: mockPublicTag(),
     },
   ],
 };
@@ -403,8 +394,8 @@ export const FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
         showChatbox: false,
       },
     },
-    GRAASP_DOCUMENT_ITEM_VISIBLE,
-    GRAASP_DOCUMENT_ITEM_HIDDEN(),
+    DocumentItemFactory(),
+    PackedDocumentItemFactory({}, { hiddenVisibility: {} }),
     PackedDocumentItemFactory(
       {
         id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
@@ -444,11 +435,12 @@ export const getFolderWithShortcutFixture = (): ItemForTest[] => {
   ];
 };
 
+const tmpDocument = DocumentItemFactory();
 export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
   {
     items: [
       // original for the shortcut
-      GRAASP_DOCUMENT_ITEM,
+      tmpDocument,
       {
         ...DEFAULT_FOLDER_ITEM,
         id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
@@ -460,17 +452,15 @@ export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
         },
       },
       // shortcut with collapse enabled
-      {
-        ...GRAASP_DOCUMENT_ITEM_VISIBLE,
-        id: 'ecafbd2a-5688-11eb-ae93-0242ac130012',
+      ShortcutItemFactory({
         name: 'Shortcut to original document',
         path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a_5688_11eb_ae93_0242ac130012',
         type: ItemType.SHORTCUT,
         extra: {
-          [ItemType.SHORTCUT]: { target: GRAASP_DOCUMENT_ITEM.id },
+          [ItemType.SHORTCUT]: { target: tmpDocument.id },
         },
         settings: { isCollapsible: true },
-      },
+      }),
     ],
   };
 
@@ -489,8 +479,11 @@ export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
       },
       { publicVisibility: {} },
     ),
-    GRAASP_DOCUMENT_ITEM_PUBLIC_VISIBLE,
-    GRAASP_DOCUMENT_ITEM_PUBLIC_HIDDEN,
+    PackedDocumentItemFactory({}, { publicVisibility: {} }),
+    PackedDocumentItemFactory(
+      {},
+      { publicVisibility: {}, hiddenVisibility: {} },
+    ),
   ],
 };
 
