@@ -65,7 +65,6 @@ export type ApiConfig = {
   currentMember?: MemberForTest | null;
   mentions?: ChatMention[];
   shortLinks?: ShortLink[];
-  itemId?: DiscriminatedItem['id'];
   bookmarkedItems?: ItemBookmark[];
   recycledItemData?: RecycledItemData[];
   itemPublicationStatus?: PublicationStatus;

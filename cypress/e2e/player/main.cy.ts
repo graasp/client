@@ -1,11 +1,14 @@
-import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import {
+  DiscriminatedItem,
+  DocumentItemFactory,
+  PermissionLevel,
+} from '@graasp/sdk';
 
 import {
   FOLDER_NAME_TITLE_CLASS,
   MAIN_MENU_ID,
 } from '../../../src/config/selectors';
 import { GRAASP_APP_ITEM } from '../../fixtures/apps';
-import { GRAASP_DOCUMENT_ITEM } from '../../fixtures/documents';
 import {
   IMAGE_ITEM_DEFAULT,
   PDF_ITEM_DEFAULT,
@@ -35,25 +38,28 @@ import {
   expectLinkViewScreenLayout,
 } from './utils';
 
+const GRAASP_DOCUMENT_ITEM = DocumentItemFactory();
+const items = [
+  { ...GRAASP_LINK_ITEM, permission: PermissionLevel.Admin },
+  {
+    ...GRAASP_LINK_ITEM_IFRAME_ONLY,
+    permission: PermissionLevel.Admin,
+  },
+  { ...YOUTUBE_LINK_ITEM, permission: PermissionLevel.Admin },
+  { ...IMAGE_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+  { ...VIDEO_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+  { ...PDF_ITEM_DEFAULT, permission: PermissionLevel.Admin },
+  { ...GRAASP_DOCUMENT_ITEM, permission: PermissionLevel.Admin },
+  { ...GRAASP_APP_ITEM, permission: PermissionLevel.Admin },
+  ...FOLDER_WITH_SUBFOLDER_ITEM.items,
+  ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
+];
+
 describe('Main Screen', () => {
   describe('Individual Items', () => {
     beforeEach(() => {
       cy.setUpApi({
-        items: [
-          { ...GRAASP_LINK_ITEM, permission: PermissionLevel.Admin },
-          {
-            ...GRAASP_LINK_ITEM_IFRAME_ONLY,
-            permission: PermissionLevel.Admin,
-          },
-          { ...YOUTUBE_LINK_ITEM, permission: PermissionLevel.Admin },
-          { ...IMAGE_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-          { ...VIDEO_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-          { ...PDF_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-          { ...GRAASP_DOCUMENT_ITEM, permission: PermissionLevel.Admin },
-          { ...GRAASP_APP_ITEM, permission: PermissionLevel.Admin },
-          ...FOLDER_WITH_SUBFOLDER_ITEM.items,
-          ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
-        ],
+        items,
       });
     });
 
