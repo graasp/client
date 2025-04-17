@@ -8,7 +8,7 @@ import {
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
 import { MEMBERS } from '../../../../fixtures/members';
-import { PUBLISHED_ITEM } from '../../fixtures/items';
+import { PublishedItemFactory } from '../../fixtures/items';
 import { buildItemPath } from '../../utils';
 
 const LANGUAGE_CHIP_SELECTOR = `${buildDataCyWrapper(
@@ -59,7 +59,7 @@ describe('Item with language', () => {
 // users without permission will not see the sections
 describe('Languages permissions', () => {
   it('User signed out cannot edit language level', () => {
-    const item = PUBLISHED_ITEM;
+    const item = PublishedItemFactory(PackedFolderItemFactory());
 
     cy.setUpApi({
       items: [item],
@@ -72,7 +72,7 @@ describe('Languages permissions', () => {
   });
 
   it('Read-only user cannot edit language level', () => {
-    const item = PUBLISHED_ITEM;
+    const item = PublishedItemFactory(PackedFolderItemFactory());
     cy.setUpApi({
       items: [item],
       currentMember: MEMBERS.BOB,
