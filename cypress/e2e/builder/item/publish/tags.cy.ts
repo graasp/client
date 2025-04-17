@@ -18,7 +18,6 @@ import {
 import { MEMBERS } from '../../../../fixtures/members';
 import { EDIT_TAG_REQUEST_TIMEOUT } from '../../../../support/constants';
 import { ItemForTest } from '../../../../support/types';
-import { PUBLISHED_ITEM_NO_TAGS } from '../../fixtures/items';
 import { SAMPLE_TAGS } from '../../fixtures/tags';
 import { buildItemPath } from '../../utils';
 
@@ -46,7 +45,23 @@ const visitItemPage = (item: ItemForTest) => {
 
 describe('Customized Tags', () => {
   it('Display item without tags', () => {
-    const item = PUBLISHED_ITEM_NO_TAGS;
+    const packedItem = PackedFolderItemFactory(
+      {},
+      {
+        permission: PermissionLevel.Admin,
+        publicVisibility: { type: ItemVisibilityType.Public },
+      },
+    );
+    const item = {
+      ...packedItem,
+      published: {
+        id: 'ecbfbd2a-5688-12eb-ae93-0242ac130002',
+        createdAt: new Date().toISOString(),
+        creator: MEMBERS.ANNA,
+        totalViews: 0,
+        item: packedItem,
+      },
+    };
     cy.setUpApi({ items: [item] });
     cy.visit(buildItemPath(item.id));
     openPublishItemTab(item.id);
@@ -148,7 +163,6 @@ describe('Tags permissions', () => {
           type: ItemVisibilityType.Public,
           itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
-          // creator: MEMBERS.ANNA,
         },
       ],
       published: {
@@ -183,7 +197,6 @@ describe('Tags permissions', () => {
           type: ItemVisibilityType.Public,
           itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
-          // creator: MEMBERS.ANNA,
         },
       ],
       published: {
