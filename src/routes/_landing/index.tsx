@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
+
 import { PlatformCube } from '~landing/Platforms/PlatformCube';
 import { NewsLetter } from '~landing/home/NewsLetter';
 import { OurMissionSection } from '~landing/home/OurMissionSection';
@@ -15,7 +17,10 @@ export const Route = createFileRoute('/_landing/')({
 function Index() {
   return (
     <>
-      <TitleSection />
+      <span>
+        <MaintenanceAnnouncement />
+        <TitleSection />
+      </span>
       <PlatformCube />
       <UserStorySection />
       <OurMissionSection />
