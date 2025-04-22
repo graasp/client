@@ -526,6 +526,7 @@
   "TAGS_LEVEL_HELPERTEXT": "Beispiel: Grundschule, weiterführende Schule, Bachelor",
   "TAGS_RESOURCE_TYPE_HELPERTEXT": "Beispiel: Artikel, Video, Quiz",
   "MAINTENANCE": {
+    "TITLE": "Wartungsarbeiten",
     "INTRODUCTION": "Vom <b>{{fromDate}}</b> bis zum <b>{{toDate}}</b> werden Wartungsarbeiten durchgeführt, die eine Abschaltung der Graasp-Plattform erfordern.",
     "DETAILS": "graasp.org wird am <b>{{fromDate}}</b> vollständig nicht erreichbar sein und am <b>{{fromDate}}</b> wieder zur Verfügung stehen."
   }
