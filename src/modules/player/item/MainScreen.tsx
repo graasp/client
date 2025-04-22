@@ -9,6 +9,7 @@ import { getRouteApi } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
 
 import { LayoutContextProvider } from '~player/contexts/LayoutContext';
 import SideContent from '~player/rightPanel/SideContent';
@@ -21,7 +22,12 @@ const MainScreen = (): JSX.Element | null => {
   const { t } = useTranslation(NS.Player);
   const { mutate: triggerAction } = mutations.usePostItemAction();
 
-  const content = <Item id={itemId} />;
+  const content = (
+    <>
+      <MaintenanceAnnouncement mb={2} />
+      <Item id={itemId} />
+    </>
+  );
 
   useEffect(() => {
     if (itemId && item) {

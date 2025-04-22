@@ -9,7 +9,7 @@ import { formatDate } from 'date-fns';
 import { NS } from '@/config/constants';
 import { getLocalForDateFns } from '@/config/langs';
 
-function MaintenanceAnnouncement() {
+function MaintenanceAnnouncement({ mb = 0 }: Readonly<{ mb?: number }>) {
   const { i18n, t } = useTranslation(NS.Builder);
   const [open, setOpen] = useState(true);
 
@@ -29,7 +29,7 @@ function MaintenanceAnnouncement() {
           </IconButton>
         }
         severity="warning"
-        sx={{ fontSize: 16 }}
+        sx={{ fontSize: 16, mb }}
         closeText="hello"
       >
         <AlertTitle sx={{ fontWeight: 'bold' }}>
