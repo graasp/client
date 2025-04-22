@@ -524,5 +524,9 @@
   "TAGS_DESCRITPION": "Tags sind Schlüsselwörter oder Begriffe, die Sie Ihren Artikeln hinzufügen können. Sie beschreiben das Thema, den Kontext, das Projekt oder die Zielgruppe Ihrer Artikel. Sie helfen anderen Benutzern, Ihre Inhalte zu finden, wenn sie in der Bibliothek suchen, wenn Ihre Sammlung veröffentlicht ist. Weitere Informationen zu Tags finden Sie in <1>der Dokumentation</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Beispiel: Mathematik, Geschichte, Biologie",
   "TAGS_LEVEL_HELPERTEXT": "Beispiel: Grundschule, weiterführende Schule, Bachelor",
-  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Beispiel: Artikel, Video, Quiz"
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Beispiel: Artikel, Video, Quiz",
+  "MAINTENANCE": {
+    "INTRODUCTION": "Vom <b>{{fromDate}}</b> bis zum <b>{{toDate}}</b> werden Wartungsarbeiten durchgeführt, die eine Abschaltung der Graasp-Plattform erfordern.",
+    "DETAILS": "graasp.org wird am <b>{{fromDate}}</b> vollständig nicht erreichbar sein und am <b>{{fromDate}}</b> wieder zur Verfügung stehen."
+  }
 }
