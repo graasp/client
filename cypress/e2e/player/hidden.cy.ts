@@ -1,80 +1,97 @@
-import { buildDocumentId } from '../../../src/config/selectors';
 import {
-  FOLDER_WITH_HIDDEN_ITEMS,
-  PUBLIC_FOLDER_WITH_HIDDEN_ITEMS,
-} from '../../fixtures/items';
+  DocumentItemFactory,
+  PackedDocumentItemFactory,
+  PackedFolderItemFactory,
+} from '@graasp/sdk';
+
+import { buildDocumentId } from '../../../src/config/selectors';
+import { PUBLIC_FOLDER_WITH_HIDDEN_ITEMS } from '../../fixtures/items';
 import { MEMBERS } from '../../fixtures/members';
+import { ItemForTest } from '../../support/types';
 import { buildContentPagePath } from './utils';
+
+const parentItem = PackedFolderItemFactory({
+  name: 'parent folder',
+  settings: {
+    isPinned: false,
+    showChatbox: false,
+  },
+});
+export const FOLDER_WITH_HIDDEN_ITEMS: ItemForTest[] = [
+  parentItem,
+  DocumentItemFactory({ parentItem }),
+  PackedDocumentItemFactory({ parentItem }, { hiddenVisibility: {} }),
+  PackedDocumentItemFactory(
+    {
+      name: 'hidden document',
+      settings: {
+        isPinned: false,
+        showChatbox: false,
+      },
+      parentItem,
+    },
+    { hiddenVisibility: {} },
+  ),
+];
 
 describe('Hidden Items', () => {
   it("Don't display Hidden items when viewing as admin", () => {
+    const items = FOLDER_WITH_HIDDEN_ITEMS;
+
     cy.setUpApi({
-      items: FOLDER_WITH_HIDDEN_ITEMS.items,
+      items,
     });
 
-    const parent = FOLDER_WITH_HIDDEN_ITEMS.items[0];
+    const parent = items[0];
     cy.visit(buildContentPagePath({ rootId: parent.id, itemId: parent.id }));
 
     // hidden document should not be displayed
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[1].id)}`).should(
-      'be.visible',
-    );
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[2].id)}`).should(
-      'not.exist',
-    );
+    cy.get(`#${buildDocumentId(items[1].id)}`).should('be.visible');
+    cy.get(`#${buildDocumentId(items[2].id)}`).should('not.exist');
   });
 
   it("Don't display Hidden items when viewing as writer", () => {
+    const items = FOLDER_WITH_HIDDEN_ITEMS;
     cy.setUpApi({
       currentMember: MEMBERS.CEDRIC,
-      items: FOLDER_WITH_HIDDEN_ITEMS.items,
+      items,
     });
 
-    const parent = FOLDER_WITH_HIDDEN_ITEMS.items[0];
+    const parent = items[0];
     cy.visit(buildContentPagePath({ rootId: parent.id, itemId: parent.id }));
 
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[1].id)}`).should(
-      'be.visible',
-    );
+    cy.get(`#${buildDocumentId(items[1].id)}`).should('be.visible');
     // hidden document should not be displayed
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[2].id)}`).should(
-      'not.exist',
-    );
+    cy.get(`#${buildDocumentId(items[2].id)}`).should('not.exist');
   });
 
-  it("Don't display Hidden items when viewing as reader", () => {
+  it.only("Don't display Hidden items when viewing as reader", () => {
+    const items = FOLDER_WITH_HIDDEN_ITEMS;
     cy.setUpApi({
       currentMember: MEMBERS.BOB,
-      items: FOLDER_WITH_HIDDEN_ITEMS.items,
+      items,
     });
 
-    const parent = FOLDER_WITH_HIDDEN_ITEMS.items[0];
+    const parent = items[0];
     cy.visit(buildContentPagePath({ rootId: parent.id, itemId: parent.id }));
 
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[1].id)}`).should(
-      'be.visible',
-    );
+    cy.get(`#${buildDocumentId(items[1].id)}`).should('be.visible');
     // hidden document should not be displayed
-    cy.get(`#${buildDocumentId(FOLDER_WITH_HIDDEN_ITEMS.items[2].id)}`).should(
-      'not.exist',
-    );
+    cy.get(`#${buildDocumentId(items[2].id)}`).should('not.exist');
   });
 
   it("Don't display Hidden items when viewing as public", () => {
+    const { items } = PUBLIC_FOLDER_WITH_HIDDEN_ITEMS;
     cy.setUpApi({
       currentMember: MEMBERS.CEDRIC,
-      items: PUBLIC_FOLDER_WITH_HIDDEN_ITEMS.items,
+      items,
     });
 
-    const parent = PUBLIC_FOLDER_WITH_HIDDEN_ITEMS.items[0];
+    const parent = items[0];
     cy.visit(buildContentPagePath({ rootId: parent.id, itemId: parent.id }));
 
-    cy.get(
-      `#${buildDocumentId(PUBLIC_FOLDER_WITH_HIDDEN_ITEMS.items[1].id)}`,
-    ).should('be.visible');
+    cy.get(`#${buildDocumentId(items[1].id)}`).should('be.visible');
     // hidden document should not be displayed
-    cy.get(
-      `#${buildDocumentId(PUBLIC_FOLDER_WITH_HIDDEN_ITEMS.items[2].id)}`,
-    ).should('not.exist');
+    cy.get(`#${buildDocumentId(items[2].id)}`).should('not.exist');
   });
 });

@@ -150,7 +150,7 @@ describe('Share Item Link', () => {
 
     beforeEach(() => {
       cy.setUpApi({
-        items: [PublishedItemFactory(PackedFolderItemFactory())],
+        items: [item, PublishedItemFactory(PackedFolderItemFactory())],
         shortLinks,
       });
     });
