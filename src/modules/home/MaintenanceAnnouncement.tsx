@@ -8,7 +8,7 @@ import { NS } from '@/config/constants';
 import { getLocalForDateFns } from '@/config/langs';
 
 function MaintenanceAnnouncement() {
-  const { t, i18n } = useTranslation(NS.Builder, { keyPrefix: 'MAINTENANCE' });
+  const { i18n } = useTranslation();
   return (
     <Alert severity="info">
       <Trans
