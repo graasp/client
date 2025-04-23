@@ -89,7 +89,7 @@ export default (queryConfig: QueryClientConfig) => {
       },
       onSettled: (_data, _error, { itemId }) => {
         queryClient.invalidateQueries({
-          queryKey: itemKeys.single(itemId).itemLoginSchema,
+          queryKey: itemKeys.single(itemId).itemLoginSchema.content,
         });
         queryClient.invalidateQueries({
           queryKey: itemKeys.single(itemId).memberships,
