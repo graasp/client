@@ -22,8 +22,8 @@
   "CLEAR_ALL_NOTIFICATIONS_CONTENT": "Êtes-vous sûr de vouloir supprimer toutes vos notifications ?",
   "COL_STATUS": "Statut",
   "COL_MESSAGE": "Message",
-  "COL_BY": "Par",
   "COL_ACTIONS": "Actions",
   "NOTIFICATIONS_DIALOG_TITLE": "Notifications",
-  "EMPTY_NOTIFICATIONS": "Pas de notification"
+  "EMPTY_NOTIFICATIONS": "Pas de notification",
+  "NOTIFICATION_ITEM_CHAT_MENTION_MESSAGE": "Une mention à votre nom a été faite dans cet élément"
 }

@@ -151,7 +151,6 @@ export type CurrentAccountSchemaRef = {
     extra: {
         [key: string]: unknown;
     };
-    email: null;
 };
 
 /**
@@ -183,7 +182,6 @@ export type NullableCurrentAccountSchemaRef = (null | {
     extra: {
         [key: string]: unknown;
     };
-    email: null;
 });
 
 /**
@@ -233,17 +231,9 @@ export type GeoCoordinate = {
 };
 
 /**
- * Pair of tokens used for authentication in mobile
- */
-export type TokensPair = {
-    authToken: string;
-    refreshToken: string;
-};
-
-/**
  * Raw data for a message from a member in a chat of an item.
  */
-export type RawChatMessage = {
+export type ChatMessageRaw = {
     id: string;
     creatorId: null | string;
     createdAt: string;
@@ -255,7 +245,7 @@ export type RawChatMessage = {
 /**
  * Message from a member in a chat of an item.
  */
-export type ChatMessage = {
+export type ChatMessageWithCreator = {
     id: string;
     creatorId: null | string;
     creator: NullableMinimalAccount;
@@ -270,7 +260,7 @@ export type ChatMessage = {
  */
 export type Chat = {
     id: string;
-    messages: Array<ChatMessage>;
+    messages: Array<ChatMessageWithCreator>;
 };
 
 /**
@@ -287,8 +277,8 @@ export type MinimalChatMention = {
 /**
  * Mention of a user in a chat including message
  */
-export type CompleteChatMention = MinimalChatMention & {
-    message: RawChatMessage;
+export type ChatMentionWithMessageAndAccount = MinimalChatMention & {
+    message: ChatMessageRaw;
 } & {
     account: MinimalAccount;
 };
@@ -435,6 +425,19 @@ export type Invitation = {
 };
 
 /**
+ * Invitation for a non-registered user to access an item. The user is identified by email.
+ */
+export type InvitationWithoutRelations = {
+    id: string;
+    email: string;
+    name?: null | string;
+    permission: 'read' | 'write' | 'admin';
+    itemPath: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
+/**
  * Bookmark instance for member of a given packed item.
  */
 export type PackedBookmark = {
@@ -553,6 +556,20 @@ export type GetStatusData = {
 };
 
 export type GetStatusResponses = {
+    /**
+     * Default Response
+     */
+    200: unknown;
+};
+
+export type GetVersionData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/version';
+};
+
+export type GetVersionResponses = {
     /**
      * Default Response
      */
@@ -817,161 +834,6 @@ export type GetMembersCurrentPasswordStatusResponses = {
 };
 
 export type GetMembersCurrentPasswordStatusResponse = GetMembersCurrentPasswordStatusResponses[keyof GetMembersCurrentPasswordStatusResponses];
-
-export type RegisterMobileData = {
-    body: {
-        name: string;
-        email: string;
-        challenge: string;
-        captcha: string;
-        enableSaveActions?: boolean;
-    };
-    path?: never;
-    query?: {
-        lang?: string;
-    };
-    url: '/m/register';
-};
-
-export type RegisterMobileErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type RegisterMobileError = RegisterMobileErrors[keyof RegisterMobileErrors];
-
-export type RegisterMobileResponses = {
-    /**
-     * Successful Response
-     */
-    204: void;
-};
-
-export type RegisterMobileResponse = RegisterMobileResponses[keyof RegisterMobileResponses];
-
-export type LoginMobileData = {
-    body: {
-        email: string;
-        challenge: string;
-        captcha: string;
-    };
-    path?: never;
-    query?: never;
-    url: '/m/login';
-};
-
-export type LoginMobileErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type LoginMobileError = LoginMobileErrors[keyof LoginMobileErrors];
-
-export type LoginMobileResponses = {
-    /**
-     * Successful Response
-     */
-    204: void;
-};
-
-export type LoginMobileResponse = LoginMobileResponses[keyof LoginMobileResponses];
-
-export type LoginWithPasswordMobileData = {
-    body: {
-        email: string;
-        challenge: string;
-        password: string;
-        captcha: string;
-    };
-    path?: never;
-    query?: never;
-    url: '/m/login-password';
-};
-
-export type LoginWithPasswordMobileErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type LoginWithPasswordMobileError = LoginWithPasswordMobileErrors[keyof LoginWithPasswordMobileErrors];
-
-export type LoginWithPasswordMobileResponses = {
-    /**
-     * Successful Response
-     */
-    200: {
-        resource: string;
-    };
-};
-
-export type LoginWithPasswordMobileResponse = LoginWithPasswordMobileResponses[keyof LoginWithPasswordMobileResponses];
-
-export type AuthenticateMobileData = {
-    body: {
-        t: string;
-        verifier: string;
-    };
-    path?: never;
-    query?: never;
-    url: '/m/auth';
-};
-
-export type AuthenticateMobileErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type AuthenticateMobileError = AuthenticateMobileErrors[keyof AuthenticateMobileErrors];
-
-export type AuthenticateMobileResponses = {
-    /**
-     * Default Response
-     */
-    200: TokensPair;
-};
-
-export type AuthenticateMobileResponse = AuthenticateMobileResponses[keyof AuthenticateMobileResponses];
-
-export type GetMAuthRefreshData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/m/auth/refresh';
-};
-
-export type GetMAuthRefreshResponses = {
-    /**
-     * Default Response
-     */
-    200: unknown;
-};
-
-export type AuthenticateMobileToWebData = {
-    body?: never;
-    path?: never;
-    query: {
-        token: string;
-        url?: string;
-    };
-    url: '/m/auth/web';
-};
-
-export type AuthenticateMobileToWebErrors = {
-    /**
-     * Default Response
-     */
-    '4XX': _Error;
-};
-
-export type AuthenticateMobileToWebError = AuthenticateMobileToWebErrors[keyof AuthenticateMobileToWebErrors];
 
 export type GetWsData = {
     body?: never;
@@ -1313,12 +1175,7 @@ export type DownloadAvatarData = {
         id: string;
         size: 'small' | 'medium' | 'large' | 'original';
     };
-    query: {
-        /**
-         * @deprecated
-         */
-        replyUrl: boolean;
-    };
+    query?: never;
     url: '/members/{id}/avatar/{size}';
 };
 
@@ -1953,9 +1810,9 @@ export type DeleteAppSettingError = DeleteAppSettingErrors[keyof DeleteAppSettin
 
 export type DeleteAppSettingResponses = {
     /**
-     * Successful Response
+     * Default Response
      */
-    204: void;
+    200: string;
 };
 
 export type DeleteAppSettingResponse = DeleteAppSettingResponses[keyof DeleteAppSettingResponses];
@@ -2145,10 +2002,8 @@ export type DeleteItemLoginSchemaResponses = {
     /**
      * Default Response
      */
-    200: ItemLoginSchema;
+    200: unknown;
 };
-
-export type DeleteItemLoginSchemaResponse = DeleteItemLoginSchemaResponses[keyof DeleteItemLoginSchemaResponses];
 
 export type GetItemLoginSchemaData = {
     body?: never;
@@ -2177,6 +2032,10 @@ export type GetItemLoginSchemaResponses = {
      * Default Response
      */
     200: ItemLoginSchema;
+    /**
+     * Response if item does not have an item login
+     */
+    204: void;
 };
 
 export type GetItemLoginSchemaResponse = GetItemLoginSchemaResponses[keyof GetItemLoginSchemaResponses];
@@ -2219,10 +2078,8 @@ export type UpdateItemLoginSchemaResponses = {
     /**
      * Default Response
      */
-    200: ItemLoginSchema;
+    200: unknown;
 };
-
-export type UpdateItemLoginSchemaResponse = UpdateItemLoginSchemaResponses[keyof UpdateItemLoginSchemaResponses];
 
 export type LoginOrRegisterAsGuestData = {
     body: {
@@ -2330,7 +2187,7 @@ export type CreateBookmarkError = CreateBookmarkErrors[keyof CreateBookmarkError
 
 export type CreateBookmarkResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
     204: void;
 };
@@ -2915,12 +2772,27 @@ export type PostItemsByIdThumbnailsData = {
     url: '/items/{id}/thumbnails';
 };
 
-export type PostItemsByIdThumbnailsResponses = {
+export type PostItemsByIdThumbnailsErrors = {
     /**
      * Default Response
      */
-    200: unknown;
+    500: _Error;
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
 };
+
+export type PostItemsByIdThumbnailsError = PostItemsByIdThumbnailsErrors[keyof PostItemsByIdThumbnailsErrors];
+
+export type PostItemsByIdThumbnailsResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type PostItemsByIdThumbnailsResponse = PostItemsByIdThumbnailsResponses[keyof PostItemsByIdThumbnailsResponses];
 
 export type DownloadItemThumbnailData = {
     body?: never;
@@ -2998,12 +2870,7 @@ export type DownloadFileData = {
     path: {
         id: string;
     };
-    query: {
-        /**
-         * @deprecated
-         */
-        replyUrl: boolean;
-    };
+    query?: never;
     url: '/items/{id}/download';
 };
 
@@ -3134,15 +3001,7 @@ export type CreateVisibilityResponses = {
     /**
      * Successful Response
      */
-    201: {
-        id: string;
-        type: 'public' | 'hidden';
-        item: {
-            path: string;
-        };
-        creator?: NullableMember;
-        createdAt: string;
-    };
+    204: void;
 };
 
 export type CreateVisibilityResponse = CreateVisibilityResponses[keyof CreateVisibilityResponses];
@@ -4631,7 +4490,7 @@ export type DeleteInvitationResponses = {
     /**
      * Successful Response
      */
-    200: string;
+    204: void;
 };
 
 export type DeleteInvitationResponse = DeleteInvitationResponses[keyof DeleteInvitationResponses];
@@ -4721,8 +4580,8 @@ export type InviteFromCsvWithTemplateResponses = {
      */
     200: Array<{
         groupName: string;
-        memberships: Array<ItemMembership>;
-        invitations: Array<Invitation>;
+        memberships: Array<RawItemMembership>;
+        invitations: Array<InvitationWithoutRelations>;
     }>;
 };
 
@@ -4750,10 +4609,7 @@ export type InviteFromCsvResponses = {
     /**
      * Successful Response
      */
-    200: {
-        memberships: Array<ItemMembership>;
-        invitations: Array<Invitation>;
-    };
+    204: void;
 };
 
 export type InviteFromCsvResponse = InviteFromCsvResponses[keyof InviteFromCsvResponses];
@@ -5135,7 +4991,7 @@ export type GetOwnMentionsResponses = {
     /**
      * Default Response
      */
-    200: Array<CompleteChatMention>;
+    200: Array<ChatMentionWithMessageAndAccount>;
 };
 
 export type GetOwnMentionsResponse = GetOwnMentionsResponses[keyof GetOwnMentionsResponses];
@@ -5245,7 +5101,7 @@ export type GetChatResponses = {
     /**
      * Successful Response
      */
-    200: Array<ChatMessage>;
+    200: Array<ChatMessageWithCreator>;
 };
 
 export type GetChatResponse = GetChatResponses[keyof GetChatResponses];
@@ -5275,7 +5131,7 @@ export type CreateChatMessageResponses = {
     /**
      * Default Response
      */
-    201: ChatMessage;
+    201: ChatMessageWithCreator;
 };
 
 export type CreateChatMessageResponse = CreateChatMessageResponses[keyof CreateChatMessageResponses];
@@ -5303,7 +5159,7 @@ export type DeleteChatMessageResponses = {
     /**
      * Default Response
      */
-    200: ChatMessage;
+    200: ChatMessageWithCreator;
 };
 
 export type DeleteChatMessageResponse = DeleteChatMessageResponses[keyof DeleteChatMessageResponses];
@@ -5333,7 +5189,7 @@ export type PatchChatMessageResponses = {
     /**
      * Default Response
      */
-    200: ChatMessage;
+    200: ChatMessageWithCreator;
 };
 
 export type PatchChatMessageResponse = PatchChatMessageResponses[keyof PatchChatMessageResponses];
@@ -6372,6 +6228,10 @@ export type GetAccessibleItemsResponses = {
      */
     200: {
         data: Array<PackedItem>;
+        pagination: {
+            page: number;
+            pageSize: number;
+        };
     };
 };
 
@@ -6721,9 +6581,9 @@ export type CreateItemMembershipError = CreateItemMembershipErrors[keyof CreateI
 
 export type CreateItemMembershipResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
-    200: ItemMembership;
+    204: void;
 };
 
 export type CreateItemMembershipResponse = CreateItemMembershipResponses[keyof CreateItemMembershipResponses];
@@ -6750,7 +6610,7 @@ export type DeleteItemMembershipError = DeleteItemMembershipErrors[keyof DeleteI
 
 export type DeleteItemMembershipResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
     204: void;
 };
@@ -6779,7 +6639,7 @@ export type UpdateItemMembershipError = UpdateItemMembershipErrors[keyof UpdateI
 
 export type UpdateItemMembershipResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
     204: void;
 };

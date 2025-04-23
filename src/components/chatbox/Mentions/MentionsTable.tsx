@@ -22,7 +22,6 @@ import { useNavigate } from '@tanstack/react-router';
 import { NS } from '@/config/constants.js';
 import { mutations } from '@/config/queryClient.js';
 
-import { MessageBody } from '../Chatbox/MessageBody.js';
 import { ConfirmationDialog } from './ConfirmationDialog.js';
 
 type Props = {
@@ -85,7 +84,6 @@ export function MentionsTable({ mentions }: Readonly<Props>) {
             <TableRow>
               <TableCell>{t('COL_STATUS')}</TableCell>
               <TableCell>{t('COL_MESSAGE')}</TableCell>
-              <TableCell>{t('COL_BY')}</TableCell>
               <TableCell>{t('COL_ACTIONS')}</TableCell>
             </TableRow>
           </TableHead>
@@ -116,13 +114,7 @@ export function MentionsTable({ mentions }: Readonly<Props>) {
                   )}
                 </TableCell>
                 <TableCell>
-                  <MessageBody messageBody={m.message.body} />
-                </TableCell>
-                <TableCell>
-                  {
-                    // FIXME: send the user that created the message along side the message data
-                    m.message.creatorId
-                  }
+                  {t('NOTIFICATION_ITEM_CHAT_MENTION_MESSAGE')}
                 </TableCell>
                 <TableCell>
                   <Grid container direction="row">

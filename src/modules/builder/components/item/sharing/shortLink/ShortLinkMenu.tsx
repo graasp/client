@@ -1,5 +1,6 @@
 import { type JSX, type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import {
   IconButton,
@@ -16,7 +17,6 @@ import { ShortLink } from '@graasp/sdk';
 import { CopyIcon, MoreVerticalIcon, PenIcon, TrashIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import notifier from '@/config/notifier';
 import {
   buildShortLinkDeleteBtnId,
   buildShortLinkEditBtnId,
@@ -26,7 +26,6 @@ import {
 
 import QRCode from '~builder/components/common/QRCode';
 import { BUILDER } from '~builder/langs';
-import { COPY_ITEM_LINK_TO_CLIPBOARD } from '~builder/types/clipboard';
 import { copyToClipboard } from '~builder/utils/clipboard';
 
 type Props = {
@@ -73,20 +72,10 @@ const ShortLinkMenu = ({
     if (url) {
       copyToClipboard(url, {
         onSuccess: () => {
-          notifier({
-            type: COPY_ITEM_LINK_TO_CLIPBOARD.SUCCESS,
-            payload: {
-              message: translateMessages('COPY_LINK_TO_CLIPBOARD'),
-            },
-          });
+          toast.success(translateMessages('COPY_LINK_TO_CLIPBOARD'));
         },
         onError: () => {
-          notifier({
-            type: COPY_ITEM_LINK_TO_CLIPBOARD.FAILURE,
-            payload: {
-              message: translateMessages('COPY_LINK_TO_CLIPBOARD_ERROR'),
-            },
-          });
+          toast.error(translateMessages('COPY_LINK_TO_CLIPBOARD_ERROR'));
         },
       });
     }

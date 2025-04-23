@@ -631,3 +631,4 @@ export const MEMBERSHIP_REQUEST_REJECT_BUTTON_SELECTOR =
 export const VISIBILITY_HIDDEN_ALERT_ID = 'visibilityHiddenAlert';
 export const SHARE_ITEM_CANCEL_BUTTON_CY = 'shareItemCancelButton';
 export const ADD_FOLDER_BUTTON_CY = 'addFolder';
+export const DELETE_GUEST_CONFIRM_BUTTON_ID = 'deleteguestConfirmButton';
