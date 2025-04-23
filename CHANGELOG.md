@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.1](https://github.com/graasp/client/compare/v2.23.0...v2.23.1) (2025-04-23)
+
+
+### Bug Fixes
+
+* fix delete item login schema update, notification modal ([#970](https://github.com/graasp/client/issues/970)) ([280f005](https://github.com/graasp/client/commit/280f0056125ef29e27b99bfb66d318ab2eb95182))
+
 ## [2.23.0](https://github.com/graasp/client/compare/v2.22.0...v2.23.0) (2025-04-17)
 
 
