@@ -7,9 +7,9 @@ import {
 } from '@graasp/sdk';
 
 import {
+  DELETE_GUEST_CONFIRM_BUTTON_ID,
   REQUEST_MEMBERSHIP_BUTTON_ID,
   SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID,
-  buildDataCyWrapper,
   buildShareButtonId,
 } from '../../../../../../src/config/selectors';
 import { MEMBERS } from '../../../../../fixtures/members';
@@ -173,7 +173,7 @@ describe('Item Login Delete Button', () => {
       cy.get(DIALOG_SELECTOR).should('contain', guest.name);
 
       // click delete
-      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper('delete')}`).click();
+      cy.get(`${DIALOG_SELECTOR} #${DELETE_GUEST_CONFIRM_BUTTON_ID}`).click();
       cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });
@@ -207,7 +207,7 @@ describe('Item Login Delete Button', () => {
       cy.get(DIALOG_SELECTOR).should('contain', guest.name);
 
       // click delete
-      cy.get(`${DIALOG_SELECTOR} ${buildDataCyWrapper('delete')}`).click();
+      cy.get(`${DIALOG_SELECTOR} #${DELETE_GUEST_CONFIRM_BUTTON_ID}`).click();
       cy.wait('@deleteItemLoginSchema').then(({ request: { url } }) => {
         expect(url).to.include(item.id);
       });

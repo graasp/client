@@ -2,8 +2,8 @@
 
 import type { Options } from '@hey-api/client-fetch';
 import { queryOptions, type UseMutationOptions, type DefaultError, infiniteQueryOptions, type InfiniteData } from '@tanstack/react-query';
-import type { HealthData, GetStatusData, RegisterData, RegisterError, RegisterResponse, LoginData, LoginError, LoginResponse, AuthenticateData, GetLogoutData, PostLoginPasswordData, PatchPasswordData, PatchPasswordError, PatchPasswordResponse, PostPasswordData, PostPasswordError, PostPasswordResponse, PatchPasswordResetData, PatchPasswordResetError, PatchPasswordResetResponse, PostPasswordResetData, PostPasswordResetError, PostPasswordResetResponse, GetMembersCurrentPasswordStatusData, RegisterMobileData, RegisterMobileError, RegisterMobileResponse, LoginMobileData, LoginMobileError, LoginMobileResponse, LoginWithPasswordMobileData, LoginWithPasswordMobileError, LoginWithPasswordMobileResponse, AuthenticateMobileData, AuthenticateMobileError, AuthenticateMobileResponse, GetMAuthRefreshData, AuthenticateMobileToWebData, GetWsData, GetMembersActionsData, DeleteMembersMembersByIdDeleteData, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, GetCurrentAccountData, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateCurrentAccountResponse, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetOneMemberData, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PostMembersAvatarData, PostMembersAvatarResponse, DownloadAvatarData, GetOwnProfileData, GetMemberProfileData, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, GetAppListData, GetOwnMostUsedAppsData, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GetAppContextData, GetAppDataForAppData, CreateAppDataData, CreateAppDataError, CreateAppDataResponse, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, CreateAppDataFileData, CreateAppDataFileError, DownloadAppDataFileData, GetAppActionsForAppData, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, GetAppSettingsForAppData, CreateAppSettingData, CreateAppSettingError, CreateAppSettingResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, DownloadAppSettingFileData, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, GetItemLoginSchemaTypeData, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, DeleteItemLoginSchemaResponse, GetItemLoginSchemaData, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, UpdateItemLoginSchemaResponse, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, GetOwnBookmarkData, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, GetCollectionsForMemberData, GetCollectionInformationsData, PublishItemData, PublishItemError, PublishItemResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetItemsCollectionsSearchRebuildData, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, DeleteItemsByIdThumbnailsData, PostItemsByIdThumbnailsData, DownloadItemThumbnailData, UploadFileData, UploadFileError, UploadFileResponse, DownloadFileData, UpdateFileData, UpdateFileError, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateAppData, CreateAppError, CreateAppResponse, UpdateAppData, UpdateAppError, UpdateAppResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, GetShortLinkRedirectionData, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, GetShortLinkAvailabilityData, GetShortLinksForItemData, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, GetItemsPublicationByItemIdStatusData, ImportH5pData, ImportH5pError, ImportH5pResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, GetEtherpadFromItemData, ImportZipData, ImportZipError, ExportZipData, GraaspZipExportData, GetLinkMetadataData, CreateLinkData, CreateLinkError, CreateLinkResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, GetInvitationByIdData, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, GetInvitationForItemData, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, EnrollData, EnrollResponse, GetFlagTypesData, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, GetLatestItemValidationGroupData, ValidateItemData, ValidateItemError, ValidateItemResponse, GetLikesForCurrentMemberData, GetLikesForItemData, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, GetOwnMentionsData, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, GetChatData, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PostActionData, PostActionError, PostActionResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, GetGeolocationByItemData, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, GetItemsInBoxData, GeolocationReverseData, GeolocationSearchData, GetTagsForItemData, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, GetManyItemsData, CreateItemData, CreateItemError, CreateItemResponse, GetItemData, UpdateItemData, UpdateItemError, UpdateItemResponse, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetChildrenData, GetDescendantItemsData, GetParentItemsData, ReorderItemData, ReorderItemError, ReorderItemResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, GetItemsByItemIdMembershipsRequestsData, PostItemsByItemIdMembershipsRequestsData, PostItemsByItemIdMembershipsRequestsResponse, GetItemsByItemIdMembershipsRequestsOwnData, DeleteItemsByItemIdMembershipsRequestsByMemberIdData, DeleteItemsByItemIdMembershipsRequestsByMemberIdResponse, GetItemMembershipsForItemData, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, GetCountForTagsData } from '../types.gen';
-import { health, getStatus, register, login, authenticate, getLogout, postLoginPassword, patchPassword, postPassword, patchPasswordReset, postPasswordReset, getMembersCurrentPasswordStatus, registerMobile, loginMobile, loginWithPasswordMobile, authenticateMobile, getMAuthRefresh, authenticateMobileToWeb, getWs, getMembersActions, deleteMembersMembersByIdDelete, deleteCurrentAccount, getCurrentAccount, updateCurrentAccount, getStorage, getStorageFiles, getOneMember, patchChangeEmail, postChangeEmail, postMembersAvatar, downloadAvatar, getOwnProfile, getMemberProfile, updateOwnProfile, createOwnProfile, exportMemberData, getAppList, getOwnMostUsedApps, generateAppToken, getAppContext, getAppDataForApp, createAppData, deleteAppData, updateAppData, createAppDataFile, downloadAppDataFile, getAppActionsForApp, createAppAction, getAppSettingsForApp, createAppSetting, deleteAppSetting, updateAppSetting, createAppSettingFile, downloadAppSettingFile, createChatbotCompletionPrompt, getItemLoginSchemaType, deleteItemLoginSchema, getItemLoginSchema, updateItemLoginSchema, loginOrRegisterAsGuest, getOwnBookmark, deleteBookmark, createBookmark, getCollectionsForMember, getCollectionInformations, publishItem, unpublishItem, collectionSearch, getFacetsForName, getMostLikedCollections, getMostRecentCollections, getItemsCollectionsSearchRebuild, createShortcut, updateShortcut, deleteItemsByIdThumbnails, postItemsByIdThumbnails, downloadItemThumbnail, uploadFile, downloadFile, updateFile, deleteVisibility, createVisibility, createFolder, updateFolder, createFolderWithThumbnail, createApp, updateApp, deleteAlias, getShortLinkRedirection, updateShortLink, getShortLinkAvailability, getShortLinksForItem, createShortLink, getItemsPublicationByItemIdStatus, importH5P, createEtherpad, updateEtherpad, getEtherpadFromItem, importZip, exportZip, graaspZipExport, getLinkMetadata, createLink, updateLink, createDocument, updateDocument, getInvitationById, createInvitation, getInvitationForItem, deleteInvitation, updateInvitation, sendInvitation, inviteFromCsvWithTemplate, inviteFromCsv, enroll, getFlagTypes, createItemFlag, getOwnRecycledItems, recycleManyItems, restoreManyItems, getLatestItemValidationGroup, validateItem, getLikesForCurrentMember, getLikesForItem, deleteItemLike, createItemLike, clearAllMentions, getOwnMentions, deleteMention, patchMention, clearChatMessage, getChat, createChatMessage, deleteChatMessage, patchChatMessage, postAction, exportActions, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, deleteGeolocation, getGeolocationByItem, putGeolocation, getItemsInBox, geolocationReverse, geolocationSearch, getTagsForItem, createTagForItem, deleteTagForItem, deleteManyItems, getManyItems, createItem, getItem, updateItem, getAccessibleItems, getChildren, getDescendantItems, getParentItems, reorderItem, moveManyItems, copyManyItems, createItemWithThumbnail, getItemsByItemIdMembershipsRequests, postItemsByItemIdMembershipsRequests, getItemsByItemIdMembershipsRequestsOwn, deleteItemsByItemIdMembershipsRequestsByMemberId, getItemMembershipsForItem, createItemMembership, deleteItemMembership, updateItemMembership, getCountForTags } from '../sdk.gen';
+import type { HealthData, GetStatusData, GetVersionData, RegisterData, RegisterError, RegisterResponse, LoginData, LoginError, LoginResponse, AuthenticateData, GetLogoutData, PostLoginPasswordData, PatchPasswordData, PatchPasswordError, PatchPasswordResponse, PostPasswordData, PostPasswordError, PostPasswordResponse, PatchPasswordResetData, PatchPasswordResetError, PatchPasswordResetResponse, PostPasswordResetData, PostPasswordResetError, PostPasswordResetResponse, GetMembersCurrentPasswordStatusData, GetWsData, GetMembersActionsData, DeleteMembersMembersByIdDeleteData, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, GetCurrentAccountData, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateCurrentAccountResponse, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetOneMemberData, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PostMembersAvatarData, PostMembersAvatarResponse, DownloadAvatarData, GetOwnProfileData, GetMemberProfileData, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, GetAppListData, GetOwnMostUsedAppsData, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GetAppContextData, GetAppDataForAppData, CreateAppDataData, CreateAppDataError, CreateAppDataResponse, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, CreateAppDataFileData, CreateAppDataFileError, DownloadAppDataFileData, GetAppActionsForAppData, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, GetAppSettingsForAppData, CreateAppSettingData, CreateAppSettingError, CreateAppSettingResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, DownloadAppSettingFileData, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, GetItemLoginSchemaTypeData, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, GetItemLoginSchemaData, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, GetOwnBookmarkData, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, GetCollectionsForMemberData, GetCollectionInformationsData, PublishItemData, PublishItemError, PublishItemResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetItemsCollectionsSearchRebuildData, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, DeleteItemsByIdThumbnailsData, PostItemsByIdThumbnailsData, PostItemsByIdThumbnailsError, PostItemsByIdThumbnailsResponse, DownloadItemThumbnailData, UploadFileData, UploadFileError, UploadFileResponse, DownloadFileData, UpdateFileData, UpdateFileError, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateAppData, CreateAppError, CreateAppResponse, UpdateAppData, UpdateAppError, UpdateAppResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, GetShortLinkRedirectionData, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, GetShortLinkAvailabilityData, GetShortLinksForItemData, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, GetItemsPublicationByItemIdStatusData, ImportH5pData, ImportH5pError, ImportH5pResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, GetEtherpadFromItemData, ImportZipData, ImportZipError, ExportZipData, GraaspZipExportData, GetLinkMetadataData, CreateLinkData, CreateLinkError, CreateLinkResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, GetInvitationByIdData, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, GetInvitationForItemData, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, EnrollData, EnrollResponse, GetFlagTypesData, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, GetLatestItemValidationGroupData, ValidateItemData, ValidateItemError, ValidateItemResponse, GetLikesForCurrentMemberData, GetLikesForItemData, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, GetOwnMentionsData, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, GetChatData, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PostActionData, PostActionError, PostActionResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, GetGeolocationByItemData, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, GetItemsInBoxData, GeolocationReverseData, GeolocationSearchData, GetTagsForItemData, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, GetManyItemsData, CreateItemData, CreateItemError, CreateItemResponse, GetItemData, UpdateItemData, UpdateItemError, UpdateItemResponse, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetChildrenData, GetDescendantItemsData, GetParentItemsData, ReorderItemData, ReorderItemError, ReorderItemResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, GetItemsByItemIdMembershipsRequestsData, PostItemsByItemIdMembershipsRequestsData, PostItemsByItemIdMembershipsRequestsResponse, GetItemsByItemIdMembershipsRequestsOwnData, DeleteItemsByItemIdMembershipsRequestsByMemberIdData, DeleteItemsByItemIdMembershipsRequestsByMemberIdResponse, GetItemMembershipsForItemData, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, GetCountForTagsData } from '../types.gen';
+import { health, getStatus, getVersion, register, login, authenticate, getLogout, postLoginPassword, patchPassword, postPassword, patchPasswordReset, postPasswordReset, getMembersCurrentPasswordStatus, getWs, getMembersActions, deleteMembersMembersByIdDelete, deleteCurrentAccount, getCurrentAccount, updateCurrentAccount, getStorage, getStorageFiles, getOneMember, patchChangeEmail, postChangeEmail, postMembersAvatar, downloadAvatar, getOwnProfile, getMemberProfile, updateOwnProfile, createOwnProfile, exportMemberData, getAppList, getOwnMostUsedApps, generateAppToken, getAppContext, getAppDataForApp, createAppData, deleteAppData, updateAppData, createAppDataFile, downloadAppDataFile, getAppActionsForApp, createAppAction, getAppSettingsForApp, createAppSetting, deleteAppSetting, updateAppSetting, createAppSettingFile, downloadAppSettingFile, createChatbotCompletionPrompt, getItemLoginSchemaType, deleteItemLoginSchema, getItemLoginSchema, updateItemLoginSchema, loginOrRegisterAsGuest, getOwnBookmark, deleteBookmark, createBookmark, getCollectionsForMember, getCollectionInformations, publishItem, unpublishItem, collectionSearch, getFacetsForName, getMostLikedCollections, getMostRecentCollections, getItemsCollectionsSearchRebuild, createShortcut, updateShortcut, deleteItemsByIdThumbnails, postItemsByIdThumbnails, downloadItemThumbnail, uploadFile, downloadFile, updateFile, deleteVisibility, createVisibility, createFolder, updateFolder, createFolderWithThumbnail, createApp, updateApp, deleteAlias, getShortLinkRedirection, updateShortLink, getShortLinkAvailability, getShortLinksForItem, createShortLink, getItemsPublicationByItemIdStatus, importH5P, createEtherpad, updateEtherpad, getEtherpadFromItem, importZip, exportZip, graaspZipExport, getLinkMetadata, createLink, updateLink, createDocument, updateDocument, getInvitationById, createInvitation, getInvitationForItem, deleteInvitation, updateInvitation, sendInvitation, inviteFromCsvWithTemplate, inviteFromCsv, enroll, getFlagTypes, createItemFlag, getOwnRecycledItems, recycleManyItems, restoreManyItems, getLatestItemValidationGroup, validateItem, getLikesForCurrentMember, getLikesForItem, deleteItemLike, createItemLike, clearAllMentions, getOwnMentions, deleteMention, patchMention, clearChatMessage, getChat, createChatMessage, deleteChatMessage, patchChatMessage, postAction, exportActions, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, deleteGeolocation, getGeolocationByItem, putGeolocation, getItemsInBox, geolocationReverse, geolocationSearch, getTagsForItem, createTagForItem, deleteTagForItem, deleteManyItems, getManyItems, createItem, getItem, updateItem, getAccessibleItems, getChildren, getDescendantItems, getParentItems, reorderItem, moveManyItems, copyManyItems, createItemWithThumbnail, getItemsByItemIdMembershipsRequests, postItemsByItemIdMembershipsRequests, getItemsByItemIdMembershipsRequestsOwn, deleteItemsByItemIdMembershipsRequestsByMemberId, getItemMembershipsForItem, createItemMembership, deleteItemMembership, updateItemMembership, getCountForTags } from '../sdk.gen';
 import { client as _heyApiClient } from '../client.gen';
 
 type QueryKey<TOptions extends Options> = [
@@ -68,6 +68,25 @@ export const getStatusOptions = (options?: Options<GetStatusData>) => {
             return data;
         },
         queryKey: getStatusQueryKey(options)
+    });
+};
+
+export const getVersionQueryKey = (options?: Options<GetVersionData>) => [
+    createQueryKey('getVersion', options)
+];
+
+export const getVersionOptions = (options?: Options<GetVersionData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getVersion({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getVersionQueryKey(options)
     });
 };
 
@@ -318,176 +337,6 @@ export const getMembersCurrentPasswordStatusOptions = (options?: Options<GetMemb
             return data;
         },
         queryKey: getMembersCurrentPasswordStatusQueryKey(options)
-    });
-};
-
-export const registerMobileQueryKey = (options: Options<RegisterMobileData>) => [
-    createQueryKey('registerMobile', options)
-];
-
-export const registerMobileOptions = (options: Options<RegisterMobileData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await registerMobile({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: registerMobileQueryKey(options)
-    });
-};
-
-export const registerMobileMutation = (options?: Partial<Options<RegisterMobileData>>) => {
-    const mutationOptions: UseMutationOptions<RegisterMobileResponse, RegisterMobileError, Options<RegisterMobileData>> = {
-        mutationFn: async (localOptions) => {
-            const { data } = await registerMobile({
-                ...options,
-                ...localOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const loginMobileQueryKey = (options: Options<LoginMobileData>) => [
-    createQueryKey('loginMobile', options)
-];
-
-export const loginMobileOptions = (options: Options<LoginMobileData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await loginMobile({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: loginMobileQueryKey(options)
-    });
-};
-
-export const loginMobileMutation = (options?: Partial<Options<LoginMobileData>>) => {
-    const mutationOptions: UseMutationOptions<LoginMobileResponse, LoginMobileError, Options<LoginMobileData>> = {
-        mutationFn: async (localOptions) => {
-            const { data } = await loginMobile({
-                ...options,
-                ...localOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const loginWithPasswordMobileQueryKey = (options: Options<LoginWithPasswordMobileData>) => [
-    createQueryKey('loginWithPasswordMobile', options)
-];
-
-export const loginWithPasswordMobileOptions = (options: Options<LoginWithPasswordMobileData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await loginWithPasswordMobile({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: loginWithPasswordMobileQueryKey(options)
-    });
-};
-
-export const loginWithPasswordMobileMutation = (options?: Partial<Options<LoginWithPasswordMobileData>>) => {
-    const mutationOptions: UseMutationOptions<LoginWithPasswordMobileResponse, LoginWithPasswordMobileError, Options<LoginWithPasswordMobileData>> = {
-        mutationFn: async (localOptions) => {
-            const { data } = await loginWithPasswordMobile({
-                ...options,
-                ...localOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const authenticateMobileQueryKey = (options: Options<AuthenticateMobileData>) => [
-    createQueryKey('authenticateMobile', options)
-];
-
-export const authenticateMobileOptions = (options: Options<AuthenticateMobileData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authenticateMobile({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authenticateMobileQueryKey(options)
-    });
-};
-
-export const authenticateMobileMutation = (options?: Partial<Options<AuthenticateMobileData>>) => {
-    const mutationOptions: UseMutationOptions<AuthenticateMobileResponse, AuthenticateMobileError, Options<AuthenticateMobileData>> = {
-        mutationFn: async (localOptions) => {
-            const { data } = await authenticateMobile({
-                ...options,
-                ...localOptions,
-                throwOnError: true
-            });
-            return data;
-        }
-    };
-    return mutationOptions;
-};
-
-export const getMAuthRefreshQueryKey = (options?: Options<GetMAuthRefreshData>) => [
-    createQueryKey('getMAuthRefresh', options)
-];
-
-export const getMAuthRefreshOptions = (options?: Options<GetMAuthRefreshData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getMAuthRefresh({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getMAuthRefreshQueryKey(options)
-    });
-};
-
-export const authenticateMobileToWebQueryKey = (options: Options<AuthenticateMobileToWebData>) => [
-    createQueryKey('authenticateMobileToWeb', options)
-];
-
-export const authenticateMobileToWebOptions = (options: Options<AuthenticateMobileToWebData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await authenticateMobileToWeb({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: authenticateMobileToWebQueryKey(options)
     });
 };
 
@@ -1380,7 +1229,7 @@ export const getItemLoginSchemaTypeOptions = (options: Options<GetItemLoginSchem
 };
 
 export const deleteItemLoginSchemaMutation = (options?: Partial<Options<DeleteItemLoginSchemaData>>) => {
-    const mutationOptions: UseMutationOptions<DeleteItemLoginSchemaResponse, DeleteItemLoginSchemaError, Options<DeleteItemLoginSchemaData>> = {
+    const mutationOptions: UseMutationOptions<unknown, DeleteItemLoginSchemaError, Options<DeleteItemLoginSchemaData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await deleteItemLoginSchema({
                 ...options,
@@ -1413,7 +1262,7 @@ export const getItemLoginSchemaOptions = (options: Options<GetItemLoginSchemaDat
 };
 
 export const updateItemLoginSchemaMutation = (options?: Partial<Options<UpdateItemLoginSchemaData>>) => {
-    const mutationOptions: UseMutationOptions<UpdateItemLoginSchemaResponse, UpdateItemLoginSchemaError, Options<UpdateItemLoginSchemaData>> = {
+    const mutationOptions: UseMutationOptions<unknown, UpdateItemLoginSchemaError, Options<UpdateItemLoginSchemaData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await updateItemLoginSchema({
                 ...options,
@@ -1842,7 +1691,7 @@ export const postItemsByIdThumbnailsOptions = (options: Options<PostItemsByIdThu
 };
 
 export const postItemsByIdThumbnailsMutation = (options?: Partial<Options<PostItemsByIdThumbnailsData>>) => {
-    const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<PostItemsByIdThumbnailsData>> = {
+    const mutationOptions: UseMutationOptions<PostItemsByIdThumbnailsResponse, PostItemsByIdThumbnailsError, Options<PostItemsByIdThumbnailsData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await postItemsByIdThumbnails({
                 ...options,

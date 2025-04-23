@@ -39,7 +39,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import { RawChatMessage } from '@/openapi/client';
+import { ChatMessageRaw } from '@/openapi/client';
 
 type MockFastifyError = {
   name: string;
@@ -224,8 +224,8 @@ const APP_2: App = {
 export const APPS = [APP_1, APP_2];
 
 export const createMockChatMessage = (
-  message?: Partial<RawChatMessage>,
-): RawChatMessage => ({
+  message?: Partial<ChatMessageRaw>,
+): ChatMessageRaw => ({
   id: '',
   body: 'some text',
   itemId: v4(),
@@ -348,7 +348,7 @@ const ITEM_VISIBILITY_2: ItemVisibility = createMockItemVisibilities({
 
 export const ITEM_VISIBILITIES = [ITEM_VISIBILITY_1, ITEM_VISIBILITY_2];
 
-export const CHAT_MESSAGES: RawChatMessage[] = [
+export const CHAT_MESSAGES: ChatMessageRaw[] = [
   {
     id: v4(),
     itemId: v4(),

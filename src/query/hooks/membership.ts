@@ -2,8 +2,7 @@ import { UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
-import { getItemMembershipsForItemOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
-
+import { getMembershipsForItem } from '../api/membership.js';
 import { itemKeys } from '../keys.js';
 import { QueryClientConfig } from '../types.js';
 import { configureWsMembershipHooks } from '../ws/index.js';
@@ -29,8 +28,11 @@ export default (
       );
 
       return useQuery({
-        ...getItemMembershipsForItemOptions({ query: { itemId } }),
-        queryKey: itemKeys.single(itemId).memberships as never,
+        // TODO: use sdk, but be aware of signal that cancels the query
+        queryFn: () => {
+          return getMembershipsForItem(itemId);
+        },
+        queryKey: itemKeys.single(itemId).memberships,
       });
     },
   };

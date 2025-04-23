@@ -1,6 +1,7 @@
 import type { JSX } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
+import { LoadingButton } from '@mui/lab';
 import {
   Alert,
   Dialog,
@@ -14,6 +15,7 @@ import { DiscriminatedItem, ItemLoginSchemaStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import { DELETE_GUEST_CONFIRM_BUTTON_ID } from '@/config/selectors';
 import Button from '@/ui/buttons/Button/Button';
 
 import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
@@ -26,7 +28,7 @@ function DeleteItemLoginSchemaButton({
   itemId: DiscriminatedItem['id'];
 }>): JSX.Element | null {
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({ itemId });
-  const { mutate: deleteItemLoginSchema } =
+  const { mutate: deleteItemLoginSchema, isPending } =
     mutations.useDeleteItemLoginSchema();
   const { data: guestMemberships } = useGuestMemberships(itemId);
 
@@ -97,14 +99,15 @@ function DeleteItemLoginSchemaButton({
             <Button size="small" variant="text" onClick={closeModal}>
               {translateCommon('CANCEL.BUTTON_TEXT')}
             </Button>
-            <Button
-              dataCy="delete"
+            <LoadingButton
+              id={DELETE_GUEST_CONFIRM_BUTTON_ID}
               color="error"
               size="small"
               onClick={onSubmit}
+              loading={isPending}
             >
               {translateBuilder(BUILDER.DELETE_GUESTS_MODAL_DELETE_BUTTON)}
-            </Button>
+            </LoadingButton>
           </DialogActions>
         </Dialog>
       </>
