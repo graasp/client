@@ -1,7 +1,7 @@
 import { type JSX, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, useTheme } from '@mui/material';
+import { Box, Skeleton, useTheme } from '@mui/material';
 
 import { useQuery } from '@tanstack/react-query';
 import { endOfDay } from 'date-fns/endOfDay';
@@ -36,7 +36,7 @@ const ActionsByWeekdayChart = ({
 
   const { direction } = useTheme();
 
-  const { data, isLoading, isError } = useQuery(
+  const { data, isPending, isError } = useQuery(
     getItemActionsByWeekdayOptions({
       path: { id: itemId },
       query: {
@@ -46,65 +46,63 @@ const ActionsByWeekdayChart = ({
     }),
   );
 
-  if (isLoading || isError) {
-    return null;
-  }
-
   const title = t('ACTIONS_BY_WEEKDAY');
-  if (!data) {
-    return <EmptyChart chartTitle={title} />;
-  }
 
   // fill with empty data for missing hour
-  for (let weekday = 0; weekday <= 6; weekday += 1) {
-    if (!data[weekday]) {
-      data[weekday] = {
+  if (data) {
+    for (let weekday = 0; weekday <= 6; weekday += 1) {
+      data[weekday] ??= {
         weekday,
         count: { all: 0 },
         personal: { all: 0 },
       };
     }
+
+    // we don't translate here because we need to compare with the raw data
+    const weekdayEnum = {
+      0: 'Sun.',
+      1: 'Mon.',
+      2: 'Tue.',
+      3: 'Wed.',
+      4: 'Thu.',
+      5: 'Fri.',
+      6: 'Sat.',
+    };
+
+    return (
+      <Box width="100%" minWidth={400}>
+        <ChartTitle title={title} />
+        <ChartContainer>
+          <BarChart
+            data={Object.values(
+              data as { [key: string]: { weekday: string } },
+            ).toSorted((a, b) => (a.weekday > b.weekday ? 1 : -1))}
+          >
+            <CartesianGrid strokeDasharray="2" />
+            <XAxis
+              interval={0}
+              dataKey="weekday"
+              tick={{ fontSize: 14 }}
+              tickFormatter={(v) => weekdayEnum[v as keyof typeof weekdayEnum]}
+            />
+            <YAxis
+              tick={{ fontSize: 14 }}
+              orientation={direction === 'rtl' ? 'right' : 'left'}
+            />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count.all" name={t('All')} fill={GENERAL_COLOR} />
+            <Bar dataKey="personal.all" name={t('Me')} fill={AVERAGE_COLOR} />
+          </BarChart>
+        </ChartContainer>
+      </Box>
+    );
   }
 
-  // we don't translate here because we need to compare with the raw data
-  const weekdayEnum = {
-    0: 'Sun.',
-    1: 'Mon.',
-    2: 'Tue.',
-    3: 'Wed.',
-    4: 'Thu.',
-    5: 'Fri.',
-    6: 'Sat.',
-  };
+  if (isPending) {
+    return <Skeleton width={'100%'} height={500} />;
+  }
 
-  return (
-    <Box width="100%" minWidth={400}>
-      <ChartTitle title={title} />
-      <ChartContainer>
-        <BarChart
-          data={Object.values(
-            data as { [key: string]: { weekday: string } },
-          ).toSorted((a, b) => (a.weekday > b.weekday ? 1 : -1))}
-        >
-          <CartesianGrid strokeDasharray="2" />
-          <XAxis
-            dataKey="weekday"
-            tick={{ fontSize: 14 }}
-            tickFormatter={(v) => {
-              return weekdayEnum[v as keyof typeof weekdayEnum];
-            }}
-          />
-          <YAxis
-            tick={{ fontSize: 14 }}
-            orientation={direction === 'rtl' ? 'right' : 'left'}
-          />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="count.all" name={t('All')} fill={GENERAL_COLOR} />
-          <Bar dataKey="personal.all" name={t('Me')} fill={AVERAGE_COLOR} />
-        </BarChart>
-      </ChartContainer>
-    </Box>
-  );
+  return <EmptyChart chartTitle={title} isError={isError} />;
 };
 export default ActionsByWeekdayChart;
