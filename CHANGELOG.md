@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.23.2](https://github.com/graasp/client/compare/v2.23.1...v2.23.2) (2025-04-24)
+
+
+### Bug Fixes
+
+* display correctly missing weekdays ([#974](https://github.com/graasp/client/issues/974)) ([9b0c82f](https://github.com/graasp/client/commit/9b0c82f0f824bb1104e3343ca6412080b10df772))
+
 ## [2.23.1](https://github.com/graasp/client/compare/v2.23.0...v2.23.1) (2025-04-23)
 
 
