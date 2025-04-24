@@ -63,14 +63,14 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { item, canAdmin } = useOutletContext();
-  const { data: invitations, isLoading: isInvitationsLoading } =
+  const { data: invitations, isPending: isInvitationsPending } =
     useItemInvitations(item.id, {
       enabled: canAdmin,
     });
   const {
     data: memberships,
     hasOnlyOneAdmin,
-    isLoading: isMembershipsLoading,
+    isPending: isMembershipsPending,
   } = useHighestMemberships({ canAdmin, item });
 
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({
@@ -183,7 +183,7 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
     }
   }
 
-  if (isMembershipsLoading || isInvitationsLoading) {
+  if (isMembershipsPending || isInvitationsPending) {
     return <Skeleton />;
   }
 
