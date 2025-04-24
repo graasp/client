@@ -24,15 +24,15 @@ const MemberAvatar = ({
   component = 'avatar',
 }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Account);
-  const { data: member, isLoading } = hooks.useCurrentMember();
-  const { data: avatarUrl, isLoading: isLoadingAvatar } = hooks.useAvatarUrl({
+  const { data: member, isPending } = hooks.useCurrentMember();
+  const { data: avatarUrl, isPending: isPendingAvatar } = hooks.useAvatarUrl({
     id,
     size: ThumbnailSize.Medium,
   });
   return (
     <Avatar
       url={avatarUrl}
-      isLoading={isLoading || isLoadingAvatar}
+      isLoading={isPending || isPendingAvatar}
       alt={member?.name ?? t('PROFILE_AVATAR_CURRENT_ALT')}
       component={component}
       maxWidth={maxWidth}
