@@ -81,6 +81,8 @@
   "CHAT_DELETE_ACTION_DESCRIPTION": "Nombre de fois où l'objet de discussion a été supprimé",
   "CHAT_CREATE_ACTION_DESCRIPTION": "Nombre de fois que le chat d'objet a été créé",
   "MEMBER_LOGIN_ACTION_DESCRIPTION": "Nombre de connections",
+  "COLLAPSE_ITEM_ACTION_DESCRIPTION": "Nombre de fois un élément est minifié",
+  "UNCOLLAPSE_ITEM_ACTION_DESCRIPTION": "Nombre de fois un élément est dé-minifié",
   "ERROR_FETCHING_DATA": "Une erreur s'est produite lors de la récupération des données, veuillez réessayer plus tard",
   "ITEM_SEARCH_PLACEHOLDER": "Recherche par nom",
   "RECENT_ITEMS_TITLE": "Collections récentes",
