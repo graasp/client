@@ -56,10 +56,10 @@ const ActionsByWeekdayChart = ({
   }
 
   // fill with empty data for missing hour
-  for (let weekday = 0; weekday < 6; weekday += 1) {
+  for (let weekday = 0; weekday <= 6; weekday += 1) {
     if (!data[weekday]) {
       data[weekday] = {
-        day: weekday,
+        weekday,
         count: { all: 0 },
         personal: { all: 0 },
       };
@@ -88,10 +88,11 @@ const ActionsByWeekdayChart = ({
         >
           <CartesianGrid strokeDasharray="2" />
           <XAxis
-            interval={0}
             dataKey="weekday"
             tick={{ fontSize: 14 }}
-            tickFormatter={(v) => weekdayEnum[v as keyof typeof weekdayEnum]}
+            tickFormatter={(v) => {
+              return weekdayEnum[v as keyof typeof weekdayEnum];
+            }}
           />
           <YAxis
             tick={{ fontSize: 14 }}
