@@ -1,8 +1,8 @@
 import {
+  HttpMethod,
   ItemType,
   PackedFolderItemFactory,
   PackedLocalFileItemFactory,
-  buildShortcutExtra,
 } from '@graasp/sdk';
 
 import {
@@ -38,10 +38,10 @@ const checkCreateShortcutRequest = ({
   id: string;
   toItemId?: string;
 }) => {
-  cy.wait('@postItem').then(({ request: { body, url } }) => {
+  cy.wait('@postItemShortcut').then(({ request: { body, url } }) => {
     // check post item request is correct
 
-    expect(body.extra).to.eql(buildShortcutExtra(id));
+    expect(body.target).to.eql(id);
     expect(body.type).to.eql(ItemType.SHORTCUT);
 
     if (toItemId) {
@@ -56,6 +56,13 @@ const checkCreateShortcutRequest = ({
 };
 
 describe('Create Shortcut', () => {
+  beforeEach(() => {
+    cy.intercept({
+      method: HttpMethod.Post,
+      url: /\/items\/shortcuts\//,
+    }).as('postItemShortcut');
+  });
+
   it('create shortcut from Home to Home', () => {
     cy.setUpApi({ items: [IMAGE_ITEM] });
     cy.visit(HOME_PATH);
