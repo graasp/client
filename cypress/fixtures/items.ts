@@ -464,29 +464,6 @@ export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
     ],
   };
 
-export const PUBLIC_FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
-  items: [
-    PackedFolderItemFactory(
-      {
-        ...DEFAULT_FOLDER_ITEM,
-        id: 'ecafbd2a-5688-11eb-ae93-0242ac130008',
-        name: 'public parent folder with hidden child',
-        path: 'ecafbd2a_5688_11eb_ae93_0242ac130008',
-        settings: {
-          isPinned: false,
-          showChatbox: false,
-        },
-      },
-      { publicVisibility: {} },
-    ),
-    PackedDocumentItemFactory({}, { publicVisibility: {} }),
-    PackedDocumentItemFactory(
-      {},
-      { publicVisibility: {}, hiddenVisibility: {} },
-    ),
-  ],
-};
-
 export const generateLotsOfFoldersOnHome = ({
   folderCount,
   creator = DEFAULT_FOLDER_ITEM.creator,
