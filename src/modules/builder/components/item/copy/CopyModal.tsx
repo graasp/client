@@ -47,6 +47,10 @@ export const CopyModal = ({
       open={open}
       onConfirm={onConfirm}
       items={items}
+      // cannot copy in self or below
+      isDisabled={(itemsToCopy, item) => {
+        return itemsToCopy.some((i) => item.path.includes(i.path));
+      }}
     />
   );
 };
