@@ -4,19 +4,18 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
-import {
-  DocumentItemExtraFlavor,
-  ItemGeolocation,
-  buildDocumentExtra,
-} from '@graasp/sdk';
+import { DocumentItemExtraFlavor, ItemGeolocation } from '@graasp/sdk';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '@/config/selectors';
 import type { GenericItem } from '@/openapi/client';
+import { createDocumentMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { getKeyForParentId, itemsWithGeolocationKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
 
 import { CancelButton } from '~builder/components/common/CancelButton';
@@ -38,7 +37,7 @@ type Props = {
 type Inputs = {
   name: string;
   isRaw: boolean;
-  flavor: `${DocumentItemExtraFlavor}`;
+  flavor: DocumentItemExtraFlavor;
 } & DocumentExtraFormInputs;
 
 export function DocumentCreateForm({
@@ -47,9 +46,23 @@ export function DocumentCreateForm({
   previousItemId,
   onClose,
 }: Readonly<Props>): JSX.Element {
+  const queryClient = useQueryClient();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { mutateAsync: createItem } = mutations.usePostItem();
+  const { mutateAsync: createItem } = useMutation({
+    ...createDocumentMutation(),
+    onSettled: (_data, _error) => {
+      const key = getKeyForParentId(parentId);
+      queryClient.invalidateQueries({ queryKey: key });
+
+      // if item has geolocation, invalidate map related keys
+      if (geolocation) {
+        queryClient.invalidateQueries({
+          queryKey: itemsWithGeolocationKeys.allBounds,
+        });
+      }
+    },
+  });
 
   const methods = useForm<Inputs>({
     defaultValues: { flavor: DocumentItemExtraFlavor.None },
@@ -64,16 +77,17 @@ export function DocumentCreateForm({
   async function onSubmit(data: Inputs) {
     try {
       await createItem({
-        type: 'document',
-        name: data.name,
-        extra: buildDocumentExtra({
+        body: {
+          name: data.name,
           content: data.content,
           flavor: data.flavor,
           isRaw: data.isRaw,
-        }),
-        parentId,
-        geolocation,
-        previousItemId,
+          geolocation,
+        },
+        query: {
+          parentId,
+          previousItemId,
+        },
       });
       onClose();
     } catch (e) {

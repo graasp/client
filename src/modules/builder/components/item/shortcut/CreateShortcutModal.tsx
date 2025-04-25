@@ -1,11 +1,12 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { ShortcutItemType, buildShortcutExtra } from '@graasp/sdk';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import type { GenericItem } from '@/openapi/client';
+import { createShortcutMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { getKeyForParentId } from '@/query/keys';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -23,26 +24,32 @@ const CreateShortcutModal = ({
   onClose,
   open,
 }: Props): JSX.Element | null => {
+  const queryClient = useQueryClient();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { mutate: createShortcut } = mutations.usePostItem();
+  const { mutateAsync: createShortcut } = useMutation(createShortcutMutation());
   const [item] = useState<GenericItem>(defaultItem);
 
-  const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
+  const onConfirm: ItemSelectionModalProps['onConfirm'] = async (
+    destination,
+  ): Promise<void> => {
     const target = item.id; // id of the item where the shortcut is pointing
 
-    const shortcut: Partial<ShortcutItemType> &
-      Pick<GenericItem, 'name' | 'type'> & {
-        parentId?: string;
-      } = {
-      name: translateBuilder(BUILDER.CREATE_SHORTCUT_DEFAULT_NAME, {
-        name: item?.name,
-      }),
-      extra: buildShortcutExtra(target),
-      type: 'shortcut',
-      parentId: destination,
-    };
+    await createShortcut({
+      body: {
+        name: translateBuilder(BUILDER.CREATE_SHORTCUT_DEFAULT_NAME, {
+          name: item?.name,
+        }),
+        target,
+      },
+      query: {
+        parentId: destination,
+      },
+    });
 
-    createShortcut(shortcut);
+    // invalidate children of parent
+    const key = getKeyForParentId(destination);
+    queryClient.invalidateQueries({ queryKey: key });
+
     onClose();
   };
 
