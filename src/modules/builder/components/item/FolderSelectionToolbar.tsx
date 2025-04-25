@@ -17,6 +17,7 @@ const FolderSelectionToolbar = ({
   items: PackedItem[];
 }): JSX.Element => {
   const { selectedIds, clearSelection } = useSelectionContext();
+  const selectedItems = items?.filter(({ id }) => selectedIds.includes(id));
 
   const {
     isOpen: isCopyModalOpen,
@@ -37,7 +38,7 @@ const FolderSelectionToolbar = ({
           clearSelection();
         }}
         open={isCopyModalOpen}
-        itemIds={selectedIds}
+        items={selectedItems}
       />
       <MoveModal
         onClose={() => {
@@ -45,7 +46,7 @@ const FolderSelectionToolbar = ({
           clearSelection();
         }}
         open={isMoveModalOpen}
-        items={items?.filter(({ id }) => selectedIds.includes(id))}
+        items={selectedItems}
       />
       <SelectionToolbar>
         <>

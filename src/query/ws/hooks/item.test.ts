@@ -258,7 +258,7 @@ describe('Ws Item Hooks', () => {
         kind: KINDS.FEEDBACK,
         resource: [recycledItem.id],
         op: OPS.RECYCLE,
-        result: { [recycledItem.id]: recycledItem },
+        result: [recycledItem],
         errors: [],
       });
 

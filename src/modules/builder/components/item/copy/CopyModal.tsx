@@ -12,20 +12,20 @@ import ItemSelectionModal, {
 } from '../../main/itemSelectionModal/ItemSelectionModal';
 
 export const CopyModal = ({
-  itemIds,
+  items,
   open,
   onClose,
 }: {
   open: boolean;
   onClose: () => void;
-  itemIds: DiscriminatedItem['id'][];
+  items: DiscriminatedItem[];
 }): JSX.Element | null => {
   const { mutate: copyItems } = mutations.useCopyItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
     copyItems({
-      ids: itemIds,
+      ids: items.map((i) => i.id),
       to: destination,
     });
     onClose();
@@ -46,7 +46,7 @@ export const CopyModal = ({
       onClose={onClose}
       open={open}
       onConfirm={onConfirm}
-      itemIds={itemIds}
+      items={items}
     />
   );
 };

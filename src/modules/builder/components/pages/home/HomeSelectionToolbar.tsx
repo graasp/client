@@ -17,7 +17,7 @@ const HomeSelectionToolbar = ({
   items: PackedItem[];
 }): JSX.Element => {
   const { selectedIds, clearSelection } = useSelectionContext();
-
+  const selectedItems = items?.filter(({ id }) => selectedIds.includes(id));
   const {
     isOpen: isCopyModalOpen,
     openModal: openCopyModal,
@@ -37,7 +37,7 @@ const HomeSelectionToolbar = ({
           clearSelection();
         }}
         open={isCopyModalOpen}
-        itemIds={selectedIds}
+        items={selectedItems}
       />
       <MoveModal
         onClose={() => {
@@ -45,7 +45,7 @@ const HomeSelectionToolbar = ({
           clearSelection();
         }}
         open={isMoveModalOpen}
-        items={items?.filter(({ id }) => selectedIds.includes(id))}
+        items={selectedItems}
       />
       <SelectionToolbar>
         <>

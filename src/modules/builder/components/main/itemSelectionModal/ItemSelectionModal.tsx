@@ -43,7 +43,7 @@ export type ItemSelectionModalProps = {
     homeId: string,
   ) => boolean;
   // items can be undefined because "many" operations start empty
-  itemIds?: string[];
+  items?: DiscriminatedItem[];
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;
@@ -52,14 +52,13 @@ export type ItemSelectionModalProps = {
 const ItemSelectionModal = ({
   buttonText = () => 'Submit',
   isDisabled = () => false,
-  itemIds = [],
+  items = [],
   onClose,
   onConfirm,
   open = false,
   title,
 }: ItemSelectionModalProps): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { data: items, isLoading } = hooks.useItems(itemIds);
   const titleElement = items ? title : <Skeleton height={50} />;
 
   // special elements for breadcrumbs
@@ -110,8 +109,7 @@ const ItemSelectionModal = ({
   };
 
   const isDisabledLocal = (item: NavigationElement) =>
-    !items?.data ||
-    isDisabled(Object.values(items.data), item, MY_GRAASP_BREADCRUMB.id);
+    !items.length || isDisabled(items, item, MY_GRAASP_BREADCRUMB.id);
 
   return (
     <Dialog
@@ -140,28 +138,17 @@ const ItemSelectionModal = ({
             />
           )}
 
-          {items?.data && selectedNavigationItem.id === ROOT_BREADCRUMB.id && (
+          {items && selectedNavigationItem.id === ROOT_BREADCRUMB.id && (
             <RootNavigationTree
               isDisabled={(item) =>
-                isDisabled(
-                  Object.values(items.data),
-                  item,
-                  MY_GRAASP_BREADCRUMB.id,
-                )
+                isDisabled(items, item, MY_GRAASP_BREADCRUMB.id)
               }
               onClick={setSelectedItem}
               selectedId={selectedItem?.id}
               onNavigate={onNavigate}
-              items={Object.values(items.data)}
+              items={items}
               rootMenuItems={[MY_GRAASP_BREADCRUMB]}
             />
-          )}
-          {isLoading && (
-            <>
-              <Skeleton height={50} />
-              <Skeleton height={50} />
-              <Skeleton height={50} />
-            </>
           )}
           {selectedNavigationItem.id === MY_GRAASP_BREADCRUMB.id && (
             <AccessibleNavigationTree

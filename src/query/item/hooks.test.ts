@@ -1,10 +1,8 @@
 import {
-  DiscriminatedItem,
   FolderItemFactory,
   FolderItemType,
   ItemType,
   LocalFileItemFactory,
-  MAX_TARGETS_FOR_READ_REQUEST,
 } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
@@ -15,21 +13,14 @@ import { itemKeys } from '../keys.js';
 import {
   THUMBNAIL_URL_RESPONSE,
   UNAUTHORIZED_RESPONSE,
-  buildResultOfData,
   generateFolders,
 } from '../test/constants.js';
-import {
-  Endpoint,
-  mockHook,
-  setUpTest,
-  splitEndpointByIds,
-} from '../test/utils.js';
+import { Endpoint, mockHook, setUpTest } from '../test/utils.js';
 import {
   buildDownloadFilesRoute,
   buildGetChildrenRoute,
   buildGetItemParents,
   buildGetItemRoute,
-  buildGetItemsRoute,
 } from './routes.js';
 
 const { hooks, wrapper, queryClient } = setUpTest();
@@ -320,97 +311,6 @@ describe('useItem', () => {
     // verify cache keys
     expect(queryClient.getQueryData(key)).toBeFalsy();
   });
-});
-
-describe('useItems', () => {
-  afterEach(() => {
-    nock.cleanAll();
-    queryClient.clear();
-  });
-
-  const dataItems = generateFolders();
-
-  it(`Receive one item`, async () => {
-    const oneItem = FolderItemFactory();
-    const { id } = dataItems[0];
-    const response = buildResultOfData([oneItem]);
-    // use single item call
-    const route = `/${buildGetItemsRoute([id])}`;
-    const endpoints = [{ route, response }];
-    const hook = () => hooks.useItems([id]);
-    const { data } = await mockHook({ endpoints, hook, wrapper });
-    expect(data).toEqual(response);
-    // verify cache keys
-    const item = queryClient.getQueryData<DiscriminatedItem>(
-      itemKeys.single(id).content,
-    );
-    expect(item).toEqual(response.data[id]);
-    const items = queryClient.getQueryData<DiscriminatedItem[]>(
-      itemKeys.many([id]).content,
-    );
-    expect(items).toEqual(response);
-  });
-
-  it(`Receive two items`, async () => {
-    const items = dataItems.slice(0, 2);
-    const response = buildResultOfData(items);
-    const ids: string[] = items.map(({ id }) => id);
-    const hook = () => hooks.useItems(ids);
-    const route = `/${buildGetItemsRoute(ids)}`;
-    const endpoints = [{ route, response }];
-    const { data } = await mockHook({ endpoints, hook, wrapper });
-
-    expect(data).toEqual(response);
-    // verify cache keys
-    expect(queryClient.getQueryData(itemKeys.many(ids).content)).toMatchObject(
-      data!,
-    );
-  });
-
-  it(`Receive many items`, async () => {
-    const items = generateFolders(MAX_TARGETS_FOR_READ_REQUEST + 1);
-    const response = buildResultOfData(items);
-    const ids: string[] = items.map(({ id }) => id);
-    const hook = () => hooks.useItems(ids);
-    const endpoints = splitEndpointByIds(
-      ids,
-      MAX_TARGETS_FOR_READ_REQUEST,
-      (chunk) => `/${buildGetItemsRoute(chunk)}`,
-      items,
-    );
-    const { data } = await mockHook({ endpoints, hook, wrapper });
-    expect(data).toEqual(response);
-    // verify cache keys
-    expect(queryClient.getQueryData(itemKeys.many(ids).content)).toMatchObject(
-      data!,
-    );
-  });
-
-  it(`Unauthorized`, async () => {
-    const requestedItems = dataItems;
-    const ids: string[] = requestedItems.map(({ id }) => id);
-    const hook = () => hooks.useItems(ids);
-    const route = `/${buildGetItemsRoute(ids)}`;
-    const endpoints = [
-      {
-        route,
-        response: UNAUTHORIZED_RESPONSE,
-        statusCode: StatusCodes.UNAUTHORIZED,
-      },
-    ];
-    const { data, isError } = await mockHook({
-      hook,
-      endpoints,
-      wrapper,
-    });
-
-    expect(data).toBeFalsy();
-    expect(isError).toBeTruthy();
-    // verify cache keys
-    expect(queryClient.getQueryData(itemKeys.many(ids).content)).toBeFalsy();
-  });
-
-  // TODO: errors, contains errors, full errors
 });
 
 describe('useFileContentUrl', () => {
