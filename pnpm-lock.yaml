@@ -27,8 +27,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
       '@graasp/sdk':
-        specifier: 5.11.0
-        version: 5.11.0(date-fns@4.1.0)(uuid@11.0.5)
+        specifier: github:graasp/graasp-sdk#recycle-websockets
+        version: https://codeload.github.com/graasp/graasp-sdk/tar.gz/97da2630bbb283e10ce9e2540306f919fc9a3ccc(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -1623,8 +1623,9 @@ packages:
   '@googlemaps/js-api-loader@1.16.8':
     resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
 
-  '@graasp/sdk@5.11.0':
-    resolution: {integrity: sha512-IR4Ec7Gik11fz6SKGPvcJY7ePN7aa5TGheDJMsTbf+MG9t1I9N7SafFE3Me4COWheTyqmWTve3eHKeZfu+P1Ew==}
+  '@graasp/sdk@https://codeload.github.com/graasp/graasp-sdk/tar.gz/97da2630bbb283e10ce9e2540306f919fc9a3ccc':
+    resolution: {tarball: https://codeload.github.com/graasp/graasp-sdk/tar.gz/97da2630bbb283e10ce9e2540306f919fc9a3ccc}
+    version: 5.11.0
     peerDependencies:
       date-fns: ^4
       uuid: ^9 || ^10 || ^11.0.0
@@ -8276,7 +8277,7 @@ snapshots:
 
   '@googlemaps/js-api-loader@1.16.8': {}
 
-  '@graasp/sdk@5.11.0(date-fns@4.1.0)(uuid@11.0.5)':
+  '@graasp/sdk@https://codeload.github.com/graasp/graasp-sdk/tar.gz/97da2630bbb283e10ce9e2540306f919fc9a3ccc(date-fns@4.1.0)(uuid@11.0.5)':
     dependencies:
       '@faker-js/faker': 9.5.0
       date-fns: 4.1.0
