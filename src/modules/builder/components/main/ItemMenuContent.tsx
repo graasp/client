@@ -32,6 +32,7 @@ import { MoveModal } from '../item/move/MoveModal';
 import ItemSettingsButton from '../item/settings/ItemSettingsButton';
 import CreateShortcutButton from '../item/shortcut/CreateShortcutButton';
 import CreateShortcutModal from '../item/shortcut/CreateShortcutModal';
+import DownloadButton from './DownloadButton';
 
 type Props = {
   item: PackedItem;
@@ -136,6 +137,10 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ),
   ].filter(Boolean) as JSX.Element[];
 
+  const actionMenus = [
+    <DownloadButton key="download" item={item} type={ActionButton.MENU_ITEM} />,
+  ];
+
   const visibilityMenus = [
     ...(canWrite
       ? [
@@ -201,6 +206,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   // put all menus together and intersperse the dividers between the groups
   const menus = [
     modificationMenus,
+    actionMenus,
     visibilityMenus,
     miscMenus,
     destructiveMenus,

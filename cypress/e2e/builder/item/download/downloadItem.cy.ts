@@ -1,6 +1,9 @@
 import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
 
-import { buildDownloadButtonId } from '../../../../../src/config/selectors';
+import {
+  buildDownloadButtonId,
+  buildItemsGridMoreButtonSelector,
+} from '../../../../../src/config/selectors';
 import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -10,6 +13,13 @@ const SHARED_ITEM = PackedFolderItemFactory(
 );
 
 describe('Download Item', () => {
+  it('Download action exists in item menu', () => {
+    cy.setUpApi({ items: [SHARED_ITEM] });
+    cy.visit(HOME_PATH);
+    const item = SHARED_ITEM;
+    cy.get(buildItemsGridMoreButtonSelector(item.id)).click();
+    cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).should('exist');
+  });
   it('Table View', () => {
     cy.setUpApi({ items: [SHARED_ITEM] });
     cy.visit(HOME_PATH);
