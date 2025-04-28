@@ -12,7 +12,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { BookmarkIcon, PenIcon, XIcon } from 'lucide-react';
+import { BookmarkIcon, CheckIcon, PenIcon } from 'lucide-react';
 import { v4 } from 'uuid';
 
 import { NS } from '@/config/constants';
@@ -69,10 +69,10 @@ export function BookmarkedItems() {
           {isEditionMode ? (
             <Button
               size="small"
-              startIcon={<XIcon size={16} />}
+              startIcon={<CheckIcon size={16} />}
               onClick={() => setIsEditionMode(false)}
             >
-              {t('CANCEL_BUTTON')}
+              {t('DONE_BUTTON')}
             </Button>
           ) : (
             <Button
