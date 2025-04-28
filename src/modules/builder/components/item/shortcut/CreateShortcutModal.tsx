@@ -61,7 +61,7 @@ const CreateShortcutModal = ({
         onClose={onClose}
         open={open}
         onConfirm={onConfirm}
-        itemIds={[item.id]}
+        items={[item]}
       />
     );
   }

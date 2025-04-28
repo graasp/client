@@ -90,7 +90,7 @@ const InvalidateItemOpFeedback = (queryClient: QueryClient) => ({
   ) => {
     if (event.result) {
       const items = event.result;
-      const firstPath = Object.values(items)[0].path;
+      const firstPath = items[0].path;
       const parentKey = getKeyForParentId(getParentFromPath(firstPath));
       // invalidate queries for the parent
       queryClient.invalidateQueries({ queryKey: parentKey });

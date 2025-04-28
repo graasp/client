@@ -1,14 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {
-  MAX_TARGETS_FOR_READ_REQUEST,
-  PackedItem,
-  UUID,
-  WebsocketClient,
-} from '@graasp/sdk';
+import { PackedItem, UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import { splitRequestByIdsAndReturn } from '../api/axios.js';
 import {
   CONSTANT_KEY_STALE_TIME_MILLISECONDS,
   PAGINATED_ITEMS_PER_PAGE,
@@ -151,25 +145,6 @@ const config = (
         enabled: Boolean(id),
         ...defaultQueryOptions,
       }),
-
-    useItems: (ids: UUID[]) => {
-      return useQuery({
-        queryKey: itemKeys.many(ids).content,
-        queryFn: () => {
-          if (!ids) {
-            throw new UndefinedArgument();
-          }
-          return splitRequestByIdsAndReturn(
-            ids,
-            MAX_TARGETS_FOR_READ_REQUEST,
-            (chunk) => Api.getItems(chunk),
-            true,
-          );
-        },
-        enabled: ids && Boolean(ids.length) && ids.every((id) => Boolean(id)),
-        ...defaultQueryOptions,
-      });
-    },
 
     useFileContentUrl: (
       id?: UUID,

@@ -986,40 +986,6 @@ export const mockGetItem = (
   ).as('getItem');
 };
 
-export const mockGetItems = ({ items }: { items: ItemForTest[] }): void => {
-  cy.intercept(
-    {
-      method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/${ITEMS_ROUTE}\\?id\\=`),
-    },
-    ({ url, reply }) => {
-      const search = new URL(url).searchParams;
-      const itemIds = search.getAll('id');
-      const result: {
-        data: { [key: string]: ItemForTest };
-        errors: { statusCode: number }[];
-      } = { data: {}, errors: [] };
-      itemIds.forEach((id) => {
-        const item = getItemById(items, id);
-
-        const haveMembership = checkMembership({ item });
-
-        if (!haveMembership) {
-          result.errors.push({
-            statusCode: StatusCodes.UNAUTHORIZED,
-          });
-        } else if (!item) {
-          result.errors.push({ statusCode: StatusCodes.NOT_FOUND });
-        } else {
-          result.data[item.id] = item;
-        }
-      });
-
-      return reply(result);
-    },
-  ).as('getItems');
-};
-
 export const mockGetItemChat = (
   { items }: { items: ItemForTest[] },
   shouldThrowError: boolean,

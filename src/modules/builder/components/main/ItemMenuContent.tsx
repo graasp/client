@@ -215,7 +215,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
       <CopyModal
         onClose={closeCopyModal}
         open={isCopyModalOpen}
-        itemIds={[item.id]}
+        items={[item]}
       />
       <MoveModal
         onClose={closeMoveModal}

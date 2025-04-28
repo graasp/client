@@ -32,6 +32,7 @@ const TemplateSelectionButton = ({
 }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { data: selectedItem } = hooks.useItem(selectedItemId);
+  const { data: targetItem } = hooks.useItem(targetItemId);
   const [open, setOpen] = useState<boolean>(false);
 
   const openTemplateSelectionModal = () => {
@@ -89,14 +90,14 @@ const TemplateSelectionButton = ({
         </Button>
       )}
 
-      {targetItemId && open && (
+      {targetItem && open && (
         <ItemSelectionModal
           title={t(BUILDER.ITEM_TEMPLATE_SELECTION_MODAL_TITLE)}
           buttonText={buttonText}
           onClose={onClose}
           open={open}
           onConfirm={onConfirm}
-          itemIds={[targetItemId]}
+          items={[targetItem]}
         />
       )}
     </>

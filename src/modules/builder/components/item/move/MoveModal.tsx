@@ -75,7 +75,7 @@ export const MoveModal = ({
       onClose={onClose}
       open={open}
       onConfirm={onConfirm}
-      itemIds={items.map((i) => i.id)}
+      items={items}
     />
   ) : null;
 };

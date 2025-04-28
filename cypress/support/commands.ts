@@ -111,7 +111,6 @@ import {
   mockGetItemLoginSchemaType,
   mockGetItemMembershipsForItem,
   mockGetItemThumbnailUrl,
-  mockGetItems,
   mockGetItemsInMap,
   mockGetLatestValidationGroup,
   mockGetLinkMetadata,
@@ -449,8 +448,6 @@ Cypress.Commands.add(
     mockDeleteItemMembershipForItem();
 
     mockPostItemFlag(cachedItems, postItemFlagError);
-
-    mockGetItems({ items });
 
     mockGetItemChat({ items }, getItemChatError);
 
