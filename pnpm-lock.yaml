@@ -65,9 +65,6 @@ importers:
       date-fns:
         specifier: ^4
         version: 4.1.0
-      google-map-react:
-        specifier: 2.2.1
-        version: 2.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       http-status-codes:
         specifier: 2.3.0
         version: 2.3.0
@@ -285,9 +282,6 @@ importers:
       '@trivago/prettier-plugin-sort-imports':
         specifier: 5.2.2
         version: 5.2.2(prettier@3.5.1)
-      '@types/google-map-react':
-        specifier: 2.1.10
-        version: 2.1.10
       '@types/leaflet':
         specifier: 1.9.16
         version: 1.9.16
@@ -1620,9 +1614,6 @@ packages:
   '@fontsource-variable/nunito@5.1.1':
     resolution: {integrity: sha512-o4VVGDO/q2KaQp7aU6iKmKQ7sbalUOeA/D9nxY+o80ga/IV+7i+Yb/CpqNxAwjAWVhgdE2UiQlpsc38+j47ekw==}
 
-  '@googlemaps/js-api-loader@1.16.8':
-    resolution: {integrity: sha512-CROqqwfKotdO6EBjZO/gQGVTbeDps5V7Mt9+8+5Q+jTg5CRMi3Ii/L9PmV3USROrt2uWxtGzJHORmByxyo9pSQ==}
-
   '@graasp/sdk@5.12.0':
     resolution: {integrity: sha512-LE/0k8s+YqcdXo6ocflhtJ2Qv4LIfWk9I1tMiNMnsRYI/Vm+G3JjWKK2bOUbU/nd6He+4uoHmjWL6/zP4ZxcrA==}
     peerDependencies:
@@ -1735,9 +1726,6 @@ packages:
 
   '@jsdevtools/ono@7.1.3':
     resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
-
-  '@mapbox/point-geometry@0.1.0':
-    resolution: {integrity: sha512-6j56HdLTwWGO0fJPlrZtdU/B13q8Uwmo18Ck2GnGgN9PCFyKTZ3UbXeEdRFh18i9XQ92eH2VdtpJHpBD3aripQ==}
 
   '@mdx-js/react@3.1.0':
     resolution: {integrity: sha512-QjHtSaoameoalGnKDT3FoIl4+9RwyTmo9ZJGBdLOks/YOiWHoRDI3PUwEzOE7kEmGcV3AFcp9K6dYu9rEuKLAQ==}
@@ -2477,9 +2465,6 @@ packages:
 
   '@types/geojson@7946.0.15':
     resolution: {integrity: sha512-9oSxFzDCT2Rj6DfcHF8G++jxBKS7mBqXl5xrRW+Kbvjry6Uduya2iiwqHPhVXpasAVMBYKkEPGgKhd3+/HZ6xA==}
-
-  '@types/google-map-react@2.1.10':
-    resolution: {integrity: sha512-8/0UllZS7tF08WNBRPQlSJCkETvz3e3sZoPxzDaWkj2iV5dmFSnOKXVtoeKo8dLZSe+RkLn479t1wj6nXmLLSA==}
 
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
@@ -4209,13 +4194,6 @@ packages:
     resolution: {integrity: sha512-erjk19y1U33+XAMe1VTvIONHYoSqE4iS7BYUZfHaqeohLmnC0FdxEh7rQU+6MZ4OajItzjZFSRtVANrQwNq6/g==}
     peerDependencies:
       csstype: ^3.0.10
-
-  google-map-react@2.2.1:
-    resolution: {integrity: sha512-Dg8aexf5rNSmywj0XKQ5m4RNzVcWwKEM2BGDj5aPChD0um8ZRjB5Upcb/yg/i0oG1aES29asQ5+6BHVgrK5xGA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -8274,8 +8252,6 @@ snapshots:
 
   '@fontsource-variable/nunito@5.1.1': {}
 
-  '@googlemaps/js-api-loader@1.16.8': {}
-
   '@graasp/sdk@5.12.0(date-fns@4.1.0)(uuid@11.0.5)':
     dependencies:
       '@faker-js/faker': 9.5.0
@@ -8407,8 +8383,6 @@ snapshots:
       - supports-color
 
   '@jsdevtools/ono@7.1.3': {}
-
-  '@mapbox/point-geometry@0.1.0': {}
 
   '@mdx-js/react@3.1.0(@types/react@19.0.9)(react@19.0.0)':
     dependencies:
@@ -9187,10 +9161,6 @@ snapshots:
   '@types/estree@1.0.6': {}
 
   '@types/geojson@7946.0.15': {}
-
-  '@types/google-map-react@2.1.10':
-    dependencies:
-      '@types/react': 19.0.9
 
   '@types/hast@3.0.4':
     dependencies:
@@ -11320,15 +11290,6 @@ snapshots:
   goober@2.1.16(csstype@3.1.3):
     dependencies:
       csstype: 3.1.3
-
-  google-map-react@2.2.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
-    dependencies:
-      '@googlemaps/js-api-loader': 1.16.8
-      '@mapbox/point-geometry': 0.1.0
-      eventemitter3: 4.0.7
-      prop-types: 15.8.1
-      react: 19.0.0
-      react-dom: 19.0.0(react@19.0.0)
 
   gopd@1.2.0: {}
 

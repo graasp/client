@@ -46,6 +46,7 @@ export type DownloadButtonProps = {
    */
   placement?: TooltipPlacement;
   type?: ActionButtonVariant;
+  id?: string;
 };
 
 const DownloadButton = ({
@@ -57,6 +58,7 @@ const DownloadButton = ({
   title = 'Download',
   placement = 'bottom',
   type = ActionButton.ICON_BUTTON,
+  id,
 }: DownloadButtonProps): JSX.Element => {
   const { color: iconColor } = useButtonColor(color);
   const icon = <DownloadIcon color={iconColor} />;
@@ -65,18 +67,16 @@ const DownloadButton = ({
       return icon;
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={title} onClick={handleDownload}>
+        <MenuItem id={id} key={title} onClick={handleDownload}>
           <ListItemIcon>{icon}</ListItemIcon>
-          <Typography component="span" color={color}>
-            {title}
-          </Typography>
+          <Typography color={color}>{title}</Typography>
         </MenuItem>
       );
     case ActionButton.ICON_BUTTON:
     default:
       return (
         <Tooltip title={title} placement={placement}>
-          <span>
+          <span id={id}>
             <IconButton
               disabled={isLoading}
               color={color}

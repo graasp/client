@@ -1,6 +1,9 @@
 # Graasp Account
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub Release](https://img.shields.io/github/release/graasp/graasp-library)](https://github.com/graasp-account/releases)
@@ -9,11 +12,11 @@
 
 ## Translation status
 
-[![gitlocalized-fr](https://gitlocalize.com/repo/9998/fr/badge.svg)](https://gitlocalize.com/repo/9998/fr?utm_source=badge)  
-[![gitlocalized-de](https://gitlocalize.com/repo/9998/de/badge.svg)](https://gitlocalize.com/repo/9998/de?utm_source=badge)  
-[![gitlocalized-es](https://gitlocalize.com/repo/9998/es/badge.svg)](https://gitlocalize.com/repo/9998/es?utm_source=badge)  
-[![gitlocalized-it](https://gitlocalize.com/repo/9998/it/badge.svg)](https://gitlocalize.com/repo/9998/it?utm_source=badge)  
-[![gitlocalized-ar](https://gitlocalize.com/repo/9998/ar/badge.svg)](https://gitlocalize.com/repo/9998/ar?utm_source=badge)  
+[![gitlocalized-fr](https://gitlocalize.com/repo/9998/fr/badge.svg)](https://gitlocalize.com/repo/9998/fr?utm_source=badge)
+[![gitlocalized-de](https://gitlocalize.com/repo/9998/de/badge.svg)](https://gitlocalize.com/repo/9998/de?utm_source=badge)
+[![gitlocalized-es](https://gitlocalize.com/repo/9998/es/badge.svg)](https://gitlocalize.com/repo/9998/es?utm_source=badge)
+[![gitlocalized-it](https://gitlocalize.com/repo/9998/it/badge.svg)](https://gitlocalize.com/repo/9998/it?utm_source=badge)
+[![gitlocalized-ar](https://gitlocalize.com/repo/9998/ar/badge.svg)](https://gitlocalize.com/repo/9998/ar?utm_source=badge)
 
 ## Getting Started
 
@@ -43,7 +46,6 @@ VITE_SENTRY_DSN= # some value
 VITE_RECAPTCHA_SITE_KEY= # some value
 
 VITE_GRAASP_H5P_INTEGRATION_URL= # the origin for the h5p integration
-VITE_GOOGLE_KEY= # a google api key for using the google map in analytics
 
 VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
 ```

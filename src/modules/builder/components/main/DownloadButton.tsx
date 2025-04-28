@@ -7,14 +7,19 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildDownloadButtonId } from '@/config/selectors';
 import GraaspDownloadButton from '@/ui/buttons/DownloadButton/DownloadButton';
+import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs';
 
 type Props = {
   item: DiscriminatedItem;
+  type?: ActionButtonVariant;
 };
 
-export const DownloadButton = ({ item }: Props): JSX.Element => {
+export const DownloadButton = ({
+  item,
+  type = ActionButton.ICON_BUTTON,
+}: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const {
@@ -40,14 +45,14 @@ export const DownloadButton = ({ item }: Props): JSX.Element => {
     downloadItem({ id: item.id });
   };
   return (
-    <span id={buildDownloadButtonId(item.id)}>
-      <GraaspDownloadButton
-        handleDownload={handleDownload}
-        isLoading={isDownloading}
-        title={translateBuilder(BUILDER.DOWNLOAD_ITEM_BUTTON)}
-        ariaLabel={translateBuilder(BUILDER.DOWNLOAD_ITEM_BUTTON)}
-      />
-    </span>
+    <GraaspDownloadButton
+      type={type}
+      id={buildDownloadButtonId(item.id)}
+      handleDownload={handleDownload}
+      isLoading={isDownloading}
+      title={translateBuilder(BUILDER.DOWNLOAD_ITEM_BUTTON)}
+      ariaLabel={translateBuilder(BUILDER.DOWNLOAD_ITEM_BUTTON)}
+    />
   );
 };
 
