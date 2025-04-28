@@ -24,7 +24,6 @@ import {
   LinkItemType,
   PackedItem,
   PermissionLevel,
-  S3FileItemType,
   ShortcutItemType,
   buildPdfViewerURL,
 } from '@graasp/sdk';
@@ -124,7 +123,7 @@ const EtherpadContent = ({ item }: EtherpadContentProps) => {
 };
 
 type FileContentProps = {
-  item: S3FileItemType | FileItemType;
+  item: FileItemType;
 };
 const FileContent = ({ item }: FileContentProps) => {
   const { t } = useTranslation(NS.Common);
