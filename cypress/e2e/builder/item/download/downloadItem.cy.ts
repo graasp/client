@@ -18,7 +18,9 @@ describe('Download Item', () => {
     cy.visit(HOME_PATH);
     const item = SHARED_ITEM;
     cy.get(buildItemsGridMoreButtonSelector(item.id)).click();
-    cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).should('exist');
+    cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).should(
+      'be.visible',
+    );
   });
   it('Table View', () => {
     cy.setUpApi({ items: [SHARED_ITEM] });

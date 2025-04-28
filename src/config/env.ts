@@ -28,10 +28,3 @@ export const H5P_INTEGRATION_URL =
 // Question: should we host the pdf player assets inside the public directory here instead of at another bucket ?
 // Are there any security implications if it is hosted on the same domain as the app code ?
 export const GRAASP_ASSETS_URL = import.meta.env.VITE_GRAASP_ASSETS_URL;
-
-/**
- * Required API Key to use google map api in analytics.
- *
- * This could maybe be replaced by our own map implementation if we want using react-leaflet.
- */
-export const GOOGLE_KEY = import.meta.env.VITE_GOOGLE_KEY;
