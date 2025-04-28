@@ -59,7 +59,6 @@ This mode runs the app from the static build and uses a lot less RAM compared to
 
     ```dotenv
     VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-assets/
-    VITE_GOOGLE_KEY=1234567890 # a mock key
     VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
     ```
 
