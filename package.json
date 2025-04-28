@@ -78,7 +78,6 @@
     "stylis": "4.3.6",
     "use-supercluster": "1.2.0",
     "uuid": "11.0.5",
-    "validator": "13.12.0",
     "zod": "3.24.2"
   },
   "scripts": {
@@ -160,7 +159,6 @@
     "@types/react-dom": "19.0.3",
     "@types/react-mentions": "4.4.1",
     "@types/stylis": "4.2.7",
-    "@types/validator": "13.12.2",
     "@typescript-eslint/eslint-plugin": "8.24.0",
     "@typescript-eslint/parser": "8.24.0",
     "@vitejs/plugin-react": "4.3.4",
@@ -206,5 +204,12 @@
   },
   "resolutions": {
     "date-fns": "^4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "cypress",
+      "esbuild",
+      "msw"
+    ]
   }
 }
