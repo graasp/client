@@ -96,7 +96,7 @@ export const expectFileViewScreenLayout = ({
   id,
   extra,
 }: FileItemType): void => {
-  const mimetype = getFileExtra(extra)?.mimetype || '';
+  const mimetype = getFileExtra(extra)?.mimetype ?? '';
   // embedded element
   let selector = '';
   if (MimeTypes.isImage(mimetype)) {

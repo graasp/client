@@ -63,8 +63,7 @@ export function FileForm({
   const altText = watch('altText');
   const descriptionPlacement = watch('descriptionPlacement');
 
-  const { mimetype, altText: previousAltText } = (item as FileItemType).extra
-    .file;
+  const { mimetype, altText: previousAltText } = item.extra.file;
 
   const { mutateAsync: editItem } = mutations.useEditItem();
 

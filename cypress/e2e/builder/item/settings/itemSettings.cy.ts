@@ -103,7 +103,7 @@ describe('Item Settings', () => {
           .should('exist')
           .contains(creator.name);
 
-        if (type === ItemType.FILE || type === ItemType.FILE) {
+        if (type === ItemType.FILE) {
           const { mimetype, size } = getFileExtra(extra);
           cy.get(`#${ITEM_PANEL_TABLE_ID}`).contains(mimetype);
 
