@@ -16,6 +16,7 @@ import { PackedItem, formatDate } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { buildBookmarkCardEditClassName } from '@/config/selectors';
 import { deleteBookmarkMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { memberKeys } from '@/query/keys';
 
@@ -40,6 +41,7 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
 
   return (
     <Badge
+      className={buildBookmarkCardEditClassName(item.id)}
       sx={{ width: '100%' }}
       badgeContent={
         <IconButton

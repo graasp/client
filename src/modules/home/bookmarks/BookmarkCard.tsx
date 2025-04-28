@@ -12,6 +12,7 @@ import {
 
 import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
+import { buildItemBookmarkCard } from '@/config/selectors';
 
 import ItemThumbnail from '../../player/common/ItemThumbnail';
 
@@ -28,7 +29,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
       : item.id;
 
   return (
-    <Card sx={{ height: '100%' }} id={`bookmark-${item.id}`}>
+    <Card sx={{ height: '100%' }} id={buildItemBookmarkCard(item.id)}>
       <Stack
         direction="row"
         alignItems="stretch"

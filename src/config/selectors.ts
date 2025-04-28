@@ -213,6 +213,8 @@ export const ITEM_COPY_BUTTON_CLASS = 'itemCopyButton';
 export const ITEM_MOVE_BUTTON_CLASS = 'itemMoveButton';
 export const CONFIRM_DELETE_BUTTON_ID = 'confirmDeleteButton';
 export const buildItemCard = (id: string): string => `itemCard-${id}`;
+export const buildItemBookmarkCard = (id: string): string => `bookmark-${id}`;
+export const BOOKMARK_MANAGE_BUTTON_ID = 'bookmarksManageButton';
 export const CREATE_ITEM_BUTTON_ID = 'createItemButton';
 export const ITEM_FORM_NAME_INPUT_ID = 'newItemNameInput';
 export const ITEM_FORM_DISPLAY_NAME_INPUT_ID = 'newItemDisplayNameInput';
@@ -632,3 +634,7 @@ export const VISIBILITY_HIDDEN_ALERT_ID = 'visibilityHiddenAlert';
 export const SHARE_ITEM_CANCEL_BUTTON_CY = 'shareItemCancelButton';
 export const ADD_FOLDER_BUTTON_CY = 'addFolder';
 export const DELETE_GUEST_CONFIRM_BUTTON_ID = 'deleteguestConfirmButton';
+export const buildBookmarkCardEditClassName = (id: string) =>
+  `bookmarkCardEdit-${id}`;
+export const buildBookmarkCardRemoveButton = (id: string) =>
+  `.${buildBookmarkCardEditClassName(id)} [data-testid="CancelIcon"]`;

@@ -16,7 +16,11 @@ import { BookmarkIcon, CheckIcon, PenIcon } from 'lucide-react';
 import { v4 } from 'uuid';
 
 import { NS } from '@/config/constants';
-import { BOOKMARKED_ITEMS_ID } from '@/config/selectors';
+import {
+  BOOKMARKED_ITEMS_ERROR_ALERT_ID,
+  BOOKMARKED_ITEMS_ID,
+  BOOKMARK_MANAGE_BUTTON_ID,
+} from '@/config/selectors';
 import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 
 import { BookmarkCard } from './BookmarkCard';
@@ -79,6 +83,7 @@ export function BookmarkedItems() {
               size="small"
               startIcon={<PenIcon size={16} />}
               onClick={() => setIsEditionMode(true)}
+              id={BOOKMARK_MANAGE_BUTTON_ID}
             >
               {t('MANAGE_BUTTON')}
             </Button>
@@ -130,8 +135,8 @@ export function BookmarkedItems() {
 
   if (isError) {
     return (
-      <Alert severity="error">
-        There was an issue retrieving your bookmarked items.
+      <Alert id={BOOKMARKED_ITEMS_ERROR_ALERT_ID} severity="error">
+        {t('ERROR_MESSAGE')}
       </Alert>
     );
   }

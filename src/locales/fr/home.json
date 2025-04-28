@@ -11,7 +11,8 @@
     "SHOW_MORE": "Montrer plus",
     "MANAGE_BUTTON": "Modifier",
     "DONE_BUTTON": "Terminer",
-    "TITLE": "Signets"
+    "TITLE": "Signets",
+    "ERROR_MESSAGE": "Une erreur est survenue lors de l'affichage des signets."
   },
   "LIBRARY": {
     "CARD": {
