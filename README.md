@@ -15,7 +15,17 @@
 [![gitlocalized-it](https://gitlocalize.com/repo/9998/it/badge.svg)](https://gitlocalize.com/repo/9998/it?utm_source=badge)  
 [![gitlocalized-ar](https://gitlocalize.com/repo/9998/ar/badge.svg)](https://gitlocalize.com/repo/9998/ar?utm_source=badge)  
 
+## Getting Started
+
+You will need `pnpm`. Refer to the [Getting started documentation for developers](https://graasp.github.io/docs/developer/getting-started#pnpm-volta) to install it using [`volta`](https://volta.sh/)
+
+1. Install the dependencies `pnpm i`
+1. Start the development server with `pnpm dev`
+
 ## Environment variables
+
+For reference, here are all the environment variables that you can use to override the behavior of the app.
+In development none, of them should be required. But some checks might require them.
 
 ```sh
 # .env.development
@@ -37,6 +47,23 @@ VITE_GOOGLE_KEY= # a google api key for using the google map in analytics
 
 VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
 ```
+
+## Running the project in preview mode
+
+If you do not need to actively develop the project you can run it in preview mode.
+This mode runs the app from the static build and uses a lot less RAM compared to running in development mode.
+
+1. You need to have a `.env.production` file with the following content:
+
+    ```dotenv
+    VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-assets/
+    VITE_GOOGLE_KEY=1234567890 # a mock key
+    VITE_GRAASP_REDIRECTION_HOST=http://localhost:3114/redirect
+    ```
+
+1. Build the project `pnpm build`
+1. Preview the project `pnpm preview`
+1. Open the app running on: [http://localhost:3114](http://localhost:3114)
 
 ## Test setup
 
