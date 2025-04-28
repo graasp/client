@@ -1,7 +1,7 @@
 import {
   DescriptionPlacement,
+  FileItemFactory,
   ItemType,
-  LocalFileItemFactory,
   MaxWidth,
   MemberFactory,
   MimeTypes,
@@ -37,11 +37,11 @@ const buildImageStory = (
       }),
     ],
     args: {
-      item: LocalFileItemFactory({
+      item: FileItemFactory({
         id: 'my-id',
         name: 'my item name',
         extra: {
-          [ItemType.LOCAL_FILE]: {
+          [ItemType.FILE]: {
             path: '/test-assets/small_photo.jpg',
             mimetype: MimeTypes.Image.PNG,
             name: 'original file name',
@@ -50,7 +50,7 @@ const buildImageStory = (
             content: '',
           },
         },
-        type: ItemType.LOCAL_FILE,
+        type: ItemType.FILE,
         description: 'my image description',
         path: 'item-path',
         settings: descriptionPlacement ? { descriptionPlacement } : {},
@@ -72,11 +72,11 @@ export const BigContainedImage = {
     }),
   ],
   args: {
-    item: LocalFileItemFactory({
+    item: FileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.LOCAL_FILE]: {
+        [ItemType.FILE]: {
           path: '/test-assets/big_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
@@ -85,7 +85,7 @@ export const BigContainedImage = {
           content: '',
         },
       },
-      type: ItemType.LOCAL_FILE,
+      type: ItemType.FILE,
       description:
         'This image is really big but is constrained to its container',
       path: 'item-path',
@@ -106,11 +106,11 @@ export const SmallContainedImage = {
     }),
   ],
   args: {
-    item: LocalFileItemFactory({
+    item: FileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.LOCAL_FILE]: {
+        [ItemType.FILE]: {
           path: '/test-assets/small_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
@@ -119,7 +119,7 @@ export const SmallContainedImage = {
           content: '',
         },
       },
-      type: ItemType.LOCAL_FILE,
+      type: ItemType.FILE,
       description:
         'This image is small but is constrained to its big container',
       path: 'item-path',
@@ -138,11 +138,11 @@ export const ImageSVG = {
     }),
   ],
   args: {
-    item: LocalFileItemFactory({
+    item: FileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.LOCAL_FILE]: {
+        [ItemType.FILE]: {
           path: '/test-assets/test.svg',
           mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
           name: 'original file name',
@@ -151,7 +151,7 @@ export const ImageSVG = {
           content: '',
         },
       },
-      type: ItemType.LOCAL_FILE,
+      type: ItemType.FILE,
       description: 'my svg description',
       path: 'item-path',
       settings: {},
@@ -167,11 +167,11 @@ export const ImageWebP = {
     }),
   ],
   args: {
-    item: LocalFileItemFactory({
+    item: FileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.LOCAL_FILE]: {
+        [ItemType.FILE]: {
           path: '/test-assets/test.webp',
           mimetype: MimeTypes.Image.WEBP, // Should be image/svg+xml
           name: 'original file name',
@@ -180,7 +180,7 @@ export const ImageWebP = {
           content: '',
         },
       },
-      type: ItemType.LOCAL_FILE,
+      type: ItemType.FILE,
       description: 'my webp description',
       path: 'item-path',
       settings: {},
@@ -196,11 +196,11 @@ export const WAVAudio = {
     }),
   ],
   args: {
-    item: LocalFileItemFactory({
+    item: FileItemFactory({
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.LOCAL_FILE]: {
+        [ItemType.FILE]: {
           path: '/test-assets/sample.wav',
           mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
           name: 'original file name',
@@ -208,7 +208,7 @@ export const WAVAudio = {
           content: '',
         },
       },
-      type: ItemType.LOCAL_FILE,
+      type: ItemType.FILE,
       description: 'my audio description',
       path: 'item-path',
       settings: {},

@@ -92,8 +92,7 @@ function NewItemModalContent({
       );
       break;
     }
-    case ItemType.S3_FILE:
-    case ItemType.LOCAL_FILE: {
+    case ItemType.FILE: {
       content = (
         <UploadFileModalContent
           previousItemId={previousItemId}
@@ -122,7 +121,7 @@ const NewItemModal = ({
   previousItemId,
 }: Props): JSX.Element => {
   const [selectedItemType, setSelectedItemType] = useState<NewItemTabType>(
-    ItemType.LOCAL_FILE,
+    ItemType.FILE,
   );
 
   return (

@@ -2,9 +2,9 @@ import {
   ItemType,
   MaxWidth,
   MimeTypes,
+  PackedFileItemFactory,
   PackedFolderItemFactory,
   PackedLinkItemFactory,
-  PackedLocalFileItemFactory,
   PermissionLevel,
   formatFileSize,
   getFileExtra,
@@ -90,7 +90,7 @@ describe('Item Settings', () => {
       });
 
       it('file', () => {
-        const FILE = PackedLocalFileItemFactory({ creator: MEMBERS.BOB });
+        const FILE = PackedFileItemFactory({ creator: MEMBERS.BOB });
         cy.setUpApi({ items: [FILE] });
 
         const { id, name, type, extra, creator } = FILE;
@@ -103,7 +103,7 @@ describe('Item Settings', () => {
           .should('exist')
           .contains(creator.name);
 
-        if (type === ItemType.LOCAL_FILE || type === ItemType.S3_FILE) {
+        if (type === ItemType.FILE || type === ItemType.FILE) {
           const { mimetype, size } = getFileExtra(extra);
           cy.get(`#${ITEM_PANEL_TABLE_ID}`).contains(mimetype);
 
@@ -114,7 +114,7 @@ describe('Item Settings', () => {
 
     describe('Language', () => {
       it('change item language', () => {
-        const FILE = PackedLocalFileItemFactory();
+        const FILE = PackedFileItemFactory();
         cy.setUpApi({ items: [FILE] });
         const { id, lang } = FILE;
         cy.visit(buildItemSettingsPath(id));
@@ -135,7 +135,7 @@ describe('Item Settings', () => {
 
     describe('Chatbox Settings', () => {
       it('Disabling Chatbox', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           settings: { showChatbox: true },
         });
         cy.setUpApi({ items: [FILE] });
@@ -161,7 +161,7 @@ describe('Item Settings', () => {
       });
 
       it('Enabling Chatbox', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           settings: { showChatbox: false },
         });
         cy.setUpApi({ items: [FILE] });
@@ -248,7 +248,7 @@ describe('Item Settings', () => {
 
     describe('Pinned Settings', () => {
       it('Unpin items', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           settings: { isPinned: true },
         });
         cy.setUpApi({ items: [FILE] });
@@ -274,7 +274,7 @@ describe('Item Settings', () => {
       });
 
       it('Pin Item', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           settings: { isPinned: false },
         });
         cy.setUpApi({ items: [FILE] });
@@ -300,7 +300,7 @@ describe('Item Settings', () => {
 
     describe('Analytics Settings', () => {
       it('Layout', () => {
-        const FILE = PackedLocalFileItemFactory();
+        const FILE = PackedFileItemFactory();
         cy.setUpApi({ items: [FILE] });
         const { id: itemId } = FILE;
         cy.visit(buildItemSettingsPath(itemId));
@@ -377,9 +377,9 @@ describe('Item Settings', () => {
 
     describe('File Settings', () => {
       it('Change default maximum width', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           extra: {
-            [ItemType.LOCAL_FILE]: {
+            [ItemType.FILE]: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
               name: 'name',
@@ -417,9 +417,9 @@ describe('Item Settings', () => {
       });
 
       it('Shows set maximum width for file', () => {
-        const FILE = PackedLocalFileItemFactory({
+        const FILE = PackedFileItemFactory({
           extra: {
-            [ItemType.LOCAL_FILE]: {
+            [ItemType.FILE]: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
               name: 'name',

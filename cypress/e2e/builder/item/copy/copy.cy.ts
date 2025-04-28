@@ -1,7 +1,4 @@
-import {
-  PackedFolderItemFactory,
-  PackedLocalFileItemFactory,
-} from '@graasp/sdk';
+import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   COPY_MANY_ITEMS_BUTTON_SELECTOR,
@@ -36,9 +33,9 @@ const copyItem = ({
   cy.handleTreeMenu(toItemPath, rootId);
 };
 
-const IMAGE_ITEM = PackedLocalFileItemFactory();
+const IMAGE_ITEM = PackedFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
-const IMAGE_ITEM_CHILD = PackedLocalFileItemFactory({ parentItem: FOLDER });
+const IMAGE_ITEM_CHILD = PackedFileItemFactory({ parentItem: FOLDER });
 const FOLDER2 = PackedFolderItemFactory();
 
 const items = [IMAGE_ITEM, FOLDER, FOLDER2, IMAGE_ITEM_CHILD];

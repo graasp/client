@@ -1,10 +1,9 @@
 import { type JSX, type ReactNode } from 'react';
 
 import {
+  FileItemExtra,
   ItemType,
-  LocalFileItemExtra,
   MimeTypes,
-  S3FileItemExtra,
   UnionOfConst,
   getMimetype,
 } from '@graasp/sdk';
@@ -45,7 +44,7 @@ export type ItemIconProps = {
    * To extract the mimetype from the item extra use the `getMimetype` function exported from @graasp/sdk
    * Item extra used to define the mimetype
    */
-  extra?: LocalFileItemExtra | S3FileItemExtra;
+  extra?: FileItemExtra;
   mimetype?: string;
   iconSrc?: string;
   size?: string;
@@ -98,8 +97,7 @@ const ItemIcon = ({
       Icon = TextIcon;
       break;
     }
-    case ItemType.LOCAL_FILE:
-    case ItemType.S3_FILE: {
+    case ItemType.FILE: {
       if (mimetype) {
         if (MimeTypes.isImage(mimetype)) {
           Icon = ImageIcon;

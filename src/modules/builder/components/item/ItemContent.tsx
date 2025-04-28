@@ -8,14 +8,13 @@ import {
   Context,
   DocumentItemType,
   EtherpadItemType,
+  FileItemType,
   H5PItemType,
   ItemType,
   LinkItemType,
-  LocalFileItemType,
   PackedItem,
   PermissionLevel,
   PermissionLevelOptions,
-  S3FileItemType,
   ShortcutItemType,
   buildPdfViewerLink,
   getH5PExtra,
@@ -58,11 +57,7 @@ const StyledContainer = styled(Container)(() => ({
 /**
  * Helper component to render typed file items
  */
-const FileContent = ({
-  item,
-}: {
-  item: LocalFileItemType | S3FileItemType;
-}): JSX.Element | null => {
+const FileContent = ({ item }: { item: FileItemType }): JSX.Element | null => {
   const { data: fileUrl, isLoading, isError } = useFileContentUrl(item.id);
 
   if (fileUrl) {
@@ -236,8 +231,7 @@ export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
   const { user: member } = useAuth();
 
   switch (item.type) {
-    case ItemType.LOCAL_FILE:
-    case ItemType.S3_FILE: {
+    case ItemType.FILE: {
       return <FileContent item={item} />;
     }
     case ItemType.LINK:

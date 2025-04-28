@@ -26,8 +26,7 @@ export const editItem = (
     case ItemType.APP:
     case ItemType.ETHERPAD:
     case ItemType.LINK:
-    case ItemType.LOCAL_FILE:
-    case ItemType.S3_FILE:
+    case ItemType.FILE:
     case ItemType.SHORTCUT:
       cy.fillBaseItemModal(payload);
       break;

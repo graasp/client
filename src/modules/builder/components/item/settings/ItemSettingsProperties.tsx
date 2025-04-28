@@ -66,8 +66,7 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
     switch (item.type) {
       case ItemType.LINK:
         return <LinkSettings item={item} />;
-      case ItemType.S3_FILE:
-      case ItemType.LOCAL_FILE:
+      case ItemType.FILE:
         return (
           <>
             <FileMaxWidthSetting item={item} variant={SettingVariant.List} />

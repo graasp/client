@@ -18,10 +18,10 @@ import {
   Context,
   DocumentItemType,
   EtherpadItemType,
+  FileItemType,
   H5PItemType,
   ItemType,
   LinkItemType,
-  LocalFileItemType,
   PackedItem,
   PermissionLevel,
   S3FileItemType,
@@ -124,7 +124,7 @@ const EtherpadContent = ({ item }: EtherpadContentProps) => {
 };
 
 type FileContentProps = {
-  item: S3FileItemType | LocalFileItemType;
+  item: S3FileItemType | FileItemType;
 };
 const FileContent = ({ item }: FileContentProps) => {
   const { t } = useTranslation(NS.Common);
@@ -332,8 +332,7 @@ const ItemContent = ({ item }: ItemContentProps) => {
     case ItemType.LINK: {
       return <LinkContent item={item} />;
     }
-    case ItemType.LOCAL_FILE:
-    case ItemType.S3_FILE: {
+    case ItemType.FILE: {
       return <FileContent item={item} />;
     }
     case ItemType.DOCUMENT: {

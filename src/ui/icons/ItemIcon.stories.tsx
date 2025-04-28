@@ -49,35 +49,35 @@ export const ImageWithStyle: Story = {
 
 export const Image: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     mimetype: MimeTypes.Image.JPEG,
   },
 };
 
 export const Video: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     mimetype: MimeTypes.Video.MP4,
   },
 };
 
 export const Audio: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     mimetype: MimeTypes.Audio.MP3,
   },
 };
 
 export const PDF: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     mimetype: MimeTypes.PDF,
   },
 };
 
 export const ZIP: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     mimetype: MimeTypes.ZIP,
   },
 };
@@ -115,7 +115,7 @@ export const EtherPad: Story = {
 
 export const FancyImage: Story = {
   args: {
-    type: ItemType.S3_FILE,
+    type: ItemType.FILE,
     color: 'red',
     size: '3rem',
     mimetype: MimeTypes.Image.JPEG,

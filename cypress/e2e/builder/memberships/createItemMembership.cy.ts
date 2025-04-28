@@ -1,6 +1,6 @@
 import {
+  PackedFileItemFactory,
   PackedFolderItemFactory,
-  PackedLocalFileItemFactory,
   PermissionLevel,
   PermissionLevelOptions,
 } from '@graasp/sdk';
@@ -39,7 +39,7 @@ const shareItem = ({
   });
 };
 
-const IMAGE_ITEM = PackedLocalFileItemFactory();
+const IMAGE_ITEM = PackedFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
 
 const ITEMS = [IMAGE_ITEM, FOLDER];

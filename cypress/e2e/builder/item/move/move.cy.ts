@@ -1,7 +1,4 @@
-import {
-  PackedFolderItemFactory,
-  PackedLocalFileItemFactory,
-} from '@graasp/sdk';
+import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   ITEM_MENU_MOVE_BUTTON_CLASS,
@@ -12,7 +9,7 @@ import {
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
-const IMAGE_ITEM = PackedLocalFileItemFactory();
+const IMAGE_ITEM = PackedFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
 const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
 const CHILD_CHILD = PackedFolderItemFactory({ parentItem: CHILD });

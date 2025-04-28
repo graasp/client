@@ -1,32 +1,27 @@
 import {
+  FileItemFactory,
   ItemType,
-  LocalFileItemFactory,
   MaxWidth,
   MimeTypes,
-  PackedLocalFileItemFactory,
-  PackedS3FileItemFactory,
+  PackedFileItemFactory,
   buildFileExtra,
-  buildS3FileExtra,
 } from '@graasp/sdk';
 
 import { InternalItemType } from '../../../../src/modules/builder/types';
 import { CURRENT_MEMBER } from '../../../fixtures/members';
-import {
-  LocalFileItemForTest,
-  S3FileItemForTest,
-} from '../../../support/types';
+import { FileItemForTest } from '../../../support/types';
 import { MOCK_IMAGE_URL, MOCK_PDF_URL, MOCK_VIDEO_URL } from './fileLinks';
 
 export const ICON_FILEPATH = 'files/icon.png';
 export const VIDEO_FILEPATH = 'files/video.mp4';
 export const TEXT_FILEPATH = 'files/sometext.txt';
 
-export const IMAGE_ITEM_DEFAULT: LocalFileItemForTest = {
-  ...PackedLocalFileItemFactory({
+export const IMAGE_ITEM_DEFAULT: FileItemForTest = {
+  ...PackedFileItemFactory({
     id: 'bd5519a2-5ba9-4305-b221-185facbe6a99',
     name: 'icon.png',
     description: 'a default image description',
-    type: ItemType.LOCAL_FILE,
+    type: ItemType.FILE,
     path: 'bd5519a2_5ba9_4305_b221_185facbe6a99',
     creator: CURRENT_MEMBER,
     createdAt: '2021-03-16T16:00:50.968Z',
@@ -46,12 +41,12 @@ export const IMAGE_ITEM_DEFAULT: LocalFileItemForTest = {
   readFilepath: MOCK_IMAGE_URL,
 };
 
-export const IMAGE_ITEM_DEFAULT_WITH_MAX_WIDTH: LocalFileItemForTest = {
-  ...LocalFileItemFactory({
+export const IMAGE_ITEM_DEFAULT_WITH_MAX_WIDTH: FileItemForTest = {
+  ...FileItemFactory({
     id: 'bd5519a2-5ba9-4305-b221-185facbe6a29',
     name: 'icon.png',
     description: 'a default image description',
-    type: ItemType.LOCAL_FILE,
+    type: ItemType.FILE,
     path: 'bd5519a2_5ba9_4305_b221_185facbe6a29',
     creator: CURRENT_MEMBER,
     createdAt: '2021-03-16T16:00:50.968Z',
@@ -73,12 +68,12 @@ export const IMAGE_ITEM_DEFAULT_WITH_MAX_WIDTH: LocalFileItemForTest = {
   readFilepath: MOCK_IMAGE_URL,
 };
 
-export const VIDEO_ITEM_DEFAULT: LocalFileItemForTest = {
-  ...PackedLocalFileItemFactory({
+export const VIDEO_ITEM_DEFAULT: FileItemForTest = {
+  ...PackedFileItemFactory({
     id: 'qd5519a2-5ba9-4305-b221-185facbe6a99',
     name: 'video.mp4',
     description: 'a default video description',
-    type: ItemType.LOCAL_FILE,
+    type: ItemType.FILE,
     path: 'qd5519a2_5ba9_4305_b221_185facbe6a99',
     creator: CURRENT_MEMBER,
     createdAt: '2021-03-16T16:00:50.968Z',
@@ -98,12 +93,12 @@ export const VIDEO_ITEM_DEFAULT: LocalFileItemForTest = {
   readFilepath: MOCK_VIDEO_URL,
 };
 
-export const PDF_ITEM_DEFAULT: LocalFileItemForTest = {
-  ...PackedLocalFileItemFactory({
+export const PDF_ITEM_DEFAULT: FileItemForTest = {
+  ...PackedFileItemFactory({
     id: 'cd5519a2-5ba9-4305-b221-185facbe6a99',
     name: 'doc.pdf',
     description: 'a default pdf description',
-    type: ItemType.LOCAL_FILE,
+    type: ItemType.FILE,
     path: 'cd5519a2_5ba9_4305_b221_185facbe6a99',
     creator: CURRENT_MEMBER,
     createdAt: '2021-03-16T16:00:50.968Z',
@@ -129,79 +124,4 @@ export type ZIPInternalItem = {
 export const ZIP_DEFAULT: ZIPInternalItem = {
   type: InternalItemType.ZIP,
   filepath: 'files/graasp.zip',
-};
-
-export const IMAGE_ITEM_S3: S3FileItemForTest = {
-  ...PackedS3FileItemFactory({
-    id: 'ad5519a2-5ba9-4305-b221-185facbe6a99',
-    name: 'icon.png',
-    description: 'a default image description',
-    type: ItemType.S3_FILE,
-    path: 'ad5519a2_5ba9_4305_b221_185facbe6a99',
-    creator: CURRENT_MEMBER,
-    createdAt: '2021-03-16T16:00:50.968Z',
-    updatedAt: '2021-03-16T16:00:52.655Z',
-    settings: {},
-    extra: buildS3FileExtra({
-      path: MOCK_IMAGE_URL, // for testing
-      size: 32439,
-      mimetype: MimeTypes.Image.PNG,
-      name: 'myfile',
-      altText: 'myAltText',
-      content: '',
-    }),
-  }),
-  // for testing: creating needs a fixture, reading needs an url
-  createFilepath: ICON_FILEPATH,
-  readFilepath: MOCK_IMAGE_URL,
-};
-
-export const VIDEO_ITEM_S3: S3FileItemForTest = {
-  ...PackedS3FileItemFactory({
-    id: 'qd5519a2-5ba9-4305-b221-185facbe6a93',
-    name: 'video.mp4',
-    description: 'a default video description',
-    type: ItemType.S3_FILE,
-    path: 'qd5519a2_5ba9_4305_b221_185facbe6a93',
-    creator: CURRENT_MEMBER,
-    createdAt: '2021-03-16T16:00:50.968Z',
-    updatedAt: '2021-03-16T16:00:52.655Z',
-    settings: {},
-    extra: buildS3FileExtra({
-      path: MOCK_VIDEO_URL, // for testing
-      size: 52345,
-      mimetype: MimeTypes.Video.MP4,
-      name: 'myfile',
-      altText: 'myAltText',
-      content: '',
-    }),
-  }),
-  // for testing: creating needs a fixture, reading needs an url
-  createFilepath: VIDEO_FILEPATH,
-  readFilepath: MOCK_VIDEO_URL,
-};
-
-export const PDF_ITEM_S3: S3FileItemForTest = {
-  ...PackedS3FileItemFactory({
-    id: 'bd5519a2-5ba9-4305-b221-185facbe6a99',
-    name: 'doc.pdf',
-    description: 'a default pdf description',
-    type: ItemType.S3_FILE,
-    path: 'bd5519a2_5ba9_4305_b221_185facbe6a99',
-    creator: CURRENT_MEMBER,
-    createdAt: '2021-03-16T16:00:50.968Z',
-    updatedAt: '2021-03-16T16:00:52.655Z',
-    settings: {},
-    extra: buildS3FileExtra({
-      path: MOCK_PDF_URL, // for testing
-      size: 54321,
-      mimetype: MimeTypes.PDF,
-      name: 'myfile',
-      altText: 'myAltText',
-      content: '',
-    }),
-  }),
-  // for testing: creating needs a fixture, reading needs an url
-  createFilepath: ICON_FILEPATH,
-  readFilepath: MOCK_PDF_URL,
 };

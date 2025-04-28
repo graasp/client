@@ -3,8 +3,8 @@ import { type JSX, memo, useEffect, useState } from 'react';
 import { Alert, Box, Skeleton } from '@mui/material';
 
 import {
+  FileItemType,
   ItemType,
-  LocalFileItemType,
   MimeTypes,
   S3FileItemType,
   formatFileSize,
@@ -36,7 +36,7 @@ export type FileItemProps = {
   defaultItem?: JSX.Element;
   errorMessage?: string;
   id?: string;
-  item: LocalFileItemType | S3FileItemType;
+  item: FileItemType | S3FileItemType;
   maxHeight?: number | string;
   /**
    * use a custom pdf reader from the link if defined
@@ -105,9 +105,9 @@ const FileItem = ({
 
   const getComponent = (): JSX.Element => {
     const fileExtra =
-      item.type === ItemType.LOCAL_FILE ? getFileExtra(item.extra) : undefined;
+      item.type === ItemType.FILE ? getFileExtra(item.extra) : undefined;
     const s3FileExtra =
-      item.type === ItemType.S3_FILE ? getS3FileExtra(item.extra) : undefined;
+      item.type === ItemType.FILE ? getS3FileExtra(item.extra) : undefined;
 
     const { mimetype, altText, size } = { ...fileExtra, ...s3FileExtra };
 

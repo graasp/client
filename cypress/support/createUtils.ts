@@ -82,8 +82,7 @@ export const createItem = (
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
 
   switch (payload.type) {
-    case ItemType.S3_FILE:
-    case ItemType.LOCAL_FILE: {
+    case ItemType.FILE: {
       const { confirm = true } = options;
       cy.get(`#${CREATE_ITEM_FILE_ID}`).click();
 

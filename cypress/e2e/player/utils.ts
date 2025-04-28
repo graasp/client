@@ -3,18 +3,16 @@ import {
   CompleteGuest,
   DiscriminatedItem,
   DocumentItemType,
+  FileItemType,
   HttpMethod,
   ItemType,
   LinkItemType,
-  LocalFileItemType,
   MimeTypes,
-  S3FileItemType,
   appendQueryParamToUrl,
   getDocumentExtra,
   getFileExtra,
   getLinkExtra,
   getParentFromPath,
-  getS3FileExtra,
 } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
@@ -96,19 +94,9 @@ export const expectAppViewScreenLayout = ({ id, extra }: AppItemType): void => {
 
 export const expectFileViewScreenLayout = ({
   id,
-  type,
   extra,
-}: LocalFileItemType | S3FileItemType): void => {
-  let mimetype = '';
-  switch (type) {
-    case ItemType.LOCAL_FILE:
-      mimetype = getFileExtra(extra)?.mimetype || '';
-      break;
-    case ItemType.S3_FILE:
-      mimetype = getS3FileExtra(extra)?.mimetype || '';
-      break;
-    default:
-  }
+}: FileItemType): void => {
+  const mimetype = getFileExtra(extra)?.mimetype || '';
   // embedded element
   let selector = '';
   if (MimeTypes.isImage(mimetype)) {
@@ -150,8 +138,7 @@ export const expectFolderLayout = ({
       case ItemType.FOLDER:
         expectFolderButtonLayout(item);
         break;
-      case ItemType.S3_FILE:
-      case ItemType.LOCAL_FILE:
+      case ItemType.FILE:
         expectFileViewScreenLayout(item);
         break;
       case ItemType.LINK:

@@ -1,11 +1,11 @@
 import {
   AppItemFactory,
   DocumentItemFactory,
+  FileItemFactory,
   FolderItemFactory,
   ItemType,
   ItemVisibilityType,
   LinkItemFactory,
-  LocalFileItemFactory,
   PackedFolderItemFactory,
   PermissionLevel,
   buildDocumentExtra,
@@ -180,7 +180,7 @@ export const STATIC_ELECTRICITY: {
       },
     }),
     {
-      ...LocalFileItemFactory({
+      ...FileItemFactory({
         id: 'gfbfed2a-4218-31eb-fe32-0522bc120002',
         path: 'fdf09f5a_5688_11eb_ae31_0242ac130003.gfbfed2a_4218_31eb_fe32_0542bc120002.gfbfed2a_4218_31eb_fe32_0522bc120002',
         name: 'lightning image',

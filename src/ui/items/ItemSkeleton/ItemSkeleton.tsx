@@ -48,12 +48,9 @@ const ItemSkeleton = ({
       );
     }
     case (
-      [
-        ItemType.LOCAL_FILE,
-        ItemType.S3_FILE,
-        ItemType.LINK,
-        ItemType.APP,
-      ] as UnionOfConst<typeof ItemType>[]
+      [ItemType.FILE, ItemType.LINK, ItemType.APP] as UnionOfConst<
+        typeof ItemType
+      >[]
     ).includes(itemType): {
       return (
         <Skeleton

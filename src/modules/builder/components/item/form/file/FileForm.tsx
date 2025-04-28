@@ -11,9 +11,9 @@ import {
 
 import {
   DescriptionPlacementType,
+  FileItemType,
   ItemType,
   LocalFileItemExtra,
-  LocalFileItemType,
   MimeTypes,
   S3FileItemExtra,
   S3FileItemType,
@@ -45,7 +45,7 @@ export function FileForm({
   item,
   onClose,
 }: Readonly<{
-  item: LocalFileItemType | S3FileItemType;
+  item: FileItemType | S3FileItemType;
   onClose: () => void;
 }>) {
   const { t: translateBuilder } = useTranslation(NS.Builder);
@@ -72,16 +72,16 @@ export function FileForm({
 
   function buildFileExtra() {
     if (altText) {
-      if (item.type === ItemType.S3_FILE) {
+      if (item.type === ItemType.FILE) {
         return {
-          [ItemType.S3_FILE]: {
+          [ItemType.FILE]: {
             altText,
           },
         } as S3FileItemExtra;
       }
-      if (item.type === ItemType.LOCAL_FILE) {
+      if (item.type === ItemType.FILE) {
         return {
-          [ItemType.LOCAL_FILE]: {
+          [ItemType.FILE]: {
             altText,
           },
         } as LocalFileItemExtra;

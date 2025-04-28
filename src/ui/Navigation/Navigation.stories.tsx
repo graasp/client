@@ -1,8 +1,8 @@
 import {
+  FileItemFactory,
+  FileItemType,
   FolderItemFactory,
   ItemType,
-  LocalFileItemFactory,
-  LocalFileItemType,
   MemberFactory,
   MimeTypes,
 } from '@graasp/sdk';
@@ -14,12 +14,12 @@ import { CogIcon } from 'lucide-react';
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { ItemMenuProps, Navigation } from './Navigation.js';
 
-const buildItem = (name: string): LocalFileItemType =>
-  LocalFileItemFactory({
+const buildItem = (name: string): FileItemType =>
+  FileItemFactory({
     id: name,
     name,
     extra: {
-      [ItemType.LOCAL_FILE]: {
+      [ItemType.FILE]: {
         path: 'https://picsum.photos/100',
         mimetype: MimeTypes.Image.PNG,
         name: 'original file name',

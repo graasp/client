@@ -14,7 +14,6 @@ import {
   formatDate,
   formatFileSize,
   getFileExtra,
-  getS3FileExtra,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
@@ -37,11 +36,7 @@ const ItemMetadataContent = (): JSX.Element => {
 
   let size = null;
   let mimetype = null;
-  if (item.type === ItemType.S3_FILE) {
-    const extra = getS3FileExtra(item.extra);
-    mimetype = extra?.mimetype;
-    size = extra?.size;
-  } else if (item.type === ItemType.LOCAL_FILE) {
+  if (item.type === ItemType.FILE) {
     const extra = getFileExtra(item.extra);
     mimetype = extra?.mimetype;
     size = extra?.size;
