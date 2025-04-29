@@ -6,17 +6,25 @@ import {
   Button,
   Grid2 as Grid,
   Skeleton,
+  Stack,
+  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
 
+import { BookmarkIcon, CheckIcon, PenIcon } from 'lucide-react';
 import { v4 } from 'uuid';
 
 import { NS } from '@/config/constants';
-import { BOOKMARKED_ITEMS_ID } from '@/config/selectors';
+import {
+  BOOKMARKED_ITEMS_ERROR_ALERT_ID,
+  BOOKMARKED_ITEMS_ID,
+  BOOKMARK_MANAGE_BUTTON_ID,
+} from '@/config/selectors';
 import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
 
 import { BookmarkCard } from './BookmarkCard';
+import { BookmarkCardEdit } from './BookmarkCardEdit';
 
 const GridWrapper = ({ children }: { children: ReactNode }): JSX.Element => (
   <Grid size={{ xs: 12, sm: 4, md: 3, xl: 2 }}>{children}</Grid>
@@ -47,15 +55,40 @@ export function BookmarkedItems() {
   const { t } = useTranslation(NS.Home, { keyPrefix: 'BOOKMARKED_ITEMS' });
   const { data: bookmarkedItems, isPending, isError } = useBookmarkedItems();
   const [showAll, setShowAll] = useState(false);
+  const [isEditionMode, setIsEditionMode] = useState(false);
 
   const maxItems = useResponsiveMaxItems();
 
-  if (bookmarkedItems) {
+  if (bookmarkedItems?.length) {
     const shownBookmarks = showAll
       ? bookmarkedItems
       : bookmarkedItems.slice(0, maxItems);
     return (
       <>
+        <Stack direction="row" justifyContent="space-between">
+          <Stack direction="row" gap={1} alignItems="center">
+            <BookmarkIcon />
+            <Typography variant="h3">{t('TITLE')}</Typography>
+          </Stack>
+          {isEditionMode ? (
+            <Button
+              size="small"
+              startIcon={<CheckIcon size={16} />}
+              onClick={() => setIsEditionMode(false)}
+            >
+              {t('DONE_BUTTON')}
+            </Button>
+          ) : (
+            <Button
+              size="small"
+              startIcon={<PenIcon size={16} />}
+              onClick={() => setIsEditionMode(true)}
+              id={BOOKMARK_MANAGE_BUTTON_ID}
+            >
+              {t('MANAGE_BUTTON')}
+            </Button>
+          )}
+        </Stack>
         <Grid
           id={BOOKMARKED_ITEMS_ID}
           width="100%"
@@ -66,7 +99,11 @@ export function BookmarkedItems() {
         >
           {shownBookmarks.map(({ item }) => (
             <GridWrapper key={item.id}>
-              <BookmarkCard key={item.id} item={item} />
+              {isEditionMode ? (
+                <BookmarkCardEdit key={item.id} item={item} />
+              ) : (
+                <BookmarkCard key={item.id} item={item} />
+              )}
             </GridWrapper>
           ))}
         </Grid>
@@ -98,8 +135,8 @@ export function BookmarkedItems() {
 
   if (isError) {
     return (
-      <Alert severity="error">
-        There was an issue retrieving your bookmarked items.
+      <Alert id={BOOKMARKED_ITEMS_ERROR_ALERT_ID} severity="error">
+        {t('ERROR_MESSAGE')}
       </Alert>
     );
   }

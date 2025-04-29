@@ -8,7 +8,11 @@
   },
   "BOOKMARKED_ITEMS": {
     "SHOW_LESS": "Show less",
-    "SHOW_MORE": "Show more"
+    "SHOW_MORE": "Show more",
+    "MANAGE_BUTTON": "Manage",
+    "DONE_BUTTON": "Done",
+    "TITLE": "Bookmarks",
+    "ERROR_MESSAGE": "There was an issue retrieving your bookmarked items."
   },
   "LIBRARY": {
     "CARD": {
