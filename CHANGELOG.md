@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.24.0](https://github.com/graasp/client/compare/v2.23.2...v2.24.0) (2025-04-29)
+
+
+### Features
+
+* add download action in item menu ([#979](https://github.com/graasp/client/issues/979)) ([21634b9](https://github.com/graasp/client/commit/21634b94e7881eca12d7bb3a1057190d69ff925c))
+* allow to delete bookmarks on home ([#953](https://github.com/graasp/client/issues/953)) ([acf0db4](https://github.com/graasp/client/commit/acf0db4f7dc8b1ce08e28224521828be6fff6b39))
+* update recycle ws invalidation ([#978](https://github.com/graasp/client/issues/978)) ([4c1b8db](https://github.com/graasp/client/commit/4c1b8db5d12afdbf03d2cad47fb12fe080208b45))
+
+
+### Bug Fixes
+
+* fix and add missing translations for member action legends ([#976](https://github.com/graasp/client/issues/976)) ([c9e1bd1](https://github.com/graasp/client/commit/c9e1bd123ad76e64ba223f72f448280286dd85b4))
+* update documentation on how to run the app ([#981](https://github.com/graasp/client/issues/981)) ([cf13374](https://github.com/graasp/client/commit/cf133740ced7406ec5dedece52d6ee8212d1ce39))
+
 ## [2.23.2](https://github.com/graasp/client/compare/v2.23.1...v2.23.2) (2025-04-24)
 
 
