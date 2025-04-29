@@ -333,7 +333,6 @@ Cypress.Commands.add(
     getBookmarkError = false,
     addBookmarkError = false,
     deleteBookmarkError = false,
-    itemId,
     getShortLinksItemError = false,
     getShortLinkAvailable = true,
     postShortLinkError = false,
@@ -508,7 +507,7 @@ Cypress.Commands.add(
 
     mockDeleteBookmark(deleteBookmarkError);
 
-    mockGetShortLinksItem(itemId, cachedShortLinks, getShortLinksItemError);
+    mockGetShortLinksItem(cachedShortLinks, getShortLinksItemError);
 
     mockCheckShortLink(getShortLinkAvailable);
 

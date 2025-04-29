@@ -5,7 +5,6 @@ import {
   ItemValidationProcess,
   ItemValidationStatus,
   ItemVisibilityType,
-  PackedFolderItemFactory,
   PackedItem,
   PermissionLevel,
 } from '@graasp/sdk';
@@ -226,22 +225,6 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
   ],
 };
 
-const YESTERDAY_DATE = new Date(Date.now() - 24 * 60 * 60 * 1000);
-
-// warning: admin permission on item
-const item = PackedFolderItemFactory(
-  {
-    id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
-    name: 'parent public item',
-    path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
-    updatedAt: YESTERDAY_DATE.toISOString(),
-  },
-  {
-    permission: PermissionLevel.Admin,
-    publicVisibility: { type: ItemVisibilityType.Public },
-  },
-);
-
 export const PublishedItemFactory = (
   itemToPublish: PackedItem,
 ): ItemForTest => ({
@@ -254,53 +237,6 @@ export const PublishedItemFactory = (
     totalViews: 0,
   },
 });
-
-export const PUBLISHED_ITEM: ItemForTest = {
-  ...item,
-  visibilities: [
-    {
-      id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-      type: ItemVisibilityType.Public,
-      itemPath: item.path,
-      createdAt: '2021-08-11T12:56:36.834Z',
-      // creator: MEMBERS.ANNA,
-    },
-  ],
-  published: {
-    id: 'ecbfbd2a-5688-12eb-ae93-0242ac130002',
-    item,
-    createdAt: new Date().toISOString(),
-    creator: MEMBERS.ANNA,
-    totalViews: 0,
-  },
-  memberships: [
-    {
-      item,
-      permission: PermissionLevel.Admin,
-      account: MEMBERS.ANNA,
-      creator: MEMBERS.ANNA,
-      id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
-      createdAt: '2021-08-11T12:56:36.834Z',
-      updatedAt: '2021-08-11T12:56:36.834Z',
-    },
-    {
-      item,
-      permission: PermissionLevel.Read,
-      account: MEMBERS.BOB,
-      creator: MEMBERS.ANNA,
-      id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
-      createdAt: '2021-08-11T12:56:36.834Z',
-      updatedAt: '2021-08-11T12:56:36.834Z',
-    },
-  ],
-};
-export const PUBLISHED_ITEM_NO_TAGS: ItemForTest = {
-  ...PUBLISHED_ITEM,
-  settings: {
-    ...PUBLISHED_ITEM.settings,
-    tags: undefined,
-  },
-};
 
 export const ItemValidationGroupFactory = (
   validatedItem: DiscriminatedItem,
@@ -337,33 +273,3 @@ export const ItemValidationGroupFactory = (
     ] as unknown as ItemValidation[],
   };
 };
-
-export const PUBLISHED_ITEM_VALIDATIONS = [
-  {
-    id: '65c57d69-0e59-4569-a422-f330c31c995c',
-    item: PUBLISHED_ITEM,
-    createdAt: new Date().toISOString(),
-    itemValidations: [
-      {
-        id: 'id1',
-        item: PUBLISHED_ITEM,
-        // itemValidationGroup: iVG,
-        process: ItemValidationProcess.BadWordsDetection,
-        status: ItemValidationStatus.Success,
-        result: '',
-        updatedAt: new Date(),
-        createdAt: new Date(),
-      },
-      {
-        id: 'id2',
-        item: PUBLISHED_ITEM,
-        // itemValidationGroup: iVG,
-        process: ItemValidationProcess.ImageChecking,
-        status: ItemValidationStatus.Success,
-        result: '',
-        updatedAt: new Date(),
-        createdAt: new Date(),
-      },
-    ],
-  },
-];

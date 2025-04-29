@@ -1,4 +1,9 @@
-import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
+import {
+  Context,
+  PackedFolderItemFactory,
+  ShortLink,
+  appendPathToUrl,
+} from '@graasp/sdk';
 
 import {
   SHARE_ITEM_QR_BTN_ID,
@@ -14,7 +19,7 @@ import {
   buildGraaspLibraryLink,
   buildGraaspPlayerView,
 } from '../../../../support/paths';
-import { PUBLISHED_ITEM } from '../../fixtures/items';
+import { PublishedItemFactory } from '../../fixtures/items';
 import { expectNumberOfShortLinks } from '../../fixtures/shortLinks';
 import { buildItemPath, buildItemSharePath } from '../../utils';
 
@@ -72,10 +77,10 @@ const checkContainShortLinkText = (
 
 describe('Share Item Link', () => {
   describe('Without short links', () => {
-    const item = PUBLISHED_ITEM;
+    const item = PublishedItemFactory(PackedFolderItemFactory());
 
     beforeEach(() => {
-      cy.setUpApi({ items: [PUBLISHED_ITEM] });
+      cy.setUpApi({ items: [item] });
     });
 
     it('Builder link is correctly displayed', () => {
@@ -123,7 +128,7 @@ describe('Share Item Link', () => {
   });
 
   describe('With short links', () => {
-    const item = PUBLISHED_ITEM;
+    const item = PublishedItemFactory(PackedFolderItemFactory());
 
     const shortLinks: ShortLink[] = [
       {
@@ -144,7 +149,10 @@ describe('Share Item Link', () => {
     ];
 
     beforeEach(() => {
-      cy.setUpApi({ items: [PUBLISHED_ITEM], shortLinks, itemId: item.id });
+      cy.setUpApi({
+        items: [item, PublishedItemFactory(PackedFolderItemFactory())],
+        shortLinks,
+      });
     });
 
     it('Builder link is correctly displayed', () => {
@@ -196,7 +204,7 @@ describe('Share Item Link', () => {
   });
 
   describe('Without short links', () => {
-    const item = PUBLISHED_ITEM;
+    const item = PublishedItemFactory(PackedFolderItemFactory());
 
     beforeEach(() => {
       cy.setUpApi({ items: [item] });

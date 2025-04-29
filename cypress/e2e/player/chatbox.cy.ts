@@ -1,14 +1,25 @@
+import { PackedDocumentItemFactory, PermissionLevel } from '@graasp/sdk';
+
 import {
   ITEM_CHATBOX_BUTTON_ID,
   ITEM_CHATBOX_ID,
   PANEL_CLOSE_BUTTON_SELECTOR,
 } from '../../../src/config/selectors';
-import { GRAASP_DOCUMENT_ITEM_WITH_CHAT_BOX } from '../../fixtures/documents';
 import {
   ITEM_WITHOUT_CHAT_BOX,
   ITEM_WITH_CHAT_BOX,
 } from '../../fixtures/items';
 import { buildContentPagePath, expectDocumentViewScreenLayout } from './utils';
+
+const GRAASP_DOCUMENT_ITEM_WITH_CHAT_BOX = PackedDocumentItemFactory(
+  {
+    settings: {
+      isPinned: false,
+      showChatbox: true,
+    },
+  },
+  { permission: PermissionLevel.Admin },
+);
 
 describe('Chatbox', () => {
   beforeEach(() => {
