@@ -24,7 +24,7 @@ function HomeRoute() {
 
   return (
     <>
-      <MaintenanceAnnouncement />
+      <MaintenanceAnnouncement suffix="home" />
       <BookmarkedItems />
       <Divider flexItem />
       <SelectionContextProvider>

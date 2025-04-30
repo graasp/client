@@ -18,7 +18,7 @@ function Index() {
   return (
     <>
       <span>
-        <MaintenanceAnnouncement />
+        <MaintenanceAnnouncement showCloseButton={false} suffix="landing" />
         <TitleSection />
       </span>
       <PlatformCube />

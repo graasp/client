@@ -24,7 +24,7 @@ const MainScreen = (): JSX.Element | null => {
 
   const content = (
     <>
-      <MaintenanceAnnouncement mb={2} />
+      <MaintenanceAnnouncement suffix="player" mb={2} />
       <Item id={itemId} />
     </>
   );

@@ -503,6 +503,15 @@ export type SimpleMembershipRequest = {
 };
 
 /**
+ * Entry of a maintenance period, usually to perform a migration.
+ */
+export type Maintenance = {
+    slug: string;
+    startAt: string;
+    endAt: string;
+};
+
+/**
  * Profile of a member
  */
 export type Profile = {
@@ -5687,6 +5696,38 @@ export type DeleteManyItemsResponses = {
 
 export type DeleteManyItemsResponse = DeleteManyItemsResponses[keyof DeleteManyItemsResponses];
 
+export type GetManyItemsData = {
+    body?: never;
+    path?: never;
+    query: {
+        id: Array<string>;
+    };
+    url: '/items/';
+};
+
+export type GetManyItemsErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetManyItemsError = GetManyItemsErrors[keyof GetManyItemsErrors];
+
+export type GetManyItemsResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        data: {
+            [key: string]: PackedItem;
+        };
+        errors: Array<_Error>;
+    };
+};
+
+export type GetManyItemsResponse = GetManyItemsResponses[keyof GetManyItemsResponses];
+
 export type CreateItemData = {
     body?: {
         name: string;
@@ -6650,3 +6691,32 @@ export type GetCountForTagsResponses = {
 };
 
 export type GetCountForTagsResponse = GetCountForTagsResponses[keyof GetCountForTagsResponses];
+
+export type GetNextMaintenanceData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/maintenance/next';
+};
+
+export type GetNextMaintenanceErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetNextMaintenanceError = GetNextMaintenanceErrors[keyof GetNextMaintenanceErrors];
+
+export type GetNextMaintenanceResponses = {
+    /**
+     * Default Response
+     */
+    200: Maintenance;
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type GetNextMaintenanceResponse = GetNextMaintenanceResponses[keyof GetNextMaintenanceResponses];
