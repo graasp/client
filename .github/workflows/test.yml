@@ -5,7 +5,7 @@ on:
   # only run on push to main as pushes to PRs are handled by the `pull_request` trigger
   push:
     branches:
-      - 'main'
+      - "main"
   # trigger on pull_request action
   pull_request:
   # Merge group trigger for merge queues
@@ -29,15 +29,15 @@ jobs:
       - uses: pnpm/action-setup@v4
         name: Install pnpm
         with:
-          version: 9
+          version: 10
           run_install: false
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version-file: "package.json"
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       - name: Install dependencies
         run: pnpm install
@@ -83,9 +83,9 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+          node-version-file: "package.json"
+          cache: "pnpm"
+          cache-dependency-path: "pnpm-lock.yaml"
 
       #  use the Cypress GitHub Action to run Cypress Component tests within the chrome browser
       - name: Cypress run components
