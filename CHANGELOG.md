@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.0](https://github.com/graasp/client/compare/v2.24.0...v2.25.0) (2025-04-30)
+
+
+### Features
+
+* display maintenance announcement ([#984](https://github.com/graasp/client/issues/984)) ([f046d16](https://github.com/graasp/client/commit/f046d169a2e14fae606c0a23be841446fccb00ea))
+
 ## [2.24.0](https://github.com/graasp/client/compare/v2.23.2...v2.24.0) (2025-04-29)
 
 
