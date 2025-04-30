@@ -1,3 +1,5 @@
+import { Stack } from '@mui/material';
+
 import { createFileRoute } from '@tanstack/react-router';
 
 import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
@@ -17,10 +19,10 @@ export const Route = createFileRoute('/_landing/')({
 function Index() {
   return (
     <>
-      <span>
+      <Stack>
         <MaintenanceAnnouncement showCloseButton={false} suffix="landing" />
         <TitleSection />
-      </span>
+      </Stack>
       <PlatformCube />
       <UserStorySection />
       <OurMissionSection />

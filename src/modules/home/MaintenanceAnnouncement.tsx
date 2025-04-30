@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import CloseIcon from '@mui/icons-material/Close';
 import { Alert, AlertTitle, Collapse, IconButton } from '@mui/material';
 
 import { useQuery } from '@tanstack/react-query';
 import { formatDate } from 'date-fns';
+import { XIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { getLocalForDateFns } from '@/config/langs';
@@ -13,10 +13,9 @@ import { getNextMaintenanceOptions } from '@/openapi/client/@tanstack/react-quer
 import { useLocalStorage } from './useLocalStorage';
 
 function MaintenanceAnnouncement({
-  mb = 0,
   suffix,
   showCloseButton = true,
-}: Readonly<{ mb?: number; suffix: string; showCloseButton?: boolean }>) {
+}: Readonly<{ suffix: string; showCloseButton?: boolean }>) {
   const { i18n, t } = useTranslation(NS.Builder);
   const { data: maintenance } = useQuery(getNextMaintenanceOptions());
   const { value: isClosed, changeValue: setIsClosed } = useLocalStorage(
@@ -39,12 +38,12 @@ function MaintenanceAnnouncement({
                   setIsClosed(true);
                 }}
               >
-                <CloseIcon fontSize="inherit" />
+                <XIcon />
               </IconButton>
             )
           }
           severity="warning"
-          sx={{ fontSize: 16, mb }}
+          sx={{ fontSize: 16 }}
         >
           <AlertTitle sx={{ fontWeight: 'bold' }}>
             {t('MAINTENANCE.TITLE')}

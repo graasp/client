@@ -528,6 +528,6 @@
   "MAINTENANCE": {
     "TITLE": "Wartungsarbeiten",
     "INTRODUCTION": "Vom <b>{{fromDate}}</b> bis zum <b>{{toDate}}</b> werden Wartungsarbeiten durchgeführt, die eine Abschaltung der Graasp-Plattform erfordern.",
-    "DETAILS": "graasp.org wird am <b>{{fromDate}}</b> vollständig nicht erreichbar sein und am <b>{{fromDate}}</b> wieder zur Verfügung stehen."
+    "DETAILS": "graasp.org wird am <b>{{fromDate}}</b> vollständig nicht erreichbar sein und am <b>{{toDate}}</b> wieder zur Verfügung stehen."
   }
 }

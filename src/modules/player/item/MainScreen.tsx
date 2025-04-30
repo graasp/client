@@ -1,7 +1,7 @@
 import { type JSX, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Skeleton } from '@mui/material';
+import { Alert, Skeleton, Stack } from '@mui/material';
 
 import { ActionTriggers } from '@graasp/sdk';
 
@@ -23,10 +23,10 @@ const MainScreen = (): JSX.Element | null => {
   const { mutate: triggerAction } = mutations.usePostItemAction();
 
   const content = (
-    <>
-      <MaintenanceAnnouncement suffix="player" mb={2} />
+    <Stack gap={2}>
+      <MaintenanceAnnouncement suffix="player" />
       <Item id={itemId} />
-    </>
+    </Stack>
   );
 
   useEffect(() => {
