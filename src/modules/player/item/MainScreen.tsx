@@ -1,7 +1,7 @@
 import { type JSX, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Skeleton } from '@mui/material';
+import { Alert, Skeleton, Stack } from '@mui/material';
 
 import { ActionTriggers } from '@graasp/sdk';
 
@@ -9,6 +9,7 @@ import { getRouteApi } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
 
 import { LayoutContextProvider } from '~player/contexts/LayoutContext';
 import SideContent from '~player/rightPanel/SideContent';
@@ -21,7 +22,12 @@ const MainScreen = (): JSX.Element | null => {
   const { t } = useTranslation(NS.Player);
   const { mutate: triggerAction } = mutations.usePostItemAction();
 
-  const content = <Item id={itemId} />;
+  const content = (
+    <Stack gap={2}>
+      <MaintenanceAnnouncement suffix="player" />
+      <Item id={itemId} />
+    </Stack>
+  );
 
   useEffect(() => {
     if (itemId && item) {

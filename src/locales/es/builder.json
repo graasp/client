@@ -499,5 +499,10 @@
   "DELETE_GUESTS_MODAL_CONTENT": "Confirmo la eliminación <1>permanente</1> de los siguientes lectores y sus datos:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Eliminar permanentemente",
   "ADD_TAG_OPTION_BUTTON_TEXT": "Añadir {{value}}",
-  "CREATE_FOLDER_BUTTON_TEXT": "Crear carpeta"
+  "CREATE_FOLDER_BUTTON_TEXT": "Crear carpeta",
+  "MAINTENANCE": {
+    "TITLE": "Mantenimiento",
+    "INTRODUCTION": "La plataforma Graasp se cerrará por mantenimiento del <b>{{fromDate}}</b> al <b>{{toDate}}</b>.",
+    "DETAILS": "graasp.org no estará disponible a partir de las <b>{{fromDate}}</b> y volverá a ser disponible a partir de las <b>{{toDate}}</b>."
+  }
 }

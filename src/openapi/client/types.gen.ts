@@ -503,6 +503,15 @@ export type SimpleMembershipRequest = {
 };
 
 /**
+ * Entry of a maintenance period, usually to perform a migration.
+ */
+export type Maintenance = {
+    slug: string;
+    startAt: string;
+    endAt: string;
+};
+
+/**
  * Profile of a member
  */
 export type Profile = {
@@ -575,6 +584,35 @@ export type GetVersionResponses = {
      */
     200: unknown;
 };
+
+export type GetNextMaintenanceData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/maintenance/next';
+};
+
+export type GetNextMaintenanceErrors = {
+    /**
+     * Default Response
+     */
+    '4XX': _Error;
+};
+
+export type GetNextMaintenanceError = GetNextMaintenanceErrors[keyof GetNextMaintenanceErrors];
+
+export type GetNextMaintenanceResponses = {
+    /**
+     * Entry of a maintenance period, usually to perform a migration.
+     */
+    200: null | {
+        slug: string;
+        startAt: string;
+        endAt: string;
+    };
+};
+
+export type GetNextMaintenanceResponse = GetNextMaintenanceResponses[keyof GetNextMaintenanceResponses];
 
 export type RegisterData = {
     body: {

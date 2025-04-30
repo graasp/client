@@ -531,5 +531,10 @@
   "TAGS_LEVEL_HELPERTEXT": "Exemple: école primaire, université, école préparatoire",
   "TAGS_RESOURCE_TYPE_HELPERTEXT": "Exemple: article, vidéo, quiz",
   "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Le type d'élément {{type}} n'a pas pu être traité",
-  "SHORTCUT_FETCHING_ISSUE": "Un problème est survenu lors de la récupération du contenu de cet élément de raccourci."
+  "SHORTCUT_FETCHING_ISSUE": "Un problème est survenu lors de la récupération du contenu de cet élément de raccourci.",
+  "MAINTENANCE": {
+    "TITLE": "Maintenance",
+    "INTRODUCTION": "Une opération de maintenance nécessitant l'arrêt de la plateforme Graasp va être effectuée du <b>{{fromDate}}</b> au <b>{{toDate}}</b>.",
+    "DETAILS": "graasp.org sera entièrement indisponible à partir du <b>{{fromDate}}</b> et sera à nouveau disponible le <b>{{toDate}}</b>."
+  }
 }

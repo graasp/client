@@ -531,5 +531,11 @@
   "TAGS_LEVEL_HELPERTEXT": "Example: elementary, high school, undergraduate",
   "TAGS_RESOURCE_TYPE_HELPERTEXT": "Example: article, video, quiz",
   "ITEM_TYPE_COULD_NOT_BE_HANDLED": "Item type {{type}} could not be handled",
-  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item."
+  "SHORTCUT_FETCHING_ISSUE": "There was an issue fetching the content for this shortcut item.",
+
+  "MAINTENANCE": {
+    "TITLE": "Maintenance",
+    "INTRODUCTION": "A maintenance operation requiring the shutdown of the Graasp platform will be carried out from <b>{{fromDate}}</b> to <b>{{toDate}}</b>.",
+    "DETAILS": "graasp.org will be completely unavailable from <b>{{fromDate}}</b> and will be available again from <b>{{toDate}}</b>."
+  }
 }
