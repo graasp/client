@@ -23,6 +23,10 @@ export const CopyModal = ({
   const { mutate: copyItems } = mutations.useCopyItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
+  if (!items.length) {
+    return null;
+  }
+
   const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
     copyItems({
       ids: items.map((i) => i.id),
@@ -42,7 +46,8 @@ export const CopyModal = ({
   return (
     <ItemSelectionModal
       title={translateBuilder(BUILDER.COPY_ITEM_MODAL_TITLE, {
-        count: items.length,
+        count: items.length - 1,
+        name: items[0].name,
       })}
       buttonText={buttonText}
       onClose={onClose}
