@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.25.1](https://github.com/graasp/client/compare/v2.25.0...v2.25.1) (2025-05-02)
+
+
+### Bug Fixes
+
+* **deps:** remove validator dep ([#983](https://github.com/graasp/client/issues/983)) ([ab142de](https://github.com/graasp/client/commit/ab142defe95cec295672e2f5b6c23db3f6f2938e))
+* **deps:** update dependency i18next to v24.2.3 ([#989](https://github.com/graasp/client/issues/989)) ([30cc541](https://github.com/graasp/client/commit/30cc54172f63bef2452ccda23ab3ec37fa8eb5e1))
+* fix copy name title ([#991](https://github.com/graasp/client/issues/991)) ([4294317](https://github.com/graasp/client/commit/4294317bec878950f67979b502e21c998d91a56a))
+
 ## [2.25.0](https://github.com/graasp/client/compare/v2.24.0...v2.25.0) (2025-04-30)
 
 
