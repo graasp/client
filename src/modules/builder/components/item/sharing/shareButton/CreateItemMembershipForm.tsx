@@ -18,10 +18,10 @@ import {
   DiscriminatedItem,
   PermissionLevel,
   PermissionLevelOptions,
+  isEmail,
 } from '@graasp/sdk';
 
 import truncate from 'lodash.truncate';
-import validator from 'validator';
 
 import { ITEM_NAME_MAX_LENGTH, NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
@@ -109,7 +109,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
                 required: true,
                 validate: {
                   isEmail: (email) =>
-                    validator.isEmail(email) ||
+                    isEmail(email, {}) ||
                     translateBuilder(
                       BUILDER.SHARE_ITEM_FORM_INVITATION_INVALID_EMAIL_MESSAGE,
                     ),
