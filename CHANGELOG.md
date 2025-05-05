@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.25.2](https://github.com/graasp/client/compare/v2.25.1...v2.25.2) (2025-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/react to v9.15.0 ([#951](https://github.com/graasp/client/issues/951)) ([a9de33b](https://github.com/graasp/client/commit/a9de33bab048861219d69d14fab4986b2632bb93))
+
 ## [2.25.1](https://github.com/graasp/client/compare/v2.25.0...v2.25.1) (2025-05-02)
 
 
