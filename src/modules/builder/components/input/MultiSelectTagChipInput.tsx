@@ -13,7 +13,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { DiscriminatedItem, TagCategory } from '@graasp/sdk';
+import { DiscriminatedItem, TagCategoryType } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -27,7 +27,7 @@ import useTagsManager from '../item/publish/customizedTags/useTagsManager';
 
 type Props = {
   itemId: DiscriminatedItem['id'];
-  tagCategory: TagCategory;
+  tagCategory: TagCategoryType;
   helpertext?: string;
 };
 

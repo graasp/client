@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem, Tag, TagCategory } from '@graasp/sdk';
+import { DiscriminatedItem, Tag, TagCategoryType } from '@graasp/sdk';
 
 import groupBy from 'lodash.groupby';
 
@@ -26,7 +26,10 @@ type UseMultiSelectChipInput = {
   isSuccess: boolean;
   isError: boolean;
 
-  handleCurrentValueChanged: (newValue: string, category: TagCategory) => void;
+  handleCurrentValueChanged: (
+    newValue: string,
+    category: TagCategoryType,
+  ) => void;
   addValue: (tag: Pick<Tag, 'name' | 'category'>) => void;
   resetCurrentValue: () => void;
   deleteValue: (tagId: Tag['id']) => void;
@@ -91,7 +94,7 @@ export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
 
   const handleCurrentValueChanged = (
     newValue: string,
-    category: TagCategory,
+    category: TagCategoryType,
   ) => {
     validateData({ name: newValue, category });
     setCurrentValue(newValue);
