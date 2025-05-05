@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectChangeEvent } from '@mui/material';
 
-import { LocalFileItemType, MaxWidth, S3FileItemType } from '@graasp/sdk';
+import { FileItemType, MaxWidth } from '@graasp/sdk';
 
 import { ExpandIcon } from 'lucide-react';
 
@@ -22,7 +22,7 @@ export const FileMaxWidthSetting = ({
   item,
 }: {
   variant: SettingVariantType;
-  item: S3FileItemType | LocalFileItemType;
+  item: FileItemType;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useTranslation(NS.Enums);

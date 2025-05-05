@@ -1,8 +1,8 @@
 import {
   GuestFactory,
   ItemLoginSchemaFactory,
+  PackedFileItemFactory,
   PackedFolderItemFactory,
-  PackedLocalFileItemFactory,
 } from '@graasp/sdk';
 
 import {
@@ -26,10 +26,10 @@ import { HOME_PATH, buildItemPath } from '../../utils';
 
 const ownItems = generateOwnItems(30);
 
-const IMAGE_ITEM = PackedLocalFileItemFactory();
+const IMAGE_ITEM = PackedFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
 const FOLDER_CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
-const IMAGE_ITEM_CHILD = PackedLocalFileItemFactory({
+const IMAGE_ITEM_CHILD = PackedFileItemFactory({
   parentItem: FOLDER,
 });
 const FOLDER2 = PackedFolderItemFactory();

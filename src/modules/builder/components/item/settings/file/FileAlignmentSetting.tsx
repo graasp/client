@@ -9,12 +9,7 @@ import {
   toggleButtonGroupClasses,
 } from '@mui/material';
 
-import {
-  Alignment,
-  AlignmentType,
-  LocalFileItemType,
-  S3FileItemType,
-} from '@graasp/sdk';
+import { Alignment, AlignmentType, FileItemType } from '@graasp/sdk';
 
 import {
   AlignCenterIcon,
@@ -59,7 +54,7 @@ export const FileAlignmentSetting = ({
   item,
 }: {
   variant: SettingVariantType;
-  item: S3FileItemType | LocalFileItemType;
+  item: FileItemType;
 }): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: editItem } = mutations.useEditItem();

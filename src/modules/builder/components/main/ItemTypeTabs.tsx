@@ -52,7 +52,7 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
   const zipIcon = (
     <ItemIcon
       alt={translateBuilder(BUILDER.NEW_ITEM_ZIP_TAB_TEXT)}
-      type={ItemType.LOCAL_FILE}
+      type={ItemType.FILE}
       mimetype={MimeTypes.ZIP}
     />
   );
@@ -78,7 +78,7 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
       />
       <Tab
         id={CREATE_ITEM_FILE_ID}
-        value={ItemType.LOCAL_FILE}
+        value={ItemType.FILE}
         label={translateBuilder(BUILDER.NEW_ITEM_FILE_TAB_TEXT)}
         icon={
           <ItemIcon

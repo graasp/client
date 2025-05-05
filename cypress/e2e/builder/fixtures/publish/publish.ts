@@ -3,11 +3,10 @@ import {
   PackedAppItemFactory,
   PackedDocumentItemFactory,
   PackedEtherpadItemFactory,
+  PackedFileItemFactory,
   PackedFolderItemFactory,
   PackedH5PItemFactory,
   PackedLinkItemFactory,
-  PackedLocalFileItemFactory,
-  PackedS3FileItemFactory,
   PackedShortcutItemFactory,
 } from '@graasp/sdk';
 
@@ -28,9 +27,7 @@ export const createPublicItemByType = (
     case 'embeddedLink':
       return PackedLinkItemFactory({}, publicVisibility);
     case 'file':
-      return PackedLocalFileItemFactory({}, publicVisibility);
-    case 's3File':
-      return PackedS3FileItemFactory({}, publicVisibility);
+      return PackedFileItemFactory({}, publicVisibility);
     case 'shortcut':
       return PackedShortcutItemFactory({}, publicVisibility);
     case 'h5p':

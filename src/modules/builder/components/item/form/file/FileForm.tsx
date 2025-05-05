@@ -11,12 +11,10 @@ import {
 
 import {
   DescriptionPlacementType,
+  FileItemExtra,
+  FileItemType,
   ItemType,
-  LocalFileItemExtra,
-  LocalFileItemType,
   MimeTypes,
-  S3FileItemExtra,
-  S3FileItemType,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
@@ -28,7 +26,6 @@ import {
 } from '@/config/selectors';
 
 import CancelButton from '~builder/components/common/CancelButton';
-import { getExtraFromPartial } from '~builder/utils/itemExtra';
 
 import { BUILDER } from '../../../../langs';
 import { ItemNameField } from '../ItemNameField';
@@ -45,7 +42,7 @@ export function FileForm({
   item,
   onClose,
 }: Readonly<{
-  item: LocalFileItemType | S3FileItemType;
+  item: FileItemType;
   onClose: () => void;
 }>) {
   const { t: translateBuilder } = useTranslation(NS.Builder);
@@ -66,28 +63,18 @@ export function FileForm({
   const altText = watch('altText');
   const descriptionPlacement = watch('descriptionPlacement');
 
-  const { mimetype, altText: previousAltText } = getExtraFromPartial(item);
+  const { mimetype, altText: previousAltText } = item.extra.file;
 
   const { mutateAsync: editItem } = mutations.useEditItem();
 
   function buildFileExtra() {
     if (altText) {
-      if (item.type === ItemType.S3_FILE) {
-        return {
-          [ItemType.S3_FILE]: {
-            altText,
-          },
-        } as S3FileItemExtra;
-      }
-      if (item.type === ItemType.LOCAL_FILE) {
-        return {
-          [ItemType.LOCAL_FILE]: {
-            altText,
-          },
-        } as LocalFileItemExtra;
-      }
+      return {
+        [ItemType.FILE]: {
+          altText,
+        },
+      } as FileItemExtra;
     }
-    console.error(`item type ${item.type} is not handled`);
     return undefined;
   }
 

@@ -1,8 +1,8 @@
 import {
+  FileItemFactory,
   FolderItemFactory,
   FolderItemType,
   ItemType,
-  LocalFileItemFactory,
 } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
@@ -320,7 +320,7 @@ describe('useFileContentUrl', () => {
   });
 
   const response = THUMBNAIL_URL_RESPONSE;
-  const { id } = LocalFileItemFactory();
+  const { id } = FileItemFactory();
   const route = `/${buildDownloadFilesRoute(id)}?replyUrl=true`;
   const hook = () => hooks.useFileContentUrl(id);
   const key = itemKeys.single(id).file({ replyUrl: true });

@@ -1,7 +1,7 @@
 import {
   ItemType,
+  PackedFileItemFactory,
   PackedFolderItemFactory,
-  PackedLocalFileItemFactory,
   buildShortcutExtra,
 } from '@graasp/sdk';
 
@@ -12,9 +12,9 @@ import {
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
-const IMAGE_ITEM = PackedLocalFileItemFactory();
+const IMAGE_ITEM = PackedFileItemFactory();
 const FOLDER = PackedFolderItemFactory();
-const IMAGE_ITEM_CHILD = PackedLocalFileItemFactory({ parentItem: FOLDER });
+const IMAGE_ITEM_CHILD = PackedFileItemFactory({ parentItem: FOLDER });
 const FOLDER2 = PackedFolderItemFactory();
 
 const createShortcut = ({

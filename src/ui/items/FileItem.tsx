@@ -3,13 +3,10 @@ import { type JSX, memo, useEffect, useState } from 'react';
 import { Alert, Box, Skeleton } from '@mui/material';
 
 import {
-  ItemType,
-  LocalFileItemType,
+  FileItemType,
   MimeTypes,
-  S3FileItemType,
   formatFileSize,
   getFileExtra,
-  getS3FileExtra,
 } from '@graasp/sdk';
 
 import { Errors } from '@/ui/enums/errors.js';
@@ -36,7 +33,7 @@ export type FileItemProps = {
   defaultItem?: JSX.Element;
   errorMessage?: string;
   id?: string;
-  item: LocalFileItemType | S3FileItemType;
+  item: FileItemType;
   maxHeight?: number | string;
   /**
    * use a custom pdf reader from the link if defined
@@ -104,12 +101,8 @@ const FileItem = ({
   }
 
   const getComponent = (): JSX.Element => {
-    const fileExtra =
-      item.type === ItemType.LOCAL_FILE ? getFileExtra(item.extra) : undefined;
-    const s3FileExtra =
-      item.type === ItemType.S3_FILE ? getS3FileExtra(item.extra) : undefined;
-
-    const { mimetype, altText, size } = { ...fileExtra, ...s3FileExtra };
+    const fileExtra = getFileExtra(item.extra);
+    const { mimetype, altText, size } = fileExtra;
 
     if (mimetype) {
       if (MimeTypes.isImage(mimetype)) {

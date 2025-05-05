@@ -5,6 +5,7 @@ import {
   CompleteMember,
   CompleteMembershipRequest,
   DiscriminatedItem,
+  FileItemType,
   Invitation,
   ItemBookmark,
   ItemGeolocation,
@@ -13,14 +14,12 @@ import {
   ItemPublished,
   ItemValidationGroup,
   ItemVisibility,
-  LocalFileItemType,
   MemberStorageItem,
   MembershipRequestStatus,
   PermissionLevelOptions,
   PublicProfile,
   PublicationStatus,
   RecycledItemData,
-  S3FileItemType,
   ShortLink,
   Tag,
   ThumbnailsBySize,
@@ -43,16 +42,10 @@ export type ItemForTest = DiscriminatedItem & {
 
 export type MemberForTest = CompleteMember & { thumbnails?: string };
 
-export type LocalFileItemForTest = LocalFileItemType & {
+export type FileItemForTest = FileItemType & {
   createFilepath: string;
   readFilepath: string;
 };
-export type S3FileItemForTest = S3FileItemType & {
-  createFilepath: string;
-  readFilepath: string;
-};
-export type FileItemForTest = LocalFileItemForTest | S3FileItemForTest;
-
 export type ApiConfig = {
   currentGuest?: CompleteGuest | null;
   hasPassword?: boolean;

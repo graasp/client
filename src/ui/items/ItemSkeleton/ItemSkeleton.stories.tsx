@@ -21,7 +21,7 @@ export const Folder: Story = {
 
 export const File: Story = {
   args: {
-    itemType: ItemType.LOCAL_FILE,
+    itemType: ItemType.FILE,
   },
 };
 

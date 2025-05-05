@@ -48,7 +48,7 @@ export function EditModal({
     if (item.type === ItemType.FOLDER) {
       return <FolderEditForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.LOCAL_FILE || item.type === ItemType.S3_FILE) {
+    if (item.type === ItemType.FILE) {
       return <FileForm onClose={onClose} item={item} />;
     }
     if (item.type === ItemType.SHORTCUT) {
