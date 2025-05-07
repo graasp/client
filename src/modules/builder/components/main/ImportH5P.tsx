@@ -55,9 +55,7 @@ const ImportH5P = ({
         closeNotification();
         onClose?.();
       } catch (error) {
-        if (error instanceof Error) {
-          closeNotification(error);
-        }
+        closeNotification(error);
         console.error(error);
       }
     }

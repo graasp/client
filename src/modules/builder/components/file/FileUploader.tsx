@@ -11,6 +11,7 @@ import { HelpCircleIcon } from 'lucide-react';
 
 import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
+import { getCatchErrorMessage } from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
 import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
@@ -36,6 +37,7 @@ export function FileUploader({
   previousItemId,
 }: Readonly<Props>): JSX.Element | null {
   const { t } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const { itemId: parentItemId } = useParams({ strict: false });
   const [error, setError] = useState<string>();
 
@@ -43,14 +45,10 @@ export function FileUploader({
   const { color } = useButtonColor('primary');
   const [totalProgress, setTotalProgress] = useState(0);
 
-  // send n request as long as the backend cannot handle multi files
-  // complex notification handling to keep one uploading toast
-  // trigger n success toast
   const onDrop = async (files: File[]): Promise<void> => {
     // update progress callback function scaled over the number of files sent
-    const updateForManyFiles = (idx: number) => (e: AxiosProgressEvent) => {
-      // suppose previous files are completely uploaded
-      const progress = ((e.progress ?? 0) + idx) / files.length;
+    const updateForManyFiles = () => (e: AxiosProgressEvent) => {
+      const progress = (e.progress ?? 0) / files.length;
       setTotalProgress(progress);
       onUpdate?.({ ...e, progress });
     };
@@ -72,25 +70,31 @@ export function FileUploader({
 
     onStart?.();
 
-    for (let idx = 0; idx < files.length; idx += 1) {
-      try {
-        await uploadFiles({
-          files: [files[idx]],
-          id: parentItemId,
-          previousItemId,
-          onUploadProgress: updateForManyFiles(idx),
-        });
-      } catch (e) {
-        onError?.(e as Error);
+    try {
+      await uploadFiles({
+        files,
+        id: parentItemId,
+        previousItemId,
+        onUploadProgress: updateForManyFiles(),
+      });
+      onComplete?.();
+    } catch (e) {
+      const message = getCatchErrorMessage(e, 'UPLOAD_FILES_UNEXPECTED_ERROR');
+      setError(translateMessage(message));
+
+      if (e instanceof Error) {
+        onError?.(e);
       }
+      console.error(e);
     }
-    onComplete?.();
   };
 
   const hints = (
     <Stack gap={2}>
       <Typography variant="subtitle2" textAlign="center">
-        {t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT')}
+        {t('DROPZONE_HELPER_LIMIT_REMINDER_TEXT', {
+          max: MAX_NUMBER_OF_FILES_UPLOAD,
+        })}
       </Typography>
       <Stack direction="row" alignItems="center" gap={1}>
         <HelpCircleIcon size={20} color={color} />
@@ -115,7 +119,7 @@ export function FileUploader({
         uploadProgress={Math.ceil(totalProgress * 100)}
         multiple
         onDrop={onDrop}
-        error={error}
+        error={error ? t('FILE_UPLOADER.ERROR_WRAPPER', { error }) : undefined}
         buttonText={t('DROPZONE_HELPER_ACTION')}
         hints={hints}
         buttons={buttons}

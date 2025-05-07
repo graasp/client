@@ -33,7 +33,7 @@
   "FILE_IS_NOT_IMAGE": "Le fichier n'est pas une image",
   "INVALID_UPLOAD_PARAMETERS": "Un ou plusieurs paramètres de téléchargement ne sont pas valides",
   "UPLOAD_EMPTY_FILE": "Impossible de télécharger un fichier vide",
-  "UPLOAD_TOO_MANY_FILES": "Impossible de télécharger trop de fichiers",
+  "UPLOAD_TOO_MANY_FILES": "Impossible de télécharger autant de fichiers",
   "UPLOAD_BIG_FILES": "Impossible de télécharger des fichiers volumineux",
   "INVALID_FILE_PATH_FOR_COPY": "Le chemin du fichier soumis n'est pas valide pour la copie",
   "INVALID_FILE_PATH_FOR_DELETE": "Le chemin du fichier soumis n'est pas valide pour la suppression",

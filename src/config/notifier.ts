@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { MessageKeys } from '@/@types/i18next';
 import { Notifier, routines } from '@/query';
@@ -75,4 +75,17 @@ export default ({
   else if (message) {
     toast.success(translate(message, { ns: NS.Messages }));
   }
+};
+
+export const getCatchErrorMessage = (e: unknown, defaultValue?: string) => {
+  console.log(e);
+  if (e instanceof AxiosError) {
+    console.log('tzhrgfe');
+    return e.response?.data?.message;
+  } else if (e instanceof Error) {
+    console.log('wefjkl');
+    return e.message;
+  }
+
+  return defaultValue ?? 'UNEXPECTED_ERROR';
 };

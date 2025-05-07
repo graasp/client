@@ -6,6 +6,9 @@
     "RECYCLED_ITEMS": "Trash",
     "RETURN_HOME": "Home"
   },
+  "FILE_UPLOADER": {
+    "ERROR_WRAPPER": "Some files might have not been uploaded because of the following reason: {{error}}"
+  },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Navigate to redirection",
   "AVATAR_DEFAULT_ALT": "avatar",
