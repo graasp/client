@@ -1,6 +1,5 @@
 import type { JSX } from 'react';
 
-import '@mui/material';
 import {
   AppBar,
   IconButton,
