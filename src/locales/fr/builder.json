@@ -536,6 +536,6 @@
     "TITLE": "Maintenance",
     "INTRODUCTION": "Une opération de maintenance nécessitant l'arrêt de la plateforme Graasp va être effectuée du <b>{{fromDate}}</b> au <b>{{toDate}}</b>.",
     "DETAILS": "graasp.org sera entièrement indisponible à partir du <b>{{fromDate}}</b> et sera à nouveau disponible le <b>{{toDate}}</b>.",
-    "CONTACT": "Cette maintenance affecte vos activités dans Graasp ? Nous sommes à l'écoute ! Contactez nous à <strong>maintenance@graasp.org</strong>"
+    "CONTACT": "Cette maintenance affecte vos activités dans Graasp ? Nous sommes à l'écoute ! Contactez-nous à <strong>maintenance@graasp.org</strong>"
   }
 }
