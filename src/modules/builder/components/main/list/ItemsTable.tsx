@@ -15,7 +15,6 @@ import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { getErrorMessage } from '@/config/notifier';
 import { hooks, mutations } from '@/config/queryClient';
 import Button from '@/ui/buttons/Button/Button';
 import DraggingWrapper from '@/ui/draggable/DraggingWrapper';
@@ -149,7 +148,6 @@ const ItemsTable = ({
           close();
         })
         .catch((e) => {
-          console.log(e);
           close(e);
         });
     } else if (!itemId || !parentItem) {

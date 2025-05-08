@@ -38,6 +38,7 @@ export const useUploadWithProgress = (): {
   const close = (error?: unknown) => {
     // show correct feedback message
     if (error) {
+      console.error(error);
       toast.error(
         translateMessage(
           getErrorMessage(error, 'UPLOAD_FILES_UNEXPECTED_ERROR'),
