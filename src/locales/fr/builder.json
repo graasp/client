@@ -6,6 +6,9 @@
     "RECYCLED_ITEMS": "Corbeille",
     "RETURN_HOME": "Accueil"
   },
+  "FILE_UPLOADER": {
+    "ERROR_WRAPPER": "Certains fichiers peuvent ne pas avoir été téléchargés à cause de la raison suivante : {{error}}"
+  },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Accéder à la redirection",
   "AVATAR_DEFAULT_ALT": "avatar",

@@ -5,7 +5,7 @@ import { Id, toast } from 'react-toastify';
 import { AxiosProgressEvent } from 'axios';
 
 import { NS } from '@/config/constants';
-import { getCatchErrorMessage } from '@/config/notifier';
+import { getErrorMessage } from '@/config/notifier';
 
 export const useUploadWithProgress = (): {
   update: (p: AxiosProgressEvent) => void;
@@ -40,7 +40,7 @@ export const useUploadWithProgress = (): {
     if (error) {
       toast.error(
         translateMessage(
-          getCatchErrorMessage(error, 'UPLOAD_FILES_UNEXPECTED_ERROR'),
+          getErrorMessage(error, 'UPLOAD_FILES_UNEXPECTED_ERROR'),
         ),
       );
     } else if (toastId.current) {
