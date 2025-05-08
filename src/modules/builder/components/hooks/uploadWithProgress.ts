@@ -40,9 +40,8 @@ export const useUploadWithProgress = (): {
     if (error) {
       console.error(error);
       toast.error(
-        translateMessage(
-          getErrorMessage(error, 'UPLOAD_FILES_UNEXPECTED_ERROR'),
-        ),
+        translateMessage(getErrorMessage(error)) ??
+          translateMessage('UPLOAD_FILES_UNEXPECTED_ERROR'),
       );
     } else if (toastId.current) {
       toast.done(toastId.current);

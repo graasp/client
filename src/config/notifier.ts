@@ -77,12 +77,12 @@ export default ({
   }
 };
 
-export const getErrorMessage = (e: unknown, defaultValue?: string) => {
+export const getErrorMessage = (e: unknown) => {
   if (e instanceof AxiosError) {
     return e.response?.data?.message;
   } else if (e instanceof Error) {
     return e.message;
   }
 
-  return defaultValue ?? 'UNEXPECTED_ERROR';
+  return null;
 };

@@ -79,8 +79,11 @@ export function FileUploader({
       });
       onComplete?.();
     } catch (e) {
-      const message = getErrorMessage(e, 'UPLOAD_FILES_UNEXPECTED_ERROR');
-      setError(translateMessage(message));
+      const message = getErrorMessage(e);
+      setError(
+        translateMessage(message) ??
+          translateMessage('UPLOAD_FILES_UNEXPECTED_ERROR'),
+      );
 
       if (e instanceof Error) {
         onError?.(e);
