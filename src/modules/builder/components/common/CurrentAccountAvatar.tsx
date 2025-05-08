@@ -20,8 +20,8 @@ export function CurrentMemberAvatar({
   maxHeight = AVATAR_ICON_HEIGHT,
 }: Readonly<Props>): JSX.Element {
   const { t } = useTranslation(NS.Builder);
-  const { data: member, isLoading } = hooks.useCurrentMember();
-  const { data: avatarUrl, isLoading: isLoadingAvatar } = hooks.useAvatarUrl({
+  const { data: member, isPending } = hooks.useCurrentMember();
+  const { data: avatarUrl, isPending: isPendingAvatar } = hooks.useAvatarUrl({
     id: member?.id,
     size: ThumbnailSize.Small,
   });
@@ -29,7 +29,7 @@ export function CurrentMemberAvatar({
     <Avatar
       id={buildMemberAvatarId(member?.id)}
       url={avatarUrl}
-      isLoading={isLoading || isLoadingAvatar}
+      isLoading={isPending || isPendingAvatar}
       alt={member?.name ?? t('AVATAR_DEFAULT_ALT')}
       component="avatar"
       maxWidth={maxWidth}
