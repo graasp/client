@@ -536,6 +536,7 @@
   "MAINTENANCE": {
     "TITLE": "Maintenance",
     "INTRODUCTION": "A maintenance operation requiring the shutdown of the Graasp platform will be carried out from <b>{{fromDate}}</b> to <b>{{toDate}}</b>.",
-    "DETAILS": "graasp.org will be completely unavailable from <b>{{fromDate}}</b> and will be available again from <b>{{toDate}}</b>."
+    "DETAILS": "graasp.org will be completely unavailable from <b>{{fromDate}}</b> and will be available again from <b>{{toDate}}</b>.",
+    "CONTACT": "This maintenance is affecting your activities on Graasp? We are listening! Contact us at <strong>maintenance@graasp.org</strong>"
   }
 }
