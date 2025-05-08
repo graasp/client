@@ -11,7 +11,7 @@ import { HelpCircleIcon } from 'lucide-react';
 
 import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
-import { getCatchErrorMessage } from '@/config/notifier';
+import { getErrorMessage } from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
 import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
@@ -79,7 +79,7 @@ export function FileUploader({
       });
       onComplete?.();
     } catch (e) {
-      const message = getCatchErrorMessage(e, 'UPLOAD_FILES_UNEXPECTED_ERROR');
+      const message = getErrorMessage(e, 'UPLOAD_FILES_UNEXPECTED_ERROR');
       setError(translateMessage(message));
 
       if (e instanceof Error) {

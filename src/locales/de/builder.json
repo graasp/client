@@ -67,7 +67,7 @@
   "DOWNLOAD_ITEM_BUTTON": "Download",
   "DROP_DOWN_PLACEHOLDER": "Bitte wählen Sie aus der Liste",
   "DROPZONE_HELPER_TEXT": "Legen Sie Ihre Dateien zum Hochladen hier ab",
-  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Maximal 15 Dateien mit 1 GB",
+  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Maximal {{max}} Dateien mit 1 GB",
   "DROPZONE_HELPER_ACTION": "Dateien durchsuchen",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "oder",
   "DESCRIPTION_LABEL": "Beschreibung",

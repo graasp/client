@@ -77,13 +77,10 @@ export default ({
   }
 };
 
-export const getCatchErrorMessage = (e: unknown, defaultValue?: string) => {
-  console.log(e);
+export const getErrorMessage = (e: unknown, defaultValue?: string) => {
   if (e instanceof AxiosError) {
-    console.log('tzhrgfe');
     return e.response?.data?.message;
   } else if (e instanceof Error) {
-    console.log('wefjkl');
     return e.message;
   }
 

@@ -15,7 +15,7 @@ import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { getCatchErrorMessage } from '@/config/notifier';
+import { getErrorMessage } from '@/config/notifier';
 import { hooks, mutations } from '@/config/queryClient';
 import Button from '@/ui/buttons/Button/Button';
 import DraggingWrapper from '@/ui/draggable/DraggingWrapper';
