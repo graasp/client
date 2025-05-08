@@ -9,7 +9,7 @@ import { getRouteApi } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
+import { MaintenanceAnnouncement } from '@/modules/home/MaintenanceAnnouncement';
 
 import { LayoutContextProvider } from '~player/contexts/LayoutContext';
 import SideContent from '~player/rightPanel/SideContent';

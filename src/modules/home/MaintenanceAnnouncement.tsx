@@ -12,11 +12,11 @@ import { getNextMaintenanceOptions } from '@/openapi/client/@tanstack/react-quer
 
 import { useLocalStorage } from './useLocalStorage';
 
-function MaintenanceAnnouncement({
+export function MaintenanceAnnouncement({
   suffix,
   showCloseButton = true,
 }: Readonly<{ suffix: string; showCloseButton?: boolean }>) {
-  const { i18n, t } = useTranslation(NS.Builder);
+  const { i18n, t } = useTranslation(NS.Builder, { keyPrefix: 'MAINTENANCE' });
   const { data: maintenance } = useQuery(getNextMaintenanceOptions());
   const { value: isClosed, changeValue: setIsClosed } = useLocalStorage(
     `maintenance-${maintenance?.slug}-closed-${suffix}`,
@@ -45,40 +45,59 @@ function MaintenanceAnnouncement({
           severity="warning"
           sx={{ fontSize: 16 }}
         >
-          <AlertTitle sx={{ fontWeight: 'bold' }}>
-            {t('MAINTENANCE.TITLE')}
-          </AlertTitle>
+          <AlertTitle sx={{ fontWeight: 'bold' }}>{t('TITLE')}</AlertTitle>
           <p>
             <Trans
-              i18n={i18n}
-              ns={NS.Builder}
-              i18nKey="MAINTENANCE.INTRODUCTION"
+              t={t}
+              i18nKey="INTRODUCTION"
               values={{
-                fromDate: formatDate(maintenance.startAt, 'PPP', {
-                  locale: getLocalForDateFns(i18n.language),
-                }),
-                toDate: formatDate(maintenance.endAt, 'PPP', {
-                  locale: getLocalForDateFns(i18n.language),
-                }),
+                fromDate: formatDate(
+                  maintenance.startAt,
+                  // use the long localized date (PPP)
+                  'PPP',
+                  {
+                    locale: getLocalForDateFns(i18n.language),
+                  },
+                ),
+                toDate: formatDate(
+                  maintenance.endAt,
+                  // use the long localized date (PPP)
+                  'PPP',
+                  {
+                    locale: getLocalForDateFns(i18n.language),
+                  },
+                ),
               }}
               components={{ b: <strong /> }}
             />
           </p>
           <p>
             <Trans
-              i18n={i18n}
-              ns={NS.Builder}
-              i18nKey="MAINTENANCE.DETAILS"
+              t={t}
+              i18nKey="DETAILS"
               values={{
-                fromDate: formatDate(maintenance.startAt, 'PPPppp', {
-                  locale: getLocalForDateFns(i18n.language),
-                }),
-                toDate: formatDate(maintenance.endAt, 'PPPppp', {
-                  locale: getLocalForDateFns(i18n.language),
-                }),
+                fromDate: formatDate(
+                  maintenance.startAt,
+                  // use the long localized date (PPP) and short localized time (p) and add the timezone (O)
+                  'PPPp O',
+                  {
+                    locale: getLocalForDateFns(i18n.language),
+                  },
+                ),
+                toDate: formatDate(
+                  maintenance.endAt,
+                  // use the long localized date (PPP) and short localized time (p) and add the timezone (O)
+                  'PPPp O',
+                  {
+                    locale: getLocalForDateFns(i18n.language),
+                  },
+                ),
               }}
               components={{ b: <strong /> }}
             />
+          </p>
+          <p>
+            <Trans t={t} i18nKey="CONTACT" />
           </p>
         </Alert>
       </Collapse>
@@ -87,5 +106,3 @@ function MaintenanceAnnouncement({
 
   return null;
 }
-
-export default MaintenanceAnnouncement;
