@@ -97,7 +97,8 @@ export const useThumbnailUploader = ({
       console.error(error);
       setIsUploadingError(true);
       updateHasThumbnail(false);
-      closeNotification(error as Error);
+
+      closeNotification(error);
     } finally {
       setIsThumbnailUploading(false);
       setUploadingProgress(0);

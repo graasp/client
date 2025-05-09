@@ -5,13 +5,15 @@ import { Id, toast } from 'react-toastify';
 import { AxiosProgressEvent } from 'axios';
 
 import { NS } from '@/config/constants';
+import { getErrorMessage } from '@/config/notifier';
 
 export const useUploadWithProgress = (): {
   update: (p: AxiosProgressEvent) => void;
-  close: (e?: Error) => void;
+  close: (e?: unknown) => void;
   show: (p?: number) => void;
 } => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
 
   // we need to keep a reference of the toastId to be able to update it
   const toastId = useRef<Id | null>(null);
@@ -33,10 +35,14 @@ export const useUploadWithProgress = (): {
     }
   };
 
-  const close = (error?: Error) => {
+  const close = (error?: unknown) => {
     // show correct feedback message
     if (error) {
-      toast.error(error.message);
+      console.error(error);
+      toast.error(
+        translateMessage(getErrorMessage(error)) ??
+          translateMessage('UPLOAD_FILES_UNEXPECTED_ERROR'),
+      );
     } else if (toastId.current) {
       toast.done(toastId.current);
     }

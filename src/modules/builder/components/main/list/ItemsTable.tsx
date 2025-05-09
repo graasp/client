@@ -99,6 +99,7 @@ const ItemsTable = ({
           close();
         })
         .catch((e) => {
+          console.error(e);
           close(e);
         });
       return;
