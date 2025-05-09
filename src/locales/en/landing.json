@@ -401,6 +401,24 @@
       "LIBRARY_BUTTON_TEXT": "Explore the Library"
     }
   },
+  "CONTACT_US": {
+    "TITLE": "Contact us",
+    "DESCRIPTION": "We value feedback from our users. Whether you are facing an issue or want to let us know about an idea, or a feature you are missing, let us know! Built something cool using Graasp? Share it with us!",
+    "SUPPORT": {
+      "TITLE": "Facing an issue?",
+      "DESCRIPTION": "We offer support for issues related to login, publication of material, and general questions related to use-cases. Drop us an email and we will get back to you as soon as possible. We reply between 3-5 business days.",
+      "EMAIL": "support@graasp.org"
+    },
+    "SOCIAL": {
+      "TITLE": "Share with us on social media",
+      "DESCRIPTION": "Want to let the world know about what you created with Graasp? Mention us on social media, will are happy to share it further!"
+    },
+    "OTHER": {
+      "TITLE": "Something else?",
+      "DESCRIPTION": "Have anything else you want to discuss with us?",
+      "EMAIL": "contact@graasp.org"
+    }
+  },
   "SUPPORT": {
     "TITLE": "Get Started",
     "DESCRIPTION": "Explore our support resources access the support you need. We're committed to ensuring your success with our platform.",
