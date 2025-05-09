@@ -1,4 +1,4 @@
-import { MeiliSearchResults, Tag, TagCategory } from '@graasp/sdk';
+import { MeiliSearchResults, Tag, TagCategoryType } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
@@ -19,7 +19,7 @@ export type MeiliSearchProps = {
   page?: number;
   elementsPerPage?: number;
   query?: string;
-  tags?: Record<TagCategory, Tag['name'][]>;
+  tags?: Record<TagCategoryType, Tag['name'][]>;
   isPublishedRoot?: boolean;
   langs?: string[];
 };

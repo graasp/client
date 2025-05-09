@@ -1,4 +1,4 @@
-import { TagCategory } from '@graasp/sdk';
+import { TagCategoryType } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -15,7 +15,7 @@ export default (queryConfig: QueryClientConfig) => {
       category,
     }: {
       search?: string;
-      category?: TagCategory;
+      category?: TagCategoryType;
     }) => {
       return useQuery({
         queryKey: tagKeys.search({

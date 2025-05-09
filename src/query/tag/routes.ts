@@ -1,11 +1,11 @@
-import { TagCategory } from '@graasp/sdk';
+import { TagCategoryType } from '@graasp/sdk';
 
 export const buildGetTagCountsRoute = ({
   search,
   category,
 }: {
   search?: string;
-  category?: TagCategory;
+  category?: TagCategoryType;
 }) => {
   const searchParams = new URLSearchParams();
 

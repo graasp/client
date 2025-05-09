@@ -5,7 +5,7 @@ import {
   ItemTypeUnion,
   Pagination,
   Tag,
-  TagCategory,
+  TagCategoryType,
   UUID,
   UnionOfConst,
 } from '@graasp/sdk';
@@ -146,7 +146,7 @@ export const itemKeys = {
 
   search: (args: {
     query?: string;
-    tags?: { [key in TagCategory]: Tag['name'][] };
+    tags?: { [key in TagCategoryType]: Tag['name'][] };
     isPublishedRoot?: boolean;
     limit?: number;
     offset?: number;
