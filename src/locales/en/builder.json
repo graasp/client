@@ -7,7 +7,7 @@
     "RETURN_HOME": "Home"
   },
   "FILE_UPLOADER": {
-    "ERROR_WRAPPER": "Some files might have not been uploaded because of the following reason: {{error}}"
+    "ERROR_WRAPPER": "Some files were not uploaded because of the following error: {{error}}"
   },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Navigate to redirection",
@@ -72,7 +72,7 @@
   "DOWNLOAD_ITEM_BUTTON": "Download",
   "DROP_DOWN_PLACEHOLDER": "Please Choose From List",
   "DROPZONE_HELPER_TEXT": "Drop your files here to upload",
-  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Max 15 files of 1GB",
+  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Max {{max}} files of 1GB",
   "DROPZONE_HELPER_TUTORIALS": "Where should you start? Click here for more information",
   "DROPZONE_HELPER_ACTION": "Browse Files",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "or",
