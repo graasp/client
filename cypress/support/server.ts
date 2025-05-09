@@ -89,8 +89,6 @@ const {
   GET_BOOKMARKED_ITEMS_ROUTE,
   buildPostItemLoginSignInRoute,
   buildPostItemVisibilityRoute,
-  buildEditItemMembershipRoute,
-  buildDeleteItemMembershipRoute,
   buildPostItemFlagRoute,
   buildExportItemChatRoute,
   buildPostItemChatMessageRoute,
@@ -415,7 +413,7 @@ export const mockEditItemMembershipForItem = (): void => {
     {
       method: HttpMethod.Patch,
       url: new RegExp(
-        `${API_HOST}/${buildEditItemMembershipRoute(ID_FORMAT)}$`,
+        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
       ),
     },
     ({ reply }) => {
@@ -431,7 +429,7 @@ export const mockDeleteItemMembershipForItem = (): void => {
     {
       method: HttpMethod.Delete,
       url: new RegExp(
-        `${API_HOST}/${buildDeleteItemMembershipRoute(ID_FORMAT)}$`,
+        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
       ),
     },
     ({ reply }) => {

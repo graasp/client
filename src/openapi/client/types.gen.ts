@@ -2612,7 +2612,7 @@ export type GetItemsCollectionsSearchRebuildResponses = {
     200: unknown;
 };
 
-export type GetItemsByItemIdMembershipsRequestsData = {
+export type GetMembershipRequestsByItemIdData = {
     body?: never;
     path: {
         itemId: string;
@@ -2621,16 +2621,16 @@ export type GetItemsByItemIdMembershipsRequestsData = {
     url: '/items/{itemId}/memberships/requests/';
 };
 
-export type GetItemsByItemIdMembershipsRequestsResponses = {
+export type GetMembershipRequestsByItemIdResponses = {
     /**
      * Default Response
      */
     200: Array<SimpleMembershipRequest>;
 };
 
-export type GetItemsByItemIdMembershipsRequestsResponse = GetItemsByItemIdMembershipsRequestsResponses[keyof GetItemsByItemIdMembershipsRequestsResponses];
+export type GetMembershipRequestsByItemIdResponse = GetMembershipRequestsByItemIdResponses[keyof GetMembershipRequestsByItemIdResponses];
 
-export type PostItemsByItemIdMembershipsRequestsData = {
+export type CreateMembershipRequestData = {
     body?: never;
     path: {
         itemId: string;
@@ -2639,16 +2639,16 @@ export type PostItemsByItemIdMembershipsRequestsData = {
     url: '/items/{itemId}/memberships/requests/';
 };
 
-export type PostItemsByItemIdMembershipsRequestsResponses = {
+export type CreateMembershipRequestResponses = {
     /**
      * Default Response
      */
     204: void;
 };
 
-export type PostItemsByItemIdMembershipsRequestsResponse = PostItemsByItemIdMembershipsRequestsResponses[keyof PostItemsByItemIdMembershipsRequestsResponses];
+export type CreateMembershipRequestResponse = CreateMembershipRequestResponses[keyof CreateMembershipRequestResponses];
 
-export type GetItemsByItemIdMembershipsRequestsOwnData = {
+export type GetOwnMembershipRequestByItemIdData = {
     body?: never;
     path: {
         itemId: string;
@@ -2657,7 +2657,7 @@ export type GetItemsByItemIdMembershipsRequestsOwnData = {
     url: '/items/{itemId}/memberships/requests/own';
 };
 
-export type GetItemsByItemIdMembershipsRequestsOwnResponses = {
+export type GetOwnMembershipRequestByItemIdResponses = {
     /**
      * Default Response
      */
@@ -2666,9 +2666,9 @@ export type GetItemsByItemIdMembershipsRequestsOwnResponses = {
     };
 };
 
-export type GetItemsByItemIdMembershipsRequestsOwnResponse = GetItemsByItemIdMembershipsRequestsOwnResponses[keyof GetItemsByItemIdMembershipsRequestsOwnResponses];
+export type GetOwnMembershipRequestByItemIdResponse = GetOwnMembershipRequestByItemIdResponses[keyof GetOwnMembershipRequestByItemIdResponses];
 
-export type DeleteItemsByItemIdMembershipsRequestsByMemberIdData = {
+export type DeleteMembershipRequestData = {
     body?: never;
     path: {
         itemId: string;
@@ -2678,14 +2678,14 @@ export type DeleteItemsByItemIdMembershipsRequestsByMemberIdData = {
     url: '/items/{itemId}/memberships/requests/{memberId}';
 };
 
-export type DeleteItemsByItemIdMembershipsRequestsByMemberIdResponses = {
+export type DeleteMembershipRequestResponses = {
     /**
      * Default Response
      */
     204: void;
 };
 
-export type DeleteItemsByItemIdMembershipsRequestsByMemberIdResponse = DeleteItemsByItemIdMembershipsRequestsByMemberIdResponses[keyof DeleteItemsByItemIdMembershipsRequestsByMemberIdResponses];
+export type DeleteMembershipRequestResponse = DeleteMembershipRequestResponses[keyof DeleteMembershipRequestResponses];
 
 export type GetItemMembershipsForItemData = {
     body?: never;
@@ -2724,9 +2724,7 @@ export type CreateItemMembershipData = {
     path: {
         itemId: string;
     };
-    query: {
-        itemId: string;
-    };
+    query?: never;
     url: '/items/{itemId}/memberships/';
 };
 
