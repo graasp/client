@@ -7,25 +7,20 @@ import {
   AccountType,
   DiscriminatedItem,
   ItemLoginSchemaStatus,
-  PermissionLevelOptions,
 } from '@graasp/sdk';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
 } from '@/config/selectors';
 import { ItemMembership } from '@/openapi/client';
-import { updateItemMembershipMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { itemKeys } from '@/query/keys';
 import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
 import EditPermissionButton from './EditPermissionButton';
 import { StyledTableRow } from './StyledTableRow';
+import { useChangePermission } from './useChangePermission';
 
 const ItemMembershipTableRow = ({
   allowDowngrade = false,
@@ -41,31 +36,10 @@ const ItemMembershipTableRow = ({
   isDisabled: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);
-  const queryClient = useQueryClient();
-  const { mutate: editItemMembership } = useMutation({
-    ...updateItemMembershipMutation(),
-    onSettled: () => {
-      queryClient.invalidateQueries({
-        queryKey: itemKeys.single(item.id).memberships,
-      });
-    },
+  const { changePermission, isPending } = useChangePermission({
+    itemId: item.id,
+    itemPath: item.path,
   });
-  const { mutate: shareItem } = mutations.usePostItemMembership();
-
-  const changePermission = (newPermission: PermissionLevelOptions) => {
-    if (data.item.path === item.path) {
-      editItemMembership({
-        path: { id: data.id, itemId: item.id },
-        body: { permission: newPermission },
-      });
-    } else {
-      shareItem({
-        id: item.id,
-        accountId: data.account.id,
-        permission: newPermission,
-      });
-    }
-  };
 
   return (
     <StyledTableRow data-cy={buildItemMembershipRowId(data.id)} key={data.id}>
@@ -105,7 +79,10 @@ const ItemMembershipTableRow = ({
                 ? data.account.email
                 : undefined
             }
-            handleUpdate={changePermission}
+            loading={isPending}
+            handleUpdate={(newPermission) =>
+              changePermission(data, newPermission)
+            }
             allowDowngrade={allowDowngrade}
             permission={data.permission}
             id={buildItemMembershipRowEditButtonId(data.id)}

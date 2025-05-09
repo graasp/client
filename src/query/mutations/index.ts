@@ -2,7 +2,6 @@ import itemMutations from '../item/mutations.js';
 import itemTagMutations from '../item/tag/mutations.js';
 import memberMutations from '../member/mutations.js';
 import publicProfileMutations from '../member/publicProfile/mutations.js';
-import membershipRequestsMutations from '../membership/request/mutations.js';
 import { QueryClientConfig } from '../types.js';
 import actionMutations from './action.js';
 import authenticationMutations from './authentication.js';
@@ -18,7 +17,6 @@ import itemLoginMutations from './itemLogin.js';
 import itemPublishMutations from './itemPublish.js';
 import itemValidationMutations from './itemValidation.js';
 import visibilitiesMutations from './itemVisibility.js';
-import itemMembershipMutations from './membership.js';
 import mentionMutations from './mention.js';
 import shortLinksMutations from './shortLink.js';
 
@@ -34,7 +32,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...itemGeolocationMutations(queryConfig),
   ...itemLikeMutations(queryConfig),
   ...itemLoginMutations(queryConfig),
-  ...itemMembershipMutations(queryConfig),
   ...itemMutations(queryConfig),
   ...itemPublishMutations(queryConfig),
   ...itemValidationMutations(queryConfig),
@@ -43,7 +40,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...publicProfileMutations(queryConfig),
   ...shortLinksMutations(queryConfig),
   ...visibilitiesMutations(queryConfig),
-  ...membershipRequestsMutations(queryConfig),
   ...itemTagMutations(queryConfig),
 });
 

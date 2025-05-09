@@ -23,11 +23,11 @@ export const SHORT_LINKS_LIST_ROUTE = `${SHORT_LINKS_ROUTE}/list`;
 export const EMBEDDED_LINKS_ROUTE = `${ITEMS_ROUTE}/embedded-links/metadata`;
 
 export const buildExportItemRoute = (id: UUID) => `${ITEMS_ROUTE}/${id}/export`;
-export const buildPostItemMembershipRoute = (id: UUID) =>
-  `items/${id}/memberships`;
 export const buildInviteRoute = (id: UUID) => `invite/${id}`;
 export const buildGetItemMembershipsForItemRoute = (id: UUID) =>
   `items/${id}/memberships`;
+export const buildGetMembershipRequestsForItemRoute = (id: UUID) =>
+  `items/${id}/memberships/requests`;
 export const buildGetItemInvitationsForItemRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/invitations`;
 export const buildPostUserCSVUploadRoute = (id: UUID) =>
@@ -374,7 +374,6 @@ export const API_ROUTES = {
   buildPostItemFlagRoute,
   buildPostItemLikeRoute,
   buildPostItemLoginSignInRoute,
-  buildPostItemMembershipRoute,
   buildPostItemVisibilityRoute,
   buildPostItemValidationRoute,
   buildPostShortLinkRoute,

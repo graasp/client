@@ -3,7 +3,6 @@ import { WebsocketClient } from '@graasp/sdk';
 import configureItemHooks from '../item/hooks.js';
 import configureMemberHooks from '../member/hooks.js';
 import configureSubscriptionHooks from '../member/subscription/hooks.js';
-import configureMembershipRequestHooks from '../membership/request/hooks.js';
 import configureTagHooks from '../tag/hooks.js';
 import { QueryClientConfig } from '../types.js';
 import configureChatHooks from './chat.js';
@@ -42,7 +41,6 @@ export const configureHooks = (
     ...memberHooks,
     ...configureSubscriptionHooks(queryConfig),
     ...configureEmbeddedLinkHooks(queryConfig),
-    ...configureMembershipRequestHooks(queryConfig),
     ...configureTagHooks(queryConfig),
     useDebounce,
   };

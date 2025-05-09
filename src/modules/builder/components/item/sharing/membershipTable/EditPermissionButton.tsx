@@ -1,7 +1,9 @@
 import { type JSX, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
+import { LoadingButton } from '@mui/lab';
 import {
+  Alert,
   Dialog,
   DialogActions,
   DialogContent,
@@ -26,8 +28,9 @@ type Props = {
   name?: string;
   allowDowngrade?: boolean;
   permission: PermissionLevelOptions;
-  handleUpdate: (p: PermissionLevelOptions) => void;
+  handleUpdate: (p: PermissionLevelOptions) => Promise<void>;
   id?: string;
+  loading: boolean;
 };
 
 const EditPermissionButton = ({
@@ -37,11 +40,12 @@ const EditPermissionButton = ({
   allowDowngrade = true,
   handleUpdate,
   id,
+  loading,
 }: Props): JSX.Element | null => {
   const { isOpen, openModal, closeModal } = useModalStatus();
 
   const [currentPermission, setCurrentPermission] = useState(permission);
-
+  const [error, setError] = useState<string>();
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
@@ -92,21 +96,29 @@ const EditPermissionButton = ({
                 allowDowngrade={allowDowngrade}
               />
             </Stack>
+            {error && <Alert severity="error">{error}</Alert>}
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={closeModal}>
             {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
-          <Button
+          <LoadingButton
+            loading={loading}
             type="submit"
-            onClick={() => {
-              handleUpdate(currentPermission);
-              closeModal();
+            onClick={async () => {
+              try {
+                await handleUpdate(currentPermission);
+                closeModal();
+              } catch (e) {
+                console.error(e);
+                // TODO: replace message
+                setError('an error happened');
+              }
             }}
           >
             {translateBuilder(BUILDER.EDIT_PERMISSION_DIALOG_SUBMIT_BUTTON)}
-          </Button>
+          </LoadingButton>
         </DialogActions>
       </Dialog>
     </>

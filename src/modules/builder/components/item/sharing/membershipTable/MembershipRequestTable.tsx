@@ -12,16 +12,11 @@ import {
   Typography,
 } from '@mui/material';
 
-import {
-  CompleteMembershipRequest,
-  PermissionLevel,
-  formatDate,
-} from '@graasp/sdk';
+import { formatDate } from '@graasp/sdk';
 
 import { Check } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
 import {
   MEMBERSHIP_REQUESTS_EMPTY_SELECTOR,
   MEMBERSHIP_REQUEST_ACCEPT_BUTTON_SELECTOR,
@@ -35,23 +30,16 @@ import { useOutletContext } from '~builder/contexts/OutletContext';
 import { BUILDER } from '~builder/langs';
 
 import { StyledTableRow } from './StyledTableRow';
+import { useMembershipRequests } from './useMembershipRequests';
 
 const MembershipRequestTable = (): JSX.Element => {
   const { t: translateBuilder, i18n } = useTranslation(NS.Builder);
   const { item, canAdmin } = useOutletContext();
-  const { data: requests, isLoading } = hooks.useMembershipRequests(item.id, {
-    enabled: canAdmin,
-  });
-  const { mutate: deleteRequest } = mutations.useDeleteMembershipRequest();
-  const { mutate: shareItem } = mutations.usePostItemMembership();
-
-  const acceptRequest = (data: CompleteMembershipRequest) => {
-    shareItem({
-      id: item.id,
-      accountId: data.member.id,
-      permission: PermissionLevel.Read,
+  const { requests, isPending, acceptRequest, refuseRequest } =
+    useMembershipRequests({
+      itemId: item.id,
+      canAdmin,
     });
-  };
 
   if (requests?.length) {
     return (
@@ -99,7 +87,7 @@ const MembershipRequestTable = (): JSX.Element => {
                     size="small"
                     color="success"
                     onClick={() => {
-                      acceptRequest(r);
+                      acceptRequest(r.member.id);
                     }}
                     endIcon={<Check size={20} />}
                   >
@@ -110,9 +98,7 @@ const MembershipRequestTable = (): JSX.Element => {
                     size="small"
                     color="error"
                     variant="text"
-                    onClick={() =>
-                      deleteRequest({ itemId: item.id, memberId: r.member.id })
-                    }
+                    onClick={() => refuseRequest(r.member.id)}
                   >
                     {translateBuilder(BUILDER.MEMBERSHIP_REQUEST_REJECT_BUTTON)}
                   </Button>
@@ -133,7 +119,7 @@ const MembershipRequestTable = (): JSX.Element => {
     );
   }
 
-  if (isLoading) {
+  if (isPending) {
     return (
       <>
         <Skeleton height="60" />
