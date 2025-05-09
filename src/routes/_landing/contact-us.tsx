@@ -31,8 +31,19 @@ function RouteComponent() {
         <Typography variant="body1" textAlign="left">
           <Trans t={t} i18nKey={'SUPPORT.DESCRIPTION'} />
         </Typography>
-        <Typography variant="body1" fontWeight={'bold'} textAlign="left">
+        <Typography variant="body1" fontWeight="bold" textAlign="left">
           {t('SUPPORT.EMAIL')}
+        </Typography>
+      </Stack>
+      <Stack gap={2}>
+        <Typography variant="h2" textAlign="left">
+          {t('OTHER.TITLE')}
+        </Typography>
+        <Typography variant="body1" textAlign="left">
+          {t('OTHER.DESCRIPTION')}
+        </Typography>
+        <Typography variant="body1" fontWeight="bold" textAlign="left">
+          {t('OTHER.EMAIL')}
         </Typography>
       </Stack>
       <Stack gap={2}>
@@ -48,17 +59,6 @@ function RouteComponent() {
             <Link to={href}>{title}</Link>
           </Stack>
         ))}
-      </Stack>
-      <Stack gap={2}>
-        <Typography variant="h2" textAlign="left">
-          {t('OTHER.TITLE')}
-        </Typography>
-        <Typography variant="body1" textAlign="left">
-          {t('OTHER.DESCRIPTION')}
-        </Typography>
-        <Typography variant="body1" fontWeight={'bold'} textAlign="left">
-          {t('OTHER.EMAIL')}
-        </Typography>
       </Stack>
     </Stack>
   );
