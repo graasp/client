@@ -2,7 +2,7 @@ import { Divider, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
 
-import MaintenanceAnnouncement from '@/modules/home/MaintenanceAnnouncement';
+import { MaintenanceAnnouncement } from '@/modules/home/MaintenanceAnnouncement';
 import { BookmarkedItems } from '@/modules/home/bookmarks/BookmarkedItems';
 
 import { FilterItemsContextProvider } from '~builder/components/context/FilterItemsContext';
