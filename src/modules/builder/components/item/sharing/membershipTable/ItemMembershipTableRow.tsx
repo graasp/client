@@ -10,6 +10,8 @@ import {
   PermissionLevelOptions,
 } from '@graasp/sdk';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
@@ -17,6 +19,8 @@ import {
   buildItemMembershipRowId,
 } from '@/config/selectors';
 import { ItemMembership } from '@/openapi/client';
+import { updateItemMembershipMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { itemKeys } from '@/query/keys';
 import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
@@ -37,16 +41,22 @@ const ItemMembershipTableRow = ({
   isDisabled: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);
-
-  const { mutate: editItemMembership } = mutations.useEditItemMembership();
+  const queryClient = useQueryClient();
+  const { mutate: editItemMembership } = useMutation({
+    ...updateItemMembershipMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: itemKeys.single(item.id).memberships,
+      });
+    },
+  });
   const { mutate: shareItem } = mutations.usePostItemMembership();
 
   const changePermission = (newPermission: PermissionLevelOptions) => {
     if (data.item.path === item.path) {
       editItemMembership({
-        id: data.id,
-        permission: newPermission,
-        itemId: item.id,
+        path: { id: data.id, itemId: item.id },
+        body: { permission: newPermission },
       });
     } else {
       shareItem({

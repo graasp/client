@@ -12,12 +12,15 @@ import {
 
 import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
+import { hooks } from '@/config/queryClient';
 import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
 import { ItemMembership } from '@/openapi/client';
+import { deleteItemMembershipMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../../../langs';
@@ -30,10 +33,7 @@ type Props = {
   open?: boolean;
   handleClose: () => void;
   itemId: DiscriminatedItem['id'];
-  membershipToDelete: Pick<
-    ItemMembership,
-    'id' | 'account' | 'permission'
-  > | null;
+  membershipToDelete: Pick<ItemMembership, 'id' | 'account' | 'permission'>;
   hasOnlyOneAdmin?: boolean;
 };
 
@@ -46,16 +46,22 @@ const DeleteItemMembershipDialog = ({
 }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: member } = hooks.useCurrentMember();
-  const { mutateAsync: deleteItemMembership } =
-    mutations.useDeleteItemMembership();
+  const queryClient = useQueryClient();
+  const { mutateAsync: deleteItemMembership } = useMutation({
+    ...deleteItemMembershipMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: itemKeys.single(itemId).memberships,
+      });
+    },
+  });
 
   const navigate = useNavigate();
 
   const onDelete = () => {
     if (membershipToDelete?.id) {
       deleteItemMembership({
-        id: membershipToDelete.id,
-        itemId,
+        path: { itemId, id: membershipToDelete.id },
       }).then(() => {
         // if current user deleted their own membership navigate them to the home
         if (membershipToDelete.account.id === member?.id) {
