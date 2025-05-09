@@ -51,7 +51,7 @@ const partnerLinks = [
   },
 ];
 
-const socialLinks = [
+export const socialLinks = [
   {
     title: 'Facebook',
     href: 'https://www.facebook.com/graasp',
