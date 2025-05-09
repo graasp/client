@@ -5,8 +5,6 @@ import { ItemMembership } from '@/openapi/client/types.gen.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
-  buildDeleteItemMembershipRoute,
-  buildEditItemMembershipRoute,
   buildGetItemMembershipsForItemRoute,
   buildPostItemMembershipRoute,
 } from '../routes.js';
@@ -38,30 +36,3 @@ export const postItemMembership = async ({
       .then(({ data }) => data),
   );
 };
-
-export const editItemMembership = async ({
-  id,
-  permission,
-}: {
-  id: UUID;
-  permission: PermissionLevelOptions;
-}) =>
-  verifyAuthentication(() =>
-    axios
-      .patch<ItemMembership>(
-        `${API_HOST}/${buildEditItemMembershipRoute(id)}`,
-        {
-          permission,
-        },
-      )
-      .then(({ data }) => data),
-  );
-
-export const deleteItemMembership = async ({ id }: { id: UUID }) =>
-  verifyAuthentication(() =>
-    axios
-      .delete<ItemMembership>(
-        `${API_HOST}/${buildDeleteItemMembershipRoute(id)}`,
-      )
-      .then(({ data }) => data),
-  );
