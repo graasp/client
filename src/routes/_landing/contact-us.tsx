@@ -1,10 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Stack, Typography } from '@mui/material';
+import { Grid2 as Grid, Stack, Typography } from '@mui/material';
 
 import { Link, createFileRoute } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
+import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
 
 import { socialLinks } from '~landing/footer/Footer';
 
@@ -53,12 +54,32 @@ function RouteComponent() {
         <Typography variant="body1" textAlign="left">
           {t('SOCIAL.DESCRIPTION')}
         </Typography>
-        {socialLinks.map(({ Icon, title, href }) => (
-          <Stack key={title} direction="row" alignItems="center" gap={1}>
-            <Icon size={24} fill="black" />
-            <Link to={href}>{title}</Link>
-          </Stack>
-        ))}
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          flexWrap="wrap"
+          gap={4}
+        >
+          {socialLinks.map(({ Icon, title, href }) => (
+            <Grid key={title} size={3}>
+              <Link to={href}>
+                <Stack
+                  direction="column"
+                  alignItems="center"
+                  gap={1}
+                  py={2}
+                  px={1}
+                  borderRadius={4}
+                  bgcolor={DEFAULT_LIGHT_PRIMARY_COLOR.main}
+                >
+                  <Icon size={24} fill="black" />
+                  <Typography color="textPrimary">{title}</Typography>
+                </Stack>
+              </Link>
+            </Grid>
+          ))}
+        </Grid>
       </Stack>
     </Stack>
   );
