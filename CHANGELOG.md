@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.26.0](https://github.com/graasp/client/compare/v2.25.2...v2.26.0) (2025-05-09)
+
+
+### Features
+
+* complete contact page ([#997](https://github.com/graasp/client/issues/997)) ([a7e3db6](https://github.com/graasp/client/commit/a7e3db66eaeee75daf4acc16435f132eb1b56483))
+
+
+### Bug Fixes
+
+* add the contact information to the maintenance banner ([#996](https://github.com/graasp/client/issues/996)) ([e895367](https://github.com/graasp/client/commit/e8953677653489c254bb87739ab6d4e60c5a4caf))
+* **deps:** update dependency @hey-api/client-fetch to v0.7.3 ([#948](https://github.com/graasp/client/issues/948)) ([3393444](https://github.com/graasp/client/commit/3393444066c8bc5ab716a54ee04e6d1497274321))
+* **deps:** update dependency @tanstack/react-query to v5.66.11 ([#967](https://github.com/graasp/client/issues/967)) ([4f85fd6](https://github.com/graasp/client/commit/4f85fd646668bb277b4ae623d49b676d3943c6a7))
+* **deps:** update dependency axios to v1.8.4 ([#988](https://github.com/graasp/client/issues/988)) ([8637920](https://github.com/graasp/client/commit/8637920d3256bdf1b244c7a6c872812e6dfe3f43))
+* remove unused material ui import ([faf1198](https://github.com/graasp/client/commit/faf1198c6c392daa34452525288117a9d01ff44a))
+* update for new sdk version ([#993](https://github.com/graasp/client/issues/993)) ([0b2b894](https://github.com/graasp/client/commit/0b2b8949bb3aadbbde243a0ed6316230c0bcbd24))
+
 ## [2.25.2](https://github.com/graasp/client/compare/v2.25.1...v2.25.2) (2025-05-05)
 
 
