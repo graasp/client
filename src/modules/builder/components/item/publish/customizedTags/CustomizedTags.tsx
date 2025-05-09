@@ -65,7 +65,7 @@ export const CustomizedTags = ({ item }: Props): JSX.Element => {
             </Typography>
             <MultiSelectTagChipInput
               itemId={item.id}
-              tagCategory="discipline"
+              tagCategory={TagCategory.Discipline}
               helpertext={t(BUILDER.TAGS_DISCIPLINE_HELPERTEXT)}
             />
             <MultiSelectTagChipInput
