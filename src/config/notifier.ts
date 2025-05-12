@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { MessageKeys } from '@/@types/i18next';
 import { Notifier, routines } from '@/query';
@@ -75,4 +75,14 @@ export default ({
   else if (message) {
     toast.success(translate(message, { ns: NS.Messages }));
   }
+};
+
+export const getErrorMessage = (e: unknown) => {
+  if (e instanceof AxiosError) {
+    return e.response?.data?.message;
+  } else if (e instanceof Error) {
+    return e.message;
+  }
+
+  return null;
 };

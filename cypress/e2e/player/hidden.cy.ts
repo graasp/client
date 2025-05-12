@@ -18,14 +18,18 @@ const parentItem = PackedFolderItemFactory({
 });
 const FOLDER_WITH_HIDDEN_ITEMS: ItemForTest[] = [
   parentItem,
-  DocumentItemFactory({ parentItem }),
-  PackedDocumentItemFactory({ parentItem }, { hiddenVisibility: {} }),
+  DocumentItemFactory({ parentItem, settings: { isCollapsible: false } }),
+  PackedDocumentItemFactory(
+    { parentItem, settings: { isCollapsible: false } },
+    { hiddenVisibility: {} },
+  ),
   PackedDocumentItemFactory(
     {
       name: 'hidden document',
       settings: {
         isPinned: false,
         showChatbox: false,
+        isCollapsible: false,
       },
       parentItem,
     },

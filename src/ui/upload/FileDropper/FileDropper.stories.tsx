@@ -63,9 +63,10 @@ export const Container = {
   },
 } satisfies Story;
 
+const errorText = 'You cannot upload more than 10 files at a time';
 export const WithError = {
   args: {
-    error: 'You cannot upload more than 10 files at a time',
+    error: <>{errorText}</>,
     hints: 'Max 15GB',
   },
   decorators: [
@@ -73,9 +74,9 @@ export const WithError = {
       return <Box height="400px">{story()}</Box>;
     },
   ],
-  play: ({ canvasElement, args }) => {
+  play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    expect(canvas.getByText(args.error!).parentNode).toHaveRole('alert');
+    expect(canvas.getByText(errorText).parentNode).toHaveRole('alert');
     expect(canvas.getByRole('dropzone')).toHaveStyle({
       'background-color': '#ffbaba',
     });

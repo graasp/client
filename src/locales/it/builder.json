@@ -67,7 +67,7 @@
   "DOWNLOAD_ITEM_BUTTON": "Download",
   "DROP_DOWN_PLACEHOLDER": "Si prega di scegliere dall'elenco",
   "DROPZONE_HELPER_TEXT": "Trascina qui i tuoi file per caricarli",
-  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Massimo 15 file da 1 GB",
+  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Massimo {{max}} file da 1 GB",
   "DROPZONE_HELPER_ACTION": "Sfoglia file",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "O",
   "DESCRIPTION_LABEL": "Descrizione",

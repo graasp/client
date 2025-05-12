@@ -6,6 +6,9 @@
     "RECYCLED_ITEMS": "Corbeille",
     "RETURN_HOME": "Accueil"
   },
+  "FILE_UPLOADER": {
+    "GENERAL_ERROR": "Certains fichiers n'ont pas pu être téléchargés, corrigez l'erreur et réessayez."
+  },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Accéder à la redirection",
   "AVATAR_DEFAULT_ALT": "avatar",
@@ -68,7 +71,7 @@
   "DOWNLOAD_ITEM_BUTTON": "Télécharger",
   "DROP_DOWN_PLACEHOLDER": "Choisir dans la liste",
   "DROPZONE_HELPER_TEXT": "Déposez vos fichiers ici pour les téléverser",
-  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Maximum 15 fichiers de 1 Go chacun",
+  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Maximum {{max}} fichiers de 1 Go chacun",
   "DROPZONE_HELPER_TUTORIALS": "Par où commencer ? Cliquer ici pour plus d'informations",
   "DROPZONE_HELPER_ACTION": "Parcourir les fichiers",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "ou",

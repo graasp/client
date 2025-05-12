@@ -41,7 +41,6 @@
   "INVALID_DOWNLOAD_PARAMETERS": "Uno o varios parámetros de descarga no son válidos",
   "LOCAL_FILE_NOT_FOUND": "No se encuentra el archivo local",
   "S3_FILE_NOT_FOUND": "No se encuentra el archivo S3",
-  "UPLOAD_FILE_UNEXPECTED_ERROR": "Se produjo un error inesperado al cargar un archivo",
   "DOWNLOAD_FILE_UNEXPECTED_ERROR": "Se produjo un error inesperado al descargar un archivo",
   "RESTORE_ITEMS": "Has restaurado exitosamente el(los) artículo(s)",
   "CREATE_ITEM": "El artículo se creó correctamente",
