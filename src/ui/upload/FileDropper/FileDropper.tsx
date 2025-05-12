@@ -30,7 +30,7 @@ export type FileDropperProps = {
   /**
    * Error to show
    */
-  error?: string;
+  error?: ReactNode;
   /**
    * Smaller text to show, such as limits
    */

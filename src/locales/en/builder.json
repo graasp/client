@@ -7,7 +7,7 @@
     "RETURN_HOME": "Home"
   },
   "FILE_UPLOADER": {
-    "ERROR_WRAPPER": "Some files were not uploaded because of the following error: {{error}}"
+    "GENERAL_ERROR": "Some files could not be uploaded, please fix the issue and try again."
   },
   "REDIRECTION_TEXT": "Redirection",
   "REDIRECTION_BUTTON": "Navigate to redirection",

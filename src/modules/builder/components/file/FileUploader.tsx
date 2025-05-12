@@ -122,7 +122,15 @@ export function FileUploader({
         uploadProgress={Math.ceil(totalProgress * 100)}
         multiple
         onDrop={onDrop}
-        error={error ? t('FILE_UPLOADER.ERROR_WRAPPER', { error }) : undefined}
+        error={
+          error ? (
+            <>
+              {error}
+              <br />
+              {t('FILE_UPLOADER.GENERAL_ERROR')}
+            </>
+          ) : undefined
+        }
         buttonText={t('DROPZONE_HELPER_ACTION')}
         hints={hints}
         buttons={buttons}
