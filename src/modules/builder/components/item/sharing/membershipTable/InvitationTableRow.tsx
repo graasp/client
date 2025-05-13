@@ -33,11 +33,13 @@ const InvitationTableRow = ({
   const { t: translateEnums } = useTranslation(NS.Enums);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const { mutate: editInvitation } = mutations.usePatchInvitation();
-  const { mutate: postInvitations } = mutations.usePostInvitations();
+  const { mutate: editInvitation, isPending: isPendingEditInvitation } =
+    mutations.usePatchInvitation();
+  const { mutate: postInvitations, isPending: isPendingPostInvitation } =
+    mutations.usePostInvitations();
   const { mutate: deleteInvitation } = mutations.useDeleteInvitation();
 
-  const changePermission = (permission: PermissionLevelOptions) => {
+  const changePermission = async (permission: PermissionLevelOptions) => {
     if (data.item.path === item.path) {
       editInvitation({
         id: data.id,
@@ -79,6 +81,7 @@ const InvitationTableRow = ({
           name={data.name}
           handleUpdate={changePermission}
           allowDowngrade={data.item.path === item.path}
+          loading={isPendingEditInvitation || isPendingPostInvitation}
         />
         <TableRowDeleteButton
           id={buildItemInvitationRowDeleteButtonId(data.id)}

@@ -15,6 +15,7 @@ import {
 import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
+import { getErrorMessage } from '@/config/notifier';
 import Button from '@/ui/buttons/Button/Button';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
@@ -48,6 +49,7 @@ const EditPermissionButton = ({
   const [error, setError] = useState<string>();
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
 
   if (!allowDowngrade && permission === PermissionLevel.Admin) {
     return null;
@@ -112,8 +114,7 @@ const EditPermissionButton = ({
                 closeModal();
               } catch (e) {
                 console.error(e);
-                // TODO: replace message
-                setError('an error happened');
+                setError(translateMessage(getErrorMessage(e)));
               }
             }}
           >
