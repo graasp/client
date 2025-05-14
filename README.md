@@ -43,7 +43,7 @@ VITE_UMAMI_HOST=http://localhost:8000
 VITE_SENTRY_ENV= # some value
 VITE_SENTRY_DSN= # some value
 
-VITE_RECAPTCHA_SITE_KEY= # some value
+VITE_RECAPTCHA= # some value
 
 VITE_GRAASP_H5P_INTEGRATION_URL= # the origin for the h5p integration
 
@@ -66,6 +66,31 @@ This mode runs the app from the static build and uses a lot less RAM compared to
 1. Preview the project `pnpm preview`
 1. Open the app running on: [http://localhost:3114](http://localhost:3114)
 
+## Running with Docker
+
+In this section we give instructions on how to host the static files of this project with docker.
+
+Using the following command, you should be able to build an image that contains the statically built assets for this project and [a static web server](https://static-web-server.net/) to host them.
+
+```sh
+docker build -t client-local \
+ --build-arg VITE_GRAASP_H5P_INTEGRATION_URL=http://localhost:3000/items/h5p-integration \
+ --build-arg VITE_RECAPTCHA=<recaptcha_site_key> \
+ --build-arg VITE_GRAASP_REDIRECTION_HOST=http://localhost:3000/short-links \
+ .
+```
+
+Change `client-local` to the image and tag name you prefer. For example `client:latest` to name the image `client` and tag it as `latest`.
+Also update the `<recaptcha_site_key>` value with your own.
+
+To use this image, run it with:
+
+```sh
+docker run --rm -p 3114:80 client-local
+```
+
+Now the client should be served at `http://localhost:3114` change `3114` in the command above to the port you prefer.
+
 ## Test setup
 
 ```sh
@@ -75,7 +100,6 @@ VITE_PORT=3333
 VITE_GRAASP_API_HOST=http://localhost:3636
 VITE_SHOW_NOTIFICATIONS=true
 VITE_GRAASP_ANALYZER_HOST=http://localhost:3005
-
 ```
 
 ## Contributors
