@@ -1731,7 +1731,7 @@ export const mockPostItemMembership = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/item-memberships?*`,
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2334,10 +2334,10 @@ export const mockGetItemMembershipsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/item-memberships`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships`),
     },
     ({ reply, url }) => {
-      const itemId = new URL(url).searchParams.get('itemId');
+      const itemId = url.split('/')[4];
       const item = items.find((i) => i.id === itemId);
       const { creator, memberships } = item;
       // build default membership depending on current member
