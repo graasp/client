@@ -2618,7 +2618,7 @@ export type GetMembershipRequestsByItemIdData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests';
+    url: '/items/{itemId}/memberships/requests/';
 };
 
 export type GetMembershipRequestsByItemIdResponses = {
@@ -2636,7 +2636,7 @@ export type CreateMembershipRequestData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/requests';
+    url: '/items/{itemId}/memberships/requests/';
 };
 
 export type CreateMembershipRequestResponses = {

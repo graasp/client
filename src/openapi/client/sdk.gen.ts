@@ -828,7 +828,7 @@ export const getItemsCollectionsSearchRebuild = <ThrowOnError extends boolean = 
  */
 export const getMembershipRequestsByItemId = <ThrowOnError extends boolean = false>(options: Options<GetMembershipRequestsByItemIdData, ThrowOnError>) => {
     return (options.client ?? _heyApiClient).get<GetMembershipRequestsByItemIdResponse, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests',
+        url: '/items/{itemId}/memberships/requests/',
         ...options
     });
 };
@@ -841,7 +841,7 @@ export const getMembershipRequestsByItemId = <ThrowOnError extends boolean = fal
  */
 export const createMembershipRequest = <ThrowOnError extends boolean = false>(options: Options<CreateMembershipRequestData, ThrowOnError>) => {
     return (options.client ?? _heyApiClient).post<CreateMembershipRequestResponse, unknown, ThrowOnError>({
-        url: '/items/{itemId}/memberships/requests',
+        url: '/items/{itemId}/memberships/requests/',
         ...options
     });
 };

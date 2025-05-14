@@ -25,9 +25,9 @@ export const EMBEDDED_LINKS_ROUTE = `${ITEMS_ROUTE}/embedded-links/metadata`;
 export const buildExportItemRoute = (id: UUID) => `${ITEMS_ROUTE}/${id}/export`;
 export const buildInviteRoute = (id: UUID) => `invite/${id}`;
 export const buildGetItemMembershipsForItemRoute = (id: UUID) =>
-  `items/${id}/memberships`;
+  `items/${id}/memberships/`;
 export const buildGetMembershipRequestsForItemRoute = (id: UUID) =>
-  `items/${id}/memberships/requests`;
+  `items/${id}/memberships/requests/`;
 export const buildGetItemInvitationsForItemRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/invitations`;
 export const buildPostUserCSVUploadRoute = (id: UUID) =>
