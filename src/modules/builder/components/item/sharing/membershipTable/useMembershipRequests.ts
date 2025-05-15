@@ -9,13 +9,13 @@ import {
 } from '@/openapi/client/@tanstack/react-query.gen';
 import { itemKeys } from '@/query/keys';
 
-export const useMembershipRequests = ({
+export function useMembershipRequests({
   itemId,
   canAdmin,
 }: {
   itemId: string;
   canAdmin: boolean;
-}) => {
+}) {
   const queryClient = useQueryClient();
   const { data: requests, isPending } = hooks.useMembershipRequests(itemId, {
     enabled: canAdmin,
@@ -57,4 +57,4 @@ export const useMembershipRequests = ({
   };
 
   return { requests, isPending, acceptRequest, refuseRequest };
-};
+}

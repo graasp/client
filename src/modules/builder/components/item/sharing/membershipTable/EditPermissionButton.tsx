@@ -1,9 +1,9 @@
 import { type JSX, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
 import {
   Alert,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -16,7 +16,6 @@ import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { getErrorMessage } from '@/config/notifier';
-import Button from '@/ui/buttons/Button/Button';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -54,6 +53,16 @@ const EditPermissionButton = ({
   if (!allowDowngrade && permission === PermissionLevel.Admin) {
     return null;
   }
+
+  const onSubmit = async () => {
+    try {
+      await handleUpdate(currentPermission);
+      closeModal();
+    } catch (e) {
+      console.error(e);
+      setError(translateMessage(getErrorMessage(e)));
+    }
+  };
 
   return (
     <>
@@ -105,21 +114,9 @@ const EditPermissionButton = ({
           <Button variant="text" onClick={closeModal}>
             {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
-          <LoadingButton
-            loading={loading}
-            type="submit"
-            onClick={async () => {
-              try {
-                await handleUpdate(currentPermission);
-                closeModal();
-              } catch (e) {
-                console.error(e);
-                setError(translateMessage(getErrorMessage(e)));
-              }
-            }}
-          >
+          <Button loading={loading} type="submit" onClick={onSubmit}>
             {translateBuilder(BUILDER.EDIT_PERMISSION_DIALOG_SUBMIT_BUTTON)}
-          </LoadingButton>
+          </Button>
         </DialogActions>
       </Dialog>
     </>

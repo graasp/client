@@ -38,12 +38,12 @@ describe('Membership Request', () => {
       });
     });
 
-    it.only('Request membership', () => {
+    it('Request membership', () => {
       cy.intercept(
         {
           method: HttpMethod.Post,
           url: new RegExp(
-            `${API_HOST}/items/${ID_FORMAT}/memberships/requests/$`,
+            `${API_HOST}/items/${ID_FORMAT}/memberships/requests$`,
           ),
         },
         ({ reply }) => {

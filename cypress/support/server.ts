@@ -1731,7 +1731,7 @@ export const mockPostItemMembership = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/$`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2279,7 +2279,7 @@ export const mockRequestMembership = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests/$`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('requestMembership');
@@ -2291,7 +2291,7 @@ export const mockGetMembershipRequestsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests/$`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
     },
     ({ reply, url }) => {
       const urlParams = url.split('/');
@@ -2334,7 +2334,7 @@ export const mockGetItemMembershipsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/$`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply, url }) => {
       const itemId = url.split('/')[4];
