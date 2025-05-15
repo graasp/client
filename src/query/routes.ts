@@ -11,7 +11,6 @@ import * as memberRoutes from './member/routes';
 
 export const APPS_ROUTE = 'app-items';
 export const ITEMS_ROUTE = 'items';
-export const ITEM_MEMBERSHIPS_ROUTE = 'item-memberships';
 export const INVITATIONS_ROUTE = `invitations`;
 export const GET_BOOKMARKED_ITEMS_ROUTE = `${ITEMS_ROUTE}/bookmarks`;
 export const CATEGORIES_ROUTE = `${ITEMS_ROUTE}/categories`;
@@ -24,13 +23,11 @@ export const SHORT_LINKS_LIST_ROUTE = `${SHORT_LINKS_ROUTE}/list`;
 export const EMBEDDED_LINKS_ROUTE = `${ITEMS_ROUTE}/embedded-links/metadata`;
 
 export const buildExportItemRoute = (id: UUID) => `${ITEMS_ROUTE}/${id}/export`;
-export const buildPostItemMembershipRoute = (id: UUID) =>
-  `item-memberships?${new URLSearchParams({ itemId: id })}`;
-export const buildPostManyItemMembershipsRoute = (id: UUID) =>
-  `item-memberships/${id}`;
 export const buildInviteRoute = (id: UUID) => `invite/${id}`;
 export const buildGetItemMembershipsForItemRoute = (id: UUID) =>
-  `item-memberships?${new URLSearchParams({ itemId: id })}`;
+  `items/${id}/memberships`;
+export const buildGetMembershipRequestsForItemRoute = (id: UUID) =>
+  `items/${id}/memberships/requests`;
 export const buildGetItemInvitationsForItemRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/invitations`;
 export const buildPostUserCSVUploadRoute = (id: UUID) =>
@@ -114,10 +111,6 @@ export const buildDeleteItemVisibilityRoute = ({
 export const buildPostItemLoginSignInRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/login`;
 export const GET_TAGS_ROUTE = `${ITEMS_ROUTE}/visibilities/list`;
-export const buildEditItemMembershipRoute = (id: UUID) =>
-  `${ITEM_MEMBERSHIPS_ROUTE}/${id}`;
-export const buildDeleteItemMembershipRoute = (id: UUID) =>
-  `${ITEM_MEMBERSHIPS_ROUTE}/${id}`;
 
 export const GET_FLAGS_ROUTE = `${ITEMS_ROUTE}/flags`;
 export const buildPostItemFlagRoute = (id: UUID) =>
@@ -338,10 +331,8 @@ export const API_ROUTES = {
   buildDeleteItemCategoryRoute,
   buildDeleteItemChatMessageRoute,
   buildDeleteItemLikeRoute,
-  buildDeleteItemMembershipRoute,
   buildDeleteItemVisibilityRoute,
   buildDeleteShortLinkRoute,
-  buildEditItemMembershipRoute,
   buildExportActions,
   buildExportItemChatRoute,
   buildExportItemRoute,
@@ -383,10 +374,8 @@ export const API_ROUTES = {
   buildPostItemFlagRoute,
   buildPostItemLikeRoute,
   buildPostItemLoginSignInRoute,
-  buildPostItemMembershipRoute,
   buildPostItemVisibilityRoute,
   buildPostItemValidationRoute,
-  buildPostManyItemMembershipsRoute,
   buildPostShortLinkRoute,
   buildPostUserCSVUploadRoute,
   buildPostUserCSVUploadWithTemplateRoute,

@@ -2,6 +2,8 @@ import { type JSX, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
+  Alert,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -13,7 +15,7 @@ import {
 import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import Button from '@/ui/buttons/Button/Button';
+import { getErrorMessage } from '@/config/notifier';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -26,8 +28,9 @@ type Props = {
   name?: string;
   allowDowngrade?: boolean;
   permission: PermissionLevelOptions;
-  handleUpdate: (p: PermissionLevelOptions) => void;
+  handleUpdate: (p: PermissionLevelOptions) => Promise<void>;
   id?: string;
+  loading: boolean;
 };
 
 const EditPermissionButton = ({
@@ -37,17 +40,29 @@ const EditPermissionButton = ({
   allowDowngrade = true,
   handleUpdate,
   id,
+  loading,
 }: Props): JSX.Element | null => {
   const { isOpen, openModal, closeModal } = useModalStatus();
 
   const [currentPermission, setCurrentPermission] = useState(permission);
-
+  const [error, setError] = useState<string>();
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
 
   if (!allowDowngrade && permission === PermissionLevel.Admin) {
     return null;
   }
+
+  const onSubmit = async () => {
+    try {
+      await handleUpdate(currentPermission);
+      closeModal();
+    } catch (e) {
+      console.error(e);
+      setError(translateMessage(getErrorMessage(e)));
+    }
+  };
 
   return (
     <>
@@ -92,19 +107,14 @@ const EditPermissionButton = ({
                 allowDowngrade={allowDowngrade}
               />
             </Stack>
+            {error && <Alert severity="error">{error}</Alert>}
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={closeModal}>
             {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
-          <Button
-            type="submit"
-            onClick={() => {
-              handleUpdate(currentPermission);
-              closeModal();
-            }}
-          >
+          <Button loading={loading} type="submit" onClick={onSubmit}>
             {translateBuilder(BUILDER.EDIT_PERMISSION_DIALOG_SUBMIT_BUTTON)}
           </Button>
         </DialogActions>
