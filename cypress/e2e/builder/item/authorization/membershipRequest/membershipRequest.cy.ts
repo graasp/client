@@ -40,7 +40,6 @@ it('Cannot request membership if item is hidden', () => {
       {
         type: ItemVisibilityType.Hidden,
         itemPath: tmp.path,
-        // creator: MEMBERS.ANNA,
         createdAt: '2021-08-11T12:56:36.834Z',
         id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
       },

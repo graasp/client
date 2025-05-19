@@ -2612,88 +2612,13 @@ export type GetItemsCollectionsSearchRebuildResponses = {
     200: unknown;
 };
 
-export type GetMembershipRequestsByItemIdData = {
-    body?: never;
-    path: {
-        itemId: string;
-    };
-    query?: never;
-    url: '/items/{itemId}/memberships/requests/';
-};
-
-export type GetMembershipRequestsByItemIdResponses = {
-    /**
-     * Default Response
-     */
-    200: Array<SimpleMembershipRequest>;
-};
-
-export type GetMembershipRequestsByItemIdResponse = GetMembershipRequestsByItemIdResponses[keyof GetMembershipRequestsByItemIdResponses];
-
-export type CreateMembershipRequestData = {
-    body?: never;
-    path: {
-        itemId: string;
-    };
-    query?: never;
-    url: '/items/{itemId}/memberships/requests/';
-};
-
-export type CreateMembershipRequestResponses = {
-    /**
-     * Default Response
-     */
-    204: void;
-};
-
-export type CreateMembershipRequestResponse = CreateMembershipRequestResponses[keyof CreateMembershipRequestResponses];
-
-export type GetOwnMembershipRequestByItemIdData = {
-    body?: never;
-    path: {
-        itemId: string;
-    };
-    query?: never;
-    url: '/items/{itemId}/memberships/requests/own';
-};
-
-export type GetOwnMembershipRequestByItemIdResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        status: 'notSubmittedOrDeleted' | 'pending' | 'approved';
-    };
-};
-
-export type GetOwnMembershipRequestByItemIdResponse = GetOwnMembershipRequestByItemIdResponses[keyof GetOwnMembershipRequestByItemIdResponses];
-
-export type DeleteMembershipRequestData = {
-    body?: never;
-    path: {
-        itemId: string;
-        memberId: string;
-    };
-    query?: never;
-    url: '/items/{itemId}/memberships/requests/{memberId}';
-};
-
-export type DeleteMembershipRequestResponses = {
-    /**
-     * Default Response
-     */
-    204: void;
-};
-
-export type DeleteMembershipRequestResponse = DeleteMembershipRequestResponses[keyof DeleteMembershipRequestResponses];
-
 export type GetItemMembershipsForItemData = {
     body?: never;
     path: {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/';
+    url: '/items/{itemId}/memberships';
 };
 
 export type GetItemMembershipsForItemErrors = {
@@ -2723,7 +2648,7 @@ export type CreateItemMembershipData = {
         itemId: string;
     };
     query?: never;
-    url: '/items/{itemId}/memberships/';
+    url: '/items/{itemId}/memberships';
 };
 
 export type CreateItemMembershipErrors = {
@@ -2803,6 +2728,81 @@ export type UpdateItemMembershipResponses = {
 };
 
 export type UpdateItemMembershipResponse = UpdateItemMembershipResponses[keyof UpdateItemMembershipResponses];
+
+export type GetMembershipRequestsByItemIdData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/items/{itemId}/memberships/requests';
+};
+
+export type GetMembershipRequestsByItemIdResponses = {
+    /**
+     * Default Response
+     */
+    200: Array<SimpleMembershipRequest>;
+};
+
+export type GetMembershipRequestsByItemIdResponse = GetMembershipRequestsByItemIdResponses[keyof GetMembershipRequestsByItemIdResponses];
+
+export type CreateMembershipRequestData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/items/{itemId}/memberships/requests';
+};
+
+export type CreateMembershipRequestResponses = {
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type CreateMembershipRequestResponse = CreateMembershipRequestResponses[keyof CreateMembershipRequestResponses];
+
+export type GetOwnMembershipRequestByItemIdData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/items/{itemId}/memberships/requests/own';
+};
+
+export type GetOwnMembershipRequestByItemIdResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        status: 'notSubmittedOrDeleted' | 'pending' | 'approved';
+    };
+};
+
+export type GetOwnMembershipRequestByItemIdResponse = GetOwnMembershipRequestByItemIdResponses[keyof GetOwnMembershipRequestByItemIdResponses];
+
+export type DeleteMembershipRequestData = {
+    body?: never;
+    path: {
+        itemId: string;
+        memberId: string;
+    };
+    query?: never;
+    url: '/items/{itemId}/memberships/requests/{memberId}';
+};
+
+export type DeleteMembershipRequestResponses = {
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type DeleteMembershipRequestResponse = DeleteMembershipRequestResponses[keyof DeleteMembershipRequestResponses];
 
 export type CreateShortcutData = {
     body: {

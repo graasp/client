@@ -14,6 +14,7 @@ import {
   ItemVisibilityOptionsType,
   ItemVisibilityType,
   Member,
+  MembershipRequestStatus,
   PermissionLevel,
   PermissionLevelCompare,
   PublicProfile,
@@ -2264,13 +2265,16 @@ export const mockGetOwnMembershipRequests = (
     },
     ({ reply, url }) => {
       const urlParams = url.split('/');
-      const itemId = urlParams[urlParams.length - 4];
-      return reply(
-        membershipRequests.find(
-          ({ item, member }) =>
-            item.id === itemId && member.id === currentMember.id,
-        ),
+      const itemId = urlParams[4];
+
+      const mr = membershipRequests.find(
+        ({ item, member }) =>
+          item.id === itemId && member.id === currentMember.id,
       );
+      if (mr) {
+        return reply({ status: MembershipRequestStatus.Pending });
+      }
+      return reply({ status: MembershipRequestStatus.NotSubmittedOrDeleted });
     },
   ).as('getOwnMembershipRequests');
 };
