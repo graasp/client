@@ -15,5 +15,5 @@ import { createClientConfig } from '../clientConfig';
 export type CreateClientConfig<T extends DefaultClientOptions = ClientOptions> = (override?: Config<DefaultClientOptions & T>) => Config<Required<DefaultClientOptions> & T>;
 
 export const client = createClient(createClientConfig(createConfig<ClientOptions>({
-    baseUrl: 'https://api.dev.graasp.org'
+    baseUrl: 'http://localhost:3000'
 })));

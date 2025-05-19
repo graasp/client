@@ -14,6 +14,7 @@ import {
   ItemVisibilityOptionsType,
   ItemVisibilityType,
   Member,
+  MembershipRequestStatus,
   PermissionLevel,
   PermissionLevelCompare,
   PublicProfile,
@@ -89,8 +90,6 @@ const {
   GET_BOOKMARKED_ITEMS_ROUTE,
   buildPostItemLoginSignInRoute,
   buildPostItemVisibilityRoute,
-  buildEditItemMembershipRoute,
-  buildDeleteItemMembershipRoute,
   buildPostItemFlagRoute,
   buildExportItemChatRoute,
   buildPostItemChatMessageRoute,
@@ -415,7 +414,7 @@ export const mockEditItemMembershipForItem = (): void => {
     {
       method: HttpMethod.Patch,
       url: new RegExp(
-        `${API_HOST}/${buildEditItemMembershipRoute(ID_FORMAT)}$`,
+        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
       ),
     },
     ({ reply }) => {
@@ -431,7 +430,7 @@ export const mockDeleteItemMembershipForItem = (): void => {
     {
       method: HttpMethod.Delete,
       url: new RegExp(
-        `${API_HOST}/${buildDeleteItemMembershipRoute(ID_FORMAT)}$`,
+        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
       ),
     },
     ({ reply }) => {
@@ -1733,7 +1732,7 @@ export const mockPostItemMembership = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/item-memberships?*`,
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2266,13 +2265,16 @@ export const mockGetOwnMembershipRequests = (
     },
     ({ reply, url }) => {
       const urlParams = url.split('/');
-      const itemId = urlParams[urlParams.length - 4];
-      return reply(
-        membershipRequests.find(
-          ({ item, member }) =>
-            item.id === itemId && member.id === currentMember.id,
-        ),
+      const itemId = urlParams[4];
+
+      const mr = membershipRequests.find(
+        ({ item, member }) =>
+          item.id === itemId && member.id === currentMember.id,
       );
+      if (mr) {
+        return reply({ status: MembershipRequestStatus.Pending });
+      }
+      return reply({ status: MembershipRequestStatus.NotSubmittedOrDeleted });
     },
   ).as('getOwnMembershipRequests');
 };
@@ -2297,7 +2299,7 @@ export const mockGetMembershipRequestsForItem = (
     },
     ({ reply, url }) => {
       const urlParams = url.split('/');
-      const itemId = urlParams[urlParams.length - 3];
+      const itemId = urlParams[4];
       return reply(membershipRequests.filter(({ item }) => item.id === itemId));
     },
   ).as('getMembershipRequestsForItem');
@@ -2336,10 +2338,10 @@ export const mockGetItemMembershipsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/item-memberships`),
+      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply, url }) => {
-      const itemId = new URL(url).searchParams.get('itemId');
+      const itemId = url.split('/')[4];
       const item = items.find((i) => i.id === itemId);
       const { creator, memberships } = item;
       // build default membership depending on current member

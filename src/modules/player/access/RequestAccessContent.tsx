@@ -10,14 +10,19 @@ import {
   MembershipRequestStatus,
 } from '@graasp/sdk';
 
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Check, Lock } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
 import {
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
+import {
+  createMembershipRequestMutation,
+  getOwnMembershipRequestByItemIdOptions,
+  getOwnMembershipRequestByItemIdQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
 
 export function RequestAccessContent({
   member,
@@ -27,12 +32,24 @@ export function RequestAccessContent({
   itemId: DiscriminatedItem['id'];
 }>): JSX.Element {
   const { t: translatePlayer } = useTranslation(NS.Player);
+  const queryClient = useQueryClient();
   const {
     mutateAsync: requestMembership,
     isSuccess,
     isPending,
-  } = mutations.useRequestMembership();
-  const { data: request } = hooks.useOwnMembershipRequest(itemId);
+  } = useMutation({
+    ...createMembershipRequestMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getOwnMembershipRequestByItemIdQueryKey({
+          path: { itemId },
+        }),
+      });
+    },
+  });
+  const { data: request } = useQuery(
+    getOwnMembershipRequestByItemIdOptions({ path: { itemId } }),
+  );
 
   if (request?.status === MembershipRequestStatus.Pending) {
     return (
@@ -76,7 +93,7 @@ export function RequestAccessContent({
         loading={isPending}
         endIcon={isSuccess ? <Check /> : null}
         onClick={async () => {
-          await requestMembership({ id: itemId });
+          await requestMembership({ path: { itemId } });
         }}
       >
         {isSuccess

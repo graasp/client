@@ -7,11 +7,9 @@ import {
   AccountType,
   DiscriminatedItem,
   ItemLoginSchemaStatus,
-  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
@@ -22,6 +20,7 @@ import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
 import EditPermissionButton from './EditPermissionButton';
 import { StyledTableRow } from './StyledTableRow';
+import { useChangePermission } from './useChangePermission';
 
 const ItemMembershipTableRow = ({
   allowDowngrade = false,
@@ -37,25 +36,10 @@ const ItemMembershipTableRow = ({
   isDisabled: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);
-
-  const { mutate: editItemMembership } = mutations.useEditItemMembership();
-  const { mutate: shareItem } = mutations.usePostItemMembership();
-
-  const changePermission = (newPermission: PermissionLevelOptions) => {
-    if (data.item.path === item.path) {
-      editItemMembership({
-        id: data.id,
-        permission: newPermission,
-        itemId: item.id,
-      });
-    } else {
-      shareItem({
-        id: item.id,
-        accountId: data.account.id,
-        permission: newPermission,
-      });
-    }
-  };
+  const { changePermission, isPending } = useChangePermission({
+    itemId: item.id,
+    itemPath: item.path,
+  });
 
   return (
     <StyledTableRow data-cy={buildItemMembershipRowId(data.id)} key={data.id}>
@@ -95,7 +79,10 @@ const ItemMembershipTableRow = ({
                 ? data.account.email
                 : undefined
             }
-            handleUpdate={changePermission}
+            loading={isPending}
+            handleUpdate={(newPermission) =>
+              changePermission(data, newPermission)
+            }
             allowDowngrade={allowDowngrade}
             permission={data.permission}
             id={buildItemMembershipRowEditButtonId(data.id)}
