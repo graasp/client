@@ -18,6 +18,7 @@ import { ActionButton } from '@/ui/types';
 import BookmarkButton from '../common/BookmarkButton';
 import CollapseButton from '../common/CollapseButton';
 import DuplicateButton from '../common/DuplicateButton';
+import ExportRawZipButton from '../common/ExportRawZipButton';
 import FlagButton from '../common/FlagButton';
 import HideButton from '../common/HideButton';
 import PinButton from '../common/PinButton';
@@ -137,8 +138,17 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ),
   ].filter(Boolean) as JSX.Element[];
 
-  const actionMenus = [
-    <DownloadButton key="download" item={item} type={ActionButton.MENU_ITEM} />,
+  const downloadMenus = [
+    item.type === ItemType.FOLDER && member.type === AccountType.Individual && (
+      <ExportRawZipButton key="export-zip" item={item} />
+    ),
+    item.type !== ItemType.FOLDER && (
+      <DownloadButton
+        key="download"
+        item={item}
+        type={ActionButton.MENU_ITEM}
+      />
+    ),
   ];
 
   const visibilityMenus = [
@@ -206,8 +216,8 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   // put all menus together and intersperse the dividers between the groups
   const menus = [
     modificationMenus,
-    actionMenus,
     visibilityMenus,
+    downloadMenus,
     miscMenus,
     destructiveMenus,
   ]
@@ -215,6 +225,8 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     .filter((e) => e.length > 0)
     .flatMap((e) => [<Divider key={e.toString()} />, ...e])
     .slice(1);
+
+  console.log(menus);
 
   return (
     <>

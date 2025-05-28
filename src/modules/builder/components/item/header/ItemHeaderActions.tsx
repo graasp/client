@@ -71,7 +71,6 @@ const ItemHeaderActions = ({
             />
           </>
         )}
-        <DownloadButton item={item} />
 
         <ShareButton itemId={item.id} />
         <ChatboxButton

@@ -7,7 +7,6 @@ import { AccountType, DiscriminatedItem } from '@graasp/sdk';
 import { hooks } from '@/config/queryClient';
 
 import BookmarkButton from '../common/BookmarkButton';
-import DownloadButton from '../main/DownloadButton';
 
 type Props = {
   data: DiscriminatedItem;
@@ -22,7 +21,6 @@ const ItemActions = ({ data: item }: Props): JSX.Element => {
       {currentMember?.type === AccountType.Individual && (
         <BookmarkButton size="medium" key="bookmark" item={item} />
       )}
-      <DownloadButton item={item} />
     </Stack>
   );
 };

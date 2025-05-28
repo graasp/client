@@ -82,6 +82,7 @@
   "INVALID_FILE_ITEM": "The file's properties are invalid",
   "INVALID_ITEM_TYPE_FOR_DOWNLOAD": "Cannot fetch data for this item's type",
   "UNEXPECTED_EXPORT_ERROR": "An error occurred while exporting the zip file",
+  "EXPORT_RAW_SUCCESS_MESSAGE": "You will receive an email to download your exported item.",
   "NOT_APP_ITEM": "The targeted item is not an application item",
   "INVALID_APP_ORIGIN": "The application does not match its registered origin",
   "TOKEN_ITEM_ID_MISMATCH": "The auth token does not match the targeted item",

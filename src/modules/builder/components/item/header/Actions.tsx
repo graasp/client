@@ -15,7 +15,9 @@ import { hooks } from '@/config/queryClient';
 import { ITEM_MENU_BOOKMARK_BUTTON_CLASS } from '@/config/selectors';
 import { ActionButton } from '@/ui/types';
 
+import ExportRawZipButton from '~builder/components/common/ExportRawZipButton';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
+import DownloadButton from '~builder/components/main/DownloadButton';
 
 import BookmarkButton from '../../common/BookmarkButton';
 import CollapseButton from '../../common/CollapseButton';
@@ -64,6 +66,17 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     return null;
   }
 
+  const downloadButton =
+    item.type === ItemType.FOLDER ? (
+      <ExportRawZipButton key="export-zip" item={item} />
+    ) : (
+      <DownloadButton
+        key="download"
+        item={item}
+        type={ActionButton.MENU_ITEM}
+      />
+    );
+
   return [
     <CreateShortcutModal
       key="shortcutModal"
@@ -104,7 +117,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
               className={ITEM_MENU_BOOKMARK_BUTTON_CLASS}
             />,
             canWrite && [
-              <Divider key="canWriteDivider" />,
+              <Divider key="canWriteDivider1" />,
               <HideButton
                 key="hide"
                 type={ActionButton.MENU_ITEM}
@@ -119,6 +132,8 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
                 />
               ),
             ],
+            <Divider key="canWriteDivider2" />,
+            downloadButton,
             <Divider key="canWriteEndDivider" />,
           ]
         : null}
