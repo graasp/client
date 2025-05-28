@@ -226,8 +226,6 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     .flatMap((e) => [<Divider key={e.toString()} />, ...e])
     .slice(1);
 
-  console.log(menus);
-
   return (
     <>
       <CopyModal

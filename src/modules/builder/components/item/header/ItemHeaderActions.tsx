@@ -16,7 +16,6 @@ import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
 import { ActionButton } from '@/ui/types';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
-import DownloadButton from '~builder/components/main/DownloadButton';
 
 import PublishButton from '../../common/PublishButton';
 import ShareButton from '../../common/ShareButton';

@@ -9,10 +9,8 @@ import {
   Typography,
 } from '@mui/material';
 
-import { useMutation } from '@tanstack/react-query';
 import { DownloadIcon } from 'lucide-react';
 
-import { downloadFileMutation } from '@/openapi/client/@tanstack/react-query.gen.js';
 import {
   ActionButton,
   ActionButtonVariant,
