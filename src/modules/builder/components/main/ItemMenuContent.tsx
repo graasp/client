@@ -35,6 +35,49 @@ import CreateShortcutButton from '../item/shortcut/CreateShortcutButton';
 import CreateShortcutModal from '../item/shortcut/CreateShortcutModal';
 import DownloadButton from './DownloadButton';
 
+type GuestAndPublicMenuProps = {
+  item: PackedItem;
+};
+
+function GuestAndPublicMenu({ item }: Readonly<GuestAndPublicMenuProps>) {
+  const internalId = buildItemMenuId(item.id);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const { data: account } = hooks.useCurrentMember();
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    setAnchorEl(event.currentTarget);
+  };
+  const closeMenu = (): void => {
+    setAnchorEl(null);
+  };
+
+  // public and folder has nothing in the menu
+  if (!account && item.type === ItemType.FOLDER) {
+    return null;
+  }
+
+  return (
+    <>
+      <IconButton
+        aria-controls={open ? internalId : undefined}
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={handleClick}
+      >
+        <MoreVert />
+      </IconButton>
+      <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
+        {item.type !== ItemType.FOLDER && (
+          <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
+        )}
+        {account?.id ? <FlagButton key="flag" item={item} /> : false}
+      </Menu>
+    </>
+  );
+}
+
 type Props = {
   item: PackedItem;
 };
@@ -75,16 +118,16 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     closeModal: closeCreateShortcutModal,
   } = useModalStatus();
 
+  if (!member || member.type !== AccountType.Individual) {
+    return <GuestAndPublicMenu item={item} />;
+  }
+
   const canWrite =
     item.permission &&
     PermissionLevelCompare.gte(item.permission, PermissionLevel.Write);
   const canAdmin =
     item.permission &&
     PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin);
-
-  if (!member) {
-    return null;
-  }
 
   const modificationMenus = [
     canWrite ? (
@@ -100,18 +143,14 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ) : (
       false
     ),
-    member.type === AccountType.Individual ? (
-      <CopyButton
-        key="copy"
-        type={ActionButton.MENU_ITEM}
-        onClick={() => {
-          openCopyModal();
-          closeMenu();
-        }}
-      />
-    ) : (
-      false
-    ),
+    <CopyButton
+      key="copy"
+      type={ActionButton.MENU_ITEM}
+      onClick={() => {
+        openCopyModal();
+        closeMenu();
+      }}
+    />,
     canWrite ? (
       <DuplicateButton
         key="duplicate"
@@ -139,10 +178,9 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const downloadMenus = [
-    item.type === ItemType.FOLDER && member.type === AccountType.Individual && (
+    item.type === ItemType.FOLDER ? (
       <ExportRawZipButton key="export-zip" item={item} />
-    ),
-    item.type !== ItemType.FOLDER && (
+    ) : (
       <DownloadButton
         key="download"
         item={item}
@@ -200,7 +238,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const destructiveMenus = [
-    member?.id ? <FlagButton key="flag" item={item} /> : false,
+    <FlagButton key="flag" item={item} />,
     canAdmin ? (
       <RecycleButton
         key="recycle"

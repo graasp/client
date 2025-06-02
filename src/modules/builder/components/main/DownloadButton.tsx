@@ -1,5 +1,6 @@
 import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
@@ -23,6 +24,7 @@ export const DownloadButton = ({
   type = ActionButton.ICON_BUTTON,
 }: Props): JSX.Element | null => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
 
   const { mutate: downloadItem, isPending: isDownloading } = useMutation({
     ...downloadFileMutation(),
@@ -34,6 +36,9 @@ export const DownloadButton = ({
       link.setAttribute('download', item.name);
       document.body.appendChild(link);
       link.click();
+    },
+    onError: () => {
+      toast.error(translateMessage('DOWNLOAD_FILE_UNEXPECTED_ERROR'));
     },
   });
 
