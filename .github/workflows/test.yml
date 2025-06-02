@@ -99,7 +99,6 @@ jobs:
         env:
           VITE_PORT: ${{ vars.VITE_PORT }}
           VITE_VERSION: ${{ vars.VITE_VERSION }}
-          VITE_GRAASP_DOMAIN: ${{ vars.VITE_GRAASP_DOMAIN }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
           VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
@@ -119,7 +118,6 @@ jobs:
         env:
           VITE_PORT: ${{ vars.VITE_PORT }}
           VITE_VERSION: ${{ vars.VITE_VERSION }}
-          VITE_GRAASP_DOMAIN: ${{ vars.VITE_GRAASP_DOMAIN }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
           VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
