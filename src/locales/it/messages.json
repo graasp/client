@@ -78,7 +78,6 @@
   "INVALID_ARCHIVE_FILE": "Il file inviato non è un archivio zip",
   "INVALID_FILE_ITEM": "Le proprietà del file non sono valide",
   "INVALID_ITEM_TYPE_FOR_DOWNLOAD": "Impossibile recuperare i dati per il tipo di questo elemento",
-  "UNEXPECTED_EXPORT_ERROR": "Si è verificato un errore durante l'esportazione del file zip",
   "NOT_APP_ITEM": "L'elemento mirato non è un elemento dell'applicazione",
   "INVALID_APP_ORIGIN": "L'applicazione non corrisponde alla sua origine registrata",
   "TOKEN_ITEM_ID_MISMATCH": "Il token di autenticazione non corrisponde all'elemento di destinazione",

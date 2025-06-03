@@ -78,7 +78,6 @@
   "INVALID_ARCHIVE_FILE": "الملف المقدم ليس أرشيف ZIP",
   "INVALID_FILE_ITEM": "خصائص الملف غير صالحة",
   "INVALID_ITEM_TYPE_FOR_DOWNLOAD": "لا يمكن جلب البيانات لنوع هذا العنصر",
-  "UNEXPECTED_EXPORT_ERROR": "حدث خطأ أثناء تصدير ملف ال ZIP",
   "NOT_APP_ITEM": "العنصر المستهدف ليس عنصر تطبيق",
   "INVALID_APP_ORIGIN": "التطبيق لا يطابق أصله المسجل",
   "TOKEN_ITEM_ID_MISMATCH": "لا يتطابق رمز المصادقة مع العنصر المستهدف",

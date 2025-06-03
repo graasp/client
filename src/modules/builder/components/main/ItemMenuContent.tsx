@@ -53,7 +53,7 @@ function GuestAndPublicMenu({ item }: Readonly<GuestAndPublicMenuProps>) {
     setAnchorEl(null);
   };
 
-  // public and folder has nothing in the menu
+  // logged out user see nothing for public folder
   if (!account && item.type === ItemType.FOLDER) {
     return null;
   }

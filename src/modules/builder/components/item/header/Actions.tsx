@@ -117,7 +117,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
               className={ITEM_MENU_BOOKMARK_BUTTON_CLASS}
             />,
             canWrite && [
-              <Divider key="canWriteDivider1" />,
+              <Divider key="canWriteDivider" />,
               <HideButton
                 key="hide"
                 type={ActionButton.MENU_ITEM}
@@ -132,7 +132,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
                 />
               ),
             ],
-            <Divider key="canWriteDivider2" />,
+            <Divider key="downloadDivider" />,
             downloadButton,
             <Divider key="canWriteEndDivider" />,
           ]

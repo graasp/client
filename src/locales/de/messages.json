@@ -79,7 +79,6 @@
   "INVALID_ARCHIVE_FILE": "Die eingereichte Datei ist kein ZIP-Archiv",
   "INVALID_FILE_ITEM": "Die Eigenschaften der Datei sind ungültig",
   "INVALID_ITEM_TYPE_FOR_DOWNLOAD": "Für diesen Artikeltyp können keine Daten abgerufen werden",
-  "UNEXPECTED_EXPORT_ERROR": "Beim Exportieren der ZIP-Datei ist ein Fehler aufgetreten",
   "NOT_APP_ITEM": "Das Zielelement ist kein Appelement",
   "INVALID_APP_ORIGIN": "Die App stimmt nicht mit ihrer registrierten Herkunft überein",
   "TOKEN_ITEM_ID_MISMATCH": "Das Authentifizierungstoken stimmt nicht mit dem Zielelement überein",

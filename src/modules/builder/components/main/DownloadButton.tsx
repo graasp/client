@@ -2,7 +2,7 @@ import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { useMutation } from '@tanstack/react-query';
 
@@ -19,10 +19,14 @@ type Props = {
   type?: ActionButtonVariant;
 };
 
+/**
+ * Download file button
+ * This button cannot not be used for folders
+ */
 export const DownloadButton = ({
   item,
   type = ActionButton.ICON_BUTTON,
-}: Props): JSX.Element | null => {
+}: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateMessage } = useTranslation(NS.Messages);
 
@@ -41,10 +45,6 @@ export const DownloadButton = ({
       toast.error(translateMessage('DOWNLOAD_FILE_UNEXPECTED_ERROR'));
     },
   });
-
-  if (item.type === ItemType.FOLDER) {
-    return null;
-  }
 
   const handleDownload = () => {
     downloadItem({ path: { itemId: item.id } });
