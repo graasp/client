@@ -40,8 +40,6 @@
   "INVALID_FOLDER_PATH_FOR_DELETE": "Il percorso della cartella inviata non è valido per l'eliminazione",
   "INVALID_DOWNLOAD_PARAMETERS": "Uno o più parametri di download non sono validi",
   "LOCAL_FILE_NOT_FOUND": "Il file locale non è stato trovato",
-  "S3_FILE_NOT_FOUND": "Il file S3 non è stato trovato",
-  "DOWNLOAD_FILE_UNEXPECTED_ERROR": "Si è verificato un errore imprevisto durante il download di un file",
   "RESTORE_ITEMS": "Hai ripristinato correttamente gli elementi",
   "CREATE_ITEM": "L'articolo è stato creato con successo",
   "DELETE_ITEM": "L'elemento è stato eliminato con successo",

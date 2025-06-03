@@ -10,6 +10,7 @@ import { useMutation } from '@tanstack/react-query';
 import { Package } from 'lucide-react';
 
 import { NS } from '@/config/constants';
+import { buildExportAsZipButtonId } from '@/config/selectors';
 import { exportZipMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 const ExportRawZipButton = ({ item }: { item: PackedItem }): JSX.Element => {
@@ -27,7 +28,10 @@ const ExportRawZipButton = ({ item }: { item: PackedItem }): JSX.Element => {
   });
 
   return (
-    <MenuItem onClick={() => exportZip({ path: { itemId: item.id } })}>
+    <MenuItem
+      id={buildExportAsZipButtonId(item.id)}
+      onClick={() => exportZip({ path: { itemId: item.id } })}
+    >
       <ListItemIcon>
         <Package />
       </ListItemIcon>

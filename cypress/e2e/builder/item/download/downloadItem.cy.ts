@@ -1,67 +1,70 @@
-import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
+import {
+  GuestFactory,
+  ItemLoginSchemaFactory,
+  ItemLoginSchemaType,
+  PackedDocumentItemFactory,
+  PackedFolderItemFactory,
+} from '@graasp/sdk';
 
 import {
   buildDownloadButtonId,
+  buildExportAsZipButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
-import { SAMPLE_PUBLIC_ITEMS } from '../../fixtures/items';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
-const SHARED_ITEM = PackedFolderItemFactory(
-  {},
-  { permission: PermissionLevel.Read },
-);
+const buildExportFileUrl = (itemId: string) =>
+  '/items/' + itemId + '/download-file';
 
 describe('Download Item', () => {
-  it('Download action exists in item menu', () => {
-    cy.setUpApi({ items: [SHARED_ITEM] });
+  beforeEach(() => {
+    cy.intercept('POST', '/items/:id/download-file').as('exportFile');
+  });
+
+  it('Download menu item should exist for document', () => {
+    const item = PackedDocumentItemFactory();
+    cy.setUpApi({ items: [item] });
     cy.visit(HOME_PATH);
-    const item = SHARED_ITEM;
     cy.get(buildItemsGridMoreButtonSelector(item.id)).click();
-    cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).should(
-      'be.visible',
+    cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).click();
+    cy.wait('@exportFile');
+    // no zip export button
+    cy.get(`[role="menu"] #${buildExportAsZipButtonId(item.id)}`).should(
+      'not.exist',
     );
   });
-  it('Table View', () => {
-    cy.setUpApi({ items: [SHARED_ITEM] });
-    cy.visit(HOME_PATH);
-    cy.wait('@getAccessibleItems').then(
-      ({
-        response: {
-          body: { data },
-        },
-      }) => {
-        for (const item of data) {
-          cy.get(`#${buildDownloadButtonId(item.id)}`).should('exist');
-        }
-      },
-    );
-  });
-  it('Grid view', () => {
-    cy.setUpApi({ items: [SHARED_ITEM] });
-    cy.visit(HOME_PATH);
-    cy.wait('@getAccessibleItems').then(
-      ({
-        response: {
-          body: { data },
-        },
-      }) => {
-        for (const item of data) {
-          cy.get(`#${buildDownloadButtonId(item.id)}`).should('exist');
-        }
-      },
-    );
-  });
-  it('download button for public item should be exist', () => {
+
+  it('Download menu item should exist for public document in card if logged out', () => {
+    const folder = PackedFolderItemFactory();
+    const document = PackedDocumentItemFactory({ parentItem: folder });
     cy.setUpApi({
-      ...SAMPLE_PUBLIC_ITEMS,
+      items: [folder, document],
       currentMember: null,
     });
-    const item = SAMPLE_PUBLIC_ITEMS.items[4];
-    cy.visit(buildItemPath(item.id));
-    cy.wait('@getItem').then(({ response: { body } }) => {
-      expect(body.id).to.equal(item.id);
-      cy.get(`#${buildDownloadButtonId(item.id)}`).should('exist');
+    cy.intercept('POST', buildExportFileUrl(document.id)).as('exportFile');
+    cy.visit(buildItemPath(folder.id));
+
+    cy.get(buildItemsGridMoreButtonSelector(document.id)).click();
+    cy.get(`[role="menu"] #${buildDownloadButtonId(document.id)}`).click();
+    cy.wait('@exportFile');
+  });
+
+  it('Download menu item should exist in card for guest', () => {
+    const folder = PackedFolderItemFactory();
+    const itemLoginSchema = ItemLoginSchemaFactory({
+      type: ItemLoginSchemaType.Username,
+      item: folder,
     });
+    const document = PackedDocumentItemFactory({ parentItem: folder });
+    cy.setUpApi({
+      items: [folder, document],
+      currentMember: GuestFactory({ itemLoginSchema }),
+    });
+    cy.intercept('POST', buildExportFileUrl(document.id)).as('exportFile');
+    cy.visit(buildItemPath(folder.id));
+
+    cy.get(buildItemsGridMoreButtonSelector(document.id)).click();
+    cy.get(`[role="menu"] #${buildDownloadButtonId(document.id)}`).click();
+    cy.wait('@exportFile');
   });
 });
