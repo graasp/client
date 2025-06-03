@@ -50,7 +50,8 @@ describe('Export Folder as ZIP', () => {
     const item = PackedFolderItemFactory({ parentItem: folder });
     cy.setUpApi({
       items: [folder, item],
-      currentMember: GuestFactory({ itemLoginSchema }),
+      currentMember: null,
+      currentGuest: GuestFactory({ itemLoginSchema }),
     });
     cy.visit(buildItemPath(folder.id));
 

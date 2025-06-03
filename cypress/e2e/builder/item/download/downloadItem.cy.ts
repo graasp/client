@@ -17,13 +17,12 @@ const buildExportFileUrl = (itemId: string) =>
   '/items/' + itemId + '/download-file';
 
 describe('Download Item', () => {
-  beforeEach(() => {
-    cy.intercept('POST', '/items/:id/download-file').as('exportFile');
-  });
-
   it('Download menu item should exist for document', () => {
     const item = PackedDocumentItemFactory();
     cy.setUpApi({ items: [item] });
+
+    cy.intercept('POST', buildExportFileUrl(item.id)).as('exportFile');
+
     cy.visit(HOME_PATH);
     cy.get(buildItemsGridMoreButtonSelector(item.id)).click();
     cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).click();
@@ -58,7 +57,8 @@ describe('Download Item', () => {
     const document = PackedDocumentItemFactory({ parentItem: folder });
     cy.setUpApi({
       items: [folder, document],
-      currentMember: GuestFactory({ itemLoginSchema }),
+      currentMember: null,
+      currentGuest: GuestFactory({ itemLoginSchema }),
     });
     cy.intercept('POST', buildExportFileUrl(document.id)).as('exportFile');
     cy.visit(buildItemPath(folder.id));
