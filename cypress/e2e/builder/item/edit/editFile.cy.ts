@@ -5,9 +5,10 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID,
   TEXT_EDITOR_CLASS,
+  buildDataCyWrapper,
   buildDescriptionPlacementId,
   buildEditButtonId,
-  buildItemsGridMoreButtonSelector,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import {
@@ -95,7 +96,7 @@ describe('Edit File', () => {
     const itemToEdit = IMAGE_ITEM;
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItem({
       ...itemToEdit,
       ...EDITED_FIELDS,

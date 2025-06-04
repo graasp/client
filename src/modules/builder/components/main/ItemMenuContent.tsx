@@ -13,7 +13,7 @@ import {
 
 import { useQuery } from '@tanstack/react-query';
 
-import { buildItemMenuId } from '@/config/selectors';
+import { buildItemMenuDataCy, buildItemMenuId } from '@/config/selectors';
 import { NullableAugmentedAccount } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { ActionButton } from '@/ui/types';
@@ -270,7 +270,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ]
     // remove empty arrays
     .filter((e) => e.length > 0)
-    .flatMap((e) => [<Divider key={e.toString()} />, ...e])
+    .flatMap((e, idx) => [<Divider key={`${e.toString()}${idx}`} />, ...e])
     .slice(1);
 
   return (
@@ -296,6 +296,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
+        data-cy={buildItemMenuDataCy(item.id)}
       >
         <MoreVert />
       </IconButton>

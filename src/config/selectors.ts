@@ -598,6 +598,7 @@ export const HOME_LOAD_MORE_BUTTON_SELECTOR = '[role="feed"]';
 export const buildItemsGridMoreButtonSelector = (id: string): string =>
   `#${buildItemCard(id)} [data-testid="MoreVertIcon"]`;
 export const buildItemMenuId = (id: string): string => `item-menu-id-${id}`;
+export const buildItemMenuDataCy = (id: string): string => `item-menu-id-${id}`;
 export const SORTING_SELECT_SELECTOR_TEST_ID = 'sortingSelect';
 export const SORTING_SELECT_SELECTOR = `[data-testid="${SORTING_SELECT_SELECTOR_TEST_ID}"]`;
 export const SORTING_ORDERING_SELECTOR_DESC = '.lucide-arrow-up-wide-narrow';

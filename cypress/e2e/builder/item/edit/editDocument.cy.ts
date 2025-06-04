@@ -9,8 +9,9 @@ import {
   EDIT_MODAL_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   TEXT_EDITOR_CLASS,
+  buildDataCyWrapper,
   buildEditButtonId,
-  buildItemsGridMoreButtonSelector,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import {
   CAPTION_EDIT_PAUSE,
@@ -47,7 +48,7 @@ describe('Edit Document', () => {
 
     const itemToEdit = GRAASP_DOCUMENT_ITEM;
 
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     // edit
     editItem({
       ...itemToEdit,
@@ -78,7 +79,7 @@ describe('Edit Document', () => {
     cy.visit(buildItemPath(parent.id));
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItem(
       {
         ...itemToEdit,

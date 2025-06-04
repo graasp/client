@@ -6,6 +6,8 @@ import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_NAME_INPUT_ID,
+  buildDataCyWrapper,
+  buildItemMenuDataCy,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
@@ -47,7 +49,7 @@ describe('Edit Folder', () => {
     const itemToEdit = item;
     const newDescription = 'new description';
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItem({
       ...itemToEdit,
       ...EDITED_FIELDS,

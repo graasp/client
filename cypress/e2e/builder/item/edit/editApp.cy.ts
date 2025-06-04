@@ -9,8 +9,9 @@ import {
   EDIT_MODAL_ID,
   ITEM_MAIN_CLASS,
   TEXT_EDITOR_CLASS,
+  buildDataCyWrapper,
   buildEditButtonId,
-  buildItemsGridMoreButtonSelector,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
@@ -72,7 +73,7 @@ describe('Edit App', () => {
     cy.setUpApi({ items: [itemToEdit] });
     cy.visit(HOME_PATH);
 
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
 
     // edit
     editItem({
@@ -105,7 +106,7 @@ describe('Edit App', () => {
     cy.visit(buildItemPath(parentItem.id));
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItem(
       {
         ...itemToEdit,

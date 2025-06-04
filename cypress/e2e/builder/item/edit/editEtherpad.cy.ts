@@ -9,7 +9,8 @@ import {
   ETHERPAD_ALLOW_READER_TO_WRITE_SETTING_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_NAME_INPUT_ID,
-  buildItemsGridMoreButtonSelector,
+  buildDataCyWrapper,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -57,7 +58,7 @@ describe('Edit Etherpad', () => {
     }).as('editEtherpad');
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editEtherpad({
       name: 'newName',
       toggleAllowReadersToWrite: true,
@@ -98,7 +99,7 @@ describe('Edit Etherpad', () => {
     cy.visit(buildItemPath(itemToEdit.id));
 
     // edit reader permission
-    // cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    // cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editEtherpad({ toggleAllowReadersToWrite: true });
 
     cy.wait('@editEtherpad').then(({ request: { body } }) => {

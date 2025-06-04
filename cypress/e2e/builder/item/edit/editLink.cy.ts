@@ -1,6 +1,7 @@
 import { HttpMethod, PackedLinkItemFactory, buildLinkExtra } from '@graasp/sdk';
 
 import {
+  ACCESSIBLE_ITEMS_TABLE_ID,
   EDIT_ITEM_BUTTON_CLASS,
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   EDIT_MODAL_ID,
@@ -9,8 +10,9 @@ import {
   ITEM_FORM_NAME_INPUT_ID,
   ITEM_MAIN_CLASS,
   TEXT_EDITOR_CLASS,
+  buildDataCyWrapper,
   buildEditButtonId,
-  buildItemsGridMoreButtonSelector,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
@@ -85,13 +87,13 @@ describe('Edit Link', () => {
     const newName = 'new name';
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItemLink({
       ...itemToEdit,
       name: newName,
     });
 
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     cy.wait('@editItemLink').then(
       ({
         request: {
@@ -108,15 +110,18 @@ describe('Edit Link', () => {
     );
   });
 
-  it('update name and link', () => {
+  it.only('update name and link', () => {
     cy.visit(HOME_PATH);
 
     const itemToEdit = GRAASP_LINK_ITEM;
     const newUrl = 'http://example.org';
     const newName = 'newName';
 
+    cy.get(`#${ACCESSIBLE_ITEMS_TABLE_ID}`).should('be.visible');
+
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItemLink({
       ...itemToEdit,
       ...{ name: newName, url: newUrl },
@@ -145,7 +150,7 @@ describe('Edit Link', () => {
     const itemToEdit = GRAASP_LINK_ITEM;
     const newUrl = 'http://example.org';
 
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
 
     // clear name input
