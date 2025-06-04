@@ -15,7 +15,9 @@ import { hooks } from '@/config/queryClient';
 import { ITEM_MENU_BOOKMARK_BUTTON_CLASS } from '@/config/selectors';
 import { ActionButton } from '@/ui/types';
 
+import ExportRawZipButton from '~builder/components/common/ExportRawZipButton';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
+import DownloadButton from '~builder/components/main/DownloadButton';
 
 import BookmarkButton from '../../common/BookmarkButton';
 import CollapseButton from '../../common/CollapseButton';
@@ -63,6 +65,21 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
   if (!member?.id) {
     return null;
   }
+
+  const downloadButton =
+    item.type === ItemType.FOLDER ? (
+      <ExportRawZipButton
+        key="export-zip"
+        item={item}
+        dataUmamiContext="header"
+      />
+    ) : (
+      <DownloadButton
+        key="download"
+        item={item}
+        type={ActionButton.MENU_ITEM}
+      />
+    );
 
   return [
     <CreateShortcutModal
@@ -119,6 +136,8 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
                 />
               ),
             ],
+            <Divider key="downloadDivider" />,
+            downloadButton,
             <Divider key="canWriteEndDivider" />,
           ]
         : null}

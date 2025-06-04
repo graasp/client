@@ -11,13 +11,17 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import { hooks } from '@/config/queryClient';
-import { buildItemMenuId } from '@/config/selectors';
+import { useQuery } from '@tanstack/react-query';
+
+import { buildItemMenuDataCy, buildItemMenuId } from '@/config/selectors';
+import { NullableAugmentedAccount } from '@/openapi/client';
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { ActionButton } from '@/ui/types';
 
 import BookmarkButton from '../common/BookmarkButton';
 import CollapseButton from '../common/CollapseButton';
 import DuplicateButton from '../common/DuplicateButton';
+import ExportRawZipButton from '../common/ExportRawZipButton';
 import FlagButton from '../common/FlagButton';
 import HideButton from '../common/HideButton';
 import PinButton from '../common/PinButton';
@@ -34,6 +38,51 @@ import CreateShortcutButton from '../item/shortcut/CreateShortcutButton';
 import CreateShortcutModal from '../item/shortcut/CreateShortcutModal';
 import DownloadButton from './DownloadButton';
 
+type GuestAndPublicMenuProps = {
+  item: PackedItem;
+  account?: NullableAugmentedAccount | null;
+};
+
+function GuestAndPublicMenu({
+  item,
+  account,
+}: Readonly<GuestAndPublicMenuProps>) {
+  const internalId = buildItemMenuId(item.id);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
+    setAnchorEl(event.currentTarget);
+  };
+  const closeMenu = (): void => {
+    setAnchorEl(null);
+  };
+
+  // logged out user see nothing for public folder
+  if (!account && item.type === ItemType.FOLDER) {
+    return null;
+  }
+
+  return (
+    <>
+      <IconButton
+        aria-controls={open ? internalId : undefined}
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={handleClick}
+      >
+        <MoreVert />
+      </IconButton>
+      <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
+        {item.type !== ItemType.FOLDER && (
+          <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
+        )}
+        {account?.id ? <FlagButton key="flag" item={item} /> : false}
+      </Menu>
+    </>
+  );
+}
+
 type Props = {
   item: PackedItem;
 };
@@ -42,7 +91,7 @@ type Props = {
  * Menu of actions for item card
  */
 const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
-  const { data: member } = hooks.useCurrentMember();
+  const { data: member } = useQuery(getCurrentAccountOptions());
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -74,16 +123,16 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     closeModal: closeCreateShortcutModal,
   } = useModalStatus();
 
+  if (!member || member.type !== AccountType.Individual) {
+    return <GuestAndPublicMenu item={item} account={member} />;
+  }
+
   const canWrite =
     item.permission &&
     PermissionLevelCompare.gte(item.permission, PermissionLevel.Write);
   const canAdmin =
     item.permission &&
     PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin);
-
-  if (!member) {
-    return null;
-  }
 
   const modificationMenus = [
     canWrite ? (
@@ -99,18 +148,14 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ) : (
       false
     ),
-    member.type === AccountType.Individual ? (
-      <CopyButton
-        key="copy"
-        type={ActionButton.MENU_ITEM}
-        onClick={() => {
-          openCopyModal();
-          closeMenu();
-        }}
-      />
-    ) : (
-      false
-    ),
+    <CopyButton
+      key="copy"
+      type={ActionButton.MENU_ITEM}
+      onClick={() => {
+        openCopyModal();
+        closeMenu();
+      }}
+    />,
     canWrite ? (
       <DuplicateButton
         key="duplicate"
@@ -137,8 +182,20 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     ),
   ].filter(Boolean) as JSX.Element[];
 
-  const actionMenus = [
-    <DownloadButton key="download" item={item} type={ActionButton.MENU_ITEM} />,
+  const downloadMenus = [
+    item.type === ItemType.FOLDER ? (
+      <ExportRawZipButton
+        key="export-zip"
+        item={item}
+        dataUmamiContext="card"
+      />
+    ) : (
+      <DownloadButton
+        key="download"
+        item={item}
+        type={ActionButton.MENU_ITEM}
+      />
+    ),
   ];
 
   const visibilityMenus = [
@@ -190,7 +247,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const destructiveMenus = [
-    member?.id ? <FlagButton key="flag" item={item} /> : false,
+    <FlagButton key="flag" item={item} />,
     canAdmin ? (
       <RecycleButton
         key="recycle"
@@ -206,14 +263,14 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   // put all menus together and intersperse the dividers between the groups
   const menus = [
     modificationMenus,
-    actionMenus,
     visibilityMenus,
+    downloadMenus,
     miscMenus,
     destructiveMenus,
   ]
     // remove empty arrays
     .filter((e) => e.length > 0)
-    .flatMap((e) => [<Divider key={e.toString()} />, ...e])
+    .flatMap((e, idx) => [<Divider key={`${e.toString()}${idx}`} />, ...e])
     .slice(1);
 
   return (
@@ -239,6 +296,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
+        data-cy={buildItemMenuDataCy(item.id)}
       >
         <MoreVert />
       </IconButton>

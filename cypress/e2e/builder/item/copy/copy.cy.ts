@@ -3,8 +3,9 @@ import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 import {
   COPY_MANY_ITEMS_BUTTON_SELECTOR,
   ITEM_MENU_COPY_BUTTON_CLASS,
+  buildDataCyWrapper,
   buildItemCard,
-  buildItemsGridMoreButtonSelector,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -28,7 +29,7 @@ const copyItem = ({
   toItemPath: string;
   rootId?: string;
 }) => {
-  cy.get(buildItemsGridMoreButtonSelector(id)).click();
+  cy.get(buildDataCyWrapper(buildItemMenuDataCy(id))).click();
   cy.get(`.${ITEM_MENU_COPY_BUTTON_CLASS}`).click();
   cy.handleTreeMenu(toItemPath, rootId);
 };

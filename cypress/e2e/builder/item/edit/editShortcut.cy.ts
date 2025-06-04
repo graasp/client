@@ -1,6 +1,9 @@
 import { PackedShortcutItemFactory } from '@graasp/sdk';
 
-import { buildItemsGridMoreButtonSelector } from '../../../../../src/config/selectors';
+import {
+  buildDataCyWrapper,
+  buildItemMenuDataCy,
+} from '../../../../../src/config/selectors';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
 import { editItem } from '../../../../support/editUtils';
 import { HOME_PATH } from '../../utils';
@@ -22,7 +25,7 @@ describe('Edit Shortcut', () => {
     const itemToEdit = SHORTCUT;
 
     // edit
-    cy.get(buildItemsGridMoreButtonSelector(itemToEdit.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItem({
       ...itemToEdit,
       ...EDITED_FIELDS,

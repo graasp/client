@@ -202,7 +202,7 @@ export type PackedItem = {
     id: string;
     name: string;
     description?: null | string;
-    type: string;
+    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
     path: string;
     lang: string;
     extra: {
@@ -218,7 +218,8 @@ export type PackedItem = {
     hidden?: ItemVisibility;
     public?: ItemVisibility;
     thumbnails?: {
-        [key: string]: unknown;
+        small: string;
+        medium: string;
     };
 };
 
@@ -482,6 +483,59 @@ export type ItemLike = {
 export type PackedItemLike = {
     id?: string;
     item: PackedItem;
+};
+
+/**
+ * Raw Like entry created when a member likes an item.
+ */
+export type RawItemLike = {
+    id: string;
+    itemId: string;
+    creatorId: string;
+    createdAt: string;
+};
+
+export type SearchHit = {
+    name: string;
+    description: string;
+    content: string;
+    creator: {
+        id: string;
+        name: string;
+    };
+    level: Array<string>;
+    discipline: Array<string>;
+    'resource-type': Array<string>;
+    id: string;
+    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
+    isPublishedRoot: boolean;
+    isHidden: boolean;
+    createdAt: string;
+    updatedAt: string;
+    publicationUpdatedAt: string;
+    lang: string;
+    likes: number;
+    _formatted: {
+        name: string;
+        description: string;
+        content: string;
+        creator: {
+            id: string;
+            name: string;
+        };
+        level: Array<string>;
+        discipline: Array<string>;
+        'resource-type': Array<string>;
+        id: string;
+        type: string;
+        isPublishedRoot: boolean;
+        publicationUpdatedAt: string;
+        isHidden: boolean;
+        createdAt: string;
+        updatedAt: string;
+        lang: string;
+        likes: number;
+    };
 };
 
 /**
@@ -2364,48 +2418,7 @@ export type CollectionSearchResponses = {
         estimatedTotalHits?: number;
         processingTimeMs: number;
         query: string;
-        hits: Array<{
-            name: string;
-            description: string;
-            content: string;
-            creator: {
-                id: string;
-                name: string;
-            };
-            level: Array<string>;
-            discipline: Array<string>;
-            'resource-type': Array<string>;
-            id: string;
-            type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
-            isPublishedRoot: boolean;
-            isHidden: boolean;
-            createdAt: string;
-            updatedAt: string;
-            publicationUpdatedAt: string;
-            lang: string;
-            likes: number;
-            _formatted: {
-                name: string;
-                description: string;
-                content: string;
-                creator: {
-                    id: string;
-                    name: string;
-                };
-                level: Array<string>;
-                discipline: Array<string>;
-                'resource-type': Array<string>;
-                id: string;
-                type: string;
-                isPublishedRoot: boolean;
-                publicationUpdatedAt: string;
-                isHidden: boolean;
-                createdAt: string;
-                updatedAt: string;
-                lang: string;
-                likes: number;
-            };
-        }>;
+        hits: Array<SearchHit>;
     };
 };
 
@@ -2477,48 +2490,7 @@ export type GetMostLikedCollectionsResponses = {
         estimatedTotalHits?: number;
         processingTimeMs: number;
         query: string;
-        hits: Array<{
-            name: string;
-            description: string;
-            content: string;
-            creator: {
-                id: string;
-                name: string;
-            };
-            level: Array<string>;
-            discipline: Array<string>;
-            'resource-type': Array<string>;
-            id: string;
-            type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
-            isPublishedRoot: boolean;
-            isHidden: boolean;
-            createdAt: string;
-            updatedAt: string;
-            publicationUpdatedAt: string;
-            lang: string;
-            likes: number;
-            _formatted: {
-                name: string;
-                description: string;
-                content: string;
-                creator: {
-                    id: string;
-                    name: string;
-                };
-                level: Array<string>;
-                discipline: Array<string>;
-                'resource-type': Array<string>;
-                id: string;
-                type: string;
-                isPublishedRoot: boolean;
-                publicationUpdatedAt: string;
-                isHidden: boolean;
-                createdAt: string;
-                updatedAt: string;
-                lang: string;
-                likes: number;
-            };
-        }>;
+        hits: Array<SearchHit>;
     };
 };
 
@@ -2551,48 +2523,7 @@ export type GetMostRecentCollectionsResponses = {
         estimatedTotalHits?: number;
         processingTimeMs: number;
         query: string;
-        hits: Array<{
-            name: string;
-            description: string;
-            content: string;
-            creator: {
-                id: string;
-                name: string;
-            };
-            level: Array<string>;
-            discipline: Array<string>;
-            'resource-type': Array<string>;
-            id: string;
-            type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
-            isPublishedRoot: boolean;
-            isHidden: boolean;
-            createdAt: string;
-            updatedAt: string;
-            publicationUpdatedAt: string;
-            lang: string;
-            likes: number;
-            _formatted: {
-                name: string;
-                description: string;
-                content: string;
-                creator: {
-                    id: string;
-                    name: string;
-                };
-                level: Array<string>;
-                discipline: Array<string>;
-                'resource-type': Array<string>;
-                id: string;
-                type: string;
-                isPublishedRoot: boolean;
-                publicationUpdatedAt: string;
-                isHidden: boolean;
-                createdAt: string;
-                updatedAt: string;
-                lang: string;
-                likes: number;
-            };
-        }>;
+        hits: Array<SearchHit>;
     };
 };
 
@@ -3065,7 +2996,7 @@ export type UploadFileResponses = {
 
 export type UploadFileResponse = UploadFileResponses[keyof UploadFileResponses];
 
-export type DownloadFileData = {
+export type GetUrlData = {
     body?: never;
     path: {
         id: string;
@@ -3074,23 +3005,23 @@ export type DownloadFileData = {
     url: '/items/{id}/download';
 };
 
-export type DownloadFileErrors = {
+export type GetUrlErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
     '4XX': _Error;
 };
 
-export type DownloadFileError = DownloadFileErrors[keyof DownloadFileErrors];
+export type GetUrlError = GetUrlErrors[keyof GetUrlErrors];
 
-export type DownloadFileResponses = {
+export type GetUrlResponses = {
     /**
      * Default Response
      */
     200: string;
 };
 
-export type DownloadFileResponse = DownloadFileResponses[keyof DownloadFileResponses];
+export type GetUrlResponse = GetUrlResponses[keyof GetUrlResponses];
 
 export type UpdateFileData = {
     /**
@@ -4055,6 +3986,36 @@ export type ImportZipResponses = {
     202: unknown;
 };
 
+export type DownloadFileData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/items/{itemId}/download-file';
+};
+
+export type DownloadFileErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type DownloadFileError = DownloadFileErrors[keyof DownloadFileErrors];
+
+export type DownloadFileResponses = {
+    /**
+     * a stream of data for the export zip content
+     */
+    200: {
+        data: string;
+        name: string;
+    };
+};
+
+export type DownloadFileResponse = DownloadFileResponses[keyof DownloadFileResponses];
+
 export type ExportZipData = {
     body?: never;
     path: {
@@ -4075,9 +4036,9 @@ export type ExportZipError = ExportZipErrors[keyof ExportZipErrors];
 
 export type ExportZipResponses = {
     /**
-     * a stream of data for the export zip content
+     * email with download link has been sent
      */
-    200: unknown;
+    202: unknown;
 };
 
 export type GraaspZipExportData = {
@@ -5131,9 +5092,9 @@ export type CreateItemLikeError = CreateItemLikeErrors[keyof CreateItemLikeError
 
 export type CreateItemLikeResponses = {
     /**
-     * Like object of an item when a member likes it.
+     * Raw Like entry created when a member likes an item.
      */
-    200: ItemLike;
+    200: RawItemLike;
 };
 
 export type CreateItemLikeResponse = CreateItemLikeResponses[keyof CreateItemLikeResponses];
