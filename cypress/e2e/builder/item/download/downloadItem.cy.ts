@@ -7,8 +7,10 @@ import {
 } from '@graasp/sdk';
 
 import {
+  buildDataCyWrapper,
   buildDownloadButtonId,
   buildExportAsZipButtonId,
+  buildItemMenuDataCy,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
@@ -23,7 +25,7 @@ describe('Download Item', () => {
     cy.intercept('POST', buildExportFileUrl(item.id)).as('exportFile');
 
     cy.visit(HOME_PATH);
-    cy.get(buildItemsGridMoreButtonSelector(item.id)).click();
+    cy.get(buildDataCyWrapper(buildItemMenuDataCy(item.id))).click();
     cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).click();
     cy.wait('@exportFile');
     // no zip export button

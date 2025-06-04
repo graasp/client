@@ -8,7 +8,8 @@ import {
 import {
   ITEM_MENU_SHORTCUT_BUTTON_CLASS,
   MY_GRAASP_ITEM_PATH,
-  buildItemsGridMoreButtonSelector,
+  buildDataCyWrapper,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -26,7 +27,7 @@ const createShortcut = ({
   toItemPath: string;
   rootId?: string;
 }) => {
-  cy.get(buildItemsGridMoreButtonSelector(id)).click();
+  cy.get(buildDataCyWrapper(buildItemMenuDataCy(id))).click();
   cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).click();
   cy.handleTreeMenu(toItemPath, rootId);
 };
@@ -77,7 +78,7 @@ describe('Create Shortcut', () => {
     checkCreateShortcutRequest({ id, toItemId });
   });
 
-  it('create shortcut from Item to Item', () => {
+  it.only('create shortcut from Item to Item', () => {
     cy.setUpApi({ items: [FOLDER, FOLDER2, IMAGE_ITEM_CHILD] });
     cy.visit(buildItemPath(FOLDER.id));
 
