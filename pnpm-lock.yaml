@@ -62,9 +62,6 @@ importers:
       axios:
         specifier: 1.8.4
         version: 1.8.4
-      cypress-pipe:
-        specifier: 2.0.1
-        version: 2.0.1
       date-fns:
         specifier: ^4
         version: 4.1.0
@@ -3560,9 +3557,6 @@ packages:
     resolution: {integrity: sha512-Ne+xkZmWMhfq3x6wbfzK/SzsVTCrJru3R3cLXsoSAZyfUtJDamXyaIieHXeea3pQDXF4wE2w4iUuvCYHhoD31g==}
     peerDependencies:
       '@types/cypress': ^1.1.0
-
-  cypress-pipe@2.0.1:
-    resolution: {integrity: sha512-RNlXNLuvsJbqdg/uIUiHmLoXvisg386JpU9A1wcwaEb7fVAvYrOLSoLqbsvb9L6RWOnu2CQoQtLliyoxvKJbvQ==}
 
   cypress@14.3.3:
     resolution: {integrity: sha512-1Rz7zc9iqLww6BysaESqUhtIuaFHS7nL3wREovAKYsNhLTfX3TbcBWHWgEz70YimH2NkSOsm4oIcJJ9HYHOlew==}
@@ -10516,8 +10510,6 @@ snapshots:
   cypress-iframe@1.0.1(@types/cypress@1.1.6):
     dependencies:
       '@types/cypress': 1.1.6
-
-  cypress-pipe@2.0.1: {}
 
   cypress@14.3.3:
     dependencies:
