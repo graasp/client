@@ -21,7 +21,7 @@ type Props = {
 
 /**
  * Download file button
- * This button cannot not be used for folders
+ * This button cannot be used for folders
  */
 export const DownloadButton = ({
   item,

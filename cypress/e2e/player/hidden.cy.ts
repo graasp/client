@@ -99,7 +99,7 @@ describe('Hidden Items', () => {
       items: [
         publicParentItem,
         PackedDocumentItemFactory(
-          { parentItem: publicParentItem },
+          { parentItem: publicParentItem, settings: { isCollapsible: false } },
           { permission: null, publicVisibility: {} },
         ),
         PackedDocumentItemFactory(

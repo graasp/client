@@ -7,13 +7,26 @@ import { ListItemIcon, MenuItem } from '@mui/material';
 import { PackedItem } from '@graasp/sdk';
 
 import { useMutation } from '@tanstack/react-query';
-import { Package } from 'lucide-react';
+import { PackageIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { buildExportAsZipButtonId } from '@/config/selectors';
 import { exportZipMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
-const ExportRawZipButton = ({ item }: { item: PackedItem }): JSX.Element => {
+type Props = {
+  item: PackedItem;
+
+  /**
+   * ui context the button is located
+   */
+  dataUmamiContext?: string;
+};
+
+/**
+ * Export folder as zip
+ * This button cannot be for other item types
+ */
+const ExportRawZipButton = ({ item, dataUmamiContext }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateMessage } = useTranslation(NS.Messages);
 
@@ -23,7 +36,7 @@ const ExportRawZipButton = ({ item }: { item: PackedItem }): JSX.Element => {
       toast.success(translateMessage('EXPORT_RAW_SUCCESS_MESSAGE'));
     },
     onError: () => {
-      toast.error(translateMessage('UNEXPECTED_EXPORT_ERROR'));
+      toast.error(translateMessage('EXPORT_RAW_ERROR_MESSAGE'));
     },
   });
 
@@ -31,9 +44,11 @@ const ExportRawZipButton = ({ item }: { item: PackedItem }): JSX.Element => {
     <MenuItem
       id={buildExportAsZipButtonId(item.id)}
       onClick={() => exportZip({ path: { itemId: item.id } })}
+      data-umami-event="export-zip"
+      data-umami-event-context={dataUmamiContext}
     >
       <ListItemIcon>
-        <Package />
+        <PackageIcon />
       </ListItemIcon>
       {translateBuilder('ITEM_MENU_EXPORT_RAW_MENU_ITEM')}
     </MenuItem>

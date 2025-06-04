@@ -68,7 +68,11 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
 
   const downloadButton =
     item.type === ItemType.FOLDER ? (
-      <ExportRawZipButton key="export-zip" item={item} />
+      <ExportRawZipButton
+        key="export-zip"
+        item={item}
+        dataUmamiContext="header"
+      />
     ) : (
       <DownloadButton
         key="download"

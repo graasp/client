@@ -11,8 +11,11 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
-import { hooks } from '@/config/queryClient';
+import { useQuery } from '@tanstack/react-query';
+
 import { buildItemMenuId } from '@/config/selectors';
+import { NullableAugmentedAccount } from '@/openapi/client';
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { ActionButton } from '@/ui/types';
 
 import BookmarkButton from '../common/BookmarkButton';
@@ -37,14 +40,16 @@ import DownloadButton from './DownloadButton';
 
 type GuestAndPublicMenuProps = {
   item: PackedItem;
+  account?: NullableAugmentedAccount | null;
 };
 
-function GuestAndPublicMenu({ item }: Readonly<GuestAndPublicMenuProps>) {
+function GuestAndPublicMenu({
+  item,
+  account,
+}: Readonly<GuestAndPublicMenuProps>) {
   const internalId = buildItemMenuId(item.id);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-
-  const { data: account } = hooks.useCurrentMember();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
@@ -86,7 +91,7 @@ type Props = {
  * Menu of actions for item card
  */
 const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
-  const { data: member } = hooks.useCurrentMember();
+  const { data: member } = useQuery(getCurrentAccountOptions());
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -119,7 +124,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   } = useModalStatus();
 
   if (!member || member.type !== AccountType.Individual) {
-    return <GuestAndPublicMenu item={item} />;
+    return <GuestAndPublicMenu item={item} account={member} />;
   }
 
   const canWrite =
@@ -179,7 +184,11 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
 
   const downloadMenus = [
     item.type === ItemType.FOLDER ? (
-      <ExportRawZipButton key="export-zip" item={item} />
+      <ExportRawZipButton
+        key="export-zip"
+        item={item}
+        dataUmamiContext="card"
+      />
     ) : (
       <DownloadButton
         key="download"

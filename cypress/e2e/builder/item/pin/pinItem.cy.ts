@@ -3,7 +3,6 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 import {
   ITEM_HEADER_ID,
   PIN_ITEM_BUTTON_CLASS,
-  buildDownloadButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
@@ -27,7 +26,7 @@ describe('Anonymous', () => {
     cy.visit(buildItemPath(itemId));
   });
   it("Can see item but can't pin", () => {
-    cy.get(`#${buildDownloadButtonId(itemId)}`).should('be.visible');
+    cy.get(`#${ITEM_HEADER_ID}`).should('be.visible');
     cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).should(
       'not.exist',
     );
