@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.26.0](https://github.com/graasp/client/compare/v2.25.2...v2.26.0) (2025-06-04)
+
+
+### Features
+
+* complete contact page ([#997](https://github.com/graasp/client/issues/997)) ([a7e3db6](https://github.com/graasp/client/commit/a7e3db66eaeee75daf4acc16435f132eb1b56483))
+* show download zip for folders, download file for non-folders ([#1002](https://github.com/graasp/client/issues/1002)) ([e974ef8](https://github.com/graasp/client/commit/e974ef87fb0da8f4e768862f932e3ed7b87f9da7))
+
+
+### Bug Fixes
+
+* add docker deploy ([#1000](https://github.com/graasp/client/issues/1000)) ([b8a9ff2](https://github.com/graasp/client/commit/b8a9ff21091e7e56f7473f735ac5485a78033329))
+* add the contact information to the maintenance banner ([#996](https://github.com/graasp/client/issues/996)) ([e895367](https://github.com/graasp/client/commit/e8953677653489c254bb87739ab6d4e60c5a4caf))
+* change membership related hooks and mutations ([#999](https://github.com/graasp/client/issues/999)) ([0c9a12b](https://github.com/graasp/client/commit/0c9a12b8d2ce91ca55ad3fbffb2860aaa1042c54))
+* **deps:** update dependency @hey-api/client-fetch to v0.7.3 ([#948](https://github.com/graasp/client/issues/948)) ([3393444](https://github.com/graasp/client/commit/3393444066c8bc5ab716a54ee04e6d1497274321))
+* **deps:** update dependency @tanstack/react-query to v5.66.11 ([#967](https://github.com/graasp/client/issues/967)) ([4f85fd6](https://github.com/graasp/client/commit/4f85fd646668bb277b4ae623d49b676d3943c6a7))
+* **deps:** update dependency axios to v1.8.4 ([#988](https://github.com/graasp/client/issues/988)) ([8637920](https://github.com/graasp/client/commit/8637920d3256bdf1b244c7a6c872812e6dfe3f43))
+* remove unused material ui import ([faf1198](https://github.com/graasp/client/commit/faf1198c6c392daa34452525288117a9d01ff44a))
+* show error notifications on file upload ([#995](https://github.com/graasp/client/issues/995)) ([18cac92](https://github.com/graasp/client/commit/18cac92ae3da8d851b1c70f343c825eb4ba0e88e))
+* update for new sdk version ([#993](https://github.com/graasp/client/issues/993)) ([0b2b894](https://github.com/graasp/client/commit/0b2b8949bb3aadbbde243a0ed6316230c0bcbd24))
+
 ## [2.25.2](https://github.com/graasp/client/compare/v2.25.1...v2.25.2) (2025-05-05)
 
 
