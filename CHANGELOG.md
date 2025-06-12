@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.26.1](https://github.com/graasp/client/compare/v2.26.0...v2.26.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* recaptcha ([9461371](https://github.com/graasp/client/commit/9461371278b70cf425a6321d168766b70d3e40e5))
+
 ## [2.26.0](https://github.com/graasp/client/compare/v2.25.2...v2.26.0) (2025-06-04)
 
 
