@@ -11,7 +11,7 @@ on:
     inputs:
       version:
         type: string
-        description: 'Tagged version to deploy'
+        description: "Tagged version to deploy"
         required: true
 
 permissions:
@@ -43,8 +43,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
-          cache: 'pnpm'
+          node-version-file: "package.json"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
@@ -60,7 +60,7 @@ jobs:
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
           VITE_UMAMI_WEBSITE_ID: ${{ secrets.VITE_UMAMI_WEBSITE_ID }}
           VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
-          VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+          VITE_RECAPTCHA: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
           VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
           VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
         run: pnpm build
@@ -70,7 +70,7 @@ jobs:
         uses: graasp/graasp-deploy/.github/actions/deploy-s3@v1
         # Replace input build-folder or version if needed
         with:
-          build-folder: 'build'
+          build-folder: "build"
           # todo: replace these with the role-to-assume oidc solution
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_PROD }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_PROD }}
@@ -86,6 +86,6 @@ jobs:
           SENTRY_PROJECT: client
         with:
           environment: production
-          sourcemaps: './build'
+          sourcemaps: "./build"
           inject: true
           version: ${{ github.event.client_payload.tag || inputs.version }}

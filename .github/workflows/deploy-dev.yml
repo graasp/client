@@ -32,8 +32,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: 'package.json'
-          cache: 'pnpm'
+          node-version-file: "package.json"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install
@@ -49,7 +49,7 @@ jobs:
           VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
           VITE_UMAMI_WEBSITE_ID: ${{ secrets.VITE_UMAMI_WEBSITE_ID }}
           VITE_UMAMI_HOST: ${{ vars.VITE_UMAMI_HOST }}
-          VITE_RECAPTCHA_SITE_KEY: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
+          VITE_RECAPTCHA: ${{ secrets.VITE_RECAPTCHA_SITE_KEY }}
           VITE_GRAASP_H5P_INTEGRATION_URL: ${{ vars.VITE_GRAASP_H5P_INTEGRATION_URL }}
           VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
         run: pnpm build
@@ -59,7 +59,7 @@ jobs:
         uses: graasp/graasp-deploy/.github/actions/deploy-s3@v1
         # Replace input build-folder or version if needed
         with:
-          build-folder: 'build'
+          build-folder: "build"
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
           aws-s3-bucket-name: ${{ vars.AWS_S3_BUCKET_NAME }}
@@ -73,6 +73,6 @@ jobs:
           SENTRY_PROJECT: client
         with:
           environment: development
-          sourcemaps: './build'
+          sourcemaps: "./build"
           inject: true
           version: ${{ github.sha }}
