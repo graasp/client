@@ -27,6 +27,7 @@ const buildPostMessageKeys = (
   GET_AUTH_TOKEN_SUCCESS: `GET_AUTH_TOKEN_SUCCESS_${itemId}`,
   GET_AUTH_TOKEN_FAILURE: `GET_AUTH_TOKEN_FAILURE_${itemId}`,
   POST_AUTO_RESIZE: `POST_AUTO_RESIZE_${itemId}`,
+  POST_MAX_RESIZE: `POST_MAX_RESIZE_${itemId}`,
 });
 
 const useAppCommunication = ({
@@ -94,6 +95,21 @@ const useAppCommunication = ({
               // set the element height using the style prop
               // we use the style prop since it allows us to have higher precedence than when using the height prop
               iFrameRef.current.style.height = `${payload}px`;
+              break;
+            }
+
+            case POST_MESSAGE_KEYS.POST_MAX_RESIZE: {
+              // item should not be manually resizable
+              if (item.settings.isResizable) {
+                return;
+              }
+              // iframe must be mounted
+              if (iFrameRef.current === null) {
+                return;
+              }
+              // set the element height using the style prop
+              // we use the style prop since it allows us to have higher precedence than when using the height prop
+              iFrameRef.current.style.height = `100vh`;
               break;
             }
           }
