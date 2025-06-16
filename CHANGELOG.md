@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.26.2](https://github.com/graasp/client/compare/v2.26.1...v2.26.2) (2025-06-16)
+
+
+### Bug Fixes
+
+* do not use stream.data to download, manual generation fix ([#1012](https://github.com/graasp/client/issues/1012)) ([4afabf8](https://github.com/graasp/client/commit/4afabf88625ea67d9f1660b01770a1d9c6133cda))
+
 ## [2.26.1](https://github.com/graasp/client/compare/v2.26.0...v2.26.1) (2025-06-12)
 
 
