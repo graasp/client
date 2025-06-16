@@ -4008,10 +4008,7 @@ export type DownloadFileResponses = {
     /**
      * a stream of data for the export zip content
      */
-    200: {
-        data: string;
-        name: string;
-    };
+    200: any
 };
 
 export type DownloadFileResponse = DownloadFileResponses[keyof DownloadFileResponses];
