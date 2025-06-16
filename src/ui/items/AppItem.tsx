@@ -9,6 +9,8 @@ import {
   getAppExtra,
 } from '@graasp/sdk';
 
+import { DEFAULT_LANG } from '@/config/constants.js';
+
 import withCollapse from '../Collapse/withCollapse.js';
 import { SCREEN_MAX_HEIGHT } from '../constants.js';
 import { ContextPayload, Token, useAppCommunication } from './appItemHooks.js';
@@ -118,6 +120,7 @@ const AppItem = ({
     () =>
       appendQueryParamToUrl(appUrl, {
         itemId: item.id,
+        lang: contextPayload.lang ?? DEFAULT_LANG,
         // this ensures that the index.html can not be aggressively cached by the browser
         [CURRENT_TIMESTAMP_QUERY_PARAM]: Date.now().toString(),
       }),
