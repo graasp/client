@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.26.3](https://github.com/graasp/client/compare/v2.26.2...v2.26.3) (2025-06-20)
+
+
+### Bug Fixes
+
+* handle max height message from apps ([#1010](https://github.com/graasp/client/issues/1010)) ([5007703](https://github.com/graasp/client/commit/50077034cc5d9fb2a82c25b379e2763299b76075))
+* make login button color white on app header ([#1014](https://github.com/graasp/client/issues/1014)) ([55c75e1](https://github.com/graasp/client/commit/55c75e18c1249cb341a2fd2a50d56bd89b9e55bf))
+
 ## [2.26.2](https://github.com/graasp/client/compare/v2.26.1...v2.26.2) (2025-06-16)
 
 
