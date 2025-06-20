@@ -10,9 +10,9 @@
   "CROP_IMAGE_MODAL_UNEXPECTED_ERROR": "Se produjo un error inesperado al intentar recortar la imagen. Vuelva a intentarlo más tarde.",
   "MAIN_MENU": {
     "HOME": "Hogar",
-    "STATS": "Estadística",
+    "STATS": "Estadísticas de uso",
     "SETTINGS": "Ajustes",
-    "STORAGE": "Almacenamiento",
+    "STORAGE": "Cuota de almacenamiento",
     "LANDING": "Página de aterrizaje"
   },
   "SAVE_ACTIONS_TOGGLE_TOOLTIP": "Recopilamos datos analíticos para mejorar su experiencia de usuario mientras navega por Graasp.",
@@ -56,7 +56,8 @@
     "BIO_ERROR_MSG": "La biografía es un campo obligatorio",
     "BIO_EMPTY_MSG": "No se ha especificado ninguna biografía.",
     "VISIBILITY_LABEL": "Hacer público este perfil",
-    "CHECK_TEXT": "Verificar perfil"
+    "CHECK_TEXT": "Verificar perfil",
+    "PATCH_SUCCESS_MESSAGE": "El perfil se ha actualizado correctamente."
   },
   "ALWAYS_RECEIVE_EMAILS": "Siempre recibe notificaciones por correo.",
   "DISABLE_EMAILS": "Desactivar notificaciones por correo electrónico",
@@ -93,6 +94,7 @@
   "MEMBER_STORAGE_FILE_UPDATED_AT": "Última actualización",
   "MEMBER_STORAGE_PARENT_FOLDER": "Carpeta principal",
   "MEMBER_STORAGE_NO_PARENT": "-",
+  "STORAGE_LOAD_MORE_FILES": "Cargar más",
   "MEMBER_STORAGE_FILES_ERROR": "Vaya, se produjo un error al obtener los archivos de almacenamiento. Inténtelo de nuevo más tarde.",
   "MEMBER_STORAGE_FILES_EMPTY": "No has subido ningún archivo",
   "EXPORT_INFORMATIONS_TITLE": "Descargue una copia de sus datos",
@@ -114,5 +116,9 @@
   "LOGOUT_BUTTON": "Finalizar la sesión",
   "HERE_BUTTON": "Aquí",
   "TEMPORARY_MOVED_ACCOUNT_HOME_PAGE_MESSAGE": "La página de inicio de la cuenta se ha movido",
-  "DRAWER_OPEN_ARIA_LABEL": "Cajón abierto"
+  "DRAWER_OPEN_ARIA_LABEL": "Cajón abierto",
+  "GUEST_AUTH": {
+    "TITLE": "Los invitados no pueden acceder a esta página.",
+    "DESCRIPTION": "Has iniciado sesión como invitado. Estas cuentas no pueden administrar la configuración. Crea una cuenta para usar estas funciones."
+  }
 }
