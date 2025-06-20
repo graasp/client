@@ -40,7 +40,7 @@
   "INVALID_FOLDER_PATH_FOR_DELETE": "Le chemin du dossier soumis n'est pas valide pour la suppression",
   "INVALID_DOWNLOAD_PARAMETERS": "Un ou plusieurs paramètres de téléchargement ne sont pas valides",
   "LOCAL_FILE_NOT_FOUND": "Le fichier local n'est pas trouvé",
-  "UPLOAD_FILE_UNEXPECTED_ERROR": "Une erreur inattendue s'est produite lors du téléchargement de fichiers",
+  "UPLOAD_FILES_UNEXPECTED_ERROR": "Une erreur inattendue s'est produite lors du téléchargement des fichiers",
   "DOWNLOAD_FILE_UNEXPECTED_ERROR": "Le fichier n'a pas pu être téléchargé. Veuillez réessayer plus tard. Si le problème persiste contactez support@graasp.org.",
   "RESTORE_ITEMS": "Vous avez restauré avec succès le(s) élément(s)",
   "CREATE_ITEM": "L'élément a été créé avec succès",
