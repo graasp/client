@@ -117,6 +117,6 @@
   "DRAWER_OPEN_ARIA_LABEL": "Ouvrir le tiroir",
   "GUEST_AUTH": {
     "TITLE": "Les invités ne peuvent pas accéder à cette page",
-    "DESCRIPTION": "Vous êtes actuellement connecté avec un compte invité. Ces comptes ne peuvent pas gérer les paramètres et les configurations. Créez un compte pour utiliser ces fonctionnalités."
+    "DESCRIPTION": "Vous êtes actuellement connecté avec un compte invité. Ces comptes ne peuvent pas modifier les paramètres et les configurations. Créez un compte pour utiliser ces fonctionnalités."
   }
 }
