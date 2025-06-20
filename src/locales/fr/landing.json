@@ -400,6 +400,24 @@
       "LIBRARY_BUTTON_TEXT": "Explore la Bibliothèque"
     }
   },
+  "CONTACT_US": {
+    "TITLE": "Nous Contacter",
+    "DESCRIPTION": "Nous apprécions les retours de nos utilisateurs. Que vous rencontriez un problème, souhaitiez nous parler d'une idée ou d'une fonctionnalité manquante, n'hésitez pas à nous en faire part !",
+    "SUPPORT": {
+      "TITLE": "Vous êtes confronté à un problème ?",
+      "DESCRIPTION": "Nous proposons une assistance pour les problèmes de connexion et de publication de contenu, ainsi que pour les questions générales liées au l'utilisation de Graasp. Envoyez-nous un e-mail et nous vous répondrons dans les plus brefs délais. Nous répondons sous 3 à 5 jours ouvrés.",
+      "EMAIL": "support@graasp.org"
+    },
+    "SOCIAL": {
+      "TITLE": "Partagez des trucs sympas avec nous sur les réseaux sociaux",
+      "DESCRIPTION": "Vous avez créé quelque chose de génial avec Graasp ? Envie de partager votre création ? Mentionnez-nous sur les réseaux sociaux ; nous serons ravis de repartager !"
+    },
+    "OTHER": {
+      "TITLE": "Autre chose ?",
+      "DESCRIPTION": "Avez-vous autre chose dont vous souhaitez discuter avec nous ?",
+      "EMAIL": "contact@graasp.org"
+    }
+  },
   "SUPPORT": {
     "TITLE": "Guides d'utilisation",
     "DESCRIPTION": "Consultez notre banque de resources sur l'utilisation de la plateforme Graasp. Nous avons des tutoriels explorant les différentes possibilités de la plateforme, ainsi que des articles thématiques. N'hésitez pas à prendre contact avec nous pour toute question spécifique.",
@@ -413,11 +431,11 @@
       },
       "BUILDER_PLAYER_DIFFERENCE": {
         "QUESTION": "Quelle est la différence entre Builder et Player ?",
-        "RESPONSE": "Builder et Player sont deux interfaces disponibles dans Graasp. Les utilisateurs choisissent l'interface qu'ils souhaitent utiliser en fonction de leur utilisation. Traditionnellement, Builder est le mieux adapté pour créer le contenu éducatif, construire les leçons, ajouter des éléments et mettre à jour leurs paramètres. Player est principalement utilisé lors de la consommation du contenu créé. Le public principal de cette interface est constitué des étudiants et autres consommateurs."
+        "RESPONSE": "Builder et Player sont deux interfaces disponibles dans Graasp. Les utilisateurs choisissent l'interface qu'ils souhaitent utiliser en fonction de leur utilisation. Traditionnellement, Builder est le mieux adapté pour créer le contenu éducatif, construire les leçons, ajouter des éléments et mettre à jour leurs paramètres. Player est principalement utilisé lors de la consommation du contenu créé. Les étudiants et autres lecteurs sont l'audience principale ciblée par cette interface."
       },
       "IMPORT_FROM_OTHER_PLATFORM": {
         "QUESTION": "Comment importer mon contenu existant depuis une autre plateforme dans Graasp ?",
-        "RESPONSE": "Vous pouvez glisser-déposer des documents, des images et d'autres médias enrichis. Nous prenons en charge le contenu H5P et une large gamme de contenus multimédias, audio, vidéo, images et liens Web. Nous n'avons actuellement pas de procédures spéciales pour importer à partir de plateformes spécifiques."
+        "RESPONSE": "Vous pouvez glisser-déposer des documents, des images et d'autres médias riches. Nous prenons en charge le contenu H5P et une large gamme de contenus multimédias, audio, vidéo, images et liens Web. Nous n'avons actuellement pas de procédures spéciales pour importer à partir de plateformes spécifiques."
       }
     },
     "TUTORIALS": {
