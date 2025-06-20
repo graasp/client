@@ -1,4 +1,17 @@
 {
+  "MENU": {
+    "MY_ITEMS": "Mi Graasp",
+    "BOOKMARKED_ITEMS": "Marcadores",
+    "PUBLISHED_ITEMS": "Publicado",
+    "RECYCLED_ITEMS": "Basura",
+    "RETURN_HOME": "Hogar"
+  },
+  "FILE_UPLOADER": {
+    "GENERAL_ERROR": "No se pudieron cargar algunos archivos, solucione el problema y vuelva a intentarlo."
+  },
+  "REDIRECTION_TEXT": "Redirección",
+  "REDIRECTION_BUTTON": "Navegar a la redirección",
+  "AVATAR_DEFAULT_ALT": "avatar",
   "ACCESS_ITEM_LOGIN_TAG_TOOLTIP": "Este artículo tiene habilitado el inicio de sesión. Los nuevos usuarios pueden acceder a este elemento cuando se autentican mediante el inicio de sesión del elemento.",
   "ACCESS_ITEM_LOGIN_TAG": "Cualquier persona autenticada con el enlace.",
   "ACCESS_PUBLIC_TAG_TOOLTIP": "Este artículo es público. Cualquiera puede acceder a este elemento.",
@@ -32,6 +45,7 @@
   "CREATE_NEW_ITEM_ETHERPAD_INFORMATIONS": "Etherpad es un editor de texto colaborativo en tiempo real",
   "CREATE_NEW_ITEM_ETHERPAD_LABEL": "Nombre",
   "CREATE_NEW_ITEM_ETHERPAD_TITLE": "Agregar un Etherpad",
+  "ETHERPAG_ALLOW_READER_TO_WRITE_SETTING": "Permitir a los lectores editar etherpad",
   "CREATE_NEW_ITEM_NAME_LABEL": "Nombre",
   "CREATE_SHORTCUT_BUTTON": "Crear el acceso directo",
   "CREATE_SHORTCUT_BUTTON_zero": "Crear el acceso directo",
@@ -58,9 +72,14 @@
   "DOWNLOAD_ITEM_BUTTON": "Descargar",
   "DROP_DOWN_PLACEHOLDER": "Por favor elija de la lista",
   "DROPZONE_HELPER_TEXT": "Deja tus archivos aquí para subirlos",
+  "DROPZONE_HELPER_LIMIT_REMINDER_TEXT": "Máximo {{max}} archivos de 1 GB",
+  "DROPZONE_HELPER_TUTORIALS": "¿Por dónde empezar? Haz clic aquí para más información.",
   "DROPZONE_HELPER_ACTION": "Búsqueda de archivos",
   "DROPZONE_HELPER_OPTIONAL_ACTION_TEXT": "o",
-  "DESCRIPTION_LABEL": "Descripción",
+  "DESCRIPTION": {
+    "LABEL": "Descripción",
+    "PLACEHOLDER": "Escribe una breve descripción para darle más contexto a tu elemento..."
+  },
   "EDIT_BUTTON_TOOLTIP": "Editar",
   "EDIT_FOLDER_DESCRIPTION_PLACEHOLDER": "Escriba la descripción de la carpeta aquí...",
   "EDIT_ITEM_BUTTON": "Editar",
@@ -109,6 +128,7 @@
   "ITEM_MEMBERSHIPS_TABLE_STATUS_HEADER": "Estado",
   "ITEM_MENU_CREATE_SHORTCUT_MENU_ITEM": "Crear acceso directo",
   "ITEM_MENU_FLAG_MENU_ITEM": "Bandera",
+  "ITEM_MENU_EXPORT_RAW_MENU_ITEM": "Exportar como ZIP",
   "ITEM_METADATA_CREATED_AT_TITLE": "Creado en",
   "ITEM_METADATA_CREATOR_TITLE": "Creador",
   "ITEM_METADATA_LINK_TITLE": "Enlace",
@@ -230,7 +250,7 @@
   "MOVE_ITEM_MODAL_TITLE_one": "¿A dónde quieres mudar a {{name}} y a otro más?",
   "MOVE_ITEM_MODAL_TITLE_other": "¿A dónde quieres trasladar a {{name}} y a {{count}} personas más?",
   "SELECT_TEMPLATE_TITLE": "¿Qué carpeta elegirás como plantilla?",
-  "NAVIGATION_SHARED_ITEMS_TITLE": "Artículos compartidos",
+  "SELECT_MY_ITEMS": "Mis artículos",
   "NEW_ITEM_APP_TAB_TEXT": "Solicitud",
   "NEW_ITEM_BUTTON_TOOLTIP": "Crear nuevo artículo",
   "NEW_ITEM_BUTTON": "Nuevo artículo",
@@ -351,6 +371,7 @@
   "CREATE_CUSTOM_APP_HELPER_TEXT": "Si conoce la URL de una aplicación interactiva que puede aprovechar la API de Graasp, puede ingresarla aquí.",
   "CREATE_NEW_APP_BACK_TO_APP_LIST_BUTTON": "Volver a la lista de aplicaciones",
   "APP_LIST_LOADING_FAILED": "Se produjo un error al obtener la lista de aplicaciones. Por favor, inténtelo de nuevo más tarde.",
+  "APP_REQUIRED_ERROR": "Debes elegir una aplicación para agregar.",
   "FLAG_REASON_DESCRIPTION": "Seleccione el motivo para marcar este elemento",
   "FLAG_MODAL_TITLE": "Artículo de bandera",
   "FLAG_MODAL_CONFIRM": "Bandera",
@@ -439,11 +460,23 @@
   "UPLOAD_NOTIFICATION_LOADING": "Subiendo...",
   "UPLOAD_NOTIFICATION_COMPLETE": "¡Carga completa!",
   "SORT_BY_LABEL": "Ordenar por",
-  "item.updated_at": "Actualizado en",
-  "item.creator.name": "Creador",
-  "item.type": "Tipo",
-  "item.name": "Nombre",
-  "order": "Orden",
+  "item": {
+    "updated_at": "Actualizado en",
+    "creator": {
+      "name": "Creador"
+    },
+    "type": "Tipo",
+    "name": "Nombre",
+    "order": "Orden"
+  },
+  "CHAT": {
+    "SHOW": "Mostrar chat",
+    "HIDE": "Ocultar el chat",
+    "CLEAR_BUTTON_TEXT": "Claro",
+    "CLEAR_ALL": "Chat claro",
+    "CLEAR_ALL_TITLE": "Borrar el contenido del chat",
+    "CLEAR_ALL_CONTENT": "Puedes eliminar todos los mensajes del chat. Asegúrate de haber descargado una copia si quieres conservarlos. Esta acción no se puede deshacer."
+  },
   "TRASH_NO_ITEM": "Tu basura está vacía.",
   "BOOKMARKS_NO_ITEM": "Ningún elemento marcado",
   "BOOKMARKS_NO_ITEM_SEARCH": "No hay ningún elemento marcado como favorito para {{search}}",
@@ -499,9 +532,16 @@
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Eliminar permanentemente",
   "ADD_TAG_OPTION_BUTTON_TEXT": "Añadir {{value}}",
   "CREATE_FOLDER_BUTTON_TEXT": "Crear carpeta",
+  "TAGS_DESCRITPION": "Las etiquetas son palabras clave o términos que puedes añadir a tus artículos. Describen el tema, el contexto, el proyecto o el público al que van dirigidos. Si tu colección está publicada, ayudan a otros usuarios a encontrar tu contenido al buscar en la biblioteca. Puedes encontrar más información sobre las etiquetas en la <1>documentación</1>.",
+  "TAGS_DISCIPLINE_HELPERTEXT": "Ejemplo: matemáticas, historia, biología.",
+  "TAGS_LEVEL_HELPERTEXT": "Ejemplo: primaria, secundaria, licenciatura",
+  "TAGS_RESOURCE_TYPE_HELPERTEXT": "Ejemplo: artículo, vídeo, cuestionario",
+  "ITEM_TYPE_COULD_NOT_BE_HANDLED": "No se pudo gestionar el tipo de elemento {{type}}",
+  "SHORTCUT_FETCHING_ISSUE": "Hubo un problema al obtener el contenido de este elemento de acceso directo.",
   "MAINTENANCE": {
     "TITLE": "Mantenimiento",
     "INTRODUCTION": "La plataforma Graasp se cerrará por mantenimiento del <b>{{fromDate}}</b> al <b>{{toDate}}</b>.",
-    "DETAILS": "graasp.org no estará disponible a partir de las <b>{{fromDate}}</b> y volverá a ser disponible a partir de las <b>{{toDate}}</b>."
+    "DETAILS": "graasp.org no estará disponible a partir de las <b>{{fromDate}}</b> y volverá a ser disponible a partir de las <b>{{toDate}}</b>.",
+    "CONTACT": "¿Afectará este mantenimiento a tus actividades en Graasp? ¡Estamos aquí para escucharte! Contáctanos en <strong>maintenance@graasp.org</strong>"
   }
 }
