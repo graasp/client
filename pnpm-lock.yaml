@@ -27,8 +27,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
       '@graasp/sdk':
-        specifier: 5.13.1
-        version: 5.13.1(date-fns@4.1.0)(uuid@11.0.5)
+        specifier: 5.13.3
+        version: 5.13.3(date-fns@4.1.0)(uuid@11.0.5)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -1674,8 +1674,8 @@ packages:
   '@fontsource-variable/nunito@5.1.1':
     resolution: {integrity: sha512-o4VVGDO/q2KaQp7aU6iKmKQ7sbalUOeA/D9nxY+o80ga/IV+7i+Yb/CpqNxAwjAWVhgdE2UiQlpsc38+j47ekw==}
 
-  '@graasp/sdk@5.13.1':
-    resolution: {integrity: sha512-7Md0vKCPyI3yaK/mf8wPddEwh3tMdWI+uZkEV+UxWgwHzu0TKeUEe0EnS+QnnQBff5/DRdwQnilJpsRLaHCW8A==}
+  '@graasp/sdk@5.13.3':
+    resolution: {integrity: sha512-ZWVNkmYl2snU63aNGGq5c6pDlOAJ+pIUCjg35eR9TnF12sOrvsD61VgQg6JO5dQdNBFhrUV1FodnMXQOGmfyng==}
     peerDependencies:
       date-fns: ^4
       uuid: ^9 || ^10 || ^11.0.0
@@ -1687,6 +1687,7 @@ packages:
 
   '@hey-api/client-fetch@0.10.0':
     resolution: {integrity: sha512-C7vzj4t52qPiHCqjn1l8cRTI2p4pZCd7ViLtJDTHr5ZwI4sWOYC1tmv6bd529qqY6HFFbhGCz4TAZSwKAMJncg==}
+    deprecated: Starting with v0.73.0, this package is bundled directly inside @hey-api/openapi-ts.
     peerDependencies:
       '@hey-api/openapi-ts': < 2
 
@@ -8480,7 +8481,7 @@ snapshots:
 
   '@fontsource-variable/nunito@5.1.1': {}
 
-  '@graasp/sdk@5.13.1(date-fns@4.1.0)(uuid@11.0.5)':
+  '@graasp/sdk@5.13.3(date-fns@4.1.0)(uuid@11.0.5)':
     dependencies:
       '@faker-js/faker': 9.7.0
       date-fns: 4.1.0
