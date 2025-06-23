@@ -69,20 +69,6 @@ export const buildPatchPublicProfileRoute = () =>
 export const buildGetPublicProfileRoute = (memberId: UUID) =>
   `${MEMBERS_ROUTE}/${PUBLIC_PROFILE}/${memberId}`;
 
-// Subscriptions
-export const SUBSCRIPTION_ROUTE = 'subscriptions';
-export const GET_PLANS_ROUTE = `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/plans`;
-export const GET_OWN_PLAN_ROUTE = `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/plans/own`;
-export const buildGetPlanRoute = (planId: string) =>
-  `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/plans/${planId}`;
-export const buildChangePlanRoute = (planId: string) =>
-  `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/plans/${planId}`;
-export const GET_CARDS_ROUTE = `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/cards`;
-export const buildSetDefaultCardRoute = (cardId: string) =>
-  `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/cards/${cardId}/default`;
-export const CREATE_SETUP_INTENT_ROUTE = `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/setup-intent`;
-export const GET_CURRENT_CUSTOMER = `${MEMBERS_ROUTE}/${SUBSCRIPTION_ROUTE}/customer/current`;
-
 // Data export
 export const DATA_EXPORT_ROUTE = 'export-data';
 export const buildExportMemberDataRoute = () =>
