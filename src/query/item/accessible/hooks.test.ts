@@ -19,9 +19,12 @@ import { buildGetAccessibleItems } from '../routes.js';
 const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('useAccessibleItems', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    // cancel in flight queries before clearing the query-client
+    await queryClient.cancelQueries();
     queryClient.clear();
+    // only once the query client is cleared we clear nock, ensuring no requests are cut short
+    nock.cleanAll();
   });
 
   const params = {};
@@ -135,8 +138,8 @@ describe('useInfiniteAccessibleItems', () => {
       expect(result.current.isSuccess || result.current.isError).toBe(true),
     );
 
-    act(() => {
-      result.current.fetchNextPage();
+    await act(async () => {
+      await result.current.fetchNextPage();
     });
     await waitFor(() =>
       expect(result.current.data?.pages.flatMap((p) => p.data).length).toEqual(
@@ -176,8 +179,8 @@ describe('useInfiniteAccessibleItems', () => {
       expect(result.current.isSuccess || result.current.isError).toBe(true),
     );
 
-    act(() => {
-      result.current.fetchNextPage();
+    await act(async () => {
+      await result.current.fetchNextPage();
     });
     await waitFor(() => {
       expect(result.current.data!.pages.length).toEqual(2);
