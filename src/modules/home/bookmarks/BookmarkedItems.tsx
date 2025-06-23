@@ -12,6 +12,7 @@ import {
   useTheme,
 } from '@mui/material';
 
+import { useQuery } from '@tanstack/react-query';
 import { BookmarkIcon, CheckIcon, PenIcon } from 'lucide-react';
 import { v4 } from 'uuid';
 
@@ -21,7 +22,7 @@ import {
   BOOKMARKED_ITEMS_ID,
   BOOKMARK_MANAGE_BUTTON_ID,
 } from '@/config/selectors';
-import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
+import { getOwnBookmarkOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { BookmarkCard } from './BookmarkCard';
 import { BookmarkCardEdit } from './BookmarkCardEdit';
@@ -53,7 +54,11 @@ const useResponsiveMaxItems = () => {
 
 export function BookmarkedItems() {
   const { t } = useTranslation(NS.Home, { keyPrefix: 'BOOKMARKED_ITEMS' });
-  const { data: bookmarkedItems, isPending, isError } = useBookmarkedItems();
+  const {
+    data: bookmarkedItems,
+    isPending,
+    isError,
+  } = useQuery(getOwnBookmarkOptions());
   const [showAll, setShowAll] = useState(false);
   const [isEditionMode, setIsEditionMode] = useState(false);
 

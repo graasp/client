@@ -62,7 +62,7 @@ export function ImportZipForm({
                   .then(() => {
                     closeNotification();
                   })
-                  .catch((error) => {
+                  .catch((error: Error) => {
                     closeNotification(error);
                   });
               }

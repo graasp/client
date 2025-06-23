@@ -12,7 +12,6 @@ import * as memberRoutes from './member/routes';
 export const APPS_ROUTE = 'app-items';
 export const ITEMS_ROUTE = 'items';
 export const INVITATIONS_ROUTE = `invitations`;
-export const GET_BOOKMARKED_ITEMS_ROUTE = `${ITEMS_ROUTE}/bookmarks`;
 export const CATEGORIES_ROUTE = `${ITEMS_ROUTE}/categories`;
 export const ETHERPAD_ROUTE = `${ITEMS_ROUTE}/etherpad`;
 export const COLLECTIONS_ROUTE = `collections`;
@@ -115,9 +114,6 @@ export const GET_TAGS_ROUTE = `${ITEMS_ROUTE}/visibilities/list`;
 export const GET_FLAGS_ROUTE = `${ITEMS_ROUTE}/flags`;
 export const buildPostItemFlagRoute = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/flags`;
-
-export const buildBookmarkedItemRoute = (itemId: UUID) =>
-  `${GET_BOOKMARKED_ITEMS_ROUTE}/${itemId}`;
 
 export const GET_CATEGORY_TYPES_ROUTE = `${ITEMS_ROUTE}/category-types`;
 export const buildGetCategoriesRoute = (ids?: UUID[]) => {
@@ -336,7 +332,6 @@ export const API_ROUTES = {
   buildExportActions,
   buildExportItemChatRoute,
   buildExportItemRoute,
-  buildBookmarkedItemRoute,
   buildGetAllPublishedItemsRoute,
   buildGetApiAccessTokenRoute,
   buildGetCategoriesRoute,
@@ -384,7 +379,6 @@ export const API_ROUTES = {
   buildUpdateItemValidationReviewRoute,
 
   GET_CATEGORY_TYPES_ROUTE,
-  GET_BOOKMARKED_ITEMS_ROUTE,
   GET_FLAGS_ROUTE,
   GET_ITEM_VALIDATION_REVIEWS_ROUTE,
   GET_ITEM_VALIDATION_STATUSES_ROUTE,

@@ -7,7 +7,6 @@ export * from './chat.js';
 export * from './csvUserImport.js';
 export * from './etherpad.js';
 export * from './invitation.js';
-export * from './itemBookmark.js';
 export * from './itemExport.js';
 export * from './itemGeolocation.js';
 export * from './itemLike.js';

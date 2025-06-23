@@ -12,13 +12,16 @@ import {
   Typography,
 } from '@mui/material';
 
-import { PackedItem, formatDate } from '@graasp/sdk';
+import { formatDate } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { buildBookmarkCardEditClassName } from '@/config/selectors';
-import { deleteBookmarkMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
+import {
+  deleteBookmarkMutation,
+  getOwnBookmarkQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
+import { PackedItem } from '@/openapi/client/types.gen';
 
 import ItemThumbnail from '../../player/common/ItemThumbnail';
 
@@ -34,7 +37,7 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
     ...deleteBookmarkMutation(),
     onSettled: () => {
       queryClient.invalidateQueries({
-        queryKey: memberKeys.current().bookmarkedItems,
+        queryKey: getOwnBookmarkQueryKey(),
       });
     },
   });

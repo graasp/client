@@ -87,7 +87,6 @@ const {
   buildGetMemberRoute,
   ITEMS_ROUTE,
   buildUploadFilesRoute,
-  GET_BOOKMARKED_ITEMS_ROUTE,
   buildPostItemLoginSignInRoute,
   buildPostItemVisibilityRoute,
   buildPostItemFlagRoute,
@@ -1327,7 +1326,7 @@ export const mockGetItemBookmarks = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/${GET_BOOKMARKED_ITEMS_ROUTE}`,
+      url: `${API_HOST}/items/bookmarks`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1346,7 +1345,7 @@ export const mockAddBookmark = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${GET_BOOKMARKED_ITEMS_ROUTE}/${ID_FORMAT}`),
+      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1362,7 +1361,7 @@ export const mockDeleteBookmark = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/${GET_BOOKMARKED_ITEMS_ROUTE}/${ID_FORMAT}`),
+      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {

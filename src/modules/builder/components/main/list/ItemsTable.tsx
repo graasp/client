@@ -98,7 +98,7 @@ const ItemsTable = ({
         .then(() => {
           close();
         })
-        .catch((e) => {
+        .catch((e: Error) => {
           console.error(e);
           close(e);
         });
@@ -147,7 +147,7 @@ const ItemsTable = ({
         .then(() => {
           close();
         })
-        .catch((e) => {
+        .catch((e: Error) => {
           close(e);
         });
     } else if (!itemId || !parentItem) {
