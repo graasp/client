@@ -1,7 +1,7 @@
 import { ItemType, LinkItemFactory, MemberFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, within } from '@storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import LinkItem from './LinkItem.js';
 

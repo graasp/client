@@ -6,8 +6,8 @@ import {
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, within } from '@storybook/test';
 import { StatusCodes } from 'http-status-codes';
+import { expect, fn, within } from 'storybook/test';
 import { v4 } from 'uuid';
 
 import { Card } from '@/ui/Card/Card.js';

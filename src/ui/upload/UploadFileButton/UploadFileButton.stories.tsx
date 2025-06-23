@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
 import { FileBox } from 'lucide-react';
+import { expect, within } from 'storybook/test';
 
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';
 

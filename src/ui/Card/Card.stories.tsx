@@ -1,8 +1,8 @@
 import { Box, IconButton, Stack } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, within } from '@storybook/test';
 import { Grip, Snowflake } from 'lucide-react';
+import { expect, fn, within } from 'storybook/test';
 
 import ItemBadges from '../ItemBadges/ItemBadges.js';
 import { TABLE_CATEGORIES } from '../utils/storybook.js';

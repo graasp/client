@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, within } from '@storybook/test';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
+import { expect, userEvent, within } from 'storybook/test';
 
 import { MOCK_USE_SUGGESTIONS } from '../../fixture';
 import GeolocationPicker from './GeolocationPicker';

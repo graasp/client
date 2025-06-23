@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { ActionButton, ColorVariants } from '../../types.js';
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';

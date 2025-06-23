@@ -7,7 +7,7 @@ import {
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
+import { expect, within } from 'storybook/test';
 
 import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem.js';
 

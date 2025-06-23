@@ -1,7 +1,7 @@
 import { AccountType } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, screen, userEvent, within } from '@storybook/test';
+import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 

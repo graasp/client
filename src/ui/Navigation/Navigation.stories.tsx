@@ -8,8 +8,8 @@ import {
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, within } from '@storybook/test';
 import { CogIcon } from 'lucide-react';
+import { expect, within } from 'storybook/test';
 
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { ItemMenuProps, Navigation } from './Navigation.js';
