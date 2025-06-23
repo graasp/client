@@ -14,9 +14,10 @@ import { EmbeddedLinkMetadata } from '../types.js';
 const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('Embedded Links Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useLinkMetadata', () => {

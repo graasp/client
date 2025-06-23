@@ -1,7 +1,7 @@
 import { type JSX, useState } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import TextEditor, { TextEditorProps } from './TextEditor.js';
 

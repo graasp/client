@@ -41,7 +41,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Items Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
     mockedNotifier.mockClear();

@@ -14,9 +14,10 @@ import { mockHook, setUpTest } from '../test/utils.js';
 const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('Chat Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useItemChat', () => {

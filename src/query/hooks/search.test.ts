@@ -89,10 +89,11 @@ const RESPONSE = {
 const FACETS_RESPONSE = { facet: 1, facet1: 2 };
 
 describe('Published Search Hook', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
+    queryClient.clear();
     nock.cleanAll();
     vi.clearAllMocks();
-    queryClient.clear();
   });
 
   describe('useSearchPublishedItems', () => {

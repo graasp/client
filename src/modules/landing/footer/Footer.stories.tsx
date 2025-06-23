@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, within } from '@storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import { Footer } from './Footer';
 

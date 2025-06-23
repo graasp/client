@@ -17,9 +17,10 @@ import { useItemThumbnailUrl } from './hooks.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('useItemThumbnailUrl', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   const item = FolderItemFactory();

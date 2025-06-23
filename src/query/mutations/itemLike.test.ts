@@ -25,9 +25,10 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Item Like Mutations', () => {
-  afterEach(() => {
-    vi.clearAllMocks();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    vi.clearAllMocks();
     nock.cleanAll();
   });
 

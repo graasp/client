@@ -3,7 +3,7 @@ import { ComponentProps } from 'react';
 import { AccountType } from '@graasp/sdk';
 
 import { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 
 import { AuthContext } from '@/AuthContext';
 

@@ -5,7 +5,7 @@ import {
 } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
+import { fn } from 'storybook/test';
 import { v4 } from 'uuid';
 
 import { MOCK_USE_SUGGESTIONS } from '../fixture';

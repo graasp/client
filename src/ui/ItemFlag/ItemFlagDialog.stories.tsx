@@ -1,7 +1,7 @@
 import { FlagType } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, screen, userEvent, within } from '@storybook/test';
+import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
 import ItemFlagDialog from './ItemFlagDialog.js';
 

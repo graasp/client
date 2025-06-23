@@ -14,9 +14,10 @@ import { useApps } from './apps.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('Apps Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useApps', () => {

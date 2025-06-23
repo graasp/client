@@ -14,7 +14,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Export Item', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

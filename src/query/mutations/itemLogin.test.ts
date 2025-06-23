@@ -32,7 +32,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Item Login Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

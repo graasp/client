@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from '@storybook/test';
 import { SparklesIcon } from 'lucide-react';
+import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
 import MenuItem from './MenuItem.js';

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, userEvent, within } from '@storybook/test';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
 import { Snowflake } from 'lucide-react';
+import { expect, userEvent, within } from 'storybook/test';
 
 import { PRIMARY_COLOR, SECONDARY_COLOR } from '../theme.js';
 import PlatformSwitch, { PlatformSwitchProps } from './PlatformSwitch.js';

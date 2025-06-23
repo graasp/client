@@ -46,6 +46,10 @@ const preview: Preview = {
       },
     },
   },
+  tags: [
+    // enable autodocs by default
+    'autodocs',
+  ],
   decorators: [
     // some components use tanstack router functions
     // so we need to provide a router when displaying stories.

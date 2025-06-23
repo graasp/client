@@ -25,9 +25,10 @@ describe('useEnroll', () => {
   const mutation = mutations.useEnroll;
   const route = `/${buildEnroll(itemId)}`;
 
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   it('Enroll', async () => {

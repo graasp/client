@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 import type { Meta, StoryObj } from '@storybook/react';
-import { expect, fn, within } from '@storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import Button from '@/ui/buttons/Button/Button.js';
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';

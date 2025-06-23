@@ -26,9 +26,10 @@ import {
 const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('useChildren', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
   const id = 'item-id';
   const params = { ordered: true };
@@ -169,9 +170,12 @@ describe('useChildren', () => {
 });
 
 describe('useParents', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    // cancel in flight queries before clearing the query-client
+    await queryClient.cancelQueries();
     queryClient.clear();
+    // only once the query client is cleared we clear nock, ensuring no requests are cut short
+    nock.cleanAll();
   });
 
   const response = generateFolders();
@@ -257,9 +261,12 @@ describe('useParents', () => {
 });
 
 describe('useItem', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    // cancel in flight queries before clearing the query-client
+    await queryClient.cancelQueries();
     queryClient.clear();
+    // only once the query client is cleared we clear nock, ensuring no requests are cut short
+    nock.cleanAll();
   });
 
   const response = FolderItemFactory();
@@ -314,9 +321,10 @@ describe('useItem', () => {
 });
 
 describe('useFileContentUrl', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   const response = THUMBNAIL_URL_RESPONSE;
