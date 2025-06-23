@@ -50,7 +50,6 @@ export default defineConfig({
           ],
         },
         test: {
-          include: ['src/**/*.stories.tsx'],
           name: 'storybook',
           retry: 1,
           browser: {
