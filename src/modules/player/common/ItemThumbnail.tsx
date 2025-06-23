@@ -1,12 +1,13 @@
 import type { JSX } from 'react';
 
 import {
-  PackedItem,
+  DiscriminatedItem,
   ThumbnailSize,
   ThumbnailsBySize,
   getMimetype,
 } from '@graasp/sdk';
 
+import { type PackedItem } from '@/openapi/client';
 import ItemIcon from '@/ui/icons/ItemIcon';
 
 type Props = {
@@ -23,7 +24,8 @@ const ItemThumbnail = ({
   return (
     <ItemIcon
       type={item.type}
-      mimetype={getMimetype(item.extra)}
+      // TODO: fix type
+      mimetype={getMimetype((item as DiscriminatedItem).extra)}
       alt={item.name}
       iconSrc={thumbnailSrc}
     />

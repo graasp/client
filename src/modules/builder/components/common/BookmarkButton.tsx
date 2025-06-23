@@ -3,11 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButtonProps } from '@mui/material';
 
-import { DiscriminatedItem, ItemBookmark } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
+
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
-import { useBookmarkedItems } from '@/query/hooks/itemBookmark';
+import { PackedBookmark } from '@/openapi/client';
+import {
+  createBookmarkMutation,
+  deleteBookmarkMutation,
+  getOwnBookmarkOptions,
+  getOwnBookmarkQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
 import GraaspBookmarkButton from '@/ui/buttons/BookmarkButton/BookmarkButton';
 import { ActionButtonVariant } from '@/ui/types';
 
@@ -23,7 +30,7 @@ type Props = {
 
 const isItemBookmarked = (
   item: DiscriminatedItem,
-  bookmarks?: ItemBookmark[],
+  bookmarks?: PackedBookmark[],
 ): boolean => bookmarks?.some((f) => f.item.id === item.id) || false;
 
 const BookmarkButton = ({
@@ -33,20 +40,31 @@ const BookmarkButton = ({
   onClick,
   className,
 }: Props): JSX.Element | null => {
-  const { data: bookmarks } = useBookmarkedItems();
+  const { data: bookmarks } = useQuery(getOwnBookmarkOptions());
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const addFavorite = mutations.useAddBookmarkedItem();
-  const deleteFavorite = mutations.useRemoveBookmarkedItem();
+  const queryClient = useQueryClient();
+  const addFavorite = useMutation({
+    ...createBookmarkMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: getOwnBookmarkQueryKey() });
+    },
+  });
+  const deleteFavorite = useMutation({
+    ...deleteBookmarkMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: getOwnBookmarkQueryKey() });
+    },
+  });
 
   const isFavorite = isItemBookmarked(item, bookmarks);
 
   const handleFavorite = () => {
-    addFavorite.mutate(item.id);
+    addFavorite.mutate({ path: { itemId: item.id } });
     onClick?.();
   };
 
   const handleUnbookmark = () => {
-    deleteFavorite.mutate(item.id);
+    deleteFavorite.mutate({ path: { itemId: item.id } });
     onClick?.();
   };
 

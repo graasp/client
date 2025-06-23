@@ -12,7 +12,6 @@ import {
   FolderItemFactory,
   HttpMethod,
   Invitation,
-  ItemBookmark,
   ItemFlag,
   ItemGeolocation,
   ItemLike,
@@ -114,14 +113,6 @@ export const RECYCLED_ITEM_DATA: RecycledItemData[] = [
     id: `recycle-item-id-2`,
     item: FolderItemFactory(),
     creator: MemberFactory(),
-    createdAt: '2023-09-06T11:50:32.894Z',
-  },
-];
-
-export const BOOKMARKED_ITEM: ItemBookmark[] = [
-  {
-    id: `bookmarked-item-id`,
-    item: FolderItemFactory(),
     createdAt: '2023-09-06T11:50:32.894Z',
   },
 ];

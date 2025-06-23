@@ -9,7 +9,6 @@ import chatMutations from './chat.js';
 import csvUserImportMutations from './csvUserImport.js';
 import etherpadMutations from './etherpad.js';
 import invitationMutations from './invitation.js';
-import itemBookmarkMutations from './itemBookmark.js';
 import itemExportMutations from './itemExport.js';
 import itemGeolocationMutations from './itemGeolocation.js';
 import itemLikeMutations from './itemLike.js';
@@ -27,7 +26,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...csvUserImportMutations(queryConfig),
   ...etherpadMutations(queryConfig),
   ...invitationMutations(queryConfig),
-  ...itemBookmarkMutations(queryConfig),
   ...itemExportMutations(queryConfig),
   ...itemGeolocationMutations(queryConfig),
   ...itemLikeMutations(queryConfig),

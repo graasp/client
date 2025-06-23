@@ -5,7 +5,7 @@ import { Box, Card, Stack, Typography } from '@mui/material';
 
 import {
   ItemType,
-  PackedItem,
+  ShortcutItemType,
   formatDate,
   getShortcutExtra,
 } from '@graasp/sdk';
@@ -13,6 +13,7 @@ import {
 import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
 import { buildItemBookmarkCard } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client/types.gen';
 
 import ItemThumbnail from '../../player/common/ItemThumbnail';
 
@@ -25,7 +26,8 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
 
   const itemId =
     item.type === ItemType.SHORTCUT
-      ? getShortcutExtra(item.extra)?.target
+      ? // TODO: fix type
+        getShortcutExtra((item as unknown as ShortcutItemType).extra)?.target
       : item.id;
 
   return (
