@@ -24,5 +24,6 @@
   "COL_MESSAGE": "Mensaje",
   "COL_ACTIONS": "Comportamiento",
   "NOTIFICATIONS_DIALOG_TITLE": "Notificaciones",
-  "EMPTY_NOTIFICATIONS": "No Notificaciones"
+  "EMPTY_NOTIFICATIONS": "No Notificaciones",
+  "NOTIFICATION_ITEM_CHAT_MENTION_MESSAGE": "Se le ha mencionado en este artículo."
 }
