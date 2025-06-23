@@ -30,9 +30,6 @@ const MenuProps = {
   },
 };
 
-// Exclude LOCAL_FILE because it is also file like for S3_FILE but stored in another location.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { LOCAL_FILE, ...BUILDER_ITEM_TYPES } = ItemType;
 const LABEL_ID = 'select-types-filter-label';
 
 export const SelectTypes = (): JSX.Element => {
@@ -40,7 +37,7 @@ export const SelectTypes = (): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const types = Object.values(BUILDER_ITEM_TYPES).sort((t1, t2) =>
+  const types = Object.values(ItemType).sort((t1, t2) =>
     translateEnums(t1).localeCompare(translateEnums(t2)),
   );
 
