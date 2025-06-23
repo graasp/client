@@ -11,7 +11,6 @@ import etherpadMutations from './etherpad.js';
 import invitationMutations from './invitation.js';
 import itemExportMutations from './itemExport.js';
 import itemGeolocationMutations from './itemGeolocation.js';
-import itemLikeMutations from './itemLike.js';
 import itemLoginMutations from './itemLogin.js';
 import itemPublishMutations from './itemPublish.js';
 import itemValidationMutations from './itemValidation.js';
@@ -28,7 +27,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...invitationMutations(queryConfig),
   ...itemExportMutations(queryConfig),
   ...itemGeolocationMutations(queryConfig),
-  ...itemLikeMutations(queryConfig),
   ...itemLoginMutations(queryConfig),
   ...itemMutations(queryConfig),
   ...itemPublishMutations(queryConfig),
