@@ -18,9 +18,10 @@ import { useOwnProfile, usePublicProfile } from './hooks.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('Public Profile Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useOwnProfile', () => {

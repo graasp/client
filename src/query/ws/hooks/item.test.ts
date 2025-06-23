@@ -23,7 +23,8 @@ const { hooks, wrapper, queryClient, handlers } = setUpWsTest({
 });
 
 describe('Ws Item Hooks', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
   });
 

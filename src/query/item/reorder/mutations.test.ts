@@ -25,9 +25,10 @@ describe('useReorderItem', () => {
   const mutation = mutations.useReorderItem;
   const { id: parentItemId } = FolderItemFactory();
 
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   it('Reorder item', async () => {

@@ -20,7 +20,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 const TAGS = [TagFactory()];
 
 describe('Tag Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

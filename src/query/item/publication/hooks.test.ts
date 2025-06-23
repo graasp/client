@@ -14,9 +14,10 @@ import { usePublicationStatus } from './hooks.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('Item Publication Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('usePublicationStatus', () => {

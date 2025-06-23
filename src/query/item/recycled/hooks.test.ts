@@ -19,9 +19,10 @@ import { buildGetOwnRecycledItemRoute } from './routes.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('useInfiniteOwnRecycledItems', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   const pagination = { page: 1 };

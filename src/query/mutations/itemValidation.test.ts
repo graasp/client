@@ -20,7 +20,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Item Validation Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

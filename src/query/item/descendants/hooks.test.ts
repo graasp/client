@@ -15,9 +15,10 @@ import { buildGetItemDescendants } from '../routes.js';
 const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('useDescendants', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   const item = FolderItemFactory();

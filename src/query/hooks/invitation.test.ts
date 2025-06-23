@@ -18,9 +18,10 @@ const { wrapper, queryClient } = setUpTest();
 const item = FolderItemFactory();
 
 describe('Invitation Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useInvitation', () => {

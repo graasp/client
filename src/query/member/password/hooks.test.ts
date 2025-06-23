@@ -10,7 +10,8 @@ import { buildGetPasswordStatusRoute } from './routes.js';
 
 const { wrapper, queryClient } = setUpTest();
 describe('Member Hooks', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

@@ -23,7 +23,8 @@ const newProfile = {
   visibility: false,
 };
 describe('Public Profile Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
     mockedNotifier.mockClear();

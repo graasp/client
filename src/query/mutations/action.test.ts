@@ -22,7 +22,8 @@ describe('Action Mutations', () => {
     notifier: mockedNotifier,
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

@@ -95,9 +95,10 @@ describe('useAccessibleItems', () => {
 });
 
 describe('useInfiniteAccessibleItems', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
   const params = {};
   const pageSize = 5;

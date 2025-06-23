@@ -14,9 +14,10 @@ import { buildGetTagsByItemRoute } from './routes.js';
 const { wrapper, queryClient } = setUpTest();
 
 describe('Tags Hooks', () => {
-  afterEach(() => {
-    nock.cleanAll();
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
+    nock.cleanAll();
   });
 
   describe('useTagsByItem', () => {

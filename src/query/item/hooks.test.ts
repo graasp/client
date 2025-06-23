@@ -27,10 +27,8 @@ const { hooks, wrapper, queryClient } = setUpTest();
 
 describe('useChildren', () => {
   afterEach(async () => {
-    // cancel in flight queries before clearing the query-client
     await queryClient.cancelQueries();
     queryClient.clear();
-    // only once the query client is cleared we clear nock, ensuring no requests are cut short
     nock.cleanAll();
   });
   const id = 'item-id';
@@ -324,10 +322,8 @@ describe('useItem', () => {
 
 describe('useFileContentUrl', () => {
   afterEach(async () => {
-    // cancel in flight queries before clearing the query-client
     await queryClient.cancelQueries();
     queryClient.clear();
-    // only once the query client is cleared we clear nock, ensuring no requests are cut short
     nock.cleanAll();
   });
 

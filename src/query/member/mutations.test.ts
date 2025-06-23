@@ -28,7 +28,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
   notifier: mockedNotifier,
 });
 describe('Member Mutations', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

@@ -28,7 +28,8 @@ import {
 
 const { hooks, wrapper, queryClient } = setUpTest();
 describe('Member Hooks', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });

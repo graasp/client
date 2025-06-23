@@ -40,7 +40,8 @@ describe('Authentication Mutations', () => {
     notifier: mockedNotifier,
   });
 
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
     vi.clearAllMocks();

@@ -37,7 +37,8 @@ describe('Chat Mutations', () => {
       notifier: mockedNotifier,
     });
 
-    afterEach(() => {
+    afterEach(async () => {
+      await queryClient.cancelQueries();
       queryClient.clear();
       nock.cleanAll();
     });
@@ -293,7 +294,8 @@ describe('Chat Mutations', () => {
       enableWebsocket: true,
     });
 
-    afterEach(() => {
+    afterEach(async () => {
+      await queryClient.cancelQueries();
       queryClient.clear();
       nock.cleanAll();
     });

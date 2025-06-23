@@ -26,7 +26,8 @@ const { wrapper, queryClient, mutations } = setUpTest({
 });
 
 describe('Publish Item', () => {
-  afterEach(() => {
+  afterEach(async () => {
+    await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
   });
