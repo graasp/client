@@ -25,7 +25,8 @@
   "MOST_INTERACTED_ITEMS_BY_USER": "{{nb}} Am häufigsten interagierte Elemente nach Benutzer",
   "NO_ACTIONS_TO_SHOW_FOR_THIS_USER": "Für diesen Benutzer können keine Aktionen angezeigt werden",
   "HOME": {
-    "NO_ITEM_SELECTED": "Sie müssen ein Element auswählen, um die Analysen anzuzeigen."
+    "NO_ITEM_SELECTED": "Sie müssen ein Element auswählen, um die Analysen anzuzeigen.",
+    "SELECT_AN_ITEM": "Wählen Sie einen Artikel"
   },
   "NO_USER_SELECTED": "Kein Benutzer ausgewählt",
   "OTHER_ACTION_TYPE": "Andere",
