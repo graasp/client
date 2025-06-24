@@ -160,19 +160,13 @@ const ensureRadioCheckedState = (
   parentId: string,
   shouldBeChecked: boolean,
 ) => {
+  // We can not use the "checked" attribute of the element for the reasons explained in the following issue
+  // https://github.com/mui/material-ui/issues/20364#issuecomment-606864531
+  // the solution is to use pseudo css selectors like below.
   if (shouldBeChecked) {
-    cy.get(`#${parentId}`)
-      // MUI doesn't update the `checked` attribute of checkboxes.
-      .find('input:not(:disabled):checked');
-    // .should(
-    //   'have.css',
-    //   'transform',
-    //   `matrix(${shouldBeChecked ? '1, 0, 0, 1, 0, 0' : '0, 0, 0, 0, 0, 0'})`,
-    // );
+    cy.get(`#${parentId}`).find('input:not(:disabled):checked');
   } else {
-    cy.get(`#${parentId}`)
-      // MUI doesn't update the `checked` attribute of checkboxes.
-      .find('input:not(:disabled):not(:checked)');
+    cy.get(`#${parentId}`).find('input:not(:disabled):not(:checked)');
   }
 };
 
