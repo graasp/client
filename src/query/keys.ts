@@ -22,7 +22,6 @@ import { ItemSearchParams } from './item/types.js';
 const ITEMS_CONTEXT = 'items';
 const CHATS_CONTEXT = 'chats';
 const SHORT_LINKS_CONTEXT = 'shortLinks';
-const SUBSCRIPTION_CONTEXT = 'subscriptions';
 
 export const APPS_KEY = ['apps'];
 
@@ -194,7 +193,6 @@ export const memberKeys = {
   single: (id?: UUID) => {
     const singleBaseKey = [...memberKeys.all, id] as const;
     const allAvatars = [...singleBaseKey, 'avatar'] as const;
-    const allSubscriptions = [...singleBaseKey, 'subscription'] as const;
     return {
       // data of the member in question
       content: [...singleBaseKey] as const,
@@ -209,10 +207,6 @@ export const memberKeys = {
 
       // items liked by the member
       likedItems: [...singleBaseKey, 'likedItems'] as const,
-
-      // subscription plan for the member
-      allSubscriptions,
-      subscription: (planId: string) => [...allSubscriptions, planId] as const,
     };
   },
 
@@ -246,9 +240,6 @@ export const memberKeys = {
 
       // current member profile (can be non-public)
       profile: [...currentBaseKey, 'profile'] as const,
-
-      // subscription plan for the current member
-      subscription: [...currentBaseKey, 'subscription'] as const,
 
       // actions for current member
       actions: (args: { startDate?: string; endDate?: string }) => [
@@ -299,11 +290,6 @@ export const buildActionsKey = (args: {
 ];
 
 export const buildInvitationKey = (id?: UUID) => ['invitations', id];
-
-export const PLANS_KEY = [SUBSCRIPTION_CONTEXT, 'plans'];
-export const CARDS_KEY = [SUBSCRIPTION_CONTEXT, 'cards'];
-
-export const CURRENT_CUSTOMER_KEY = [SUBSCRIPTION_CONTEXT, 'currentCustomer'];
 
 export const itemsWithGeolocationKeys = {
   allBounds: [ITEMS_CONTEXT, 'map'],
@@ -358,7 +344,6 @@ export const DATA_KEYS = {
   buildMentionKey,
   getKeyForParentId,
   buildInvitationKey,
-  CARDS_KEY,
   itemsWithGeolocationKeys,
   buildAddressFromCoordinatesKey,
   buildSuggestionsForAddressKey,
