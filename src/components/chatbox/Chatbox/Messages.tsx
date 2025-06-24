@@ -3,19 +3,20 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Typography, styled } from '@mui/material';
 
-import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
-
+import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
+import { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
+
+import { useChatboxProvider } from '~player/useChatboxProvider.js';
 
 import { DEFAULT_DATE_FORMAT, SCROLL_SAFETY_MARGIN } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';
-import { useMessagesContext } from '../context/MessagesContext.js';
 import { messagesContainerCypress } from '../selectors.js';
-import type { DeleteMessageFunctionType } from '../types.js';
 import Message from './Message.js';
 import MessageActions from './MessageActions.js';
 
@@ -46,20 +47,16 @@ const SingleMessageContainer = styled(Box)({
 });
 
 type Props = {
-  currentMember?: CurrentAccount | null;
   isAdmin?: boolean;
-  deleteMessageFunction?: DeleteMessageFunctionType;
+  itemId: string;
 };
 
-export function Messages({
-  currentMember,
-  isAdmin = false,
-  deleteMessageFunction,
-}: Readonly<Props>) {
+export function Messages({ isAdmin = false, itemId }: Readonly<Props>) {
   const { i18n } = useTranslation(NS.Chatbox);
   const ref = useRef<HTMLDivElement>(null);
   const { open } = useEditingContext();
-  const { messages } = useMessagesContext();
+  const { data: currentAccount } = useQuery(getCurrentAccountOptions());
+  const { data: messages } = useChatboxProvider({ itemId });
 
   // scroll down to last message at start, on new message and on editing message
   useEffect(() => {
@@ -74,7 +71,7 @@ export function Messages({
   }, [ref, messages, open]);
 
   const isOwn = (message: ChatMessageWithCreator): boolean =>
-    message.creator?.id === currentMember?.id;
+    message.creator?.id === currentAccount?.id;
 
   const messagesByDay = Object.entries(
     groupBy(messages, ({ createdAt }) =>
@@ -102,12 +99,12 @@ export function Messages({
                     justifyContent: isOwnMessage ? 'flex-end' : 'flex-start',
                   }}
                 >
-                  <Message currentMember={currentMember} message={message} />
+                  <Message isOwnMessage={isOwnMessage} message={message} />
                   {(isOwnMessage || isAdmin) && (
                     <MessageActions
                       message={message}
                       isOwn={isOwnMessage}
-                      deleteMessageFunction={deleteMessageFunction}
+                      itemId={itemId}
                     />
                   )}
                 </SingleMessageContainer>

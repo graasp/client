@@ -3,7 +3,6 @@ export * from '../member/publicProfile/routines.js';
 export * from '../member/routines.js';
 export * from './action.js';
 export * from './authentication.js';
-export * from './chat.js';
 export * from './invitation.js';
 export * from './itemBookmark.js';
 export * from './itemExport.js';

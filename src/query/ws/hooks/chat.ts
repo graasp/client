@@ -14,7 +14,7 @@ interface ChatEvent {
   message: ChatMessage;
 }
 
-export const configureWsChatHooks = (websocketClient: WebsocketClient) => ({
+export const configureWsChatHooks = (websocketClient?: WebsocketClient) => ({
   /**
    * React hook to subscribe to the updates of the given chat ID
    * @param chatId The ID of the chat of which to observe updates
@@ -23,7 +23,7 @@ export const configureWsChatHooks = (websocketClient: WebsocketClient) => ({
     const queryClient = useQueryClient();
     useEffect(
       () => {
-        if (!chatId) {
+        if (!chatId || !websocketClient) {
           return () => {
             // do nothing
           };

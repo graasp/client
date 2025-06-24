@@ -2,36 +2,31 @@ import type { JSX } from 'react';
 
 import { PackedItem, PermissionLevel } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { Chatbox as GraaspChatbox } from '@/components/chatbox/Chatbox/Chatbox';
-import { hooks, mutations } from '@/config/queryClient';
 import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import Loader from '@/ui/Loader/Loader';
 
-const { useItemChat } = hooks;
-const {
-  usePostItemChatMessage,
-  usePatchItemChatMessage,
-  useDeleteItemChatMessage,
-} = mutations;
+import { useChatboxProvider } from '~player/useChatboxProvider';
 
 type Props = {
   item: PackedItem;
 };
 
 const Chatbox = ({ item }: Props): JSX.Element | null => {
-  const { data: chatMessages, isLoading: isChatLoading } = useItemChat(item.id);
-  const { data: currentMember, isLoading: isLoadingCurrentMember } =
-    hooks.useCurrentMember();
-  const { mutate: sendMessage } = usePostItemChatMessage();
-  const { mutate: editMessage } = usePatchItemChatMessage();
-  const { mutate: deleteMessage } = useDeleteItemChatMessage();
+  const { isLoading: isChatLoading } = useChatboxProvider({ itemId: item.id });
+  const { data: currentAccount, isLoading: isLoadingCurrentMember } = useQuery(
+    getCurrentAccountOptions(),
+  );
 
   if (isChatLoading || isLoadingCurrentMember) {
     return <Loader />;
   }
 
   // only signed in member can see the chat
-  if (!currentMember) {
+  if (!currentAccount) {
     return null;
   }
 
@@ -42,13 +37,8 @@ const Chatbox = ({ item }: Props): JSX.Element | null => {
     <GraaspChatbox
       id={CHATBOX_ID}
       sendMessageBoxId={CHATBOX_INPUT_BOX_ID}
-      currentMember={currentMember}
       itemId={item.id}
-      messages={chatMessages}
       showAdminTools={isAdmin}
-      sendMessageFunction={sendMessage}
-      deleteMessageFunction={deleteMessage}
-      editMessageFunction={editMessage}
     />
   );
 };

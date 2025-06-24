@@ -11,9 +11,10 @@ import {
   styled,
 } from '@mui/material';
 
-import { ChatMessageWithCreator } from '@graasp/sdk';
-
 import { NS } from '@/config/constants.js';
+import { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
+
+import { useChatboxProvider } from '~player/useChatboxProvider.js';
 
 import { LIST_ICON_MIN_WIDTH } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';
@@ -22,12 +23,11 @@ import {
   editMenuItemCypress,
   messageActionsButtonCypress,
 } from '../selectors.js';
-import { DeleteMessageFunctionType } from '../types.js';
 
 type Props = {
   message: ChatMessageWithCreator;
   isOwn?: boolean;
-  deleteMessageFunction?: DeleteMessageFunctionType;
+  itemId: string;
 };
 
 const StyledListItemIcon = styled(ListItemIcon)({
@@ -37,15 +37,12 @@ const StyledListItemIcon = styled(ListItemIcon)({
   },
 });
 
-const MessageActions = ({
-  message,
-  deleteMessageFunction,
-  isOwn = false,
-}: Props) => {
+const MessageActions = ({ message, isOwn = false, itemId }: Props) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const { t } = useTranslation(NS.Chatbox);
   const { enableEdit } = useEditingContext();
+  const { deleteMessage } = useChatboxProvider({ itemId });
 
   const handleOnClickMenu = (e: MouseEvent<HTMLButtonElement>): void => {
     setMenuAnchor(e.currentTarget);
@@ -57,7 +54,7 @@ const MessageActions = ({
   };
 
   const handleDeleteMessage = (): void => {
-    deleteMessageFunction?.({ itemId: message.itemId, messageId: message.id });
+    deleteMessage({ path: { itemId: message.itemId, messageId: message.id } });
     handleOnCloseMenu();
   };
 

@@ -125,7 +125,7 @@ export type NullableMember = null | {
 /**
  * Current authenticated account, that can be a member or a guest
  */
-export type CurrentAccountSchemaRef = {
+export type CurrentAccount = {
     id: string;
     name: string;
     createdAt: string;
@@ -156,7 +156,7 @@ export type CurrentAccountSchemaRef = {
 /**
  * Current authenticated account, that can be a member or a guest, or null
  */
-export type NullableCurrentAccountSchemaRef = (null | {
+export type NullableCurrentAccount = (null | {
     id: string;
     name: string;
     createdAt: string;
@@ -1007,7 +1007,7 @@ export type GetCurrentAccountResponses = {
     /**
      * Current authenticated account, that can be a member or a guest, or null
      */
-    200: NullableCurrentAccountSchemaRef;
+    200: NullableCurrentAccount;
 };
 
 export type GetCurrentAccountResponse = GetCurrentAccountResponses[keyof GetCurrentAccountResponses];
@@ -1042,7 +1042,7 @@ export type UpdateCurrentAccountResponses = {
     /**
      * Current authenticated account, that can be a member or a guest
      */
-    200: CurrentAccountSchemaRef;
+    200: CurrentAccount;
 };
 
 export type UpdateCurrentAccountResponse = UpdateCurrentAccountResponses[keyof UpdateCurrentAccountResponses];
@@ -1424,7 +1424,7 @@ export type ExportMemberDataError = ExportMemberDataErrors[keyof ExportMemberDat
 
 export type ExportMemberDataResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
     204: void;
 };
@@ -2382,7 +2382,7 @@ export type CollectionSearchData = {
         cropLength?: number;
         query?: string;
         page?: number;
-        limit?: number;
+        hitsPerPage?: number;
         sort?: Array<string>;
         highlightPreTag?: string;
         highlightPostTag?: string;
@@ -2429,7 +2429,7 @@ export type GetFacetsForNameData = {
         query?: string;
         langs?: Array<string>;
         isPublishedRoot?: boolean;
-        facets?: Array<string>;
+        facets?: Array<'isPublishedRoot' | 'isHidden' | 'lang' | 'likes' | 'creator' | 'level' | 'discipline' | 'resource-type'>;
         tags?: {
             level?: Array<string>;
             discipline?: Array<string>;
@@ -2438,7 +2438,7 @@ export type GetFacetsForNameData = {
     };
     path?: never;
     query: {
-        facetName: string;
+        facetName: 'isPublishedRoot' | 'isHidden' | 'lang' | 'likes' | 'creator' | 'level' | 'discipline' | 'resource-type';
     };
     url: '/items/collections/facets';
 };
@@ -2462,6 +2462,39 @@ export type GetFacetsForNameResponses = {
 };
 
 export type GetFacetsForNameResponse = GetFacetsForNameResponses[keyof GetFacetsForNameResponses];
+
+export type GetFeaturedCollectionsData = {
+    body?: never;
+    path?: never;
+    query?: {
+        limit?: number;
+    };
+    url: '/items/collections/featured';
+};
+
+export type GetFeaturedCollectionsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type GetFeaturedCollectionsError = GetFeaturedCollectionsErrors[keyof GetFeaturedCollectionsErrors];
+
+export type GetFeaturedCollectionsResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        totalHits?: number;
+        estimatedTotalHits?: number;
+        processingTimeMs: number;
+        query: string;
+        hits: Array<SearchHit>;
+    };
+};
+
+export type GetFeaturedCollectionsResponse = GetFeaturedCollectionsResponses[keyof GetFeaturedCollectionsResponses];
 
 export type GetMostLikedCollectionsData = {
     body?: never;
@@ -3805,6 +3838,20 @@ export type GetItemsPublicationByItemIdStatusResponses = {
     200: unknown;
 };
 
+export type GetItemsH5pAssetsIntegrationHtmlData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/items/h5p-assets/integration.html';
+};
+
+export type GetItemsH5pAssetsIntegrationHtmlResponses = {
+    /**
+     * Default Response
+     */
+    200: unknown;
+};
+
 export type ImportH5pData = {
     body?: never;
     path?: never;
@@ -4008,10 +4055,8 @@ export type DownloadFileResponses = {
     /**
      * a stream of data for the export zip content
      */
-    200: any
+    200: unknown;
 };
-
-export type DownloadFileResponse = DownloadFileResponses[keyof DownloadFileResponses];
 
 export type ExportZipData = {
     body?: never;
