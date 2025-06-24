@@ -596,7 +596,7 @@ export const REMOVE_THUMBNAIL_BUTTON = 'removeThumbnailButton';
 export const MUI_CHIP_REMOVE_BTN = 'CancelIcon';
 export const HOME_LOAD_MORE_BUTTON_SELECTOR = '[role="feed"]';
 export const buildItemsGridMoreButtonSelector = (id: string): string =>
-  `#${buildItemCard(id)} [data-testid="MoreVertIcon"]`;
+  `#${buildItemCard(id)} [aria-label="More"]`;
 export const buildItemMenuId = (id: string): string => `item-menu-id-${id}`;
 export const buildItemMenuDataCy = (id: string): string => `item-menu-id-${id}`;
 export const SORTING_SELECT_SELECTOR_TEST_ID = 'sortingSelect';

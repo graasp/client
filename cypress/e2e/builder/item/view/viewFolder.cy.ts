@@ -56,7 +56,7 @@ describe('View folder as guest', () => {
     cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
 
     // menu item only contains flag
-    cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).click();
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).click();
     cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
     cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('not.exist');
   });
@@ -77,7 +77,7 @@ describe('View folder as reader', () => {
     cy.get(`#${CREATE_ITEM_BUTTON_ID}`).should('not.exist');
 
     // menu item contains flag, duplicate, shortcut, bookmark
-    cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).click();
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).click();
     cy.get(`.${ITEM_MENU_FLAG_BUTTON_CLASS}`).should('be.visible');
     cy.get(`.${ITEM_MENU_SHORTCUT_BUTTON_CLASS}`).should('be.visible');
     cy.get(`.${ITEM_MENU_BOOKMARK_BUTTON_CLASS}`).should('be.visible');

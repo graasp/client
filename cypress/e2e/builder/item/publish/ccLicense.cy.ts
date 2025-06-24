@@ -156,16 +156,25 @@ const openLicenseModal = (
     )
     .click();
 
-const ensureRadioCheckedState = (parentId: string, shouldBeChecked: boolean) =>
-  cy
-    .get(`#${parentId}`)
-    // MUI doesn't update the `checked` attribute of checkboxes.
-    .find('svg[data-testid=RadioButtonCheckedIcon]')
-    .should(
-      'have.css',
-      'transform',
-      `matrix(${shouldBeChecked ? '1, 0, 0, 1, 0, 0' : '0, 0, 0, 0, 0, 0'})`,
-    );
+const ensureRadioCheckedState = (
+  parentId: string,
+  shouldBeChecked: boolean,
+) => {
+  if (shouldBeChecked) {
+    cy.get(`#${parentId}`)
+      // MUI doesn't update the `checked` attribute of checkboxes.
+      .find('input:not(:disabled):checked');
+    // .should(
+    //   'have.css',
+    //   'transform',
+    //   `matrix(${shouldBeChecked ? '1, 0, 0, 1, 0, 0' : '0, 0, 0, 0, 0, 0'})`,
+    // );
+  } else {
+    cy.get(`#${parentId}`)
+      // MUI doesn't update the `checked` attribute of checkboxes.
+      .find('input:not(:disabled):not(:checked)');
+  }
+};
 
 describe('Creative Commons License', () => {
   describe('No license', () => {

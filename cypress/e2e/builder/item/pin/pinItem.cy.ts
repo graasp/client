@@ -27,9 +27,7 @@ describe('Anonymous', () => {
   });
   it("Can see item but can't pin", () => {
     cy.get(`#${ITEM_HEADER_ID}`).should('be.visible');
-    cy.get(`#${ITEM_HEADER_ID} [data-testid="MoreVertIcon"]`).should(
-      'not.exist',
-    );
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).should('not.exist');
   });
 });
 

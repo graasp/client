@@ -67,5 +67,8 @@
     "LOG_IN": "Log in",
     "LOG_OUT": "Log out",
     "NEED_HELP": "Need help?"
+  },
+  "ARIA": {
+    "MORE": "More"
   }
 }
