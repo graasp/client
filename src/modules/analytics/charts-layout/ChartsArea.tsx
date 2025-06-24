@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { Grid2, Stack } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 
 import ActionsByDayChart from '../charts/ActionsByDayChart';
 import ActionsByTimeOfDayChart from '../charts/ActionsByTimeOfDayChart';
@@ -15,14 +15,14 @@ const ChartsArea = ({ itemId }: { itemId: string }): JSX.Element => (
     >
       <ActionsByDayChart itemId={itemId} />
     </Stack>
-    <Grid2 container>
-      <Grid2 size={{ xs: 12, lg: 6 }}>
+    <Grid container>
+      <Grid size={{ xs: 12, lg: 6 }}>
         <ActionsByTimeOfDayChart itemId={itemId} />
-      </Grid2>
-      <Grid2 size={{ xs: 12, lg: 6 }}>
+      </Grid>
+      <Grid size={{ xs: 12, lg: 6 }}>
         <ActionsByWeekdayChart itemId={itemId} />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   </>
 );
 

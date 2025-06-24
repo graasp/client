@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { LoadingButton } from '@mui/lab';
 import { Alert, Box, Stack, Typography } from '@mui/material';
 
 import { isPasswordStrong } from '@graasp/sdk';
@@ -159,7 +158,7 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
           <Button variant="outlined" onClick={onClose} size="small">
             {translateCommon('CANCEL.BUTTON_TEXT')}
           </Button>
-          <LoadingButton
+          <Button
             variant="contained"
             color="primary"
             id={PASSWORD_SAVE_BUTTON_ID}
@@ -170,7 +169,7 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
             data-umami-event="update-password"
           >
             {translateCommon('SAVE.BUTTON_TEXT')}
-          </LoadingButton>
+          </Button>
         </Stack>
       </Stack>
     </BorderedSection>

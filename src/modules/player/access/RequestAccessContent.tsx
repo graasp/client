@@ -1,8 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Stack, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 
 import {
   DiscriminatedItem,
@@ -86,7 +85,7 @@ export function RequestAccessContent({
       <Typography variant="h3">
         {translatePlayer('REQUEST_ACCESS_TITLE')}
       </Typography>
-      <LoadingButton
+      <Button
         id={REQUEST_MEMBERSHIP_BUTTON_ID}
         variant="contained"
         disabled={isSuccess}
@@ -99,7 +98,7 @@ export function RequestAccessContent({
         {isSuccess
           ? translatePlayer('REQUEST_ACCESS_SENT_BUTTON')
           : translatePlayer('REQUEST_ACCESS_BUTTON')}
-      </LoadingButton>
+      </Button>
       <Typography variant="subtitle2">
         {translatePlayer('ITEM_LOGIN_HELPER_SIGN_OUT', {
           email: member.email,

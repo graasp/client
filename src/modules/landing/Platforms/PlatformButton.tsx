@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Button,
-  Grid2,
+  Grid,
   Stack,
   Typography,
   useMediaQuery,
@@ -47,7 +47,7 @@ export function PlatformButton({
     />
   );
   return (
-    <Grid2
+    <Grid
       id="puzzleButtonContainer"
       container
       size={{ xs: 6, lg: 12 }}
@@ -87,6 +87,6 @@ export function PlatformButton({
       >
         {buttonText}
       </Button>
-    </Grid2>
+    </Grid>
   );
 }

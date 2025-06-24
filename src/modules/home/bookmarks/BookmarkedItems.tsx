@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Button,
-  Grid2 as Grid,
+  Grid,
   Skeleton,
   Stack,
   Typography,

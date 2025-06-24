@@ -3,7 +3,7 @@ import { type JSX, type ReactNode } from 'react';
 import {
   Box,
   CardActions,
-  Grid2 as Grid,
+  Grid,
   Card as MuiCard,
   Stack,
   SxProps,

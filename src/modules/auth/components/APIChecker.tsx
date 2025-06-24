@@ -1,8 +1,14 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Alert, AlertTitle, Box, Stack, Typography } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 import { RotateCcwIcon } from 'lucide-react';
 
@@ -36,14 +42,14 @@ export function APIChecker(): JSX.Element | null {
           <Stack direction="column" alignItems="center" spacing={1}>
             <Typography>{t(AUTH.API_UNAVAILABLE_EXPLANATION)}</Typography>
             <Typography>{t(AUTH.API_UNAVAILABLE_INSTRUCTIONS)}</Typography>
-            <LoadingButton
+            <Button
               loading={isLoading}
               sx={{ maxWidth: 'min-content' }}
               endIcon={<RotateCcwIcon />}
               onClick={() => refetch()}
             >
               {t(AUTH.API_UNAVAILABLE_BUTTON)}
-            </LoadingButton>
+            </Button>
           </Stack>
         </Alert>
       </Box>

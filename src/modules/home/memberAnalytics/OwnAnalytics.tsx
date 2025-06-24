@@ -1,7 +1,7 @@
 import { type JSX, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Grid2, Skeleton, Stack, Typography } from '@mui/material';
+import { Alert, Grid, Skeleton, Stack, Typography } from '@mui/material';
 
 import { Action, ActionTriggers } from '@graasp/sdk';
 
@@ -55,16 +55,16 @@ function fmtDate(date: Date) {
 const placeholder = Array(4).fill(() => v4());
 function MemberStatsLoading() {
   return (
-    <Grid2 container spacing={2}>
+    <Grid container spacing={2}>
       {placeholder.map((id) => (
-        <Grid2 key={id} size={3}>
+        <Grid key={id} size={3}>
           <Skeleton variant="rounded" height="80px" width="100%" />
-        </Grid2>
+        </Grid>
       ))}
-      <Grid2 size={12}>
+      <Grid size={12}>
         <Skeleton variant="rounded" height="450px" />
-      </Grid2>
-    </Grid2>
+      </Grid>
+    </Grid>
   );
 }
 

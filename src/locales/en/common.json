@@ -67,5 +67,10 @@
     "LOG_IN": "Log in",
     "LOG_OUT": "Log out",
     "NEED_HELP": "Need help?"
+  },
+  "ARIA": {
+    "MORE": "More",
+    "REMOVE_BOOKMARK": "Remove bookmark",
+    "ADD_LOCATION": "Add at this location"
   }
 }

@@ -8,10 +8,8 @@ import {
 import {
   ITEM_HEADER_ID,
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
-  MUI_CHIP_REMOVE_BTN,
   buildCustomizedTagsSelector,
   buildDataCyWrapper,
-  buildDataTestIdWrapper,
   buildMultiSelectChipInputId,
   buildPublishButtonId,
 } from '../../../../../src/config/selectors';
@@ -89,9 +87,9 @@ describe('Customized Tags', () => {
     const tagToRemove = ITEM_WITH_TAGS.tags[1];
 
     visitItemPage(item);
-    cy.get(buildDataCyWrapper(buildCustomizedTagsSelector(tagToRemove.id)))
-      .find(buildDataTestIdWrapper(MUI_CHIP_REMOVE_BTN))
-      .click();
+    cy.get(
+      `${buildDataCyWrapper(buildCustomizedTagsSelector(tagToRemove.id))} svg`,
+    ).click();
 
     cy.wait('@removeTag', { timeout: EDIT_TAG_REQUEST_TIMEOUT }).then(
       (data) => {

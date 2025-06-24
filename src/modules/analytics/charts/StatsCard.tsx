@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { Grid2 as Grid, Paper, Stack, Typography } from '@mui/material';
+import { Grid, Paper, Stack, Typography } from '@mui/material';
 
 type Props = {
   icon: JSX.Element;

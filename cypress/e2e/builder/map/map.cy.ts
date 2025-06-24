@@ -24,7 +24,7 @@ describe('Map', () => {
     // open location button
     cy.get(`#${buildMapViewId()}`).click();
     cy.get(`#${buildMapViewId()} img[role="button"]`).click({ force: true });
-    cy.get(`[data-testid="AddLocationAltIcon"]`).click({ force: true });
+    cy.get(`[aria-label="Add at this location"]`).click({ force: true });
 
     // open folder form
     cy.get(`#${CREATE_ITEM_FOLDER_ID}`).click();

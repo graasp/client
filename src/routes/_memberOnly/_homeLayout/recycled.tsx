@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Alert, Stack } from '@mui/material';
+import { Alert, Button, Stack } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -94,14 +93,14 @@ function RecycledItemsScreenContent() {
               ))}
               {hasNextPage && (
                 <Stack textAlign="center" alignItems="center">
-                  <LoadingButton
+                  <Button
                     variant="outlined"
                     onClick={() => fetchNextPage()}
                     role="feed"
                     loading={isFetching}
                   >
                     {translateBuilder(BUILDER.HOME_SCREEN_LOAD_MORE_BUTTON)}
-                  </LoadingButton>
+                  </Button>
                 </Stack>
               )}
             </DragContainerStack>

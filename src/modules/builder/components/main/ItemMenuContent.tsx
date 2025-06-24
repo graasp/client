@@ -1,6 +1,6 @@
 import { type JSX, MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { MoreVert } from '@mui/icons-material';
 import { Divider, IconButton, Menu } from '@mui/material';
 
 import {
@@ -12,7 +12,9 @@ import {
 } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
+import { MoreVerticalIcon } from 'lucide-react';
 
+import { NS } from '@/config/constants';
 import { buildItemMenuDataCy, buildItemMenuId } from '@/config/selectors';
 import { NullableAugmentedAccount } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
@@ -47,6 +49,7 @@ function GuestAndPublicMenu({
   item,
   account,
 }: Readonly<GuestAndPublicMenuProps>) {
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const internalId = buildItemMenuId(item.id);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -70,8 +73,9 @@ function GuestAndPublicMenu({
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
+        aria-label={t('MORE')}
       >
-        <MoreVert />
+        <MoreVerticalIcon />
       </IconButton>
       <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
         {item.type !== ItemType.FOLDER && (
@@ -91,6 +95,7 @@ type Props = {
  * Menu of actions for item card
  */
 const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const { data: member } = useQuery(getCurrentAccountOptions());
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -292,13 +297,14 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
       />
       <EditModal onClose={closeEditModal} open={isEditModalOpen} item={item} />
       <IconButton
+        aria-label={t('MORE')}
         aria-controls={open ? internalId : undefined}
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
         data-cy={buildItemMenuDataCy(item.id)}
       >
-        <MoreVert />
+        <MoreVerticalIcon />
       </IconButton>
       <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
         {menus.map((elem) => elem)}

@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Alert, Stack, TextField } from '@mui/material';
+import { Alert, Button, Stack, TextField } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
@@ -106,7 +105,7 @@ export function RequestPasswordReset() {
             {t(AUTH.REQUEST_PASSWORD_RESET_SUCCESS_MESSAGE)}
           </Alert>
         ) : (
-          <LoadingButton
+          <Button
             variant="contained"
             loading={isLoading}
             id={REQUEST_PASSWORD_RESET_SUBMIT_BUTTON_ID}
@@ -115,7 +114,7 @@ export function RequestPasswordReset() {
             disabled={hasErrors}
           >
             {t(AUTH.REQUEST_PASSWORD_RESET_BUTTON)}
-          </LoadingButton>
+          </Button>
         )}
       </Stack>
       <TypographyLink

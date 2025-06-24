@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, LoadingButton } from '@mui/lab';
+import { Alert, Button } from '@mui/material';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
@@ -63,14 +63,14 @@ export const InvalidButton = ({ item, isLoading }: Props): JSX.Element => {
         />
       )}
       <PublicationButton isLoading={isLoading} description={description}>
-        <LoadingButton
+        <Button
           variant="contained"
           onClick={handleValidateItem}
           loading={isValidating}
           data-cy={buildItemPublicationButton(PublicationStatus.Invalid)}
         >
           {t(BUILDER.LIBRARY_SETTINGS_RETRY_BUTTON)}
-        </LoadingButton>
+        </Button>
       </PublicationButton>
     </>
   );

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Grid2 as Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 

@@ -1,9 +1,9 @@
 import { PackedDocumentItemFactory, PermissionLevel } from '@graasp/sdk';
 
 import {
+  CHATBOX_DRAWER_ID,
   ITEM_CHATBOX_BUTTON_ID,
   ITEM_CHATBOX_ID,
-  PANEL_CLOSE_BUTTON_SELECTOR,
 } from '../../../src/config/selectors';
 import {
   ITEM_WITHOUT_CHAT_BOX,
@@ -56,7 +56,7 @@ describe('Chatbox', () => {
 
     cy.get(`#${ITEM_CHATBOX_ID}`).should('be.visible');
 
-    cy.get(PANEL_CLOSE_BUTTON_SELECTOR).click();
+    cy.get(`#${CHATBOX_DRAWER_ID} .lucide-chevron-right`).click();
     cy.get(`#${ITEM_CHATBOX_ID}`).should('not.be.visible');
   });
 

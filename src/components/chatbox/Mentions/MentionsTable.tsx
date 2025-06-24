@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Check, Close, FiberManualRecord } from '@mui/icons-material';
 import {
   Button,
-  Grid2 as Grid,
+  Grid,
   IconButton,
   Stack,
   Table,

@@ -1,6 +1,6 @@
 import { type JSX, MouseEvent, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { MoreVert } from '@mui/icons-material';
 import { Divider, IconButton, Menu } from '@mui/material';
 
 import {
@@ -11,6 +11,9 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
+import { MoreVerticalIcon } from 'lucide-react';
+
+import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_MENU_BOOKMARK_BUTTON_CLASS } from '@/config/selectors';
 import { ActionButton } from '@/ui/types';
@@ -40,6 +43,7 @@ const internalId = 'menu';
  * or does not make sense in the context of the item
  */
 const Actions = ({ item }: Props): JSX.Element[] | null => {
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const { data: member } = hooks.useCurrentMember();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -90,12 +94,13 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     />,
     <IconButton
       key="moreVertButton"
+      aria-label={t('MORE')}
       aria-controls={open ? internalId : undefined}
       aria-haspopup="true"
       aria-expanded={open}
       onClick={handleClick}
     >
-      <MoreVert />
+      <MoreVerticalIcon />
     </IconButton>,
     <Menu
       key="menu"

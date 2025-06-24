@@ -5,7 +5,7 @@ import {
   Card,
   CardActionArea,
   CardContent,
-  Grid2 as Grid,
+  Grid,
   Skeleton,
   Typography,
   styled,

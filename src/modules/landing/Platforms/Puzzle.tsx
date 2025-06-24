@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Grid2, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
@@ -22,13 +22,13 @@ export function PuzzleSection(): JSX.Element {
         <Typography variant="h2" textAlign="center">
           {t('HOME.PUZZLE.TITLE')}
         </Typography>
-        <Grid2
+        <Grid
           container
           direction={{ xs: 'column', lg: 'row' }}
           alignItems="center"
           spacing={5}
         >
-          <Grid2
+          <Grid
             size={{ xs: 12, lg: 6 }}
             justifySelf="center"
             order={{ xs: 0, lg: 1 }}
@@ -36,8 +36,8 @@ export function PuzzleSection(): JSX.Element {
             maxWidth={{ xs: '600px' }}
           >
             <BuilderPuzzle />
-          </Grid2>
-          <Grid2
+          </Grid>
+          <Grid
             container
             direction={{ xs: 'row', lg: 'column' }}
             spacing={{ xs: 2, lg: 8 }}
@@ -57,8 +57,8 @@ export function PuzzleSection(): JSX.Element {
               description={t('HOME.PUZZLE.PLAYER.DESCRIPTION')}
               direction="left"
             />
-          </Grid2>
-          <Grid2
+          </Grid>
+          <Grid
             container
             direction={{ xs: 'row', lg: 'column' }}
             spacing={{ xs: 2, lg: 8 }}
@@ -78,8 +78,8 @@ export function PuzzleSection(): JSX.Element {
               buttonText={t('HOME.PUZZLE.LIBRARY.BUTTON_TEXT')}
               description={t('HOME.PUZZLE.LIBRARY.DESCRIPTION')}
             />
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       </Stack>
     </Stack>
   );

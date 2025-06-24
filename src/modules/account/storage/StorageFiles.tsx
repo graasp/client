@@ -1,9 +1,9 @@
 import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
 import {
   Alert,
+  Button,
   Skeleton,
   Stack,
   Table,
@@ -108,14 +108,14 @@ export const StorageFiles = (): JSX.Element | null => {
         </Table>
         {hasNextPage && (
           <Stack textAlign="center" alignItems="center">
-            <LoadingButton
+            <Button
               loading={isFetching}
               variant="outlined"
               onClick={() => fetchNextPage()}
               role="feed"
             >
               {t('STORAGE_LOAD_MORE_FILES')}
-            </LoadingButton>
+            </Button>
           </Stack>
         )}
       </>

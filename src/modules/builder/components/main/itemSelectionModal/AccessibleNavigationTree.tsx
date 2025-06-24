@@ -1,8 +1,7 @@
 import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Alert, Skeleton, Stack } from '@mui/material';
+import { Alert, Button, Skeleton, Stack } from '@mui/material';
 
 import { ItemType, PermissionLevel } from '@graasp/sdk';
 
@@ -69,7 +68,7 @@ const AccessibleNavigationTree = ({
         </Stack>
         {hasNextPage && (
           <Stack textAlign="center" alignItems="center">
-            <LoadingButton
+            <Button
               variant="text"
               onClick={() => fetchNextPage()}
               role="feed"
@@ -77,7 +76,7 @@ const AccessibleNavigationTree = ({
               loading={isFetching}
             >
               {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
-            </LoadingButton>
+            </Button>
           </Stack>
         )}
       </Stack>

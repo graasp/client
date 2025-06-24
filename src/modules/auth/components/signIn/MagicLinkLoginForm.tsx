@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
@@ -111,7 +110,7 @@ export function MagicLinkLoginForm({
         error={emailError}
       />
       <ErrorDisplay error={signInError} />
-      <LoadingButton
+      <Button
         type="submit"
         id={SIGN_IN_BUTTON_ID}
         variant="contained"
@@ -120,7 +119,7 @@ export function MagicLinkLoginForm({
         loading={isLoadingMobileSignIn || isLoadingSignIn}
       >
         {t(AUTH.SIGN_IN_BUTTON)}
-      </LoadingButton>
+      </Button>
     </Stack>
   );
 }
