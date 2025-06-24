@@ -12,6 +12,7 @@ import { EditingContextProvider } from '../context/EditingContext.js';
 import { MessagesContextProvider } from '../context/MessagesContext.js';
 import { InputBar } from './InputBar.js';
 import { Messages } from './Messages.js';
+import { useItemChatUpdates } from './useChatboxProvider.js';
 
 const ChatboxContainer = styled('div')({
   // set height of full container
@@ -43,6 +44,9 @@ export function Chatbox({
   itemId,
   showAdminTools = false,
 }: Readonly<Props>): JSX.Element {
+  // enable websockets
+  useItemChatUpdates(itemId);
+
   return (
     <EditingContextProvider>
       <MessagesContextProvider itemId={itemId} messages={messages}>

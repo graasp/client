@@ -1,5 +1,6 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { DeleteForever } from '@mui/icons-material';
 import {
@@ -32,7 +33,12 @@ const ClearChatButton = ({ chatId }: Props): JSX.Element | null => {
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const { t } = useTranslation(NS.Builder);
   const { t: tCommon } = useTranslation(NS.Common);
-  const { mutate: clearChat } = useMutation(clearChatMessageMutation());
+  const { mutate: clearChat } = useMutation({
+    ...clearChatMessageMutation(),
+    onError: () => {
+      toast.error(t('CHATBOX.CLEAR_ERROR'));
+    },
+  });
 
   const handleClearChat = () => {
     clearChat({ path: { itemId: chatId } });
