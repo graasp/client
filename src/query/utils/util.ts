@@ -1,6 +1,3 @@
-export const isServer = () =>
-  !(typeof window !== 'undefined' && window.document);
-
 export const paginate = <U>(
   list: U[],
   pageSize: number,
