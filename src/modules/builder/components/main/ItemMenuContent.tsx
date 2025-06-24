@@ -49,6 +49,7 @@ function GuestAndPublicMenu({
   item,
   account,
 }: Readonly<GuestAndPublicMenuProps>) {
+  const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const internalId = buildItemMenuId(item.id);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -72,6 +73,7 @@ function GuestAndPublicMenu({
         aria-haspopup="true"
         aria-expanded={open}
         onClick={handleClick}
+        aria-label={t('MORE')}
       >
         <MoreVerticalIcon />
       </IconButton>
