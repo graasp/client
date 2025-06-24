@@ -1,8 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, LoadingButton } from '@mui/lab';
-import { Stack } from '@mui/material';
+import { Alert, Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
@@ -133,7 +132,7 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
         </TypographyLink>
       </Stack>
       <ErrorDisplay error={passwordSignInError} />
-      <LoadingButton
+      <Button
         type="submit"
         disabled={Boolean(passwordError) || Boolean(emailError)}
         id={PASSWORD_SIGN_IN_BUTTON_ID}
@@ -144,7 +143,7 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
         loading={isLoadingMobilePasswordSignIn || isLoadingPasswordSignIn}
       >
         {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
-      </LoadingButton>
+      </Button>
 
       {(signInWithPasswordSuccess || mobileSignInWithPasswordSuccess) && (
         <Alert severity="success" id={PASSWORD_SUCCESS_ALERT}>

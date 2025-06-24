@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
 import {
   Alert,
+  Button,
   Checkbox,
   FormControlLabel,
   Stack,
@@ -225,7 +225,7 @@ function ResetPassword() {
             </ButtonLink>
           </>
         ) : (
-          <LoadingButton
+          <Button
             id={RESET_PASSWORD_SUBMIT_BUTTON_ID}
             variant="contained"
             loading={isLoading}
@@ -234,7 +234,7 @@ function ResetPassword() {
             disabled={hasErrors || isError}
           >
             {t('RESET_PASSWORD_BUTTON')}
-          </LoadingButton>
+          </Button>
         )}
       </Stack>
       {

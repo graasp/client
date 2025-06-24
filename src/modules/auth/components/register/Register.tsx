@@ -2,8 +2,13 @@ import type { JSX } from 'react';
 import { Control, useController, useForm } from 'react-hook-form';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Checkbox, FormControlLabel, Stack, Typography } from '@mui/material';
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 import {
   MAX_USERNAME_LENGTH,
@@ -277,7 +282,7 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
           <AgreementForm control={control} />
         </Stack>
         <ErrorDisplay error={webRegisterError || mobileRegisterError} />
-        <LoadingButton
+        <Button
           id={REGISTER_BUTTON_ID}
           type="submit"
           variant="contained"
@@ -286,7 +291,7 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
           disabled={disableRegister}
         >
           {t('SIGN_UP_BUTTON')}
-        </LoadingButton>
+        </Button>
       </Stack>
       <TypographyLink color="textSecondary" to="/auth/login" search={search}>
         {t('SIGN_IN_LINK_TEXT')}

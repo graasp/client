@@ -3,7 +3,7 @@ import type { JSX } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { Grid2 as Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 import DraggableElement, { DraggableElementProps } from './DraggableElement.js';
 import InBetween, { InBetweenProps } from './InBetween.js';

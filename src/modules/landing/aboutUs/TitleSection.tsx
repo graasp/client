@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Grid2 as Grid, Stack, Typography, styled } from '@mui/material';
+import { Box, Grid, Stack, Typography, styled } from '@mui/material';
 
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';

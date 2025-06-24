@@ -2,13 +2,7 @@ import { ChangeEventHandler, type JSX, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import {
-  Alert,
-  Box,
-  DialogContent,
-  Grid2 as Grid,
-  TextField,
-} from '@mui/material';
+import { Alert, Box, DialogContent, Grid, TextField } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { CUSTOM_APP_CYPRESS_ID } from '@/config/selectors';

@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Alert, Box, LinearProgress, Stack } from '@mui/material';
+import { Alert, Box, Button, LinearProgress, Stack } from '@mui/material';
 
 import { PackedItem, Paginated } from '@graasp/sdk';
 
@@ -186,14 +185,14 @@ function Content({
         />
         {hasNextPage && (
           <Stack textAlign="center" alignItems="center">
-            <LoadingButton
+            <Button
               variant="outlined"
               onClick={fetchNextPage}
               role="feed"
               loading={isFetching}
             >
               {translateBuilder('HOME_SCREEN_LOAD_MORE_BUTTON')}
-            </LoadingButton>
+            </Button>
           </Stack>
         )}
         {!hasNextPage && (

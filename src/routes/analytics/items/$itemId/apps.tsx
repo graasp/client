@@ -1,7 +1,7 @@
 import { type JSX, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Grid2, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 
 import { Context, ItemType, PackedItem, PermissionLevel } from '@graasp/sdk';
 
@@ -38,18 +38,18 @@ function AppsAnalyticPage(): JSX.Element | null {
     return (
       <>
         <SectionTitle title={t('APPS_ANALYTICS_TITLE')} />
-        <Grid2 container spacing={2} p={2} id={APPS_ID} width="100%">
+        <Grid container spacing={2} p={2} id={APPS_ID} width="100%">
           {descendantApps.map((item) => (
-            <Grid2
+            <Grid
               key={item.id}
               size={{ xs: 12 }}
               id={buildAppItemSelector(item.id)}
               className={APP_ITEM_CLASS_NAME}
             >
               <AppContent item={item} member={user} />
-            </Grid2>
+            </Grid>
           ))}
-        </Grid2>
+        </Grid>
       </>
     );
   }

@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Grid2 as Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
 import { Link, createFileRoute } from '@tanstack/react-router';
 

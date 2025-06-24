@@ -1,11 +1,11 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import LinkIcon from '@mui/icons-material/Link';
-import { LoadingButton } from '@mui/lab';
 import { Alert, Button } from '@mui/material';
 
 import { Context, PackedItem, PublicationStatus } from '@graasp/sdk';
+
+import { LinkIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -38,14 +38,14 @@ export const PublishedButton = ({ item, isLoading }: Props): JSX.Element => {
 
   return (
     <PublicationButton isLoading={isLoading} description={description}>
-      <LoadingButton
+      <Button
         variant="outlined"
         loading={isUnPublishing}
         onClick={handleUnPublishItem}
         data-cy={buildItemPublicationButton(PublicationStatus.Published)}
       >
         {t('LIBRARY_SETTINGS_UNPUBLISH_BUTTON')}
-      </LoadingButton>
+      </Button>
       <Button
         variant="contained"
         startIcon={<LinkIcon />}

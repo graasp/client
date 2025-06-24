@@ -94,8 +94,8 @@ const CountryForm = ({
         getOptionLabel={(o) => o.name}
         sx={{ minWidth: 250 }}
         // set custom popper to force placement
-        PopperComponent={CustomPopper({ placement })}
-        componentsProps={
+        slots={{ popper: CustomPopper({ placement }) }}
+        slotProps={
           placement !== 'auto'
             ? {
                 popper: {
@@ -117,9 +117,11 @@ const CountryForm = ({
           <TextField
             {...params}
             sx={{ background: 'transparent' }}
-            InputProps={{
-              ...params.InputProps,
-              sx: { borderRadius: '15px' },
+            slotProps={{
+              input: {
+                ...params.InputProps,
+                sx: { borderRadius: '15px' },
+              },
             }}
             label={t('Select a country')}
           />

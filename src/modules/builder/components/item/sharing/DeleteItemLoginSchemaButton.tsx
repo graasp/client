@@ -1,9 +1,9 @@
 import type { JSX } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
 import {
   Alert,
+  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -16,7 +16,6 @@ import { DiscriminatedItem, ItemLoginSchemaStatus } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { DELETE_GUEST_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import Button from '@/ui/buttons/Button/Button';
 
 import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -96,10 +95,15 @@ function DeleteItemLoginSchemaButton({
             </ul>
           </DialogContent>
           <DialogActions>
-            <Button size="small" variant="text" onClick={closeModal}>
+            <Button
+              size="small"
+              variant="text"
+              color="primary"
+              onClick={closeModal}
+            >
               {translateCommon('CANCEL.BUTTON_TEXT')}
             </Button>
-            <LoadingButton
+            <Button
               id={DELETE_GUEST_CONFIRM_BUTTON_ID}
               color="error"
               size="small"
@@ -107,7 +111,7 @@ function DeleteItemLoginSchemaButton({
               loading={isPending}
             >
               {translateBuilder(BUILDER.DELETE_GUESTS_MODAL_DELETE_BUTTON)}
-            </LoadingButton>
+            </Button>
           </DialogActions>
         </Dialog>
       </>

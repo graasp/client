@@ -1,8 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { LoadingButton } from '@mui/lab';
-import { Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 import { PackedItem, PublicationStatus } from '@graasp/sdk';
 
@@ -68,14 +67,14 @@ export const ReadyToPublishButton = ({
         />
       )}
       <PublicationButton isLoading={isLoading} description={description}>
-        <LoadingButton
+        <Button
           variant="contained"
           loading={isPublishing}
           onClick={handlePublishItem}
           data-cy={buildItemPublicationButton(PublicationStatus.ReadyToPublish)}
         >
           {t(BUILDER.LIBRARY_SETTINGS_PUBLISH_BUTTON)}
-        </LoadingButton>
+        </Button>
       </PublicationButton>
     </>
   );
