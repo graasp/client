@@ -12,7 +12,8 @@
     "HOME": "Heim",
     "STATS": "Nutzungsstatistiken",
     "SETTINGS": "Einstellungen",
-    "STORAGE": "Speicherkontingent"
+    "STORAGE": "Speicherkontingent",
+    "LANDING": "Landungsseite"
   },
   "SAVE_ACTIONS_TOGGLE_TOOLTIP": "Wir sammeln Analysedaten, um Ihre Benutzererfahrung beim Surfen auf Graasp zu verbessern.",
   "PERSONAL_INFORMATION_TITLE": "Persönliche Angaben",
