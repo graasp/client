@@ -69,6 +69,8 @@
     "NEED_HELP": "Need help?"
   },
   "ARIA": {
-    "MORE": "More"
+    "MORE": "More",
+    "REMOVE_BOOKMARK": "Remove bookmark",
+    "ADD_LOCATION": "Add at this location"
   }
 }

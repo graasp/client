@@ -196,7 +196,6 @@ export const ITEM_MAP_BUTTON_ID = 'itemMapButton';
 export const ITEM_PINNED_BUTTON_ID = 'itemPinnedButton';
 
 export const CHATBOX_DRAWER_ID = 'chatboxDrawer';
-export const PANEL_CLOSE_BUTTON_SELECTOR = `#${CHATBOX_DRAWER_ID} [data-testid="ChevronRightIcon"]`;
 
 export const ITEM_FULLSCREEN_BUTTON_ID = 'item-fullscreen-button';
 
@@ -539,7 +538,6 @@ export const buildShortLinkUrlTextId = (
 ): string => `shortLinkUrlText-${platform}`;
 export const ACCESSIBLE_ITEMS_ONLY_ME_ID = 'accessibleItemsOnlyMe';
 export const ACCESSIBLE_ITEMS_TABLE_ID = 'accessibleItemsTable';
-export const ACCESSIBLE_ITEMS_NEXT_PAGE_BUTTON_SELECTOR = `#${ACCESSIBLE_ITEMS_TABLE_ID} [data-testid="KeyboardArrowRightIcon"]`;
 export const MY_GRAASP_ITEM_PATH = 'myGraaspItemPath';
 export const LANGUAGE_SELECTOR_ID = 'languageSelector';
 
@@ -593,7 +591,6 @@ export const IMAGE_PLACEHOLDER_FOLDER = 'imagePlaceholderFolder';
 export const IMAGE_THUMBNAIL_UPLOADER = 'imageThumbnailUploader';
 export const REMOVE_THUMBNAIL_BUTTON = 'removeThumbnailButton';
 
-export const MUI_CHIP_REMOVE_BTN = 'CancelIcon';
 export const HOME_LOAD_MORE_BUTTON_SELECTOR = '[role="feed"]';
 export const buildItemsGridMoreButtonSelector = (id: string): string =>
   `#${buildItemCard(id)} [aria-label="More"]`;
@@ -640,4 +637,4 @@ export const DELETE_GUEST_CONFIRM_BUTTON_ID = 'deleteguestConfirmButton';
 export const buildBookmarkCardEditClassName = (id: string) =>
   `bookmarkCardEdit-${id}`;
 export const buildBookmarkCardRemoveButton = (id: string) =>
-  `.${buildBookmarkCardEditClassName(id)} [data-testid="CancelIcon"]`;
+  `.${buildBookmarkCardEditClassName(id)} [aria-label="Remove bookmark"]`;

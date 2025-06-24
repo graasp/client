@@ -27,11 +27,7 @@ export const DrawerHeader = ({
     >
       {children}
       <IconButton onClick={handleDrawerClose}>
-        {dir === 'ltr' ? (
-          <ChevronRight data-testid="ChevronRightIcon" />
-        ) : (
-          <ChevronLeft data-testid="ChevronLeftIcon" />
-        )}
+        {dir === 'ltr' ? <ChevronRight /> : <ChevronLeft />}
       </IconButton>
     </Stack>
   );

@@ -1,7 +1,6 @@
 import { FormEvent, type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {
   Button,
   CssBaseline,
@@ -15,6 +14,8 @@ import {
 } from '@mui/material';
 
 import { ItemGeolocation, ItemType } from '@graasp/sdk';
+
+import { MapPinPlus } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 
@@ -63,8 +64,11 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
     <>
       <CssBaseline />
       <Tooltip title={t('Add a new item at this location')}>
-        <IconButton onClick={handleAddItem}>
-          <AddLocationAltIcon />
+        <IconButton
+          onClick={handleAddItem}
+          aria-label={commonT('ARIA.ADD_LOCATION')}
+        >
+          <MapPinPlus />
         </IconButton>
       </Tooltip>
       {/* fallback form to add an item */}
