@@ -400,13 +400,43 @@
       "LIBRARY_BUTTON_TEXT": "Erkunden Sie die Bibliothek"
     }
   },
+  "CONTACT_US": {
+    "TITLE": "Kontaktieren Sie uns",
+    "DESCRIPTION": "Wir schätzen das Feedback unserer Nutzer. Egal, ob Sie auf ein Problem stoßen, uns eine Idee mitteilen möchten oder eine Funktion vermissen – lassen Sie es uns wissen!",
+    "SUPPORT": {
+      "TITLE": "Stehen Sie vor einem Problem?",
+      "DESCRIPTION": "Wir unterstützen Sie bei Problemen mit der Anmeldung, der Veröffentlichung von Materialien und allgemeinen Fragen zu Anwendungsfällen. Schreiben Sie uns eine E-Mail und wir melden uns schnellstmöglich bei Ihnen. Die Antwortzeit beträgt 3-5 Werktage.",
+      "EMAIL": "support@graasp.org"
+    },
+    "SOCIAL": {
+      "TITLE": "Teile coole Sachen mit uns in den sozialen Medien",
+      "DESCRIPTION": "Haben Sie mit Graasp etwas Cooles gebaut? Möchten Sie der Welt erzählen, was Sie geschaffen haben? Erwähnen Sie uns in den sozialen Medien, wir teilen es gerne!"
+    },
+    "OTHER": {
+      "TITLE": "Etwas anderes?",
+      "DESCRIPTION": "Möchten Sie sonst noch etwas mit uns besprechen?",
+      "EMAIL": "contact@graasp.org"
+    }
+  },
   "SUPPORT": {
     "TITLE": "Erste Schritte",
     "DESCRIPTION": "Entdecken Sie unsere Support-Ressourcen und erhalten Sie Zugriff auf den Support, den Sie benötigen. Wir möchten Ihren Erfolg mit unserer Plattform sicherstellen.",
     "FAQ": {
       "TITLE": "Häufig gestellte Fragen",
       "DESCRIPTION_1": "Hier sind unsere am häufigsten gestellten Fragen, damit Sie schnelle Lösungen für allgemeine Zweifel und Herausforderungen innerhalb der Community finden.",
-      "DESCRIPTION_2": "Wenn Sie weitere oder spezielle Fragen haben, füllen Sie bitte das Kontaktformular aus und wir werden Ihnen antworten."
+      "DESCRIPTION_2": "Wenn Sie weitere oder spezielle Fragen haben, füllen Sie bitte das Kontaktformular aus und wir werden uns bei Ihnen melden.",
+      "HOW_TO_GET_STARTED": {
+        "QUESTION": "Wie beginne ich mit der Plattform?",
+        "RESPONSE": "Sie können beginnen, indem Sie ein kostenloses Konto erstellen."
+      },
+      "BUILDER_PLAYER_DIFFERENCE": {
+        "QUESTION": "Was ist der Unterschied zwischen Builder und Player?",
+        "RESPONSE": "Builder und Player sind zwei in Graasp verfügbare Schnittstellen. Benutzer wählen die gewünschte Schnittstelle je nach Bedarf. Builder eignet sich traditionell am besten zum Erstellen von Lerninhalten, zum Erstellen von Lektionen, zum Hinzufügen von Elementen und zum Aktualisieren der Einstellungen. Player wird hauptsächlich zum Konsumieren der erstellten Inhalte verwendet. Primäre Zielgruppe dieser Schnittstelle sind Studierende und andere Nutzer."
+      },
+      "IMPORT_FROM_OTHER_PLATFORM": {
+        "QUESTION": "Wie importiere ich meine vorhandenen Inhalte von einer anderen Plattform in Graasp?",
+        "RESPONSE": "Sie können Dokumente, Bilder und andere Rich Media per Drag & Drop verschieben. Wir unterstützen H5P-Inhalte und eine breite Palette an Multimedia-Inhalten, Audio, Video, Bildern und Weblinks. Derzeit verfügen wir nicht über spezielle Verfahren zum Importieren von bestimmten Plattformen."
+      }
     },
     "TUTORIALS": {
       "TITLE": "Anleitungen",

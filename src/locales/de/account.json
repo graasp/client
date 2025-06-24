@@ -10,10 +10,10 @@
   "CROP_IMAGE_MODAL_UNEXPECTED_ERROR": "Beim Versuch, das Bild zuzuschneiden, ist ein unerwarteter Fehler aufgetreten. Bitte versuchen Sie es später erneut",
   "MAIN_MENU": {
     "HOME": "Heim",
-    "STATS": "Statistiken",
+    "STATS": "Nutzungsstatistiken",
     "SETTINGS": "Einstellungen",
-    "STORAGE": "Speicher",
-    "LANDING": "Zielseite"
+    "STORAGE": "Speicherkontingent",
+    "LANDING": "Landungsseite"
   },
   "SAVE_ACTIONS_TOGGLE_TOOLTIP": "Wir sammeln Analysedaten, um Ihre Benutzererfahrung beim Surfen auf Graasp zu verbessern.",
   "PERSONAL_INFORMATION_TITLE": "Persönliche Angaben",
@@ -56,7 +56,8 @@
     "BIO_ERROR_MSG": "Bio ist ein Pflichtfeld",
     "BIO_EMPTY_MSG": "Es wurde keine Biografie angegeben",
     "VISIBILITY_LABEL": "Dieses Profil öffentlich machen",
-    "CHECK_TEXT": "Profil prüfen"
+    "CHECK_TEXT": "Profil prüfen",
+    "PATCH_SUCCESS_MESSAGE": "Das Profil wurde erfolgreich aktualisiert."
   },
   "ALWAYS_RECEIVE_EMAILS": "Erhalten Sie immer E-Mail-Benachrichtigungen",
   "DISABLE_EMAILS": "E-Mail-Benachrichtigungen deaktivieren",
@@ -93,6 +94,7 @@
   "MEMBER_STORAGE_FILE_UPDATED_AT": "Letzte Aktualisierung",
   "MEMBER_STORAGE_PARENT_FOLDER": "Übergeordneter Ordner",
   "MEMBER_STORAGE_NO_PARENT": "-",
+  "STORAGE_LOAD_MORE_FILES": "Mehr laden",
   "MEMBER_STORAGE_FILES_ERROR": "Hoppla, beim Abrufen der Speicherdateien ist ein Fehler aufgetreten. Bitte versuchen Sie es später noch einmal.",
   "MEMBER_STORAGE_FILES_EMPTY": "Sie haben keine Datei hochgeladen.",
   "EXPORT_INFORMATIONS_TITLE": "Laden Sie eine Kopie Ihrer Daten herunter",
@@ -114,5 +116,9 @@
   "LOGOUT_BUTTON": "Ausloggen",
   "HERE_BUTTON": "Hier",
   "TEMPORARY_MOVED_ACCOUNT_HOME_PAGE_MESSAGE": "Die Homepage des Kontos wurde verschoben",
-  "DRAWER_OPEN_ARIA_LABEL": "Schublade öffnen"
+  "DRAWER_OPEN_ARIA_LABEL": "Schublade öffnen",
+  "GUEST_AUTH": {
+    "TITLE": "Gäste können nicht auf diese Seite zugreifen",
+    "DESCRIPTION": "Sie sind derzeit mit einem Gastkonto angemeldet. Mit diesen Konten können Sie keine Einstellungen und Konfigurationen verwalten. Registrieren Sie ein Konto, um diese Funktionen zu nutzen."
+  }
 }
