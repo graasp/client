@@ -89,7 +89,7 @@ type Props = {
 function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
   const { className: language, children, ...rest } = props;
 
-  const { data: currentMember } = useQuery(getCurrentAccountOptions());
+  const { data: currentAccount } = useQuery(getCurrentAccountOptions());
   const { members = [] } = useMessagesContext();
 
   const match = /language-(\w+)/.exec(language ?? '');
@@ -105,7 +105,7 @@ function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
     return (
       <span
         style={{
-          ...((userId === currentMember?.id || userId === ALL_MEMBERS_ID) && {
+          ...((userId === currentAccount?.id || userId === ALL_MEMBERS_ID) && {
             backgroundColor: '#e3c980',
           }),
           fontWeight: 'bold',

@@ -8,7 +8,7 @@ import truncate from 'lodash.truncate';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { hooks } from '@/config/queryClient.js';
-import { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
+import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 import Avatar from '@/ui/Avatar/Avatar.js';
 
 import {
@@ -37,10 +37,10 @@ const TimeText = styled(Typography)({
 
 type Props = {
   message: ChatMessageWithCreator;
-  isOwnMessage: boolean;
+  isOwn: boolean;
 };
 
-const Message = ({ message, isOwnMessage }: Props) => {
+export function Message({ message, isOwn }: Props) {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,
@@ -62,13 +62,13 @@ const Message = ({ message, isOwnMessage }: Props) => {
     <MessageWrapper
       p={1}
       sx={
-        isOwnMessage
+        isOwn
           ? { background: colors.grey[300], alignSelf: 'flex-end' }
           : undefined
       }
       data-cy={messageIdCyWrapper(message.id)}
     >
-      {!isOwnMessage && (
+      {!isOwn && (
         <Stack
           direction="row"
           alignItems="center"
@@ -101,6 +101,4 @@ const Message = ({ message, isOwnMessage }: Props) => {
       </TimeText>
     </MessageWrapper>
   );
-};
-
-export default Message;
+}

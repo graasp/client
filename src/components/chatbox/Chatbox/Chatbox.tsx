@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { styled } from '@mui/material';
 
-import {
+import type {
   ChatMessageWithCreator,
   NullableCurrentAccount,
 } from '@/openapi/client/types.gen.js';

@@ -21,7 +21,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants.js';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
-import { CreateChatMessageData } from '@/openapi/client/types.gen.js';
+import type { CreateChatMessageData } from '@/openapi/client/types.gen.js';
 
 import {
   ALL_MEMBERS_ID,

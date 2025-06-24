@@ -7,18 +7,17 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
 
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.js';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
-import { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
-
-import { useChatboxProvider } from '~player/useChatboxProvider.js';
+import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 
 import { DEFAULT_DATE_FORMAT, SCROLL_SAFETY_MARGIN } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';
 import { messagesContainerCypress } from '../selectors.js';
-import Message from './Message.js';
-import MessageActions from './MessageActions.js';
+import { Message } from './Message.js';
+import { MessageActions } from './MessageActions.js';
 
 const Container = styled('div')({
   // used in accordance with the main container (input + scroll window)
@@ -99,7 +98,7 @@ export function Messages({ isAdmin = false, itemId }: Readonly<Props>) {
                     justifyContent: isOwnMessage ? 'flex-end' : 'flex-start',
                   }}
                 >
-                  <Message isOwnMessage={isOwnMessage} message={message} />
+                  <Message isOwn={isOwnMessage} message={message} />
                   {(isOwnMessage || isAdmin) && (
                     <MessageActions
                       message={message}

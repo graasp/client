@@ -11,10 +11,9 @@ import {
   styled,
 } from '@mui/material';
 
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.js';
 import { NS } from '@/config/constants.js';
-import { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
-
-import { useChatboxProvider } from '~player/useChatboxProvider.js';
+import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 
 import { LIST_ICON_MIN_WIDTH } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';
@@ -37,7 +36,7 @@ const StyledListItemIcon = styled(ListItemIcon)({
   },
 });
 
-const MessageActions = ({ message, isOwn = false, itemId }: Props) => {
+export function MessageActions({ message, isOwn = false, itemId }: Props) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const { t } = useTranslation(NS.Chatbox);
@@ -112,6 +111,4 @@ const MessageActions = ({ message, isOwn = false, itemId }: Props) => {
       </Menu>
     </>
   );
-};
-
-export default MessageActions;
+}

@@ -1,7 +1,7 @@
 import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
 import { hooks } from '@/config/queryClient';
-import {
+import type {
   ChatMessageWithCreator,
   MinimalAccount,
 } from '@/openapi/client/types.gen';
