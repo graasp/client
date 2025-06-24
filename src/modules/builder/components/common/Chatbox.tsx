@@ -5,7 +5,7 @@ import { PackedItem, PermissionLevel } from '@graasp/sdk';
 import { useQuery } from '@tanstack/react-query';
 
 import { Chatbox as GraaspChatbox } from '@/components/chatbox/Chatbox/Chatbox';
-import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider';
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.hook';
 import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import Loader from '@/ui/Loader/Loader';

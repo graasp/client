@@ -2,12 +2,17 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { Channel, ChatMessage, UUID } from '@graasp/sdk';
+import {
+  Channel,
+  ChatMessage,
+  UUID,
+  configureWebsocketClient,
+} from '@graasp/sdk';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { WS_CLIENT } from '@/config/queryClient';
+import { API_HOST } from '@/config/env';
 import {
   createChatMessageMutation,
   deleteChatMessageMutation,
@@ -63,6 +68,10 @@ export function useChatboxProvider({ itemId }: { itemId: string }) {
  * @param chatId The ID of the chat of which to observe updates
  */
 export const useItemChatUpdates = (chatId: UUID | null) => {
+  const WS_CLIENT = configureWebsocketClient(
+    `${API_HOST.replace('http', 'ws')}/ws`,
+  );
+
   const queryClient = useQueryClient();
   useEffect(() => {
     if (!chatId || !WS_CLIENT) {

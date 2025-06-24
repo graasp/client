@@ -14,6 +14,7 @@ import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   CHATBOX_DRAWER_ID,
+  CHATBOX_ID,
   ITEM_FULLSCREEN_BUTTON_ID,
   ITEM_PINNED_ID,
 } from '@/config/selectors';
@@ -136,7 +137,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
           onClose={toggleChatbox}
           open={isChatboxOpen}
         >
-          <Chatbox itemId={item.id} />
+          <Chatbox itemId={item.id} id={CHATBOX_ID} />
         </SideDrawer>
       </div>
     );

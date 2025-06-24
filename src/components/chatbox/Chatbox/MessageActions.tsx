@@ -11,7 +11,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.js';
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.hook.js';
 import { NS } from '@/config/constants.js';
 import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 

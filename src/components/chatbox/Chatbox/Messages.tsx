@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import groupBy from 'lodash.groupby';
 
-import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.js';
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/useChatboxProvider.hook.js';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';

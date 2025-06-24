@@ -12,7 +12,7 @@ import { EditingContextProvider } from '../context/EditingContext.js';
 import { MessagesContextProvider } from '../context/MessagesContext.js';
 import { InputBar } from './InputBar.js';
 import { Messages } from './Messages.js';
-import { useItemChatUpdates } from './useChatboxProvider.js';
+import { useItemChatUpdates } from './useChatboxProvider.hook.js';
 
 const ChatboxContainer = styled('div')({
   // set height of full container
