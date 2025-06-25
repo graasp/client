@@ -2038,7 +2038,7 @@ export type CreateChatbotCompletionPromptData = {
         /**
          * Model to use
          */
-        gptVersion?: 'gpt-3.5-turbo-0125' | 'gpt-4' | 'gpt-4-turbo' | 'gpt-4o';
+        gptVersion?: 'gpt-4o-mini' | 'gpt-4.1-nano';
         temperature?: number;
     };
     url: '/app-items/{itemId}/chat-bot';
