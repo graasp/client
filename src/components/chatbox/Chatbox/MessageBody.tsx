@@ -3,16 +3,18 @@ import ReactMarkdown, { ExtraProps } from 'react-markdown';
 
 import { styled } from '@mui/material';
 
+import { useQuery } from '@tanstack/react-query';
 import { Highlight, themes } from 'prism-react-renderer';
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
+
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
 
 import {
   ALL_MEMBERS_ID,
   ALL_MEMBERS_MEMBER,
   UNKNOWN_USER_NAME,
 } from '../constants.js';
-import { useCurrentMemberContext } from '../context/CurrentMemberContext.js';
 import { useMessagesContext } from '../context/MessagesContext.js';
 import { getIdMention } from '../utils.js';
 
@@ -87,7 +89,7 @@ type Props = {
 function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
   const { className: language, children, ...rest } = props;
 
-  const currentMember = useCurrentMemberContext();
+  const { data: currentAccount } = useQuery(getCurrentAccountOptions());
   const { members = [] } = useMessagesContext();
 
   const match = /language-(\w+)/.exec(language ?? '');
@@ -103,7 +105,7 @@ function Code(props: JSX.IntrinsicElements['code'] & ExtraProps) {
     return (
       <span
         style={{
-          ...((userId === currentMember?.id || userId === ALL_MEMBERS_ID) && {
+          ...((userId === currentAccount?.id || userId === ALL_MEMBERS_ID) && {
             backgroundColor: '#e3c980',
           }),
           fontWeight: 'bold',

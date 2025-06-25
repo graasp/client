@@ -9,17 +9,18 @@ import { DiscriminatedItem } from '@graasp/sdk';
 import { useParams, useSearch } from '@tanstack/react-router';
 import { ExpandIcon, ShrinkIcon } from 'lucide-react';
 
+import { Chatbox } from '@/components/chatbox/Chatbox/Chatbox';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   CHATBOX_DRAWER_ID,
+  CHATBOX_ID,
   ITEM_FULLSCREEN_BUTTON_ID,
   ITEM_PINNED_ID,
 } from '@/config/selectors';
 import { DRAWER_WIDTH } from '@/ui/constants';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
-import Chatbox from '~player/Chatbox';
 import { FLOATING_BUTTON_Z_INDEX } from '~player/config/constants';
 import { useLayoutContext } from '~player/contexts/LayoutContext';
 import { ItemContentWrapper } from '~player/item/Item';
@@ -136,7 +137,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
           onClose={toggleChatbox}
           open={isChatboxOpen}
         >
-          <Chatbox item={item} />
+          <Chatbox itemId={item.id} id={CHATBOX_ID} />
         </SideDrawer>
       </div>
     );

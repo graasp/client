@@ -9,16 +9,19 @@ export default defineConfig({
         test: {
           name: 'unit',
           include: ['src/**/*.test.ts'],
-          exclude: [...configDefaults.exclude, queryClientInclude],
+          exclude: [
+            ...configDefaults.exclude,
+            queryClientInclude,
+            'src/**/*.hook.test.ts',
+          ],
         },
       },
       {
         // add "extends" to merge two configs together
         extends: './vite.config.js',
         test: {
-          include: [queryClientInclude],
-          // it is recommended to define a name when using inline configs
           name: 'query',
+          include: [queryClientInclude, 'src/**/*.hook.test.ts'],
           environment: 'happy-dom',
         },
       },

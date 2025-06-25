@@ -17,9 +17,11 @@ import {
 import { Send as SendIcon } from '@mui/icons-material';
 import { Box, IconButton, Typography, styled, useTheme } from '@mui/material';
 
-import { MessageBodyType } from '@graasp/sdk';
+import { useQuery } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants.js';
+import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
+import type { CreateChatMessageData } from '@/openapi/client/types.gen.js';
 
 import {
   ALL_MEMBERS_ID,
@@ -27,7 +29,6 @@ import {
   GRAASP_MENTION_COLOR,
   HARD_MAX_MESSAGE_LENGTH,
 } from '../constants.js';
-import { useCurrentMemberContext } from '../context/CurrentMemberContext.js';
 import { useMessagesContext } from '../context/MessagesContext.js';
 import {
   charCounterCypress,
@@ -54,7 +55,7 @@ type Props = {
   placeholder?: string;
   textInput: string;
   setTextInput: (newText: string) => void;
-  sendMessageFunction?: (body: MessageBodyType) => void;
+  sendOrEditMessage: (newBody: CreateChatMessageData['body']) => void;
 };
 
 export function Input({
@@ -63,7 +64,7 @@ export function Input({
   textInput,
   setTextInput,
   placeholder,
-  sendMessageFunction,
+  sendOrEditMessage,
 }: Readonly<Props>) {
   // use mui theme for the mentions component
   // we can not use 'useStyles' with it because it requests an object for the styles
@@ -121,7 +122,7 @@ export function Input({
   } as const;
 
   const { members } = useMessagesContext();
-  const currentMember = useCurrentMemberContext();
+  const { data: currentAccount } = useQuery(getCurrentAccountOptions());
   const { t } = useTranslation(NS.Chatbox);
   const [currentMentions, setCurrentMentions] = useState<string[]>([]);
   const [plainTextMessage, setPlainTextMessage] = useState<string>('');
@@ -135,11 +136,11 @@ export function Input({
     [],
   );
 
-  if (!currentMember) {
+  if (!currentAccount) {
     return null;
   }
 
-  const { id: currentMemberId } = currentMember;
+  const { id: currentMemberId } = currentAccount;
 
   // exclude self from suggestions and add @all pseudo member
   const memberSuggestions: SuggestionDataItem[] = [
@@ -159,7 +160,8 @@ export function Input({
       if (currentMentions.includes(ALL_MEMBERS_ID) && members?.length) {
         expandedMentions = members.map((m) => m.id);
       }
-      sendMessageFunction?.({ body: textInput, mentions: expandedMentions });
+      sendOrEditMessage({ body: textInput, mentions: expandedMentions });
+
       // reset input content
       setTextInput('');
       setPlainTextMessage('');

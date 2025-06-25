@@ -1,5 +1,6 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { DeleteForever } from '@mui/icons-material';
 import {
@@ -12,14 +13,16 @@ import {
   Typography,
 } from '@mui/material';
 
+import { useMutation } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   CLEAR_CHAT_CANCEL_BUTTON_ID,
   CLEAR_CHAT_CONFIRM_BUTTON_ID,
   CLEAR_CHAT_DIALOG_ID,
   CLEAR_CHAT_SETTING_ID,
 } from '@/config/selectors';
+import { clearChatMessageMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import Button from '@/ui/buttons/Button/Button';
 
 type Props = {
@@ -30,10 +33,15 @@ const ClearChatButton = ({ chatId }: Props): JSX.Element | null => {
   const [openConfirmation, setOpenConfirmation] = useState(false);
   const { t } = useTranslation(NS.Builder);
   const { t: tCommon } = useTranslation(NS.Common);
-  const { mutate: clearChat } = mutations.useClearItemChat();
+  const { mutate: clearChat } = useMutation({
+    ...clearChatMessageMutation(),
+    onError: () => {
+      toast.error(t('CHATBOX.CLEAR_ERROR'));
+    },
+  });
 
   const handleClearChat = () => {
-    clearChat(chatId);
+    clearChat({ path: { itemId: chatId } });
   };
 
   return (
