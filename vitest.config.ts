@@ -1,5 +1,4 @@
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 const queryClientInclude = 'src/query/**/*.test.ts';
@@ -18,21 +17,11 @@ export default defineConfig({
         },
       },
       {
-        test: {
-          name: 'hooks',
-          include: ['src/**/*.hook.test.ts'],
-          exclude: [...configDefaults.exclude, queryClientInclude],
-          environment: 'happy-dom',
-        },
-        plugins: [tsconfigPaths()],
-      },
-      {
         // add "extends" to merge two configs together
         extends: './vite.config.js',
         test: {
-          include: [queryClientInclude],
-          // it is recommended to define a name when using inline configs
           name: 'query',
+          include: [queryClientInclude, 'src/**/*.hook.test.ts'],
           environment: 'happy-dom',
         },
       },
