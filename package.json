@@ -21,7 +21,6 @@
     "@fontsource-variable/nunito": "5.1.1",
     "@graasp/sdk": "5.13.3",
     "@graasp/stylis-plugin-rtl": "2.2.0",
-    "@hey-api/openapi-ts": "0.76.0",
     "@mui/icons-material": "7.1.2",
     "@mui/lab": "7.0.0-beta.14",
     "@mui/material": "7.1.2",
@@ -128,6 +127,7 @@
     "@eslint/compat": "1.2.9",
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.25.1",
+    "@hey-api/openapi-ts": "0.76.0",
     "@storybook/addon-a11y": "9.0.12",
     "@storybook/addon-coverage": "2.0.0",
     "@storybook/addon-links": "9.0.12",
@@ -205,7 +205,8 @@
     "onlyBuiltDependencies": [
       "cypress",
       "esbuild",
-      "msw"
+      "msw",
+      "unrs-resolver"
     ]
   }
 }

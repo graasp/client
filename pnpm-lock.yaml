@@ -32,9 +32,6 @@ importers:
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
-      '@hey-api/openapi-ts':
-        specifier: 0.76.0
-        version: 0.76.0(typescript@5.8.3)
       '@mui/icons-material':
         specifier: 7.1.2
         version: 7.1.2(@mui/material@7.1.2(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react@19.1.8)(react@19.1.0)
@@ -228,6 +225,9 @@ importers:
       '@eslint/js':
         specifier: 9.25.1
         version: 9.25.1
+      '@hey-api/openapi-ts':
+        specifier: 0.76.0
+        version: 0.76.0(typescript@5.8.3)
       '@storybook/addon-a11y':
         specifier: 9.0.12
         version: 9.0.12(storybook@9.0.12(@testing-library/dom@10.4.0)(prettier@3.5.3))
