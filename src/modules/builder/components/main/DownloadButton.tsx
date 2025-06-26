@@ -33,7 +33,7 @@ export const DownloadButton = ({
   const { mutate: downloadItem, isPending: isDownloading } = useMutation({
     ...downloadFileMutation(),
     onSuccess: (file) => {
-      const url = window.URL.createObjectURL(new Blob([file]));
+      const url = window.URL.createObjectURL(new Blob([file as ArrayBuffer]));
       const link = document.createElement('a');
       link.href = url;
 
