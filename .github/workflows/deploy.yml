@@ -24,14 +24,14 @@ permissions:
   contents: read # This is required for actions/checkout
 
 concurrency:
-  group: deploy-${{ inputs.environment || 'dev' }}
+  group: deploy-${{ inputs.environment || 'development' }}
   cancel-in-progress: false
 
 jobs:
   deploy-app:
-    name: Deploy to ${{ inputs.environment || 'dev' }}
+    name: Deploy to ${{ inputs.environment || 'development' }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment || 'dev' }}
+    environment: ${{ inputs.environment || 'development' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -87,7 +87,7 @@ jobs:
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
           SENTRY_PROJECT: client
         with:
-          environment: ${{ inputs.environment || 'dev' }}
+          environment: ${{ inputs.environment || 'development' }}
           sourcemaps: "./build"
           inject: true
           version: ${{ inputs.version || github.sha }}
