@@ -1,7 +1,7 @@
 import { type JSX, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, useTheme } from '@mui/material';
+import { Box, Skeleton, useTheme } from '@mui/material';
 
 import { useQuery } from '@tanstack/react-query';
 import { endOfDay } from 'date-fns/endOfDay';
@@ -34,7 +34,7 @@ const ActionsByDayChart = ({
   const { t } = useTranslation(NS.Analytics);
   const { dateRange } = useContext(DataContext);
   const { direction } = useTheme();
-  const { data, isLoading, isError } = useQuery(
+  const { data, isPending, isError } = useQuery(
     getItemActionsByDayOptions({
       path: { id: itemId },
       query: {
@@ -43,51 +43,51 @@ const ActionsByDayChart = ({
       },
     }),
   );
-
-  if (isLoading || isError) {
-    return null;
-  }
-
   const title = t('ACTIONS_BY_DAY_TITLE');
-  if (!data) {
-    return <EmptyChart chartTitle={title} />;
+
+  if (data) {
+    return (
+      <Box width="100%">
+        <ChartTitle title={title} />
+        <ChartContainer>
+          <LineChart
+            data={Object.values(
+              data as { [key: string]: { date: string } },
+            ).toSorted((a, b) => (a.date > b.date ? 1 : -1))}
+          >
+            <CartesianGrid strokeDasharray="2" />
+            <XAxis dataKey="date" tick={{ fontSize: 14 }} />
+            <YAxis
+              tick={{ fontSize: 14 }}
+              orientation={direction === 'rtl' ? 'right' : 'left'}
+            />
+            <Tooltip />
+            <Legend />
+            <Line
+              dataKey="count.all"
+              name={t('All')}
+              stroke={GENERAL_COLOR}
+              activeDot={{ r: 6 }}
+              strokeWidth={3}
+            />
+            <Line
+              dataKey="personal.all"
+              name={t('Me')}
+              stroke={AVERAGE_COLOR}
+              activeDot={{ r: 6 }}
+              strokeWidth={3}
+            />
+          </LineChart>
+        </ChartContainer>
+      </Box>
+    );
   }
 
-  return (
-    <Box width="100%">
-      <ChartTitle title={title} />
-      <ChartContainer>
-        <LineChart
-          data={Object.values(
-            data as { [key: string]: { date: string } },
-          ).toSorted((a, b) => (a.date > b.date ? 1 : -1))}
-        >
-          <CartesianGrid strokeDasharray="2" />
-          <XAxis dataKey="date" tick={{ fontSize: 14 }} />
-          <YAxis
-            tick={{ fontSize: 14 }}
-            orientation={direction === 'rtl' ? 'right' : 'left'}
-          />
-          <Tooltip />
-          <Legend />
-          <Line
-            dataKey="count.all"
-            name={t('All')}
-            stroke={GENERAL_COLOR}
-            activeDot={{ r: 6 }}
-            strokeWidth={3}
-          />
-          <Line
-            dataKey="personal.all"
-            name={t('Me')}
-            stroke={AVERAGE_COLOR}
-            activeDot={{ r: 6 }}
-            strokeWidth={3}
-          />
-        </LineChart>
-      </ChartContainer>
-    </Box>
-  );
+  if (isPending) {
+    return <Skeleton width={'100%'} height={500} />;
+  }
+
+  return <EmptyChart chartTitle={title} isError={isError} />;
 };
 
 export default ActionsByDayChart;
