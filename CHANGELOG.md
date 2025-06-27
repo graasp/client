@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.27.0](https://github.com/graasp/client/compare/v2.26.2...v2.27.0) (2025-06-26)
+
+
+### Features
+
+* update french translations ([#1019](https://github.com/graasp/client/issues/1019)) ([8f2a930](https://github.com/graasp/client/commit/8f2a930b6302e3aff0b9701a30b18e448a70d019))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/react to v9.31.0 ([#1006](https://github.com/graasp/client/issues/1006)) ([bb0d26a](https://github.com/graasp/client/commit/bb0d26acea95e9b86d21d296374d8dd1cacee5d6))
+* **german:** update translations ([#1033](https://github.com/graasp/client/issues/1033)) ([1cbc8bf](https://github.com/graasp/client/commit/1cbc8bf7f0308c8ee24c3668a0d2915cbc3e1fb4))
+* handle max height message from apps ([#1010](https://github.com/graasp/client/issues/1010)) ([5007703](https://github.com/graasp/client/commit/50077034cc5d9fb2a82c25b379e2763299b76075))
+* make login button color white on app header ([#1014](https://github.com/graasp/client/issues/1014)) ([55c75e1](https://github.com/graasp/client/commit/55c75e18c1249cb341a2fd2a50d56bd89b9e55bf))
+* migrate hey-api to remove `@hey-api/client-fetch` package ([#1029](https://github.com/graasp/client/issues/1029)) ([4a3d3be](https://github.com/graasp/client/commit/4a3d3befb968b9bc45838a79c0dd61d7d2326f88))
+* **mui:** migrate to v7 ([#1028](https://github.com/graasp/client/issues/1028)) ([70dacec](https://github.com/graasp/client/commit/70dacec3eee38eb453efbf4d847f73a10192929d))
+* upgrade happy-dom to fix issues with query tests ([#1030](https://github.com/graasp/client/issues/1030)) ([5c0382b](https://github.com/graasp/client/commit/5c0382b7a631ddc5c51b17cc50628a582728ba23))
+
 ## [2.26.2](https://github.com/graasp/client/compare/v2.26.1...v2.26.2) (2025-06-16)
 
 
