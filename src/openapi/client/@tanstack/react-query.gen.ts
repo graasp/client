@@ -38,6 +38,10 @@ const createQueryKey = <TOptions extends Options>(id: string, options?: TOptions
 
 export const healthQueryKey = (options?: Options<HealthData>) => createQueryKey('health', options);
 
+/**
+ * Health check endpoint
+ * Return a simple 200: OK when the server is running
+ */
 export const healthOptions = (options?: Options<HealthData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -89,6 +93,10 @@ export const getVersionOptions = (options?: Options<GetVersionData>) => {
 
 export const getNextMaintenanceQueryKey = (options?: Options<GetNextMaintenanceData>) => createQueryKey('getNextMaintenance', options);
 
+/**
+ * get next maintenance period
+ * Return next maintenance period, usually to perform a migration
+ */
 export const getNextMaintenanceOptions = (options?: Options<GetNextMaintenanceData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -106,6 +114,10 @@ export const getNextMaintenanceOptions = (options?: Options<GetNextMaintenanceDa
 
 export const registerQueryKey = (options: Options<RegisterData>) => createQueryKey('register', options);
 
+/**
+ * Register with email and name
+ * Register with email and name, protected by a captcha. The captcha is used to prevent brute force attacks.
+ */
 export const registerOptions = (options: Options<RegisterData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -121,6 +133,10 @@ export const registerOptions = (options: Options<RegisterData>) => {
     });
 };
 
+/**
+ * Register with email and name
+ * Register with email and name, protected by a captcha. The captcha is used to prevent brute force attacks.
+ */
 export const registerMutation = (options?: Partial<Options<RegisterData>>): UseMutationOptions<RegisterResponse, RegisterError, Options<RegisterData>> => {
     const mutationOptions: UseMutationOptions<RegisterResponse, RegisterError, Options<RegisterData>> = {
         mutationFn: async (localOptions) => {
@@ -137,6 +153,10 @@ export const registerMutation = (options?: Partial<Options<RegisterData>>): UseM
 
 export const loginQueryKey = (options: Options<LoginData>) => createQueryKey('login', options);
 
+/**
+ * Login with email
+ * Login with email, protected by a captcha. The captcha is used to prevent brute force attacks.
+ */
 export const loginOptions = (options: Options<LoginData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -152,6 +172,10 @@ export const loginOptions = (options: Options<LoginData>) => {
     });
 };
 
+/**
+ * Login with email
+ * Login with email, protected by a captcha. The captcha is used to prevent brute force attacks.
+ */
 export const loginMutation = (options?: Partial<Options<LoginData>>): UseMutationOptions<LoginResponse, LoginError, Options<LoginData>> => {
     const mutationOptions: UseMutationOptions<LoginResponse, LoginError, Options<LoginData>> = {
         mutationFn: async (localOptions) => {
@@ -168,6 +192,10 @@ export const loginMutation = (options?: Partial<Options<LoginData>>): UseMutatio
 
 export const authenticateQueryKey = (options: Options<AuthenticateData>) => createQueryKey('authenticate', options);
 
+/**
+ * Authentication validating the token
+ * Authenticate to obtain session cookie given provided token and verifier
+ */
 export const authenticateOptions = (options: Options<AuthenticateData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -202,6 +230,10 @@ export const getLogoutOptions = (options?: Options<GetLogoutData>) => {
 
 export const postLoginPasswordQueryKey = (options: Options<PostLoginPasswordData>) => createQueryKey('postLoginPassword', options);
 
+/**
+ * Log in with email and password
+ * Log in with email and password. The user must provide a valid email, password, and captcha. The captcha is used to prevent brute force attacks.
+ */
 export const postLoginPasswordOptions = (options: Options<PostLoginPasswordData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -217,6 +249,10 @@ export const postLoginPasswordOptions = (options: Options<PostLoginPasswordData>
     });
 };
 
+/**
+ * Log in with email and password
+ * Log in with email and password. The user must provide a valid email, password, and captcha. The captcha is used to prevent brute force attacks.
+ */
 export const postLoginPasswordMutation = (options?: Partial<Options<PostLoginPasswordData>>): UseMutationOptions<unknown, DefaultError, Options<PostLoginPasswordData>> => {
     const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<PostLoginPasswordData>> = {
         mutationFn: async (localOptions) => {
@@ -231,6 +267,10 @@ export const postLoginPasswordMutation = (options?: Partial<Options<PostLoginPas
     return mutationOptions;
 };
 
+/**
+ * Update the password of the authenticated member
+ * Update the password of the authenticated member. The user must provide the current password and the new password.
+ */
 export const patchPasswordMutation = (options?: Partial<Options<PatchPasswordData>>): UseMutationOptions<PatchPasswordResponse, PatchPasswordError, Options<PatchPasswordData>> => {
     const mutationOptions: UseMutationOptions<PatchPasswordResponse, PatchPasswordError, Options<PatchPasswordData>> = {
         mutationFn: async (localOptions) => {
@@ -247,6 +287,10 @@ export const patchPasswordMutation = (options?: Partial<Options<PatchPasswordDat
 
 export const postPasswordQueryKey = (options: Options<PostPasswordData>) => createQueryKey('postPassword', options);
 
+/**
+ * Set a password for the authenticated member
+ * Set a password for the authenticated member. This is only possible if the member does not have a password set already.
+ */
 export const postPasswordOptions = (options: Options<PostPasswordData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -262,6 +306,10 @@ export const postPasswordOptions = (options: Options<PostPasswordData>) => {
     });
 };
 
+/**
+ * Set a password for the authenticated member
+ * Set a password for the authenticated member. This is only possible if the member does not have a password set already.
+ */
 export const postPasswordMutation = (options?: Partial<Options<PostPasswordData>>): UseMutationOptions<PostPasswordResponse, PostPasswordError, Options<PostPasswordData>> => {
     const mutationOptions: UseMutationOptions<PostPasswordResponse, PostPasswordError, Options<PostPasswordData>> = {
         mutationFn: async (localOptions) => {
@@ -276,6 +324,10 @@ export const postPasswordMutation = (options?: Partial<Options<PostPasswordData>
     return mutationOptions;
 };
 
+/**
+ * Confirm the reset password request
+ * Confirm the reset password request. This will change the password of the member associated with the reset password request.
+ */
 export const patchPasswordResetMutation = (options?: Partial<Options<PatchPasswordResetData>>): UseMutationOptions<unknown, DefaultError, Options<PatchPasswordResetData>> => {
     const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<PatchPasswordResetData>> = {
         mutationFn: async (localOptions) => {
@@ -292,6 +344,10 @@ export const patchPasswordResetMutation = (options?: Partial<Options<PatchPasswo
 
 export const postPasswordResetQueryKey = (options: Options<PostPasswordResetData>) => createQueryKey('postPasswordReset', options);
 
+/**
+ * Create a reset password request
+ * Create a reset password request. This will send an email to the member in his language with a link to reset the password. The link will be valid for a limited time.
+ */
 export const postPasswordResetOptions = (options: Options<PostPasswordResetData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -307,6 +363,10 @@ export const postPasswordResetOptions = (options: Options<PostPasswordResetData>
     });
 };
 
+/**
+ * Create a reset password request
+ * Create a reset password request. This will send an email to the member in his language with a link to reset the password. The link will be valid for a limited time.
+ */
 export const postPasswordResetMutation = (options?: Partial<Options<PostPasswordResetData>>): UseMutationOptions<unknown, DefaultError, Options<PostPasswordResetData>> => {
     const mutationOptions: UseMutationOptions<unknown, DefaultError, Options<PostPasswordResetData>> = {
         mutationFn: async (localOptions) => {
@@ -323,6 +383,10 @@ export const postPasswordResetMutation = (options?: Partial<Options<PostPassword
 
 export const getMembersCurrentPasswordStatusQueryKey = (options?: Options<GetMembersCurrentPasswordStatusData>) => createQueryKey('getMembersCurrentPasswordStatus', options);
 
+/**
+ * Get the current password status of the authenticated member
+ * Return whether the authenticated member has a password defined.
+ */
 export const getMembersCurrentPasswordStatusOptions = (options?: Options<GetMembersCurrentPasswordStatusData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -386,6 +450,10 @@ export const deleteMembersMembersByIdDeleteMutation = (options?: Partial<Options
     return mutationOptions;
 };
 
+/**
+ * Delete authenticated account
+ * Delete authenticated account. This action is irreversible!
+ */
 export const deleteCurrentAccountMutation = (options?: Partial<Options<DeleteCurrentAccountData>>): UseMutationOptions<DeleteCurrentAccountResponse, DeleteCurrentAccountError, Options<DeleteCurrentAccountData>> => {
     const mutationOptions: UseMutationOptions<DeleteCurrentAccountResponse, DeleteCurrentAccountError, Options<DeleteCurrentAccountData>> = {
         mutationFn: async (localOptions) => {
@@ -402,6 +470,10 @@ export const deleteCurrentAccountMutation = (options?: Partial<Options<DeleteCur
 
 export const getCurrentAccountQueryKey = (options?: Options<GetCurrentAccountData>) => createQueryKey('getCurrentAccount', options);
 
+/**
+ * Get information of current authenticated account
+ * Get information of current authenticated account, that can be a member or a guest.
+ */
 export const getCurrentAccountOptions = (options?: Options<GetCurrentAccountData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -417,6 +489,10 @@ export const getCurrentAccountOptions = (options?: Options<GetCurrentAccountData
     });
 };
 
+/**
+ * Update authenticated account
+ * Update authenticated account, such as name or language.
+ */
 export const updateCurrentAccountMutation = (options?: Partial<Options<UpdateCurrentAccountData>>): UseMutationOptions<UpdateCurrentAccountResponse, UpdateCurrentAccountError, Options<UpdateCurrentAccountData>> => {
     const mutationOptions: UseMutationOptions<UpdateCurrentAccountResponse, UpdateCurrentAccountError, Options<UpdateCurrentAccountData>> = {
         mutationFn: async (localOptions) => {
@@ -433,6 +509,10 @@ export const updateCurrentAccountMutation = (options?: Partial<Options<UpdateCur
 
 export const getStorageQueryKey = (options?: Options<GetStorageData>) => createQueryKey('getStorage', options);
 
+/**
+ * Get storage values
+ * Get amount of storage used for current member, and its maximum storage value.
+ */
 export const getStorageOptions = (options?: Options<GetStorageData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -450,6 +530,10 @@ export const getStorageOptions = (options?: Options<GetStorageData>) => {
 
 export const getStorageFilesQueryKey = (options: Options<GetStorageFilesData>) => createQueryKey('getStorageFiles', options);
 
+/**
+ * Get storage files data
+ * Get files data counted in storage of current member.
+ */
 export const getStorageFilesOptions = (options: Options<GetStorageFilesData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -466,7 +550,9 @@ export const getStorageFilesOptions = (options: Options<GetStorageFilesData>) =>
 };
 
 const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'headers' | 'path' | 'query'>>(queryKey: QueryKey<Options>, page: K) => {
-    const params = queryKey[0];
+    const params = {
+        ...queryKey[0]
+    };
     if (page.body) {
         params.body = {
             ...queryKey[0].body as any,
@@ -496,6 +582,10 @@ const createInfiniteParams = <K extends Pick<QueryKey<Options>[0], 'body' | 'hea
 
 export const getStorageFilesInfiniteQueryKey = (options: Options<GetStorageFilesData>): QueryKey<Options<GetStorageFilesData>> => createQueryKey('getStorageFiles', options, true);
 
+/**
+ * Get storage files data
+ * Get files data counted in storage of current member.
+ */
 export const getStorageFilesInfiniteOptions = (options: Options<GetStorageFilesData>) => {
     return infiniteQueryOptions<GetStorageFilesResponse, GetStorageFilesError, InfiniteData<GetStorageFilesResponse>, QueryKey<Options<GetStorageFilesData>>, number | Pick<QueryKey<Options<GetStorageFilesData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
@@ -522,6 +612,10 @@ export const getStorageFilesInfiniteOptions = (options: Options<GetStorageFilesD
 
 export const getOneMemberQueryKey = (options: Options<GetOneMemberData>) => createQueryKey('getOneMember', options);
 
+/**
+ * Get member by id
+ * Get member by id.
+ */
 export const getOneMemberOptions = (options: Options<GetOneMemberData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -537,6 +631,10 @@ export const getOneMemberOptions = (options: Options<GetOneMemberData>) => {
     });
 };
 
+/**
+ * Change email
+ * Change email for current authenticated member.
+ */
 export const patchChangeEmailMutation = (options?: Partial<Options<PatchChangeEmailData>>): UseMutationOptions<PatchChangeEmailResponse, PatchChangeEmailError, Options<PatchChangeEmailData>> => {
     const mutationOptions: UseMutationOptions<PatchChangeEmailResponse, PatchChangeEmailError, Options<PatchChangeEmailData>> = {
         mutationFn: async (localOptions) => {
@@ -553,6 +651,10 @@ export const patchChangeEmailMutation = (options?: Partial<Options<PatchChangeEm
 
 export const postChangeEmailQueryKey = (options: Options<PostChangeEmailData>) => createQueryKey('postChangeEmail', options);
 
+/**
+ * Request to change email
+ * Request to change email for current authenticated member.
+ */
 export const postChangeEmailOptions = (options: Options<PostChangeEmailData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -568,6 +670,10 @@ export const postChangeEmailOptions = (options: Options<PostChangeEmailData>) =>
     });
 };
 
+/**
+ * Request to change email
+ * Request to change email for current authenticated member.
+ */
 export const postChangeEmailMutation = (options?: Partial<Options<PostChangeEmailData>>): UseMutationOptions<PostChangeEmailResponse, PostChangeEmailError, Options<PostChangeEmailData>> => {
     const mutationOptions: UseMutationOptions<PostChangeEmailResponse, PostChangeEmailError, Options<PostChangeEmailData>> = {
         mutationFn: async (localOptions) => {
@@ -615,6 +721,10 @@ export const postMembersAvatarMutation = (options?: Partial<Options<PostMembersA
 
 export const downloadAvatarQueryKey = (options: Options<DownloadAvatarData>) => createQueryKey('downloadAvatar', options);
 
+/**
+ * Get a member's avatar
+ * Get a member's avatar at given size. The return value is empty if the member did not previously uploaded an avatar. Since guests don't have avatars, the return value will also be empty.
+ */
 export const downloadAvatarOptions = (options: Options<DownloadAvatarData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -632,6 +742,10 @@ export const downloadAvatarOptions = (options: Options<DownloadAvatarData>) => {
 
 export const getOwnProfileQueryKey = (options?: Options<GetOwnProfileData>) => createQueryKey('getOwnProfile', options);
 
+/**
+ * Get profile of current member
+ * Get profile of current member
+ */
 export const getOwnProfileOptions = (options?: Options<GetOwnProfileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -649,6 +763,10 @@ export const getOwnProfileOptions = (options?: Options<GetOwnProfileData>) => {
 
 export const getMemberProfileQueryKey = (options: Options<GetMemberProfileData>) => createQueryKey('getMemberProfile', options);
 
+/**
+ * Get profile of given member
+ * Get profile of given member
+ */
 export const getMemberProfileOptions = (options: Options<GetMemberProfileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -664,6 +782,10 @@ export const getMemberProfileOptions = (options: Options<GetMemberProfileData>) 
     });
 };
 
+/**
+ * Update profile of current member
+ * Update profile of current member
+ */
 export const updateOwnProfileMutation = (options?: Partial<Options<UpdateOwnProfileData>>): UseMutationOptions<UpdateOwnProfileResponse, UpdateOwnProfileError, Options<UpdateOwnProfileData>> => {
     const mutationOptions: UseMutationOptions<UpdateOwnProfileResponse, UpdateOwnProfileError, Options<UpdateOwnProfileData>> = {
         mutationFn: async (localOptions) => {
@@ -680,6 +802,10 @@ export const updateOwnProfileMutation = (options?: Partial<Options<UpdateOwnProf
 
 export const createOwnProfileQueryKey = (options?: Options<CreateOwnProfileData>) => createQueryKey('createOwnProfile', options);
 
+/**
+ * Create profile for current member
+ * Create profile for current member.
+ */
 export const createOwnProfileOptions = (options?: Options<CreateOwnProfileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -695,6 +821,10 @@ export const createOwnProfileOptions = (options?: Options<CreateOwnProfileData>)
     });
 };
 
+/**
+ * Create profile for current member
+ * Create profile for current member.
+ */
 export const createOwnProfileMutation = (options?: Partial<Options<CreateOwnProfileData>>): UseMutationOptions<CreateOwnProfileResponse, CreateOwnProfileError, Options<CreateOwnProfileData>> => {
     const mutationOptions: UseMutationOptions<CreateOwnProfileResponse, CreateOwnProfileError, Options<CreateOwnProfileData>> = {
         mutationFn: async (localOptions) => {
@@ -711,6 +841,10 @@ export const createOwnProfileMutation = (options?: Partial<Options<CreateOwnProf
 
 export const exportMemberDataQueryKey = (options?: Options<ExportMemberDataData>) => createQueryKey('exportMemberData', options);
 
+/**
+ * Request all related data of authenticated member
+ * Request a download link to have access to all data related to the authenticated user. The link is valid for one week.
+ */
 export const exportMemberDataOptions = (options?: Options<ExportMemberDataData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -726,6 +860,10 @@ export const exportMemberDataOptions = (options?: Options<ExportMemberDataData>)
     });
 };
 
+/**
+ * Request all related data of authenticated member
+ * Request a download link to have access to all data related to the authenticated user. The link is valid for one week.
+ */
 export const exportMemberDataMutation = (options?: Partial<Options<ExportMemberDataData>>): UseMutationOptions<ExportMemberDataResponse, ExportMemberDataError, Options<ExportMemberDataData>> => {
     const mutationOptions: UseMutationOptions<ExportMemberDataResponse, ExportMemberDataError, Options<ExportMemberDataData>> = {
         mutationFn: async (localOptions) => {
@@ -742,6 +880,10 @@ export const exportMemberDataMutation = (options?: Partial<Options<ExportMemberD
 
 export const getAppListQueryKey = (options?: Options<GetAppListData>) => createQueryKey('getAppList', options);
 
+/**
+ * Get list of available apps
+ * Get list of available apps
+ */
 export const getAppListOptions = (options?: Options<GetAppListData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -759,6 +901,10 @@ export const getAppListOptions = (options?: Options<GetAppListData>) => {
 
 export const getOwnMostUsedAppsQueryKey = (options?: Options<GetOwnMostUsedAppsData>) => createQueryKey('getOwnMostUsedApps', options);
 
+/**
+ * Get the user's most used apps
+ * Get a list of the apps the user has used the most to ease the addition of new apps.
+ */
 export const getOwnMostUsedAppsOptions = (options?: Options<GetOwnMostUsedAppsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -776,6 +922,10 @@ export const getOwnMostUsedAppsOptions = (options?: Options<GetOwnMostUsedAppsDa
 
 export const generateAppTokenQueryKey = (options: Options<GenerateAppTokenData>) => createQueryKey('generateAppToken', options);
 
+/**
+ * Generate auth token for an app
+ * Generate auth token for an app to access app API
+ */
 export const generateAppTokenOptions = (options: Options<GenerateAppTokenData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -791,6 +941,10 @@ export const generateAppTokenOptions = (options: Options<GenerateAppTokenData>) 
     });
 };
 
+/**
+ * Generate auth token for an app
+ * Generate auth token for an app to access app API
+ */
 export const generateAppTokenMutation = (options?: Partial<Options<GenerateAppTokenData>>): UseMutationOptions<GenerateAppTokenResponse, GenerateAppTokenError, Options<GenerateAppTokenData>> => {
     const mutationOptions: UseMutationOptions<GenerateAppTokenResponse, GenerateAppTokenError, Options<GenerateAppTokenData>> = {
         mutationFn: async (localOptions) => {
@@ -807,6 +961,10 @@ export const generateAppTokenMutation = (options?: Partial<Options<GenerateAppTo
 
 export const getAppContextQueryKey = (options: Options<GetAppContextData>) => createQueryKey('getAppContext', options);
 
+/**
+ * Get context information of an app
+ * Get context information of an app
+ */
 export const getAppContextOptions = (options: Options<GetAppContextData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -824,6 +982,10 @@ export const getAppContextOptions = (options: Options<GetAppContextData>) => {
 
 export const getAppDataForAppQueryKey = (options: Options<GetAppDataForAppData>) => createQueryKey('getAppDataForApp', options);
 
+/**
+ * Get all app data of an app
+ * Get app data saved for an app, depending on the permission of the user and the data visibility.
+ */
 export const getAppDataForAppOptions = (options: Options<GetAppDataForAppData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -841,6 +1003,10 @@ export const getAppDataForAppOptions = (options: Options<GetAppDataForAppData>) 
 
 export const createAppDataQueryKey = (options: Options<CreateAppDataData>) => createQueryKey('createAppData', options);
 
+/**
+ * Create a user data for an app
+ * Create a user data in an app given data and type.
+ */
 export const createAppDataOptions = (options: Options<CreateAppDataData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -856,6 +1022,10 @@ export const createAppDataOptions = (options: Options<CreateAppDataData>) => {
     });
 };
 
+/**
+ * Create a user data for an app
+ * Create a user data in an app given data and type.
+ */
 export const createAppDataMutation = (options?: Partial<Options<CreateAppDataData>>): UseMutationOptions<CreateAppDataResponse, CreateAppDataError, Options<CreateAppDataData>> => {
     const mutationOptions: UseMutationOptions<CreateAppDataResponse, CreateAppDataError, Options<CreateAppDataData>> = {
         mutationFn: async (localOptions) => {
@@ -870,6 +1040,10 @@ export const createAppDataMutation = (options?: Partial<Options<CreateAppDataDat
     return mutationOptions;
 };
 
+/**
+ * Delete an app data
+ * Delete a given app data.
+ */
 export const deleteAppDataMutation = (options?: Partial<Options<DeleteAppDataData>>): UseMutationOptions<DeleteAppDataResponse, DeleteAppDataError, Options<DeleteAppDataData>> => {
     const mutationOptions: UseMutationOptions<DeleteAppDataResponse, DeleteAppDataError, Options<DeleteAppDataData>> = {
         mutationFn: async (localOptions) => {
@@ -884,6 +1058,10 @@ export const deleteAppDataMutation = (options?: Partial<Options<DeleteAppDataDat
     return mutationOptions;
 };
 
+/**
+ * Update an app data
+ * Update a given app data with new data.
+ */
 export const updateAppDataMutation = (options?: Partial<Options<UpdateAppDataData>>): UseMutationOptions<UpdateAppDataResponse, UpdateAppDataError, Options<UpdateAppDataData>> => {
     const mutationOptions: UseMutationOptions<UpdateAppDataResponse, UpdateAppDataError, Options<UpdateAppDataData>> = {
         mutationFn: async (localOptions) => {
@@ -900,6 +1078,10 @@ export const updateAppDataMutation = (options?: Partial<Options<UpdateAppDataDat
 
 export const createAppDataFileQueryKey = (options?: Options<CreateAppDataFileData>) => createQueryKey('createAppDataFile', options);
 
+/**
+ * Create app data file
+ * Upload a file to create a corresponding app data. The created app data will be "file" and visibility member. The data property will contain the file properties.
+ */
 export const createAppDataFileOptions = (options?: Options<CreateAppDataFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -915,6 +1097,10 @@ export const createAppDataFileOptions = (options?: Options<CreateAppDataFileData
     });
 };
 
+/**
+ * Create app data file
+ * Upload a file to create a corresponding app data. The created app data will be "file" and visibility member. The data property will contain the file properties.
+ */
 export const createAppDataFileMutation = (options?: Partial<Options<CreateAppDataFileData>>): UseMutationOptions<unknown, CreateAppDataFileError, Options<CreateAppDataFileData>> => {
     const mutationOptions: UseMutationOptions<unknown, CreateAppDataFileError, Options<CreateAppDataFileData>> = {
         mutationFn: async (localOptions) => {
@@ -931,6 +1117,10 @@ export const createAppDataFileMutation = (options?: Partial<Options<CreateAppDat
 
 export const downloadAppDataFileQueryKey = (options: Options<DownloadAppDataFileData>) => createQueryKey('downloadAppDataFile', options);
 
+/**
+ * Download app data file
+ * Download app data file.
+ */
 export const downloadAppDataFileOptions = (options: Options<DownloadAppDataFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -948,6 +1138,10 @@ export const downloadAppDataFileOptions = (options: Options<DownloadAppDataFileD
 
 export const getAppActionsForAppQueryKey = (options: Options<GetAppActionsForAppData>) => createQueryKey('getAppActionsForApp', options);
 
+/**
+ * Get all actions of an app
+ * Get all actions saved for an app.
+ */
 export const getAppActionsForAppOptions = (options: Options<GetAppActionsForAppData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -965,6 +1159,10 @@ export const getAppActionsForAppOptions = (options: Options<GetAppActionsForAppD
 
 export const createAppActionQueryKey = (options: Options<CreateAppActionData>) => createQueryKey('createAppAction', options);
 
+/**
+ * Create an action happening in an app
+ * Create an action happening in an app given data and type.
+ */
 export const createAppActionOptions = (options: Options<CreateAppActionData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -980,6 +1178,10 @@ export const createAppActionOptions = (options: Options<CreateAppActionData>) =>
     });
 };
 
+/**
+ * Create an action happening in an app
+ * Create an action happening in an app given data and type.
+ */
 export const createAppActionMutation = (options?: Partial<Options<CreateAppActionData>>): UseMutationOptions<CreateAppActionResponse, CreateAppActionError, Options<CreateAppActionData>> => {
     const mutationOptions: UseMutationOptions<CreateAppActionResponse, CreateAppActionError, Options<CreateAppActionData>> = {
         mutationFn: async (localOptions) => {
@@ -996,6 +1198,10 @@ export const createAppActionMutation = (options?: Partial<Options<CreateAppActio
 
 export const getAppSettingsForAppQueryKey = (options: Options<GetAppSettingsForAppData>) => createQueryKey('getAppSettingsForApp', options);
 
+/**
+ * Get all settings of an app
+ * Get all settings for an app.
+ */
 export const getAppSettingsForAppOptions = (options: Options<GetAppSettingsForAppData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1013,6 +1219,10 @@ export const getAppSettingsForAppOptions = (options: Options<GetAppSettingsForAp
 
 export const createAppSettingQueryKey = (options: Options<CreateAppSettingData>) => createQueryKey('createAppSetting', options);
 
+/**
+ * Create a setting for an app
+ * Create a setting in an app given data and name. Only admins can create settings.
+ */
 export const createAppSettingOptions = (options: Options<CreateAppSettingData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1028,6 +1238,10 @@ export const createAppSettingOptions = (options: Options<CreateAppSettingData>) 
     });
 };
 
+/**
+ * Create a setting for an app
+ * Create a setting in an app given data and name. Only admins can create settings.
+ */
 export const createAppSettingMutation = (options?: Partial<Options<CreateAppSettingData>>): UseMutationOptions<CreateAppSettingResponse, CreateAppSettingError, Options<CreateAppSettingData>> => {
     const mutationOptions: UseMutationOptions<CreateAppSettingResponse, CreateAppSettingError, Options<CreateAppSettingData>> = {
         mutationFn: async (localOptions) => {
@@ -1042,6 +1256,10 @@ export const createAppSettingMutation = (options?: Partial<Options<CreateAppSett
     return mutationOptions;
 };
 
+/**
+ * Delete app setting
+ * Delete given app setting.
+ */
 export const deleteAppSettingMutation = (options?: Partial<Options<DeleteAppSettingData>>): UseMutationOptions<DeleteAppSettingResponse, DeleteAppSettingError, Options<DeleteAppSettingData>> => {
     const mutationOptions: UseMutationOptions<DeleteAppSettingResponse, DeleteAppSettingError, Options<DeleteAppSettingData>> = {
         mutationFn: async (localOptions) => {
@@ -1056,6 +1274,10 @@ export const deleteAppSettingMutation = (options?: Partial<Options<DeleteAppSett
     return mutationOptions;
 };
 
+/**
+ * Update app setting
+ * Update given app setting with new data. Only admins can update settings.
+ */
 export const updateAppSettingMutation = (options?: Partial<Options<UpdateAppSettingData>>): UseMutationOptions<UpdateAppSettingResponse, UpdateAppSettingError, Options<UpdateAppSettingData>> => {
     const mutationOptions: UseMutationOptions<UpdateAppSettingResponse, UpdateAppSettingError, Options<UpdateAppSettingData>> = {
         mutationFn: async (localOptions) => {
@@ -1072,6 +1294,10 @@ export const updateAppSettingMutation = (options?: Partial<Options<UpdateAppSett
 
 export const createAppSettingFileQueryKey = (options?: Options<CreateAppSettingFileData>) => createQueryKey('createAppSettingFile', options);
 
+/**
+ * Create app setting file
+ * Upload a file to create a corresponding app setting. The setting's name can be defined in the file body (form data) as "name", otherwise it will default to "file"
+ */
 export const createAppSettingFileOptions = (options?: Options<CreateAppSettingFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1087,6 +1313,10 @@ export const createAppSettingFileOptions = (options?: Options<CreateAppSettingFi
     });
 };
 
+/**
+ * Create app setting file
+ * Upload a file to create a corresponding app setting. The setting's name can be defined in the file body (form data) as "name", otherwise it will default to "file"
+ */
 export const createAppSettingFileMutation = (options?: Partial<Options<CreateAppSettingFileData>>): UseMutationOptions<CreateAppSettingFileResponse, CreateAppSettingFileError, Options<CreateAppSettingFileData>> => {
     const mutationOptions: UseMutationOptions<CreateAppSettingFileResponse, CreateAppSettingFileError, Options<CreateAppSettingFileData>> = {
         mutationFn: async (localOptions) => {
@@ -1103,6 +1333,10 @@ export const createAppSettingFileMutation = (options?: Partial<Options<CreateApp
 
 export const downloadAppSettingFileQueryKey = (options: Options<DownloadAppSettingFileData>) => createQueryKey('downloadAppSettingFile', options);
 
+/**
+ * Download app setting file
+ * Download app setting file.
+ */
 export const downloadAppSettingFileOptions = (options: Options<DownloadAppSettingFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1120,6 +1354,10 @@ export const downloadAppSettingFileOptions = (options: Options<DownloadAppSettin
 
 export const createChatbotCompletionPromptQueryKey = (options: Options<CreateChatbotCompletionPromptData>) => createQueryKey('createChatbotCompletionPrompt', options);
 
+/**
+ * Get a prompt completion from a chatbot
+ * Given a prompt, it returns a completion from a chatbot.
+ */
 export const createChatbotCompletionPromptOptions = (options: Options<CreateChatbotCompletionPromptData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1135,6 +1373,10 @@ export const createChatbotCompletionPromptOptions = (options: Options<CreateChat
     });
 };
 
+/**
+ * Get a prompt completion from a chatbot
+ * Given a prompt, it returns a completion from a chatbot.
+ */
 export const createChatbotCompletionPromptMutation = (options?: Partial<Options<CreateChatbotCompletionPromptData>>): UseMutationOptions<CreateChatbotCompletionPromptResponse, CreateChatbotCompletionPromptError, Options<CreateChatbotCompletionPromptData>> => {
     const mutationOptions: UseMutationOptions<CreateChatbotCompletionPromptResponse, CreateChatbotCompletionPromptError, Options<CreateChatbotCompletionPromptData>> = {
         mutationFn: async (localOptions) => {
@@ -1151,6 +1393,10 @@ export const createChatbotCompletionPromptMutation = (options?: Partial<Options<
 
 export const getItemLoginSchemaTypeQueryKey = (options: Options<GetItemLoginSchemaTypeData>) => createQueryKey('getItemLoginSchemaType', options);
 
+/**
+ * Get type of item login
+ * Get type of item login. Return null if the item does not allow item login.
+ */
 export const getItemLoginSchemaTypeOptions = (options: Options<GetItemLoginSchemaTypeData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1166,6 +1412,10 @@ export const getItemLoginSchemaTypeOptions = (options: Options<GetItemLoginSchem
     });
 };
 
+/**
+ * Delete item login schema
+ * Delete item login data and all related users.
+ */
 export const deleteItemLoginSchemaMutation = (options?: Partial<Options<DeleteItemLoginSchemaData>>): UseMutationOptions<unknown, DeleteItemLoginSchemaError, Options<DeleteItemLoginSchemaData>> => {
     const mutationOptions: UseMutationOptions<unknown, DeleteItemLoginSchemaError, Options<DeleteItemLoginSchemaData>> = {
         mutationFn: async (localOptions) => {
@@ -1182,6 +1432,10 @@ export const deleteItemLoginSchemaMutation = (options?: Partial<Options<DeleteIt
 
 export const getItemLoginSchemaQueryKey = (options: Options<GetItemLoginSchemaData>) => createQueryKey('getItemLoginSchema', options);
 
+/**
+ * Get item login data
+ * Get item login data.
+ */
 export const getItemLoginSchemaOptions = (options: Options<GetItemLoginSchemaData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1197,6 +1451,10 @@ export const getItemLoginSchemaOptions = (options: Options<GetItemLoginSchemaDat
     });
 };
 
+/**
+ * Update item login data
+ * Update item login's status and/or type.
+ */
 export const updateItemLoginSchemaMutation = (options?: Partial<Options<UpdateItemLoginSchemaData>>): UseMutationOptions<unknown, UpdateItemLoginSchemaError, Options<UpdateItemLoginSchemaData>> => {
     const mutationOptions: UseMutationOptions<unknown, UpdateItemLoginSchemaError, Options<UpdateItemLoginSchemaData>> = {
         mutationFn: async (localOptions) => {
@@ -1213,6 +1471,10 @@ export const updateItemLoginSchemaMutation = (options?: Partial<Options<UpdateIt
 
 export const loginOrRegisterAsGuestQueryKey = (options: Options<LoginOrRegisterAsGuestData>) => createQueryKey('loginOrRegisterAsGuest', options);
 
+/**
+ * Login or Register in item as guest
+ * Log in to an item with necessary credentials depending on item login's type. If the username does not exist, a guest account is created and is given access.
+ */
 export const loginOrRegisterAsGuestOptions = (options: Options<LoginOrRegisterAsGuestData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1228,6 +1490,10 @@ export const loginOrRegisterAsGuestOptions = (options: Options<LoginOrRegisterAs
     });
 };
 
+/**
+ * Login or Register in item as guest
+ * Log in to an item with necessary credentials depending on item login's type. If the username does not exist, a guest account is created and is given access.
+ */
 export const loginOrRegisterAsGuestMutation = (options?: Partial<Options<LoginOrRegisterAsGuestData>>): UseMutationOptions<LoginOrRegisterAsGuestResponse, LoginOrRegisterAsGuestError, Options<LoginOrRegisterAsGuestData>> => {
     const mutationOptions: UseMutationOptions<LoginOrRegisterAsGuestResponse, LoginOrRegisterAsGuestError, Options<LoginOrRegisterAsGuestData>> = {
         mutationFn: async (localOptions) => {
@@ -1244,6 +1510,10 @@ export const loginOrRegisterAsGuestMutation = (options?: Partial<Options<LoginOr
 
 export const getOwnBookmarkQueryKey = (options?: Options<GetOwnBookmarkData>) => createQueryKey('getOwnBookmark', options);
 
+/**
+ * Get all bookmarked instances of the current member
+ * Get all bookmarked instances of the current member
+ */
 export const getOwnBookmarkOptions = (options?: Options<GetOwnBookmarkData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1259,6 +1529,10 @@ export const getOwnBookmarkOptions = (options?: Options<GetOwnBookmarkData>) => 
     });
 };
 
+/**
+ * Remove item from bookmarks
+ * Remove item from bookmarks
+ */
 export const deleteBookmarkMutation = (options?: Partial<Options<DeleteBookmarkData>>): UseMutationOptions<DeleteBookmarkResponse, DeleteBookmarkError, Options<DeleteBookmarkData>> => {
     const mutationOptions: UseMutationOptions<DeleteBookmarkResponse, DeleteBookmarkError, Options<DeleteBookmarkData>> = {
         mutationFn: async (localOptions) => {
@@ -1275,6 +1549,10 @@ export const deleteBookmarkMutation = (options?: Partial<Options<DeleteBookmarkD
 
 export const createBookmarkQueryKey = (options: Options<CreateBookmarkData>) => createQueryKey('createBookmark', options);
 
+/**
+ * Bookmark item
+ * Bookmark item
+ */
 export const createBookmarkOptions = (options: Options<CreateBookmarkData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1290,6 +1568,10 @@ export const createBookmarkOptions = (options: Options<CreateBookmarkData>) => {
     });
 };
 
+/**
+ * Bookmark item
+ * Bookmark item
+ */
 export const createBookmarkMutation = (options?: Partial<Options<CreateBookmarkData>>): UseMutationOptions<CreateBookmarkResponse, CreateBookmarkError, Options<CreateBookmarkData>> => {
     const mutationOptions: UseMutationOptions<CreateBookmarkResponse, CreateBookmarkError, Options<CreateBookmarkData>> = {
         mutationFn: async (localOptions) => {
@@ -1306,6 +1588,10 @@ export const createBookmarkMutation = (options?: Partial<Options<CreateBookmarkD
 
 export const getCollectionsForMemberQueryKey = (options: Options<GetCollectionsForMemberData>) => createQueryKey('getCollectionsForMember', options);
 
+/**
+ * Get collections for member
+ * Get packed collections for member, used in the builder view of the member.
+ */
 export const getCollectionsForMemberOptions = (options: Options<GetCollectionsForMemberData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1323,6 +1609,10 @@ export const getCollectionsForMemberOptions = (options: Options<GetCollectionsFo
 
 export const getCollectionInformationsQueryKey = (options: Options<GetCollectionInformationsData>) => createQueryKey('getCollectionInformations', options);
 
+/**
+ * Get information of a collection
+ * Get information of a collection, including views count.
+ */
 export const getCollectionInformationsOptions = (options: Options<GetCollectionInformationsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1340,6 +1630,10 @@ export const getCollectionInformationsOptions = (options: Options<GetCollectionI
 
 export const publishItemQueryKey = (options: Options<PublishItemData>) => createQueryKey('publishItem', options);
 
+/**
+ * Publish an item
+ * Publish an item. It will become listed in the Library.
+ */
 export const publishItemOptions = (options: Options<PublishItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1355,6 +1649,10 @@ export const publishItemOptions = (options: Options<PublishItemData>) => {
     });
 };
 
+/**
+ * Publish an item
+ * Publish an item. It will become listed in the Library.
+ */
 export const publishItemMutation = (options?: Partial<Options<PublishItemData>>): UseMutationOptions<PublishItemResponse, PublishItemError, Options<PublishItemData>> => {
     const mutationOptions: UseMutationOptions<PublishItemResponse, PublishItemError, Options<PublishItemData>> = {
         mutationFn: async (localOptions) => {
@@ -1369,6 +1667,10 @@ export const publishItemMutation = (options?: Partial<Options<PublishItemData>>)
     return mutationOptions;
 };
 
+/**
+ * Unpublish an item
+ * Unpublish an item. It will stop being available in the Library.
+ */
 export const unpublishItemMutation = (options?: Partial<Options<UnpublishItemData>>): UseMutationOptions<UnpublishItemResponse, UnpublishItemError, Options<UnpublishItemData>> => {
     const mutationOptions: UseMutationOptions<UnpublishItemResponse, UnpublishItemError, Options<UnpublishItemData>> = {
         mutationFn: async (localOptions) => {
@@ -1385,6 +1687,10 @@ export const unpublishItemMutation = (options?: Partial<Options<UnpublishItemDat
 
 export const collectionSearchQueryKey = (options?: Options<CollectionSearchData>) => createQueryKey('collectionSearch', options);
 
+/**
+ * Get collections given search query
+ * Get collections given search query. the results are highlighted given the search query.
+ */
 export const collectionSearchOptions = (options?: Options<CollectionSearchData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1402,6 +1708,10 @@ export const collectionSearchOptions = (options?: Options<CollectionSearchData>)
 
 export const collectionSearchInfiniteQueryKey = (options?: Options<CollectionSearchData>): QueryKey<Options<CollectionSearchData>> => createQueryKey('collectionSearch', options, true);
 
+/**
+ * Get collections given search query
+ * Get collections given search query. the results are highlighted given the search query.
+ */
 export const collectionSearchInfiniteOptions = (options?: Options<CollectionSearchData>) => {
     return infiniteQueryOptions<CollectionSearchResponse, CollectionSearchError, InfiniteData<CollectionSearchResponse>, QueryKey<Options<CollectionSearchData>>, number | Pick<QueryKey<Options<CollectionSearchData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
@@ -1426,6 +1736,10 @@ export const collectionSearchInfiniteOptions = (options?: Options<CollectionSear
     });
 };
 
+/**
+ * Get collections given search query
+ * Get collections given search query. the results are highlighted given the search query.
+ */
 export const collectionSearchMutation = (options?: Partial<Options<CollectionSearchData>>): UseMutationOptions<CollectionSearchResponse, CollectionSearchError, Options<CollectionSearchData>> => {
     const mutationOptions: UseMutationOptions<CollectionSearchResponse, CollectionSearchError, Options<CollectionSearchData>> = {
         mutationFn: async (localOptions) => {
@@ -1442,6 +1756,10 @@ export const collectionSearchMutation = (options?: Partial<Options<CollectionSea
 
 export const getFacetsForNameQueryKey = (options: Options<GetFacetsForNameData>) => createQueryKey('getFacetsForName', options);
 
+/**
+ * Get facets for a given facet name
+ * Get list of facets and how many collections are tagged with those given a facet name.
+ */
 export const getFacetsForNameOptions = (options: Options<GetFacetsForNameData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1457,6 +1775,10 @@ export const getFacetsForNameOptions = (options: Options<GetFacetsForNameData>) 
     });
 };
 
+/**
+ * Get facets for a given facet name
+ * Get list of facets and how many collections are tagged with those given a facet name.
+ */
 export const getFacetsForNameMutation = (options?: Partial<Options<GetFacetsForNameData>>): UseMutationOptions<GetFacetsForNameResponse, GetFacetsForNameError, Options<GetFacetsForNameData>> => {
     const mutationOptions: UseMutationOptions<GetFacetsForNameResponse, GetFacetsForNameError, Options<GetFacetsForNameData>> = {
         mutationFn: async (localOptions) => {
@@ -1473,6 +1795,10 @@ export const getFacetsForNameMutation = (options?: Partial<Options<GetFacetsForN
 
 export const getFeaturedCollectionsQueryKey = (options?: Options<GetFeaturedCollectionsData>) => createQueryKey('getFeaturedCollections', options);
 
+/**
+ * Get featured collections
+ * Get collections that we want to feature on the library home page.
+ */
 export const getFeaturedCollectionsOptions = (options?: Options<GetFeaturedCollectionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1490,6 +1816,10 @@ export const getFeaturedCollectionsOptions = (options?: Options<GetFeaturedColle
 
 export const getMostLikedCollectionsQueryKey = (options?: Options<GetMostLikedCollectionsData>) => createQueryKey('getMostLikedCollections', options);
 
+/**
+ * Get most liked collections
+ * Get most liked collections.
+ */
 export const getMostLikedCollectionsOptions = (options?: Options<GetMostLikedCollectionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1507,6 +1837,10 @@ export const getMostLikedCollectionsOptions = (options?: Options<GetMostLikedCol
 
 export const getMostRecentCollectionsQueryKey = (options?: Options<GetMostRecentCollectionsData>) => createQueryKey('getMostRecentCollections', options);
 
+/**
+ * Get most recent collections
+ * Get most recently published and modified collections
+ */
 export const getMostRecentCollectionsOptions = (options?: Options<GetMostRecentCollectionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1541,6 +1875,10 @@ export const getItemsCollectionsSearchRebuildOptions = (options?: Options<GetIte
 
 export const getItemMembershipsForItemQueryKey = (options: Options<GetItemMembershipsForItemData>) => createQueryKey('getItemMembershipsForItem', options);
 
+/**
+ * Get memberships for one item
+ * Get memberships for one item
+ */
 export const getItemMembershipsForItemOptions = (options: Options<GetItemMembershipsForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1558,6 +1896,10 @@ export const getItemMembershipsForItemOptions = (options: Options<GetItemMembers
 
 export const createItemMembershipQueryKey = (options: Options<CreateItemMembershipData>) => createQueryKey('createItemMembership', options);
 
+/**
+ * Create access to item for account
+ * Create access to item for account, given permission
+ */
 export const createItemMembershipOptions = (options: Options<CreateItemMembershipData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1573,6 +1915,10 @@ export const createItemMembershipOptions = (options: Options<CreateItemMembershi
     });
 };
 
+/**
+ * Create access to item for account
+ * Create access to item for account, given permission
+ */
 export const createItemMembershipMutation = (options?: Partial<Options<CreateItemMembershipData>>): UseMutationOptions<CreateItemMembershipResponse, CreateItemMembershipError, Options<CreateItemMembershipData>> => {
     const mutationOptions: UseMutationOptions<CreateItemMembershipResponse, CreateItemMembershipError, Options<CreateItemMembershipData>> = {
         mutationFn: async (localOptions) => {
@@ -1587,6 +1933,10 @@ export const createItemMembershipMutation = (options?: Partial<Options<CreateIte
     return mutationOptions;
 };
 
+/**
+ * Delete access to item for account
+ * Delete access to item for account
+ */
 export const deleteItemMembershipMutation = (options?: Partial<Options<DeleteItemMembershipData>>): UseMutationOptions<DeleteItemMembershipResponse, DeleteItemMembershipError, Options<DeleteItemMembershipData>> => {
     const mutationOptions: UseMutationOptions<DeleteItemMembershipResponse, DeleteItemMembershipError, Options<DeleteItemMembershipData>> = {
         mutationFn: async (localOptions) => {
@@ -1601,6 +1951,10 @@ export const deleteItemMembershipMutation = (options?: Partial<Options<DeleteIte
     return mutationOptions;
 };
 
+/**
+ * Update permission for item membership
+ * Update permission for item membership
+ */
 export const updateItemMembershipMutation = (options?: Partial<Options<UpdateItemMembershipData>>): UseMutationOptions<UpdateItemMembershipResponse, UpdateItemMembershipError, Options<UpdateItemMembershipData>> => {
     const mutationOptions: UseMutationOptions<UpdateItemMembershipResponse, UpdateItemMembershipError, Options<UpdateItemMembershipData>> = {
         mutationFn: async (localOptions) => {
@@ -1617,6 +1971,10 @@ export const updateItemMembershipMutation = (options?: Partial<Options<UpdateIte
 
 export const getMembershipRequestsByItemIdQueryKey = (options: Options<GetMembershipRequestsByItemIdData>) => createQueryKey('getMembershipRequestsByItemId', options);
 
+/**
+ * Get all membership requests for an item
+ * Get all membership requests with member information for an item by its ID
+ */
 export const getMembershipRequestsByItemIdOptions = (options: Options<GetMembershipRequestsByItemIdData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1634,6 +1992,12 @@ export const getMembershipRequestsByItemIdOptions = (options: Options<GetMembers
 
 export const createMembershipRequestQueryKey = (options: Options<CreateMembershipRequestData>) => createQueryKey('createMembershipRequest', options);
 
+/**
+ * Create a membership request
+ * Create a membership request for an item with the authenticated member.
+ * The member should not have any permission on the item.
+ * If there is an Item Login associated with the item, the request will be rejected.
+ */
 export const createMembershipRequestOptions = (options: Options<CreateMembershipRequestData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1649,6 +2013,12 @@ export const createMembershipRequestOptions = (options: Options<CreateMembership
     });
 };
 
+/**
+ * Create a membership request
+ * Create a membership request for an item with the authenticated member.
+ * The member should not have any permission on the item.
+ * If there is an Item Login associated with the item, the request will be rejected.
+ */
 export const createMembershipRequestMutation = (options?: Partial<Options<CreateMembershipRequestData>>): UseMutationOptions<CreateMembershipRequestResponse, DefaultError, Options<CreateMembershipRequestData>> => {
     const mutationOptions: UseMutationOptions<CreateMembershipRequestResponse, DefaultError, Options<CreateMembershipRequestData>> = {
         mutationFn: async (localOptions) => {
@@ -1665,6 +2035,10 @@ export const createMembershipRequestMutation = (options?: Partial<Options<Create
 
 export const getOwnMembershipRequestByItemIdQueryKey = (options: Options<GetOwnMembershipRequestByItemIdData>) => createQueryKey('getOwnMembershipRequestByItemId', options);
 
+/**
+ * Get the status of the membership request for the authenticated member
+ * Get the status of the membership request for the authenticated member for an item by its ID
+ */
 export const getOwnMembershipRequestByItemIdOptions = (options: Options<GetOwnMembershipRequestByItemIdData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1680,6 +2054,10 @@ export const getOwnMembershipRequestByItemIdOptions = (options: Options<GetOwnMe
     });
 };
 
+/**
+ * Delete a membership request
+ * Delete a membership request from a member id and an item id.
+ */
 export const deleteMembershipRequestMutation = (options?: Partial<Options<DeleteMembershipRequestData>>): UseMutationOptions<DeleteMembershipRequestResponse, DefaultError, Options<DeleteMembershipRequestData>> => {
     const mutationOptions: UseMutationOptions<DeleteMembershipRequestResponse, DefaultError, Options<DeleteMembershipRequestData>> = {
         mutationFn: async (localOptions) => {
@@ -1696,6 +2074,10 @@ export const deleteMembershipRequestMutation = (options?: Partial<Options<Delete
 
 export const createShortcutQueryKey = (options: Options<CreateShortcutData>) => createQueryKey('createShortcut', options);
 
+/**
+ * Create shortcut
+ * Create shortcut. If not provided, the name of the shortcut is infered from the actor's language.
+ */
 export const createShortcutOptions = (options: Options<CreateShortcutData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1711,6 +2093,10 @@ export const createShortcutOptions = (options: Options<CreateShortcutData>) => {
     });
 };
 
+/**
+ * Create shortcut
+ * Create shortcut. If not provided, the name of the shortcut is infered from the actor's language.
+ */
 export const createShortcutMutation = (options?: Partial<Options<CreateShortcutData>>): UseMutationOptions<CreateShortcutResponse, CreateShortcutError, Options<CreateShortcutData>> => {
     const mutationOptions: UseMutationOptions<CreateShortcutResponse, CreateShortcutError, Options<CreateShortcutData>> = {
         mutationFn: async (localOptions) => {
@@ -1725,6 +2111,10 @@ export const createShortcutMutation = (options?: Partial<Options<CreateShortcutD
     return mutationOptions;
 };
 
+/**
+ * Update shortcut
+ * Update shortcut given body.
+ */
 export const updateShortcutMutation = (options?: Partial<Options<UpdateShortcutData>>): UseMutationOptions<UpdateShortcutResponse, UpdateShortcutError, Options<UpdateShortcutData>> => {
     const mutationOptions: UseMutationOptions<UpdateShortcutResponse, UpdateShortcutError, Options<UpdateShortcutData>> = {
         mutationFn: async (localOptions) => {
@@ -1786,6 +2176,10 @@ export const postItemsByIdThumbnailsMutation = (options?: Partial<Options<PostIt
 
 export const downloadItemThumbnailQueryKey = (options: Options<DownloadItemThumbnailData>) => createQueryKey('downloadItemThumbnail', options);
 
+/**
+ * Get an item's thumbnail
+ * Get an item's thumbnail at given size. The return value is null if the item did not previously have a thumbnail.
+ */
 export const downloadItemThumbnailOptions = (options: Options<DownloadItemThumbnailData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1803,6 +2197,10 @@ export const downloadItemThumbnailOptions = (options: Options<DownloadItemThumbn
 
 export const uploadFileQueryKey = (options?: Options<UploadFileData>) => createQueryKey('uploadFile', options);
 
+/**
+ * Upload files
+ * Upload files to create corresponding items.
+ */
 export const uploadFileOptions = (options?: Options<UploadFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1818,6 +2216,10 @@ export const uploadFileOptions = (options?: Options<UploadFileData>) => {
     });
 };
 
+/**
+ * Upload files
+ * Upload files to create corresponding items.
+ */
 export const uploadFileMutation = (options?: Partial<Options<UploadFileData>>): UseMutationOptions<UploadFileResponse, UploadFileError, Options<UploadFileData>> => {
     const mutationOptions: UseMutationOptions<UploadFileResponse, UploadFileError, Options<UploadFileData>> = {
         mutationFn: async (localOptions) => {
@@ -1834,6 +2236,10 @@ export const uploadFileMutation = (options?: Partial<Options<UploadFileData>>): 
 
 export const getUrlQueryKey = (options: Options<GetUrlData>) => createQueryKey('getUrl', options);
 
+/**
+ * Get file URL
+ * Get file URL.
+ */
 export const getUrlOptions = (options: Options<GetUrlData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1849,6 +2255,10 @@ export const getUrlOptions = (options: Options<GetUrlData>) => {
     });
 };
 
+/**
+ * Update file
+ * Update file.
+ */
 export const updateFileMutation = (options?: Partial<Options<UpdateFileData>>): UseMutationOptions<unknown, UpdateFileError, Options<UpdateFileData>> => {
     const mutationOptions: UseMutationOptions<unknown, UpdateFileError, Options<UpdateFileData>> = {
         mutationFn: async (localOptions) => {
@@ -1863,6 +2273,10 @@ export const updateFileMutation = (options?: Partial<Options<UpdateFileData>>): 
     return mutationOptions;
 };
 
+/**
+ * Delete visibility of item
+ * Delete visibility of item with given type.
+ */
 export const deleteVisibilityMutation = (options?: Partial<Options<DeleteVisibilityData>>): UseMutationOptions<DeleteVisibilityResponse, DeleteVisibilityError, Options<DeleteVisibilityData>> => {
     const mutationOptions: UseMutationOptions<DeleteVisibilityResponse, DeleteVisibilityError, Options<DeleteVisibilityData>> = {
         mutationFn: async (localOptions) => {
@@ -1879,6 +2293,10 @@ export const deleteVisibilityMutation = (options?: Partial<Options<DeleteVisibil
 
 export const createVisibilityQueryKey = (options: Options<CreateVisibilityData>) => createQueryKey('createVisibility', options);
 
+/**
+ * Create visibility on item
+ * Create visibility on item with given visibility that will apply on itself and its descendants.
+ */
 export const createVisibilityOptions = (options: Options<CreateVisibilityData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1894,6 +2312,10 @@ export const createVisibilityOptions = (options: Options<CreateVisibilityData>) 
     });
 };
 
+/**
+ * Create visibility on item
+ * Create visibility on item with given visibility that will apply on itself and its descendants.
+ */
 export const createVisibilityMutation = (options?: Partial<Options<CreateVisibilityData>>): UseMutationOptions<CreateVisibilityResponse, CreateVisibilityError, Options<CreateVisibilityData>> => {
     const mutationOptions: UseMutationOptions<CreateVisibilityResponse, CreateVisibilityError, Options<CreateVisibilityData>> = {
         mutationFn: async (localOptions) => {
@@ -1910,6 +2332,10 @@ export const createVisibilityMutation = (options?: Partial<Options<CreateVisibil
 
 export const createFolderQueryKey = (options: Options<CreateFolderData>) => createQueryKey('createFolder', options);
 
+/**
+ * Create folder
+ * Create folder.
+ */
 export const createFolderOptions = (options: Options<CreateFolderData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1925,6 +2351,10 @@ export const createFolderOptions = (options: Options<CreateFolderData>) => {
     });
 };
 
+/**
+ * Create folder
+ * Create folder.
+ */
 export const createFolderMutation = (options?: Partial<Options<CreateFolderData>>): UseMutationOptions<CreateFolderResponse, CreateFolderError, Options<CreateFolderData>> => {
     const mutationOptions: UseMutationOptions<CreateFolderResponse, CreateFolderError, Options<CreateFolderData>> = {
         mutationFn: async (localOptions) => {
@@ -1939,6 +2369,10 @@ export const createFolderMutation = (options?: Partial<Options<CreateFolderData>
     return mutationOptions;
 };
 
+/**
+ * Update folder
+ * Update folder given body.
+ */
 export const updateFolderMutation = (options?: Partial<Options<UpdateFolderData>>): UseMutationOptions<UpdateFolderResponse, UpdateFolderError, Options<UpdateFolderData>> => {
     const mutationOptions: UseMutationOptions<UpdateFolderResponse, UpdateFolderError, Options<UpdateFolderData>> = {
         mutationFn: async (localOptions) => {
@@ -1955,6 +2389,10 @@ export const updateFolderMutation = (options?: Partial<Options<UpdateFolderData>
 
 export const createFolderWithThumbnailQueryKey = (options?: Options<CreateFolderWithThumbnailData>) => createQueryKey('createFolderWithThumbnail', options);
 
+/**
+ * Create a folder with a thumbnail
+ * Create a folder with a thumbnail. The data is sent using a form-data.
+ */
 export const createFolderWithThumbnailOptions = (options?: Options<CreateFolderWithThumbnailData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -1970,6 +2408,10 @@ export const createFolderWithThumbnailOptions = (options?: Options<CreateFolderW
     });
 };
 
+/**
+ * Create a folder with a thumbnail
+ * Create a folder with a thumbnail. The data is sent using a form-data.
+ */
 export const createFolderWithThumbnailMutation = (options?: Partial<Options<CreateFolderWithThumbnailData>>): UseMutationOptions<CreateFolderWithThumbnailResponse, CreateFolderWithThumbnailError, Options<CreateFolderWithThumbnailData>> => {
     const mutationOptions: UseMutationOptions<CreateFolderWithThumbnailResponse, CreateFolderWithThumbnailError, Options<CreateFolderWithThumbnailData>> = {
         mutationFn: async (localOptions) => {
@@ -1986,6 +2428,10 @@ export const createFolderWithThumbnailMutation = (options?: Partial<Options<Crea
 
 export const createAppQueryKey = (options: Options<CreateAppData>) => createQueryKey('createApp', options);
 
+/**
+ * Create app
+ * Create app.
+ */
 export const createAppOptions = (options: Options<CreateAppData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2001,6 +2447,10 @@ export const createAppOptions = (options: Options<CreateAppData>) => {
     });
 };
 
+/**
+ * Create app
+ * Create app.
+ */
 export const createAppMutation = (options?: Partial<Options<CreateAppData>>): UseMutationOptions<CreateAppResponse, CreateAppError, Options<CreateAppData>> => {
     const mutationOptions: UseMutationOptions<CreateAppResponse, CreateAppError, Options<CreateAppData>> = {
         mutationFn: async (localOptions) => {
@@ -2015,6 +2465,10 @@ export const createAppMutation = (options?: Partial<Options<CreateAppData>>): Us
     return mutationOptions;
 };
 
+/**
+ * Update app
+ * Update app given body.
+ */
 export const updateAppMutation = (options?: Partial<Options<UpdateAppData>>): UseMutationOptions<UpdateAppResponse, UpdateAppError, Options<UpdateAppData>> => {
     const mutationOptions: UseMutationOptions<UpdateAppResponse, UpdateAppError, Options<UpdateAppData>> = {
         mutationFn: async (localOptions) => {
@@ -2029,6 +2483,10 @@ export const updateAppMutation = (options?: Partial<Options<UpdateAppData>>): Us
     return mutationOptions;
 };
 
+/**
+ * Delete alias
+ * Delete short link's alias.
+ */
 export const deleteAliasMutation = (options?: Partial<Options<DeleteAliasData>>): UseMutationOptions<DeleteAliasResponse, DeleteAliasError, Options<DeleteAliasData>> => {
     const mutationOptions: UseMutationOptions<DeleteAliasResponse, DeleteAliasError, Options<DeleteAliasData>> = {
         mutationFn: async (localOptions) => {
@@ -2045,6 +2503,10 @@ export const deleteAliasMutation = (options?: Partial<Options<DeleteAliasData>>)
 
 export const getShortLinkRedirectionQueryKey = (options: Options<GetShortLinkRedirectionData>) => createQueryKey('getShortLinkRedirection', options);
 
+/**
+ * Get redirection for short link
+ * Get redirection for given short link.
+ */
 export const getShortLinkRedirectionOptions = (options: Options<GetShortLinkRedirectionData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2060,6 +2522,10 @@ export const getShortLinkRedirectionOptions = (options: Options<GetShortLinkRedi
     });
 };
 
+/**
+ * Update short link
+ * Update the alias of the short link.
+ */
 export const updateShortLinkMutation = (options?: Partial<Options<UpdateShortLinkData>>): UseMutationOptions<UpdateShortLinkResponse, UpdateShortLinkError, Options<UpdateShortLinkData>> => {
     const mutationOptions: UseMutationOptions<UpdateShortLinkResponse, UpdateShortLinkError, Options<UpdateShortLinkData>> = {
         mutationFn: async (localOptions) => {
@@ -2076,6 +2542,10 @@ export const updateShortLinkMutation = (options?: Partial<Options<UpdateShortLin
 
 export const getShortLinkAvailabilityQueryKey = (options: Options<GetShortLinkAvailabilityData>) => createQueryKey('getShortLinkAvailability', options);
 
+/**
+ * Get whether an alias is available
+ * Get whether an alias is available.
+ */
 export const getShortLinkAvailabilityOptions = (options: Options<GetShortLinkAvailabilityData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2093,6 +2563,10 @@ export const getShortLinkAvailabilityOptions = (options: Options<GetShortLinkAva
 
 export const getShortLinksForItemQueryKey = (options: Options<GetShortLinksForItemData>) => createQueryKey('getShortLinksForItem', options);
 
+/**
+ * Get all short links for item
+ * Get all short links created for an item. The response could be an empty object or a key-value with at least one platform and the alias.
+ */
 export const getShortLinksForItemOptions = (options: Options<GetShortLinksForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2110,6 +2584,10 @@ export const getShortLinksForItemOptions = (options: Options<GetShortLinksForIte
 
 export const createShortLinkQueryKey = (options: Options<CreateShortLinkData>) => createQueryKey('createShortLink', options);
 
+/**
+ * Create short link for item
+ * Create short link for item.
+ */
 export const createShortLinkOptions = (options: Options<CreateShortLinkData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2125,6 +2603,10 @@ export const createShortLinkOptions = (options: Options<CreateShortLinkData>) =>
     });
 };
 
+/**
+ * Create short link for item
+ * Create short link for item.
+ */
 export const createShortLinkMutation = (options?: Partial<Options<CreateShortLinkData>>): UseMutationOptions<CreateShortLinkResponse, CreateShortLinkError, Options<CreateShortLinkData>> => {
     const mutationOptions: UseMutationOptions<CreateShortLinkResponse, CreateShortLinkError, Options<CreateShortLinkData>> = {
         mutationFn: async (localOptions) => {
@@ -2173,9 +2655,13 @@ export const getItemsH5pAssetsIntegrationHtmlOptions = (options?: Options<GetIte
     });
 };
 
-export const importH5PQueryKey = (options?: Options<ImportH5pData>) => createQueryKey('importH5P', options);
+export const importH5pQueryKey = (options?: Options<ImportH5pData>) => createQueryKey('importH5P', options);
 
-export const importH5POptions = (options?: Options<ImportH5pData>) => {
+/**
+ * Import H5P file
+ * Import H5P file and create corresponding item.
+ */
+export const importH5pOptions = (options?: Options<ImportH5pData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
             const { data } = await importH5P({
@@ -2186,11 +2672,15 @@ export const importH5POptions = (options?: Options<ImportH5pData>) => {
             });
             return data;
         },
-        queryKey: importH5PQueryKey(options)
+        queryKey: importH5pQueryKey(options)
     });
 };
 
-export const importH5PMutation = (options?: Partial<Options<ImportH5pData>>): UseMutationOptions<ImportH5pResponse, ImportH5pError, Options<ImportH5pData>> => {
+/**
+ * Import H5P file
+ * Import H5P file and create corresponding item.
+ */
+export const importH5pMutation = (options?: Partial<Options<ImportH5pData>>): UseMutationOptions<ImportH5pResponse, ImportH5pError, Options<ImportH5pData>> => {
     const mutationOptions: UseMutationOptions<ImportH5pResponse, ImportH5pError, Options<ImportH5pData>> = {
         mutationFn: async (localOptions) => {
             const { data } = await importH5P({
@@ -2206,6 +2696,10 @@ export const importH5PMutation = (options?: Partial<Options<ImportH5pData>>): Us
 
 export const createEtherpadQueryKey = (options: Options<CreateEtherpadData>) => createQueryKey('createEtherpad', options);
 
+/**
+ * Create etherpad
+ * Create an etherpad item.
+ */
 export const createEtherpadOptions = (options: Options<CreateEtherpadData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2221,6 +2715,10 @@ export const createEtherpadOptions = (options: Options<CreateEtherpadData>) => {
     });
 };
 
+/**
+ * Create etherpad
+ * Create an etherpad item.
+ */
 export const createEtherpadMutation = (options?: Partial<Options<CreateEtherpadData>>): UseMutationOptions<CreateEtherpadResponse, CreateEtherpadError, Options<CreateEtherpadData>> => {
     const mutationOptions: UseMutationOptions<CreateEtherpadResponse, CreateEtherpadError, Options<CreateEtherpadData>> = {
         mutationFn: async (localOptions) => {
@@ -2235,6 +2733,10 @@ export const createEtherpadMutation = (options?: Partial<Options<CreateEtherpadD
     return mutationOptions;
 };
 
+/**
+ * Update etherpad
+ * Update etherpad properties, including permission of readers.
+ */
 export const updateEtherpadMutation = (options?: Partial<Options<UpdateEtherpadData>>): UseMutationOptions<UpdateEtherpadResponse, UpdateEtherpadError, Options<UpdateEtherpadData>> => {
     const mutationOptions: UseMutationOptions<UpdateEtherpadResponse, UpdateEtherpadError, Options<UpdateEtherpadData>> = {
         mutationFn: async (localOptions) => {
@@ -2251,6 +2753,10 @@ export const updateEtherpadMutation = (options?: Partial<Options<UpdateEtherpadD
 
 export const getEtherpadFromItemQueryKey = (options: Options<GetEtherpadFromItemData>) => createQueryKey('getEtherpadFromItem', options);
 
+/**
+ * Get etherpad information
+ * Get etherpad information from item id
+ */
 export const getEtherpadFromItemOptions = (options: Options<GetEtherpadFromItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2268,6 +2774,10 @@ export const getEtherpadFromItemOptions = (options: Options<GetEtherpadFromItemD
 
 export const importZipQueryKey = (options?: Options<ImportZipData>) => createQueryKey('importZip', options);
 
+/**
+ * Import ZIP content
+ * Import and extract the content of a ZIP, creating the corresponding structure and items.
+ */
 export const importZipOptions = (options?: Options<ImportZipData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2283,6 +2793,10 @@ export const importZipOptions = (options?: Options<ImportZipData>) => {
     });
 };
 
+/**
+ * Import ZIP content
+ * Import and extract the content of a ZIP, creating the corresponding structure and items.
+ */
 export const importZipMutation = (options?: Partial<Options<ImportZipData>>): UseMutationOptions<unknown, ImportZipError, Options<ImportZipData>> => {
     const mutationOptions: UseMutationOptions<unknown, ImportZipError, Options<ImportZipData>> = {
         mutationFn: async (localOptions) => {
@@ -2299,6 +2813,10 @@ export const importZipMutation = (options?: Partial<Options<ImportZipData>>): Us
 
 export const downloadFileQueryKey = (options: Options<DownloadFileData>) => createQueryKey('downloadFile', options);
 
+/**
+ * Download non-folder content
+ * Download non-folder content. Return raw file for single item.
+ */
 export const downloadFileOptions = (options: Options<DownloadFileData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2314,6 +2832,10 @@ export const downloadFileOptions = (options: Options<DownloadFileData>) => {
     });
 };
 
+/**
+ * Download non-folder content
+ * Download non-folder content. Return raw file for single item.
+ */
 export const downloadFileMutation = (options?: Partial<Options<DownloadFileData>>): UseMutationOptions<unknown, DownloadFileError, Options<DownloadFileData>> => {
     const mutationOptions: UseMutationOptions<unknown, DownloadFileError, Options<DownloadFileData>> = {
         mutationFn: async (localOptions) => {
@@ -2330,6 +2852,10 @@ export const downloadFileMutation = (options?: Partial<Options<DownloadFileData>
 
 export const exportZipQueryKey = (options: Options<ExportZipData>) => createQueryKey('exportZip', options);
 
+/**
+ * Export folder content as zip archive
+ * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive. Users can download any resource they can access.
+ */
 export const exportZipOptions = (options: Options<ExportZipData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2345,6 +2871,10 @@ export const exportZipOptions = (options: Options<ExportZipData>) => {
     });
 };
 
+/**
+ * Export folder content as zip archive
+ * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive. Users can download any resource they can access.
+ */
 export const exportZipMutation = (options?: Partial<Options<ExportZipData>>): UseMutationOptions<unknown, ExportZipError, Options<ExportZipData>> => {
     const mutationOptions: UseMutationOptions<unknown, ExportZipError, Options<ExportZipData>> = {
         mutationFn: async (localOptions) => {
@@ -2361,6 +2891,10 @@ export const exportZipMutation = (options?: Partial<Options<ExportZipData>>): Us
 
 export const graaspZipExportQueryKey = (options: Options<GraaspZipExportData>) => createQueryKey('graaspZipExport', options);
 
+/**
+ * Export content
+ * Export content. Return raw file for single item, or a ZIP with structure and items for a folder.
+ */
 export const graaspZipExportOptions = (options: Options<GraaspZipExportData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2376,6 +2910,10 @@ export const graaspZipExportOptions = (options: Options<GraaspZipExportData>) =>
     });
 };
 
+/**
+ * Export content
+ * Export content. Return raw file for single item, or a ZIP with structure and items for a folder.
+ */
 export const graaspZipExportMutation = (options?: Partial<Options<GraaspZipExportData>>): UseMutationOptions<unknown, GraaspZipExportError, Options<GraaspZipExportData>> => {
     const mutationOptions: UseMutationOptions<unknown, GraaspZipExportError, Options<GraaspZipExportData>> = {
         mutationFn: async (localOptions) => {
@@ -2392,6 +2930,10 @@ export const graaspZipExportMutation = (options?: Partial<Options<GraaspZipExpor
 
 export const getLinkMetadataQueryKey = (options: Options<GetLinkMetadataData>) => createQueryKey('getLinkMetadata', options);
 
+/**
+ * Get metadata information from iframely for given url
+ * Get metadata information from iframely for given url.
+ */
 export const getLinkMetadataOptions = (options: Options<GetLinkMetadataData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2409,6 +2951,10 @@ export const getLinkMetadataOptions = (options: Options<GetLinkMetadataData>) =>
 
 export const createLinkQueryKey = (options: Options<CreateLinkData>) => createQueryKey('createLink', options);
 
+/**
+ * Create link
+ * Create link.
+ */
 export const createLinkOptions = (options: Options<CreateLinkData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2424,6 +2970,10 @@ export const createLinkOptions = (options: Options<CreateLinkData>) => {
     });
 };
 
+/**
+ * Create link
+ * Create link.
+ */
 export const createLinkMutation = (options?: Partial<Options<CreateLinkData>>): UseMutationOptions<CreateLinkResponse, CreateLinkError, Options<CreateLinkData>> => {
     const mutationOptions: UseMutationOptions<CreateLinkResponse, CreateLinkError, Options<CreateLinkData>> = {
         mutationFn: async (localOptions) => {
@@ -2438,6 +2988,10 @@ export const createLinkMutation = (options?: Partial<Options<CreateLinkData>>): 
     return mutationOptions;
 };
 
+/**
+ * Update link
+ * Update link given body.
+ */
 export const updateLinkMutation = (options?: Partial<Options<UpdateLinkData>>): UseMutationOptions<UpdateLinkResponse, UpdateLinkError, Options<UpdateLinkData>> => {
     const mutationOptions: UseMutationOptions<UpdateLinkResponse, UpdateLinkError, Options<UpdateLinkData>> = {
         mutationFn: async (localOptions) => {
@@ -2454,6 +3008,10 @@ export const updateLinkMutation = (options?: Partial<Options<UpdateLinkData>>): 
 
 export const createDocumentQueryKey = (options: Options<CreateDocumentData>) => createQueryKey('createDocument', options);
 
+/**
+ * Create document
+ * Create document with given payload. The content will be sanitized.
+ */
 export const createDocumentOptions = (options: Options<CreateDocumentData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2469,6 +3027,10 @@ export const createDocumentOptions = (options: Options<CreateDocumentData>) => {
     });
 };
 
+/**
+ * Create document
+ * Create document with given payload. The content will be sanitized.
+ */
 export const createDocumentMutation = (options?: Partial<Options<CreateDocumentData>>): UseMutationOptions<CreateDocumentResponse, CreateDocumentError, Options<CreateDocumentData>> => {
     const mutationOptions: UseMutationOptions<CreateDocumentResponse, CreateDocumentError, Options<CreateDocumentData>> = {
         mutationFn: async (localOptions) => {
@@ -2483,6 +3045,10 @@ export const createDocumentMutation = (options?: Partial<Options<CreateDocumentD
     return mutationOptions;
 };
 
+/**
+ * Update document
+ * Update document given payload. The content will be sanitized.
+ */
 export const updateDocumentMutation = (options?: Partial<Options<UpdateDocumentData>>): UseMutationOptions<UpdateDocumentResponse, UpdateDocumentError, Options<UpdateDocumentData>> => {
     const mutationOptions: UseMutationOptions<UpdateDocumentResponse, UpdateDocumentError, Options<UpdateDocumentData>> = {
         mutationFn: async (localOptions) => {
@@ -2499,6 +3065,10 @@ export const updateDocumentMutation = (options?: Partial<Options<UpdateDocumentD
 
 export const getInvitationByIdQueryKey = (options: Options<GetInvitationByIdData>) => createQueryKey('getInvitationById', options);
 
+/**
+ * Get invitation
+ * Get invitation by id
+ */
 export const getInvitationByIdOptions = (options: Options<GetInvitationByIdData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2516,6 +3086,10 @@ export const getInvitationByIdOptions = (options: Options<GetInvitationByIdData>
 
 export const createInvitationQueryKey = (options: Options<CreateInvitationData>) => createQueryKey('createInvitation', options);
 
+/**
+ * Invite user by email to access an item
+ * Invite non-registered user with their email to access given item.
+ */
 export const createInvitationOptions = (options: Options<CreateInvitationData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2531,6 +3105,10 @@ export const createInvitationOptions = (options: Options<CreateInvitationData>) 
     });
 };
 
+/**
+ * Invite user by email to access an item
+ * Invite non-registered user with their email to access given item.
+ */
 export const createInvitationMutation = (options?: Partial<Options<CreateInvitationData>>): UseMutationOptions<CreateInvitationResponse, CreateInvitationError, Options<CreateInvitationData>> => {
     const mutationOptions: UseMutationOptions<CreateInvitationResponse, CreateInvitationError, Options<CreateInvitationData>> = {
         mutationFn: async (localOptions) => {
@@ -2547,6 +3125,10 @@ export const createInvitationMutation = (options?: Partial<Options<CreateInvitat
 
 export const getInvitationForItemQueryKey = (options: Options<GetInvitationForItemData>) => createQueryKey('getInvitationForItem', options);
 
+/**
+ * Get invitations for a given item
+ * Get invitation for a given item
+ */
 export const getInvitationForItemOptions = (options: Options<GetInvitationForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2562,6 +3144,10 @@ export const getInvitationForItemOptions = (options: Options<GetInvitationForIte
     });
 };
 
+/**
+ * Delete invitation
+ * Delete invitation
+ */
 export const deleteInvitationMutation = (options?: Partial<Options<DeleteInvitationData>>): UseMutationOptions<DeleteInvitationResponse, DeleteInvitationError, Options<DeleteInvitationData>> => {
     const mutationOptions: UseMutationOptions<DeleteInvitationResponse, DeleteInvitationError, Options<DeleteInvitationData>> = {
         mutationFn: async (localOptions) => {
@@ -2576,6 +3162,10 @@ export const deleteInvitationMutation = (options?: Partial<Options<DeleteInvitat
     return mutationOptions;
 };
 
+/**
+ * Update invitation
+ * Update invitation's name or permission
+ */
 export const updateInvitationMutation = (options?: Partial<Options<UpdateInvitationData>>): UseMutationOptions<UpdateInvitationResponse, UpdateInvitationError, Options<UpdateInvitationData>> => {
     const mutationOptions: UseMutationOptions<UpdateInvitationResponse, UpdateInvitationError, Options<UpdateInvitationData>> = {
         mutationFn: async (localOptions) => {
@@ -2592,6 +3182,10 @@ export const updateInvitationMutation = (options?: Partial<Options<UpdateInvitat
 
 export const sendInvitationQueryKey = (options: Options<SendInvitationData>) => createQueryKey('sendInvitation', options);
 
+/**
+ * Send invitation
+ * Send invitation
+ */
 export const sendInvitationOptions = (options: Options<SendInvitationData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2607,6 +3201,10 @@ export const sendInvitationOptions = (options: Options<SendInvitationData>) => {
     });
 };
 
+/**
+ * Send invitation
+ * Send invitation
+ */
 export const sendInvitationMutation = (options?: Partial<Options<SendInvitationData>>): UseMutationOptions<SendInvitationResponse, SendInvitationError, Options<SendInvitationData>> => {
     const mutationOptions: UseMutationOptions<SendInvitationResponse, SendInvitationError, Options<SendInvitationData>> = {
         mutationFn: async (localOptions) => {
@@ -2623,6 +3221,10 @@ export const sendInvitationMutation = (options?: Partial<Options<SendInvitationD
 
 export const inviteFromCsvWithTemplateQueryKey = (options: Options<InviteFromCsvWithTemplateData>) => createQueryKey('inviteFromCsvWithTemplate', options);
 
+/**
+ * Invite users from CSV file in groups given a template
+ * Invite users by groups from CSV. This will create groups of users having access to corresponding resources from a given template.
+ */
 export const inviteFromCsvWithTemplateOptions = (options: Options<InviteFromCsvWithTemplateData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2638,6 +3240,10 @@ export const inviteFromCsvWithTemplateOptions = (options: Options<InviteFromCsvW
     });
 };
 
+/**
+ * Invite users from CSV file in groups given a template
+ * Invite users by groups from CSV. This will create groups of users having access to corresponding resources from a given template.
+ */
 export const inviteFromCsvWithTemplateMutation = (options?: Partial<Options<InviteFromCsvWithTemplateData>>): UseMutationOptions<InviteFromCsvWithTemplateResponse, InviteFromCsvWithTemplateError, Options<InviteFromCsvWithTemplateData>> => {
     const mutationOptions: UseMutationOptions<InviteFromCsvWithTemplateResponse, InviteFromCsvWithTemplateError, Options<InviteFromCsvWithTemplateData>> = {
         mutationFn: async (localOptions) => {
@@ -2654,6 +3260,10 @@ export const inviteFromCsvWithTemplateMutation = (options?: Partial<Options<Invi
 
 export const inviteFromCsvQueryKey = (options: Options<InviteFromCsvData>) => createQueryKey('inviteFromCsv', options);
 
+/**
+ * Invite users from CSV file
+ * Invite users from CSV file, given their email, optional name and permission level.
+ */
 export const inviteFromCsvOptions = (options: Options<InviteFromCsvData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2669,6 +3279,10 @@ export const inviteFromCsvOptions = (options: Options<InviteFromCsvData>) => {
     });
 };
 
+/**
+ * Invite users from CSV file
+ * Invite users from CSV file, given their email, optional name and permission level.
+ */
 export const inviteFromCsvMutation = (options?: Partial<Options<InviteFromCsvData>>): UseMutationOptions<InviteFromCsvResponse, InviteFromCsvError, Options<InviteFromCsvData>> => {
     const mutationOptions: UseMutationOptions<InviteFromCsvResponse, InviteFromCsvError, Options<InviteFromCsvData>> = {
         mutationFn: async (localOptions) => {
@@ -2685,6 +3299,11 @@ export const inviteFromCsvMutation = (options?: Partial<Options<InviteFromCsvDat
 
 export const enrollQueryKey = (options: Options<EnrollData>) => createQueryKey('enroll', options);
 
+/**
+ * Create an item membership for the logged in user if there is an Item Login
+ * Create an item membership on the item with the given ID for the logged in user.
+ * The item needs to be associated with an Item Login.
+ */
 export const enrollOptions = (options: Options<EnrollData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2700,6 +3319,11 @@ export const enrollOptions = (options: Options<EnrollData>) => {
     });
 };
 
+/**
+ * Create an item membership for the logged in user if there is an Item Login
+ * Create an item membership on the item with the given ID for the logged in user.
+ * The item needs to be associated with an Item Login.
+ */
 export const enrollMutation = (options?: Partial<Options<EnrollData>>): UseMutationOptions<EnrollResponse, DefaultError, Options<EnrollData>> => {
     const mutationOptions: UseMutationOptions<EnrollResponse, DefaultError, Options<EnrollData>> = {
         mutationFn: async (localOptions) => {
@@ -2716,6 +3340,10 @@ export const enrollMutation = (options?: Partial<Options<EnrollData>>): UseMutat
 
 export const getFlagTypesQueryKey = (options?: Options<GetFlagTypesData>) => createQueryKey('getFlagTypes', options);
 
+/**
+ * Get flag types
+ * Get available flag types.
+ */
 export const getFlagTypesOptions = (options?: Options<GetFlagTypesData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2733,6 +3361,10 @@ export const getFlagTypesOptions = (options?: Options<GetFlagTypesData>) => {
 
 export const createItemFlagQueryKey = (options: Options<CreateItemFlagData>) => createQueryKey('createItemFlag', options);
 
+/**
+ * Flag item
+ * Flag item with given type.
+ */
 export const createItemFlagOptions = (options: Options<CreateItemFlagData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2748,6 +3380,10 @@ export const createItemFlagOptions = (options: Options<CreateItemFlagData>) => {
     });
 };
 
+/**
+ * Flag item
+ * Flag item with given type.
+ */
 export const createItemFlagMutation = (options?: Partial<Options<CreateItemFlagData>>): UseMutationOptions<CreateItemFlagResponse, CreateItemFlagError, Options<CreateItemFlagData>> => {
     const mutationOptions: UseMutationOptions<CreateItemFlagResponse, CreateItemFlagError, Options<CreateItemFlagData>> = {
         mutationFn: async (localOptions) => {
@@ -2764,6 +3400,10 @@ export const createItemFlagMutation = (options?: Partial<Options<CreateItemFlagD
 
 export const getOwnRecycledItemsQueryKey = (options: Options<GetOwnRecycledItemsData>) => createQueryKey('getOwnRecycledItems', options);
 
+/**
+ * Get own recycled items
+ * Get own recycled items.
+ */
 export const getOwnRecycledItemsOptions = (options: Options<GetOwnRecycledItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2781,6 +3421,10 @@ export const getOwnRecycledItemsOptions = (options: Options<GetOwnRecycledItemsD
 
 export const getOwnRecycledItemsInfiniteQueryKey = (options: Options<GetOwnRecycledItemsData>): QueryKey<Options<GetOwnRecycledItemsData>> => createQueryKey('getOwnRecycledItems', options, true);
 
+/**
+ * Get own recycled items
+ * Get own recycled items.
+ */
 export const getOwnRecycledItemsInfiniteOptions = (options: Options<GetOwnRecycledItemsData>) => {
     return infiniteQueryOptions<GetOwnRecycledItemsResponse, GetOwnRecycledItemsError, InfiniteData<GetOwnRecycledItemsResponse>, QueryKey<Options<GetOwnRecycledItemsData>>, number | Pick<QueryKey<Options<GetOwnRecycledItemsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
@@ -2807,6 +3451,10 @@ export const getOwnRecycledItemsInfiniteOptions = (options: Options<GetOwnRecycl
 
 export const recycleManyItemsQueryKey = (options: Options<RecycleManyItemsData>) => createQueryKey('recycleManyItems', options);
 
+/**
+ * Recycle many items
+ * Recycle many items. This will create as many recycled item data.
+ */
 export const recycleManyItemsOptions = (options: Options<RecycleManyItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2822,6 +3470,10 @@ export const recycleManyItemsOptions = (options: Options<RecycleManyItemsData>) 
     });
 };
 
+/**
+ * Recycle many items
+ * Recycle many items. This will create as many recycled item data.
+ */
 export const recycleManyItemsMutation = (options?: Partial<Options<RecycleManyItemsData>>): UseMutationOptions<RecycleManyItemsResponse, RecycleManyItemsError, Options<RecycleManyItemsData>> => {
     const mutationOptions: UseMutationOptions<RecycleManyItemsResponse, RecycleManyItemsError, Options<RecycleManyItemsData>> = {
         mutationFn: async (localOptions) => {
@@ -2838,6 +3490,10 @@ export const recycleManyItemsMutation = (options?: Partial<Options<RecycleManyIt
 
 export const restoreManyItemsQueryKey = (options: Options<RestoreManyItemsData>) => createQueryKey('restoreManyItems', options);
 
+/**
+ * Restore many items
+ * Restore many items. This will delete as many recycled item data.
+ */
 export const restoreManyItemsOptions = (options: Options<RestoreManyItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2853,6 +3509,10 @@ export const restoreManyItemsOptions = (options: Options<RestoreManyItemsData>) 
     });
 };
 
+/**
+ * Restore many items
+ * Restore many items. This will delete as many recycled item data.
+ */
 export const restoreManyItemsMutation = (options?: Partial<Options<RestoreManyItemsData>>): UseMutationOptions<RestoreManyItemsResponse, RestoreManyItemsError, Options<RestoreManyItemsData>> => {
     const mutationOptions: UseMutationOptions<RestoreManyItemsResponse, RestoreManyItemsError, Options<RestoreManyItemsData>> = {
         mutationFn: async (localOptions) => {
@@ -2869,6 +3529,10 @@ export const restoreManyItemsMutation = (options?: Partial<Options<RestoreManyIt
 
 export const getLatestItemValidationGroupQueryKey = (options: Options<GetLatestItemValidationGroupData>) => createQueryKey('getLatestItemValidationGroup', options);
 
+/**
+ * Get latest validation information.
+ * Get latest validation information. Returns null if no validation has been performed before.
+ */
 export const getLatestItemValidationGroupOptions = (options: Options<GetLatestItemValidationGroupData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2886,6 +3550,10 @@ export const getLatestItemValidationGroupOptions = (options: Options<GetLatestIt
 
 export const validateItemQueryKey = (options: Options<ValidateItemData>) => createQueryKey('validateItem', options);
 
+/**
+ * Validate item
+ * Validate item's tree against many processes, such as nudity detection.
+ */
 export const validateItemOptions = (options: Options<ValidateItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2901,6 +3569,10 @@ export const validateItemOptions = (options: Options<ValidateItemData>) => {
     });
 };
 
+/**
+ * Validate item
+ * Validate item's tree against many processes, such as nudity detection.
+ */
 export const validateItemMutation = (options?: Partial<Options<ValidateItemData>>): UseMutationOptions<ValidateItemResponse, ValidateItemError, Options<ValidateItemData>> => {
     const mutationOptions: UseMutationOptions<ValidateItemResponse, ValidateItemError, Options<ValidateItemData>> = {
         mutationFn: async (localOptions) => {
@@ -2917,6 +3589,10 @@ export const validateItemMutation = (options?: Partial<Options<ValidateItemData>
 
 export const getLikesForCurrentMemberQueryKey = (options?: Options<GetLikesForCurrentMemberData>) => createQueryKey('getLikesForCurrentMember', options);
 
+/**
+ * Get likes for current member
+ * Get likes for current member. Item property is a packed item.
+ */
 export const getLikesForCurrentMemberOptions = (options?: Options<GetLikesForCurrentMemberData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2934,6 +3610,10 @@ export const getLikesForCurrentMemberOptions = (options?: Options<GetLikesForCur
 
 export const getLikesForItemQueryKey = (options: Options<GetLikesForItemData>) => createQueryKey('getLikesForItem', options);
 
+/**
+ * Get likes for item
+ * Get likes for item.
+ */
 export const getLikesForItemOptions = (options: Options<GetLikesForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2949,6 +3629,10 @@ export const getLikesForItemOptions = (options: Options<GetLikesForItemData>) =>
     });
 };
 
+/**
+ * Unlike item
+ * Unlike item.
+ */
 export const deleteItemLikeMutation = (options?: Partial<Options<DeleteItemLikeData>>): UseMutationOptions<DeleteItemLikeResponse, DeleteItemLikeError, Options<DeleteItemLikeData>> => {
     const mutationOptions: UseMutationOptions<DeleteItemLikeResponse, DeleteItemLikeError, Options<DeleteItemLikeData>> = {
         mutationFn: async (localOptions) => {
@@ -2965,6 +3649,10 @@ export const deleteItemLikeMutation = (options?: Partial<Options<DeleteItemLikeD
 
 export const createItemLikeQueryKey = (options: Options<CreateItemLikeData>) => createQueryKey('createItemLike', options);
 
+/**
+ * Like item
+ * Like item.
+ */
 export const createItemLikeOptions = (options: Options<CreateItemLikeData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -2980,6 +3668,10 @@ export const createItemLikeOptions = (options: Options<CreateItemLikeData>) => {
     });
 };
 
+/**
+ * Like item
+ * Like item.
+ */
 export const createItemLikeMutation = (options?: Partial<Options<CreateItemLikeData>>): UseMutationOptions<CreateItemLikeResponse, CreateItemLikeError, Options<CreateItemLikeData>> => {
     const mutationOptions: UseMutationOptions<CreateItemLikeResponse, CreateItemLikeError, Options<CreateItemLikeData>> = {
         mutationFn: async (localOptions) => {
@@ -2994,6 +3686,10 @@ export const createItemLikeMutation = (options?: Partial<Options<CreateItemLikeD
     return mutationOptions;
 };
 
+/**
+ * Clear all mentions for current user
+ * Clear all mentions for current user.
+ */
 export const clearAllMentionsMutation = (options?: Partial<Options<ClearAllMentionsData>>): UseMutationOptions<ClearAllMentionsResponse, ClearAllMentionsError, Options<ClearAllMentionsData>> => {
     const mutationOptions: UseMutationOptions<ClearAllMentionsResponse, ClearAllMentionsError, Options<ClearAllMentionsData>> = {
         mutationFn: async (localOptions) => {
@@ -3010,6 +3706,10 @@ export const clearAllMentionsMutation = (options?: Partial<Options<ClearAllMenti
 
 export const getOwnMentionsQueryKey = (options?: Options<GetOwnMentionsData>) => createQueryKey('getOwnMentions', options);
 
+/**
+ * Get mentions for current user
+ * Get mentions for current user.
+ */
 export const getOwnMentionsOptions = (options?: Options<GetOwnMentionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3025,6 +3725,10 @@ export const getOwnMentionsOptions = (options?: Options<GetOwnMentionsData>) => 
     });
 };
 
+/**
+ * Delete mention
+ * Delete mention.
+ */
 export const deleteMentionMutation = (options?: Partial<Options<DeleteMentionData>>): UseMutationOptions<DeleteMentionResponse, DeleteMentionError, Options<DeleteMentionData>> => {
     const mutationOptions: UseMutationOptions<DeleteMentionResponse, DeleteMentionError, Options<DeleteMentionData>> = {
         mutationFn: async (localOptions) => {
@@ -3039,6 +3743,10 @@ export const deleteMentionMutation = (options?: Partial<Options<DeleteMentionDat
     return mutationOptions;
 };
 
+/**
+ * Patch mention
+ * Patch mention's status.
+ */
 export const patchMentionMutation = (options?: Partial<Options<PatchMentionData>>): UseMutationOptions<PatchMentionResponse, PatchMentionError, Options<PatchMentionData>> => {
     const mutationOptions: UseMutationOptions<PatchMentionResponse, PatchMentionError, Options<PatchMentionData>> = {
         mutationFn: async (localOptions) => {
@@ -3053,6 +3761,10 @@ export const patchMentionMutation = (options?: Partial<Options<PatchMentionData>
     return mutationOptions;
 };
 
+/**
+ * Clear messages of chat
+ * Clear messages of chat for given item.
+ */
 export const clearChatMessageMutation = (options?: Partial<Options<ClearChatMessageData>>): UseMutationOptions<ClearChatMessageResponse, ClearChatMessageError, Options<ClearChatMessageData>> => {
     const mutationOptions: UseMutationOptions<ClearChatMessageResponse, ClearChatMessageError, Options<ClearChatMessageData>> = {
         mutationFn: async (localOptions) => {
@@ -3069,6 +3781,10 @@ export const clearChatMessageMutation = (options?: Partial<Options<ClearChatMess
 
 export const getChatQueryKey = (options: Options<GetChatData>) => createQueryKey('getChat', options);
 
+/**
+ * Get chat
+ * Get chat object for given item.
+ */
 export const getChatOptions = (options: Options<GetChatData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3086,6 +3802,10 @@ export const getChatOptions = (options: Options<GetChatData>) => {
 
 export const createChatMessageQueryKey = (options: Options<CreateChatMessageData>) => createQueryKey('createChatMessage', options);
 
+/**
+ * Save message in chat
+ * Save message in chat for given item.
+ */
 export const createChatMessageOptions = (options: Options<CreateChatMessageData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3101,6 +3821,10 @@ export const createChatMessageOptions = (options: Options<CreateChatMessageData>
     });
 };
 
+/**
+ * Save message in chat
+ * Save message in chat for given item.
+ */
 export const createChatMessageMutation = (options?: Partial<Options<CreateChatMessageData>>): UseMutationOptions<CreateChatMessageResponse, CreateChatMessageError, Options<CreateChatMessageData>> => {
     const mutationOptions: UseMutationOptions<CreateChatMessageResponse, CreateChatMessageError, Options<CreateChatMessageData>> = {
         mutationFn: async (localOptions) => {
@@ -3115,6 +3839,10 @@ export const createChatMessageMutation = (options?: Partial<Options<CreateChatMe
     return mutationOptions;
 };
 
+/**
+ * Delete message in chat
+ * Delete message in chat for given item.
+ */
 export const deleteChatMessageMutation = (options?: Partial<Options<DeleteChatMessageData>>): UseMutationOptions<DeleteChatMessageResponse, DeleteChatMessageError, Options<DeleteChatMessageData>> => {
     const mutationOptions: UseMutationOptions<DeleteChatMessageResponse, DeleteChatMessageError, Options<DeleteChatMessageData>> = {
         mutationFn: async (localOptions) => {
@@ -3129,6 +3857,10 @@ export const deleteChatMessageMutation = (options?: Partial<Options<DeleteChatMe
     return mutationOptions;
 };
 
+/**
+ * Edit message in chat
+ * Edit message in chat for given item.
+ */
 export const patchChatMessageMutation = (options?: Partial<Options<PatchChatMessageData>>): UseMutationOptions<PatchChatMessageResponse, PatchChatMessageError, Options<PatchChatMessageData>> => {
     const mutationOptions: UseMutationOptions<PatchChatMessageResponse, PatchChatMessageError, Options<PatchChatMessageData>> = {
         mutationFn: async (localOptions) => {
@@ -3145,6 +3877,10 @@ export const patchChatMessageMutation = (options?: Partial<Options<PatchChatMess
 
 export const postActionQueryKey = (options: Options<PostActionData>) => createQueryKey('postAction', options);
 
+/**
+ * Save action for item
+ * Save action for item with given type and extra.
+ */
 export const postActionOptions = (options: Options<PostActionData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3160,6 +3896,10 @@ export const postActionOptions = (options: Options<PostActionData>) => {
     });
 };
 
+/**
+ * Save action for item
+ * Save action for item with given type and extra.
+ */
 export const postActionMutation = (options?: Partial<Options<PostActionData>>): UseMutationOptions<PostActionResponse, PostActionError, Options<PostActionData>> => {
     const mutationOptions: UseMutationOptions<PostActionResponse, PostActionError, Options<PostActionData>> = {
         mutationFn: async (localOptions) => {
@@ -3176,6 +3916,10 @@ export const postActionMutation = (options?: Partial<Options<PostActionData>>): 
 
 export const exportActionsQueryKey = (options: Options<ExportActionsData>) => createQueryKey('exportActions', options);
 
+/**
+ * Send request to export actions
+ * Send request to export actions for given item. The user receives an email with a download link. The generated export is available for a week, and can be generated only once a day.
+ */
 export const exportActionsOptions = (options: Options<ExportActionsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3191,6 +3935,10 @@ export const exportActionsOptions = (options: Options<ExportActionsData>) => {
     });
 };
 
+/**
+ * Send request to export actions
+ * Send request to export actions for given item. The user receives an email with a download link. The generated export is available for a week, and can be generated only once a day.
+ */
 export const exportActionsMutation = (options?: Partial<Options<ExportActionsData>>): UseMutationOptions<ExportActionsResponse, ExportActionsError, Options<ExportActionsData>> => {
     const mutationOptions: UseMutationOptions<ExportActionsResponse, ExportActionsError, Options<ExportActionsData>> = {
         mutationFn: async (localOptions) => {
@@ -3207,6 +3955,10 @@ export const exportActionsMutation = (options?: Partial<Options<ExportActionsDat
 
 export const getItemActionsByDayQueryKey = (options: Options<GetItemActionsByDayData>) => createQueryKey('getItemActionsByDay', options);
 
+/**
+ * Get actions for item and its descendants by day
+ * Get sum of actions count per type generated by users for the given item and its descendants by day.
+ */
 export const getItemActionsByDayOptions = (options: Options<GetItemActionsByDayData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3224,6 +3976,10 @@ export const getItemActionsByDayOptions = (options: Options<GetItemActionsByDayD
 
 export const getItemActionsByHourQueryKey = (options: Options<GetItemActionsByHourData>) => createQueryKey('getItemActionsByHour', options);
 
+/**
+ * Get actions for item and its descendants by hour
+ * Get sum of actions count per type generated by users for the given item and its descendants by hour.
+ */
 export const getItemActionsByHourOptions = (options: Options<GetItemActionsByHourData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3241,6 +3997,10 @@ export const getItemActionsByHourOptions = (options: Options<GetItemActionsByHou
 
 export const getItemActionsByWeekdayQueryKey = (options: Options<GetItemActionsByWeekdayData>) => createQueryKey('getItemActionsByWeekday', options);
 
+/**
+ * Get actions for item and its descendants by weekday
+ * Get sum of actions count per type generated by users for the given item and its descendants by weekday.
+ */
 export const getItemActionsByWeekdayOptions = (options: Options<GetItemActionsByWeekdayData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3256,6 +4016,10 @@ export const getItemActionsByWeekdayOptions = (options: Options<GetItemActionsBy
     });
 };
 
+/**
+ * Remove a geolocation for an item
+ * Remove a geolocation for an item.
+ */
 export const deleteGeolocationMutation = (options?: Partial<Options<DeleteGeolocationData>>): UseMutationOptions<DeleteGeolocationResponse, DeleteGeolocationError, Options<DeleteGeolocationData>> => {
     const mutationOptions: UseMutationOptions<DeleteGeolocationResponse, DeleteGeolocationError, Options<DeleteGeolocationData>> = {
         mutationFn: async (localOptions) => {
@@ -3272,6 +4036,10 @@ export const deleteGeolocationMutation = (options?: Partial<Options<DeleteGeoloc
 
 export const getGeolocationByItemQueryKey = (options: Options<GetGeolocationByItemData>) => createQueryKey('getGeolocationByItem', options);
 
+/**
+ * Get the geolocation info of the given item
+ * Get the geolocation info of the given item, alongside the complete information about the item.
+ */
 export const getGeolocationByItemOptions = (options: Options<GetGeolocationByItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3287,6 +4055,10 @@ export const getGeolocationByItemOptions = (options: Options<GetGeolocationByIte
     });
 };
 
+/**
+ * Set a geolocation on an item
+ * Set a geolocation on an item.
+ */
 export const putGeolocationMutation = (options?: Partial<Options<PutGeolocationData>>): UseMutationOptions<PutGeolocationResponse, PutGeolocationError, Options<PutGeolocationData>> => {
     const mutationOptions: UseMutationOptions<PutGeolocationResponse, PutGeolocationError, Options<PutGeolocationData>> = {
         mutationFn: async (localOptions) => {
@@ -3303,6 +4075,10 @@ export const putGeolocationMutation = (options?: Partial<Options<PutGeolocationD
 
 export const getItemsInBoxQueryKey = (options: Options<GetItemsInBoxData>) => createQueryKey('getItemsInBox', options);
 
+/**
+ * Get items within a box defined by geographic coordinates
+ * Get accessible items within a box defined by geographic coordinates, within a parent if given.
+ */
 export const getItemsInBoxOptions = (options: Options<GetItemsInBoxData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3320,6 +4096,10 @@ export const getItemsInBoxOptions = (options: Options<GetItemsInBoxData>) => {
 
 export const geolocationReverseQueryKey = (options: Options<GeolocationReverseData>) => createQueryKey('geolocationReverse', options);
 
+/**
+ * Get address information of given geographic coordinates
+ * Get address information of given geographic coordinates. This endpoint is using a third-party API.
+ */
 export const geolocationReverseOptions = (options: Options<GeolocationReverseData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3337,6 +4117,10 @@ export const geolocationReverseOptions = (options: Options<GeolocationReverseDat
 
 export const geolocationSearchQueryKey = (options: Options<GeolocationSearchData>) => createQueryKey('geolocationSearch', options);
 
+/**
+ * Get geographic information from a string
+ * Get geographic information from a string. This endpoint is using a third-party API.
+ */
 export const geolocationSearchOptions = (options: Options<GeolocationSearchData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3354,6 +4138,10 @@ export const geolocationSearchOptions = (options: Options<GeolocationSearchData>
 
 export const getTagsForItemQueryKey = (options: Options<GetTagsForItemData>) => createQueryKey('getTagsForItem', options);
 
+/**
+ * Get tags for item
+ * Get tags for item.
+ */
 export const getTagsForItemOptions = (options: Options<GetTagsForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3371,6 +4159,10 @@ export const getTagsForItemOptions = (options: Options<GetTagsForItemData>) => {
 
 export const createTagForItemQueryKey = (options: Options<CreateTagForItemData>) => createQueryKey('createTagForItem', options);
 
+/**
+ * Create tag for item
+ * Create tag for the item. The tag will be associated with the given item. If the tag does not already exist in the common list of tags, it will be added and other users will see it in their suggestions.
+ */
 export const createTagForItemOptions = (options: Options<CreateTagForItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3386,6 +4178,10 @@ export const createTagForItemOptions = (options: Options<CreateTagForItemData>) 
     });
 };
 
+/**
+ * Create tag for item
+ * Create tag for the item. The tag will be associated with the given item. If the tag does not already exist in the common list of tags, it will be added and other users will see it in their suggestions.
+ */
 export const createTagForItemMutation = (options?: Partial<Options<CreateTagForItemData>>): UseMutationOptions<CreateTagForItemResponse, CreateTagForItemError, Options<CreateTagForItemData>> => {
     const mutationOptions: UseMutationOptions<CreateTagForItemResponse, CreateTagForItemError, Options<CreateTagForItemData>> = {
         mutationFn: async (localOptions) => {
@@ -3400,6 +4196,10 @@ export const createTagForItemMutation = (options?: Partial<Options<CreateTagForI
     return mutationOptions;
 };
 
+/**
+ * Delete tag associated with item
+ * Delete tag associated with item. It does not throw if the specified tag is not originally associated with the item.
+ */
 export const deleteTagForItemMutation = (options?: Partial<Options<DeleteTagForItemData>>): UseMutationOptions<DeleteTagForItemResponse, DeleteTagForItemError, Options<DeleteTagForItemData>> => {
     const mutationOptions: UseMutationOptions<DeleteTagForItemResponse, DeleteTagForItemError, Options<DeleteTagForItemData>> = {
         mutationFn: async (localOptions) => {
@@ -3414,6 +4214,10 @@ export const deleteTagForItemMutation = (options?: Partial<Options<DeleteTagForI
     return mutationOptions;
 };
 
+/**
+ * Delete many items
+ * Delete many items given their ids. This endpoint is asynchronous and a feedback is returned through websockets.
+ */
 export const deleteManyItemsMutation = (options?: Partial<Options<DeleteManyItemsData>>): UseMutationOptions<DeleteManyItemsResponse, DeleteManyItemsError, Options<DeleteManyItemsData>> => {
     const mutationOptions: UseMutationOptions<DeleteManyItemsResponse, DeleteManyItemsError, Options<DeleteManyItemsData>> = {
         mutationFn: async (localOptions) => {
@@ -3430,6 +4234,10 @@ export const deleteManyItemsMutation = (options?: Partial<Options<DeleteManyItem
 
 export const createItemQueryKey = (options?: Options<CreateItemData>) => createQueryKey('createItem', options);
 
+/**
+ * Create item
+ * Create item, whose possible types are folder, app, document, embeddedLink, file, etherpad, h5p and shortcut.
+ */
 export const createItemOptions = (options?: Options<CreateItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3445,6 +4253,10 @@ export const createItemOptions = (options?: Options<CreateItemData>) => {
     });
 };
 
+/**
+ * Create item
+ * Create item, whose possible types are folder, app, document, embeddedLink, file, etherpad, h5p and shortcut.
+ */
 export const createItemMutation = (options?: Partial<Options<CreateItemData>>): UseMutationOptions<CreateItemResponse, CreateItemError, Options<CreateItemData>> => {
     const mutationOptions: UseMutationOptions<CreateItemResponse, CreateItemError, Options<CreateItemData>> = {
         mutationFn: async (localOptions) => {
@@ -3461,6 +4273,10 @@ export const createItemMutation = (options?: Partial<Options<CreateItemData>>): 
 
 export const getItemQueryKey = (options: Options<GetItemData>) => createQueryKey('getItem', options);
 
+/**
+ * Get item
+ * Get item by its id.
+ */
 export const getItemOptions = (options: Options<GetItemData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3476,6 +4292,10 @@ export const getItemOptions = (options: Options<GetItemData>) => {
     });
 };
 
+/**
+ * Update item
+ * Update item given body.
+ */
 export const updateItemMutation = (options?: Partial<Options<UpdateItemData>>): UseMutationOptions<UpdateItemResponse, UpdateItemError, Options<UpdateItemData>> => {
     const mutationOptions: UseMutationOptions<UpdateItemResponse, UpdateItemError, Options<UpdateItemData>> = {
         mutationFn: async (localOptions) => {
@@ -3492,6 +4312,10 @@ export const updateItemMutation = (options?: Partial<Options<UpdateItemData>>): 
 
 export const getAccessibleItemsQueryKey = (options: Options<GetAccessibleItemsData>) => createQueryKey('getAccessibleItems', options);
 
+/**
+ * Get accessible items
+ * Get items the user has access to
+ */
 export const getAccessibleItemsOptions = (options: Options<GetAccessibleItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3509,6 +4333,10 @@ export const getAccessibleItemsOptions = (options: Options<GetAccessibleItemsDat
 
 export const getAccessibleItemsInfiniteQueryKey = (options: Options<GetAccessibleItemsData>): QueryKey<Options<GetAccessibleItemsData>> => createQueryKey('getAccessibleItems', options, true);
 
+/**
+ * Get accessible items
+ * Get items the user has access to
+ */
 export const getAccessibleItemsInfiniteOptions = (options: Options<GetAccessibleItemsData>) => {
     return infiniteQueryOptions<GetAccessibleItemsResponse, GetAccessibleItemsError, InfiniteData<GetAccessibleItemsResponse>, QueryKey<Options<GetAccessibleItemsData>>, number | Pick<QueryKey<Options<GetAccessibleItemsData>>[0], 'body' | 'headers' | 'path' | 'query'>>(
     // @ts-ignore
@@ -3535,6 +4363,10 @@ export const getAccessibleItemsInfiniteOptions = (options: Options<GetAccessible
 
 export const getChildrenQueryKey = (options: Options<GetChildrenData>) => createQueryKey('getChildren', options);
 
+/**
+ * Get children of item
+ * Get children of item given its id.
+ */
 export const getChildrenOptions = (options: Options<GetChildrenData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3552,6 +4384,10 @@ export const getChildrenOptions = (options: Options<GetChildrenData>) => {
 
 export const getDescendantItemsQueryKey = (options: Options<GetDescendantItemsData>) => createQueryKey('getDescendantItems', options);
 
+/**
+ * Get descendant items of item
+ * Get descendant items of item given its id.
+ */
 export const getDescendantItemsOptions = (options: Options<GetDescendantItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3569,6 +4405,10 @@ export const getDescendantItemsOptions = (options: Options<GetDescendantItemsDat
 
 export const getParentItemsQueryKey = (options: Options<GetParentItemsData>) => createQueryKey('getParentItems', options);
 
+/**
+ * Get parent items of item
+ * Get parent items of item given its id.
+ */
 export const getParentItemsOptions = (options: Options<GetParentItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3584,6 +4424,10 @@ export const getParentItemsOptions = (options: Options<GetParentItemsData>) => {
     });
 };
 
+/**
+ * Reorder item
+ * Reorder item within its parent given previous item id.
+ */
 export const reorderItemMutation = (options?: Partial<Options<ReorderItemData>>): UseMutationOptions<ReorderItemResponse, ReorderItemError, Options<ReorderItemData>> => {
     const mutationOptions: UseMutationOptions<ReorderItemResponse, ReorderItemError, Options<ReorderItemData>> = {
         mutationFn: async (localOptions) => {
@@ -3600,6 +4444,10 @@ export const reorderItemMutation = (options?: Partial<Options<ReorderItemData>>)
 
 export const moveManyItemsQueryKey = (options: Options<MoveManyItemsData>) => createQueryKey('moveManyItems', options);
 
+/**
+ * Move many items
+ * Move many items given their ids to a parent target. This endpoint is asynchronous and a feedback is returned through websockets.
+ */
 export const moveManyItemsOptions = (options: Options<MoveManyItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3615,6 +4463,10 @@ export const moveManyItemsOptions = (options: Options<MoveManyItemsData>) => {
     });
 };
 
+/**
+ * Move many items
+ * Move many items given their ids to a parent target. This endpoint is asynchronous and a feedback is returned through websockets.
+ */
 export const moveManyItemsMutation = (options?: Partial<Options<MoveManyItemsData>>): UseMutationOptions<MoveManyItemsResponse, MoveManyItemsError, Options<MoveManyItemsData>> => {
     const mutationOptions: UseMutationOptions<MoveManyItemsResponse, MoveManyItemsError, Options<MoveManyItemsData>> = {
         mutationFn: async (localOptions) => {
@@ -3631,6 +4483,10 @@ export const moveManyItemsMutation = (options?: Partial<Options<MoveManyItemsDat
 
 export const copyManyItemsQueryKey = (options: Options<CopyManyItemsData>) => createQueryKey('copyManyItems', options);
 
+/**
+ * Copy many items
+ * Copy many items given their ids in a parent target. This endpoint is asynchronous and a feedback is returned through websockets.
+ */
 export const copyManyItemsOptions = (options: Options<CopyManyItemsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3646,6 +4502,10 @@ export const copyManyItemsOptions = (options: Options<CopyManyItemsData>) => {
     });
 };
 
+/**
+ * Copy many items
+ * Copy many items given their ids in a parent target. This endpoint is asynchronous and a feedback is returned through websockets.
+ */
 export const copyManyItemsMutation = (options?: Partial<Options<CopyManyItemsData>>): UseMutationOptions<CopyManyItemsResponse, CopyManyItemsError, Options<CopyManyItemsData>> => {
     const mutationOptions: UseMutationOptions<CopyManyItemsResponse, CopyManyItemsError, Options<CopyManyItemsData>> = {
         mutationFn: async (localOptions) => {
@@ -3662,6 +4522,10 @@ export const copyManyItemsMutation = (options?: Partial<Options<CopyManyItemsDat
 
 export const createItemWithThumbnailQueryKey = (options?: Options<CreateItemWithThumbnailData>) => createQueryKey('createItemWithThumbnail', options);
 
+/**
+ * Create an item with a thumbnail
+ * Create an item with a thumbnail. The data is sent using a form-data.
+ */
 export const createItemWithThumbnailOptions = (options?: Options<CreateItemWithThumbnailData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {
@@ -3677,6 +4541,10 @@ export const createItemWithThumbnailOptions = (options?: Options<CreateItemWithT
     });
 };
 
+/**
+ * Create an item with a thumbnail
+ * Create an item with a thumbnail. The data is sent using a form-data.
+ */
 export const createItemWithThumbnailMutation = (options?: Partial<Options<CreateItemWithThumbnailData>>): UseMutationOptions<CreateItemWithThumbnailResponse, CreateItemWithThumbnailError, Options<CreateItemWithThumbnailData>> => {
     const mutationOptions: UseMutationOptions<CreateItemWithThumbnailResponse, CreateItemWithThumbnailError, Options<CreateItemWithThumbnailData>> = {
         mutationFn: async (localOptions) => {
@@ -3693,6 +4561,10 @@ export const createItemWithThumbnailMutation = (options?: Partial<Options<Create
 
 export const getCountForTagsQueryKey = (options: Options<GetCountForTagsData>) => createQueryKey('getCountForTags', options);
 
+/**
+ * Get count for tags
+ * Get how many times a tag is associated with items, filtered by string search. It can be filtered by category. Get maximum the 10 most used tags.
+ */
 export const getCountForTagsOptions = (options: Options<GetCountForTagsData>) => {
     return queryOptions({
         queryFn: async ({ queryKey, signal }) => {

@@ -2,6 +2,7 @@ import type { JSX } from 'react';
 
 import { styled } from '@mui/material';
 
+import { WS_CLIENT } from '@/config/queryClient.js';
 import type {
   ChatMessageWithCreator,
   NullableCurrentAccount,
@@ -45,7 +46,7 @@ export function Chatbox({
   showAdminTools = false,
 }: Readonly<Props>): JSX.Element {
   // enable websockets
-  useItemChatUpdates(itemId);
+  useItemChatUpdates(WS_CLIENT, itemId);
 
   return (
     <EditingContextProvider>

@@ -2,6 +2,7 @@ import { renderHook } from '@testing-library/react';
 import { v4 } from 'uuid';
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { WS_CLIENT } from '@/config/queryClient';
 import { getChatQueryKey } from '@/openapi/client/@tanstack/react-query.gen';
 import { CHAT_MESSAGES } from '@/query/test/constants';
 import { KINDS, OPS, TOPICS } from '@/query/ws/constants';
@@ -27,7 +28,7 @@ describe('useItemChatUpdates', () => {
     queryClient.setQueryData(chatKey, CHAT_MESSAGES);
   });
   it('Does nothing for undefined chatId', async () => {
-    renderHook(() => useItemChatUpdates(''), {
+    renderHook(() => useItemChatUpdates(WS_CLIENT, ''), {
       wrapper,
     });
 
@@ -44,7 +45,7 @@ describe('useItemChatUpdates', () => {
   });
 
   it(`Receive chat messages update`, async () => {
-    renderHook(() => useItemChatUpdates(chatId), {
+    renderHook(() => useItemChatUpdates(WS_CLIENT, chatId), {
       wrapper,
     });
 
