@@ -2,14 +2,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography, colors, styled } from '@mui/material';
 
-import { ChatMessageWithCreator, CurrentAccount } from '@graasp/sdk';
-
 import { format } from 'date-fns';
 import truncate from 'lodash.truncate';
 
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { hooks } from '@/config/queryClient.js';
+import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 import Avatar from '@/ui/Avatar/Avatar.js';
 
 import {
@@ -38,10 +37,10 @@ const TimeText = styled(Typography)({
 
 type Props = {
   message: ChatMessageWithCreator;
-  currentMember?: CurrentAccount | null;
+  isOwn: boolean;
 };
 
-const Message = ({ message, currentMember }: Props) => {
+export function Message({ message, isOwn }: Props) {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,
@@ -52,7 +51,6 @@ const Message = ({ message, currentMember }: Props) => {
     size: 'small',
   });
   const { creator } = message;
-  const isOwnMessage = creator.id === currentMember?.id;
   const creatorName = creator?.name
     ? truncate(creator?.name, { length: MAX_USERNAME_LENGTH })
     : DEFAULT_USER_NAME;
@@ -64,13 +62,13 @@ const Message = ({ message, currentMember }: Props) => {
     <MessageWrapper
       p={1}
       sx={
-        isOwnMessage
+        isOwn
           ? { background: colors.grey[300], alignSelf: 'flex-end' }
           : undefined
       }
       data-cy={messageIdCyWrapper(message.id)}
     >
-      {!isOwnMessage && (
+      {!isOwn && (
         <Stack
           direction="row"
           alignItems="center"
@@ -103,6 +101,4 @@ const Message = ({ message, currentMember }: Props) => {
       </TimeText>
     </MessageWrapper>
   );
-};
-
-export default Message;
+}

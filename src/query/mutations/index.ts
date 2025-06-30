@@ -5,7 +5,6 @@ import publicProfileMutations from '../member/publicProfile/mutations.js';
 import { QueryClientConfig } from '../types.js';
 import actionMutations from './action.js';
 import authenticationMutations from './authentication.js';
-import chatMutations from './chat.js';
 import csvUserImportMutations from './csvUserImport.js';
 import etherpadMutations from './etherpad.js';
 import invitationMutations from './invitation.js';
@@ -21,7 +20,6 @@ import shortLinksMutations from './shortLink.js';
 const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...actionMutations(queryConfig),
   ...authenticationMutations(queryConfig),
-  ...chatMutations(queryConfig),
   ...csvUserImportMutations(queryConfig),
   ...etherpadMutations(queryConfig),
   ...invitationMutations(queryConfig),

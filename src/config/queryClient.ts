@@ -5,6 +5,10 @@ import { configureQueryClient } from '@/query';
 import { API_HOST, SHOW_NOTIFICATIONS } from './env';
 import notifier from './notifier';
 
+export const WS_CLIENT = configureWebsocketClient(
+  `${API_HOST.replace('http', 'ws')}/ws`,
+);
+
 const {
   queryClient,
   QueryClientProvider,
@@ -22,7 +26,7 @@ const {
     keepPreviousData: true,
   },
   SHOW_NOTIFICATIONS,
-  wsClient: configureWebsocketClient(`${API_HOST.replace('http', 'ws')}/ws`),
+  wsClient: WS_CLIENT,
 });
 export {
   useQueryClient,
