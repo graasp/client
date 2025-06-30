@@ -11,12 +11,12 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: "Target environment"
+        description: 'Target environment'
         type: environment
         required: true
       version:
-        description: "Version to deploy"
-        type: "string"
+        description: 'Version to deploy'
+        type: 'string'
         required: true
 
 permissions:
@@ -47,8 +47,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: "package.json"
-          cache: "pnpm"
+          node-version-file: 'package.json'
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install
@@ -74,7 +74,7 @@ jobs:
         uses: graasp/graasp-deploy/.github/actions/deploy-s3@v1
         # Replace input build-folder or version if needed
         with:
-          build-folder: "build"
+          build-folder: 'build'
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
           aws-s3-bucket-name: ${{ vars.AWS_S3_BUCKET_NAME }}
@@ -84,10 +84,10 @@ jobs:
         uses: getsentry/action-release@v1
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_ORG: ${{ vars.SENTRY_ORG }}
           SENTRY_PROJECT: client
         with:
           environment: ${{ inputs.environment || 'development' }}
-          sourcemaps: "./build"
+          sourcemaps: './build'
           inject: true
           version: ${{ inputs.version || github.sha }}
