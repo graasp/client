@@ -1280,7 +1280,7 @@ export const downloadFile = <ThrowOnError extends boolean = false>(options: Opti
 
 /**
  * Export folder content as zip archive
- * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive.
+ * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive. Users can download any resource they can access.
  */
 export const exportZip = <ThrowOnError extends boolean = false>(options: Options<ExportZipData, ThrowOnError>) => {
     return (options.client ?? _heyApiClient).post<ExportZipResponses, ExportZipErrors, ThrowOnError>({

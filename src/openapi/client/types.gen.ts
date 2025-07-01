@@ -141,7 +141,7 @@ export type NullableMember = null | {
  * Current Account
  * Current authenticated account, that can be a member or a guest
  */
-export type CurrentAccountSchemaRef = {
+export type CurrentAccount = {
     id: string;
     name: string;
     createdAt: string;
@@ -173,7 +173,7 @@ export type CurrentAccountSchemaRef = {
  * Nullable Current Account
  * Current authenticated account, that can be a member or a guest, or null
  */
-export type NullableCurrentAccountSchemaRef = (null | {
+export type NullableCurrentAccount = (null | {
     id: string;
     name: string;
     createdAt: string;
@@ -1060,7 +1060,7 @@ export type GetCurrentAccountResponses = {
     /**
      * Current authenticated account, that can be a member or a guest, or null
      */
-    200: NullableCurrentAccountSchemaRef;
+    200: NullableCurrentAccount;
 };
 
 export type GetCurrentAccountResponse = GetCurrentAccountResponses[keyof GetCurrentAccountResponses];
@@ -1095,7 +1095,7 @@ export type UpdateCurrentAccountResponses = {
     /**
      * Current authenticated account, that can be a member or a guest
      */
-    200: CurrentAccountSchemaRef;
+    200: CurrentAccount;
 };
 
 export type UpdateCurrentAccountResponse = UpdateCurrentAccountResponses[keyof UpdateCurrentAccountResponses];
@@ -2038,7 +2038,7 @@ export type CreateChatbotCompletionPromptData = {
         /**
          * Model to use
          */
-        gptVersion?: 'gpt-4o-mini' | 'gpt-4.1-nano';
+        gptVersion?: 'gpt-3.5-turbo-0125' | 'gpt-4' | 'gpt-4-turbo' | 'gpt-4o';
         temperature?: number;
     };
     url: '/app-items/{itemId}/chat-bot';

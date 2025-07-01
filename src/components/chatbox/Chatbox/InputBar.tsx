@@ -2,29 +2,24 @@ import { useEffect, useRef, useState } from 'react';
 
 import { Box } from '@mui/material';
 
-import { MessageBodyType } from '@graasp/sdk';
+import { useChatboxProvider } from '@/components/chatbox/Chatbox/chatbox.hook.js';
+import type { CreateChatMessageData } from '@/openapi/client/types.gen.js';
 
 import { useEditingContext } from '../context/EditingContext.js';
 import { useMessagesContext } from '../context/MessagesContext.js';
-import { EditMessageFunctionType, SendMessageFunctionType } from '../types.js';
 import { EditBanner } from './EditBanner.js';
 import { Input } from './Input.js';
 
 type Props = {
   sendMessageBoxId?: string;
-  sendMessageFunction?: SendMessageFunctionType;
-  editMessageFunction?: EditMessageFunctionType;
 };
 
-export function InputBar({
-  sendMessageBoxId,
-  sendMessageFunction,
-  editMessageFunction,
-}: Readonly<Props>) {
+export function InputBar({ sendMessageBoxId }: Readonly<Props>) {
   const { open, body, messageId, cancelEdit } = useEditingContext();
   const [textInput, setTextInput] = useState(open ? body : '');
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const { itemId } = useMessagesContext();
+  const { editMessage, sendMessage } = useChatboxProvider({ itemId });
 
   useEffect(
     () => {
@@ -45,16 +40,17 @@ export function InputBar({
     setTextInput('');
   };
 
-  const handleSendMessageFunction = (newBody: MessageBodyType): void => {
+  const handleSendMessageFunction = (
+    newBody: CreateChatMessageData['body'],
+  ): void => {
     if (open) {
-      editMessageFunction?.({
-        messageId: messageId,
-        itemId,
+      editMessage({
+        path: { messageId: messageId, itemId },
         // TODO: here we only send an update of the text and leave out the mention update
-        body: newBody.body,
+        body: { body: newBody.body },
       });
     } else {
-      sendMessageFunction?.({ itemId, ...newBody });
+      sendMessage({ path: { itemId }, body: newBody });
     }
     // reset editing
     cancelEdit();
@@ -68,7 +64,7 @@ export function InputBar({
         inputRef={inputRef}
         textInput={textInput}
         setTextInput={setTextInput}
-        sendMessageFunction={handleSendMessageFunction}
+        sendOrEditMessage={handleSendMessageFunction}
       />
     </Box>
   );

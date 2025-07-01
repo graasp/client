@@ -1,13 +1,15 @@
 import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
-import { Account, ChatMessageWithCreator } from '@graasp/sdk';
-
 import { hooks } from '@/config/queryClient';
+import type {
+  ChatMessageWithCreator,
+  MinimalAccount,
+} from '@/openapi/client/types.gen';
 
 export type MessagesContextType = {
   messages?: ChatMessageWithCreator[];
   itemId: string;
-  members: Account[];
+  members: MinimalAccount[];
 };
 
 export const MessagesContext = createContext<MessagesContextType>({

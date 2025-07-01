@@ -2854,7 +2854,7 @@ export const exportZipQueryKey = (options: Options<ExportZipData>) => createQuer
 
 /**
  * Export folder content as zip archive
- * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive.
+ * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive. Users can download any resource they can access.
  */
 export const exportZipOptions = (options: Options<ExportZipData>) => {
     return queryOptions({
@@ -2873,7 +2873,7 @@ export const exportZipOptions = (options: Options<ExportZipData>) => {
 
 /**
  * Export folder content as zip archive
- * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive.
+ * Export the folder's content as a ZIP archive. The user will receive an email with a link to download the ZIP archive. Users can download any resource they can access.
  */
 export const exportZipMutation = (options?: Partial<Options<ExportZipData>>): UseMutationOptions<unknown, ExportZipError, Options<ExportZipData>> => {
     const mutationOptions: UseMutationOptions<unknown, ExportZipError, Options<ExportZipData>> = {

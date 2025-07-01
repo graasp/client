@@ -4,7 +4,6 @@ import configureItemHooks from '../item/hooks.js';
 import configureMemberHooks from '../member/hooks.js';
 import configureTagHooks from '../tag/hooks.js';
 import { QueryClientConfig } from '../types.js';
-import configureChatHooks from './chat.js';
 import configureEmbeddedLinkHooks from './embeddedLink.js';
 import configureEtherpadHooks from './etherpad.js';
 import configureItemLikeHooks from './itemLike.js';
@@ -23,7 +22,6 @@ export const configureHooks = (
   const memberHooks = configureMemberHooks(queryConfig);
 
   return {
-    ...configureChatHooks(queryConfig, websocketClient),
     ...configureMentionsHooks(
       queryConfig,
       memberHooks.useCurrentMember,
