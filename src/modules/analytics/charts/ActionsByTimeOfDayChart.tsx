@@ -1,7 +1,7 @@
 import { type JSX, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useTheme } from '@mui/material';
+import { Skeleton, useTheme } from '@mui/material';
 
 import { useQuery } from '@tanstack/react-query';
 import { endOfDay } from 'date-fns/endOfDay';
@@ -34,7 +34,7 @@ const ActionsByTimeOfDayChart = ({
   const { t } = useTranslation(NS.Analytics);
   const { dateRange } = useContext(DataContext);
   const { direction } = useTheme();
-  const { data, isLoading, isError } = useQuery(
+  const { data, isPending, isError } = useQuery(
     getItemActionsByHourOptions({
       path: { id: itemId },
       query: {
@@ -44,52 +44,54 @@ const ActionsByTimeOfDayChart = ({
     }),
   );
 
-  if (isLoading || isError) {
-    return null;
-  }
-
   const title = t('ACTIONS_BY_TIME_OF_DAY');
-  if (!data) {
-    return <EmptyChart chartTitle={title} />;
-  }
-
-  // fill with empty data for missing hour
-  for (let hour = 0; hour < 24; hour += 1) {
-    if (!data[hour]) {
-      data[hour] = {
-        hour,
-        count: { all: 0 },
-        personal: { all: 0 },
-      };
+  if (data) {
+    // fill with empty data for missing hour
+    for (let hour = 0; hour < 24; hour += 1) {
+      if (!data[hour]) {
+        data[hour] = {
+          hour,
+          count: { all: 0 },
+          personal: { all: 0 },
+        };
+      }
     }
+
+    return (
+      <>
+        <ChartTitle title={title} />
+        <ChartContainer>
+          <BarChart
+            data={Object.values(
+              data as { [key: string]: { hour: string } },
+            ).toSorted((a, b) =>
+              parseInt(a.hour) > parseInt(b.hour) ? 1 : -1,
+            )}
+          >
+            <CartesianGrid strokeDasharray="2" />
+            <XAxis
+              dataKey="hour"
+              tick={{ fontSize: 14 }}
+              tickFormatter={(v) => `${v}h`}
+            />
+            <YAxis
+              tick={{ fontSize: 14 }}
+              orientation={direction === 'rtl' ? 'right' : 'left'}
+            />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="count.all" name={t('All')} fill={GENERAL_COLOR} />
+            <Bar dataKey="personal.all" name={t('Me')} fill={AVERAGE_COLOR} />
+          </BarChart>
+        </ChartContainer>
+      </>
+    );
   }
 
-  return (
-    <>
-      <ChartTitle title={title} />
-      <ChartContainer>
-        <BarChart
-          data={Object.values(
-            data as { [key: string]: { hour: string } },
-          ).toSorted((a, b) => (parseInt(a.hour) > parseInt(b.hour) ? 1 : -1))}
-        >
-          <CartesianGrid strokeDasharray="2" />
-          <XAxis
-            dataKey="hour"
-            tick={{ fontSize: 14 }}
-            tickFormatter={(v) => `${v}h`}
-          />
-          <YAxis
-            tick={{ fontSize: 14 }}
-            orientation={direction === 'rtl' ? 'right' : 'left'}
-          />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="count.all" name={t('All')} fill={GENERAL_COLOR} />
-          <Bar dataKey="personal.all" name={t('Me')} fill={AVERAGE_COLOR} />
-        </BarChart>
-      </ChartContainer>
-    </>
-  );
+  if (isPending) {
+    return <Skeleton width={'100%'} height={500} />;
+  }
+
+  return <EmptyChart chartTitle={title} isError={isError} />;
 };
 export default ActionsByTimeOfDayChart;

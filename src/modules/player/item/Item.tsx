@@ -130,7 +130,7 @@ const FileContent = ({ item }: FileContentProps) => {
   // fetch file content if type is file
   const {
     data: fileUrl,
-    isLoading: isFileContentLoading,
+    isPending: isFileContentPending,
     isError: isFileError,
   } = useFileContentUrl(item.id);
   const { triggerAction, onCollapse } = useCollapseAction(item.id);
@@ -143,10 +143,25 @@ const FileContent = ({ item }: FileContentProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id]);
 
-  if (isFileContentLoading) {
+  if (item) {
+    return (
+      <FileItem
+        id={buildFileId(item.id)}
+        item={item}
+        fileUrl={fileUrl}
+        maxHeight={SCREEN_MAX_HEIGHT}
+        showCollapse={item.settings?.isCollapsible}
+        pdfViewerLink={PDF_VIEWER_LINK?.toString()}
+        onClick={onDownloadClick}
+        onCollapse={onCollapse}
+      />
+    );
+  }
+
+  if (isFileContentPending) {
     return (
       <ItemSkeleton
-        itemType={item.type}
+        itemType={ItemType.FILE}
         isChildren={false}
         screenMaxHeight={SCREEN_MAX_HEIGHT}
       />
@@ -154,21 +169,10 @@ const FileContent = ({ item }: FileContentProps) => {
   }
 
   if (isFileError) {
-    return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;
+    console.error(isFileError);
   }
 
-  return (
-    <FileItem
-      id={buildFileId(item.id)}
-      item={item}
-      fileUrl={fileUrl}
-      maxHeight={SCREEN_MAX_HEIGHT}
-      showCollapse={item.settings?.isCollapsible}
-      pdfViewerLink={PDF_VIEWER_LINK?.toString()}
-      onClick={onDownloadClick}
-      onCollapse={onCollapse}
-    />
-  );
+  return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;
 };
 
 const LinkContent = ({ item }: { item: LinkItemType }): JSX.Element => {

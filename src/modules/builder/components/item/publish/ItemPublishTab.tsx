@@ -35,7 +35,7 @@ const ItemPublishTab = (): JSX.Element | null => {
   const { t } = useTranslation(NS.Builder);
   const theme = useTheme();
   const { item, canAdmin } = useOutletContext();
-  const { isLoading: isMemberLoading } = hooks.useCurrentMember();
+  const { isPending: isMemberPending } = hooks.useCurrentMember();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { status } = useDataSyncContext();
   const { data: publicationStatus, isLoading: isPublicationStatusLoading } =
@@ -47,7 +47,7 @@ const ItemPublishTab = (): JSX.Element | null => {
     return null;
   }
 
-  if (isMemberLoading || isPublicationStatusLoading) {
+  if (isMemberPending || isPublicationStatusLoading) {
     return (
       <Stack
         alignItems="center"
