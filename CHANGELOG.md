@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.27.1](https://github.com/graasp/client/compare/v2.27.0...v2.27.1) (2025-07-04)
+
+
+### Bug Fixes
+
+* add missing storybook/addon-docs for MDX content ([#1038](https://github.com/graasp/client/issues/1038)) ([184c944](https://github.com/graasp/client/commit/184c9444c536792f479d2b4cbec186f4b1b8e69d))
+* **ci:** merge deploy workflows into single one ([#1034](https://github.com/graasp/client/issues/1034)) ([3ba08f9](https://github.com/graasp/client/commit/3ba08f9622a25efa27a51508fd9a56b907e75023))
+* **deps:** update dependency @sentry/react to v9.34.0 ([#1036](https://github.com/graasp/client/issues/1036)) ([b9350af](https://github.com/graasp/client/commit/b9350af4e7acdf6467434fda3757fa77a15a6abe))
+* **deps:** update mui (non-major) to v7.2.0 ([#1037](https://github.com/graasp/client/issues/1037)) ([a29d350](https://github.com/graasp/client/commit/a29d35031414da8c189d9fc79608dcdc1b5324a4))
+* move sentry org to vars ([c2145d7](https://github.com/graasp/client/commit/c2145d717158c77a268f93c1586571872d7b4eb0))
+* pnpm version in storybook deploy workflow ([#1040](https://github.com/graasp/client/issues/1040)) ([f7535bf](https://github.com/graasp/client/commit/f7535bf4f1f66f38000f4cec3c577da095cd35db))
+
 ## [2.27.0](https://github.com/graasp/client/compare/v2.26.2...v2.27.0) (2025-06-26)
 
 
