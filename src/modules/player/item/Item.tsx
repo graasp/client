@@ -161,7 +161,7 @@ const FileContent = ({ item }: FileContentProps) => {
   if (isFileContentPending) {
     return (
       <ItemSkeleton
-        itemType={ItemType.LOCAL_FILE}
+        itemType={ItemType.FILE}
         isChildren={false}
         screenMaxHeight={SCREEN_MAX_HEIGHT}
       />
