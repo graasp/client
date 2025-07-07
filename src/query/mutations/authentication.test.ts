@@ -5,18 +5,14 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { axiosClient as axios } from '@/query/api/axios.js';
-
 import { memberKeys } from '../keys.js';
 import {
   MOBILE_SIGN_IN_ROUTE,
   MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE,
-  MOBILE_SIGN_UP_ROUTE,
   PASSWORD_RESET_REQUEST_ROUTE,
   SIGN_IN_ROUTE,
   SIGN_IN_WITH_PASSWORD_ROUTE,
   SIGN_OUT_ROUTE,
-  SIGN_UP_ROUTE,
 } from '../routes.js';
 import {
   createPasswordResetRequestRoutine,
@@ -24,7 +20,6 @@ import {
   signInRoutine,
   signInWithPasswordRoutine,
   signOutRoutine,
-  signUpRoutine,
 } from '../routines/authentication.js';
 import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
@@ -32,7 +27,6 @@ import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 const captcha = 'captcha';
 const email = 'myemail@email.com';
 const challenge = '1234';
-const defaultSaveActions = true;
 
 describe('Authentication Mutations', () => {
   const mockedNotifier = vi.fn();
@@ -290,214 +284,6 @@ describe('Authentication Mutations', () => {
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({
           type: signInWithPasswordRoutine.FAILURE,
-        }),
-      );
-    });
-  });
-
-  describe('useSignUp', () => {
-    const route = SIGN_UP_ROUTE;
-    const mutation = mutations.useSignUp;
-    const name = 'name';
-
-    it(`Sign up`, async () => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          email,
-          name,
-          captcha,
-          enableSaveActions: defaultSaveActions,
-        });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signUpRoutine.SUCCESS,
-        payload: { message: 'SIGN_UP' },
-      });
-    });
-
-    const testSignUpWithSaveActions = async (enableSaveActions: boolean) => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const postSpy = vi.spyOn(axios, 'post');
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, name, captcha, enableSaveActions });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signUpRoutine.SUCCESS,
-        payload: { message: 'SIGN_UP' },
-      });
-      expect(postSpy).toHaveBeenCalledWith(
-        expect.stringContaining(route),
-        expect.objectContaining({ enableSaveActions }),
-      );
-    };
-
-    it(`Sign up with save actions enabled`, async () =>
-      testSignUpWithSaveActions(true));
-
-    it(`Sign up with save actions disabled`, async () =>
-      testSignUpWithSaveActions(false));
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          email,
-          name,
-          captcha,
-          enableSaveActions: defaultSaveActions,
-        });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signUpRoutine.FAILURE,
-        }),
-      );
-    });
-  });
-
-  describe('useMobileSignUp', () => {
-    const route = MOBILE_SIGN_UP_ROUTE;
-    const mutation = mutations.useMobileSignUp;
-    const name = 'name';
-
-    it(`Sign up`, async () => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          email,
-          name,
-          captcha,
-          challenge,
-          enableSaveActions: defaultSaveActions,
-        });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signUpRoutine.SUCCESS,
-        payload: { message: 'SIGN_UP' },
-      });
-    });
-
-    const testSignUpMobileWithSaveActions = async (
-      enableSaveActions: boolean,
-    ) => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const postSpy = vi.spyOn(axios, 'post');
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          email,
-          name,
-          captcha,
-          challenge,
-          enableSaveActions,
-        });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signUpRoutine.SUCCESS,
-        payload: { message: 'SIGN_UP' },
-      });
-      expect(postSpy).toHaveBeenCalledWith(
-        expect.stringContaining(route),
-        expect.objectContaining({ enableSaveActions }),
-      );
-    };
-
-    it(`Sign up mobile with save actions enabled`, async () =>
-      testSignUpMobileWithSaveActions(true));
-
-    it(`Sign up mobile with save actions disabled`, async () =>
-      testSignUpMobileWithSaveActions(false));
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          email,
-          name,
-          captcha,
-          challenge,
-          enableSaveActions: defaultSaveActions,
-        });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signUpRoutine.FAILURE,
         }),
       );
     });
