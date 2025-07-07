@@ -7,7 +7,6 @@ import { memberKeys } from '../keys.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signInRoutine,
   signInWithPasswordRoutine,
   signOutRoutine,
 } from '../routines/authentication.js';
@@ -15,49 +14,6 @@ import { QueryClientConfig } from '../types.js';
 
 export default (queryConfig: QueryClientConfig) => {
   const { notifier } = queryConfig;
-
-  const useSignIn = () => {
-    return useMutation({
-      mutationFn: (payload: { email: string; captcha: string; url?: string }) =>
-        Api.signIn(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useMobileSignIn = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        captcha: string;
-        challenge: string;
-      }) => Api.mobileSignIn(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
 
   const useSignInWithPassword = () => {
     const queryClient = useQueryClient();
@@ -180,10 +136,8 @@ export default (queryConfig: QueryClientConfig) => {
     });
 
   return {
-    useSignIn,
     useSignInWithPassword,
     useSignOut,
-    useMobileSignIn,
     useMobileSignInWithPassword,
     useCreatePasswordResetRequest,
     useResolvePasswordResetRequest,

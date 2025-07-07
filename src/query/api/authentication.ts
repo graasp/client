@@ -4,10 +4,8 @@ import { API_HOST } from '@/config/env.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
-  MOBILE_SIGN_IN_ROUTE,
   MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE,
   PASSWORD_RESET_REQUEST_ROUTE,
-  SIGN_IN_ROUTE,
   SIGN_IN_WITH_PASSWORD_ROUTE,
   SIGN_OUT_ROUTE,
 } from '../routes.js';
@@ -18,24 +16,6 @@ export const signOut = () =>
     const url = new URL(SIGN_OUT_ROUTE, API_HOST);
     return axios.get<void>(url.toString()).then(({ data }) => data);
   });
-
-export const signIn = async (payload: {
-  email: string;
-  captcha: string;
-  url?: string;
-}) => {
-  const url = new URL(SIGN_IN_ROUTE, API_HOST);
-  return axios.post<void>(url.toString(), payload);
-};
-
-export const mobileSignIn = async (payload: {
-  email: string;
-  challenge: string;
-  captcha: string;
-}) => {
-  const url = new URL(MOBILE_SIGN_IN_ROUTE, API_HOST);
-  return axios.post<void>(url.toString(), payload);
-};
 
 export const signInWithPassword = async (payload: {
   email: string;

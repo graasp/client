@@ -5,6 +5,7 @@ import { Box, Button, Stack, Typography } from '@mui/material';
 
 import { RecaptchaAction } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import { MailIcon } from 'lucide-react';
@@ -12,12 +13,12 @@ import { z } from 'zod';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   BACK_BUTTON_ID,
   RESEND_EMAIL_BUTTON_ID,
   SUCCESS_CONTENT_ID,
 } from '@/config/selectors';
+import { loginMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { LeftContentContainer } from '~auth/components/LeftContentContainer';
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
@@ -38,7 +39,7 @@ function RouteComponent() {
   const { t } = useTranslation(NS.Auth);
   const [isEmailSent, setIsEmailSent] = useState(false);
 
-  const { mutate: signIn } = mutations.useSignIn();
+  const { mutate: signIn } = useMutation(loginMutation());
 
   if (!email) {
     console.error('Missing email query param');
@@ -52,9 +53,7 @@ function RouteComponent() {
     // this call resets the queries and thus we get a loading animation ...
     // not sure why we need to reset the queries when doing this ...
     signIn({
-      email: lowercaseEmail,
-      captcha: token,
-      url,
+      body: { email: lowercaseEmail, captcha: token, url },
     });
   };
 

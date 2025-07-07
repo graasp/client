@@ -7,17 +7,14 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { memberKeys } from '../keys.js';
 import {
-  MOBILE_SIGN_IN_ROUTE,
   MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE,
   PASSWORD_RESET_REQUEST_ROUTE,
-  SIGN_IN_ROUTE,
   SIGN_IN_WITH_PASSWORD_ROUTE,
   SIGN_OUT_ROUTE,
 } from '../routes.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signInRoutine,
   signInWithPasswordRoutine,
   signOutRoutine,
 } from '../routines/authentication.js';
@@ -39,116 +36,6 @@ describe('Authentication Mutations', () => {
     queryClient.clear();
     nock.cleanAll();
     vi.clearAllMocks();
-  });
-
-  describe('useSignIn', () => {
-    const route = SIGN_IN_ROUTE;
-    const mutation = mutations.useSignIn;
-
-    it(`Sign in`, async () => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, captcha });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signInRoutine.SUCCESS,
-        payload: { message: 'SIGN_IN' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, captcha });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signInRoutine.FAILURE,
-        }),
-      );
-    });
-  });
-
-  describe('useMobileSignIn', () => {
-    const route = MOBILE_SIGN_IN_ROUTE;
-    const mutation = mutations.useMobileSignIn;
-
-    it(`Sign in`, async () => {
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Post },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, captcha, challenge });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signInRoutine.SUCCESS,
-        payload: { message: 'SIGN_IN' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, captcha, challenge });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signInRoutine.FAILURE,
-        }),
-      );
-    });
   });
 
   describe('useSignInWithPassword', () => {

@@ -77,10 +77,8 @@ export const buildImportH5PRoute = (parentId?: UUID, previousItemId?: UUID) => {
   return route;
 };
 
-export const MOBILE_SIGN_IN_ROUTE = `/m/login`;
 export const MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE = `/m/login-password`;
 export const PASSWORD_RESET_REQUEST_ROUTE = '/password/reset';
-export const SIGN_IN_ROUTE = '/login';
 export const SIGN_IN_WITH_PASSWORD_ROUTE = '/login-password';
 export const SIGN_OUT_ROUTE = '/logout';
 export const buildPostItemVisibilityRoute = ({
@@ -383,7 +381,6 @@ export const API_ROUTES = {
   GET_TAGS_ROUTE,
   ITEMS_ROUTE,
   SEARCH_PUBLISHED_ITEMS_ROUTE,
-  SIGN_IN_ROUTE,
   SIGN_IN_WITH_PASSWORD_ROUTE,
   SIGN_OUT_ROUTE,
   PASSWORD_RESET_REQUEST_ROUTE,
