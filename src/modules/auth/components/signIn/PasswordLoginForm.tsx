@@ -5,21 +5,21 @@ import { Alert, Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
+
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   EMAIL_SIGN_IN_FIELD_ID,
   PASSWORD_SIGN_IN_BUTTON_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
   PASSWORD_SUCCESS_ALERT,
 } from '@/config/selectors';
+import { signInWithPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
-import { useMobileAppLogin } from '~auth/hooks/useMobileAppLogin';
 import { AUTH } from '~auth/langs';
 
-import { ErrorDisplay } from '../common/ErrorDisplay';
 import { PasswordInput } from '../common/PasswordInput';
 import { EmailInput } from './EmailInput';
 
@@ -36,59 +36,45 @@ type PasswordLoginProps = {
 
 export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
   const { t } = useTranslation(NS.Auth);
-  const { isMobile, challenge } = useMobileAppLogin();
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
   const {
     mutateAsync: signInWithPassword,
     isSuccess: signInWithPasswordSuccess,
     isPending: isLoadingPasswordSignIn,
-    error: webPasswordSignInError,
-  } = mutations.useSignInWithPassword();
-  const {
-    mutateAsync: mobileSignInWithPassword,
-    isSuccess: mobileSignInWithPasswordSuccess,
-    isPending: isLoadingMobilePasswordSignIn,
-    error: mobilePasswordSignInError,
-  } = mutations.useMobileSignInWithPassword();
-
-  const passwordSignInError =
-    webPasswordSignInError || mobilePasswordSignInError;
+    error: passwordSignInError,
+  } = useMutation({
+    ...signInWithPasswordMutation(),
+    onError: (error: Error) => {
+      console.error(error);
+    },
+  });
 
   const handlePasswordSignIn = async (data: Inputs) => {
     const lowercaseEmail = data.email.toLowerCase();
 
-    const token = await executeCaptcha(
-      isMobile
-        ? RecaptchaAction.SignInWithPasswordMobile
-        : RecaptchaAction.SignInWithPassword,
-    );
-    try {
-      const result = await (isMobile
-        ? mobileSignInWithPassword({
-            ...data,
-            email: lowercaseEmail,
-            captcha: token,
-            challenge,
-          })
-        : signInWithPassword({
-            ...data,
-            email: lowercaseEmail,
-            captcha: token,
-            url: search.url,
-          }));
-      // successful redirect
-      if (result?.resource) {
-        window.location.href = result.resource;
-      }
-    } catch (e) {
-      // show error from react-query's error
-      console.error(e);
-    }
+    const token = await executeCaptcha(RecaptchaAction.SignInWithPassword);
+    signInWithPassword({
+      body: {
+        ...data,
+        email: lowercaseEmail,
+        captcha: token,
+        url: search.url,
+      },
+    })
+      .then(() => {
+        // nothing happens here because a redirection is considered as an error by axios
+      })
+      .catch((e) => {
+        // successful redirect
+        if (e?.resource) {
+          window.location.href = e.resource;
+        }
+      });
   };
 
   const emailError = errors.email?.message;
@@ -131,7 +117,15 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
           {t(AUTH.REQUEST_PASSWORD_RESET_LINK)}
         </TypographyLink>
       </Stack>
-      <ErrorDisplay error={passwordSignInError} />
+      {passwordSignInError && (
+        <Alert severity="error">
+          {'message' in passwordSignInError
+            ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
+              translateMessage(passwordSignInError.message)
+            : translateMessage('UNEXPECTED_ERROR')}
+        </Alert>
+      )}
       <Button
         type="submit"
         disabled={Boolean(passwordError) || Boolean(emailError)}
@@ -140,12 +134,12 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
         color="primary"
         sx={{ textTransform: 'none' }}
         fullWidth
-        loading={isLoadingMobilePasswordSignIn || isLoadingPasswordSignIn}
+        loading={isLoadingPasswordSignIn}
       >
         {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
       </Button>
 
-      {(signInWithPasswordSuccess || mobileSignInWithPasswordSuccess) && (
+      {signInWithPasswordSuccess && (
         <Alert severity="success" id={PASSWORD_SUCCESS_ALERT}>
           {t(AUTH.PASSWORD_SUCCESS_ALERT)}
         </Alert>

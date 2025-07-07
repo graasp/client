@@ -6,24 +6,14 @@ import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { memberKeys } from '../keys.js';
-import {
-  MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE,
-  PASSWORD_RESET_REQUEST_ROUTE,
-  SIGN_IN_WITH_PASSWORD_ROUTE,
-  SIGN_OUT_ROUTE,
-} from '../routes.js';
+import { PASSWORD_RESET_REQUEST_ROUTE, SIGN_OUT_ROUTE } from '../routes.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signInWithPasswordRoutine,
   signOutRoutine,
 } from '../routines/authentication.js';
 import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
-
-const captcha = 'captcha';
-const email = 'myemail@email.com';
-const challenge = '1234';
 
 describe('Authentication Mutations', () => {
   const mockedNotifier = vi.fn();
@@ -36,144 +26,6 @@ describe('Authentication Mutations', () => {
     queryClient.clear();
     nock.cleanAll();
     vi.clearAllMocks();
-  });
-
-  describe('useSignInWithPassword', () => {
-    const route = SIGN_IN_WITH_PASSWORD_ROUTE;
-    const mutation = mutations.useSignInWithPassword;
-    const password = 'password';
-    const link = 'mylink';
-
-    it(`Sign in with password`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: { resource: link },
-          statusCode: StatusCodes.SEE_OTHER,
-          method: HttpMethod.Post,
-        },
-      ];
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, 'somevalue');
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, password, captcha });
-        await waitForMutation();
-      });
-
-      // verify cache keys
-      expect(
-        queryClient.getQueryData(memberKeys.current().content),
-      ).toBeFalsy();
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signInWithPasswordRoutine.SUCCESS,
-        payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, password, captcha });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signInWithPasswordRoutine.FAILURE,
-        }),
-      );
-    });
-  });
-
-  describe('useMobileSignInWithPassword', () => {
-    const route = MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE;
-    const mutation = mutations.useMobileSignInWithPassword;
-    const password = 'password';
-    const link = 'mylink';
-
-    it(`Sign in with password`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: { resource: link },
-          statusCode: StatusCodes.SEE_OTHER,
-          method: HttpMethod.Post,
-        },
-      ];
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, 'somevalue');
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, password, captcha, challenge });
-        await waitForMutation();
-      });
-
-      // verify cache keys
-      expect(
-        queryClient.getQueryData(memberKeys.current().content),
-      ).toBeFalsy();
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signInWithPasswordRoutine.SUCCESS,
-        payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-      });
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Post,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({ email, password, captcha, challenge });
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signInWithPasswordRoutine.FAILURE,
-        }),
-      );
-    });
   });
 
   describe('useSignOut', () => {

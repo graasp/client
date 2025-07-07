@@ -1,5 +1,3 @@
-import { Password } from '@graasp/sdk';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import * as Api from '../api/authentication.js';
@@ -7,63 +5,12 @@ import { memberKeys } from '../keys.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signInWithPasswordRoutine,
   signOutRoutine,
 } from '../routines/authentication.js';
 import { QueryClientConfig } from '../types.js';
 
 export default (queryConfig: QueryClientConfig) => {
   const { notifier } = queryConfig;
-
-  const useSignInWithPassword = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        password: Password;
-        captcha: string;
-        url?: string;
-      }) => Api.signInWithPassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInWithPasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useMobileSignInWithPassword = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        password: string;
-        captcha: string;
-        challenge: string;
-      }) => Api.mobileSignInWithPassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInWithPasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
 
   const useSignOut = () => {
     const queryClient = useQueryClient();
@@ -136,9 +83,7 @@ export default (queryConfig: QueryClientConfig) => {
     });
 
   return {
-    useSignInWithPassword,
     useSignOut,
-    useMobileSignInWithPassword,
     useCreatePasswordResetRequest,
     useResolvePasswordResetRequest,
   };

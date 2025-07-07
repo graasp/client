@@ -1,14 +1,7 @@
-import { Password } from '@graasp/sdk';
-
 import { API_HOST } from '@/config/env.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
-import {
-  MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE,
-  PASSWORD_RESET_REQUEST_ROUTE,
-  SIGN_IN_WITH_PASSWORD_ROUTE,
-  SIGN_OUT_ROUTE,
-} from '../routes.js';
+import { PASSWORD_RESET_REQUEST_ROUTE, SIGN_OUT_ROUTE } from '../routes.js';
 import { verifyAuthentication } from './axios.js';
 
 export const signOut = () =>
@@ -16,37 +9,6 @@ export const signOut = () =>
     const url = new URL(SIGN_OUT_ROUTE, API_HOST);
     return axios.get<void>(url.toString()).then(({ data }) => data);
   });
-
-export const signInWithPassword = async (payload: {
-  email: string;
-  password: Password;
-  captcha: string;
-  url?: string;
-}) => {
-  const url = new URL(SIGN_IN_WITH_PASSWORD_ROUTE, API_HOST);
-  return axios
-    .post<{ resource: string }>(url.toString(), payload, {
-      data: payload,
-      // Resolve only if the status code is less than 400
-      validateStatus: (status: number) => status >= 200 && status < 400,
-    })
-    .then(({ data }) => data);
-};
-
-export const mobileSignInWithPassword = async (payload: {
-  email: string;
-  password: Password;
-  challenge: string;
-  captcha: string;
-}) => {
-  const url = new URL(MOBILE_SIGN_IN_WITH_PASSWORD_ROUTE, API_HOST);
-  return axios
-    .post<{ resource: string }>(url.toString(), payload, {
-      // Resolve only if the status code is less than 400
-      validateStatus: (status) => status >= 200 && status < 400,
-    })
-    .then(({ data }) => data);
-};
 
 export const createPasswordResetRequest = async (payload: {
   email: string;
