@@ -221,7 +221,7 @@ export type PackedItem = {
     id: string;
     name: string;
     description?: null | string;
-    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
+    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page';
     path: string;
     lang: string;
     extra: {
@@ -566,7 +566,7 @@ export type SearchHit = {
     discipline: Array<string>;
     'resource-type': Array<string>;
     id: string;
-    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad';
+    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page';
     isPublishedRoot: boolean;
     isHidden: boolean;
     createdAt: string;
@@ -1771,10 +1771,12 @@ export type CreateAppDataFileError = CreateAppDataFileErrors[keyof CreateAppData
 
 export type CreateAppDataFileResponses = {
     /**
-     * Default Response
+     * App Data with support for returning legacy properties for older implementations of the apps API. Returns a copy of the `account` property as the `member` property.
      */
-    200: unknown;
+    200: AppDataWithLegacyProps;
 };
+
+export type CreateAppDataFileResponse = CreateAppDataFileResponses[keyof CreateAppDataFileResponses];
 
 export type DownloadAppDataFileData = {
     body?: never;
@@ -5960,6 +5962,107 @@ export type DeleteTagForItemResponses = {
 
 export type DeleteTagForItemResponse = DeleteTagForItemResponses[keyof DeleteTagForItemResponses];
 
+export type CreatePageData = {
+    body: {
+        name: string;
+        lang?: string;
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings?: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        geolocation?: GeoCoordinate;
+    };
+    path?: never;
+    query?: {
+        parentId?: string;
+        previousItemId?: string;
+    };
+    url: '/items/pages';
+};
+
+export type CreatePageErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type CreatePageError = CreatePageErrors[keyof CreatePageErrors];
+
+export type CreatePageResponses = {
+    /**
+     * Default Response
+     */
+    201: {
+        id: string;
+        name: string;
+        description?: null | string;
+        type: string;
+        path: string;
+        lang: string;
+        extra: {
+            [key: string]: unknown;
+        } & {
+            [key: string]: never;
+        };
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMinimalAccount;
+        createdAt: string;
+        updatedAt: string;
+    };
+};
+
+export type CreatePageResponse = CreatePageResponses[keyof CreatePageResponses];
+
 export type DeleteManyItemsData = {
     body?: never;
     path?: never;
@@ -6444,7 +6547,7 @@ export type GetAccessibleItemsData = {
         pageSize: number;
         creatorId?: string;
         permissions?: Array<'read' | 'write' | 'admin'>;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad'>;
+        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
         keywords?: Array<string>;
         sortBy?: 'item.type' | 'item.updated_at' | 'item.created_at' | 'item.creator.name' | 'item.name';
         ordering?: 'asc' | 'desc' | 'ASC' | 'DESC';
@@ -6483,7 +6586,7 @@ export type GetChildrenData = {
     };
     query?: {
         keywords?: Array<string>;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad'>;
+        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
     };
     url: '/items/{id}/children';
 };
@@ -6513,7 +6616,7 @@ export type GetDescendantItemsData = {
     };
     query?: {
         showHidden?: boolean;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad'>;
+        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
     };
     url: '/items/{id}/descendants';
 };

@@ -12,6 +12,7 @@
   "s3File": "file",
   "shortcut": "shortcut",
   "etherpad": "etherpad",
+  "page": "page",
 
   "builder": "builder",
   "player": "player",

@@ -11,7 +11,8 @@ import {
 
 import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
 
-import { useParams } from '@tanstack/react-router';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams, useRouter } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -19,6 +20,8 @@ import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import { createPageMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
@@ -44,7 +47,9 @@ export function FolderCreateForm({
   geolocation,
   previousItemId,
 }: Readonly<FolderCreateFormProps>): JSX.Element {
+  const { navigate } = useRouter();
   const { itemId: parentId } = useParams({ strict: false });
+  const [clickCounter, setClickCounter] = useState(0);
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
   const methods = useForm<Inputs>();
@@ -59,6 +64,17 @@ export function FolderCreateForm({
   const [thumbnail, setThumbnail] = useState<Blob>();
 
   const { mutateAsync: createItem } = mutations.usePostItem();
+  const queryClient = useQueryClient();
+  const { mutateAsync: createPage } = useMutation({
+    ...createPageMutation(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: itemKeys.allAccessible() });
+    },
+  });
+
+  const handleClick = () => {
+    setClickCounter((s) => s + 1);
+  };
 
   async function onSubmit(data: Inputs) {
     try {
@@ -77,6 +93,11 @@ export function FolderCreateForm({
     }
   }
 
+  const onCreatePageClick = async () => {
+    const { id } = await createPage({ body: { name: 'create page' } });
+    navigate({ to: '/builder/items/$itemId', params: { itemId: id } });
+  };
+
   return (
     <FormProvider {...methods}>
       <Stack
@@ -85,7 +106,7 @@ export function FolderCreateForm({
         onSubmit={handleSubmit(onSubmit)}
         flex={1}
       >
-        <DialogTitle>
+        <DialogTitle onClick={handleClick}>
           {translateBuilder('CREATE_ITEM_NEW_FOLDER_TITLE')}
         </DialogTitle>
         <DialogContent>
@@ -111,6 +132,11 @@ export function FolderCreateForm({
           />
         </DialogContent>
         <DialogActions>
+          {clickCounter > 3 && (
+            <Button color="player" onClick={onCreatePageClick}>
+              Create Page
+            </Button>
+          )}
           <CancelButton onClick={onClose} />
           <Button
             id={ITEM_FORM_CONFIRM_BUTTON_ID}
