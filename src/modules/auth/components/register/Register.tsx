@@ -18,11 +18,11 @@ import {
   isEmail,
 } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   EMAIL_SIGN_UP_FIELD_ID,
   NAME_SIGN_UP_FIELD_ID,
@@ -31,9 +31,9 @@ import {
   REGISTER_HEADER_ID,
   REGISTER_SAVE_ACTIONS_ID,
 } from '@/config/selectors';
+import { registerMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
-import { useMobileAppLogin } from '~auth/hooks/useMobileAppLogin';
 import { AUTH } from '~auth/langs';
 
 import { ErrorDisplay } from '../common/ErrorDisplay';
@@ -159,7 +159,6 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { isMobile, challenge } = useMobileAppLogin();
   const {
     register,
     handleSubmit,
@@ -173,38 +172,30 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
     mutateAsync: signUp,
     isPending: isLoadingSignUp,
     error: webRegisterError,
-  } = mutations.useSignUp();
-  const {
-    mutateAsync: mobileSignUp,
-    isPending: isLoadingMobileSignUp,
-    error: mobileRegisterError,
-  } = mutations.useMobileSignUp();
-
+  } = useMutation({
+    ...registerMutation(),
+    onError: (error: Error) => {
+      console.error(error);
+    },
+  });
   const handleRegister = async (inputs: RegisterInputs) => {
     // lowercase email
     const email = inputs.email.toLowerCase();
     // trim username to remove extra whitespaces before and after
     const name = inputs.name.trim();
-    const token = await executeCaptcha(
-      isMobile ? RecaptchaAction.SignUpMobile : RecaptchaAction.SignUp,
-    );
-    await (isMobile
-      ? mobileSignUp({
-          name,
-          email,
-          captcha: token,
-          challenge,
-          lang: i18n.language,
-          enableSaveActions: inputs.enableSaveActions,
-        })
-      : signUp({
-          name,
-          email,
-          captcha: token,
-          url: search.url,
-          lang: i18n.language,
-          enableSaveActions: inputs.enableSaveActions,
-        }));
+    const token = await executeCaptcha(RecaptchaAction.SignUp);
+    await signUp({
+      query: {
+        lang: i18n.language,
+      },
+      body: {
+        name,
+        email,
+        captcha: token,
+        url: search.url,
+        enableSaveActions: inputs.enableSaveActions,
+      },
+    });
 
     // navigate to success path
     navigate({
@@ -281,12 +272,12 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
           <EnableAnalyticsForm control={control} />
           <AgreementForm control={control} />
         </Stack>
-        <ErrorDisplay error={webRegisterError || mobileRegisterError} />
+        <ErrorDisplay error={webRegisterError} />
         <Button
           id={REGISTER_BUTTON_ID}
           type="submit"
           variant="contained"
-          loading={isLoadingSignUp || isLoadingMobileSignUp}
+          loading={isLoadingSignUp}
           fullWidth
           disabled={disableRegister}
         >

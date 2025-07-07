@@ -1,5 +1,3 @@
-import { Password } from '@graasp/sdk';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import * as Api from '../api/authentication.js';
@@ -7,156 +5,12 @@ import { memberKeys } from '../keys.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signInRoutine,
-  signInWithPasswordRoutine,
   signOutRoutine,
-  signUpRoutine,
 } from '../routines/authentication.js';
 import { QueryClientConfig } from '../types.js';
 
 export default (queryConfig: QueryClientConfig) => {
   const { notifier } = queryConfig;
-
-  const useSignIn = () => {
-    return useMutation({
-      mutationFn: (payload: { email: string; captcha: string; url?: string }) =>
-        Api.signIn(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useMobileSignIn = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        captcha: string;
-        challenge: string;
-      }) => Api.mobileSignIn(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useSignInWithPassword = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        password: Password;
-        captcha: string;
-        url?: string;
-      }) => Api.signInWithPassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInWithPasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useMobileSignInWithPassword = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: (payload: {
-        email: string;
-        password: string;
-        captcha: string;
-        challenge: string;
-      }) => Api.mobileSignInWithPassword(payload),
-      onSuccess: () => {
-        notifier?.({
-          type: signInWithPasswordRoutine.SUCCESS,
-          payload: { message: 'SIGN_IN_WITH_PASSWORD' },
-        });
-        queryClient.resetQueries();
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signInWithPasswordRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
-
-  const useSignUp = () =>
-    useMutation({
-      mutationFn: (payload: {
-        name: string;
-        email: string;
-        captcha: string;
-        url?: string;
-        lang?: string;
-        enableSaveActions: boolean;
-      }) => Api.signUp(payload, { lang: payload.lang }),
-      onSuccess: () => {
-        notifier?.({
-          type: signUpRoutine.SUCCESS,
-          payload: { message: 'SIGN_UP' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signUpRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-
-  const useMobileSignUp = () =>
-    useMutation({
-      mutationFn: (payload: {
-        name: string;
-        email: string;
-        challenge: string;
-        captcha: string;
-        lang?: string;
-        enableSaveActions: boolean;
-      }) => Api.mobileSignUp(payload, { lang: payload.lang }),
-      onSuccess: () => {
-        notifier?.({
-          type: signUpRoutine.SUCCESS,
-          payload: { message: 'SIGN_UP' },
-        });
-      },
-      onError: (error: Error) => {
-        notifier?.({
-          type: signUpRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
 
   const useSignOut = () => {
     const queryClient = useQueryClient();
@@ -229,13 +83,7 @@ export default (queryConfig: QueryClientConfig) => {
     });
 
   return {
-    useSignIn,
-    useSignInWithPassword,
     useSignOut,
-    useSignUp,
-    useMobileSignUp,
-    useMobileSignIn,
-    useMobileSignInWithPassword,
     useCreatePasswordResetRequest,
     useResolvePasswordResetRequest,
   };

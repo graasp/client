@@ -18,7 +18,7 @@ import {
   PASSWORD_INPUT_NEW_PASSWORD_ID,
   PASSWORD_SAVE_BUTTON_ID,
 } from '@/config/selectors';
-import { postPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { createPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { memberKeys } from '@/query/keys';
 
 import { PasswordField } from './PasswordField';
@@ -56,7 +56,7 @@ const CreatePassword = ({ onClose }: CreatePasswordProps): JSX.Element => {
     error: createPasswordError,
     isPending: isCreatePasswordLoading,
   } = useMutation({
-    ...postPasswordMutation(),
+    ...createPasswordMutation(),
     onSuccess: () => {
       // toast success on another page because the form will be closed
       toast.success(translateMessage('UPDATE_PASSWORD'));

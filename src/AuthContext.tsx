@@ -11,9 +11,11 @@ import {
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
+import { useMutation } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from './config/constants';
 import { hooks, mutations } from './config/queryClient';
+import { loginMutation } from './openapi/client/@tanstack/react-query.gen';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 
 type LoginInput = {
@@ -52,7 +54,7 @@ export function AuthProvider({
   children: ReactNode;
 }>): JSX.Element {
   const { data: currentMember, isPending } = hooks.useCurrentMember();
-  const useLogin = mutations.useSignIn();
+  const useLogin = useMutation(loginMutation());
   const useLogout = mutations.useSignOut();
 
   const logout = useCallback(async () => {
@@ -70,7 +72,7 @@ export function AuthProvider({
 
   const login = useCallback(
     async (args: LoginInput) => {
-      await useLogin.mutateAsync(args);
+      await useLogin.mutateAsync({ body: args });
     },
     [useLogin],
   );

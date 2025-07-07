@@ -19,7 +19,7 @@ import {
   PASSWORD_INPUT_NEW_PASSWORD_ID,
   PASSWORD_SAVE_BUTTON_ID,
 } from '@/config/selectors';
-import { patchPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { updatePasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { PasswordField } from './PasswordField';
 
@@ -49,7 +49,7 @@ const EditPassword = ({ onClose }: EditPasswordProps): JSX.Element => {
     error: updatePasswordError,
     isPending: isUpdatePasswordLoading,
   } = useMutation({
-    ...patchPasswordMutation(),
+    ...updatePasswordMutation(),
     onSuccess: () => {
       toast.success(translateMessage('UPDATE_PASSWORD'));
     },
