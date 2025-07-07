@@ -44,7 +44,7 @@ export function Message({ message, isOwn }: Props) {
   const { t, i18n } = useTranslation(NS.Chatbox);
   const {
     data: avatarUrl,
-    isLoading: isLoadingAvatar,
+    isPending: isPendingAvatar,
     isFetching: isFetchingAvatar,
   } = hooks.useAvatarUrl({
     id: message.creator?.id,
@@ -80,7 +80,7 @@ export function Message({ message, isOwn }: Props) {
             <Avatar
               variant={'circular'}
               alt={creatorName}
-              isLoading={isLoadingAvatar || isFetchingAvatar}
+              isLoading={isPendingAvatar || isFetchingAvatar}
               component="avatar"
               url={avatarUrl}
               maxHeight={MAX_AVATAR_SIZE}

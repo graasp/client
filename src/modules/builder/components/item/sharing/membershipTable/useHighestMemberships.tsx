@@ -13,12 +13,12 @@ export const useHighestMemberships = ({
   item: DiscriminatedItem;
 }): {
   data?: ItemMembership[];
-  isLoading: boolean;
+  isPending: boolean;
   hasOnlyOneAdmin: boolean;
 } => {
   const { data: currentMember } = hooks.useCurrentMember();
 
-  const { data: rawMemberships, isLoading: isMembershipsLoading } =
+  const { data: rawMemberships, isPending: isMembershipsPending } =
     hooks.useItemMemberships(item.id);
 
   const hasOnlyOneAdmin =
@@ -49,7 +49,7 @@ export const useHighestMemberships = ({
 
   return {
     data: memberships,
-    isLoading: isMembershipsLoading,
+    isPending: isMembershipsPending,
     hasOnlyOneAdmin,
   };
 };
