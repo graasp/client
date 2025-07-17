@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -5,8 +6,10 @@ import { Alert, Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
 
+import { useAuth } from '@/AuthContext';
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
 import {
@@ -16,6 +19,7 @@ import {
   PASSWORD_SUCCESS_ALERT,
 } from '@/config/selectors';
 import { signInWithPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
 import { AUTH } from '~auth/langs';
@@ -36,12 +40,16 @@ type PasswordLoginProps = {
 
 export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
   const { t } = useTranslation(NS.Auth);
+  const { isAuthenticated } = useAuth();
+
   const { t: translateMessage } = useTranslation(NS.Messages);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const {
     mutateAsync: signInWithPassword,
     isSuccess: signInWithPasswordSuccess,
@@ -54,27 +62,40 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
     },
   });
 
+  // redirect to url if the user is authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      let redirectLink = undefined;
+      try {
+        if (search.url) {
+          redirectLink = new URL(search.url).pathname;
+        }
+      } catch (e) {
+        // we don't throw, the url might be a wrong url
+        console.error(e);
+      }
+      navigate({ to: redirectLink ?? '/home' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
+
   const handlePasswordSignIn = async (data: Inputs) => {
     const lowercaseEmail = data.email.toLowerCase();
 
     const token = await executeCaptcha(RecaptchaAction.SignInWithPassword);
-    signInWithPassword({
+    await signInWithPassword({
       body: {
         ...data,
         email: lowercaseEmail,
         captcha: token,
         url: search.url,
       },
-    })
-      .then(() => {
-        // nothing happens here because a redirection is considered as an error by axios
-      })
-      .catch((e) => {
-        // successful redirect
-        if (e?.resource) {
-          window.location.href = e.resource;
-        }
-      });
+    });
+
+    // invalidate current user
+    await queryClient.invalidateQueries({
+      queryKey: memberKeys.current().content,
+    });
   };
 
   const emailError = errors.email?.message;
@@ -134,7 +155,7 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
         color="primary"
         sx={{ textTransform: 'none' }}
         fullWidth
-        loading={isLoadingPasswordSignIn}
+        loading={isLoadingPasswordSignIn || signInWithPasswordSuccess}
       >
         {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
       </Button>
