@@ -51,21 +51,27 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const {
-    mutateAsync: signInWithPassword,
+    mutate: signInWithPassword,
     isSuccess: signInWithPasswordSuccess,
     isPending: isLoadingPasswordSignIn,
     error: passwordSignInError,
   } = useMutation({
     ...signInWithPasswordMutation(),
+    onSuccess: async () => {
+      // invalidate current user
+      await queryClient.invalidateQueries({
+        queryKey: memberKeys.current().content,
+      });
+    },
     onError: (error: Error) => {
       console.error(error);
     },
   });
 
-  // redirect to url if the user is authenticated
+  // redirect to url if the user is authenticated and/or when the password login is successful
   useEffect(() => {
     if (isAuthenticated) {
-      let redirectLink = undefined;
+      let redirectLink = null;
       try {
         if (search.url) {
           redirectLink = new URL(search.url).pathname;
@@ -83,18 +89,12 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
     const lowercaseEmail = data.email.toLowerCase();
 
     const token = await executeCaptcha(RecaptchaAction.SignInWithPassword);
-    await signInWithPassword({
+    signInWithPassword({
       body: {
         ...data,
         email: lowercaseEmail,
         captcha: token,
-        url: search.url,
       },
-    });
-
-    // invalidate current user
-    await queryClient.invalidateQueries({
-      queryKey: memberKeys.current().content,
     });
   };
 

@@ -1,14 +1,7 @@
 import { API_HOST } from '@/config/env.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
-import { PASSWORD_RESET_REQUEST_ROUTE, SIGN_OUT_ROUTE } from '../routes.js';
-import { verifyAuthentication } from './axios.js';
-
-export const signOut = () =>
-  verifyAuthentication(() => {
-    const url = new URL(SIGN_OUT_ROUTE, API_HOST);
-    return axios.get<void>(url.toString()).then(({ data }) => data);
-  });
+import { PASSWORD_RESET_REQUEST_ROUTE } from '../routes.js';
 
 export const createPasswordResetRequest = async (payload: {
   email: string;

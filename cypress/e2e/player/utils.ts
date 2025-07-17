@@ -171,7 +171,6 @@ const {
   buildGetItemLoginSchemaTypeRoute,
   buildGetCurrentMemberRoute,
   buildGetItemRoute,
-  SIGN_OUT_ROUTE,
 } = API_ROUTES;
 
 export class TestHelper {
@@ -261,7 +260,7 @@ export class TestHelper {
     cy.intercept(
       {
         method: HttpMethod.Get,
-        url: new RegExp(SIGN_OUT_ROUTE),
+        url: '/logout',
       },
       ({ reply }) => {
         this.isLoggedIn = false;

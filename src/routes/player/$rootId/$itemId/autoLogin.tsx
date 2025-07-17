@@ -42,11 +42,10 @@ const Wrapper = ({ id, children }: { id?: string; children: ReactNode }) => (
 );
 
 function AutoLogin(): JSX.Element {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { t } = useTranslation(NS.Player);
 
   const { mutateAsync: pseudoLogin } = mutations.usePostItemLogin();
-  const { mutateAsync: signOut } = mutations.useSignOut();
 
   const { itemId, rootId } = Route.useParams();
 
@@ -94,7 +93,7 @@ function AutoLogin(): JSX.Element {
           <Typography variant="h2">
             {t('AUTO_LOGIN_ALREADY_LOGGED_IN')}
           </Typography>
-          <Button variant="contained" onClick={() => signOut}>
+          <Button variant="contained" onClick={() => logout()}>
             {t('AUTO_LOGIN_SIGN_OUT_AND_BACK_IN')}
           </Button>
         </Stack>

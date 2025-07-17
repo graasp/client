@@ -252,6 +252,16 @@ export type GeoCoordinate = {
 };
 
 /**
+ * Tag
+ * User provided tag, representing a theme or subject
+ */
+export type Tag = {
+    id: string;
+    name: string;
+    category: 'level' | 'discipline' | 'resource-type';
+};
+
+/**
  * Chat Message Raw
  * Raw data for a message from a member in a chat of an item.
  */
@@ -598,16 +608,6 @@ export type RecycledItemData = {
 };
 
 /**
- * Tag
- * User provided tag, representing a theme or subject
- */
-export type Tag = {
-    id: string;
-    name: string;
-    category: 'level' | 'discipline' | 'resource-type';
-};
-
-/**
  * Profile
  * Profile of a member
  */
@@ -793,26 +793,36 @@ export type AuthenticateErrors = {
 
 export type AuthenticateError = AuthenticateErrors[keyof AuthenticateErrors];
 
-export type GetLogoutData = {
+export type SignOutData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/logout';
 };
 
-export type GetLogoutResponses = {
+export type SignOutErrors = {
     /**
-     * Default Response
+     * Error object with useful information about the unexpected behavior that occured
      */
-    200: unknown;
+    '4XX': _Error;
 };
+
+export type SignOutError = SignOutErrors[keyof SignOutErrors];
+
+export type SignOutResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type SignOutResponse = SignOutResponses[keyof SignOutResponses];
 
 export type SignInWithPasswordData = {
     body: {
         email: string;
         password: string;
         captcha: string;
-        url?: string;
     };
     path?: never;
     query?: {
@@ -836,14 +846,9 @@ export type SignInWithPasswordError = SignInWithPasswordErrors[keyof SignInWithP
 
 export type SignInWithPasswordResponses = {
     /**
-     * Default Response
+     * Successful Response
      */
-    200: {
-        /**
-         * Redirection link
-         */
-        resource: string;
-    };
+    204: void;
 };
 
 export type SignInWithPasswordResponse = SignInWithPasswordResponses[keyof SignInWithPasswordResponses];
@@ -933,7 +938,7 @@ export type ResetPasswordResponses = {
     204: unknown;
 };
 
-export type RequestResetPasswordLinkData = {
+export type RequestPasswordResetLinkData = {
     body: {
         email: string;
         captcha: string;
@@ -943,14 +948,14 @@ export type RequestResetPasswordLinkData = {
     url: '/password/reset';
 };
 
-export type RequestResetPasswordLinkErrors = {
+export type RequestPasswordResetLinkErrors = {
     /**
      * Default Response
      */
     400: unknown;
 };
 
-export type RequestResetPasswordLinkResponses = {
+export type RequestPasswordResetLinkResponses = {
     /**
      * Default Response
      */

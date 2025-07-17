@@ -5,12 +5,10 @@ import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { memberKeys } from '../keys.js';
-import { PASSWORD_RESET_REQUEST_ROUTE, SIGN_OUT_ROUTE } from '../routes.js';
+import { PASSWORD_RESET_REQUEST_ROUTE } from '../routes.js';
 import {
   createPasswordResetRequestRoutine,
   resolvePasswordResetRequestRoutine,
-  signOutRoutine,
 } from '../routines/authentication.js';
 import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
@@ -26,70 +24,6 @@ describe('Authentication Mutations', () => {
     queryClient.clear();
     nock.cleanAll();
     vi.clearAllMocks();
-  });
-
-  describe('useSignOut', () => {
-    const route = SIGN_OUT_ROUTE;
-    const mutation = mutations.useSignOut;
-
-    it(`Sign out`, async () => {
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, 'somevalue');
-
-      const endpoints = [
-        { route, response: OK_RESPONSE, method: HttpMethod.Get },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate();
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith({
-        type: signOutRoutine.SUCCESS,
-        payload: { message: 'SIGN_OUT' },
-      });
-      expect(
-        queryClient.getQueryData(memberKeys.current().content),
-      ).toBeFalsy();
-
-      // cookie management
-      // we do not test that the cookie has been set as it depends on globals that are not available in the test environnement
-    });
-
-    it(`Unauthorized`, async () => {
-      const endpoints = [
-        {
-          route,
-          response: UNAUTHORIZED_RESPONSE,
-          method: HttpMethod.Get,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate(undefined);
-        await waitForMutation();
-      });
-
-      expect(mockedNotifier).toHaveBeenCalledWith(
-        expect.objectContaining({
-          type: signOutRoutine.FAILURE,
-        }),
-      );
-    });
   });
 
   describe('useCreatePasswordResetRequest', () => {

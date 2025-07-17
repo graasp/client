@@ -78,7 +78,6 @@ export const buildImportH5PRoute = (parentId?: UUID, previousItemId?: UUID) => {
 };
 
 export const PASSWORD_RESET_REQUEST_ROUTE = '/password/reset';
-export const SIGN_OUT_ROUTE = '/logout';
 export const buildPostItemVisibilityRoute = ({
   itemId,
   type,
@@ -379,7 +378,6 @@ export const API_ROUTES = {
   GET_TAGS_ROUTE,
   ITEMS_ROUTE,
   SEARCH_PUBLISHED_ITEMS_ROUTE,
-  SIGN_OUT_ROUTE,
   PASSWORD_RESET_REQUEST_ROUTE,
   VALIDATION_ROUTE,
   buildGetItemsInMapRoute,
