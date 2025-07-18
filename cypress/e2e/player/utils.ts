@@ -259,7 +259,7 @@ export class TestHelper {
 
     cy.intercept(
       {
-        method: HttpMethod.Get,
+        method: HttpMethod.Post,
         url: '/logout',
       },
       ({ reply }) => {
