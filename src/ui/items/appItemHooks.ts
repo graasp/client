@@ -63,55 +63,59 @@ const useAppCommunication = ({
             return;
           }
 
-          const { type, payload } = JSON.parse(data);
+          try {
+            const { type, payload } = JSON.parse(data);
 
-          switch (type) {
-            case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
-              port.postMessage(
-                JSON.stringify({
-                  type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
-                  payload: await requestApiAccessToken({
-                    id: item.id,
-                    ...payload,
+            switch (type) {
+              case POST_MESSAGE_KEYS.GET_AUTH_TOKEN: {
+                port.postMessage(
+                  JSON.stringify({
+                    type: POST_MESSAGE_KEYS.GET_AUTH_TOKEN_SUCCESS,
+                    payload: await requestApiAccessToken({
+                      id: item.id,
+                      ...payload,
+                    }),
                   }),
-                }),
-              );
-              break;
-            }
+                );
+                break;
+              }
 
-            case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
-              // item should not be manually resizable
-              if (item.settings.isResizable) {
-                return;
+              case POST_MESSAGE_KEYS.POST_AUTO_RESIZE: {
+                // item should not be manually resizable
+                if (item.settings.isResizable) {
+                  return;
+                }
+                // iframe must be mounted
+                if (iFrameRef.current === null) {
+                  return;
+                }
+                // payload should be number
+                if (typeof payload !== 'number') {
+                  return;
+                }
+                // set the element height using the style prop
+                // we use the style prop since it allows us to have higher precedence than when using the height prop
+                iFrameRef.current.style.height = `${payload}px`;
+                break;
               }
-              // iframe must be mounted
-              if (iFrameRef.current === null) {
-                return;
-              }
-              // payload should be number
-              if (typeof payload !== 'number') {
-                return;
-              }
-              // set the element height using the style prop
-              // we use the style prop since it allows us to have higher precedence than when using the height prop
-              iFrameRef.current.style.height = `${payload}px`;
-              break;
-            }
 
-            case POST_MESSAGE_KEYS.POST_MAX_RESIZE: {
-              // item should not be manually resizable
-              if (item.settings.isResizable) {
-                return;
+              case POST_MESSAGE_KEYS.POST_MAX_RESIZE: {
+                // item should not be manually resizable
+                if (item.settings.isResizable) {
+                  return;
+                }
+                // iframe must be mounted
+                if (iFrameRef.current === null) {
+                  return;
+                }
+                // set the element height using the style prop
+                // we use the style prop since it allows us to have higher precedence than when using the height prop
+                iFrameRef.current.style.height = `100vh`;
+                break;
               }
-              // iframe must be mounted
-              if (iFrameRef.current === null) {
-                return;
-              }
-              // set the element height using the style prop
-              // we use the style prop since it allows us to have higher precedence than when using the height prop
-              iFrameRef.current.style.height = `100vh`;
-              break;
             }
+          } catch {
+            console.debug('App sent message that could not be parsed', data);
           }
         };
 
@@ -125,35 +129,39 @@ const useAppCommunication = ({
           return;
         }
 
-        // return context data and message channel port to app
-        const { type } = JSON.parse(data);
-        if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
-          // create/reset channel and
-          // Listen for messages on port1
-          const channel = new MessageChannel();
-          const { port1 } = channel;
-          port1.onmessage = setupOnMessage(port1);
+        try {
+          // return context data and message channel port to app
+          const { type } = JSON.parse(data);
+          if (type === POST_MESSAGE_KEYS.GET_CONTEXT) {
+            // create/reset channel and
+            // Listen for messages on port1
+            const channel = new MessageChannel();
+            const { port1 } = channel;
+            port1.onmessage = setupOnMessage(port1);
 
-          // ensure to only send the message to the domain where the app is hosted for security reasons
-          const targetOrigin = new URL(appUrl).origin;
+            // ensure to only send the message to the domain where the app is hosted for security reasons
+            const targetOrigin = new URL(appUrl).origin;
 
-          // Transfer port2 to the iframe
-          // provide port2 to app and item's data
-          iFrameRef?.current?.contentWindow?.postMessage(
-            JSON.stringify({
-              type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
+            // Transfer port2 to the iframe
+            // provide port2 to app and item's data
+            iFrameRef?.current?.contentWindow?.postMessage(
+              JSON.stringify({
+                type: POST_MESSAGE_KEYS.GET_CONTEXT_SUCCESS,
 
-              payload: {
-                /**
-                 * Legacy for old apps or apps that does not use apps-query-client
-                 */
-                memberId: contextPayload.accountId,
-                ...contextPayload,
-              },
-            }),
-            targetOrigin,
-            [channel.port2],
-          );
+                payload: {
+                  /**
+                   * Legacy for old apps or apps that does not use apps-query-client
+                   */
+                  memberId: contextPayload.accountId,
+                  ...contextPayload,
+                },
+              }),
+              targetOrigin,
+              [channel.port2],
+            );
+          }
+        } catch {
+          console.debug('App sent message that could not be parsed', data);
         }
       };
 
