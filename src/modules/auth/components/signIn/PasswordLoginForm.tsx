@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -7,9 +6,7 @@ import { Alert, Button, Stack } from '@mui/material';
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useNavigate } from '@tanstack/react-router';
 
-import { useAuth } from '@/AuthContext';
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
 import {
@@ -32,15 +29,8 @@ type Inputs = {
   password: string;
 };
 
-type PasswordLoginProps = {
-  search: {
-    url?: string;
-  };
-};
-
-export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
+export function PasswordLoginForm() {
   const { t } = useTranslation(NS.Auth);
-  const { isAuthenticated } = useAuth();
 
   const { t: translateMessage } = useTranslation(NS.Messages);
   const {
@@ -48,10 +38,9 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const {
-    mutate: signInWithPassword,
+    mutateAsync: signInWithPassword,
     isSuccess: signInWithPasswordSuccess,
     isPending: isLoadingPasswordSignIn,
     error: passwordSignInError,
@@ -68,34 +57,19 @@ export function PasswordLoginForm({ search }: Readonly<PasswordLoginProps>) {
     },
   });
 
-  // redirect to url if the user is authenticated and/or when the password login is successful
-  useEffect(() => {
-    if (isAuthenticated) {
-      let redirectLink = null;
-      try {
-        if (search.url) {
-          redirectLink = new URL(search.url).pathname;
-        }
-      } catch (e) {
-        // we don't throw, the url might be a wrong url
-        console.error(e);
-      }
-      navigate({ to: redirectLink ?? '/home' });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuthenticated]);
-
   const handlePasswordSignIn = async (data: Inputs) => {
     const lowercaseEmail = data.email.toLowerCase();
 
     const token = await executeCaptcha(RecaptchaAction.SignInWithPassword);
-    signInWithPassword({
+    await signInWithPassword({
       body: {
         ...data,
         email: lowercaseEmail,
         captcha: token,
       },
     });
+    // reload app to refetch current account and trigger beforeLoad
+    window.location.reload();
   };
 
   const emailError = errors.email?.message;

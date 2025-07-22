@@ -17,7 +17,6 @@ import { PasswordLoginForm } from '~auth/components/signIn/PasswordLoginForm';
 
 const loginSearchSchema = z.object({
   url: z.string().url().optional(),
-  m: z.string().optional(),
 });
 
 export const Route = createFileRoute('/auth/login')({
@@ -39,7 +38,7 @@ function LoginRoute() {
           gap={3}
         >
           <MagicLinkLoginForm search={search} />
-          <PasswordLoginForm search={search} />
+          <PasswordLoginForm />
           <ButtonLink
             variant="contained"
             fullWidth
