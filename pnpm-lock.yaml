@@ -28,7 +28,7 @@ importers:
         version: 5.1.1
       '@graasp/sdk':
         specifier: 5.13.3
-        version: 5.13.3(date-fns@4.1.0)(uuid@11.0.5)
+        version: 5.13.3(date-fns@4.1.0)(uuid@11.1.0)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -198,8 +198,8 @@ importers:
         specifier: 1.2.0
         version: 1.2.0(react@19.1.0)(supercluster@8.0.1)
       uuid:
-        specifier: 11.0.5
-        version: 11.0.5
+        specifier: 11.1.0
+        version: 11.1.0
       zod:
         specifier: 3.24.2
         version: 3.24.2
@@ -6709,8 +6709,8 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  uuid@11.0.5:
-    resolution: {integrity: sha512-508e6IcKLrhxKdBbcA2b4KQZlLVp2+J5UwQ6F7Drckkc5N9ZJwFa4TgWtsww9UG8fGHbm6gbV19TdM5pQ4GaIA==}
+  uuid@11.1.0:
+    resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
   uuid@8.3.2:
@@ -8625,13 +8625,13 @@ snapshots:
 
   '@fontsource-variable/nunito@5.1.1': {}
 
-  '@graasp/sdk@5.13.3(date-fns@4.1.0)(uuid@11.0.5)':
+  '@graasp/sdk@5.13.3(date-fns@4.1.0)(uuid@11.1.0)':
     dependencies:
       '@faker-js/faker': 9.7.0
       date-fns: 4.1.0
       filesize: 10.1.6
       js-cookie: 3.0.5
-      uuid: 11.0.5
+      uuid: 11.1.0
 
   '@graasp/stylis-plugin-rtl@2.2.0(stylis@4.3.6)':
     dependencies:
@@ -14419,7 +14419,7 @@ snapshots:
     dependencies:
       react: 19.1.0
 
-  uuid@11.0.5: {}
+  uuid@11.1.0: {}
 
   uuid@8.3.2: {}
 
