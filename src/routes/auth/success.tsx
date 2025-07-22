@@ -50,8 +50,6 @@ function RouteComponent() {
   const handleResendEmail = async () => {
     const lowercaseEmail = email.toLowerCase();
     const token = await executeCaptcha(RecaptchaAction.SignIn);
-    // this call resets the queries and thus we get a loading animation ...
-    // not sure why we need to reset the queries when doing this ...
     signIn({
       body: { email: lowercaseEmail, captcha: token, url },
     });
