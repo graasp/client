@@ -5,7 +5,7 @@ import { Alert, Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
@@ -16,7 +16,6 @@ import {
   PASSWORD_SUCCESS_ALERT,
 } from '@/config/selectors';
 import { signInWithPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
 
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
 import { AUTH } from '~auth/langs';
@@ -38,19 +37,16 @@ export function PasswordLoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const queryClient = useQueryClient();
   const {
-    mutateAsync: signInWithPassword,
+    mutate: signInWithPassword,
     isSuccess: signInWithPasswordSuccess,
     isPending: isLoadingPasswordSignIn,
     error: passwordSignInError,
   } = useMutation({
     ...signInWithPasswordMutation(),
     onSuccess: async () => {
-      // invalidate current user
-      await queryClient.invalidateQueries({
-        queryKey: memberKeys.current().content,
-      });
+      // reload app to refetch current account and trigger beforeLoad
+      window.location.reload();
     },
     onError: (error: Error) => {
       console.error(error);
@@ -61,15 +57,13 @@ export function PasswordLoginForm() {
     const lowercaseEmail = data.email.toLowerCase();
 
     const token = await executeCaptcha(RecaptchaAction.SignInWithPassword);
-    await signInWithPassword({
+    signInWithPassword({
       body: {
         ...data,
         email: lowercaseEmail,
         captcha: token,
       },
     });
-    // reload app to refetch current account and trigger beforeLoad
-    window.location.reload();
   };
 
   const emailError = errors.email?.message;
