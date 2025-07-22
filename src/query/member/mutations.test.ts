@@ -13,7 +13,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { memberKeys } from '../keys.js';
-import { SIGN_OUT_ROUTE } from '../routes.js';
 import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 import {
@@ -45,7 +44,7 @@ describe('Member Mutations', () => {
           response: OK_RESPONSE,
         },
         {
-          route: SIGN_OUT_ROUTE,
+          route: '/logout',
           response: OK_RESPONSE,
         },
       ];

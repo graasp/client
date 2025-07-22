@@ -3,40 +3,49 @@ import { StatusCodes } from 'http-status-codes';
 import { LOG_IN_PAGE_PATH } from '../../../src/config/paths';
 import {
   EMAIL_SIGN_IN_FIELD_ID,
-  ERROR_DISPLAY_ID,
   PASSWORD_SIGN_IN_BUTTON_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
 } from '../../../src/config/selectors';
-import { SIGN_IN_WITH_PASSWORD_ROUTE } from '../../../src/query/routes';
-import { AUTH_MEMBERS } from '../../fixtures/members';
+import { AUTH_MEMBERS, CURRENT_MEMBER } from '../../fixtures/members';
+import { PUBLISHED_ITEMS_PATH } from '../builder/utils';
 import { fillPasswordSignInLayout } from './util';
 
 describe('Email and Password Validation', () => {
   it('Sign In With Password', () => {
-    const redirectionLink = 'http://localhost:3005/mylink';
+    const redirectionLink = `${Cypress.config().baseUrl}${PUBLISHED_ITEMS_PATH}`;
+    let isSignedIn = false;
+
     cy.intercept(
       {
-        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: '/login-password',
       },
       ({ reply }) => {
-        reply({ statusCode: 303, body: { resource: redirectionLink } });
+        isSignedIn = true;
+        reply({ statusCode: StatusCodes.NO_CONTENT });
       },
     ).as('signInWithPassword');
+
     cy.intercept(
       {
-        url: redirectionLink,
+        pathname: '/members/current',
       },
       ({ reply }) => {
-        reply({
-          headers: { 'content-type': 'text/html' },
-          statusCode: StatusCodes.OK,
-          body: '<h1>Mock Auth Page</h1>',
-        });
+        if (isSignedIn) {
+          reply(CURRENT_MEMBER);
+        } else {
+          reply({
+            statusCode: StatusCodes.NO_CONTENT,
+          });
+        }
       },
-    ).as('redirectionPage');
+    ).as('getCurrent');
 
     const { INVALID_EMAIL: WRONG_EMAIL, GRAASP } = AUTH_MEMBERS;
-    cy.visit(LOG_IN_PAGE_PATH);
+    const loginPageUrl = new URL(
+      `${Cypress.config().baseUrl}/${LOG_IN_PAGE_PATH}`,
+    );
+    loginPageUrl.searchParams.set('url', redirectionLink);
+    cy.visit(loginPageUrl.href);
     // Signing in with wrong email
     cy.signInPasswordAndCheck(WRONG_EMAIL);
 
@@ -49,7 +58,7 @@ describe('Email and Password Validation', () => {
   it('Sign In With Wrong Password', () => {
     cy.intercept(
       {
-        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: '/login-password',
       },
       (req) => {
         req.reply({
@@ -66,13 +75,13 @@ describe('Email and Password Validation', () => {
     cy.get(`#${PASSWORD_SIGN_IN_BUTTON_ID}`).click();
     cy.get(`#${EMAIL_SIGN_IN_FIELD_ID}-helper-text`).should('not.exist');
     cy.get(`#${PASSWORD_SIGN_IN_FIELD_ID}-helper-text`).should('not.exist');
-    cy.get(`#${ERROR_DISPLAY_ID}`).should('be.visible');
+    cy.get(`[role="alert"]`).should('contain', 'Unauthorized member');
   });
 
   it('Check errors if  shows success message if no redirect', () => {
     cy.intercept(
       {
-        pathname: SIGN_IN_WITH_PASSWORD_ROUTE,
+        pathname: '/login-password',
       },
       (req) => {
         req.reply({ statusCode: 303 });

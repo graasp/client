@@ -64,7 +64,6 @@ import {
 
 const {
   buildGetCurrentMemberRoute,
-  SIGN_OUT_ROUTE,
   buildPatchCurrentMemberRoute,
   buildUploadAvatarRoute,
   buildPatchMemberPasswordRoute,
@@ -245,8 +244,8 @@ export const mockSignInRedirection = (): void => {
 export const mockSignOut = (): void => {
   cy.intercept(
     {
-      method: HttpMethod.Get,
-      url: new RegExp(SIGN_OUT_ROUTE),
+      method: HttpMethod.Post,
+      url: '/logout',
     },
     ({ reply }) => {
       reply(redirectionReply);

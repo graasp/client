@@ -5,19 +5,19 @@ import { Button, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   MAGIC_LINK_EMAIL_FIELD_ID,
   SIGN_IN_BUTTON_ID,
 } from '@/config/selectors';
+import { loginMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { AUTH } from '~auth/langs';
 
 import { executeCaptcha } from '../../context/RecaptchaContext';
-import { useMobileAppLogin } from '../../hooks/useMobileAppLogin';
 import { ErrorDisplay } from '../common/ErrorDisplay';
 import { EmailInput } from './EmailInput';
 
@@ -47,35 +47,29 @@ export function MagicLinkLoginForm({
     formState: { errors },
   } = useForm<Inputs>();
 
-  const { isMobile, challenge } = useMobileAppLogin();
-
   const {
     mutateAsync: signIn,
     isPending: isLoadingSignIn,
-    error: webSignInError,
-  } = mutations.useSignIn();
-  const {
-    mutateAsync: mobileSignIn,
-    isPending: isLoadingMobileSignIn,
-    error: mobileSignInError,
-  } = mutations.useMobileSignIn();
-
-  const signInError = webSignInError || mobileSignInError;
+    error: signInError,
+  } = useMutation({
+    ...loginMutation(),
+    onError: (error: Error) => {
+      console.error(error);
+    },
+  });
 
   const handleSignIn = async ({ email }: Inputs) => {
     const lowercaseEmail = email.toLowerCase();
 
     try {
-      const token = await executeCaptcha(
-        isMobile ? RecaptchaAction.SignInMobile : RecaptchaAction.SignIn,
-      );
-      await (isMobile
-        ? mobileSignIn({ email: lowercaseEmail, captcha: token, challenge })
-        : signIn({
-            email: lowercaseEmail,
-            captcha: token,
-            url: search.url,
-          }));
+      const token = await executeCaptcha(RecaptchaAction.SignIn);
+      await signIn({
+        body: {
+          email: lowercaseEmail,
+          captcha: token,
+          url: search.url,
+        },
+      });
 
       // navigate to success path
       navigate({
@@ -116,7 +110,7 @@ export function MagicLinkLoginForm({
         variant="contained"
         sx={{ textTransform: 'none' }}
         fullWidth
-        loading={isLoadingMobileSignIn || isLoadingSignIn}
+        loading={isLoadingSignIn}
       >
         {t(AUTH.SIGN_IN_BUTTON)}
       </Button>

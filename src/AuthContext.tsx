@@ -11,9 +11,15 @@ import {
 import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from './config/constants';
-import { hooks, mutations } from './config/queryClient';
+import { hooks } from './config/queryClient';
+import {
+  loginMutation,
+  signOutMutation,
+} from './openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from './query/keys';
 import CustomInitialLoader from './ui/CustomInitialLoader/CustomInitialLoader';
 
 type LoginInput = {
@@ -52,13 +58,17 @@ export function AuthProvider({
   children: ReactNode;
 }>): JSX.Element {
   const { data: currentMember, isPending } = hooks.useCurrentMember();
-  const useLogin = mutations.useSignIn();
-  const useLogout = mutations.useSignOut();
+  const useLogin = useMutation(loginMutation());
+  const useLogout = useMutation(signOutMutation());
+  const queryClient = useQueryClient();
 
   const logout = useCallback(async () => {
     const url = window.location.href;
     // call the logout mutation
-    await useLogout.mutateAsync();
+    await useLogout.mutateAsync({});
+    queryClient.resetQueries();
+    queryClient.setQueryData(memberKeys.current().content, undefined);
+
     // unset the user in Sentry session
     Sentry.setUser(null);
     // redirect to auth page with url from the page that we just left.
@@ -66,11 +76,11 @@ export function AuthProvider({
     redirectionURL.searchParams.set('url', url);
     // navigate to the auth page with the right params
     window.location.assign(redirectionURL);
-  }, [useLogout]);
+  }, [queryClient, useLogout]);
 
   const login = useCallback(
     async (args: LoginInput) => {
-      await useLogin.mutateAsync(args);
+      await useLogin.mutateAsync({ body: args });
     },
     [useLogin],
   );
@@ -88,6 +98,7 @@ export function AuthProvider({
 
   const value = useMemo(() => {
     Sentry.setUser(currentMember ? { id: currentMember.id } : null);
+
     if (currentMember) {
       return {
         isAuthenticated: true as const,

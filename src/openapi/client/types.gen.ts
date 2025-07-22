@@ -252,6 +252,16 @@ export type GeoCoordinate = {
 };
 
 /**
+ * Tag
+ * User provided tag, representing a theme or subject
+ */
+export type Tag = {
+    id: string;
+    name: string;
+    category: 'level' | 'discipline' | 'resource-type';
+};
+
+/**
  * Chat Message Raw
  * Raw data for a message from a member in a chat of an item.
  */
@@ -598,16 +608,6 @@ export type RecycledItemData = {
 };
 
 /**
- * Tag
- * User provided tag, representing a theme or subject
- */
-export type Tag = {
-    id: string;
-    name: string;
-    category: 'level' | 'discipline' | 'resource-type';
-};
-
-/**
  * Profile
  * Profile of a member
  */
@@ -793,26 +793,36 @@ export type AuthenticateErrors = {
 
 export type AuthenticateError = AuthenticateErrors[keyof AuthenticateErrors];
 
-export type GetLogoutData = {
+export type SignOutData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/logout';
 };
 
-export type GetLogoutResponses = {
+export type SignOutErrors = {
     /**
-     * Default Response
+     * Error object with useful information about the unexpected behavior that occured
      */
-    200: unknown;
+    '4XX': _Error;
 };
 
-export type PostLoginPasswordData = {
+export type SignOutError = SignOutErrors[keyof SignOutErrors];
+
+export type SignOutResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type SignOutResponse = SignOutResponses[keyof SignOutResponses];
+
+export type SignInWithPasswordData = {
     body: {
         email: string;
         password: string;
         captcha: string;
-        url?: string;
     };
     path?: never;
     query?: {
@@ -821,14 +831,29 @@ export type PostLoginPasswordData = {
     url: '/login-password';
 };
 
-export type PostLoginPasswordResponses = {
+export type SignInWithPasswordErrors = {
     /**
-     * Default Response
+     * Error object with useful information about the unexpected behavior that occured
      */
-    200: unknown;
+    '4XX': _Error;
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '5XX': _Error;
 };
 
-export type PatchPasswordData = {
+export type SignInWithPasswordError = SignInWithPasswordErrors[keyof SignInWithPasswordErrors];
+
+export type SignInWithPasswordResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type SignInWithPasswordResponse = SignInWithPasswordResponses[keyof SignInWithPasswordResponses];
+
+export type UpdatePasswordData = {
     body: {
         password: string;
         currentPassword: string;
@@ -838,7 +863,7 @@ export type PatchPasswordData = {
     url: '/password';
 };
 
-export type PatchPasswordErrors = {
+export type UpdatePasswordErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
@@ -849,18 +874,18 @@ export type PatchPasswordErrors = {
     401: _Error;
 };
 
-export type PatchPasswordError = PatchPasswordErrors[keyof PatchPasswordErrors];
+export type UpdatePasswordError = UpdatePasswordErrors[keyof UpdatePasswordErrors];
 
-export type PatchPasswordResponses = {
+export type UpdatePasswordResponses = {
     /**
      * Default Response
      */
     204: void;
 };
 
-export type PatchPasswordResponse = PatchPasswordResponses[keyof PatchPasswordResponses];
+export type UpdatePasswordResponse = UpdatePasswordResponses[keyof UpdatePasswordResponses];
 
-export type PostPasswordData = {
+export type CreatePasswordData = {
     body: {
         password: string;
     };
@@ -869,25 +894,25 @@ export type PostPasswordData = {
     url: '/password';
 };
 
-export type PostPasswordErrors = {
+export type CreatePasswordErrors = {
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
     409: _Error;
 };
 
-export type PostPasswordError = PostPasswordErrors[keyof PostPasswordErrors];
+export type CreatePasswordError = CreatePasswordErrors[keyof CreatePasswordErrors];
 
-export type PostPasswordResponses = {
+export type CreatePasswordResponses = {
     /**
      * Default Response
      */
     204: void;
 };
 
-export type PostPasswordResponse = PostPasswordResponses[keyof PostPasswordResponses];
+export type CreatePasswordResponse = CreatePasswordResponses[keyof CreatePasswordResponses];
 
-export type PatchPasswordResetData = {
+export type ResetPasswordData = {
     body: {
         password: string;
     };
@@ -899,21 +924,21 @@ export type PatchPasswordResetData = {
     url: '/password/reset';
 };
 
-export type PatchPasswordResetErrors = {
+export type ResetPasswordErrors = {
     /**
      * Default Response
      */
     400: unknown;
 };
 
-export type PatchPasswordResetResponses = {
+export type ResetPasswordResponses = {
     /**
      * Default Response
      */
     204: unknown;
 };
 
-export type PostPasswordResetData = {
+export type RequestPasswordResetLinkData = {
     body: {
         email: string;
         captcha: string;
@@ -923,28 +948,28 @@ export type PostPasswordResetData = {
     url: '/password/reset';
 };
 
-export type PostPasswordResetErrors = {
+export type RequestPasswordResetLinkErrors = {
     /**
      * Default Response
      */
     400: unknown;
 };
 
-export type PostPasswordResetResponses = {
+export type RequestPasswordResetLinkResponses = {
     /**
      * Default Response
      */
     204: unknown;
 };
 
-export type GetMembersCurrentPasswordStatusData = {
+export type GetOwnPasswordStatusData = {
     body?: never;
     path?: never;
     query?: never;
     url: '/members/current/password/status';
 };
 
-export type GetMembersCurrentPasswordStatusResponses = {
+export type GetOwnPasswordStatusResponses = {
     /**
      * Default Response
      */
@@ -953,7 +978,7 @@ export type GetMembersCurrentPasswordStatusResponses = {
     };
 };
 
-export type GetMembersCurrentPasswordStatusResponse = GetMembersCurrentPasswordStatusResponses[keyof GetMembersCurrentPasswordStatusResponses];
+export type GetOwnPasswordStatusResponse = GetOwnPasswordStatusResponses[keyof GetOwnPasswordStatusResponses];
 
 export type GetWsData = {
     body?: never;
@@ -2038,7 +2063,7 @@ export type CreateChatbotCompletionPromptData = {
         /**
          * Model to use
          */
-        gptVersion?: 'gpt-3.5-turbo-0125' | 'gpt-4' | 'gpt-4-turbo' | 'gpt-4o';
+        gptVersion?: 'gpt-3.5-turbo-0125' | 'gpt-4-turbo' | 'gpt-4o' | 'gpt-4o-mini' | 'gpt-4.1-nano';
         temperature?: number;
     };
     url: '/app-items/{itemId}/chat-bot';

@@ -48,7 +48,7 @@ export function HeaderRightContent() {
 
   // in case the user is not authenticated, we show a login button
   return (
-    <ButtonLink to="/auth/login" sx={{ color: 'white' }}>
+    <ButtonLink to="/auth/login" sx={{ color: 'white' }} search={{}}>
       {t('LOG_IN')}
     </ButtonLink>
   );
