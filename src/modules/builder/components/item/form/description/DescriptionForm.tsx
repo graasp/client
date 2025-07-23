@@ -1,36 +1,59 @@
 import type { JSX } from 'react';
+import { Controller, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Box, FormLabel, Typography } from '@mui/material';
+import { Alert, Box, FormLabel, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import TextEditor from '@/ui/TextEditor/TextEditor';
 
 export type DescriptionFormProps = {
   id?: string;
-  value?: string;
-  onChange: (v: string) => void;
 };
+
+export const MAX_DESCRIPTION_LENGTH = 5000;
 
 export function DescriptionForm({
   id,
-  value = '',
-  onChange,
 }: Readonly<DescriptionFormProps>): JSX.Element {
-  const { t: translateBuilder } = useTranslation(NS.Builder, {
+  const { control } = useFormContext<{
+    description: string;
+  }>();
+  const { t: translateMessages } = useTranslation(NS.Messages);
+  const { t } = useTranslation(NS.Builder, {
     keyPrefix: 'DESCRIPTION',
   });
-
   return (
     <Box>
       <FormLabel>
-        <Typography variant="caption">{translateBuilder('LABEL')}</Typography>
+        <Typography variant="caption">{t('LABEL')}</Typography>
       </FormLabel>
-      <TextEditor
-        id={id}
-        value={value}
-        onChange={onChange}
-        placeholderText={translateBuilder('PLACEHOLDER')}
+      <Controller
+        name="description"
+        control={control}
+        rules={{
+          maxLength: {
+            value: MAX_DESCRIPTION_LENGTH,
+            message: translateMessages(
+              'INVALID_ITEM_DESCRIPTION_MAX_LENGTH_ERROR',
+            ),
+          },
+        }}
+        render={({ field, formState: { errors } }) => (
+          <>
+            {errors.description?.message && (
+              <Alert id={`${id}-error`} severity="error">
+                {errors.description.message}
+              </Alert>
+            )}
+            <TextEditor
+              id={id}
+              value={field.value}
+              onChange={(v) => field.onChange(v)}
+              placeholderText={t('PLACEHOLDER')}
+            />
+          </>
+        )}
       />
     </Box>
   );

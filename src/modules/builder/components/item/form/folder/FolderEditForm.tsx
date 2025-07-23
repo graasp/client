@@ -40,14 +40,12 @@ export function FolderEditForm({
       name: item.name,
       description: item.description ?? '',
     },
+    mode: 'onChange',
   });
   const {
-    setValue,
-    watch,
     handleSubmit,
     formState: { isValid },
   } = methods;
-  const description = watch('description');
 
   const { mutateAsync: editItem } = mutations.useEditItem();
 
@@ -69,13 +67,7 @@ export function FolderEditForm({
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <DialogContent>
           <ItemNameField required />
-          <DescriptionForm
-            id={FOLDER_FORM_DESCRIPTION_ID}
-            value={description ?? item?.description}
-            onChange={(newValue) => {
-              setValue('description', newValue);
-            }}
-          />
+          <DescriptionForm id={FOLDER_FORM_DESCRIPTION_ID} />
         </DialogContent>
         <DialogActions>
           <CancelButton
