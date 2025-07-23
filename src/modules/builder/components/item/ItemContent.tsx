@@ -23,6 +23,7 @@ import {
 } from '@graasp/sdk';
 
 import { AuthenticatedMember, useAuth } from '@/AuthContext';
+import { Editor } from '@/components/page/Editor';
 import { DEFAULT_LANG, NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
 import { hooks } from '@/config/queryClient';
@@ -252,6 +253,9 @@ export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
     }
     case ItemType.SHORTCUT: {
       return <ShortcutContent item={item} />;
+    }
+    case ItemType.PAGE: {
+      return <Editor />;
     }
 
     default:

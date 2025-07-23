@@ -16,6 +16,7 @@ import { EtherpadEditForm } from '../form/etherpad/EtherpadEditForm';
 import { FileForm } from '../form/file/FileForm';
 import { FolderEditForm } from '../form/folder/FolderEditForm';
 import { LinkEditForm } from '../form/link/LinkEditForm';
+import { EditPageForm } from '../form/page/EditPageForm';
 import EditShortcutForm from '../shortcut/EditShortcutForm';
 
 type Props = {
@@ -65,6 +66,9 @@ export function EditModal({
     }
     if (item.type === ItemType.APP || item.type === ItemType.H5P) {
       return <BaseItemForm onClose={onClose} item={item} />;
+    }
+    if (item.type === ItemType.PAGE) {
+      return <EditPageForm onClose={onClose} item={item} />;
     }
 
     toast.error(translateMessage('UNEXPECTED_ERROR'));

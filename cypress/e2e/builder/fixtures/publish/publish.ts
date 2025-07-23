@@ -8,7 +8,10 @@ import {
   PackedH5PItemFactory,
   PackedLinkItemFactory,
   PackedShortcutItemFactory,
+  PermissionLevel,
 } from '@graasp/sdk';
+
+import { v4 } from 'uuid';
 
 import { ItemForTest } from '../../../../support/types';
 
@@ -34,6 +37,22 @@ export const createPublicItemByType = (
       return PackedH5PItemFactory({}, publicVisibility);
     case 'etherpad':
       return PackedEtherpadItemFactory({}, publicVisibility);
+    case 'page':
+      return {
+        name: 'name',
+        description: 'description',
+        creator: null,
+        updatedAt: new Date().toISOString(),
+        lang: 'fr',
+        id: v4(),
+        path: '',
+        type: 'page',
+        extra: {} as never,
+        settings: {},
+        createdAt: new Date().toISOString(),
+        permission: PermissionLevel.Admin,
+        ...publicVisibility,
+      };
     default:
       throw new Error(
         `Item Type "${itemType}" is unknown in "createPublicItemWithType"`,
