@@ -1,6 +1,7 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
+  FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_SETTING_DESCRIPTION_PLACEMENT_SELECT_ID,
 } from '../../../../../src/config/selectors';
@@ -44,8 +45,23 @@ describe('Create Folder', () => {
     createFolder({ name: ' ' }, { confirm: false });
 
     // button is not disabled at beginning
-    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    // cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
+  });
+
+  it('cannot create folder with description too long', () => {
+    // create
+    cy.setUpApi();
+    cy.visit(HOME_PATH);
+    createFolder(
+      { name: 'correct', description: 'x'.repeat(5001) },
+      { confirm: false },
+    );
+
+    // button is not disabled at beginning
+    // cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
+    cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}-error`).should('be.visible');
   });
 
   it('description placement should not exist for folder', () => {
