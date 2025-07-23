@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.28.0](https://github.com/graasp/client/compare/v2.27.1...v2.28.0) (2025-07-22)
+
+
+### Features
+
+* use generation for sign up, sign in and password login ([#1042](https://github.com/graasp/client/issues/1042)) ([6832771](https://github.com/graasp/client/commit/68327718d44c731802368b98bcdef2d27685e194))
+
 ## [2.27.1](https://github.com/graasp/client/compare/v2.27.0...v2.27.1) (2025-07-04)
 
 
