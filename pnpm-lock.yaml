@@ -27,8 +27,8 @@ importers:
         specifier: 5.1.1
         version: 5.1.1
       '@graasp/sdk':
-        specifier: github:graasp/graasp-sdk#page
-        version: https://codeload.github.com/graasp/graasp-sdk/tar.gz/9950b0640b247fe80fb64d26fd1c9bb29b7d141c(date-fns@4.1.0)(uuid@11.1.0)
+        specifier: 5.15.0
+        version: 5.15.0(date-fns@4.1.0)(uuid@11.1.0)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -1750,9 +1750,8 @@ packages:
   '@fontsource-variable/nunito@5.1.1':
     resolution: {integrity: sha512-o4VVGDO/q2KaQp7aU6iKmKQ7sbalUOeA/D9nxY+o80ga/IV+7i+Yb/CpqNxAwjAWVhgdE2UiQlpsc38+j47ekw==}
 
-  '@graasp/sdk@https://codeload.github.com/graasp/graasp-sdk/tar.gz/9950b0640b247fe80fb64d26fd1c9bb29b7d141c':
-    resolution: {tarball: https://codeload.github.com/graasp/graasp-sdk/tar.gz/9950b0640b247fe80fb64d26fd1c9bb29b7d141c}
-    version: 5.14.1
+  '@graasp/sdk@5.15.0':
+    resolution: {integrity: sha512-BdgGGZJHORRt2lEO3Y724bJoGlB6HhRxOCJbLN++HLr3JtUHtmLINnJKYJjOELapMU4mtw4+wMJX0wE4rI0SxA==}
     peerDependencies:
       date-fns: ^4
       uuid: ^9 || ^10 || ^11.0.0
@@ -8847,7 +8846,7 @@ snapshots:
 
   '@fontsource-variable/nunito@5.1.1': {}
 
-  '@graasp/sdk@https://codeload.github.com/graasp/graasp-sdk/tar.gz/9950b0640b247fe80fb64d26fd1c9bb29b7d141c(date-fns@4.1.0)(uuid@11.1.0)':
+  '@graasp/sdk@5.15.0(date-fns@4.1.0)(uuid@11.1.0)':
     dependencies:
       '@faker-js/faker': 9.7.0
       date-fns: 4.1.0
