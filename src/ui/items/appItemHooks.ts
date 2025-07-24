@@ -115,6 +115,8 @@ const useAppCommunication = ({
               }
             }
           } catch {
+            // Do not use `console.error` as we can have parsing errors with external apps that do not use JSON as the message format
+            // and we prefer to log in debug and discard the error.
             console.debug('App sent message that could not be parsed', data);
           }
         };
@@ -161,6 +163,8 @@ const useAppCommunication = ({
             );
           }
         } catch {
+          // Do not use `console.error` as we can have parsing errors with external apps that do not use JSON as the message format
+          // and we prefer to log in debug and discard the error.
           console.debug('App sent message that could not be parsed', data);
         }
       };
