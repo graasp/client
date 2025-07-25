@@ -121,12 +121,12 @@ describe('Internal navigation', () => {
     cy.visit(
       buildContentPagePath({ rootId: firstCourse.id, itemId: firstCourse.id }),
     );
-    cy.get('h2').should('contain', firstCourse.name);
+    cy.get('h1').should('contain', firstCourse.name);
     cy.get(`#${link.id}`).click();
 
     cy.url().should('contain', url);
 
-    cy.get('h2').should('contain', target.name);
+    cy.get('h1').should('contain', target.name);
 
     cy.get(`#${TREE_VIEW_ID}`).should('contain', target.name);
   });

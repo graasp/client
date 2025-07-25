@@ -33,24 +33,31 @@ export const SearchInput = ({
 }: Props): JSX.Element => {
   return (
     <TextField
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <SearchIcon aria-label="search" />
-          </InputAdornment>
-        ),
-      }}
       margin={margin}
       id={inputBaseId}
       onChange={onChange}
       value={value}
-      sx={{ flex: 1, width: width ?? '100%', backgroundColor: 'white' }}
+      sx={{
+        flex: 1,
+        width: width ?? '100%',
+        backgroundColor: 'white',
+        maxWidth: 200,
+      }}
       placeholder={placeholder}
       size={size}
-      inputProps={{
-        'aria-label': ariaLabel,
-        // Umami data props
-        'data-umami-event': dataUmamiEvent,
+      slotProps={{
+        input: {
+          endAdornment: (
+            <InputAdornment position="end">
+              <SearchIcon aria-label="search" />
+            </InputAdornment>
+          ),
+        },
+        htmlInput: {
+          'aria-label': ariaLabel,
+          // Umami data props
+          'data-umami-event': dataUmamiEvent,
+        },
       }}
     />
   );
