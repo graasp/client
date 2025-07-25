@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Skeleton, Typography } from '@mui/material';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
@@ -11,7 +13,7 @@ import {
   PASSWORD_DISPLAY_INFORMATION_ID,
   PASSWORD_EDIT_BUTTON_ID,
 } from '@/config/selectors';
-import { usePasswordStatus } from '@/query/member/password/hooks';
+import { getOwnPasswordStatusOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import CreatePassword from './CreatePassword';
 import EditPassword from './EditPassword';
@@ -21,8 +23,9 @@ export function Password(): JSX.Element {
   const { t: translateCommon } = useTranslation(NS.Common);
 
   const [isEditing, setIsEditing] = useState(false);
-  const { data: passwordStatus, isPending: isPasswordStatusPending } =
-    usePasswordStatus();
+  const { data: passwordStatus, isPending: isPasswordStatusPending } = useQuery(
+    getOwnPasswordStatusOptions(),
+  );
 
   const handleEditClick = () => {
     setIsEditing(true);
