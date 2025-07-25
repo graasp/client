@@ -74,8 +74,7 @@ export function createWebsocketProvider(
 
   const wsHost = new URL(API_HOST).host;
 
-  return new WebsocketProvider(`ws://${wsHost}`, 'items/pages/ws', doc, {
-    params: { id },
+  return new WebsocketProvider(`ws://${wsHost}`, `items/pages/${id}/ws`, doc, {
     // connect manually using wsProvider.connect()
     connect: false,
   });
