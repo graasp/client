@@ -7,7 +7,6 @@ export * from './etherpad.js';
 export * from './invitation.js';
 export * from './itemExport.js';
 export * from './itemGeolocation.js';
-export * from './itemLike.js';
 export * from './itemLogin.js';
 export * from './itemPublish.js';
 export * from './itemVisibility.js';
