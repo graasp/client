@@ -255,7 +255,7 @@ export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
       return <ShortcutContent item={item} />;
     }
     case ItemType.PAGE: {
-      return <Editor />;
+      return <Editor item={item} currentAccount={member} />;
     }
 
     default:
