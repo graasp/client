@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import {
   Alert,
   Box,
+  Container,
   Stack,
-  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
@@ -16,6 +16,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
+import { SectionHeader } from '@/components/SectionHeader';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
@@ -50,7 +51,6 @@ import {
   SortingOptionsForFolderType,
 } from '../table/types';
 import { useSorting } from '../table/useSorting';
-import FolderDescription from './FolderDescription';
 import FolderToolbar from './FolderSelectionToolbar';
 import { useItemSearch } from './ItemSearch';
 import { NewFolderButton } from './form/folder/NewFolderButton';
@@ -151,7 +151,7 @@ const Content = ({
  */
 const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
   const theme = useTheme();
-  const isMd = useMediaQuery(theme.breakpoints.up('md'));
+  const isSm = useMediaQuery(theme.breakpoints.up('sm'));
   const { itemTypes } = useFilterItemsContext();
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { selectedIds } = useSelectionContext();
@@ -182,46 +182,39 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
 
     return (
       <>
+        <SectionHeader item={item} />
+
         <Stack
           direction="row"
           justifyContent="space-between"
           spacing={1}
-          mb={2}
+          my={2}
         >
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{ wordWrap: 'break-word' }}
-          >
-            {item.name}
-          </Typography>
+          {itemSearch.input}
           <Stack
             direction="row"
             alignItems="center"
             justifyContent="flex-end"
             spacing={1}
           >
-            {itemSearch.input}
             {canWrite && (
-              <>
+              <Stack direction="row" spacing={1}>
                 <NewFolderButton
-                  type={isMd ? 'button' : 'icon'}
+                  type={isSm ? 'button' : 'icon'}
                   // add new items at the end of the list
                   previousItemId={children[children.length - 1]?.id}
                 />
                 <NewItemButton
-                  type={isMd ? 'button' : 'icon'}
+                  type={isSm ? 'button' : 'icon'}
                   key="newButton"
                   size="medium"
                   // add new items at the end of the list
                   previousItemId={children[children.length - 1]?.id}
                 />
-              </>
+              </Stack>
             )}
           </Stack>
         </Stack>
-        <FolderDescription itemId={item.id} />
-
         {sortedChildren.length ? (
           <Stack
             alignItems="space-between"
@@ -256,14 +249,12 @@ const FolderContent = ({ item }: { item: PackedItem }): JSX.Element => {
             )}
           </Stack>
         ) : null}
-
         {/* reader empty message */}
         {!sortedChildren.length && !canWrite ? (
           <Alert severity="info" sx={{ mt: 2 }}>
             {translateBuilder('EMPTY_FOLDER_MESSAGE')}
           </Alert>
         ) : null}
-
         <Content
           canWrite={canWrite}
           sortBy={sortBy}
@@ -296,7 +287,9 @@ export const FolderContentWrapper = ({
   item: PackedItem;
 }): JSX.Element => (
   <SelectionContextProvider>
-    <FolderContent item={item} />
+    <Container maxWidth="lg">
+      <FolderContent item={item} />
+    </Container>
   </SelectionContextProvider>
 );
 

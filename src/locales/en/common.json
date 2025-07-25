@@ -72,5 +72,6 @@
     "MORE": "More",
     "REMOVE_BOOKMARK": "Remove bookmark",
     "ADD_LOCATION": "Add at this location"
-  }
+  },
+  "FOLDER_HEADER_CREATED_BY": "Created by {{name}}"
 }

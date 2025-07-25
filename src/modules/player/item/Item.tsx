@@ -57,8 +57,8 @@ import LinkItem from '@/ui/items/LinkItem';
 import NavigationIsland from '~player/navigationIsland/NavigationIsland';
 import { FolderCard } from '~player/ui/FolderCard';
 
+import { SectionHeader } from '../../../components/SectionHeader';
 import { FromShortcutButton } from './FromShortcutButton';
-import { SectionHeader } from './SectionHeader';
 import { useCollapseAction } from './useCollapseAction';
 import usePageTitle from './usePageTitle';
 
