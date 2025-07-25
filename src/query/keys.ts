@@ -123,8 +123,6 @@ export const itemKeys = {
       membershipRequests: [...singleBaseKey, 'membershipRequests'] as const,
 
       publicationStatus: [...singleBaseKey, 'publication', 'status'] as const,
-
-      tags: [...singleBaseKey, 'tags'] as const,
     };
   },
 

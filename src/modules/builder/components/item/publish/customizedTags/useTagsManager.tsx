@@ -1,13 +1,20 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { DiscriminatedItem, Tag, TagCategoryType } from '@graasp/sdk';
 
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants';
-import { hooks, mutations } from '@/config/queryClient';
-import { useTagsByItem } from '@/query/item/tag/hooks';
+import { hooks } from '@/config/queryClient';
+import {
+  createTagForItemMutation,
+  deleteTagForItemMutation,
+  getTagsForItemOptions,
+  getTagsForItemQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
 
 const EMPTY_STRING = '';
 type Props = {
@@ -36,23 +43,43 @@ type UseMultiSelectChipInput = {
 };
 
 export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
+  const queryClient = useQueryClient();
   const { t } = useTranslation(NS.Builder);
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const [currentValue, setCurrentValue] = useState<string>(EMPTY_STRING);
   const [error, setError] = useState<string | undefined>();
   const debouncedCurrentValue = hooks.useDebounce(currentValue, 500);
-  const { data: tags } = useTagsByItem({ itemId });
+  const { data: tags } = useQuery(getTagsForItemOptions({ path: { itemId } }));
   const {
     mutate: addTag,
     isPending: addTagIsLoading,
     isSuccess: addTagIsSuccess,
     isError: addTagIsError,
-  } = mutations.useAddTag();
+  } = useMutation({
+    ...createTagForItemMutation(),
+    onError: (e) => {
+      console.error(e);
+      toast.error(translateMessage('UNEXPECTED_ERROR'));
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getTagsForItemQueryKey({ path: { itemId } }),
+      });
+    },
+  });
   const {
     mutate: removeTag,
     isPending: removeTagIsLoading,
     isSuccess: removeTagIsSuccess,
     isError: removeTagIsError,
-  } = mutations.useRemoveTag();
+  } = useMutation({
+    ...deleteTagForItemMutation(),
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: getTagsForItemQueryKey({ path: { itemId } }),
+      });
+    },
+  });
 
   const hasError = Boolean(error);
 
@@ -82,14 +109,14 @@ export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
 
   const addValue = (tag: Pick<Tag, 'category' | 'name'>) => {
     if (valueIsValid(tag.name) && !valueExist(tag)) {
-      addTag({ itemId, tag });
+      addTag({ path: { itemId }, body: tag });
 
       resetCurrentValue();
     }
   };
 
   const deleteValue = (tagId: Tag['id']) => {
-    removeTag({ tagId, itemId });
+    removeTag({ path: { tagId, itemId } });
   };
 
   const handleCurrentValueChanged = (

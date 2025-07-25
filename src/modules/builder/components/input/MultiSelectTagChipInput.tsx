@@ -15,13 +15,15 @@ import {
 
 import { DiscriminatedItem, TagCategoryType } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import {
   MULTI_SELECT_CHIP_CONTAINER_ID,
   buildMultiSelectChipInputId,
   buildMultiSelectChipsSelector,
 } from '@/config/selectors';
+import { getCountForTagsOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import useTagsManager from '../item/publish/customizedTags/useTagsManager';
 
@@ -54,7 +56,12 @@ export const MultiSelectTagChipInput = ({
     data: tags,
     isFetching,
     isLoading,
-  } = hooks.useTags({ search: debouncedCurrentValue, category: tagCategory });
+  } = useQuery({
+    ...getCountForTagsOptions({
+      query: { search: debouncedCurrentValue, category: tagCategory },
+    }),
+    enabled: Boolean(debouncedCurrentValue),
+  });
   const renderTags = (
     value: readonly string[],
     getTagProps: AutocompleteRenderGetTagProps,
