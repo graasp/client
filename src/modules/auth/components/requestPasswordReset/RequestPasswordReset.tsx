@@ -5,9 +5,10 @@ import { Alert, Button, Stack, TextField } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
+
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { HELP_EMAIL, NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   REQUEST_PASSWORD_RESET_EMAIL_FIELD_HELPER_ID,
   REQUEST_PASSWORD_RESET_EMAIL_FIELD_ID,
@@ -15,6 +16,7 @@ import {
   REQUEST_PASSWORD_RESET_SUBMIT_BUTTON_ID,
   REQUEST_PASSWORD_RESET_SUCCESS_MESSAGE_ID,
 } from '@/config/selectors';
+import { requestPasswordResetLinkMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { executeCaptcha } from '~auth/context/RecaptchaContext';
 import { AUTH } from '~auth/langs';
@@ -22,8 +24,6 @@ import { AUTH } from '~auth/langs';
 import { EmailAdornment } from '../common/adornments';
 import { CenteredContent } from '../layout/CenteredContent';
 import { DialogHeader } from '../layout/DialogHeader';
-
-const { useCreatePasswordResetRequest } = mutations;
 
 type Inputs = {
   email: string;
@@ -42,11 +42,11 @@ export function RequestPasswordReset() {
     isError,
     isSuccess,
     isPending: isLoading,
-  } = useCreatePasswordResetRequest();
+  } = useMutation(requestPasswordResetLinkMutation());
 
   const resetPassword = async ({ email }: Inputs) => {
     const captcha = await executeCaptcha(RecaptchaAction.ResetPassword);
-    requestPasswordReset({ email, captcha });
+    requestPasswordReset({ body: { email, captcha } });
   };
 
   const errorMessage = errors.email?.message;

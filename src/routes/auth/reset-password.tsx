@@ -14,6 +14,7 @@ import {
 
 import { isPasswordStrong } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
@@ -21,6 +22,7 @@ import { z } from 'zod';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { HELP_EMAIL, NS } from '@/config/constants';
+import { resetPasswordMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { PasswordAdornment } from '~auth/components/common/adornments';
 import { CenteredContent } from '~auth/components/layout/CenteredContent';
@@ -28,7 +30,6 @@ import { DialogHeader } from '~auth/components/layout/DialogHeader';
 import { InvalidTokenScreen } from '~auth/components/requestPasswordReset/InvalidTokenScreen';
 import { useValidateJWTToken } from '~auth/hooks/useValidateJWTToken';
 
-import { mutations } from '../../config/queryClient';
 import {
   RESET_PASSWORD_BACK_TO_LOGIN_BUTTON_ID,
   RESET_PASSWORD_ERROR_MESSAGE_ID,
@@ -48,8 +49,6 @@ export const Route = createFileRoute('/auth/reset-password')({
   validateSearch: zodValidator(resetPasswordSchema),
   component: ResetPassword,
 });
-
-const { useResolvePasswordResetRequest } = mutations;
 
 type Inputs = {
   password: string;
@@ -74,14 +73,17 @@ function ResetPassword() {
     isPending: isLoading,
     isError,
     isSuccess,
-  } = useResolvePasswordResetRequest();
+  } = useMutation(resetPasswordMutation());
 
   if (!isTokenValid) {
     return <InvalidTokenScreen />;
   }
 
   const resetPassword = ({ password }: Inputs) => {
-    resolveRequestPasswordReset({ password, token });
+    resolveRequestPasswordReset({
+      body: { password },
+      headers: { authorization: `Bearer ${token}` },
+    });
   };
 
   const passwordErrorMessage = errors.password?.message;

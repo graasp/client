@@ -2,7 +2,6 @@ export * from '../item/api.js';
 export * from '../member/api.js';
 export * from './action.js';
 export * from './apps.js';
-export * from './authentication.js';
 export * from './csvUserImport.js';
 export * from './etherpad.js';
 export * from './invitation.js';
