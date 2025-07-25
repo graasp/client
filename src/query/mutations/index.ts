@@ -3,7 +3,6 @@ import itemTagMutations from '../item/tag/mutations.js';
 import memberMutations from '../member/mutations.js';
 import publicProfileMutations from '../member/publicProfile/mutations.js';
 import { QueryClientConfig } from '../types.js';
-import actionMutations from './action.js';
 import csvUserImportMutations from './csvUserImport.js';
 import etherpadMutations from './etherpad.js';
 import invitationMutations from './invitation.js';
@@ -17,7 +16,6 @@ import mentionMutations from './mention.js';
 import shortLinksMutations from './shortLink.js';
 
 const configureMutations = (queryConfig: QueryClientConfig) => ({
-  ...actionMutations(queryConfig),
   ...csvUserImportMutations(queryConfig),
   ...etherpadMutations(queryConfig),
   ...invitationMutations(queryConfig),

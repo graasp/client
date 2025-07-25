@@ -2,6 +2,7 @@ import { ChangeEvent, type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  Alert,
   Box,
   FormControl,
   FormControlLabel,
@@ -13,12 +14,13 @@ import {
 
 import { ExportActionsFormatting } from '@graasp/sdk';
 
+import { useMutation } from '@tanstack/react-query';
 import { getRouteApi } from '@tanstack/react-router';
 import { Braces, Grid3X3 } from 'lucide-react';
 
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
+import { exportActionsMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 import {
   EXPORT_ACTIONS_BUTTON_ID,
@@ -60,12 +62,22 @@ export function ExportData(): JSX.Element {
     [ExportActionsFormatting.JSON]: false,
   });
 
-  const { mutate: exportActions } = mutations.useExportActions();
+  const {
+    mutateAsync: exportActions,
+    isSuccess,
+    isError,
+    isPending,
+  } = useMutation({
+    ...exportActionsMutation(),
+    onError: (e) => {
+      console.error(e);
+    },
+  });
 
   const { itemId } = itemApi.useParams();
-  const onClick = () => {
+  const onClick = async () => {
     if (itemId) {
-      exportActions({ itemId, format });
+      await exportActions({ path: { id: itemId }, query: { format } });
       setIsFormatExported({ ...isFormatExported, [format]: true });
     }
   };
@@ -111,11 +123,18 @@ export function ExportData(): JSX.Element {
         </RadioGroup>
       </FormControl>
 
+      {isSuccess && (
+        <Alert severity="success">{t('EXPORT_SUCCESS_MESSAGE')}</Alert>
+      )}
+
+      {isError && <Alert severity="error">{t('EXPORT_ERROR_MESSAGE')}</Alert>}
+
       <Button
         onClick={onClick}
         variant="contained"
         disabled={isFormatExported[format]}
         id={EXPORT_ACTIONS_BUTTON_ID}
+        loading={isPending}
       >
         {isFormatExported[format]
           ? t('EXPORTING_DONE', { format: format.toUpperCase() })
