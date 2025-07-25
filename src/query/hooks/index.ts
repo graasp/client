@@ -6,7 +6,6 @@ import configureTagHooks from '../tag/hooks.js';
 import { QueryClientConfig } from '../types.js';
 import configureEmbeddedLinkHooks from './embeddedLink.js';
 import configureEtherpadHooks from './etherpad.js';
-import configureItemLikeHooks from './itemLike.js';
 import configureItemLoginHooks from './itemLogin.js';
 import configureItemPublishedHooks from './itemPublish.js';
 import configureItemValidationHooks from './itemValidation.js';
@@ -31,7 +30,6 @@ export const configureHooks = (
     ...configureItemHooks(queryConfig, websocketClient),
     ...configureEtherpadHooks(queryConfig),
     ...configureKeywordSearchHooks(queryConfig),
-    ...configureItemLikeHooks(queryConfig),
     ...configureItemLoginHooks(queryConfig),
     ...configureItemPublishedHooks(queryConfig),
     ...configureItemValidationHooks(queryConfig),
