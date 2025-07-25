@@ -137,8 +137,8 @@ const FileContent = ({ item }: FileContentProps) => {
 
   const onDownloadClick = useCallback(() => {
     triggerAction({
-      itemId: item.id,
-      payload: { type: ActionTriggers.ItemDownload },
+      path: { id: item.id },
+      body: { type: ActionTriggers.ItemDownload },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id]);
@@ -182,8 +182,8 @@ const LinkContent = ({ item }: { item: LinkItemType }): JSX.Element => {
   const handleLinkClick = () => {
     // trigger player Action for link click
     triggerAction({
-      itemId: item.id,
-      payload: { type: ActionTriggers.LinkOpen },
+      path: { id: item.id },
+      body: { type: ActionTriggers.LinkOpen },
     });
   };
 
