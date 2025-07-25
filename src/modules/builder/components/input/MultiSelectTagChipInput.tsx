@@ -56,11 +56,12 @@ export const MultiSelectTagChipInput = ({
     data: tags,
     isFetching,
     isLoading,
-  } = useQuery(
-    getCountForTagsOptions({
+  } = useQuery({
+    ...getCountForTagsOptions({
       query: { search: debouncedCurrentValue, category: tagCategory },
     }),
-  );
+    enabled: Boolean(debouncedCurrentValue),
+  });
   const renderTags = (
     value: readonly string[],
     getTagProps: AutocompleteRenderGetTagProps,
