@@ -1,14 +1,20 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, Typography } from '@mui/material';
+import { Button, Grid, Stack, Typography } from '@mui/material';
 
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
+import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
+import { UserCapsuleExample } from './UserCapsuleExample';
 import { UserStory } from './UserStory';
 import { UserStoryButton } from './UserStoryButton';
-import { RESEARCHER_USER_STORY, TEACHER_USER_STORY } from './constants';
+import {
+  EN_CAPSULES,
+  RESEARCHER_USER_STORY,
+  TEACHER_USER_STORY,
+} from './constants';
 
 export function UserStorySection(): JSX.Element {
   const { t } = useTranslation(NS.Landing);
@@ -21,22 +27,53 @@ export function UserStorySection(): JSX.Element {
           text="Are you a researcher?"
         />
       </Stack>
-      <UserStory
-        id={TEACHER_USER_STORY}
-        href="/auth/register"
-        caption={t('HOME.USER_STORY.TEACHER.LEADING_SENTENCE')}
-        buttonText={t('HOME.USER_STORY.TEACHER.BUTTON_TEXT')}
-        title={t('HOME.USER_STORY.TEACHER.TITLE')}
-        image={<Image src="/illustration/teacher-red.webp" />}
-      >
-        <Typography>
-          <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_1')}</span>
-          <br />
-          <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_2')}</span>
-          <br />
-          <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_3')}</span>
-        </Typography>
-      </UserStory>
+
+      <Stack gap={10}>
+        <UserStory
+          id={TEACHER_USER_STORY}
+          href="/auth/register"
+          caption={t('HOME.USER_STORY.TEACHER.LEADING_SENTENCE')}
+          buttonText={t('HOME.USER_STORY.TEACHER.BUTTON_TEXT')}
+          title={t('HOME.USER_STORY.TEACHER.TITLE')}
+          image={<Image src="/illustration/teacher-red.webp" />}
+        >
+          <Typography>
+            <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_1')}</span>
+            <br />
+            <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_2')}</span>
+            <br />
+            <span>{t('HOME.USER_STORY.TEACHER.USE_CASE_3')}</span>
+          </Typography>
+        </UserStory>
+        <Stack gap={3}>
+          <Typography color="primary" variant="h3">
+            {t('HOME.USER_STORY.DISCOVER.TITLE')}
+          </Typography>
+          <Grid container spacing={2} direction="row">
+            {EN_CAPSULES.map(({ title, imageSrc, description, url }) => {
+              return (
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                  <UserCapsuleExample
+                    title={title}
+                    imageSrc={imageSrc}
+                    description={description}
+                    url={url}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+
+          <Button
+            component="a"
+            variant="contained"
+            color="library"
+            href={GRAASP_LIBRARY_HOST}
+          >
+            {t('HOME.USER_STORY.DISCOVER.BUTTON_TEXT')}
+          </Button>
+        </Stack>
+      </Stack>
       <UserStory
         id={RESEARCHER_USER_STORY}
         href="/auth/register"
