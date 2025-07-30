@@ -3,12 +3,12 @@ import {
   CompleteMember,
   MemberFactory,
   Password,
-  PublicProfile,
 } from '@graasp/sdk';
 
+import { type Profile } from '../../src/openapi/client/types.gen';
 import { AVATAR_LINK } from './thumbnails/links';
 
-export const MEMBER_PUBLIC_PROFILE: PublicProfile = {
+export const MEMBER_PUBLIC_PROFILE: Profile = {
   id: 'ecafbd2a-5642-31fb-ae93-0242ac130004',
   bio: 'text',
   twitterId: 'twitter_handle',

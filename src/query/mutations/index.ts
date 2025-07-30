@@ -1,7 +1,6 @@
 import itemMutations from '../item/mutations.js';
 import itemTagMutations from '../item/tag/mutations.js';
 import memberMutations from '../member/mutations.js';
-import publicProfileMutations from '../member/publicProfile/mutations.js';
 import { QueryClientConfig } from '../types.js';
 import actionMutations from './action.js';
 import csvUserImportMutations from './csvUserImport.js';
@@ -29,7 +28,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...itemValidationMutations(queryConfig),
   ...memberMutations(queryConfig),
   ...mentionMutations(queryConfig),
-  ...publicProfileMutations(queryConfig),
   ...shortLinksMutations(queryConfig),
   ...visibilitiesMutations(queryConfig),
   ...itemTagMutations(queryConfig),
