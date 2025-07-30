@@ -1,5 +1,4 @@
 import {
-  ItemVisibilityType,
   PackedFolderItemFactory,
   PermissionLevel,
   TagCategory,
@@ -47,7 +46,7 @@ describe('Customized Tags', () => {
       {},
       {
         permission: PermissionLevel.Admin,
-        publicVisibility: { type: ItemVisibilityType.Public },
+        publicVisibility: { type: 'public' },
       },
     );
     const item = {
@@ -153,12 +152,12 @@ describe('Tags permissions', () => {
       {},
       { permission: null, publicVisibility: {} },
     );
-    const publishedItem = {
+    const publishedItem: ItemForTest = {
       ...item,
       visibilities: [
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
         },
@@ -187,12 +186,12 @@ describe('Tags permissions', () => {
       {},
       { permission: PermissionLevel.Read, publicVisibility: {} },
     );
-    const publishedItem = {
+    const publishedItem: ItemForTest = {
       ...item,
       visibilities: [
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: item.path,
           createdAt: '2021-08-11T12:56:36.834Z',
         },

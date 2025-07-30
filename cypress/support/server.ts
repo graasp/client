@@ -389,11 +389,7 @@ export const mockGetItemLoginSchemaType = (items: ItemForTest[]): void => {
     ({ reply, url }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
       const item = items.find(({ id }) => itemId === id);
-      if (
-        item?.visibilities?.some(
-          ({ type }) => type === ItemVisibilityType.Hidden,
-        )
-      ) {
+      if (item?.visibilities?.some(({ type }) => type === 'hidden')) {
         return reply({
           statusCode: StatusCodes.NOT_FOUND,
         });

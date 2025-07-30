@@ -4,7 +4,6 @@ import {
   ItemValidationGroup,
   ItemValidationProcess,
   ItemValidationStatus,
-  ItemVisibilityType,
   PackedItem,
   PermissionLevel,
 } from '@graasp/sdk';
@@ -101,7 +100,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       visibilities: [
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: samplePublicItems[0].path,
           // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -147,7 +146,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       visibilities: [
         {
           id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: samplePublicItems[0].path,
           // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -169,7 +168,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       ...samplePublicItems[3],
       visibilities: [
         {
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: samplePublicItems[3].path,
           // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -201,7 +200,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       ...samplePublicItems[4],
       visibilities: [
         {
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: samplePublicItems[4].path,
           // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -213,7 +212,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       ...samplePublicItems[5],
       visibilities: [
         {
-          type: ItemVisibilityType.Public,
+          type: 'public',
           itemPath: samplePublicItems[5].path,
           // creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',

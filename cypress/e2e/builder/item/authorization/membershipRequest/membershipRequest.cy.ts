@@ -1,8 +1,4 @@
-import {
-  FolderItemFactory,
-  ItemVisibilityType,
-  MembershipRequestStatus,
-} from '@graasp/sdk';
+import { FolderItemFactory, MembershipRequestStatus } from '@graasp/sdk';
 
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
@@ -11,6 +7,7 @@ import {
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../../fixtures/members';
+import { ItemForTest } from '../../../../../support/types';
 import { buildItemPath } from '../../../utils';
 
 it('Request membership when signed in', () => {
@@ -34,11 +31,11 @@ it('Request membership when signed in', () => {
 });
 it('Cannot request membership if item is hidden', () => {
   const tmp = FolderItemFactory();
-  const item = {
+  const item: ItemForTest = {
     ...tmp,
     visibilities: [
       {
-        type: ItemVisibilityType.Hidden,
+        type: 'hidden',
         itemPath: tmp.path,
         createdAt: '2021-08-11T12:56:36.834Z',
         id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',

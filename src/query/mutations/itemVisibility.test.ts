@@ -2,7 +2,6 @@ import {
   AccountFactory,
   FolderItemFactory,
   HttpMethod,
-  ItemVisibilityType,
   getIdsFromPath,
 } from '@graasp/sdk';
 
@@ -38,7 +37,7 @@ describe('Item Visibility Mutations', () => {
   describe('usePostItemVisibility', () => {
     const itemId = FolderItemFactory().id;
     const creator = AccountFactory().id;
-    const visibilityType = ItemVisibilityType.Hidden;
+    const visibilityType = 'hidden';
     const route = `/${buildPostItemVisibilityRoute({ itemId, type: visibilityType })}`;
     const mutation = mutations.usePostItemVisibility;
     const itemVisibilityKey = itemKeys.single(itemId).visibilities;

@@ -18,7 +18,6 @@ import {
   ItemValidationProcess,
   ItemValidationStatus,
   ItemVisibility,
-  ItemVisibilityType,
   MemberFactory,
   MentionStatus,
   PackedFolderItemFactory,
@@ -248,7 +247,7 @@ export const buildMemberMentions = (): ChatMention[] => {
 const defaultItemVisibilitiesValues: ItemVisibility = {
   id: 'tag-id',
   itemPath: 'item-path',
-  type: ItemVisibilityType.Public,
+  type: 'public',
   createdAt: '2023-09-06T11:50:32.894Z',
   // creator: MemberFactory(),
 };
@@ -262,13 +261,13 @@ const createMockItemVisibilities = (
 const ITEM_VISIBILITY_1: ItemVisibility = createMockItemVisibilities({
   id: 'visibility-id',
   itemPath: 'visibility-path',
-  type: ItemVisibilityType.Public,
+  type: 'public',
 });
 
 const ITEM_VISIBILITY_2: ItemVisibility = createMockItemVisibilities({
   id: 'visibility-id1',
   itemPath: 'visibility-path',
-  type: ItemVisibilityType.Public,
+  type: 'public',
 });
 
 export const ITEM_VISIBILITIES = [ITEM_VISIBILITY_1, ITEM_VISIBILITY_2];

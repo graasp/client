@@ -1,4 +1,4 @@
-import { ItemVisibilityType, PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   CO_EDITOR_SETTINGS_CHECKBOX_ID,
@@ -53,7 +53,7 @@ it('Change choice', () => {
 
 const item = PackedFolderItemFactory(
   {},
-  { permission: null, publicVisibility: { type: ItemVisibilityType.Public } },
+  { permission: null, publicVisibility: { type: 'public' } },
 );
 
 describe('Co-editor setting permissions', () => {

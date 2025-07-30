@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { ItemVisibilityType, PackedItem, getParentFromPath } from '@graasp/sdk';
+import { PackedItem, getParentFromPath } from '@graasp/sdk';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
@@ -46,12 +46,12 @@ const HideButton = ({
     if (hiddenVisibility) {
       await deleteVisibility.mutateAsync({
         itemId: item.id,
-        type: ItemVisibilityType.Hidden,
+        type: 'hidden',
       });
     } else {
       await postVisibility.mutateAsync({
         itemId: item.id,
-        type: ItemVisibilityType.Hidden,
+        type: 'hidden',
       });
     }
     const parentId = getParentFromPath(item.path);
