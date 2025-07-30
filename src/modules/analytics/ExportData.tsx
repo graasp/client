@@ -135,6 +135,8 @@ export function ExportData(): JSX.Element {
         disabled={isFormatExported[format]}
         id={EXPORT_ACTIONS_BUTTON_ID}
         loading={isPending}
+        data-umami-event-format={format}
+        data-umami-event="export-item-data"
       >
         {isFormatExported[format]
           ? t('EXPORTING_DONE', { format: format.toUpperCase() })
