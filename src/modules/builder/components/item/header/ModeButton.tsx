@@ -64,7 +64,10 @@ const ModeButton = (): JSX.Element | null => {
             key={value}
             to="."
             search={(prev: object) => ({ ...prev, mode: value })}
-            onClick={() => handleClose()}
+            onClick={() => {
+              handleClose();
+              window.umami.track('toggle-layout-mode', { mode: value });
+            }}
             value={value}
           >
             <ModeIcon mode={value} />
