@@ -267,17 +267,17 @@
     "PLATFORM_OVERVIEW": {
       "TITLE": "Graasp en un coup d'oeil",
       "builder": {
-        "TITLE": "Constructeur",
+        "TITLE": "Builder",
         "DESCRIPTION": "Conçu pour la création de contenu structuré",
         "BUTTON_TEXT": "En savoir plus"
       },
       "player": {
-        "TITLE": "Joueur",
+        "TITLE": "Player",
         "DESCRIPTION": "L'engagement interactif simplifié",
         "BUTTON_TEXT": "En savoir plus"
       },
       "analytics": {
-        "TITLE": "Analytique",
+        "TITLE": "Analytics",
         "DESCRIPTION": "Découvrir, mesurer, interpréter les données et les informations",
         "BUTTON_TEXT": "En savoir plus"
       },
