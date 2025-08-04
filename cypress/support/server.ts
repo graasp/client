@@ -17,7 +17,6 @@ import {
   MembershipRequestStatus,
   PermissionLevel,
   PermissionLevelCompare,
-  PublicProfile,
   PublicationStatus,
   RecycledItemData,
   ShortLink,
@@ -31,6 +30,8 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
+
+import { Profile } from '@/openapi/client/types.gen';
 
 import { ITEM_PAGE_SIZE, SETTINGS } from '../../src/modules/builder/constants';
 import { API_ROUTES } from '../../src/query/routes';
@@ -164,7 +165,7 @@ export const mockGetOwnProfile = (
 };
 
 export const mockEditPublicProfile = (
-  currentProfile: PublicProfile,
+  currentProfile: Profile,
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(

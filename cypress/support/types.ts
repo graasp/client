@@ -17,13 +17,14 @@ import {
   MemberStorageItem,
   MembershipRequestStatus,
   PermissionLevelOptions,
-  PublicProfile,
   PublicationStatus,
   RecycledItemData,
   ShortLink,
   Tag,
   ThumbnailsBySize,
 } from '@graasp/sdk';
+
+import { Profile } from '@/openapi/client/types.gen';
 
 export type ItemForTest = DiscriminatedItem & {
   geolocation?: Partial<ItemGeolocation>;
@@ -49,7 +50,7 @@ export type FileItemForTest = FileItemType & {
 export type ApiConfig = {
   currentGuest?: CompleteGuest | null;
   hasPassword?: boolean;
-  currentProfile?: PublicProfile | null;
+  currentProfile?: Profile | null;
   getCurrentProfileError?: boolean;
   editPublicProfileError?: boolean;
   items?: ItemForTest[];

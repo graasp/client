@@ -29,7 +29,6 @@ import {
   MentionStatus,
   PackedFolderItemFactory,
   PermissionLevel,
-  PublicProfile,
   RecycledItemData,
   ResultOf,
   UUID,
@@ -38,7 +37,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import { ChatMessageRaw } from '@/openapi/client';
+import { ChatMessageRaw, Profile } from '@/openapi/client';
 
 type MockFastifyError = {
   name: string;
@@ -431,7 +430,7 @@ export const MEMBER_PUBLIC_PROFILE = {
   linkedinId: 'user',
   facebookId: 'user',
   twitterId: 'user',
-} satisfies PublicProfile;
+} satisfies Profile;
 
 export const AGGREGATE_ACTIONS_DATA = [
   { aggregateResult: 1.5, createdDay: '2023-10-10T00:00:00.000Z' },
