@@ -40,3 +40,4 @@ export const DEFAULT_LINK_SHOW_BUTTON = true;
 export const DEFAULT_LINK_SHOW_IFRAME = false;
 
 export const ITEM_NAME_MAX_LENGTH = 15;
+export const MAX_DESCRIPTION_LENGTH = 5000;

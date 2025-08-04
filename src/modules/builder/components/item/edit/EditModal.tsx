@@ -81,7 +81,7 @@ export function EditModal({
       onClose={onClose}
       id={EDIT_MODAL_ID}
       open={open}
-      maxWidth="sm"
+      maxWidth="md"
       fullWidth
     >
       <DialogTitle id={item?.id}>

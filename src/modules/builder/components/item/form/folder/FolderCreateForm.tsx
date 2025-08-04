@@ -52,15 +52,12 @@ export function FolderCreateForm({
   const [clickCounter, setClickCounter] = useState(0);
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const methods = useForm<Inputs>();
+  const methods = useForm<Inputs>({ mode: 'onChange' });
   const {
-    setValue,
-    watch,
     handleSubmit,
-    formState: { isValid, isSubmitted },
+    formState: { isValid },
   } = methods;
 
-  const description = watch('description');
   const [thumbnail, setThumbnail] = useState<Blob>();
 
   const { mutateAsync: createItem } = mutations.usePostItem();
@@ -123,13 +120,7 @@ export function FolderCreateForm({
             />
             <ItemNameField required />
           </Stack>
-          <DescriptionForm
-            id={FOLDER_FORM_DESCRIPTION_ID}
-            value={description}
-            onChange={(newValue) => {
-              setValue('description', newValue);
-            }}
-          />
+          <DescriptionForm id={FOLDER_FORM_DESCRIPTION_ID} />
         </DialogContent>
         <DialogActions>
           {clickCounter > 3 && (
@@ -141,7 +132,7 @@ export function FolderCreateForm({
           <Button
             id={ITEM_FORM_CONFIRM_BUTTON_ID}
             type="submit"
-            disabled={isSubmitted && !isValid}
+            disabled={!isValid}
           >
             {translateCommon('SAVE.BUTTON_TEXT')}
           </Button>

@@ -1,5 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import { MAX_DESCRIPTION_LENGTH } from '../../../../../src/config/constants';
 import {
   EDIT_ITEM_BUTTON_CLASS,
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
@@ -19,7 +20,7 @@ const EDITED_FIELDS = {
 };
 
 describe('Edit Folder', () => {
-  it('confirm with empty name', () => {
+  it('cannot save item with empty name', () => {
     const item = PackedFolderItemFactory();
     cy.setUpApi({ items: [item] });
     cy.visit(HOME_PATH);
@@ -39,6 +40,29 @@ describe('Edit Folder', () => {
 
     // check that the button can not be clicked
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
+  });
+
+  it('cannot save description too long', () => {
+    const item = PackedFolderItemFactory();
+    cy.setUpApi({ items: [item] });
+    cy.visit(HOME_PATH);
+
+    // click edit button
+    const itemId = item.id;
+    cy.get(buildItemsGridMoreButtonSelector(itemId)).click();
+    cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
+
+    cy.fillFolderModal(
+      {
+        // put an empty name for the folder
+        description: 'x'.repeat(MAX_DESCRIPTION_LENGTH + 10),
+      },
+      { confirm: false },
+    );
+
+    // check that the button can not be clicked
+    cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
+    cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}-error`).should('be.visible');
   });
 
   it('edit folder on Home', () => {
