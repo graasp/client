@@ -1,8 +1,4 @@
-import {
-  CCLicenseAdaptions,
-  ItemVisibilityType,
-  PackedFolderItemFactory,
-} from '@graasp/sdk';
+import { CCLicenseAdaptions, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   CC_ALLOW_COMMERCIAL_CONTROL_ID,
@@ -60,7 +56,7 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
     visibilities: [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-        type: ItemVisibilityType.Public,
+        type: 'public',
         itemPath: itemCCLicenseCCBY.path,
         createdAt: '2021-08-11T12:56:36.834Z',
         // creator: MEMBERS.ANNA,
@@ -79,7 +75,7 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
     visibilities: [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-        type: ItemVisibilityType.Public,
+        type: 'public',
         itemPath: itemCCLicenseCCBYNC.path,
         createdAt: '2021-08-11T12:56:36.834Z',
         // creator: MEMBERS.ANNA,
@@ -98,7 +94,7 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
     visibilities: [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-        type: ItemVisibilityType.Public,
+        type: 'public',
         itemPath: itemCCLicenseCCBYSA.path,
         createdAt: '2021-08-11T12:56:36.834Z',
         // creator: MEMBERS.ANNA,
@@ -117,7 +113,7 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
     visibilities: [
       {
         id: 'ecbfbd2a-5688-11eb-ae93-0242ac130002',
-        type: ItemVisibilityType.Public,
+        type: 'public',
         itemPath: itemCCLicenseCCBYNCND.path,
         createdAt: '2021-08-11T12:56:36.834Z',
         // creator: MEMBERS.ANNA,

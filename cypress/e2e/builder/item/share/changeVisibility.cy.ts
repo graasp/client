@@ -2,7 +2,6 @@ import {
   GuestFactory,
   ItemLoginSchemaStatus,
   ItemLoginSchemaType,
-  ItemVisibilityType,
   PackedFolderItemFactory,
   PermissionLevel,
   PublicationStatus,
@@ -43,11 +42,9 @@ describe('Visibility of an Item', () => {
 
     // change private -> public
     changeVisibility(SETTINGS.ITEM_PUBLIC.name);
-    cy.wait(`@postItemVisibility-${ItemVisibilityType.Public}`).then(
-      ({ request: { url } }) => {
-        expect(url).to.contain(item.id);
-      },
-    );
+    cy.wait(`@postItemVisibility-${'public'}`).then(({ request: { url } }) => {
+      expect(url).to.contain(item.id);
+    });
   });
 
   it('Change Public Item to Private', () => {
@@ -65,7 +62,7 @@ describe('Visibility of an Item', () => {
 
     // change public -> private
     changeVisibility(SETTINGS.ITEM_PRIVATE.name);
-    cy.wait(`@deleteItemVisibility-${ItemVisibilityType.Public}`).then(
+    cy.wait(`@deleteItemVisibility-${'public'}`).then(
       ({ request: { url } }) => {
         expect(url).to.contain(item.id);
       },
@@ -87,22 +84,21 @@ describe('Visibility of an Item', () => {
 
     // change public -> item login
     changeVisibility(SETTINGS.ITEM_LOGIN.name);
-    cy.wait([
-      `@deleteItemVisibility-${ItemVisibilityType.Public}`,
-      '@putItemLoginSchema',
-    ]).then((data) => {
-      const {
-        request: { url },
-      } = data[0];
-      expect(url).to.contain(item.id);
-      expect(url).to.contain(ItemVisibilityType.Public); // originally item login
+    cy.wait([`@deleteItemVisibility-${'public'}`, '@putItemLoginSchema']).then(
+      (data) => {
+        const {
+          request: { url },
+        } = data[0];
+        expect(url).to.contain(item.id);
+        expect(url).to.contain('public'); // originally item login
 
-      const {
-        request: { body, url: itemLoginUrl },
-      } = data[1];
-      expect(itemLoginUrl).to.contain(item.id);
-      expect(body.status).to.contain(ItemLoginSchemaStatus.Active);
-    });
+        const {
+          request: { body, url: itemLoginUrl },
+        } = data[1];
+        expect(itemLoginUrl).to.contain(item.id);
+        expect(body.status).to.contain(ItemLoginSchemaStatus.Active);
+      },
+    );
   });
 
   it('Change Pseudonymized Item to Private Item with guest', () => {
@@ -230,7 +226,7 @@ describe('Visibility of an Item', () => {
       cy.get(
         `${buildDataCyWrapper(UPDATE_VISIBILITY_MODAL_VALIDATE_BUTTON)}`,
       ).click();
-      cy.wait(`@deleteItemVisibility-${ItemVisibilityType.Public}`).then(
+      cy.wait(`@deleteItemVisibility-${'public'}`).then(
         ({ request: { url } }) => {
           expect(url).to.contain(item.id);
         },
@@ -261,14 +257,14 @@ describe('Visibility of an Item', () => {
         `${buildDataCyWrapper(UPDATE_VISIBILITY_MODAL_VALIDATE_BUTTON)}`,
       ).click();
       cy.wait([
-        `@deleteItemVisibility-${ItemVisibilityType.Public}`,
+        `@deleteItemVisibility-${'public'}`,
         '@putItemLoginSchema',
       ]).then((data) => {
         const {
           request: { url },
         } = data[0];
         expect(url).to.contain(item.id);
-        expect(url).to.contain(ItemVisibilityType.Public); // originally item login
+        expect(url).to.contain('public'); // originally item login
 
         const {
           request: { url: itemLoginUrl, body },

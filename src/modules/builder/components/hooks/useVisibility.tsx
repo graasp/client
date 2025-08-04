@@ -6,7 +6,6 @@ import {
   ItemLoginSchemaType,
   ItemPublished,
   ItemVisibility,
-  ItemVisibilityType,
   PackedItem,
 } from '@graasp/sdk';
 
@@ -113,7 +112,7 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
         if (item.public) {
           deleteItemVisibility({
             itemId: item.id,
-            type: ItemVisibilityType.Public,
+            type: 'public',
           });
         }
       };
@@ -150,7 +149,7 @@ export const useVisibility = (item: PackedItem): UseVisibility => {
         case SETTINGS.ITEM_PUBLIC.name: {
           await postItemVisibility({
             itemId: item.id,
-            type: ItemVisibilityType.Public,
+            type: 'public',
           });
           disableLoginSchema();
           break;

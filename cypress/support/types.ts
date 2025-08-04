@@ -13,7 +13,6 @@ import {
   ItemMembership,
   ItemPublished,
   ItemValidationGroup,
-  ItemVisibility,
   MemberStorageItem,
   MembershipRequestStatus,
   PermissionLevelOptions,
@@ -24,7 +23,7 @@ import {
   ThumbnailsBySize,
 } from '@graasp/sdk';
 
-import { Profile } from '@/openapi/client/types.gen';
+import { ItemVisibility, Profile } from '@/openapi/client/types.gen';
 
 export type ItemForTest = DiscriminatedItem & {
   geolocation?: Partial<ItemGeolocation>;
@@ -117,9 +116,6 @@ export type ApiConfig = {
   getMemberMentionsError?: boolean;
   getAppLinkError?: boolean;
   appApiAccessTokenError?: boolean;
-  getAppDataError?: boolean;
-  postAppDataError?: boolean;
-  patchAppDataError?: boolean;
   deleteAppDataError?: boolean;
   getPublishedItemsError?: boolean;
   importH5pError?: boolean;

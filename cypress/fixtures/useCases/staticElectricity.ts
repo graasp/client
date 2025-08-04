@@ -4,7 +4,6 @@ import {
   FileItemFactory,
   FolderItemFactory,
   ItemType,
-  ItemVisibilityType,
   LinkItemFactory,
   PackedFolderItemFactory,
   PermissionLevel,
@@ -225,22 +224,23 @@ export const STATIC_ELECTRICITY: {
   })),
 };
 
+const items: ItemForTest[] = STATIC_ELECTRICITY.items.map((i) => ({
+  ...i,
+  permission: PermissionLevel.Read,
+}));
 export const PUBLIC_STATIC_ELECTRICITY = {
-  items: STATIC_ELECTRICITY.items.map((i) => ({
-    ...i,
-    permission: PermissionLevel.Read,
-  })),
+  items,
 };
 
 PUBLIC_STATIC_ELECTRICITY.items = PUBLIC_STATIC_ELECTRICITY.items.map(
   (item) => {
-    const newItem = {
+    const newItem: ItemForTest = {
       ...item,
       visibilities: [
         {
           id: v4(),
           itemPath: item.path,
-          type: ItemVisibilityType.Public,
+          type: 'public',
           createdAt: new Date().toISOString(),
         },
       ],

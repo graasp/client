@@ -3,7 +3,6 @@ import {
   ItemTypeUnion,
   ItemValidationGroup,
   ItemValidationStatus,
-  ItemVisibilityType,
   PackedFolderItemFactory,
   PackedItem,
   PermissionLevel,
@@ -94,7 +93,7 @@ const waitOnPublishItem = (
 };
 
 const waitOnSetItemPublic = (item: PackedItem) => {
-  waitOnRequest(`@postItemVisibility-${ItemVisibilityType.Public}`, item);
+  waitOnRequest(`@postItemVisibility-${'public'}`, item);
 };
 
 const waitOnUnpublishItem = (item: PackedItem) => {
