@@ -99,6 +99,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Cypress binary
+        run: pnpm cypress install
+
       #  use the Cypress GitHub Action to run Cypress Component tests within the chrome browser
       - name: Cypress run components
         uses: cypress-io/github-action@v6
