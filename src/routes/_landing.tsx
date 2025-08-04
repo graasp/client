@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
+import { AccountType } from '@graasp/sdk';
+
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
@@ -26,13 +28,14 @@ export const Route = createFileRoute('/_landing')({
 
 function RouteComponent() {
   const { i18n, t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
   const { mutate } = mutations.useEditCurrentMember();
   const { isEnabled: isPreviewEnabled } = usePreviewMode();
   const onChangeLang: OnChangeLangProp = (lang: string) => {
-    if (isAuthenticated) {
+    // only "full users" can change their language
+    if (isAuthenticated && user.type === AccountType.Individual) {
       mutate({ extra: { lang } });
     }
     i18n.changeLanguage(lang);
