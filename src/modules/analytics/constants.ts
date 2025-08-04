@@ -1,6 +1,6 @@
 import { ActionTriggers, Context, UnionOfConst } from '@graasp/sdk';
 
-// // Height of container in ActionsByDayChart
+// Height of container in ActionsByDayChart
 export const CONTAINER_HEIGHT = 450;
 
 export const DEFAULT_ACTION_CELL_COLOR = '#ADADEA';
