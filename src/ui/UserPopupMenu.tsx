@@ -24,7 +24,7 @@ import {
   SettingsIcon,
 } from 'lucide-react';
 
-import { AuthenticatedGuest, AuthenticatedMember } from '@/AuthContext';
+import { type AuthenticatedUser } from '@/AuthContext';
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { NS } from '@/config/constants';
 
@@ -33,7 +33,7 @@ const MENU_ARIA_ID = 'account-menu';
 type Props = {
   avatarButtonId: string;
   avatar: JSX.Element;
-  user: AuthenticatedMember | AuthenticatedGuest;
+  user: AuthenticatedUser;
   signOutMenuItemId?: string;
   signOutText: string;
   /**
