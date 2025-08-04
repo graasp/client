@@ -4,14 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Box, FormLabel, Typography } from '@mui/material';
 
-import { NS } from '@/config/constants';
+import { MAX_DESCRIPTION_LENGTH, NS } from '@/config/constants';
 import TextEditor from '@/ui/TextEditor/TextEditor';
 
 export type DescriptionFormProps = {
   id?: string;
 };
-
-export const MAX_DESCRIPTION_LENGTH = 5000;
 
 export function DescriptionForm({
   id,

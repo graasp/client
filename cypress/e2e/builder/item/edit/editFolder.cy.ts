@@ -1,5 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import { MAX_DESCRIPTION_LENGTH } from '../../../../../src/config/constants';
 import {
   EDIT_ITEM_BUTTON_CLASS,
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
@@ -19,7 +20,7 @@ const EDITED_FIELDS = {
 };
 
 describe('Edit Folder', () => {
-  it('cannot make name empty', () => {
+  it('cannot save item with empty name', () => {
     const item = PackedFolderItemFactory();
     cy.setUpApi({ items: [item] });
     cy.visit(HOME_PATH);
@@ -54,7 +55,7 @@ describe('Edit Folder', () => {
     cy.fillFolderModal(
       {
         // put an empty name for the folder
-        description: 'x'.repeat(5001),
+        description: 'x'.repeat(MAX_DESCRIPTION_LENGTH + 10),
       },
       { confirm: false },
     );

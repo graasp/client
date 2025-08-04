@@ -1,5 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import { MAX_DESCRIPTION_LENGTH } from '../../../../../src/config/constants';
 import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
@@ -44,8 +45,6 @@ describe('Create Folder', () => {
     cy.visit(HOME_PATH);
     createFolder({ name: ' ' }, { confirm: false });
 
-    // button is not disabled at beginning
-    // cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
   });
 
@@ -54,14 +53,14 @@ describe('Create Folder', () => {
     cy.setUpApi();
     cy.visit(HOME_PATH);
     createFolder(
-      { name: 'correct', description: 'x'.repeat(5001) },
+      { name: 'correct', description: 'x'.repeat(MAX_DESCRIPTION_LENGTH + 10) },
       { confirm: false },
     );
 
-    // button is not disabled at beginning
-    // cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).should('be.disabled');
-    cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}-error`).should('be.visible');
+    cy.get(`#${FOLDER_FORM_DESCRIPTION_ID}-error`)
+      .scrollIntoView()
+      .should('be.visible');
   });
 
   it('description placement should not exist for folder', () => {
