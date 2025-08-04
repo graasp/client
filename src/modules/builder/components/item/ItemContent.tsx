@@ -23,7 +23,7 @@ import {
   getShortcutExtra,
 } from '@graasp/sdk';
 
-import { AuthenticatedMember, useAuth } from '@/AuthContext';
+import { type AuthenticatedUser, useAuth } from '@/AuthContext';
 import { Editor } from '@/components/page/Editor';
 import { PageReader } from '@/components/page/PageReader';
 import { DEFAULT_LANG, NS } from '@/config/constants';
@@ -135,7 +135,7 @@ const AppContent = ({
   permission,
 }: {
   item: AppItemType;
-  member?: AuthenticatedMember | null;
+  member?: AuthenticatedUser | null;
   permission?: PermissionLevelOptions | null;
 }): JSX.Element => (
   <AppItem
