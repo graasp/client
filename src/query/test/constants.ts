@@ -2,17 +2,11 @@ import {
   Account,
   AccountFactory,
   AccountType,
-  Action,
-  ActionData,
   App,
   ChatMention,
-  Context,
-  ExportedChatMessage,
-  FlagType,
   FolderItemFactory,
   HttpMethod,
   Invitation,
-  ItemFlag,
   ItemGeolocation,
   ItemLike,
   ItemLoginSchema,
@@ -30,7 +24,6 @@ import {
   PackedFolderItemFactory,
   PermissionLevel,
   RecycledItemData,
-  ResultOf,
   UUID,
 } from '@graasp/sdk';
 
@@ -69,31 +62,10 @@ export const FILE_NOT_FOUND_RESPONSE: MockFastifyError = {
   origin: 'graasp-plugin-file',
 };
 
-const getById = (obj: { id: UUID }) => obj.id;
-
-export const buildResultOfData = <T>(
-  data: T[],
-  getKey?: (t: T) => string,
-  errors?: Error[],
-): ResultOf<T> => {
-  const buildGetKey = getKey ?? getById;
-  return {
-    data: data
-      // TODO: use a better generic type
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .map((d: any) => ({ [buildGetKey(d)]: d }))
-      .reduce((prev, curr) => ({ ...prev, ...curr }), {}),
-    errors: errors ?? [],
-  };
-};
-
 export const generateFolders = (
   nb: number = 5,
 ): ReturnType<typeof PackedFolderItemFactory>[] =>
   Array.from({ length: nb }, () => PackedFolderItemFactory());
-
-export const generateMembers = (nb: number = 5) =>
-  Array.from({ length: nb }, () => MemberFactory());
 
 export const RECYCLED_ITEM_DATA: RecycledItemData[] = [
   {
@@ -212,43 +184,6 @@ const APP_2: App = {
 };
 
 export const APPS = [APP_1, APP_2];
-
-export const createMockChatMessage = (
-  message?: Partial<ChatMessageRaw>,
-): ChatMessageRaw => ({
-  id: '',
-  body: 'some text',
-  itemId: v4(),
-  creatorId: v4(),
-  createdAt: '2023-09-06T11:50:32.894Z',
-  updatedAt: '2023-09-06T11:50:32.894Z',
-  ...message,
-});
-
-export const createMockExportedChatMessage = (
-  message?: Partial<ExportedChatMessage>,
-): ExportedChatMessage => ({
-  id: '',
-  chatId: '',
-  body: 'some text',
-  creatorName: 'Some Name',
-  creator: MemberFactory(),
-  createdAt: '2023-09-06T11:50:32.894Z',
-  updatedAt: '2023-09-06T11:50:32.894Z',
-  ...message,
-});
-
-export const createMockMemberMentions = (
-  memberMentions?: Partial<ChatMention>[],
-): ChatMention => ({
-  id: 'UUID',
-  message: createMockChatMessage(),
-  account: AccountFactory(),
-  createdAt: '2023-09-06T11:50:32.894Z',
-  updatedAt: '2023-09-06T11:50:32.894Z',
-  status: MentionStatus.Read,
-  ...memberMentions,
-});
 
 export const buildChatMention = ({
   id = v4(),
@@ -388,39 +323,6 @@ export const ITEM_VALIDATION_GROUP: ItemValidationGroup = {
   createdAt: '2023-09-06T11:50:32.894Z',
 };
 
-const ACTION_1: Action = {
-  id: 'action-id',
-  item: FolderItemFactory(),
-  account: AccountFactory(),
-  createdAt: '2023-09-06T11:50:32.894Z',
-  view: Context.Analytics,
-  type: 'action-type',
-  extra: { some: 'value' },
-};
-
-export const ACTIONS_LIST: Action[] = [ACTION_1];
-
-// todo: need to fix the type of item to DiscriminatedItem instead of Item
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const createMockActionData = (actionData: Partial<ActionData>): ActionData => ({
-  actions: [],
-  members: [],
-  descendants: [],
-  itemMemberships: [],
-  ...actionData,
-});
-
-export const ACTIONS_DATA: ActionData = createMockActionData({
-  actions: ACTIONS_LIST,
-  members: [MemberFactory()],
-  item: FolderItemFactory(),
-  itemMemberships: [MEMBERSHIP_1],
-  metadata: {
-    numActionsRetrieved: 3,
-    requestedSampleSize: 24,
-  },
-});
 export const MEMBER_PUBLIC_PROFILE = {
   id: v4(),
   createdAt: new Date().toISOString(),
@@ -431,12 +333,6 @@ export const MEMBER_PUBLIC_PROFILE = {
   facebookId: 'user',
   twitterId: 'user',
 } satisfies Profile;
-
-export const AGGREGATE_ACTIONS_DATA = [
-  { aggregateResult: 1.5, createdDay: '2023-10-10T00:00:00.000Z' },
-  { aggregateResult: 2, createdDay: '2023-07-10T00:00:00.000Z' },
-  { aggregateResult: 4, createdDay: '2023-11-10T00:00:00.000Z' },
-];
 
 export const buildInvitation = (values: Partial<Invitation>): Invitation => ({
   id: 'id',
@@ -465,16 +361,6 @@ export const buildMockInvitations = (itemId: string) => [
     },
     email: 'b',
   }),
-];
-
-export const ITEM_FLAGS: ItemFlag[] = [
-  {
-    id: 'item-flag-1',
-    type: FlagType.FalseInformation,
-    item: FolderItemFactory(),
-    creator: MemberFactory(),
-    createdAt: '2023-09-06T11:50:32.894Z',
-  },
 ];
 
 export const ITEM_PUBLISHED_DATA: ItemPublished = {
