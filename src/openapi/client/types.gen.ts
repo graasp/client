@@ -320,6 +320,11 @@ export type ChatMentionWithMessageAndAccount = MinimalChatMention & {
 };
 
 /**
+ * Item Login Schema Status
+ */
+export type ItemLoginSchemaStatus = 'active' | 'disabled' | 'freeze';
+
+/**
  * Item Login Schema
  * Instance allowing to login without a member on related item and its descendants. The required credentials are defined given the type.
  */
@@ -330,13 +335,18 @@ export type ItemLoginSchema = {
      */
     type: 'username' | 'username+password' | 'anonymous' | 'anonymous+password';
     /**
-     * Item login status, which can be enabled, frozen, or disabled. Item login cannot be deleted, an item login can be disabled instead to prevent deleting associated guest accounts.
+     * Item Login Schema Status
      */
     status: 'active' | 'disabled' | 'freeze';
     item?: Item;
     createdAt: string;
     updatedAt: string;
 };
+
+/**
+ * Permission Level
+ */
+export type PermissionLevel = 'read' | 'write' | 'admin';
 
 /**
  * Item Membership
@@ -346,7 +356,7 @@ export type ItemMembership = {
     id: string;
     account: AugmentedAccount;
     item: Item;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     creator?: NullableAugmentedAccount;
     createdAt: string;
     updatedAt: string;
@@ -360,7 +370,7 @@ export type RawItemMembership = {
     id: string;
     accountId: string;
     itemPath: string;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     creator?: string;
     createdAt: string;
     updatedAt: string;
@@ -2116,7 +2126,7 @@ export type GetItemLoginSchemaTypeError = GetItemLoginSchemaTypeErrors[keyof Get
 
 export type GetItemLoginSchemaTypeResponses = {
     /**
-     * Default Response
+     * Defines which credentials are necessary to login.
      */
     200: 'username' | 'username+password' | 'anonymous' | 'anonymous+password';
 };
@@ -2194,7 +2204,7 @@ export type UpdateItemLoginSchemaData = {
      */
     body?: {
         /**
-         * Item login status, which can be enabled, frozen, or disabled. Item login cannot be deleted, an item login can be disabled instead to prevent deleting associated guest accounts.
+         * Item Login Schema Status
          */
         status?: 'active' | 'disabled' | 'freeze';
         /**
@@ -2687,7 +2697,7 @@ export type GetItemMembershipsForItemResponse = GetItemMembershipsForItemRespons
 export type CreateItemMembershipData = {
     body: {
         accountId: string;
-        permission: 'read' | 'write' | 'admin';
+        permission: PermissionLevel;
     };
     path: {
         itemId: string;
@@ -2746,7 +2756,7 @@ export type DeleteItemMembershipResponse = DeleteItemMembershipResponses[keyof D
 
 export type UpdateItemMembershipData = {
     body: {
-        permission: 'read' | 'write' | 'admin';
+        permission: PermissionLevel;
     };
     path: {
         id: string;
@@ -6063,6 +6073,22 @@ export type CreatePageResponses = {
 
 export type CreatePageResponse = CreatePageResponses[keyof CreatePageResponses];
 
+export type PagesWebsocketsData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: never;
+    url: '/items/pages/{id}/ws';
+};
+
+export type PagesWebsocketsResponses = {
+    /**
+     * Default Response
+     */
+    200: unknown;
+};
+
 export type DeleteManyItemsData = {
     body?: never;
     path?: never;
@@ -6805,7 +6831,7 @@ export type GetCountForTagsData = {
         search: string;
         category: 'level' | 'discipline' | 'resource-type';
     };
-    url: '/tags/';
+    url: '/tags';
 };
 
 export type GetCountForTagsErrors = {
