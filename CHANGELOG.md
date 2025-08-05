@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.29.0](https://github.com/graasp/client/compare/v2.28.0...v2.29.0) (2025-08-05)
+
+
+### Features
+
+* create page for rich page editor, hidden button in create folder ([#1046](https://github.com/graasp/client/issues/1046)) ([f18783c](https://github.com/graasp/client/commit/f18783cd7b4051c0f19e579174467a324505d29a))
+* setup collaboration with yjs for pages ([#1054](https://github.com/graasp/client/issues/1054)) ([7bac9eb](https://github.com/graasp/client/commit/7bac9eb9b0b65dbed6bc90593868bbe949eabf63))
+
+
+### Bug Fixes
+
+* improve builder folder header section ([#1057](https://github.com/graasp/client/issues/1057)) ([58986f6](https://github.com/graasp/client/commit/58986f63663390325a9422501c26857e258ff034))
+* notify users when the description is too long ([#1051](https://github.com/graasp/client/issues/1051)) ([06b52ac](https://github.com/graasp/client/commit/06b52ac23c95aea293c73d2c6bf7f1a342362e8f))
+* use english mames for builder, player, analytics ([#1064](https://github.com/graasp/client/issues/1064)) ([f6b1008](https://github.com/graasp/client/commit/f6b1008a0cededdf37d8737ff9c89c4eccc5051a))
+
 ## [2.28.0](https://github.com/graasp/client/compare/v2.27.1...v2.28.0) (2025-07-22)
 
 
