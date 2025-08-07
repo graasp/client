@@ -7,7 +7,7 @@ import { Provider } from '@lexical/yjs';
 import { WebsocketProvider } from 'y-websocket';
 import { Doc } from 'yjs';
 
-import { API_HOST } from '@/config/env';
+import { WS_HOST } from '@/config/env';
 
 export const useYjs = () => {
   const [yjsProvider, setYjsProvider] = useState<null | Provider>(null);
@@ -72,9 +72,7 @@ export function createWebsocketProvider(
 ) {
   const doc = getDocFromMap(id, yjsDocMap);
 
-  const wsHost = new URL(API_HOST).host;
-
-  return new WebsocketProvider(`ws://${wsHost}`, `items/pages/${id}/ws`, doc, {
+  return new WebsocketProvider(WS_HOST, `items/pages/${id}/ws`, doc, {
     // connect manually using wsProvider.connect()
     connect: false,
   });

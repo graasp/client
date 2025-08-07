@@ -1,6 +1,9 @@
 export const API_HOST =
   import.meta.env.VITE_GRAASP_API_HOST ?? 'http://localhost:3000';
 
+export const WS_HOST =
+  import.meta.env.VITE_GRAASP_WS_HOST ?? 'ws://localhost:3000';
+
 export const SHOW_NOTIFICATIONS =
   (import.meta.env.VITE_SHOW_NOTIFICATIONS ?? 'true') === 'true';
 
