@@ -58,6 +58,7 @@ jobs:
         env:
           VITE_VERSION: ${{ inputs.version || github.sha }}
           VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
+          VITE_GRAASP_WS_HOST: ${{ vars.VITE_GRAASP_WS_HOST }}
           VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
           VITE_SENTRY_ENV: ${{ vars.VITE_SENTRY_ENV }}
           VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
