@@ -34,7 +34,6 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  initialEditorState?: null;
   currentAccount: AuthenticatedUser | null;
 };
 
