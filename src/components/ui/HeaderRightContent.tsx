@@ -2,6 +2,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
+import { AccountType } from '@graasp/sdk';
+
 import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -20,19 +22,29 @@ export function HeaderRightContent() {
   const { mutate } = mutations.useEditCurrentMember();
 
   const handleLanguageChange = (lang: string) => {
-    mutate({ extra: { lang } });
+    if (isAuthenticated && user.type === AccountType.Individual) {
+      mutate({ extra: { lang } });
+    }
     i18n.changeLanguage(lang);
   };
 
   if (isAuthenticated) {
     return (
       <Stack direction="row" gap={2} alignItems="center">
-        <MentionButton color="white" badgeColor="primary" />
+        {
+          // only display these elements to "full users"
+          user.type === AccountType.Individual && (
+            <>
+              <MentionButton color="white" badgeColor="primary" />
 
-        <LanguageSwitch
-          lang={i18n.languages[0]}
-          onChange={handleLanguageChange}
-        />
+              <LanguageSwitch
+                id="languageSwitch"
+                lang={i18n.languages[0]}
+                onChange={handleLanguageChange}
+              />
+            </>
+          )
+        }
 
         <UserPopupMenu
           avatarButtonId={HEADER_MEMBER_MENU_BUTTON_ID}

@@ -14,7 +14,7 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
-import { AuthenticatedMember } from '@/AuthContext';
+import { type AuthenticatedUser } from '@/AuthContext';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
 import { StatusToolbar } from './StatusToolbar';
@@ -34,7 +34,7 @@ function onError(error: Error) {
 type Props = {
   item: PageItemType;
   initialEditorState?: null;
-  currentAccount: AuthenticatedMember | null;
+  currentAccount: AuthenticatedUser | null;
 };
 
 export function Editor({
