@@ -65,7 +65,6 @@ import {
 
 const {
   buildGetCurrentMemberRoute,
-  buildPatchCurrentMemberRoute,
   buildUploadAvatarRoute,
   buildPatchMemberPasswordRoute,
   buildGetOwnPublicProfileRoute,
@@ -218,7 +217,7 @@ export const mockEditCurrentMember = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      pathname: `/${buildPatchCurrentMemberRoute()}`,
+      pathname: `/members/current`,
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
@@ -1792,7 +1791,7 @@ export const mockEditMember = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(`${API_HOST}/${buildPatchCurrentMemberRoute()}`),
+      url: new RegExp(`${API_HOST}/members/current`),
     },
     ({ reply }) => {
       if (shouldThrowError) {

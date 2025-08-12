@@ -1,7 +1,7 @@
 import { ChangeEvent, type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, TextField } from '@mui/material';
+import { Alert, Stack, TextField } from '@mui/material';
 
 import {
   CompleteMember,
@@ -9,6 +9,8 @@ import {
   MIN_USERNAME_LENGTH,
   MemberConstants,
 } from '@graasp/sdk';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
@@ -22,6 +24,8 @@ import {
   PERSONAL_INFO_INPUT_USERNAME_ID,
   PERSONAL_INFO_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 
 const USER_NAME_REGEX = MemberConstants.USERNAME_FORMAT_REGEX;
 
@@ -58,8 +62,17 @@ export function EditPersonalInformation({
 }: EditMemberPersonalInformationProp): JSX.Element {
   const { t } = useTranslation(NS.Account);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { mutate: editMember } = mutations.useEditCurrentMember();
-  const { mutate: updateEmail } = mutations.useUpdateMemberEmail();
+  const { t: translateMessage } = useTranslation(NS.Messages);
+  const queryClient = useQueryClient();
+  const { mutateAsync: editMember, error: editMemberError } = useMutation({
+    ...updateCurrentAccountMutation(),
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: memberKeys.current().content,
+      });
+    },
+  });
+  const { mutateAsync: updateEmail } = mutations.useUpdateMemberEmail();
   const [newUserName, setNewUserName] = useState(member.name);
   const [newEmail, setNewEmail] = useState(member.email);
   const [error, setError] = useState<string | null>();
@@ -89,22 +102,25 @@ export function EditPersonalInformation({
   };
 
   // save changes
-  const handleSave = () => {
+  const handleSave = async () => {
     const errorMessage = verifyUsername(newUserName ?? '');
-
-    if (!errorMessage) {
-      const name = newUserName.trim();
-      if (member && name !== member.name) {
-        editMember({
-          name,
-        });
+    try {
+      if (!errorMessage) {
+        const name = newUserName.trim();
+        if (member && name !== member.name) {
+          await editMember({
+            body: { name },
+          });
+        }
       }
-    }
-    if (newEmail !== member?.email) {
-      updateEmail(newEmail);
-    }
+      if (newEmail !== member?.email) {
+        await updateEmail(newEmail);
+      }
 
-    onClose();
+      onClose();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const onCancel = () => {
@@ -148,6 +164,9 @@ export function EditPersonalInformation({
           onChange={handleEmailChange}
         />
       </FormProperty>
+      {(error || editMemberError) && (
+        <Alert severity="error">{translateMessage('EDIT_MEMBER_ERROR')}</Alert>
+      )}
       <Stack direction="row" gap={1} justifyContent="flex-end">
         <Button
           onClick={onCancel}

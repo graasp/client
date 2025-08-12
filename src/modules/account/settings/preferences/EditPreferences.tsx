@@ -1,16 +1,17 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack, Switch, Tooltip } from '@mui/material';
+import { Alert, Stack, Switch, Tooltip } from '@mui/material';
 
 import { CompleteMember } from '@graasp/sdk';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
 import { DEFAULT_EMAIL_FREQUENCY, DEFAULT_LANG, NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
   PREFERENCES_CANCEL_BUTTON_ID,
@@ -19,6 +20,8 @@ import {
   PREFERENCES_LANGUAGE_SWITCH_ID,
   PREFERENCES_SAVE_BUTTON_ID,
 } from '@/config/selectors';
+import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 
 import { EmailPreferenceSwitch } from '../EmailPreferenceSwitch';
 
@@ -32,7 +35,16 @@ export function EditPreferences({
 }: EditPreferencesProp): JSX.Element {
   const { i18n, t } = useTranslation(NS.Account);
   const { t: translateCommon } = useTranslation(NS.Common);
-  const { mutateAsync: editMember } = mutations.useEditCurrentMember();
+  const { t: translateMessage } = useTranslation(NS.Messages);
+  const queryClient = useQueryClient();
+  const { mutateAsync: editMember, error } = useMutation({
+    ...updateCurrentAccountMutation(),
+    onSettled: async () => {
+      await queryClient.invalidateQueries({
+        queryKey: memberKeys.current().content,
+      });
+    },
+  });
 
   const memberLang = member?.extra?.lang ?? DEFAULT_LANG;
   const memberEmailFreq = member?.extra?.emailFreq ?? DEFAULT_EMAIL_FREQUENCY;
@@ -48,17 +60,23 @@ export function EditPreferences({
     setSwitchedSaveActions(checked);
   };
   const saveSettings = async () => {
-    await editMember({
-      extra: {
-        lang: selectedLang,
-        emailFreq: selectedEmailFreq,
-      },
-      enableSaveActions: switchedSaveActions,
-    });
-    if (selectedLang !== memberLang) {
-      i18n.changeLanguage(selectedLang);
+    try {
+      await editMember({
+        body: {
+          extra: {
+            lang: selectedLang,
+            emailFreq: selectedEmailFreq,
+          },
+          enableSaveActions: switchedSaveActions,
+        },
+      });
+      if (selectedLang !== memberLang) {
+        i18n.changeLanguage(selectedLang);
+      }
+      onClose();
+    } catch (e) {
+      console.error(e);
     }
-    onClose();
   };
 
   const hasChanges =
@@ -95,6 +113,9 @@ export function EditPreferences({
           />
         </Tooltip>
       </FormProperty>
+      {error && (
+        <Alert severity="error">{translateMessage('EDIT_MEMBER_ERROR')}</Alert>
+      )}
       <Stack direction="row" gap={2} justifyContent="flex-end">
         <Button
           onClick={onClose}
