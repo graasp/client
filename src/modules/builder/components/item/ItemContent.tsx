@@ -13,6 +13,7 @@ import {
   ItemType,
   LinkItemType,
   PackedItem,
+  PageItemType,
   PermissionLevel,
   PermissionLevelOptions,
   ShortcutItemType,
@@ -24,6 +25,7 @@ import {
 
 import { AuthenticatedMember, useAuth } from '@/AuthContext';
 import { Editor } from '@/components/page/Editor';
+import { PageReader } from '@/components/page/PageReader';
 import { DEFAULT_LANG, NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
 import { hooks } from '@/config/queryClient';
@@ -40,6 +42,8 @@ import EtherpadItem from '@/ui/items/EtherpadItem';
 import FileItem from '@/ui/items/FileItem';
 import H5PItem from '@/ui/items/H5PItem';
 import LinkItem from '@/ui/items/LinkItem';
+
+import { useOutletContext } from '~builder/contexts/OutletContext';
 
 import ErrorAlert from '../common/ErrorAlert';
 import FolderContent from './FolderContent';
@@ -225,6 +229,25 @@ const EtherpadContent = ({ item }: { item: EtherpadItemType }): JSX.Element => {
 };
 
 /**
+ * Helper component to render typed Page items
+ */
+const PageContent = ({
+  item,
+  currentAccount,
+}: {
+  item: PageItemType;
+  currentAccount: AuthenticatedMember | null;
+}): JSX.Element => {
+  const { canWrite } = useOutletContext();
+
+  if (currentAccount && canWrite) {
+    return <Editor item={item} currentAccount={currentAccount} />;
+  }
+
+  return <PageReader item={item} />;
+};
+
+/**
  * Main item renderer component
  */
 export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
@@ -255,7 +278,7 @@ export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
       return <ShortcutContent item={item} />;
     }
     case ItemType.PAGE: {
-      return <Editor item={item} currentAccount={member} />;
+      return <PageContent item={item} currentAccount={member} />;
     }
 
     default:

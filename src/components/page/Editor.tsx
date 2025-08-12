@@ -34,7 +34,7 @@ function onError(error: Error) {
 type Props = {
   item: PageItemType;
   initialEditorState?: null;
-  currentAccount: AuthenticatedMember | null;
+  currentAccount: AuthenticatedMember;
 };
 
 export function Editor({
@@ -42,7 +42,9 @@ export function Editor({
   initialEditorState = null,
   currentAccount,
 }: Readonly<Props>) {
-  const { providerFactory, activeUsers, connected } = useYjs();
+  const { providerFactory, activeUsers, connected } = useYjs({
+    edit: true,
+  });
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const [floatingAnchorElem, setFloatingAnchorElem] =
@@ -60,31 +62,27 @@ export function Editor({
     onError,
     nodes: [ParagraphNode, TextNode, LinkNode],
     editorState: initialEditorState,
-    editable: Boolean(currentAccount),
+    editable: true,
   };
 
   return (
     <div ref={containerRef}>
-      {currentAccount && (
-        <StatusToolbar users={activeUsers} isConnected={connected} />
-      )}
+      <StatusToolbar users={activeUsers} isConnected={connected} />
       <LexicalComposer initialConfig={initialConfig}>
         <div style={{ width: '100%', height: '100vh', background: 'white' }}>
           <ToolbarPlugin />
           <div className="editor-inner">
             {/* With CollaborationPlugin - we MUST NOT use @lexical/react/LexicalHistoryPlugin */}
-            {currentAccount && (
-              <CollaborationPlugin
-                id={item.id}
-                providerFactory={providerFactory}
-                // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
-                // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
-                shouldBootstrap={false}
-                username={currentAccount.name}
-                cursorColor={stringToColor(currentAccount.id)}
-                cursorsContainerRef={containerRef}
-              />
-            )}
+            <CollaborationPlugin
+              id={item.id}
+              providerFactory={providerFactory}
+              // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
+              // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
+              shouldBootstrap={false}
+              username={currentAccount.name}
+              cursorColor={stringToColor(currentAccount.id)}
+              cursorsContainerRef={containerRef}
+            />
             <RichTextPlugin
               contentEditable={
                 // necessary for dnd, or at least for allowing updates
