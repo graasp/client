@@ -18,6 +18,7 @@ import { HomeIcon } from 'lucide-react';
 import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
+import { EnrollContent } from '@/components/EnrollContent';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
@@ -46,7 +47,6 @@ import ModalProviders from '~builder/components/context/ModalProviders';
 import { OutletContext } from '~builder/contexts/OutletContext';
 import { ItemLayoutMode } from '~builder/enums';
 import ItemNavigation from '~player/ItemNavigation';
-import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
 import { LoadingTree } from '~player/tree/LoadingTree';
 import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
