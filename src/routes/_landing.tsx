@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { Stack, Typography } from '@mui/material';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
@@ -9,7 +11,8 @@ import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { LANDING_PAGE_PATH } from '@/config/paths';
-import { mutations } from '@/config/queryClient';
+import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 import { OnChangeLangProp } from '@/types';
 import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 import { useButtonColor } from '@/ui/buttons/hooks';
@@ -26,14 +29,30 @@ export const Route = createFileRoute('/_landing')({
 
 function RouteComponent() {
   const { i18n, t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const { isAuthenticated } = useAuth();
   const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
-  const { mutate } = mutations.useEditCurrentMember();
+
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    ...updateCurrentAccountMutation(),
+    onError: (error: Error) => {
+      console.error(error);
+      toast.error(translateMessage('EDIT_MEMBER_ERROR'));
+    },
+    // Always refetch after error or success:
+    onSettled: async () => {
+      // invalidate all queries
+      await queryClient.invalidateQueries({
+        queryKey: memberKeys.current().content,
+      });
+    },
+  });
   const { isEnabled: isPreviewEnabled } = usePreviewMode();
   const onChangeLang: OnChangeLangProp = (lang: string) => {
     if (isAuthenticated) {
-      mutate({ extra: { lang } });
+      mutate({ body: { extra: { lang } } });
     }
     i18n.changeLanguage(lang);
   };

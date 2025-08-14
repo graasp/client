@@ -60,6 +60,7 @@
   "PASSWORD_RESET_REQUEST": "The password reset request has been sent successfully. Please check your inbox.",
   "PASSWORD_RESET": "The password has been updated successfully. You can now log in with your new password.",
   "EDIT_MEMBER": "The user was updated successfully",
+  "EDIT_MEMBER_ERROR": "An error occurred while editing the profile.",
   "COPY_MEMBER_ID_TO_CLIPBOARD": "The user ID is successfully copied",
   "EDIT_ITEM_MEMBERSHIP": "The item membership was successfully edited",
   "DELETE_ITEM_MEMBERSHIP": "The item membership was successfully deleted",

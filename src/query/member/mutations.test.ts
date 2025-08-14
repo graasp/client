@@ -1,23 +1,15 @@
-import {
-  CompleteMember,
-  HttpMethod,
-  MemberFactory,
-  ThumbnailSize,
-} from '@graasp/sdk';
+import { HttpMethod, MemberFactory, ThumbnailSize } from '@graasp/sdk';
 
 import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { axiosClient as axios } from '@/query/api/axios.js';
-
 import { memberKeys } from '../keys.js';
 import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
 import {
   buildDeleteCurrentMemberRoute,
-  buildPatchCurrentMemberRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
 import { uploadAvatarRoutine } from './routines.js';
@@ -95,142 +87,6 @@ describe('Member Mutations', () => {
       expect(
         queryClient.getQueryData(memberKeys.current().content),
       ).toMatchObject(member);
-    });
-  });
-
-  describe('useEditCurrentMember', () => {
-    const member = MemberFactory();
-    const route = `/${buildPatchCurrentMemberRoute()}`;
-    const newMember = { name: 'newname' };
-    const mutation = mutations.useEditCurrentMember;
-
-    it(`Successfully edit member id = ${member.id}`, async () => {
-      const response = { ...member, name: newMember.name };
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, member);
-      const endpoints = [
-        {
-          response,
-          method: HttpMethod.Patch,
-          route,
-        },
-      ];
-      const patchSpy = vi.spyOn(axios, 'patch');
-      const mockedMutation = await mockMutation({
-        mutation,
-        wrapper,
-        endpoints,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate(newMember);
-        await waitForMutation();
-      });
-
-      expect(patchSpy).toHaveBeenCalledWith(expect.anything(), newMember);
-
-      // verify cache keys
-      const newData = queryClient.getQueryState(memberKeys.current().content);
-      expect(newData?.isInvalidated).toBeTruthy();
-    });
-
-    it(`Successfully edit member's username and ensures trimming`, async () => {
-      const newUsernameWithTrailingSpace = 'newname  ';
-      const trimmedUsername = newUsernameWithTrailingSpace.trim();
-      const response = { ...member, name: trimmedUsername };
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, member);
-      const endpoints = [
-        {
-          response,
-          method: HttpMethod.Patch,
-          route,
-        },
-      ];
-      const patchSpy = vi.spyOn(axios, 'patch');
-      const mockedMutation = await mockMutation({
-        mutation,
-        wrapper,
-        endpoints,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate({
-          name: newUsernameWithTrailingSpace,
-        });
-        await waitForMutation();
-      });
-      const payload = patchSpy.mock.calls[0][1] as { name?: string };
-
-      // Assert that the name sent to the API is trimmed
-      expect(payload.name).toEqual(trimmedUsername);
-
-      // verify cache keys
-      const newData = queryClient.getQueryState(memberKeys.current().content);
-      expect(newData?.isInvalidated).toBeTruthy();
-    });
-
-    it(`Successfully enable saveActions`, async () => {
-      const enableSaveActions = true;
-      const updateMember = { enableSaveActions };
-      const response = { ...member, ...updateMember };
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, member);
-      const endpoints = [
-        {
-          response,
-          method: HttpMethod.Patch,
-          route,
-        },
-      ];
-      const patchSpy = vi.spyOn(axios, 'patch');
-      const mockedMutation = await mockMutation({
-        mutation,
-        wrapper,
-        endpoints,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate(updateMember);
-        await waitForMutation();
-      });
-
-      expect(patchSpy).toHaveBeenCalledWith(expect.anything(), updateMember);
-
-      // verify cache keys
-      const newData = queryClient.getQueryData<CompleteMember>(
-        memberKeys.current().content,
-      );
-      expect(newData).toMatchObject(response);
-    });
-
-    it(`Unauthorized`, async () => {
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, member);
-      const endpoints = [
-        {
-          response: UNAUTHORIZED_RESPONSE,
-          statusCode: StatusCodes.UNAUTHORIZED,
-          method: HttpMethod.Patch,
-          route,
-        },
-      ];
-      const mockedMutation = await mockMutation({
-        mutation,
-        wrapper,
-        endpoints,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate(newMember);
-        await waitForMutation();
-      });
-
-      // verify cache keys
-      const oldData = queryClient.getQueryData<CompleteMember>(
-        memberKeys.current().content,
-      );
-      expect(oldData).toMatchObject(member);
     });
   });
 

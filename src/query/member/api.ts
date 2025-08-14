@@ -1,5 +1,4 @@
 import {
-  CompleteMember,
   CurrentAccount,
   Member,
   MemberStorage,
@@ -27,7 +26,6 @@ import {
   buildGetMemberRoute,
   buildGetMemberStorageFilesRoute,
   buildGetMemberStorageRoute,
-  buildPatchCurrentMemberRoute,
   buildPostMemberEmailUpdateRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
@@ -67,38 +65,6 @@ export const getMemberStorageFiles = async (pagination: Partial<Pagination>) =>
       Paginated<MemberStorageItem>
     >(`${API_HOST}/${buildGetMemberStorageFilesRoute(pagination)}`)
     .then(({ data }) => data);
-
-export const editCurrentMember = async ({
-  name,
-  extra,
-  enableSaveActions,
-}: {
-  extra?: CompleteMember['extra'];
-  name?: string;
-  enableSaveActions?: boolean;
-}) => {
-  const url = new URL(buildPatchCurrentMemberRoute(), API_HOST);
-  const body: Partial<
-    Pick<CompleteMember, 'extra' | 'name' | 'enableSaveActions'>
-  > = {};
-  if (name && name.trim() !== '') {
-    // trim name
-    body.name = name.trim();
-  }
-  if (extra && Object.keys(extra).length) {
-    body.extra = extra;
-  }
-  if (enableSaveActions !== undefined) {
-    body.enableSaveActions = enableSaveActions;
-  }
-  if (Object.keys(body).length) {
-    return axios
-      .patch<CompleteMember>(url.toString(), body)
-      .then(({ data }) => data);
-  } else {
-    return null;
-  }
-};
 
 export const deleteCurrentMember = async () =>
   verifyAuthentication(() =>
