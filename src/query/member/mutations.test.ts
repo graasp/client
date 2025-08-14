@@ -6,12 +6,9 @@ import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { memberKeys } from '../keys.js';
-import { OK_RESPONSE, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
+import { UNAUTHORIZED_RESPONSE } from '../test/constants.js';
 import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
-import {
-  buildDeleteCurrentMemberRoute,
-  buildUploadAvatarRoute,
-} from './routes.js';
+import { buildUploadAvatarRoute } from './routes.js';
 import { uploadAvatarRoutine } from './routines.js';
 
 const mockedNotifier = vi.fn();
@@ -23,71 +20,6 @@ describe('Member Mutations', () => {
     await queryClient.cancelQueries();
     queryClient.clear();
     nock.cleanAll();
-  });
-
-  describe('useDeleteCurrentMember', () => {
-    const mutation = mutations.useDeleteCurrentMember;
-
-    it(`Successfully delete member`, async () => {
-      const endpoints = [
-        {
-          route: `/${buildDeleteCurrentMemberRoute()}`,
-          method: HttpMethod.Delete,
-          response: OK_RESPONSE,
-        },
-        {
-          route: '/logout',
-          response: OK_RESPONSE,
-        },
-      ];
-      // set random data in cache
-      queryClient.setQueryData(memberKeys.current().content, MemberFactory());
-
-      const mockedMutation = await mockMutation({
-        endpoints,
-        mutation,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate();
-        await waitForMutation(2000);
-      });
-
-      // verify cache keys
-      expect(queryClient.getQueryData(memberKeys.current().content)).toEqual(
-        undefined,
-      );
-    });
-
-    it(`Unauthorized`, async () => {
-      // set random data in cache
-      const member = MemberFactory();
-      queryClient.setQueryData(memberKeys.current().content, member);
-      const endpoints = [
-        {
-          method: HttpMethod.Delete,
-          response: UNAUTHORIZED_RESPONSE,
-          statusCode: StatusCodes.UNAUTHORIZED,
-          route: `/${buildDeleteCurrentMemberRoute()}`,
-        },
-      ];
-      const mockedMutation = await mockMutation({
-        mutation,
-        endpoints,
-        wrapper,
-      });
-
-      await act(async () => {
-        mockedMutation.mutate();
-        await waitForMutation();
-      });
-
-      // verify cache keys
-      expect(
-        queryClient.getQueryData(memberKeys.current().content),
-      ).toMatchObject(member);
-    });
   });
 
   describe('useUploadAvatar', () => {

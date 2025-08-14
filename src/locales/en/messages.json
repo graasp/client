@@ -73,6 +73,7 @@
   "IMPORT_ZIP": "The ZIP archive was successfully imported",
   "IMPORT_H5P": "The H5P package was successfully imported",
   "DELETE_MEMBER": "The account was successfully deleted",
+  "DELETE_MEMBER_ERROR": "An error occurred while deleting the account.",
   "UPDATE_PASSWORD": "The password was updated successfully",
   "UPDATE_EMAIL": "A validation request has been sent to the new email address",
   "VALIDATE_EMAIL": "The new email address has been validated. You can now use it to log in and receive notifications.",

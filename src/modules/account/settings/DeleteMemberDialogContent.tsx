@@ -2,6 +2,7 @@ import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
+  Alert,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -10,15 +11,18 @@ import {
   TextField,
 } from '@mui/material';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   DELETE_MEMBER_DIALOG_CONFIRMATION_BUTTON_ID,
   DELETE_MEMBER_DIALOG_CONFIRMATION_FIELD_ID,
   DELETE_MEMBER_DIALOG_DESCRIPTION_ID,
   DELETE_MEMBER_DIALOG_TITLE_ID,
 } from '@/config/selectors';
+import { deleteCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { memberKeys } from '@/query/keys';
 
 type Props = {
   readonly closeModal: () => void;
@@ -26,9 +30,22 @@ type Props = {
 
 export function DeleteMemberDialogContent({ closeModal }: Props): JSX.Element {
   const { t: translateAccount } = useTranslation(NS.Account);
+  const { t: translateMessage } = useTranslation(NS.Messages);
   const [confirmationDeleteValue, setConfirmationDeleteValue] = useState('');
+  const queryClient = useQueryClient();
+  const { mutate: deleteMember, error } = useMutation({
+    ...deleteCurrentAccountMutation(),
+    onSuccess: () => {
+      queryClient.resetQueries();
 
-  const { mutateAsync: deleteMember } = mutations.useDeleteCurrentMember();
+      // Update when the server confirmed the logout, instead optimistically updating the member
+      // This prevents logout loop (redirect to logout -> still cookie -> logs back in)
+      queryClient.setQueryData(memberKeys.current().content, undefined);
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+  });
 
   const confirmationDeleteTextToCompare = translateAccount(
     'PROFILE_DELETE_CONFIRMATION_VALUE',
@@ -67,6 +84,11 @@ export function DeleteMemberDialogContent({ closeModal }: Props): JSX.Element {
           // eslint-disable-next-line jsx-a11y/no-autofocus
           autoFocus
         />
+        {error && (
+          <Alert severity="error" sx={{ mt: 1 }}>
+            {translateMessage('DELETE_MEMBER_ERROR')}
+          </Alert>
+        )}
       </DialogContent>
 
       <DialogActions>
@@ -79,7 +101,7 @@ export function DeleteMemberDialogContent({ closeModal }: Props): JSX.Element {
         <Button
           id={DELETE_MEMBER_DIALOG_CONFIRMATION_BUTTON_ID}
           onClick={() => {
-            deleteMember();
+            deleteMember({});
           }}
           color="error"
           disabled={isConfirmationDisabled}

@@ -19,7 +19,6 @@ import {
 
 import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants.js';
 import {
-  buildDeleteCurrentMemberRoute,
   buildDownloadAvatarRoute,
   buildExportMemberDataRoute,
   buildGetCurrentMemberRoute,
@@ -65,13 +64,6 @@ export const getMemberStorageFiles = async (pagination: Partial<Pagination>) =>
       Paginated<MemberStorageItem>
     >(`${API_HOST}/${buildGetMemberStorageFilesRoute(pagination)}`)
     .then(({ data }) => data);
-
-export const deleteCurrentMember = async () =>
-  verifyAuthentication(() =>
-    axios
-      .delete<void>(`${API_HOST}/${buildDeleteCurrentMemberRoute()}`)
-      .then(({ data }) => data),
-  );
 
 export const uploadAvatar = async (args: {
   file: Blob;
