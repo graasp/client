@@ -5,7 +5,6 @@ import { DEFAULT_THUMBNAIL_SIZE } from '../config/constants';
 export const MEMBERS_ROUTE = `members`;
 
 export const buildGetCurrentMemberRoute = () => `${MEMBERS_ROUTE}/current`;
-export const buildDeleteCurrentMemberRoute = () => `${MEMBERS_ROUTE}/current`;
 export const buildPostMemberEmailUpdateRoute = () =>
   `${MEMBERS_ROUTE}/current/email/change`;
 

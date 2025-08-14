@@ -6,40 +6,10 @@ import { AxiosProgressEvent } from 'axios';
 import { memberKeys } from '../keys.js';
 import { QueryClientConfig } from '../types.js';
 import * as Api from './api.js';
-import {
-  deleteCurrentMemberRoutine,
-  updateEmailRoutine,
-  uploadAvatarRoutine,
-} from './routines.js';
+import { updateEmailRoutine, uploadAvatarRoutine } from './routines.js';
 
 export default (queryConfig: QueryClientConfig) => {
   const { notifier } = queryConfig;
-
-  const useDeleteCurrentMember = () => {
-    const queryClient = useQueryClient();
-    return useMutation({
-      mutationFn: () => Api.deleteCurrentMember(),
-      onSuccess: () => {
-        notifier?.({
-          type: deleteCurrentMemberRoutine.SUCCESS,
-          payload: { message: 'DELETE_MEMBER' },
-        });
-
-        queryClient.resetQueries();
-
-        // Update when the server confirmed the logout, instead optimistically updating the member
-        // This prevents logout loop (redirect to logout -> still cookie -> logs back in)
-        queryClient.setQueryData(memberKeys.current().content, undefined);
-      },
-      // If the mutation fails, use the context returned from onMutate to roll back
-      onError: (error: Error, _args, _context) => {
-        notifier?.({
-          type: deleteCurrentMemberRoutine.FAILURE,
-          payload: { error },
-        });
-      },
-    });
-  };
 
   /**
    * Uploads the member profile picture
@@ -108,7 +78,6 @@ export default (queryConfig: QueryClientConfig) => {
     });
 
   return {
-    useDeleteCurrentMember,
     useUploadAvatar,
     useUpdateMemberEmail,
     useValidateEmailUpdate,

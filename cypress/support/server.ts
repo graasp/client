@@ -72,7 +72,6 @@ const {
   buildPostMemberEmailUpdateRoute,
   buildGetMemberStorageRoute,
   buildExportMemberDataRoute,
-  buildDeleteCurrentMemberRoute,
   buildGetItemGeolocationRoute,
   buildGetItemChatRoute,
   buildGetItemRoute,
@@ -705,7 +704,7 @@ export const mockDeleteCurrentMember = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      pathname: `/${buildDeleteCurrentMemberRoute()}`,
+      pathname: `/members/current`,
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('deleteCurrentMember');
