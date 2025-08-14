@@ -12,6 +12,7 @@ import home from '../locales/en/home.json';
 import landing from '../locales/en/landing.json';
 import map from '../locales/en/map.json';
 import messages from '../locales/en/messages.json';
+import pageEditor from '../locales/en/pageEditor.json';
 import player from '../locales/en/player.json';
 
 declare module 'i18next' {
@@ -29,6 +30,7 @@ declare module 'i18next' {
       map: typeof map;
       messages: typeof messages;
       player: typeof player;
+      pageEditor: typeof pageEditor;
     };
   }
 }
