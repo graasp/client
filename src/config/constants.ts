@@ -34,6 +34,7 @@ export const NS = {
   Map: 'map',
   Messages: 'messages',
   Player: 'player',
+  PageEditor: 'pageEditor',
 } as const;
 
 export const DEFAULT_LINK_SHOW_BUTTON = true;
