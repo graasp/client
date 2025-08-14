@@ -67,5 +67,10 @@
     "LOG_IN": "Se connecter",
     "LOG_OUT": "Se déconnecter",
     "NEED_HELP": "Besoin d'aide ?"
+  },
+  "ENROLL": {
+    "TITLE": "Inscrivez-vous à cette capsule",
+    "BUTTON": "S'inscrire",
+    "DESCRIPTION": "Cliquez sur le bouton ci-dessous pour vous inscrire et accéder à cette capsule."
   }
 }
