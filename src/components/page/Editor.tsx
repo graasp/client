@@ -33,15 +33,10 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  initialEditorState?: null;
   currentAccount: AuthenticatedMember;
 };
 
-export function Editor({
-  item,
-  initialEditorState = null,
-  currentAccount,
-}: Readonly<Props>) {
+export function Editor({ item, currentAccount }: Readonly<Props>) {
   const { providerFactory, activeUsers, connected } = useYjs({
     edit: true,
   });
@@ -61,7 +56,6 @@ export function Editor({
     theme,
     onError,
     nodes: [ParagraphNode, TextNode, LinkNode],
-    editorState: initialEditorState,
     editable: true,
   };
 

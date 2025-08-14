@@ -24,13 +24,9 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  initialEditorState?: null;
 };
 
-export function PageReader({
-  item,
-  initialEditorState = null,
-}: Readonly<Props>) {
+export function PageReader({ item }: Readonly<Props>) {
   const { providerFactory } = useYjs({ edit: false });
   const containerRef = useRef<HTMLDivElement | null>(null);
 
@@ -39,7 +35,6 @@ export function PageReader({
     theme,
     onError,
     nodes: [ParagraphNode, TextNode, LinkNode],
-    editorState: initialEditorState,
     editable: false,
   };
 
