@@ -9,7 +9,7 @@ import { Doc } from 'yjs';
 
 import { WS_HOST } from '@/config/env';
 
-export const useYjs = () => {
+export const useYjs = ({ edit }: { edit: boolean }) => {
   const [yjsProvider, setYjsProvider] = useState<null | Provider>(null);
   const [connected, setConnected] = useState(false);
   const [activeUsers, setActiveUsers] = useState<
@@ -17,33 +17,38 @@ export const useYjs = () => {
   >([]);
 
   const handleAwarenessUpdate = useCallback(() => {
-    const awareness = yjsProvider!.awareness!;
-    setActiveUsers(
-      Array.from(awareness.getStates().entries()).map(
-        ([userId, { color, name }]) => ({
-          color,
-          name,
-          userId,
-        }),
-      ),
-    );
-  }, [yjsProvider]);
+    if (edit) {
+      const awareness = yjsProvider!.awareness!;
+      setActiveUsers(
+        Array.from(awareness.getStates().entries()).map(
+          ([userId, { color, name }]) => ({
+            color,
+            name,
+            userId,
+          }),
+        ),
+      );
+    }
+  }, [edit, yjsProvider]);
 
   useEffect(() => {
     if (yjsProvider == null) {
       return;
     }
 
-    yjsProvider.awareness.on('update', handleAwarenessUpdate);
+    if (edit) {
+      yjsProvider.awareness.on('update', handleAwarenessUpdate);
 
-    return () => yjsProvider.awareness.off('update', handleAwarenessUpdate);
-  }, [yjsProvider, handleAwarenessUpdate]);
+      return () => yjsProvider.awareness.off('update', handleAwarenessUpdate);
+    }
+  }, [yjsProvider, handleAwarenessUpdate, edit]);
 
   const providerFactory = useCallback(
     (id: string, yjsDocMap: Map<string, Doc>) => {
       const provider = createWebsocketProvider(
         id,
         yjsDocMap,
+        edit,
       ) as unknown as Provider;
       provider.on('status', (event) => {
         setConnected(
@@ -60,7 +65,7 @@ export const useYjs = () => {
 
       return provider;
     },
-    [],
+    [edit],
   );
 
   return { providerFactory, activeUsers, connected };
@@ -69,13 +74,19 @@ export const useYjs = () => {
 export function createWebsocketProvider(
   id: string,
   yjsDocMap: Map<string, Doc>,
+  edit: boolean,
 ) {
   const doc = getDocFromMap(id, yjsDocMap);
 
-  return new WebsocketProvider(WS_HOST, `items/pages/${id}/ws`, doc, {
-    // connect manually using wsProvider.connect()
-    connect: false,
-  });
+  return new WebsocketProvider(
+    WS_HOST,
+    edit ? `items/pages/${id}/ws` : `items/pages/${id}/ws/read`,
+    doc,
+    {
+      // connect manually using wsProvider.connect()
+      connect: false,
+    },
+  );
 }
 
 function getDocFromMap(id: string, yjsDocMap: Map<string, Doc>): Doc {
