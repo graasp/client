@@ -67,5 +67,10 @@
     "LOG_IN": "Einloggen",
     "LOG_OUT": "Ausloggen",
     "NEED_HELP": "Brauchen Sie Hilfe?"
+  },
+  "ENROLL": {
+    "TITLE": "Für diesen Artikel anmelden",
+    "BUTTON": "Einschreiben",
+    "DESCRIPTION": "Klicken Sie auf die Schaltfläche unten, um sich anzumelden und auf diesen Artikel zuzugreifen."
   }
 }

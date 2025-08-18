@@ -57,5 +57,10 @@
   "PAGE_TITLES": {
     "MY_GRAASP": "Il mio Graasp",
     "TRASH": "Cestino"
+  },
+  "ENROLL": {
+    "TITLE": "Iscriviti a questo articolo",
+    "BUTTON": "Iscriversi",
+    "DESCRIPTION": "Clicca sul pulsante qui sotto per registrarti e accedere a questo articolo."
   }
 }

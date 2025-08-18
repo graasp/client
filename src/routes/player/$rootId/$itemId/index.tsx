@@ -7,6 +7,7 @@ import { zodValidator } from '@tanstack/zod-adapter';
 import { isAxiosError } from 'axios';
 import { z } from 'zod';
 
+import { EnrollContent } from '@/components/EnrollContent';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   ITEM_LOGIN_PASSWORD_INPUT_ID,
@@ -15,7 +16,6 @@ import {
 } from '@/config/selectors';
 import ItemLoginWrapper from '@/ui/itemLogin/ItemLoginWrapper';
 
-import { EnrollContent } from '~player/access/EnrollContent';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
 import ItemForbiddenScreen from '~player/item/ItemForbiddenScreen';
 import MainScreen from '~player/item/MainScreen';
