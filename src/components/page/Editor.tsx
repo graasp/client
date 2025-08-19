@@ -20,6 +20,7 @@ import { stringToColor } from '@/ui/Avatar/stringToColor';
 import { StatusToolbar } from './StatusToolbar';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
+import { DEFAULT_FONT_SIZE } from './plugins/constants';
 import './styles.css';
 import { theme } from './theme';
 import { useYjs } from './useYjs';
@@ -86,6 +87,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
                       // className="editor-input"
                       // necessary for dnd, for shifting text and show drag icon correctly
                       className={'content-editable-root'}
+                      style={{ fontSize: DEFAULT_FONT_SIZE }}
                       aria-placeholder={'Enter some text...'}
                       placeholder={
                         <div className="editor-placeholder">

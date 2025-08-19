@@ -76,7 +76,7 @@ export default function ToolbarPlugin() {
         $getSelectionStyleValueForProperty(
           selection,
           'font-size',
-          '15px',
+          `${DEFAULT_FONT_SIZE}px`,
         ).slice(0, 2),
       );
     }
