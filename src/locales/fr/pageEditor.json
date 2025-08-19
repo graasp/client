@@ -1,0 +1,10 @@
+{
+  "TOOLBAR": {
+    "TEXT_FORMAT": {
+      "LEFT": "Gauche",
+      "RIGHT": "Droite",
+      "CENTER": "Centré",
+      "JUSTIFY": "Justifié"
+    }
+  }
+}

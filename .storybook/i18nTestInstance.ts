@@ -26,6 +26,7 @@ i18n.use(initReactI18next).init({
     'map',
     'builder',
     'chatbox',
+    'pageEditor',
   ],
   defaultNS: 'translationsNS',
 
