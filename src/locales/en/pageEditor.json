@@ -5,6 +5,10 @@
       "RIGHT": "Right",
       "CENTER": "Center",
       "JUSTIFY": "Justify"
+    },
+    "FONT_SIZE": {
+      "INCREASE": "Increase font size",
+      "DECREASE": "Decrease font size"
     }
   }
 }
