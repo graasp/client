@@ -19,8 +19,8 @@ import { stringToColor } from '@/ui/Avatar/stringToColor';
 
 import { StatusToolbar } from './StatusToolbar';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
+import { DEFAULT_FONT_SIZE } from './plugins/FontSize';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
-import { DEFAULT_FONT_SIZE } from './plugins/constants';
 import './styles.css';
 import { theme } from './theme';
 import { useYjs } from './useYjs';

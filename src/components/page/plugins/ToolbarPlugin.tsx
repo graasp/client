@@ -27,9 +27,9 @@ import {
   UnderlineIcon,
 } from 'lucide-react';
 
-import { FontSize } from './FontSize';
+import { DEFAULT_FONT_SIZE, FontSize } from './FontSize';
 import { TextFormatDropDown } from './TextFormatDropDown';
-import { DEFAULT_FONT_SIZE, ICON_SIZE } from './constants';
+import { ICON_SIZE } from './constants';
 import { getSelectedNode } from './utils';
 
 function Divider() {
