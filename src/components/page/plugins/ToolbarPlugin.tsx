@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { $isLinkNode } from '@lexical/link';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { $getSelectionStyleValueForProperty } from '@lexical/selection';
 import { $findMatchingParent, mergeRegister } from '@lexical/utils';
 import {
   $getSelection,
@@ -26,8 +27,9 @@ import {
   UnderlineIcon,
 } from 'lucide-react';
 
+import { FontSize } from './FontSize';
 import { TextFormatDropDown } from './TextFormatDropDown';
-import { ICON_SIZE } from './constants';
+import { DEFAULT_FONT_SIZE, ICON_SIZE } from './constants';
 import { getSelectedNode } from './utils';
 
 function Divider() {
@@ -42,6 +44,7 @@ export default function ToolbarPlugin() {
   const [isUnderline, setIsUnderline] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [textFormat, setTextFormat] = useState<ElementFormatType>('left');
+  const [fontSize, setFontSize] = useState<string>(`${DEFAULT_FONT_SIZE}`);
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -68,6 +71,14 @@ export default function ToolbarPlugin() {
           ? node.getFormatType()
           : parent?.getFormatType() || 'left';
       setTextFormat(formatType);
+
+      setFontSize(
+        $getSelectionStyleValueForProperty(
+          selection,
+          'font-size',
+          '15px',
+        ).slice(0, 2),
+      );
     }
   }, []);
 
@@ -91,6 +102,8 @@ export default function ToolbarPlugin() {
 
   return (
     <div className="toolbar" ref={toolbarRef}>
+      <FontSize selectionFontSize={fontSize} editor={editor} />
+      <Divider />
       <button
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');

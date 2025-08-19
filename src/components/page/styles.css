@@ -230,3 +230,16 @@ button.toolbar-item.active i {
   display: inline-block;
   pointer-events: none;
 }
+
+/* Remove input number's arrow */
+/* Chrome, Safari, Edge, Opera */
+.font-size-input::-webkit-outer-spin-button,
+.font-size-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.font-size-inputfont-size-input[type='number'] {
+  -moz-appearance: textfield;
+}
