@@ -182,7 +182,6 @@ const ShortLinkDialogContent = ({
         <CancelButton
           onClick={handleClose}
           id={buildShortLinkCancelBtnId(alias)}
-          disabled={isPending}
         />
         <Button
           loading={isPending}
