@@ -67,7 +67,8 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
 
   return (
     <div ref={containerRef}>
-      {!connected && (
+      <StatusToolbar users={activeUsers} isConnected={connected} />
+      {hasTimeout && (
         <Alert
           severity="error"
           action={
@@ -84,54 +85,57 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
           {t('DISCONNECTED_TEXT')}
         </Alert>
       )}
-      <StatusToolbar users={activeUsers} isConnected={connected} />
-      <LexicalComposer initialConfig={initialConfig}>
-        <div style={{ width: '100%', height: '100vh', background: 'white' }}>
-          <ToolbarPlugin />
-          <div className="editor-inner">
-            {/* With CollaborationPlugin - we MUST NOT use @lexical/react/LexicalHistoryPlugin */}
-            {/* disable collaboration on timeout to prevent further connection attempts */}
-            {!hasTimeout && (
-              <CollaborationPlugin
-                id={item.id}
-                providerFactory={providerFactory}
-                // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
-                // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
-                shouldBootstrap={false}
-                username={currentAccount.name}
-                cursorColor={stringToColor(currentAccount.id)}
-                cursorsContainerRef={containerRef}
-              />
-            )}
-            <RichTextPlugin
-              contentEditable={
-                // necessary for dnd, or at least for allowing updates
-                <div className="editor-scroller">
-                  <div className="editor" ref={onRef}>
-                    <ContentEditable
-                      // className="editor-input"
-                      // necessary for dnd, for shifting text and show drag icon correctly
-                      className={'content-editable-root'}
-                      style={{ fontSize: DEFAULT_FONT_SIZE }}
-                      aria-placeholder={'Enter some text...'}
-                      placeholder={
-                        <div className="editor-placeholder">
-                          Enter some text...
-                        </div>
-                      }
-                    />
-                  </div>
-                </div>
-              }
-              ErrorBoundary={LexicalErrorBoundary}
-            />
-            <AutoFocusPlugin />
-            {floatingAnchorElem && (
-              <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
-            )}
-          </div>
-        </div>
-      </LexicalComposer>
+      {/* disable on timeout to prevent further connection attempts */}
+      {!hasTimeout && (
+        <>
+          <LexicalComposer initialConfig={initialConfig}>
+            <div
+              style={{ width: '100%', height: '100vh', background: 'white' }}
+            >
+              <ToolbarPlugin />
+              <div className="editor-inner">
+                {/* With CollaborationPlugin - we MUST NOT use @lexical/react/LexicalHistoryPlugin */}
+
+                <CollaborationPlugin
+                  id={item.id}
+                  providerFactory={providerFactory}
+                  // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
+                  // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
+                  shouldBootstrap={false}
+                  username={currentAccount.name}
+                  cursorColor={stringToColor(currentAccount.id)}
+                  cursorsContainerRef={containerRef}
+                />
+                <RichTextPlugin
+                  contentEditable={
+                    // necessary for dnd, or at least for allowing updates
+                    <div className="editor-scroller">
+                      <div className="editor" ref={onRef}>
+                        <ContentEditable
+                          // className="editor-input"
+                          // necessary for dnd, for shifting text and show drag icon correctly
+                          className={'content-editable-root'}
+                          aria-placeholder={'Enter some text...'}
+                          placeholder={
+                            <div className="editor-placeholder">
+                              Enter some text...
+                            </div>
+                          }
+                        />
+                      </div>
+                    </div>
+                  }
+                  ErrorBoundary={LexicalErrorBoundary}
+                />
+                <AutoFocusPlugin />
+                {floatingAnchorElem && (
+                  <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
+                )}
+              </div>
+            </div>
+          </LexicalComposer>
+        </>
+      )}
     </div>
   );
 }
