@@ -10,6 +10,7 @@ import { Doc } from 'yjs';
 
 import { WS_HOST } from '@/config/env';
 
+/** Compare consecutive disconnection times  */
 const DISCONNECTION_ATTEMPT_RANGE = 5;
 
 export const useYjs = ({ edit }: { edit: boolean }) => {
@@ -64,7 +65,6 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
             ('connected' in event && event.connected === true),
         );
 
-        // reset connection attempt
         if (event.status === 'disconnected') {
           // keep track of 10 last deconnection dates
           setDisconnectedTimestamps((arr) =>
@@ -86,7 +86,10 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
   // eg. connection attemps happens very quickly
   const [hasTimeout, setHasTimeout] = useState(false);
   useEffect(() => {
-    if (disconnectedTimestamps.length > DISCONNECTION_ATTEMPT_RANGE) {
+    if (
+      !hasTimeout &&
+      disconnectedTimestamps.length > DISCONNECTION_ATTEMPT_RANGE
+    ) {
       const lastDisconnections = disconnectedTimestamps.slice(
         -DISCONNECTION_ATTEMPT_RANGE,
       );
@@ -102,7 +105,7 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
         setHasTimeout(true);
       }
     }
-  }, [disconnectedTimestamps]);
+  }, [disconnectedTimestamps, hasTimeout]);
 
   return {
     providerFactory,
