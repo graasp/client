@@ -59,6 +59,7 @@ export const useAliasValidation = ({ alias, isNew, initialAlias }: Props) => {
     hasAliasChanged,
     isLoading,
     isValid,
+    messageKey,
     shortLinkAvailable?.available,
   ]);
 
