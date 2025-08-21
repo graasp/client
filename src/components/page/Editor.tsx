@@ -1,4 +1,7 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Alert, Button } from '@mui/material';
 
 import { PageItemType } from '@graasp/sdk';
 
@@ -15,6 +18,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
 import { AuthenticatedMember } from '@/AuthContext';
+import { NS } from '@/config/constants';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
 import { StatusToolbar } from './StatusToolbar';
@@ -38,7 +42,8 @@ type Props = {
 };
 
 export function Editor({ item, currentAccount }: Readonly<Props>) {
-  const { providerFactory, activeUsers, connected } = useYjs({
+  const { t } = useTranslation(NS.PageEditor);
+  const { providerFactory, activeUsers, connected, hasTimeout } = useYjs({
     edit: true,
   });
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -62,22 +67,42 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
 
   return (
     <div ref={containerRef}>
+      {!connected && (
+        <Alert
+          severity="error"
+          action={
+            <Button
+              size="small"
+              onClick={() => {
+                window.location.reload();
+              }}
+            >
+              {t('RELOAD_BUTTON')}
+            </Button>
+          }
+        >
+          {t('DISCONNECTED_TEXT')}
+        </Alert>
+      )}
       <StatusToolbar users={activeUsers} isConnected={connected} />
       <LexicalComposer initialConfig={initialConfig}>
         <div style={{ width: '100%', height: '100vh', background: 'white' }}>
           <ToolbarPlugin />
           <div className="editor-inner">
             {/* With CollaborationPlugin - we MUST NOT use @lexical/react/LexicalHistoryPlugin */}
-            <CollaborationPlugin
-              id={item.id}
-              providerFactory={providerFactory}
-              // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
-              // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
-              shouldBootstrap={false}
-              username={currentAccount.name}
-              cursorColor={stringToColor(currentAccount.id)}
-              cursorsContainerRef={containerRef}
-            />
+            {/* disable collaboration on timeout to prevent further connection attempts */}
+            {!hasTimeout && (
+              <CollaborationPlugin
+                id={item.id}
+                providerFactory={providerFactory}
+                // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
+                // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
+                shouldBootstrap={false}
+                username={currentAccount.name}
+                cursorColor={stringToColor(currentAccount.id)}
+                cursorsContainerRef={containerRef}
+              />
+            )}
             <RichTextPlugin
               contentEditable={
                 // necessary for dnd, or at least for allowing updates
