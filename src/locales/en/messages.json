@@ -123,6 +123,7 @@
   "SHORT_LINK_NOT_FOUND": "The short link was not found.",
   "INVALID_CONTEXT": "The given context is not valid.",
   "SHORT_LINK_LIMIT_EXCEED": "You can't have more than one short link per service.",
+  "SHORT_LINK_UNEXPECTED_ERROR": "An error occurred while managing a short link.",
   "POST_PROFILE": "Your profile has been saved successfully",
   "PATCH_PROFILE": "Your profile has been saved successfully",
   "PUT_ITEM_GEOLOCATION": "The geolocation has been saved successfully",

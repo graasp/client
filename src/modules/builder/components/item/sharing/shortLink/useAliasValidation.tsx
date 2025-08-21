@@ -32,7 +32,12 @@ export const useAliasValidation = ({ alias, isNew, initialAlias }: Props) => {
     isError,
   } = useQuery({
     ...getShortLinkAvailabilityOptions({ path: { alias: debouncedAlias } }),
-    enabled: isValidAlias(debouncedAlias).isValid,
+    // check availability if alias is different from init value
+    // once debounce is updated and if the alias is valid
+    enabled:
+      hasAliasChanged &&
+      debouncedAlias === alias &&
+      isValidAlias(debouncedAlias).isValid,
   });
 
   // enable loading when debounce and current alias are unsync
@@ -67,9 +72,7 @@ export const useAliasValidation = ({ alias, isNew, initialAlias }: Props) => {
     isLoading,
     message: buildMessage(),
     isError:
-      isError ||
-      (!isLoading && !shortLinkAvailable?.available) ||
-      !isValidAlias(debouncedAlias),
+      isError || (!isLoading && !shortLinkAvailable?.available) || !isValid,
     hasAliasChanged,
   };
 };

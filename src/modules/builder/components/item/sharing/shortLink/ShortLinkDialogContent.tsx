@@ -1,8 +1,8 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import {
-  Alert,
   Button,
   DialogActions,
   DialogContent,
@@ -30,7 +30,7 @@ import { buildShortLinkKey, itemKeys } from '@/query/keys';
 import CancelButton from '~builder/components/common/CancelButton';
 
 import AliasInput from './AliasInput';
-import { useAliasValidation } from './AliasValidation';
+import { useAliasValidation } from './useAliasValidation';
 
 const WrapHelper = styled(FormHelperText)(() => ({
   overflowWrap: 'anywhere',
@@ -55,6 +55,7 @@ const usePutShortLink = ({
   initialAlias: string;
   itemId: string;
 }) => {
+  const { t } = useTranslation(NS.Messages);
   const queryClient = useQueryClient();
 
   const onSettled = () => {
@@ -72,13 +73,22 @@ const usePutShortLink = ({
     isError: isErrorPostShortLink,
   } = useMutation({
     ...createShortLinkMutation(),
+    onError: () => {
+      toast.error?.(t('SHORT_LINK_UNEXPECTED_ERROR'));
+    },
     onSettled,
   });
   const {
     mutateAsync: patchShortLink,
     isPending: isPendingPatchShortLink,
     isError: isErrorPatchShortLink,
-  } = useMutation({ ...updateShortLinkMutation(), onSettled });
+  } = useMutation({
+    ...updateShortLinkMutation(),
+    onError: () => {
+      toast.error?.(t('SHORT_LINK_UNEXPECTED_ERROR'));
+    },
+    onSettled,
+  });
 
   const putShortLink = async ({
     alias,
@@ -122,11 +132,7 @@ const ShortLinkDialogContent = ({
   isNew,
 }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const {
-    putShortLink,
-    isPending,
-    isError: isPutShortLinkError,
-  } = usePutShortLink({
+  const { putShortLink, isPending } = usePutShortLink({
     isNew,
     itemId,
     initialAlias,
@@ -174,14 +180,13 @@ const ShortLinkDialogContent = ({
           <WrapHelper error={hasAliasChanged && isValidationError}>
             {message}
           </WrapHelper>
-
-          {isPutShortLinkError && <Alert severity="error">hello</Alert>}
         </Stack>
       </DialogContent>
       <DialogActions>
         <CancelButton
           onClick={handleClose}
           id={buildShortLinkCancelBtnId(alias)}
+          disabled={isPending}
         />
         <Button
           loading={isPending}
