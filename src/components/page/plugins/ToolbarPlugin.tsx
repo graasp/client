@@ -27,6 +27,7 @@ import {
   UnderlineIcon,
 } from 'lucide-react';
 
+import { DEFAULT_FONT_FAMILY, FontDropDown } from './FontDropDown';
 import { DEFAULT_FONT_SIZE, FontSize } from './FontSize';
 import { TextFormatDropDown } from './TextFormatDropDown';
 import { ICON_SIZE } from './constants';
@@ -45,6 +46,7 @@ export default function ToolbarPlugin() {
   const [isStrikethrough, setIsStrikethrough] = useState(false);
   const [textFormat, setTextFormat] = useState<ElementFormatType>('left');
   const [fontSize, setFontSize] = useState<string>(`${DEFAULT_FONT_SIZE}`);
+  const [fontFamily, setFontFamily] = useState<string>(DEFAULT_FONT_FAMILY);
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -79,6 +81,13 @@ export default function ToolbarPlugin() {
           `${DEFAULT_FONT_SIZE}px`,
         ).slice(0, 2),
       );
+      setFontFamily(
+        $getSelectionStyleValueForProperty(
+          selection,
+          'font-family',
+          DEFAULT_FONT_FAMILY,
+        ),
+      );
     }
   }, []);
 
@@ -102,6 +111,8 @@ export default function ToolbarPlugin() {
 
   return (
     <div className="toolbar" ref={toolbarRef}>
+      <FontDropDown value={fontFamily} editor={editor} />
+      <Divider />
       <FontSize selectionFontSize={fontSize} editor={editor} />
       <Divider />
       <button
