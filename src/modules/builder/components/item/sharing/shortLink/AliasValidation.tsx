@@ -1,93 +1,74 @@
-import { type JSX, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { FormHelperText, styled } from '@mui/material';
-
-import { ShortLinkAvailable } from '@graasp/sdk';
+import { useQuery } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
+import { getShortLinkAvailabilityOptions } from '@/openapi/client/@tanstack/react-query.gen';
+import useDebounce from '@/query/hooks/useDebounce';
 
 import { BUILDER } from '~builder/langs';
 import { isValidAlias } from '~builder/utils/shortLink';
 
-const WrapHelper = styled(FormHelperText)(() => ({
-  overflowWrap: 'anywhere',
-  whiteSpace: 'normal',
-  maxWidth: '240px',
-}));
-
 type Props = {
   alias: string;
-  hasAliasChanged: boolean;
-  isAvailableLoading: boolean;
-  shortLinkAvailable?: ShortLinkAvailable;
-  onValidAlias: (isValid: boolean) => void;
-  onError: (hasError: boolean) => void;
+  initialAlias: string;
+  isNew: boolean;
 };
+const SHORT_LINK_API_CALL_DEBOUNCE_MS = 500;
 
-const AliasValidation = ({
-  alias,
-  hasAliasChanged,
-  isAvailableLoading,
-  shortLinkAvailable,
-  onValidAlias,
-  onError,
-}: Props): JSX.Element => {
+export const useAliasValidation = ({ alias, isNew, initialAlias }: Props) => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const ALIAS_VALID_MSG = translateBuilder(BUILDER.ALIAS_VALID_MSG);
-  const ALIAS_UNCHANGED_MSG = translateBuilder(BUILDER.ALIAS_UNCHANGED_MSG);
-  const ALIAS_ALREADY_EXIST = translateBuilder(BUILDER.ALIAS_ALREADY_EXIST);
-
-  const [message, setMessage] = useState<string>(ALIAS_VALID_MSG);
-  const [valid, setValid] = useState<boolean>(true);
-  const [available, setAvailable] = useState<boolean>(false);
-
-  const hasError = !valid || (!isAvailableLoading && !available);
 
   // check for the validity and availability of the alias
-  useEffect(() => {
-    const { isValid, messageKey, data } = isValidAlias(alias);
-    // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-    setValid(isValid);
+  const { isValid, messageKey, data } = isValidAlias(alias);
+  const hasAliasChanged = isNew || initialAlias !== alias;
 
+  // debounce alias value to avoid sending too many requests
+  const debouncedAlias = useDebounce(alias, SHORT_LINK_API_CALL_DEBOUNCE_MS);
+  const {
+    data: shortLinkAvailable,
+    isFetching: isAvailableLoading,
+    isError,
+  } = useQuery({
+    ...getShortLinkAvailabilityOptions({ path: { alias: debouncedAlias } }),
+    enabled: isValidAlias(debouncedAlias).isValid,
+  });
+
+  // enable loading when debounce and current alias are unsync
+  const isLoading = isAvailableLoading || alias !== debouncedAlias;
+
+  // build helper message
+  const buildMessage = useCallback(() => {
     if (!isValid) {
       const msgKey = messageKey ?? BUILDER.SHORT_LINK_UNKNOWN_ERROR;
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setMessage(translateBuilder(msgKey, { data }));
+      return translateBuilder(msgKey, { data });
     } else if (!hasAliasChanged) {
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setMessage(ALIAS_UNCHANGED_MSG);
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setAvailable(true);
-    } else if (isAvailableLoading) {
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setMessage(translateBuilder(BUILDER.ALIAS_CHECKING_MSG));
+      return translateBuilder(BUILDER.ALIAS_UNCHANGED_MSG);
+    } else if (isLoading) {
+      return translateBuilder(BUILDER.ALIAS_CHECKING_MSG);
     } else {
       const aliasAvailable = Boolean(shortLinkAvailable?.available);
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setMessage(aliasAvailable ? ALIAS_VALID_MSG : ALIAS_ALREADY_EXIST);
-      // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
-      setAvailable(aliasAvailable);
+      return aliasAvailable
+        ? translateBuilder(BUILDER.ALIAS_VALID_MSG)
+        : translateBuilder(BUILDER.ALIAS_ALREADY_EXIST);
     }
-
-    onValidAlias(valid);
-    onError(hasError);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
-    alias,
+    data,
     hasAliasChanged,
-    isAvailableLoading,
+    isLoading,
+    isValid,
     shortLinkAvailable?.available,
-    translateBuilder,
-    ALIAS_UNCHANGED_MSG,
-    ALIAS_VALID_MSG,
-    ALIAS_ALREADY_EXIST,
-    onValidAlias,
-    valid,
-    onError,
-    hasError,
   ]);
 
-  return <WrapHelper error={hasError}>{message}</WrapHelper>;
+  return {
+    isLoading,
+    message: buildMessage(),
+    isError:
+      isError ||
+      (!isLoading && !shortLinkAvailable?.available) ||
+      !isValidAlias(debouncedAlias),
+    hasAliasChanged,
+  };
 };
-
-export default AliasValidation;

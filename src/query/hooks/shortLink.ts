@@ -1,20 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import * as Api from '../api/shortLink.js';
-import { UndefinedArgument } from '../config/errors.js';
-import { buildShortLinkKey, itemKeys } from '../keys.js';
-
-export const useShortLinkAvailable = (alias: string | undefined) =>
-  useQuery({
-    queryKey: buildShortLinkKey(alias),
-    queryFn: () => {
-      if (!alias) {
-        throw new UndefinedArgument();
-      }
-      return Api.getShortLinkAvailable(alias);
-    },
-    enabled: Boolean(alias),
-  });
+import { itemKeys } from '../keys.js';
 
 export const useShortLinksItem = (itemId: string) =>
   useQuery({
