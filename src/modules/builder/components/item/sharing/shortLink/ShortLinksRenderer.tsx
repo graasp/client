@@ -95,14 +95,6 @@ const ShortLinksRenderer = ({
   };
 
   const handleClose = () => setModalOpen(false);
-  const onClose = (_event: Event, reason: string) => {
-    // handle on backdrop click to close only with buttons
-    if (reason === 'backdropClick') {
-      return;
-    }
-
-    handleClose();
-  };
 
   const handleUpdate = (shortLink: ShortLinkType) => {
     setInitialAlias(shortLink.alias);
@@ -114,7 +106,7 @@ const ShortLinksRenderer = ({
   return (
     <>
       {canAdminShortLink && (
-        <Dialog open={modalOpen} onClose={onClose}>
+        <Dialog open={modalOpen} onClose={handleClose}>
           <ShortLinkDialogContent
             itemId={itemId}
             handleClose={handleClose}

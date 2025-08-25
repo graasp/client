@@ -17,10 +17,10 @@ import { randomAlias } from '~builder/utils/shortLink';
 type Props = {
   alias: string;
   onChange: (newAlias: string) => void;
-  hasError: boolean;
+  isError: boolean;
 };
 
-const AliasInput = ({ alias, onChange, hasError }: Props): JSX.Element => {
+const AliasInput = ({ alias, onChange, isError }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const handleAliasChange = (
@@ -37,7 +37,7 @@ const AliasInput = ({ alias, onChange, hasError }: Props): JSX.Element => {
         size="small"
         value={alias}
         onChange={handleAliasChange}
-        error={hasError}
+        error={isError}
       />
       <Tooltip title={translateBuilder(BUILDER.GENERATE_ALIAS_TOOLTIP)}>
         <span>

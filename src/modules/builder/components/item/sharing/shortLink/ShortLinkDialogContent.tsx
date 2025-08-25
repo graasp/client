@@ -1,33 +1,42 @@
-import { type JSX, useCallback, useState } from 'react';
+import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import {
   Button,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormHelperText,
   Stack,
+  styled,
 } from '@mui/material';
 
 import { ShortLink } from '@graasp/sdk';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
 import {
   SHORT_LINK_SAVE_BUTTON_ID,
   buildShortLinkCancelBtnId,
 } from '@/config/selectors';
-import { useShortLinkAvailable } from '@/query/hooks/shortLink';
+import {
+  createShortLinkMutation,
+  updateShortLinkMutation,
+} from '@/openapi/client/@tanstack/react-query.gen';
+import { buildShortLinkKey, itemKeys } from '@/query/keys';
 
 import CancelButton from '~builder/components/common/CancelButton';
-import { useDebouncedCallback } from '~builder/utils/useDebounce';
 
 import AliasInput from './AliasInput';
-import AliasValidation from './AliasValidation';
+import { useAliasValidation } from './useAliasValidation';
 
-const SHORT_LINK_API_CALL_DEBOUNCE_MS = 500;
-
-const { usePostShortLink, usePatchShortLink } = mutations;
+const WrapHelper = styled(FormHelperText)(() => ({
+  overflowWrap: 'anywhere',
+  whiteSpace: 'normal',
+  maxWidth: '240px',
+}));
 
 type Props = {
   itemId: string;
@@ -35,6 +44,84 @@ type Props = {
   platform: ShortLink['platform'];
   isNew: boolean;
   handleClose: () => void;
+};
+
+const usePutShortLink = ({
+  isNew,
+  itemId,
+  initialAlias,
+}: {
+  isNew: boolean;
+  initialAlias: string;
+  itemId: string;
+}) => {
+  const { t } = useTranslation(NS.Messages);
+  const queryClient = useQueryClient();
+
+  const onSettled = () => {
+    queryClient.invalidateQueries({
+      queryKey: itemKeys.single(itemId).shortLinks,
+    });
+    queryClient.invalidateQueries({
+      queryKey: buildShortLinkKey(initialAlias),
+    });
+  };
+
+  const {
+    mutateAsync: postShortLink,
+    isPending: isPendingPostShortLink,
+    isError: isErrorPostShortLink,
+  } = useMutation({
+    ...createShortLinkMutation(),
+    onError: () => {
+      toast.error?.(t('SHORT_LINK_UNEXPECTED_ERROR'));
+    },
+    onSettled,
+  });
+  const {
+    mutateAsync: patchShortLink,
+    isPending: isPendingPatchShortLink,
+    isError: isErrorPatchShortLink,
+  } = useMutation({
+    ...updateShortLinkMutation(),
+    onError: () => {
+      toast.error?.(t('SHORT_LINK_UNEXPECTED_ERROR'));
+    },
+    onSettled,
+  });
+
+  const putShortLink = async ({
+    alias,
+    platform,
+  }: {
+    alias: string;
+    platform: ShortLink['platform'];
+  }) => {
+    if (isNew) {
+      await postShortLink({
+        body: {
+          alias,
+          platform,
+          itemId,
+        },
+      });
+    } else {
+      await patchShortLink({
+        path: {
+          alias: initialAlias, // old alias name used to find the shortLink to patch
+        },
+        body: {
+          alias,
+        },
+      });
+    }
+  };
+
+  return {
+    putShortLink,
+    isPending: isNew ? isPendingPostShortLink : isPendingPatchShortLink,
+    isError: isNew ? isErrorPostShortLink : isErrorPatchShortLink,
+  };
 };
 
 const ShortLinkDialogContent = ({
@@ -45,68 +132,33 @@ const ShortLinkDialogContent = ({
   isNew,
 }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
-
-  const { mutateAsync: postShortLink, isPending: loadingPost } =
-    usePostShortLink();
-  const { mutateAsync: patchShortLink, isPending: loadingDelete } =
-    usePatchShortLink();
+  const { putShortLink, isPending } = usePutShortLink({
+    isNew,
+    itemId,
+    initialAlias,
+  });
+  const [alias, setAlias] = useState<string>(initialAlias);
+  const {
+    isLoading: isValidationLoading,
+    message,
+    isError: isValidationError,
+    hasAliasChanged,
+  } = useAliasValidation({
+    isNew,
+    initialAlias,
+    alias,
+  });
 
   const DIALOG_TITLE = isNew
     ? translateBuilder('CREATE_SHORT_LINK_TITLE')
     : translateBuilder('EDIT_SHORT_LINK_TITLE');
 
-  const [alias, setAlias] = useState<string>(initialAlias);
-  const [search, setSearch] = useState<string | undefined>();
-  const [sendAPI, setSendAPI] = useState<string | undefined>();
-  const [saved, setSaved] = useState<boolean>(false);
-  const [hasError, setHasError] = useState<boolean>(false);
-  const [isValidAlias, setIsValidAlias] = useState<boolean>(false);
-
-  const setSendAPICallBack = useCallback(() => {
-    // Avoid sending invalid alias format to the API
-    if (isValidAlias) {
-      setSendAPI(search);
-    }
-  }, [isValidAlias, search]);
-
-  const { isDebounced } = useDebouncedCallback(
-    setSendAPICallBack,
-    SHORT_LINK_API_CALL_DEBOUNCE_MS,
-  );
-  const { data: shortLinkAvailable, isFetching: isAvailableLoading } =
-    useShortLinkAvailable(sendAPI);
-
-  const isLoading = isDebounced || isAvailableLoading;
-  const mutateIsLoading = loadingDelete || loadingPost;
-  const hasAliasChanged = isNew || (!saved && initialAlias !== alias);
-
-  const enableSaveBtn =
-    !hasError && hasAliasChanged && !isLoading && !mutateIsLoading;
-
   const handleSaveAlias = async () => {
-    if (isNew) {
-      await postShortLink({
-        alias,
-        platform,
-        itemId,
-      });
-    } else {
-      await patchShortLink({
-        alias: initialAlias, // old alias name used to find the shortLink to patch
-        shortLink: {
-          alias,
-        },
-      });
-    }
-
-    setSaved(true);
-    handleClose();
-  };
-
-  const onValidAlias = (isValid: boolean) => {
-    setIsValidAlias(isValid);
-    if (isValid && hasAliasChanged) {
-      setSearch(alias);
+    try {
+      await putShortLink({ alias, platform });
+      handleClose();
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -119,28 +171,28 @@ const ShortLinkDialogContent = ({
       </DialogTitle>
       <DialogContent>
         <Stack direction="column" alignItems="left" spacing={2} mt={2}>
-          <AliasInput alias={alias} onChange={setAlias} hasError={hasError} />
-
-          <AliasValidation
+          <AliasInput
             alias={alias}
-            hasAliasChanged={hasAliasChanged}
-            isAvailableLoading={isLoading}
-            onValidAlias={onValidAlias}
-            onError={setHasError}
-            shortLinkAvailable={shortLinkAvailable}
+            onChange={setAlias}
+            isError={hasAliasChanged && isValidationError}
           />
+
+          <WrapHelper error={hasAliasChanged && isValidationError}>
+            {message}
+          </WrapHelper>
         </Stack>
       </DialogContent>
       <DialogActions>
         <CancelButton
           onClick={handleClose}
           id={buildShortLinkCancelBtnId(alias)}
-          disabled={mutateIsLoading}
+          disabled={isPending}
         />
         <Button
+          loading={isPending}
           color="success"
           onClick={handleSaveAlias}
-          disabled={!enableSaveBtn}
+          disabled={isValidationLoading || isValidationError}
           id={SHORT_LINK_SAVE_BUTTON_ID}
         >
           {translateBuilder('SAVE_BTN')}
