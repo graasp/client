@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.29.0](https://github.com/graasp/client/compare/v2.28.0...v2.29.0) (2025-08-25)
+
+
+### Features
+
+* add font family ([#1080](https://github.com/graasp/client/issues/1080)) ([b0531f2](https://github.com/graasp/client/commit/b0531f27eccf1550a834e00a925f3093de73a486))
+* add page font size tool ([#1079](https://github.com/graasp/client/issues/1079)) ([937f75a](https://github.com/graasp/client/commit/937f75a570af211de0d176e6eb29edb7b1c51e49))
+* add read view for pages ([#1074](https://github.com/graasp/client/issues/1074)) ([62b4b32](https://github.com/graasp/client/commit/62b4b3265393980a3492c664f6d0cc1aab320ee1))
+* create page for rich page editor, hidden button in create folder ([#1046](https://github.com/graasp/client/issues/1046)) ([f18783c](https://github.com/graasp/client/commit/f18783cd7b4051c0f19e579174467a324505d29a))
+* improve toolbar ui ([#1076](https://github.com/graasp/client/issues/1076)) ([2439ed7](https://github.com/graasp/client/commit/2439ed71946024b0c87a96c369c24b8b36dc0d6d))
+* setup collaboration with yjs for pages ([#1054](https://github.com/graasp/client/issues/1054)) ([7bac9eb](https://github.com/graasp/client/commit/7bac9eb9b0b65dbed6bc90593868bbe949eabf63))
+
+
+### Bug Fixes
+
+* improve builder folder header section ([#1057](https://github.com/graasp/client/issues/1057)) ([58986f6](https://github.com/graasp/client/commit/58986f63663390325a9422501c26857e258ff034))
+* notify users when the description is too long ([#1051](https://github.com/graasp/client/issues/1051)) ([06b52ac](https://github.com/graasp/client/commit/06b52ac23c95aea293c73d2c6bf7f1a342362e8f))
+* use english mames for builder, player, analytics ([#1064](https://github.com/graasp/client/issues/1064)) ([f6b1008](https://github.com/graasp/client/commit/f6b1008a0cededdf37d8737ff9c89c4eccc5051a))
+* use env vars for ws host ([#1072](https://github.com/graasp/client/issues/1072)) ([9e8d1a7](https://github.com/graasp/client/commit/9e8d1a79e53082845a8bba8a34b74b36a706b6e3))
+
 ## [2.28.0](https://github.com/graasp/client/compare/v2.27.1...v2.28.0) (2025-07-22)
 
 
