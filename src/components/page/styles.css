@@ -241,3 +241,8 @@ button.toolbar-item.active i {
 .font-size-inputfont-size-input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.content-editable-root [data-lexical-decorator='true']:hover {
+  background-color: #f4f4f4;
+  cursor: pointer;
+}

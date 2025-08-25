@@ -5,7 +5,6 @@ import { Alert, Button } from '@mui/material';
 
 import { PageItemType } from '@graasp/sdk';
 
-import { LinkNode } from '@lexical/link';
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import {
@@ -25,6 +24,8 @@ import { StatusToolbar } from './StatusToolbar';
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin';
 import { DEFAULT_FONT_SIZE } from './plugins/FontSize';
 import ToolbarPlugin from './plugins/ToolbarPlugin';
+import { LinkItemNode } from './plugins/linkItem/LinkItemNode';
+import { LinkItemPlugin } from './plugins/linkItem/LinkItemPlugin';
 import './styles.css';
 import { theme } from './theme';
 import { useYjs } from './useYjs';
@@ -61,7 +62,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
     namespace: 'MyEditor',
     theme,
     onError,
-    nodes: [ParagraphNode, TextNode, LinkNode],
+    nodes: [ParagraphNode, TextNode, LinkItemNode],
     editable: true,
   };
 
@@ -129,6 +130,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
                   ErrorBoundary={LexicalErrorBoundary}
                 />
                 <AutoFocusPlugin />
+                <LinkItemPlugin />
                 {floatingAnchorElem && (
                   <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
                 )}

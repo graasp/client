@@ -98,7 +98,7 @@ type LinkIframeProps = {
   memberId?: string;
   loadingMessage: string;
 };
-const LinkIframe = ({
+export const LinkIframe = ({
   id,
   url,
   title,
