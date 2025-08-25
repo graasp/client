@@ -236,7 +236,7 @@ const PageContent = ({
   currentAccount,
 }: {
   item: PageItemType;
-  currentAccount: AuthenticatedMember | null;
+  currentAccount: AuthenticatedUser | null;
 }): JSX.Element => {
   const { canWrite } = useOutletContext();
 
