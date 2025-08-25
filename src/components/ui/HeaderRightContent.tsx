@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 import { Stack } from '@mui/material';
 
+import { AccountType } from '@graasp/sdk';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useAuth } from '@/AuthContext';
@@ -37,19 +39,29 @@ export function HeaderRightContent() {
   });
 
   const handleLanguageChange = (lang: string) => {
-    mutate({ body: { extra: { lang } } });
+    if (isAuthenticated && user.type === AccountType.Individual) {
+      mutate({ body: { extra: { lang } } });
+    }
     i18n.changeLanguage(lang);
   };
 
   if (isAuthenticated) {
     return (
       <Stack direction="row" gap={2} alignItems="center">
-        <MentionButton color="white" badgeColor="primary" />
+        {
+          // only display these elements to "full users"
+          user.type === AccountType.Individual && (
+            <>
+              <MentionButton color="white" badgeColor="primary" />
 
-        <LanguageSwitch
-          lang={i18n.languages[0]}
-          onChange={handleLanguageChange}
-        />
+              <LanguageSwitch
+                id="languageSwitch"
+                lang={i18n.languages[0]}
+                onChange={handleLanguageChange}
+              />
+            </>
+          )
+        }
 
         <UserPopupMenu
           avatarButtonId={HEADER_MEMBER_MENU_BUTTON_ID}
