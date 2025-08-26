@@ -34,7 +34,12 @@ const CopyButton = ({
   switch (type) {
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem key={text} onClick={onClick} className={menuItemClassName}>
+        <MenuItem
+          aria-label={text}
+          key={text}
+          onClick={onClick}
+          className={menuItemClassName}
+        >
           <ListItemIcon>{icon}</ListItemIcon>
           {text}
         </MenuItem>

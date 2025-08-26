@@ -175,4 +175,28 @@ describe('Copy Item', () => {
       });
     });
   });
+
+  it('copy item from item page', () => {
+    const parentItem = PackedFolderItemFactory();
+    const folders = [
+      PackedFolderItemFactory({ parentItem }),
+      PackedFolderItemFactory({ parentItem }),
+      PackedFolderItemFactory({ parentItem }),
+    ];
+    const toItem = PackedFolderItemFactory();
+    cy.setUpApi({
+      items: [...folders, parentItem, toItem],
+    });
+
+    // go to item
+    cy.visit(buildItemPath(parentItem.id));
+    cy.get(`[aria-label="More"]`).click();
+    cy.get(`[role="menuitem"][aria-label="Copy"]`).click();
+    cy.handleTreeMenu(toItem.path);
+
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
+      expect(body.parentId).to.eq(toItem.id);
+      expect(url).to.contain(parentItem.id);
+    });
+  });
 });
