@@ -5,7 +5,6 @@ import { Alert, Button } from '@mui/material';
 
 import { PageItemType } from '@graasp/sdk';
 
-import { LinkNode } from '@lexical/link';
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import {
@@ -63,7 +62,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
     namespace: 'MyEditor',
     theme,
     onError,
-    nodes: [ParagraphNode, TextNode, LinkNode, LinkItemNode],
+    nodes: [ParagraphNode, TextNode, LinkItemNode],
     editable: true,
   };
 

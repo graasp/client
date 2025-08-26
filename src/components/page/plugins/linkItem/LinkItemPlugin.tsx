@@ -15,7 +15,7 @@ import {
   createCommand,
 } from 'lexical';
 
-import { $createLinkItemNode, LinkItemNode } from '../nodes/LinkItemNode';
+import { $createLinkItemNode, LinkItemNode } from './LinkItemNode';
 
 export const INSERT_LINK_ITEM_COMMAND: LexicalCommand<{
   url: string;

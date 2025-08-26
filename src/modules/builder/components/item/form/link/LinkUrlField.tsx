@@ -11,7 +11,7 @@ import { ITEM_FORM_LINK_INPUT_ID } from '@/config/selectors';
 
 import { LINK_REGEX } from '~builder/utils/item';
 
-const LinkUrlField = (): JSX.Element => {
+const LinkUrlField = ({ onFocus, onBlur }): JSX.Element => {
   const {
     register,
     setValue,
@@ -26,6 +26,7 @@ const LinkUrlField = (): JSX.Element => {
       // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus
       margin="dense"
+      onFocus={onFocus}
       label={t('CREATE_ITEM_LINK_LABEL')}
       slotProps={{
         inputLabel: { shrink: true },
@@ -47,6 +48,7 @@ const LinkUrlField = (): JSX.Element => {
       error={Boolean(errors.url)}
       helperText={errors.url?.message}
       {...register('url', {
+        onBlur,
         pattern: {
           value: LINK_REGEX,
           message: t('LINK_INVALID_MESSAGE'),

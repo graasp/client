@@ -31,6 +31,7 @@ import { DEFAULT_FONT_FAMILY, FontDropDown } from './FontDropDown';
 import { DEFAULT_FONT_SIZE, FontSize } from './FontSize';
 import { TextFormatDropDown } from './TextFormatDropDown';
 import { ICON_SIZE } from './constants';
+import { LinkItemButton } from './linkItem/LinkItemButton';
 import { getSelectedNode } from './utils';
 
 function Divider() {
@@ -50,6 +51,7 @@ export default function ToolbarPlugin() {
 
   const $updateToolbar = useCallback(() => {
     const selection = $getSelection();
+
     if ($isRangeSelection(selection)) {
       // Update text format
       setIsBold(selection.hasFormat('bold'));
@@ -153,6 +155,7 @@ export default function ToolbarPlugin() {
       </button>
       <Divider />
       <TextFormatDropDown value={textFormat} editor={editor} />
+      <LinkItemButton />
     </div>
   );
 }
