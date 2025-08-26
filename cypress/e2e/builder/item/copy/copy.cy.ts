@@ -1,12 +1,23 @@
-import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
+import {
+  MemberFactory,
+  PackedFileItemFactory,
+  PackedFolderItemFactory,
+} from '@graasp/sdk';
+
+import { StatusCodes } from 'http-status-codes';
 
 import {
   COPY_MANY_ITEMS_BUTTON_SELECTOR,
   ITEM_MENU_COPY_BUTTON_CLASS,
+  TREE_MODAL_CONFIRM_BUTTON_ID,
   buildDataCyWrapper,
   buildItemCard,
   buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
+import {
+  fillPasswordSignInLayout,
+  submitPasswordSignIn,
+} from '../../../auth/util';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 const copyItems = ({
@@ -200,7 +211,7 @@ describe('Copy Item', () => {
     });
   });
 
-  it('open copy modal for copyOpen=true', () => {
+  it('open copy modal for copyOpen=true and logged in', () => {
     const parentItem = PackedFolderItemFactory();
     const folders = [PackedFolderItemFactory({ parentItem })];
     const toItem = PackedFolderItemFactory();
@@ -216,5 +227,50 @@ describe('Copy Item', () => {
       expect(body.parentId).to.eq(toItem.id);
       expect(url).to.contain(parentItem.id);
     });
+  });
+
+  it('Show copy modal warning for copyOpen=true and logged out, logging in should show copy modal', () => {
+    const parentItem = PackedFolderItemFactory();
+    const folders = [PackedFolderItemFactory({ parentItem })];
+    const toItem = PackedFolderItemFactory();
+    cy.setUpApi({
+      currentMember: null,
+      items: [...folders, parentItem, toItem],
+    });
+
+    // go to item with modal open
+    cy.visit(buildItemPath(parentItem.id) + '?copyOpen=true');
+
+    // should show warning
+    cy.get('[role="dialog"]', { timeout: 10000 }).should('be.visible');
+
+    // go to login
+    cy.get('[role="dialog"] [aria-label="Login"]').click();
+    cy.url().should('contain', '/login');
+
+    cy.intercept(
+      {
+        pathname: '/login-password',
+      },
+      ({ reply }) => {
+        reply({ statusCode: StatusCodes.NO_CONTENT });
+      },
+    ).as('signInWithPassword');
+
+    // manually set current member
+    cy.setUpApi({
+      items: [...folders, parentItem, toItem],
+    });
+
+    // fake sign in
+    fillPasswordSignInLayout({
+      ...MemberFactory(),
+      password: 'some password',
+    });
+    submitPasswordSignIn();
+    cy.wait('@signInWithPassword');
+
+    // should show copy modal
+    cy.get(`#${TREE_MODAL_CONFIRM_BUTTON_ID}`).should('be.visible');
   });
 });

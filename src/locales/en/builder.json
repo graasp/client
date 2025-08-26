@@ -28,6 +28,11 @@
   "COPY_ITEM_MODAL_TITLE_zero": "Where do you want to copy {{name}}?",
   "COPY_ITEM_MODAL_TITLE_one": "Where do you want to copy {{name}} and one other?",
   "COPY_ITEM_MODAL_TITLE_other": "Where do you want to copy {{name}} and {{count}} others?",
+  "COPY_WARNING_MODAL": {
+    "TITLE": "Copy {{name}}",
+    "DESCRIPTION": "You need to be logged in to copy this item.",
+    "LOGIN": "Login"
+  },
   "ITEM_TEMPLATE_SELECTION_MODAL_TITLE": "Which item do you want to use as the template for the groups?",
   "ITEM_TEMPLATE_SELECTION_BUTTON": "Use {{name}} as template",
   "CREATE_ITEM_ADD_BUTTON": "Add",

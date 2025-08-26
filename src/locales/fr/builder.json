@@ -28,6 +28,11 @@
   "COPY_ITEM_MODAL_TITLE_zero": "Où voulez-vous copier {{name}}?",
   "COPY_ITEM_MODAL_TITLE_one": "Où voulez-vous copier {{name}} et un autre?",
   "COPY_ITEM_MODAL_TITLE_other": "Où voulez-vous copier {{name}} et {{count}} autres?",
+  "COPY_WARNING_MODAL": {
+    "TITLE": "Copier {{name}}",
+    "DESCRIPTION": "Vous devez être connecté pour copier cet élément.",
+    "LOGIN": "Se connecter"
+  },
   "ITEM_TEMPLATE_SELECTION_MODAL_TITLE": "Quel élément souhaitez-vous utiliser comme modèle pour les groupes ?",
   "ITEM_TEMPLATE_SELECTION_BUTTON": "Utiliser {{name}} comme modèle",
   "CREATE_ITEM_ADD_BUTTON": "Ajouter",

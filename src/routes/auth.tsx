@@ -6,6 +6,23 @@ import { z } from 'zod';
 
 import { RECAPTCHA_SITE_KEY } from '@/config/env';
 
+/**
+ * Parse an object with string values and convert "true" and "false" to boolean
+ * @param obj object with string values
+ * @returns
+ */
+function parseBooleanStrings(
+  obj: Record<string, unknown>,
+): Record<string, unknown | boolean> {
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => {
+      if (value === 'true') return [key, true];
+      if (value === 'false') return [key, false];
+      return [key, value];
+    }),
+  );
+}
+
 const redirectionSchema = z.object({
   url: z.string().url().optional(),
 });
@@ -17,9 +34,14 @@ export const Route = createFileRoute('/auth')({
     // if already authenticated, redirect to `/builder`
     if (context.auth.isAuthenticated) {
       let redirectLink = null;
+      let searchParams = {};
       try {
         if (search.url) {
-          redirectLink = new URL(search.url).pathname;
+          const url = new URL(search.url);
+          redirectLink = url.pathname;
+          searchParams = Object.fromEntries(
+            new URLSearchParams(url.searchParams).entries(),
+          );
         }
       } catch (e) {
         // we don't throw, the url might be a wrong url
@@ -28,6 +50,9 @@ export const Route = createFileRoute('/auth')({
 
       throw redirect({
         to: redirectLink ?? '/home',
+        // reuse search params from the url if any
+        // need to parse boolean strings as search params are always strings
+        search: parseBooleanStrings(searchParams),
       });
     }
   },
