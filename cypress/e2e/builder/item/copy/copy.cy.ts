@@ -199,4 +199,22 @@ describe('Copy Item', () => {
       expect(url).to.contain(parentItem.id);
     });
   });
+
+  it('open copy modal for copyOpen=true', () => {
+    const parentItem = PackedFolderItemFactory();
+    const folders = [PackedFolderItemFactory({ parentItem })];
+    const toItem = PackedFolderItemFactory();
+    cy.setUpApi({
+      items: [...folders, parentItem, toItem],
+    });
+
+    // go to item with modal open
+    cy.visit(buildItemPath(parentItem.id) + '?copyOpen=true');
+    cy.handleTreeMenu(toItem.path);
+
+    cy.wait('@copyItems').then(({ request: { url, body } }) => {
+      expect(body.parentId).to.eq(toItem.id);
+      expect(url).to.contain(parentItem.id);
+    });
+  });
 });

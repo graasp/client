@@ -11,6 +11,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
+import { useSearch } from '@tanstack/react-router';
 import { MoreVerticalIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -45,6 +46,7 @@ const internalId = 'menu';
  * or does not make sense in the context of the item
  */
 const Actions = ({ item }: Props): JSX.Element[] | null => {
+  const { copyOpen } = useSearch({ from: '/builder/items/$itemId' });
   const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const { data: member } = hooks.useCurrentMember();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -64,7 +66,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     isOpen: isCopyModalOpen,
     openModal: openCopyModal,
     closeModal: closeCopyModal,
-  } = useModalStatus();
+  } = useModalStatus({ isInitiallyOpen: copyOpen });
 
   const canWrite =
     item.permission &&

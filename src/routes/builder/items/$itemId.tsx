@@ -53,6 +53,7 @@ import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
 
 const schema = z.object({
   chatOpen: z.boolean().optional(),
+  copyOpen: z.boolean().optional(),
   mode: z.nativeEnum(ItemLayoutMode).optional(),
 });
 
