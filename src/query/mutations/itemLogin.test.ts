@@ -7,7 +7,6 @@ import {
   MemberFactory,
 } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -24,7 +23,7 @@ import {
   putItemLoginSchemaRoutine,
 } from '../routines/itemLogin.js';
 import { ITEM_LOGIN_RESPONSE } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -63,14 +62,11 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          itemId,
-          username,
-          memberId,
-          password,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
+        username,
+        memberId,
+        password,
       });
 
       // check all set keys are reset
@@ -101,15 +97,14 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           itemId,
           username,
           memberId,
           password,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       // check all set keys are reset
       expect(
@@ -151,10 +146,7 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, type: newLoginSchema });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ itemId, type: newLoginSchema });
 
       // check all set keys are reset
       expect(
@@ -183,12 +175,9 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          itemId,
-          status: ItemLoginSchemaStatus.Disabled,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
+        status: ItemLoginSchemaStatus.Disabled,
       });
 
       // check all set keys are reset
@@ -219,13 +208,12 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           itemId,
           type: newLoginSchema,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       // check all set keys are reset
       expect(
@@ -264,10 +252,7 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ itemId });
 
       // check all set keys are reset
       expect(
@@ -303,12 +288,11 @@ describe('Item Login Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           itemId,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       // check all set keys are reset
       expect(

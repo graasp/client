@@ -8,7 +8,6 @@ import {
   getParentFromPath,
 } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -20,12 +19,7 @@ import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
 } from '../test/constants.js';
-import {
-  mockMutation,
-  setUpTest,
-  splitEndpointByIds,
-  waitForMutation,
-} from '../test/utils.js';
+import { mockMutation, setUpTest, splitEndpointByIds } from '../test/utils.js';
 import {
   buildCopyItemsRoute,
   buildDeleteItemsRoute,
@@ -78,10 +72,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(payload);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(payload);
 
       expect(queryClient.getQueryState(itemKey)?.isInvalidated).toBeTruthy();
       expect(
@@ -109,10 +100,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(payload);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(payload);
 
       expect(
         queryClient.getQueryState(itemKeys.allAccessible())?.isInvalidated,
@@ -148,10 +136,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(editPayload);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(editPayload);
 
       expect(
         queryClient.getQueryState(editedItemKey)?.isInvalidated,
@@ -178,10 +163,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(payload);
-        await waitForMutation();
-      });
+      await expect(mockedMutation.mutateAsync(payload)).rejects.toThrow();
 
       // item key should not be changed and should be invalidated
       expect(
@@ -229,12 +211,9 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          to,
-          ids: copiedIds,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        to,
+        ids: copiedIds,
       });
 
       // original copied items path have not changed
@@ -286,12 +265,9 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          to: toId,
-          items: moved,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        to: toId,
+        items: moved,
       });
 
       // Check new path are corrects
@@ -338,12 +314,9 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          to: toId,
-          items: moved,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        to: toId,
+        items: moved,
       });
 
       // Check new paths are corrects
@@ -394,10 +367,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify item is still available
       // in real cases, the path should be different
@@ -451,10 +421,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify item is still available
       // in real cases, the path should be different
@@ -513,10 +480,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify item is still available
       // in real cases, the path should be different
@@ -557,10 +521,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify items are not available
       // in real cases, the path should be different
@@ -609,10 +570,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify item is still available
       // in real cases, the path should be different
@@ -668,10 +626,7 @@ describe('Items Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate(itemIds);
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync(itemIds);
 
       // verify item is still available
       // in real cases, the path should be different

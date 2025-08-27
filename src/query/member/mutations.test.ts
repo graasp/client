@@ -1,13 +1,12 @@
 import { HttpMethod, MemberFactory, ThumbnailSize } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { memberKeys } from '../keys.js';
 import { UNAUTHORIZED_RESPONSE } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 import { buildUploadAvatarRoute } from './routes.js';
 import { uploadAvatarRoutine } from './routines.js';
 
@@ -55,10 +54,7 @@ describe('Member Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ file });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ file });
 
       for (const size of Object.values(ThumbnailSize)) {
         const key = memberKeys.single(id).avatar({ size, replyUrl: true });
@@ -97,10 +93,7 @@ describe('Member Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ file });
-        await waitForMutation();
-      });
+      await expect(mockedMutation.mutateAsync({ file })).rejects.toThrow();
 
       for (const size of Object.values(ThumbnailSize)) {
         const key = memberKeys.single(id).avatar({ size, replyUrl });

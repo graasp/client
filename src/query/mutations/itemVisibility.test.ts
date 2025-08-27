@@ -5,7 +5,6 @@ import {
   getIdsFromPath,
 } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -20,7 +19,7 @@ import {
   postItemVisibilityRoutine,
 } from '../routines/itemVisibility.js';
 import { ITEM_VISIBILITIES, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -59,13 +58,10 @@ describe('Item Visibility Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          itemId,
-          type: visibilityType,
-          creator,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
+        type: visibilityType,
+        creator,
       });
 
       expect(
@@ -95,14 +91,13 @@ describe('Item Visibility Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           itemId,
           type: visibilityType,
           creator,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       expect(
         queryClient.getQueryState(itemVisibilityKey)?.isInvalidated,
@@ -140,10 +135,7 @@ describe('Item Visibility Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, type: visibilityType });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ itemId, type: visibilityType });
 
       const data = queryClient.getQueryState(itemVisibilityKey);
       expect(data?.isInvalidated).toBeTruthy();
@@ -174,10 +166,9 @@ describe('Item Visibility Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, type: visibilityType });
-        await waitForMutation();
-      });
+      await expect(
+        mockedMutation.mutateAsync({ itemId, type: visibilityType }),
+      ).rejects.toThrow();
 
       const data = queryClient.getQueryState(itemVisibilityKey);
       expect(data?.isInvalidated).toBeTruthy();

@@ -168,14 +168,6 @@ export const mockMutation = async <
   return result.current;
 };
 
-// util function to wait some time after a mutation is performed
-// this is necessary for success and error callback to fully execute
-export const waitForMutation = async (t = 500) => {
-  await new Promise((r) => {
-    setTimeout(r, t);
-  });
-};
-
 export const splitEndpointByIds = (
   ids: string[],
   chunkSize: number,
