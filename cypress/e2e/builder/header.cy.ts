@@ -35,7 +35,7 @@ describe('Header', () => {
     });
     it('does not see language switch on landing', () => {
       cy.visit('/');
-      cy.get('a').contains('Go back to work').should('be.visible');
+      cy.get('a').contains('Go back to the activity').should('be.visible');
       // guest does not see the language switch
       cy.get('#languageSwitch').should('not.exist');
     });
