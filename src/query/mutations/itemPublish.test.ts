@@ -5,7 +5,6 @@ import {
   PublicationStatus,
 } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -18,7 +17,7 @@ import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
 } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -72,12 +71,9 @@ describe('Publish Item', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          id: itemId,
-          notification,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        id: itemId,
+        notification,
       });
 
       expect(route.includes('notification'));
@@ -136,12 +132,9 @@ describe('Publish Item', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          id: itemId,
-          notification: false,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        id: itemId,
+        notification: false,
       });
 
       expect(
@@ -185,13 +178,12 @@ describe('Publish Item', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           id: itemId,
           notification,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({

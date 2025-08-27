@@ -1,6 +1,5 @@
 import { HttpMethod } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -12,7 +11,7 @@ import {
   ITEM_VALIDATION_GROUP,
   UNAUTHORIZED_RESPONSE,
 } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -49,11 +48,8 @@ describe('Item Validation Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          itemId,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
       });
 
       expect(mockedNotifier).toHaveBeenCalledWith({
@@ -76,10 +72,7 @@ describe('Item Validation Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId });
-        await waitForMutation();
-      });
+      await expect(mockedMutation.mutateAsync({ itemId })).rejects.toThrow();
 
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({

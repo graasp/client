@@ -1,6 +1,5 @@
 import { FolderItemFactory, HttpMethod } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { v4 } from 'uuid';
@@ -8,7 +7,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { itemKeys } from '../../keys.js';
 import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
+import { mockMutation, setUpTest } from '../../test/utils.js';
 import { buildReorderItemRoute } from '../routes.js';
 import { reorderItemRoutine } from '../routines.js';
 
@@ -52,9 +51,10 @@ describe('useReorderItem', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({ id: child.id, parentItemId, previousItemId });
-      await waitForMutation();
+    await mockedMutation.mutateAsync({
+      id: child.id,
+      parentItemId,
+      previousItemId,
     });
 
     const state = queryClient.getQueryState(key);
@@ -88,10 +88,13 @@ describe('useReorderItem', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({ id: child.id, parentItemId, previousItemId });
-      await waitForMutation();
-    });
+    await expect(
+      mockedMutation.mutateAsync({
+        id: child.id,
+        parentItemId,
+        previousItemId,
+      }),
+    ).rejects.toThrow();
 
     const state = queryClient.getQueryState(key);
     expect(state?.isInvalidated).toBeTruthy();
