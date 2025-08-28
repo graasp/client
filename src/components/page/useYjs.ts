@@ -84,10 +84,10 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
 
   // fallback if connection is going crazy
   // eg. connection attemps happens very quickly
-  const [hasTimeout, setHasTimeout] = useState(false);
+  const [hasTimedOut, setHasTimeout] = useState(false);
   useEffect(() => {
     if (
-      !hasTimeout &&
+      !hasTimedOut &&
       disconnectedTimestamps.length > DISCONNECTION_ATTEMPT_RANGE
     ) {
       const lastDisconnections = disconnectedTimestamps.slice(
@@ -105,13 +105,13 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
         setHasTimeout(true);
       }
     }
-  }, [disconnectedTimestamps, hasTimeout]);
+  }, [disconnectedTimestamps, hasTimedOut]);
 
   return {
     providerFactory,
     activeUsers,
     connected,
-    hasTimeout,
+    hasTimedOut,
   };
 };
 

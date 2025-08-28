@@ -43,7 +43,7 @@ type Props = {
 
 export function Editor({ item, currentAccount }: Readonly<Props>) {
   const { t } = useTranslation(NS.PageEditor);
-  const { providerFactory, activeUsers, connected, hasTimeout } = useYjs({
+  const { providerFactory, activeUsers, connected, hasTimedOut } = useYjs({
     edit: true,
   });
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +68,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
   return (
     <div ref={containerRef}>
       <StatusToolbar users={activeUsers} isConnected={connected} />
-      {hasTimeout && (
+      {hasTimedOut && (
         <Alert
           severity="error"
           action={
@@ -85,8 +85,8 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
           {t('DISCONNECTED_TEXT')}
         </Alert>
       )}
-      {/* disable on timeout to prevent further connection attempts */}
-      {!hasTimeout && (
+      {/* unmount component on timeout to prevent further connection attempts */}
+      {!hasTimedOut && (
         <>
           <LexicalComposer initialConfig={initialConfig}>
             <div
