@@ -9,7 +9,7 @@ export default function useDebounce<T>(value: T, delay: number) {
   useEffect(
     () => {
       // Update debounced value after delay
-      const handler = setTimeout(() => {
+      const handler = globalThis.setTimeout(() => {
         setDebouncedValue(value);
       }, delay);
 
@@ -17,7 +17,7 @@ export default function useDebounce<T>(value: T, delay: number) {
       // This is how we prevent debounced value from updating if value is changed ...
       // .. within the delay period. Timeout gets cleared and restarted.
       return () => {
-        clearTimeout(handler);
+        globalThis.clearTimeout(handler);
       };
     },
     [value, delay], // Only re-call effect if value or delay changes

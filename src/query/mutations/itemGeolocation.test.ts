@@ -1,6 +1,5 @@
 import { HttpMethod } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { v4 } from 'uuid';
@@ -13,7 +12,7 @@ import {
   putItemGeolocationRoutine,
 } from '../routines/itemGeolocation.js';
 import { ITEM_GEOLOCATION, UNAUTHORIZED_RESPONSE } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -60,17 +59,14 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          geolocation: {
-            lat: 1,
-            lng: 1,
-            addressLabel: 'address',
-            country: 'country',
-          },
-          itemId,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        geolocation: {
+          lat: 1,
+          lng: 1,
+          addressLabel: 'address',
+          country: 'country',
+        },
+        itemId,
       });
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -102,12 +98,9 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          geolocation: { lat: 1, lng: 1 },
-          itemId,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        geolocation: { lat: 1, lng: 1 },
+        itemId,
       });
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -139,12 +132,9 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
-          geolocation: { lat: 1, lng: 2, helperLabel: 'helperlabel' },
-          itemId,
-        });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        geolocation: { lat: 1, lng: 2, helperLabel: 'helperlabel' },
+        itemId,
       });
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -175,13 +165,12 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({
+      await expect(
+        mockedMutation.mutateAsync({
           geolocation: { lat: 1, lng: 1 },
           itemId,
-        });
-        await waitForMutation();
-      });
+        }),
+      ).rejects.toThrow();
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
@@ -227,10 +216,7 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ itemId });
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();
@@ -260,10 +246,7 @@ describe('Item Flag Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId });
-        await waitForMutation();
-      });
+      await expect(mockedMutation.mutateAsync({ itemId })).rejects.toThrow();
 
       expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
       expect(queryClient.getQueryState(singleKey)?.isInvalidated).toBeTruthy();

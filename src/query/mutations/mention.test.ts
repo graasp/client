@@ -5,7 +5,6 @@ import {
   MentionStatus,
 } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { v4 } from 'uuid';
@@ -30,7 +29,7 @@ import {
   buildMemberMentions,
   buildMentionResponse,
 } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 describe('Mention Mutations', () => {
   const mentionId = v4();
@@ -81,12 +80,9 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate({
-            id: mentionId,
-            status: MentionStatus.Read,
-          });
-          await waitForMutation();
+        await mockedMutation.mutateAsync({
+          id: mentionId,
+          status: MentionStatus.Read,
         });
 
         // verify cache keys
@@ -115,13 +111,12 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate({
+        await expect(
+          mockedMutation.mutateAsync({
             id: mentionId,
             status: MentionStatus.Read,
-          });
-          await waitForMutation();
-        });
+          }),
+        ).rejects.toThrow();
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -158,10 +153,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate(mentionId);
-          await waitForMutation();
-        });
+        await mockedMutation.mutateAsync(mentionId);
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -189,10 +181,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate(mentionId);
-          await waitForMutation();
-        });
+        await expect(mockedMutation.mutateAsync(mentionId)).rejects.toThrow();
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -229,10 +218,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate();
-          await waitForMutation();
-        });
+        await mockedMutation.mutateAsync();
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -256,10 +242,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate();
-          await waitForMutation();
-        });
+        await expect(mockedMutation.mutateAsync()).rejects.toThrow();
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeTruthy();
@@ -307,12 +290,9 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate({
-            id: mentionId,
-            status: MentionStatus.Read,
-          });
-          await waitForMutation();
+        await mockedMutation.mutateAsync({
+          id: mentionId,
+          status: MentionStatus.Read,
         });
 
         // verify cache keys
@@ -344,10 +324,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate(mentionId);
-          await waitForMutation();
-        });
+        await mockedMutation.mutateAsync(mentionId);
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeFalsy();
@@ -378,10 +355,7 @@ describe('Mention Mutations', () => {
           wrapper,
         });
 
-        await act(async () => {
-          mockedMutation.mutate();
-          await waitForMutation();
-        });
+        await mockedMutation.mutateAsync();
 
         // verify cache keys
         expect(queryClient.getQueryState(key)?.isInvalidated).toBeFalsy();

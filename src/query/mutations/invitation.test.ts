@@ -1,6 +1,5 @@
 import { FolderItemFactory, HttpMethod, Invitation } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
@@ -24,7 +23,7 @@ import {
   buildInvitation,
   buildMockInvitations,
 } from '../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const item = FolderItemFactory();
 const itemId = item.id;
@@ -70,9 +69,9 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, invitations: [newInvitation] });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
+        invitations: [newInvitation],
       });
 
       // check memberships invalidation
@@ -106,10 +105,7 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, invitations: newInvitations });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ itemId, invitations: newInvitations });
 
       // check memberships invalidation
       const data = queryClient.getQueryState(key);
@@ -137,10 +133,12 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, invitations: [newInvitation] });
-        await waitForMutation();
-      });
+      await expect(
+        mockedMutation.mutateAsync({
+          itemId,
+          invitations: [newInvitation],
+        }),
+      ).rejects.toThrow();
 
       // check memberships invalidation
       const data = queryClient.getQueryState(key);
@@ -171,9 +169,9 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ itemId, invitations: [newInvitation] });
-        await waitForMutation();
+      await mockedMutation.mutateAsync({
+        itemId,
+        invitations: [newInvitation],
       });
 
       // check memberships invalidation
@@ -221,10 +219,7 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ ...newInvitation, itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ ...newInvitation, itemId });
 
       // check memberships invalidation
       const data = queryClient.getQueryState(key);
@@ -253,11 +248,9 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ ...newInvitation, itemId });
-        await waitForMutation();
-      });
-
+      await expect(
+        mockedMutation.mutateAsync({ ...newInvitation, itemId }),
+      ).rejects.toThrow();
       // check memberships invalidation
       const data = queryClient.getQueryState(key);
       expect(data?.isInvalidated).toBeTruthy();
@@ -304,10 +297,7 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ id: invitationToDelete.id, itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ id: invitationToDelete.id, itemId });
 
       // check memberships invalidation
       const state = queryClient.getQueryState(key);
@@ -342,10 +332,9 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ id: invitationToDelete.id, itemId });
-        await waitForMutation();
-      });
+      await expect(
+        mockedMutation.mutateAsync({ id: invitationToDelete.id, itemId }),
+      ).rejects.toThrow();
 
       // check memberships invalidation
       const state = queryClient.getQueryState(key);
@@ -386,10 +375,7 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ id: invitation.id, itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ id: invitation.id, itemId });
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: resendInvitationRoutine.SUCCESS,
@@ -412,10 +398,9 @@ describe('Invitations Mutations', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ id: invitation.id, itemId });
-        await waitForMutation();
-      });
+      await expect(
+        mockedMutation.mutateAsync({ id: invitation.id, itemId }),
+      ).rejects.toThrow();
 
       expect(mockedNotifier).toHaveBeenCalledWith(
         expect.objectContaining({

@@ -14,7 +14,7 @@ import {
   ITEM_GEOLOCATION,
   UNAUTHORIZED_RESPONSE,
 } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
+import { mockMutation, setUpTest } from '../../test/utils.js';
 import {
   buildPostItemRoute,
   buildPostItemWithThumbnailRoute,
@@ -57,8 +57,7 @@ describe('usePostItem', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate(newItem);
-      await waitForMutation();
+      await mockedMutation.mutateAsync(newItem);
     });
 
     expect(
@@ -94,8 +93,7 @@ describe('usePostItem', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({ ...newItem, parentId: parentItem.id });
-      await waitForMutation();
+      await mockedMutation.mutateAsync({ ...newItem, parentId: parentItem.id });
     });
 
     expect(
@@ -139,12 +137,11 @@ describe('usePostItem', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         ...newItem,
         parentId: parentItem.id,
         geolocation: { lat: 1, lng: 1 },
       });
-      await waitForMutation();
     });
 
     expect(
@@ -188,11 +185,10 @@ describe('usePostItem', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         ...newItemWithThumbnail,
         parentId: parentItem.id,
       });
-      await waitForMutation();
     });
 
     expect(
@@ -230,12 +226,11 @@ describe('usePostItem', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         ...newItem,
         parentId: parentItem.id,
         previousItemId: previousItem.id,
       });
-      await waitForMutation();
     });
 
     expect(
@@ -263,10 +258,7 @@ describe('usePostItem', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate(newItem);
-      await waitForMutation();
-    });
+    await expect(mockedMutation.mutateAsync(newItem)).rejects.toThrow();
 
     expect(
       queryClient.getQueryState(itemKeys.allAccessible())?.isInvalidated,
@@ -306,10 +298,9 @@ describe('useUploadFiles', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         files: [new File([], 'name')],
       });
-      await waitForMutation();
     });
 
     // notification of a big file
@@ -344,11 +335,10 @@ describe('useUploadFiles', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         id: parentId,
         files: [new File([], 'name')],
       });
-      await waitForMutation();
     });
 
     // notification of a big file
@@ -382,12 +372,11 @@ describe('useUploadFiles', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         id: parentId,
         previousItemId,
         files: [new File([], 'name')],
       });
-      await waitForMutation();
     });
 
     // notification of a big file
@@ -417,14 +406,13 @@ describe('useUploadFiles', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({
+      await mockedMutation.mutateAsync({
         files: [
           new File([], 'name'),
           new File([], 'name'),
           new File([], 'name'),
         ],
       });
-      await waitForMutation();
     });
 
     expect(
@@ -449,12 +437,11 @@ describe('useUploadFiles', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({
+    await expect(
+      mockedMutation.mutateAsync({
         files: [],
-      });
-      await waitForMutation();
-    });
+      }),
+    ).rejects.toThrow();
 
     // notification of a big file
     expect(mockedNotifier).toHaveBeenCalledWith(
@@ -485,11 +472,8 @@ describe('useUploadFiles', () => {
     const file = new File([], 'name');
     Object.defineProperty(file, 'size', { value: sdk.MAX_FILE_SIZE + 10 });
 
-    await act(async () => {
-      mockedMutation.mutate({
-        files: [file, new File([], 'name'), new File([], 'name')],
-      });
-      await waitForMutation();
+    await mockedMutation.mutateAsync({
+      files: [file, new File([], 'name'), new File([], 'name')],
     });
 
     // notification of a big file
@@ -526,8 +510,7 @@ describe('useUploadFiles', () => {
     });
 
     await act(async () => {
-      mockedMutation.mutate({ files: [new File([], 'name')] });
-      await waitForMutation();
+      await mockedMutation.mutateAsync({ files: [new File([], 'name')] });
     });
 
     expect(

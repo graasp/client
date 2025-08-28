@@ -1,12 +1,11 @@
 import { HttpMethod } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import { describe, expect, it, vi } from 'vitest';
 
 import { buildImportZipRoute } from '../../routes.js';
 import { UNAUTHORIZED_RESPONSE } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
+import { mockMutation, setUpTest } from '../../test/utils.js';
 import { importZipRoutine } from '../routines.js';
 
 const mockedNotifier = vi.fn();
@@ -38,11 +37,8 @@ describe('useImportZip', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({
-        file,
-      });
-      await waitForMutation();
+    await mockedMutation.mutateAsync({
+      file,
     });
 
     expect(mockedNotifier).toHaveBeenCalledWith({
@@ -66,12 +62,9 @@ describe('useImportZip', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({
-        file,
-        id: item.id,
-      });
-      await waitForMutation();
+    await mockedMutation.mutateAsync({
+      file,
+      id: item.id,
     });
 
     expect(mockedNotifier).toHaveBeenCalledWith({
@@ -98,10 +91,7 @@ describe('useImportZip', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({ file });
-      await waitForMutation();
-    });
+    await expect(mockedMutation.mutateAsync({ file })).rejects.toThrow();
 
     expect(mockedNotifier).toHaveBeenCalledWith(
       expect.objectContaining({ type: importZipRoutine.FAILURE }),
