@@ -11,6 +11,7 @@ import {
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
+import { useSearch } from '@tanstack/react-router';
 import { MoreVerticalIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -28,6 +29,8 @@ import FlagButton from '../../common/FlagButton';
 import HideButton from '../../common/HideButton';
 import PinButton from '../../common/PinButton';
 import RecycleButton from '../../common/RecycleButton';
+import CopyButton from '../copy/CopyButton';
+import { CopyModal } from '../copy/CopyModal';
 import CreateShortcutButton from '../shortcut/CreateShortcutButton';
 import CreateShortcutModal from '../shortcut/CreateShortcutModal';
 
@@ -43,6 +46,7 @@ const internalId = 'menu';
  * or does not make sense in the context of the item
  */
 const Actions = ({ item }: Props): JSX.Element[] | null => {
+  const { copyOpen } = useSearch({ from: '/builder/items/$itemId' });
   const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
   const { data: member } = hooks.useCurrentMember();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -58,6 +62,11 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     openModal: openCreateShortcutModal,
     closeModal: closeCreateShortcutModal,
   } = useModalStatus();
+  const {
+    isOpen: isCopyModalOpen,
+    openModal: openCopyModal,
+    closeModal: closeCopyModal,
+  } = useModalStatus({ isInitiallyOpen: copyOpen });
 
   const canWrite =
     item.permission &&
@@ -86,6 +95,11 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     );
 
   return [
+    <CopyModal
+      onClose={closeCopyModal}
+      open={isCopyModalOpen}
+      items={[item]}
+    />,
     <CreateShortcutModal
       key="shortcutModal"
       item={item}
@@ -111,6 +125,14 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     >
       {member.type === AccountType.Individual
         ? [
+            <CopyButton
+              key="copy"
+              type={ActionButton.MENU_ITEM}
+              onClick={() => {
+                openCopyModal();
+                closeMenu();
+              }}
+            />,
             <CreateShortcutButton
               key="shortcut"
               onClick={() => {
@@ -125,8 +147,8 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
               item={item}
               className={ITEM_MENU_BOOKMARK_BUTTON_CLASS}
             />,
+            <Divider key="downloadDivider" />,
             canWrite && [
-              <Divider key="canWriteDivider" />,
               <HideButton
                 key="hide"
                 type={ActionButton.MENU_ITEM}
@@ -140,8 +162,8 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
                   item={item}
                 />
               ),
+              <Divider key="canWriteDivider" />,
             ],
-            <Divider key="downloadDivider" />,
             downloadButton,
             <Divider key="canWriteEndDivider" />,
           ]
