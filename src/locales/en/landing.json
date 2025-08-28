@@ -54,6 +54,10 @@
         "USE_CASE_2": "Conduct tests with various experimental conditions",
         "USE_CASE_3": "Interact with peers advancing digital learning sciences",
         "BUTTON_TEXT": "Register Now"
+      },
+      "DISCOVER": {
+        "TITLE": "Check out real activities from our users",
+        "BUTTON_TEXT": "Discover More on the Library"
       }
     },
     "USER_TESTIMONIES": {
