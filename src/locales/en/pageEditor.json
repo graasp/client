@@ -10,5 +10,7 @@
       "INCREASE": "Increase font size",
       "DECREASE": "Decrease font size"
     }
-  }
+  },
+  "DISCONNECTED_TEXT": "You have been disconnected.",
+  "RELOAD_BUTTON": "Reload"
 }

@@ -4,12 +4,19 @@
 import { useCallback, useEffect, useState } from 'react';
 
 import { Provider } from '@lexical/yjs';
+import { differenceInSeconds } from 'date-fns';
 import { WebsocketProvider } from 'y-websocket';
 import { Doc } from 'yjs';
 
 import { WS_HOST } from '@/config/env';
 
+/** Compare consecutive disconnection times  */
+const DISCONNECTION_ATTEMPT_RANGE = 5;
+
 export const useYjs = ({ edit }: { edit: boolean }) => {
+  const [disconnectedTimestamps, setDisconnectedTimestamps] = useState<Date[]>(
+    [],
+  );
   const [yjsProvider, setYjsProvider] = useState<null | Provider>(null);
   const [connected, setConnected] = useState(false);
   const [activeUsers, setActiveUsers] = useState<
@@ -57,6 +64,13 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
             // WebRTC provider has different approact to status reporting
             ('connected' in event && event.connected === true),
         );
+
+        if (event.status === 'disconnected') {
+          // keep track of 10 last deconnection dates
+          setDisconnectedTimestamps((arr) =>
+            arr.concat([new Date()]).slice(-10),
+          );
+        }
       });
 
       // This is a hack to get reference to provider with standard CollaborationPlugin.
@@ -68,7 +82,37 @@ export const useYjs = ({ edit }: { edit: boolean }) => {
     [edit],
   );
 
-  return { providerFactory, activeUsers, connected };
+  // fallback if connection is going crazy
+  // eg. connection attemps happens very quickly
+  const [hasTimedOut, setHasTimeout] = useState(false);
+  useEffect(() => {
+    if (
+      !hasTimedOut &&
+      disconnectedTimestamps.length > DISCONNECTION_ATTEMPT_RANGE
+    ) {
+      const lastDisconnections = disconnectedTimestamps.slice(
+        -DISCONNECTION_ATTEMPT_RANGE,
+      );
+
+      // can try out n connections within 2 seconds before timeout
+      if (
+        differenceInSeconds(
+          new Date(lastDisconnections[DISCONNECTION_ATTEMPT_RANGE - 1]),
+          new Date(disconnectedTimestamps[0]),
+        ) < 2
+      ) {
+        // eslint-disable-next-line @eslint-react/hooks-extra/no-direct-set-state-in-use-effect
+        setHasTimeout(true);
+      }
+    }
+  }, [disconnectedTimestamps, hasTimedOut]);
+
+  return {
+    providerFactory,
+    activeUsers,
+    connected,
+    hasTimedOut,
+  };
 };
 
 export function createWebsocketProvider(
