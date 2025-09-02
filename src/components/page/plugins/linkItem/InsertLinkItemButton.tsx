@@ -20,7 +20,7 @@ type Inputs = {
   url: string;
 };
 
-export function LinkItemButton() {
+export function InsertLinkItemButton() {
   const [editor] = useLexicalComposerContext();
   const { isOpen, closeModal, openModal } = useModalStatus();
 

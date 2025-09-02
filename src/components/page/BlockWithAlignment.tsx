@@ -28,7 +28,7 @@ import {
 
 type Props = Readonly<{
   children: ReactNode;
-  format?: ElementFormatType | null;
+  format?: ElementFormatType;
   nodeKey: NodeKey;
   className: Readonly<{
     base: string;
@@ -36,6 +36,9 @@ type Props = Readonly<{
   }>;
 }>;
 
+/**
+ * Align block content depending on format
+ */
 export function BlockWithAlignement({
   children,
   format,
@@ -110,7 +113,7 @@ export function BlockWithAlignement({
       ref={ref}
       style={{
         justifyItems: format ? format : undefined,
-        // Question: this might break inner components
+        // Question: might break inner components?
         textAlign: format ? format : undefined,
       }}
     >

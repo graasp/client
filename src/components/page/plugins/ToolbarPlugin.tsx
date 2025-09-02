@@ -31,7 +31,7 @@ import { DEFAULT_FONT_FAMILY, FontDropDown } from './FontDropDown';
 import { DEFAULT_FONT_SIZE, FontSize } from './FontSize';
 import { TextFormatDropDown } from './TextFormatDropDown';
 import { ICON_SIZE } from './constants';
-import { LinkItemButton } from './linkItem/LinkItemButton';
+import { InsertLinkItemButton } from './linkItem/InsertLinkItemButton';
 import { getSelectedNode } from './utils';
 
 function Divider() {
@@ -155,7 +155,7 @@ export default function ToolbarPlugin() {
       </button>
       <Divider />
       <TextFormatDropDown value={textFormat} editor={editor} />
-      <LinkItemButton />
+      <InsertLinkItemButton />
     </div>
   );
 }

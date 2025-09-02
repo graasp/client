@@ -23,10 +23,8 @@ export function LinkItemType({ layout, onLayoutChange }: Readonly<Props>) {
       <Select
         disableUnderline
         variant="standard"
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
         value={layout}
-        label="Age"
+        label="Link type"
         onChange={onChange}
         size="small"
       >

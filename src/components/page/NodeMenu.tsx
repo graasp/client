@@ -4,6 +4,9 @@ import { Box, Stack } from '@mui/material';
 
 import { ElementFormatType } from 'lexical';
 
+/**
+ * Wrapper for menu for elements in pages (e.g. LinkItem)
+ */
 export function NodeMenu({
   format,
   isSelected,
@@ -17,8 +20,8 @@ export function NodeMenu({
     <Box>
       {isSelected && (
         <Box
-          className="menu-wrapper"
           sx={{
+            // align depending on format
             justifyItems: format ? format : undefined,
             position: 'relative',
           }}
@@ -26,7 +29,7 @@ export function NodeMenu({
           <Stack
             sx={{
               position: 'absolute',
-              zIndex: 9999999,
+              zIndex: 9,
               top: -50,
               boxShadow: '0 4px 8px lightgrey',
               background: 'white',
