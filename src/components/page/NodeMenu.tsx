@@ -1,6 +1,6 @@
 import { JSX, ReactNode } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, Stack } from '@mui/material';
 
 import { ElementFormatType } from 'lexical';
 
@@ -23,22 +23,22 @@ export function NodeMenu({
             position: 'relative',
           }}
         >
-          <Box
+          <Stack
             sx={{
               position: 'absolute',
-              zIndex: 9999,
-              top: -70,
-              boxShadow: '0 4px 10px lightgrey',
+              zIndex: 9999999,
+              top: -50,
+              boxShadow: '0 4px 8px lightgrey',
               background: 'white',
               mb: 1,
             }}
             borderRadius={2}
             width="fit-content"
-            py={1}
             px={2}
+            direction="row"
           >
             {children}
-          </Box>
+          </Stack>
         </Box>
       )}
     </Box>

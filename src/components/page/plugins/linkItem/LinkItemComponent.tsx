@@ -121,7 +121,7 @@ type LinkItemComponentProps = Readonly<{
     base: string;
     focus: string;
   }>;
-  format: ElementFormatType | null;
+  format: ElementFormatType;
   nodeKey: NodeKey;
 
   /**
@@ -152,7 +152,6 @@ export function LinkItemComponent({
   loadingMessage = 'Link is Loading...',
   height: defaultHeight = 400,
   errorMessage = 'The link is malformed.',
-  isResizable = false,
   onLayoutChange,
   onUrlChange,
 }: LinkItemComponentProps) {
@@ -179,7 +178,7 @@ export function LinkItemComponent({
         <LinkItem
           url={url}
           layout={layout}
-          isResizable={isResizable}
+          isResizable
           height={height}
           loadingMessage={loadingMessage}
           errorMessage={errorMessage}

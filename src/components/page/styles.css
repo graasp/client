@@ -86,7 +86,7 @@
   height: 36px;
   position: sticky;
   top: 0;
-  z-index: 2;
+  /* remove zindex to avoid overlapping with item menus */
   overflow-y: hidden; /* disable vertical scroll*/
 }
 
