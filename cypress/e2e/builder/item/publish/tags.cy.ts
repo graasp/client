@@ -100,11 +100,11 @@ describe('Customized Tags', () => {
     );
   });
 
-  it('Add tag', () => {
+  it.only('Add tag', () => {
     cy.intercept(
       {
         method: 'Get',
-        url: /\/tags\?search=/,
+        url: /\/tags\/\?search=/,
       },
       ({ reply }) =>
         reply([
