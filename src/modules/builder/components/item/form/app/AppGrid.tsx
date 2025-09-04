@@ -47,7 +47,7 @@ export function AppGrid({
           <>
             {dataToShow.map((ele) => (
               <AppCard
-                id={ele.name}
+                testId={ele.name}
                 key={ele.name}
                 name={ele.name}
                 description={ele.description}

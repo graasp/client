@@ -155,7 +155,7 @@ const defaultAppValues: App = {
   description: 'description',
   id: 'app-id',
   key: 'key',
-  extra: {},
+  thumbnail: 'http://codeapp.com/logo.png',
   publisher: {
     id: 'publisher-id',
     name: 'publisher name',

@@ -11,8 +11,6 @@ import {
   styled,
 } from '@mui/material';
 
-import { buildItemFormAppOptionId } from '@/config/selectors';
-
 import defaultImage from '../../resources/defaultApp.png';
 
 const StyledCardActionArea = styled(CardActionArea)({
@@ -25,7 +23,7 @@ const StyledCardActionArea = styled(CardActionArea)({
 });
 
 export type Props = {
-  id?: string;
+  testId?: string;
   description?: string;
   name?: string;
   image?: string;
@@ -34,7 +32,7 @@ export type Props = {
 };
 
 const AppCard = ({
-  id,
+  testId,
   description,
   name,
   image,
@@ -47,7 +45,7 @@ const AppCard = ({
       outline: selected ? '2px solid #5050d2' : '',
     }}
     onClick={onClick}
-    id={buildItemFormAppOptionId(id ?? name)}
+    data-test-id={testId ?? name}
   >
     <StyledCardActionArea>
       <Grid

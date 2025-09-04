@@ -19,7 +19,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "@fontsource-variable/nunito": "5.1.1",
-    "@graasp/sdk": "5.15.0",
+    "@graasp/sdk": "github:graasp/graasp-sdk#app-image",
     "@graasp/stylis-plugin-rtl": "2.2.0",
     "@lexical/link": "0.33.1",
     "@lexical/react": "0.33.1",
@@ -209,7 +209,8 @@
     ]
   },
   "resolutions": {
-    "date-fns": "^4"
+    "date-fns": "^4",
+    "@graasp/sdk": "github:graasp/graasp-sdk#app-image"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
