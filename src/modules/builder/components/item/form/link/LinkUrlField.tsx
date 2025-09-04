@@ -46,6 +46,7 @@ const LinkUrlField = (): JSX.Element => {
       required
       error={Boolean(errors.url)}
       helperText={errors.url?.message}
+      placeholder="https://graasp.org"
       {...register('url', {
         pattern: {
           value: LINK_REGEX,

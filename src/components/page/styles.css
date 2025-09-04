@@ -86,7 +86,7 @@
   height: 36px;
   position: sticky;
   top: 0;
-  z-index: 2;
+  /* remove zindex to avoid overlapping with item menus */
   overflow-y: hidden; /* disable vertical scroll*/
 }
 
@@ -240,4 +240,9 @@ button.toolbar-item.active i {
 /* Firefox */
 .font-size-inputfont-size-input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.content-editable-root [data-lexical-decorator='true']:hover {
+  background-color: #f4f4f4;
+  cursor: pointer;
 }

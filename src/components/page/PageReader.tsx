@@ -2,15 +2,18 @@ import { useRef } from 'react';
 
 import { PageItemType } from '@graasp/sdk';
 
-import { LinkNode } from '@lexical/link';
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import {
   InitialConfigType,
   LexicalComposer,
 } from '@lexical/react/LexicalComposer';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
+import { LinkItemNode } from './plugins/linkItem/LinkItemNode';
+import { LinkItemPlugin } from './plugins/linkItem/LinkItemPlugin';
 import './styles.css';
 import { theme } from './theme';
 import { useYjs } from './useYjs';
@@ -34,7 +37,7 @@ export function PageReader({ item }: Readonly<Props>) {
     namespace: 'MyEditor',
     theme,
     onError,
-    nodes: [ParagraphNode, TextNode, LinkNode],
+    nodes: [ParagraphNode, TextNode, LinkItemNode],
     editable: false,
   };
 
@@ -51,7 +54,11 @@ export function PageReader({ item }: Readonly<Props>) {
               shouldBootstrap={false}
               cursorsContainerRef={containerRef}
             />
-            <ContentEditable />
+            <RichTextPlugin
+              ErrorBoundary={LexicalErrorBoundary}
+              contentEditable={<ContentEditable />}
+            />
+            <LinkItemPlugin />
           </div>
         </div>
       </LexicalComposer>
