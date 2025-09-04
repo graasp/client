@@ -65,12 +65,17 @@ export function FolderCreateForm({
   const { mutateAsync: createPage } = useMutation({
     ...createPageMutation(),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: itemKeys.allAccessible() });
+      queryClient.invalidateQueries({
+        queryKey: itemKeys.single(parentId).allChildren,
+      });
     },
   });
 
+  // allow pages only inside folders
   const handleClick = () => {
-    setClickCounter((s) => s + 1);
+    if (parentId) {
+      setClickCounter((s) => s + 1);
+    }
   };
 
   async function onSubmit(data: Inputs) {
@@ -91,7 +96,10 @@ export function FolderCreateForm({
   }
 
   const onCreatePageClick = async () => {
-    const { id } = await createPage({ body: { name: 'create page' } });
+    const { id } = await createPage({
+      body: { name: 'create page' },
+      query: { parentId, previousItemId },
+    });
     navigate({ to: '/builder/items/$itemId', params: { itemId: id } });
   };
 
