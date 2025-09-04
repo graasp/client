@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -8,6 +9,8 @@ import {
   DialogActions,
   DialogContent,
 } from '@mui/material';
+
+import { NS } from '@/config/constants';
 
 import LinkUrlField from '~builder/components/item/form/link/LinkUrlField';
 
@@ -21,6 +24,9 @@ type Inputs = {
 };
 
 export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
+  const { t } = useTranslation(NS.PageEditor);
+  const { t: translateCommon } = useTranslation(NS.Common);
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -53,7 +59,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        URL
+        {t('LINK.URL.BUTTON')}
       </Button>
     ),
     modal: (
@@ -65,7 +71,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
             </DialogContent>
             <DialogActions>
               <Button size="small" onClick={handleClose}>
-                Cancel
+                {translateCommon('CANCEL.BUTTON_TEXT')}
               </Button>
               <Button
                 size="small"
@@ -73,7 +79,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
                 type="submit"
                 disabled={isSubmitted && !isValid}
               >
-                Update
+                {translateCommon('EDIT.BUTTON_TEXT')}
               </Button>
             </DialogActions>
           </Box>

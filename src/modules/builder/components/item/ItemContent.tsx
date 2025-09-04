@@ -1,5 +1,5 @@
 import type { JSX } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { Alert, Container, Skeleton, Stack, styled } from '@mui/material';
 
@@ -238,10 +238,47 @@ const PageContent = ({
   item: PageItemType;
   currentAccount: AuthenticatedUser | null;
 }): JSX.Element => {
+  const { t } = useTranslation(NS.PageEditor);
   const { canWrite } = useOutletContext();
 
   if (currentAccount && canWrite) {
-    return <Editor item={item} currentAccount={currentAccount} />;
+    return (
+      <>
+        <Alert severity="warning">
+          <Trans
+            t={t}
+            i18nKey={'WARNINGS.BETA'}
+            components={{
+              1: (
+                <a
+                  target="_blank"
+                  href="https://graasp.github.io/docs/blog/unlisted/pages/"
+                >
+                  link
+                </a>
+              ),
+              bold: <strong />,
+            }}
+          />
+          <br />
+          <Trans
+            t={t}
+            i18nKey={'WARNINGS.FEEDBACK'}
+            components={{
+              1: (
+                <a
+                  target="_blank"
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSe79M8aXDYkS2Rjz7xZg0Ns8hjDY6YvaVEpjqVfb3dXQW48cg/viewform?usp=dialog"
+                >
+                  link
+                </a>
+              ),
+            }}
+          />
+        </Alert>
+        <Editor item={item} currentAccount={currentAccount} />
+      </>
+    );
   }
 
   return <PageReader item={item} />;
