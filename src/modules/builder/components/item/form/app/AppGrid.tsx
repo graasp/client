@@ -73,7 +73,7 @@ export function AppGrid({
   if (isLoading) {
     return Array(7)
       .fill(0)
-      .map((i) => <AppCard key={i} id={i} />);
+      .map((i) => <AppCard key={i} testId={i} />);
   }
 
   return (

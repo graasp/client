@@ -179,7 +179,7 @@ const APP_2: App = {
   name: 'File App',
   description: 'description',
   url: 'http://fileapp.com',
-  extra: { image: 'http://fileapp.com/logo.png' },
+  thumbnail: 'http://fileapp.com/logo.png',
 };
 
 export const APPS = [APP_1, APP_2];
