@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 import { Stack, Typography } from '@mui/material';
 
+import { AccountType } from '@graasp/sdk';
+
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link, Outlet, createFileRoute } from '@tanstack/react-router';
 
@@ -30,7 +32,7 @@ export const Route = createFileRoute('/_landing')({
 function RouteComponent() {
   const { i18n, t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
   const { t: translateMessage } = useTranslation(NS.Messages);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
 
@@ -51,7 +53,8 @@ function RouteComponent() {
   });
   const { isEnabled: isPreviewEnabled } = usePreviewMode();
   const onChangeLang: OnChangeLangProp = (lang: string) => {
-    if (isAuthenticated) {
+    // only "full users" can change their language
+    if (isAuthenticated && user.type === AccountType.Individual) {
       mutate({ body: { extra: { lang } } });
     }
     i18n.changeLanguage(lang);
