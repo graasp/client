@@ -1,4 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import {
   Box,
@@ -11,6 +12,8 @@ import {
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
+import { NS } from '@/config/constants';
+
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import LinkUrlField from '~builder/components/item/form/link/LinkUrlField';
 
@@ -21,6 +24,9 @@ type Inputs = {
 };
 
 export function InsertLinkItemButton() {
+  const { t } = useTranslation(NS.PageEditor);
+  const { t: translateCommon } = useTranslation(NS.Common);
+
   const [editor] = useLexicalComposerContext();
   const { isOpen, closeModal, openModal } = useModalStatus();
 
@@ -41,23 +47,25 @@ export function InsertLinkItemButton() {
   return (
     <>
       <Button size="small" variant="outlined" onClick={openModal}>
-        Insert a link
+        {t('TOOLBAR.LINK_ITEM.BUTTON')}
       </Button>
       <Dialog onClose={closeModal} open={isOpen}>
         <Box component="form" onSubmit={handleSubmit(onSubmit)}>
           <FormProvider {...methods}>
-            <DialogTitle>Insert a link</DialogTitle>
+            <DialogTitle>{t('TOOLBAR.LINK_ITEM.INSERT.TITLE')}</DialogTitle>
             <DialogContent>
               <LinkUrlField />
             </DialogContent>
             <DialogActions>
-              <Button onClick={closeModal}>Cancel</Button>
+              <Button onClick={closeModal}>
+                {translateCommon('CANCEL.BUTTON_TEXT')}
+              </Button>
               <Button
                 variant="contained"
                 type="submit"
                 disabled={isSubmitted && !isValid}
               >
-                Insert
+                {t('TOOLBAR.LINK_ITEM.INSERT.SUBMIT_BUTTON')}
               </Button>
             </DialogActions>
           </FormProvider>

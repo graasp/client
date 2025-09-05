@@ -117,10 +117,10 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
                           // necessary for dnd, for shifting text and show drag icon correctly
                           className={'content-editable-root'}
                           style={{ fontSize: DEFAULT_FONT_SIZE }}
-                          aria-placeholder={'Enter some text...'}
+                          aria-placeholder={t('EDITOR.PLACEHOLDER')}
                           placeholder={
                             <div className="editor-placeholder">
-                              Enter some text...
+                              {t('EDITOR.PLACEHOLDER')}
                             </div>
                           }
                         />
