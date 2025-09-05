@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.30.1](https://github.com/graasp/client/compare/v2.30.0...v2.30.1) (2025-09-05)
+
+
+### Bug Fixes
+
+* guests can not change their language ([#1071](https://github.com/graasp/client/issues/1071)) ([b28fad1](https://github.com/graasp/client/commit/b28fad13afa3d0a214009c1cd2d7263df57d5996))
+
 ## [2.30.0](https://github.com/graasp/client/compare/v2.29.0...v2.30.0) (2025-09-05)
 
 
