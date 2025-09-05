@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
 
-import { AccountType } from '@graasp/sdk';
+import { AccountType, DiscriminatedItem } from '@graasp/sdk';
 
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
@@ -13,6 +13,24 @@ type RightHeaderProps = ComponentProps<typeof RightHeader> & {
   isAuthenticated: boolean;
 };
 
+function getUser(userType: AccountType) {
+  if (userType === AccountType.Individual) {
+    return {
+      id: 'd2bc9358-9a63-49ea-81e0-e314816e482a',
+      name: 'Bob',
+      lang: 'en',
+      type: AccountType.Individual as const,
+    };
+  }
+  return {
+    id: 'd2bc9358-9a63-49ea-81e0-e314816e482a',
+    name: 'Bob',
+    lang: 'en',
+    type: AccountType.Guest as const,
+    item: {} as DiscriminatedItem,
+  };
+}
+
 const meta: Meta<RightHeaderProps> = {
   component: RightHeader,
   args: {
@@ -22,15 +40,10 @@ const meta: Meta<RightHeaderProps> = {
   render: function Render({ isAuthenticated, ...args }) {
     const user = isAuthenticated
       ? {
-          user: {
-            id: 'd2bc9358-9a63-49ea-81e0-e314816e482a',
-            name: 'Bob',
-            lang: 'en',
-            type: AccountType.Individual,
-          },
+          user: getUser(AccountType.Individual),
           logout: fn(),
           login: null,
-          isAuthenticated,
+          isAuthenticated: true as const,
         }
       : {
           user: null,
