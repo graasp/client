@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert } from '@mui/material';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { useApps } from '@/query/hooks/apps';
+import { getAppListOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import AppCard from '~builder/components/main/AppCard';
 import { sortByName } from '~builder/utils/item';
@@ -19,7 +21,7 @@ type AppGridProps = {
 export function AppGrid({
   searchQuery,
 }: Readonly<AppGridProps>): JSX.Element | JSX.Element[] {
-  const { data, isLoading } = useApps();
+  const { data, isLoading } = useQuery(getAppListOptions());
   const { control, reset } = useFormContext<{
     url: string;
     name: string;
@@ -45,11 +47,11 @@ export function AppGrid({
           <>
             {dataToShow.map((ele) => (
               <AppCard
-                id={ele.id}
+                testId={ele.name}
                 key={ele.name}
                 name={ele.name}
                 description={ele.description}
-                image={ele.extra.image}
+                image={ele.thumbnail}
                 selected={ele.url === field.value}
                 onClick={() => {
                   if (ele.url === field.value) {
@@ -71,7 +73,7 @@ export function AppGrid({
   if (isLoading) {
     return Array(7)
       .fill(0)
-      .map((i) => <AppCard key={i} id={i} />);
+      .map((i) => <AppCard key={i} testId={i} />);
   }
 
   return (

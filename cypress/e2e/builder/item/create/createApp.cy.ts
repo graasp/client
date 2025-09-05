@@ -18,7 +18,7 @@ describe('Create App', () => {
       cy.visit(buildItemPath(id));
 
       // create
-      createApp(GRAASP_APP_ITEM, { id: APPS_LIST[0].id });
+      createApp(GRAASP_APP_ITEM, { id: APPS_LIST[0].name });
       cy.wait('@postItem').then(({ request: { url } }) => {
         expect(url).to.contain(FOLDER.id);
         // add after child

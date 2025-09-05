@@ -58,7 +58,7 @@ function AppListForm({
         >
           <AppGrid searchQuery={searchQuery} />
           <AppCard
-            id={CUSTOM_APP_CYPRESS_ID}
+            testId={CUSTOM_APP_CYPRESS_ID}
             name={translateBuilder(BUILDER.CREATE_CUSTOM_APP)}
             description={translateBuilder(
               BUILDER.CREATE_CUSTOM_APP_DESCRIPTION,

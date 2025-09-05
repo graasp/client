@@ -298,8 +298,7 @@ export const ITEM_FORM_ETHERPAD_NAME_INPUT_ID = 'itemFormEtherpadNameInputId';
 export const ETHERPAD_ALLOW_READER_TO_WRITE_SETTING_ID =
   'etherpadAllowReaderToWriteSetting';
 export const ITEM_FORM_APP_URL_ID = 'itemFormAppUrl';
-export const buildItemFormAppOptionId = (id?: string): string =>
-  `app-option-${id}`;
+
 export const TEXT_EDITOR_CLASS = 'ql-editor';
 export const buildSaveButtonId = (id: string): string => `saveButton-${id}`;
 export const buildCancelButtonId = (id: string): string => `cancelButton-${id}`;

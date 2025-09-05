@@ -37,7 +37,6 @@ import {
   buildDataCyWrapper,
   buildFolderItemCardThumbnail,
   buildItemCard,
-  buildItemFormAppOptionId,
   buildItemRowArrowId,
   buildNavigationModalItemId,
   buildPermissionOptionId,
@@ -653,12 +652,12 @@ Cypress.Commands.add(
     if (type) {
       cy.get(`#${ITEM_FORM_APP_URL_ID}`).type(getAppExtra(extra)?.url);
     } else if (custom) {
-      cy.get(`#${buildItemFormAppOptionId(CUSTOM_APP_CYPRESS_ID)}`).click();
+      cy.get(`[data-test-id="${CUSTOM_APP_CYPRESS_ID}"]`).click();
       // check name get added automatically
       cy.fillBaseItemModal({ name }, { confirm: false });
       cy.get(`#${CUSTOM_APP_URL_ID}`).type(CUSTOM_APP_URL);
     } else {
-      cy.get(`#${buildItemFormAppOptionId(id)}`).click();
+      cy.get(`[data-test-id="${id}"]`).click();
       // check name get added automatically
       cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).should('have.value', APP_NAME);
       // edit the app name
