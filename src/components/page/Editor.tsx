@@ -103,8 +103,8 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
                   // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
                   // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
                   shouldBootstrap={false}
-                  username={currentAccount.name}
-                  cursorColor={stringToColor(currentAccount.id)}
+                  username={currentAccount?.name}
+                  cursorColor={stringToColor(currentAccount?.id || '')}
                   cursorsContainerRef={containerRef}
                 />
                 <RichTextPlugin
