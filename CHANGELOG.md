@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.30.0](https://github.com/graasp/client/compare/v2.29.0...v2.30.0) (2025-09-05)
+
+
+### Features
+
+* add link in pages with menu on click ([#1091](https://github.com/graasp/client/issues/1091)) ([7214983](https://github.com/graasp/client/commit/72149833132bda4d76242cbf5c60edba6af038c2))
+* allow creating pages only inside folders ([#1093](https://github.com/graasp/client/issues/1093)) ([87e6404](https://github.com/graasp/client/commit/87e6404f63718b0833ab1962e6420b6b8fecae55))
+
+
+### Bug Fixes
+
+* **deps:** update mui (non-major) to v7.3.2 ([#1088](https://github.com/graasp/client/issues/1088)) ([3913a2a](https://github.com/graasp/client/commit/3913a2a90964734a9ede78a2f83a8d1fcd33285d))
+* use thumbnail column for app list ([#1092](https://github.com/graasp/client/issues/1092)) ([90f3a48](https://github.com/graasp/client/commit/90f3a482a542c7e032fc605271b942dd2853c68d))
+
 ## [2.29.0](https://github.com/graasp/client/compare/v2.28.0...v2.29.0) (2025-08-28)
 
 
