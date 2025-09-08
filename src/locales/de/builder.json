@@ -527,7 +527,7 @@
   "DELETE_GUESTS_MODAL_TITLE_other": "Löschen von {{count}} deaktivierten Lesern bestätigen",
   "DELETE_GUESTS_MODAL_CONTENT": "Ich bestätige die <1>dauerhafte</1> Löschung der folgenden Leser und ihrer Daten:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Endgültig löschen",
-  "ADD_TAG_OPTION_BUTTON_TEXT": "{{value}} hinzufügen",
+  "ADD_TAG_OPTION_BUTTON_TEXT": "„{{value}}“ hinzufügen",
   "CREATE_FOLDER_BUTTON_TEXT": "Ordner erstellen",
   "TAGS_DESCRITPION": "Tags sind Schlüsselwörter oder Begriffe, die Sie Ihren Artikeln hinzufügen können. Sie beschreiben das Thema, den Kontext, das Projekt oder die Zielgruppe Ihrer Artikel. Sie helfen anderen Benutzern, Ihre Inhalte zu finden, wenn sie in der Bibliothek suchen, wenn Ihre Sammlung veröffentlicht ist. Weitere Informationen zu Tags finden Sie in <1>der Dokumentation</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Beispiel: Mathematik, Geschichte, Biologie",

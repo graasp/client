@@ -517,7 +517,7 @@
   "DELETE_GUESTS_MODAL_TITLE_other": "Conferma l'eliminazione di {{count}} lettori disabilitati",
   "DELETE_GUESTS_MODAL_CONTENT": "Confermo di eliminare <1>permanentemente</1> i seguenti lettori e i loro dati:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Elimina definitivamente",
-  "ADD_TAG_OPTION_BUTTON_TEXT": "Aggiungi {{value}}",
+  "ADD_TAG_OPTION_BUTTON_TEXT": "Aggiungi \"{{value}}\"",
   "CREATE_FOLDER_BUTTON_TEXT": "Crea cartella",
   "TAGS_DESCRITPION": "I tag sono parole chiave o termini che puoi associare ai tuoi elementi. Descrivono l'argomento, il contesto, il progetto o il pubblico di riferimento dei tuoi elementi. Aiutano gli altri utenti a trovare i tuoi contenuti quando cercano nella biblioteca se la tua collezione è pubblicata. Puoi scoprire di più sui tag nella <1>documentazione</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Esempio: matematica, storia, biologia",

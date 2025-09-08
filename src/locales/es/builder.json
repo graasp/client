@@ -527,7 +527,7 @@
   "DELETE_GUESTS_MODAL_TITLE_other": "Confirmar la eliminación de {{count}} lectores deshabilitados",
   "DELETE_GUESTS_MODAL_CONTENT": "Confirmo la eliminación <1>permanente</1> de los siguientes lectores y sus datos:",
   "DELETE_GUESTS_MODAL_DELETE_BUTTON": "Eliminar permanentemente",
-  "ADD_TAG_OPTION_BUTTON_TEXT": "Añadir {{value}}",
+  "ADD_TAG_OPTION_BUTTON_TEXT": "Añadir \"{{value}}\"",
   "CREATE_FOLDER_BUTTON_TEXT": "Crear carpeta",
   "TAGS_DESCRITPION": "Las etiquetas son palabras clave o términos que puedes añadir a tus artículos. Describen el tema, el contexto, el proyecto o el público al que van dirigidos. Si tu colección está publicada, ayudan a otros usuarios a encontrar tu contenido al buscar en la biblioteca. Puedes encontrar más información sobre las etiquetas en la <1>documentación</1>.",
   "TAGS_DISCIPLINE_HELPERTEXT": "Ejemplo: matemáticas, historia, biología.",
