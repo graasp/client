@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.31.0](https://github.com/graasp/client/compare/v2.30.0...v2.31.0) (2025-09-08)
+
+
+### Features
+
+* add alert warnings for page feature and translations ([#1099](https://github.com/graasp/client/issues/1099)) ([950ba23](https://github.com/graasp/client/commit/950ba231836580338f8b3794d70023721014c075))
+* show pages in player ([#1102](https://github.com/graasp/client/issues/1102)) ([4d683b9](https://github.com/graasp/client/commit/4d683b933a79489f2ff1bdb8bf4ab937031b9062))
+
+
+### Bug Fixes
+
+* guests can not change their language ([#1071](https://github.com/graasp/client/issues/1071)) ([b28fad1](https://github.com/graasp/client/commit/b28fad13afa3d0a214009c1cd2d7263df57d5996))
+* remove `waitForMutation` and use `await expect(...).rejects.toThrow()` on throwing mutations ([#1086](https://github.com/graasp/client/issues/1086)) ([c77e7df](https://github.com/graasp/client/commit/c77e7df7c336306ccd520405f2b445b59e65a467))
+* set default state as null for ws ([#1103](https://github.com/graasp/client/issues/1103)) ([8ee960f](https://github.com/graasp/client/commit/8ee960f4a96a63e836dd0f6dcb50cad9477b6a3c))
+
 ## [2.30.0](https://github.com/graasp/client/compare/v2.29.0...v2.30.0) (2025-09-05)
 
 
