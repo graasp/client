@@ -18,8 +18,8 @@
   "DISCONNECTED_TEXT": "You have been disconnected.",
   "RELOAD_BUTTON": "Reload",
   "WARNINGS": {
-    "BETA": "The pages are still in <bold>beta</bold>. You can find the documentation and current status of the feature <1>on the docs website</1>.",
-    "FEEDBACK": "We would be glad to collect your feedback <1>in this form</1>."
+    "BETA": "The functionality \"pages\" are in <bold>beta</bold>. You can find the documentation and current status of the feature <1>on the docs website</1>.",
+    "FEEDBACK": "Give us your feedback <1>via this form</1>."
   },
   "EDITOR": {
     "PLACEHOLDER": "Enter some text..."

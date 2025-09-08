@@ -14,8 +14,8 @@
   "DISCONNECTED_TEXT": "Vous avez été déconnecté.",
   "RELOAD_BUTTON": "Recharger",
   "WARNINGS": {
-    "BETA": "Les pages sont toujours en <bold>beta</bold>. Vous pouvez retrouver la documentation et l'état actuel de la fonctionnalité <1>sur le site de documentation</1>.",
-    "FEEDBACK": "Nous apprécions grandement un retour/avis <1>par ce formulaire</1>."
+    "BETA": "La fonctionnalité des \"pages\" est en <bold>beta</bold>. Vous pouvez retrouver la documentation et l'état actuel de la fonctionnalité <1>sur le site de documentation</1>.",
+    "FEEDBACK": "Donnez-nous votre avis <1>via ce formulaire</1>."
   },
   "EDITOR": {
     "PLACEHOLDER": "Entrer un texte..."
