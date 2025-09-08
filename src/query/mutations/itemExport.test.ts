@@ -1,12 +1,11 @@
 import { HttpMethod } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import nock from 'nock';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { buildExportItemRoute } from '../routes.js';
 import { exportItemRoutine } from '../routines/itemExport.js';
-import { mockMutation, setUpTest, waitForMutation } from '../test/utils.js';
+import { mockMutation, setUpTest } from '../test/utils.js';
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -41,10 +40,7 @@ describe('Export Item', () => {
         wrapper,
       });
 
-      await act(async () => {
-        mockedMutation.mutate({ id: itemId });
-        await waitForMutation();
-      });
+      await mockedMutation.mutateAsync({ id: itemId });
 
       expect(mockedNotifier).toHaveBeenCalledWith({
         type: exportItemRoutine.SUCCESS,

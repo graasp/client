@@ -1,6 +1,5 @@
 import { HttpMethod, MAX_FILE_SIZE } from '@graasp/sdk';
 
-import { act } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -9,7 +8,7 @@ import {
   UNAUTHORIZED_RESPONSE,
   generateFolders,
 } from '../../test/constants.js';
-import { mockMutation, setUpTest, waitForMutation } from '../../test/utils.js';
+import { mockMutation, setUpTest } from '../../test/utils.js';
 import {
   buildDeleteItemThumbnailRoute,
   buildUploadItemThumbnailRoute,
@@ -50,10 +49,7 @@ describe('useDeleteItemThumbnail', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate(itemId);
-      await waitForMutation();
-    });
+    await mockedMutation.mutateAsync(itemId);
 
     expect(
       queryClient.getQueryState(itemKeys.single(itemId).allThumbnails)
@@ -96,12 +92,9 @@ describe('useUploadItemThumbnail', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({
-        file,
-        id: item.id,
-      });
-      await waitForMutation();
+    await mockedMutation.mutateAsync({
+      file,
+      id: item.id,
     });
 
     expect(
@@ -133,13 +126,12 @@ describe('useUploadItemThumbnail', () => {
     const bigFile = new Blob([]);
     Object.defineProperty(bigFile, 'size', { value: MAX_FILE_SIZE + 10 });
 
-    await act(async () => {
-      mockedMutation.mutate({
+    await expect(
+      mockedMutation.mutateAsync({
         file: bigFile,
         id: item.id,
-      });
-      await waitForMutation();
-    });
+      }),
+    ).rejects.toThrow();
 
     // notification of a big file
     expect(mockedNotifier).toHaveBeenCalledWith(
@@ -172,10 +164,7 @@ describe('useUploadItemThumbnail', () => {
       wrapper,
     });
 
-    await act(async () => {
-      mockedMutation.mutate({ file, id: item.id });
-      await waitForMutation();
-    });
+    await mockedMutation.mutateAsync({ file, id: item.id });
 
     expect(mockedNotifier).toHaveBeenCalledWith(
       expect.objectContaining({ type: uploadItemThumbnailRoutine.FAILURE }),
