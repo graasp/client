@@ -44,7 +44,7 @@ export function PageReader({ item }: Readonly<Props>) {
   return (
     <div ref={containerRef}>
       <LexicalComposer initialConfig={initialConfig}>
-        <div style={{ width: '100%', height: '100vh', background: 'white' }}>
+        <div style={{ width: '100%', height: '100vh' }}>
           <div className="editor-inner">
             <CollaborationPlugin
               id={item.id}

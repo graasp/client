@@ -31,6 +31,7 @@ import {
 import { getRouteApi } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
+import { PageReader } from '@/components/page/PageReader';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
 import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
@@ -355,6 +356,10 @@ const ItemContent = ({ item }: ItemContentProps) => {
 
     case ItemType.SHORTCUT: {
       return <ShortcutContent item={item} />;
+    }
+
+    case ItemType.PAGE: {
+      return <PageReader item={item} />;
     }
 
     default:
