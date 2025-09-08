@@ -59,6 +59,10 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
   };
 
   const initialConfig: InitialConfigType = {
+    // NOTE: This is critical for collaboration plugin to set editor state to null. It
+    // would indicate that the editor should not try to set any default state
+    // (not even empty one), and let collaboration plugin do it instead
+    editorState: null,
     namespace: 'MyEditor',
     theme,
     onError,
