@@ -37,7 +37,6 @@ export const MultiSelectTagChipInput = ({
   tagCategory,
   helpertext,
 }: Props): JSX.Element | null => {
-  const { t } = useTranslation(NS.Builder);
   const { t: translateEnums } = useTranslation(NS.Enums);
   const {
     currentValue,
@@ -131,7 +130,7 @@ export const MultiSelectTagChipInput = ({
   ) {
     options.push({
       value: currentValue,
-      title: t('ADD_TAG_OPTION_BUTTON_TEXT', { value: currentValue }),
+      title: currentValue,
       count: 0,
     });
   }
