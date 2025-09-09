@@ -7,7 +7,7 @@ import { Context, ItemType, PackedItem, PermissionLevel } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
 
-import { type AuthenticatedUser, useAuth } from '@/AuthContext';
+import { type AuthenticatedMember, useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { API_HOST } from '@/config/env';
 import { Api } from '@/query';
@@ -61,7 +61,7 @@ function AppContent({
   member,
 }: Readonly<{
   item: PackedItem;
-  member: AuthenticatedUser;
+  member: AuthenticatedMember;
 }>): JSX.Element | null {
   if (item.permission && item.type == ItemType.APP) {
     const permission = item.permission;

@@ -8,11 +8,7 @@ import {
   useMemo,
 } from 'react';
 
-import {
-  AccountType,
-  DiscriminatedItem,
-  getCurrentAccountLang,
-} from '@graasp/sdk';
+import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -35,19 +31,11 @@ export type AuthenticatedMember = {
   name: string;
   id: string;
   lang: string;
-  type: AccountType.Individual;
+  type: AccountType;
 };
-export type AuthenticatedGuest = {
-  name: string;
-  id: string;
-  lang: string;
-  type: AccountType.Guest;
-  item: DiscriminatedItem;
-};
-export type AuthenticatedUser = AuthenticatedMember | AuthenticatedGuest;
 type AuthContextLoggedMember = {
   isAuthenticated: true;
-  user: AuthenticatedUser;
+  user: AuthenticatedMember;
   logout: () => Promise<void>;
   login: null;
 };
@@ -112,32 +100,17 @@ export function AuthProvider({
     Sentry.setUser(currentMember ? { id: currentMember.id } : null);
 
     if (currentMember) {
-      if (currentMember.type === AccountType.Individual) {
-        return {
-          isAuthenticated: true as const,
-          user: {
-            name: currentMember.name,
-            id: currentMember.id,
-            lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
-            type: AccountType.Individual as const,
-          },
-          logout,
-          login: null,
-        };
-      } else {
-        return {
-          isAuthenticated: true as const,
-          user: {
-            name: currentMember.name,
-            id: currentMember.id,
-            lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
-            type: AccountType.Guest as const,
-            item: currentMember.itemLoginSchema.item,
-          },
-          logout,
-          login: null,
-        };
-      }
+      return {
+        isAuthenticated: true as const,
+        user: {
+          name: currentMember.name,
+          id: currentMember.id,
+          lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
+          type: currentMember.type,
+        },
+        logout,
+        login: null,
+      };
     } else {
       return {
         isAuthenticated: false as const,

@@ -16,7 +16,7 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
-import { type AuthenticatedUser } from '@/AuthContext';
+import { AuthenticatedMember } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
@@ -39,7 +39,7 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  currentAccount: AuthenticatedUser | null;
+  currentAccount: AuthenticatedMember;
 };
 
 export function Editor({ item, currentAccount }: Readonly<Props>) {
@@ -107,8 +107,8 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
                   // Unless you have a way to avoid race condition between 2+ users trying to do bootstrap simultaneously
                   // you should never try to bootstrap on client. It's better to perform bootstrap within Yjs server.
                   shouldBootstrap={false}
-                  username={currentAccount?.name}
-                  cursorColor={stringToColor(currentAccount?.id || '')}
+                  username={currentAccount.name}
+                  cursorColor={stringToColor(currentAccount.id)}
                   cursorsContainerRef={containerRef}
                 />
                 <RichTextPlugin
