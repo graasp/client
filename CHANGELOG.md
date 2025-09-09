@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.31.1](https://github.com/graasp/client/compare/v2.31.0...v2.31.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* disable useChildren tests ([#1105](https://github.com/graasp/client/issues/1105)) ([6c05f3c](https://github.com/graasp/client/commit/6c05f3cc392cf4d4a9a43f2ec457529bcd0e5f82))
+
 ## [2.31.0](https://github.com/graasp/client/compare/v2.30.0...v2.31.0) (2025-09-08)
 
 
