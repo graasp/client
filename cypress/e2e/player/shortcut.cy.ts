@@ -40,7 +40,7 @@ describe('Shortcuts', () => {
       .should('contain', 'from')
       .and('contain', parentItem.id)
       .and('contain', 'fromName')
-      .and('contain', 'parent%20item');
+      .and('contain', 'parent+item');
 
     cy.wait(3000);
 
@@ -80,7 +80,7 @@ describe('Shortcuts', () => {
       .should('contain', 'from')
       .and('contain', parentItem.id)
       .and('contain', 'fromName')
-      .and('contain', 'parent%20item')
+      .and('contain', 'parent+item')
       .and('contain', 'fullscreen=true');
 
     // go back to origin
