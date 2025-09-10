@@ -193,7 +193,7 @@
     "prettier": "3.5.3",
     "storybook": "9.0.15",
     "typescript": "5.8.3",
-    "vite": "6.3.5",
+    "vite": "7.1.5",
     "vite-plugin-checker": "0.9.3",
     "vite-plugin-istanbul": "7.0.0",
     "vite-plugin-static-copy": "2.3.2",
