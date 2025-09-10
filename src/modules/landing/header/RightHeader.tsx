@@ -53,7 +53,7 @@ export function RightHeader({
             params={{ itemId: user.item.id }}
             endIcon={<ArrowRightIcon />}
           >
-            {translateLanding('NAV.GO_TO_ITEM')}
+            {translateLanding('NAV.GO_TO_ITEM', { name: user.item.name })}
           </ButtonLink>
         </Stack>
       );
