@@ -12,7 +12,6 @@ import {
 
 import { DEFAULT_LANG } from '@/config/constants.js';
 
-import { MeiliSearchProps } from './api/search.js';
 import { DEFAULT_THUMBNAIL_SIZE } from './config/constants.js';
 import { ItemSearchParams } from './item/types.js';
 
@@ -328,12 +327,6 @@ export const buildEmbeddedLinkMetadataKey = (link: string) => [
   'metadata',
   link,
 ];
-
-export const buildFacetKey = (
-  args: {
-    facetName?: string;
-  } & MeiliSearchProps,
-) => ['facets', args.facetName, args];
 
 export const DATA_KEYS = {
   APPS_KEY,

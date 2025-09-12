@@ -10,7 +10,6 @@ import configureItemPublishedHooks from './itemPublish.js';
 import configureItemValidationHooks from './itemValidation.js';
 import configureMembershipHooks from './membership.js';
 import configureMentionsHooks from './mention.js';
-import configureKeywordSearchHooks from './search.js';
 import useDebounce from './useDebounce.js';
 
 export const configureHooks = (
@@ -28,7 +27,6 @@ export const configureHooks = (
     ...configureMembershipHooks(queryConfig, websocketClient),
     ...configureItemHooks(queryConfig, websocketClient),
     ...configureEtherpadHooks(queryConfig),
-    ...configureKeywordSearchHooks(queryConfig),
     ...configureItemLoginHooks(queryConfig),
     ...configureItemPublishedHooks(queryConfig),
     ...configureItemValidationHooks(queryConfig),

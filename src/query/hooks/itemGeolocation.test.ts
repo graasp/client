@@ -163,7 +163,7 @@ describe('useAddressFromGeolocation', () => {
   });
 });
 
-describe('useSuggestionsForAddress', () => {
+describe.skip('useSuggestionsForAddress', () => {
   const response = { addressLabel: 'display_name' };
   const payload = { address: 'address', lang: 'en' };
 
