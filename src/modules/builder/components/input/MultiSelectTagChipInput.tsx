@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Autocomplete,
-  AutocompleteRenderGetTagProps,
   AutocompleteRenderInputParams,
+  AutocompleteRenderValueGetItemProps,
   Box,
-  Button,
   Chip,
   Skeleton,
   Stack,
@@ -38,11 +37,9 @@ export const MultiSelectTagChipInput = ({
   tagCategory,
   helpertext,
 }: Props): JSX.Element | null => {
-  const { t } = useTranslation(NS.Builder);
   const { t: translateEnums } = useTranslation(NS.Enums);
   const {
     currentValue,
-    error,
     handleCurrentValueChanged,
     addValue,
     deleteValue,
@@ -63,27 +60,33 @@ export const MultiSelectTagChipInput = ({
     enabled: Boolean(debouncedCurrentValue),
   });
   const renderTags = (
-    value: readonly string[],
-    getTagProps: AutocompleteRenderGetTagProps,
+    values: readonly (string | { title: string; value: string })[],
+    getItemProps: AutocompleteRenderValueGetItemProps<true>,
   ) => (
     <Box data-cy={MULTI_SELECT_CHIP_CONTAINER_ID}>
-      {value.map((option: string, index: number) => (
-        <Chip
-          data-cy={buildMultiSelectChipsSelector(index)}
-          variant="outlined"
-          label={option}
-          {...getTagProps({ index })}
-          onDelete={() => {
-            const tagId = tagsPerCategory?.[tagCategory].find(
-              ({ name }) => name === option,
-            );
-            if (tagId) {
-              deleteValue(tagId.id);
-            }
-          }}
-          key={option}
-        />
-      ))}
+      {values.map((option, index: number) => {
+        const { title, value } =
+          typeof option === 'string'
+            ? { title: option, value: option }
+            : option;
+        return (
+          <Chip
+            data-cy={buildMultiSelectChipsSelector(index)}
+            variant="outlined"
+            label={title}
+            {...getItemProps({ index })}
+            onDelete={() => {
+              const tagId = tagsPerCategory?.[tagCategory].find(
+                ({ name }) => name === title,
+              );
+              if (tagId) {
+                deleteValue(tagId.id);
+              }
+            }}
+            key={value}
+          />
+        );
+      })}
     </Box>
   );
 
@@ -118,7 +121,19 @@ export const MultiSelectTagChipInput = ({
   const options =
     tags
       ?.filter(({ category }) => category === tagCategory)
-      ?.map(({ name }) => name) ?? [];
+      ?.map(({ name, count }) => ({ title: name, value: name, count })) ?? [];
+
+  // If the current value is not empty allow to select it exacly by adding a "Add {value}" option
+  if (
+    currentValue !== '' &&
+    !options.map((option) => option.value).includes(currentValue)
+  ) {
+    options.push({
+      value: currentValue,
+      title: currentValue,
+      count: 0,
+    });
+  }
 
   return (
     <Stack mt={1} spacing={1}>
@@ -131,35 +146,23 @@ export const MultiSelectTagChipInput = ({
           // allows to hide empty "add option" text on adding a new tag
           freeSolo={!currentValue}
           onBlur={resetCurrentValue}
-          noOptionsText={
-            error ?? (
-              <Button
-                fullWidth
-                onClick={() =>
-                  addValue({
-                    name: currentValue,
-                    category: tagCategory,
-                  })
-                }
-              >
-                {t('ADD_TAG_OPTION_BUTTON_TEXT', { value: currentValue })}
-              </Button>
-            )
-          }
           options={options}
           value={tagsPerCategory?.[tagCategory]?.map(({ name }) => name) ?? []}
           onChange={(_e, v) => {
             if (v.length) {
+              const entry = v[v.length - 1];
+              const name = typeof entry === 'string' ? entry : entry.value;
               addValue({
-                name: v[v.length - 1],
+                name,
                 category: tagCategory,
               });
             }
           }}
-          renderTags={renderTags}
-          renderOption={(optionProps, name) => (
-            <Box component="li" {...optionProps}>
-              {name}
+          renderValue={renderTags}
+          renderOption={(optionProps, option) => (
+            <Box component="li" {...optionProps} gap={1}>
+              <span>{option.title}</span>
+              {option.count > 0 && <Chip size="small" label={option.count} />}
             </Box>
           )}
           renderInput={renderInput}

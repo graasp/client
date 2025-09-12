@@ -4,8 +4,6 @@ import {
   ItemType,
   ItemTypeUnion,
   Pagination,
-  Tag,
-  TagCategoryType,
   UUID,
   UnionOfConst,
 } from '@graasp/sdk';
@@ -141,20 +139,6 @@ export const itemKeys = {
     [...itemKeys.allAccessible(), 'infinite', params] as const,
   accessiblePage: (params: ItemSearchParams, pagination: Partial<Pagination>) =>
     [...itemKeys.allAccessible(), params, pagination] as const,
-
-  search: (args: {
-    query?: string;
-    tags?: { [key in TagCategoryType]: Tag['name'][] };
-    isPublishedRoot?: boolean;
-    limit?: number;
-    offset?: number;
-    sort?: string[];
-    highlightPreTag?: string;
-    highlightPostTag?: string;
-    page?: number;
-    langs?: string[];
-  }) =>
-    [...itemKeys.all, 'search', { isPublishedRoot: false, ...args }] as const,
 
   published: () => {
     const publishedBaseKey = [...itemKeys.all, 'collections'] as const;

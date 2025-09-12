@@ -100,7 +100,7 @@ describe('Customized Tags', () => {
     );
   });
 
-  it.only('Add tag', () => {
+  it('Add tag', () => {
     cy.intercept(
       {
         method: 'Get',
@@ -130,6 +130,8 @@ describe('Customized Tags', () => {
 
     // display options for opened category
     cy.get(`li:contains("secondary school")`).should('be.visible');
+    // display the exact value entered as a new tag option
+    cy.get(`li:contains("${newTag.name}")`).should('be.visible');
 
     cy.get(
       buildDataCyWrapper(buildMultiSelectChipInputId(TagCategory.Level)),
