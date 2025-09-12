@@ -27,7 +27,7 @@ const visitAndMockWs = (
   cy.setUpApi(sampleData);
   cy.visit(visitRoute, {
     onBeforeLoad: (win) => {
-      cy.stub(win, 'WebSocket', () => wsClientStub);
+      cy.stub(win, 'WebSocket').callsFake(() => wsClientStub);
     },
   });
 };
