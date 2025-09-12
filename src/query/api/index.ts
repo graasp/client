@@ -11,5 +11,4 @@ export * from './itemPublish.js';
 export * from './itemVisibility.js';
 export * from './itemValidation.js';
 export * from './mention.js';
-export * from './search.js';
 export * from './shortLink.js';
