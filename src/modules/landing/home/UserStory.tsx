@@ -63,6 +63,7 @@ type UserStoryProps = {
   caption: string;
   title: string;
   href: string;
+  sectionTitle: string;
   buttonText: string;
   children: ReactNode;
   image: ReactNode;
@@ -72,6 +73,7 @@ export function UserStory({
   id,
   caption,
   title,
+  sectionTitle,
   href,
   buttonText,
   children,
@@ -81,7 +83,7 @@ export function UserStory({
   return (
     <Stack>
       <Typography color="primary" variant="h1" component="h2">
-        For Teachers
+        {sectionTitle}
       </Typography>
       <InvertingStack gap={5} mt={3} position="relative">
         <Box id={id} sx={{ position: 'absolute', top: '-200px' }} />
