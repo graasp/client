@@ -238,8 +238,8 @@ importers:
         specifier: 19.8.1
         version: 19.8.1
       '@cypress/code-coverage':
-        specifier: 3.14.5
-        version: 3.14.5(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(babel-loader@9.2.1(@babel/core@7.27.4)(webpack@5.97.1(esbuild@0.25.5)))(cypress@15.2.0)(webpack@5.97.1(esbuild@0.25.5))
+        specifier: 3.14.6
+        version: 3.14.6(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(babel-loader@9.2.1(@babel/core@7.27.4)(webpack@5.97.1(esbuild@0.25.5)))(cypress@15.2.0)(webpack@5.97.1(esbuild@0.25.5))
       '@eslint-react/eslint-plugin':
         specifier: 1.52.2
         version: 1.52.2(eslint@9.25.1(jiti@2.4.2))(ts-api-utils@2.1.0(typescript@5.8.3))(typescript@5.8.3)
@@ -1265,8 +1265,8 @@ packages:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
 
-  '@cypress/code-coverage@3.14.5':
-    resolution: {integrity: sha512-sSyCSiYpChgKIaO7Bglxp1Pjf1l6EQDejq6yIc4REcGXCVxrtjP5G5j2TsjH/zcceDvyShXH5DyLD21M9ryaeg==}
+  '@cypress/code-coverage@3.14.6':
+    resolution: {integrity: sha512-aGDJG89uR5CRFbAIs+uFb3f6yPQTf/cMD6D9BZBo/gJRS1vZXli4lIGYU2DoJK4gMP+x9mAQSRexN91oizCusg==}
     peerDependencies:
       '@babel/core': ^7.0.1
       '@babel/preset-env': ^7.0.0
@@ -8383,7 +8383,7 @@ snapshots:
   '@csstools/css-tokenizer@3.0.4':
     optional: true
 
-  '@cypress/code-coverage@3.14.5(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(babel-loader@9.2.1(@babel/core@7.27.4)(webpack@5.97.1(esbuild@0.25.5)))(cypress@15.2.0)(webpack@5.97.1(esbuild@0.25.5))':
+  '@cypress/code-coverage@3.14.6(@babel/core@7.27.4)(@babel/preset-env@7.26.0(@babel/core@7.27.4))(babel-loader@9.2.1(@babel/core@7.27.4)(webpack@5.97.1(esbuild@0.25.5)))(cypress@15.2.0)(webpack@5.97.1(esbuild@0.25.5))':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/preset-env': 7.26.0(@babel/core@7.27.4)
