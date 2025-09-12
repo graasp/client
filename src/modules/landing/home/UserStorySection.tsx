@@ -32,6 +32,7 @@ export function UserStorySection(): JSX.Element {
         <UserStory
           id={TEACHER_USER_STORY}
           href="/auth/register"
+          sectionTitle={t('HOME.USER_STORY.TEACHER.SECTION_TITLE')}
           caption={t('HOME.USER_STORY.TEACHER.LEADING_SENTENCE')}
           buttonText={t('HOME.USER_STORY.TEACHER.BUTTON_TEXT')}
           title={t('HOME.USER_STORY.TEACHER.TITLE')}
@@ -52,11 +53,11 @@ export function UserStorySection(): JSX.Element {
           <Grid container spacing={2} direction="row">
             {EN_CAPSULES.map(({ title, imageSrc, description, url }) => {
               return (
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                <Grid size={{ xs: 4, sm: 4, md: 2 }}>
                   <UserCapsuleExample
                     title={title}
                     imageSrc={imageSrc}
-                    description={description}
+                    // description={description}
                     url={url}
                   />
                 </Grid>
@@ -78,6 +79,7 @@ export function UserStorySection(): JSX.Element {
         id={RESEARCHER_USER_STORY}
         href="/auth/register"
         caption={t('HOME.USER_STORY.RESEARCHER.LEADING_SENTENCE')}
+        sectionTitle={t('HOME.USER_STORY.RESEARCHER.SECTION_TITLE')}
         buttonText={t('HOME.USER_STORY.RESEARCHER.BUTTON_TEXT')}
         title={t('HOME.USER_STORY.RESEARCHER.TITLE')}
         image={

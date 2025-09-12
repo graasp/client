@@ -1,3 +1,4 @@
+import { Stack } from '@mui/material';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
@@ -8,7 +9,7 @@ type Props = {
   url: string;
   imageSrc: string;
   title: string;
-  description: string;
+  // description: string;
 };
 
 export function UserCapsuleExample({
@@ -18,24 +19,19 @@ export function UserCapsuleExample({
   description,
 }: Props) {
   return (
-    <a href={url} style={{ textDecoration: 'unset' }}>
-      <Card sx={{ borderRadius: 6, height: '100%' }}>
-        <CardActionArea>
-          <CardMedia
-            sx={{ height: 170 }}
-            image={imageSrc}
-            title="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {title}
-            </Typography>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-    </a>
+    <Card sx={{ borderRadius: 6, width: '100%', height: '100%' }}>
+      <CardActionArea
+        LinkComponent={'a'}
+        href={url}
+        sx={{ width: '100%', height: '100%' }}
+      >
+        <CardMedia
+          component="img"
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          src={imageSrc}
+          alt={title}
+        />
+      </CardActionArea>
+    </Card>
   );
 }
