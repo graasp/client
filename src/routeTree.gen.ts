@@ -8,656 +8,884 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as SigninRouteImport } from './routes/signin'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as MemberOnlyRouteImport } from './routes/_memberOnly'
+import { Route as LandingRouteImport } from './routes/_landing'
+import { Route as PlayerIndexRouteImport } from './routes/player/index'
+import { Route as BuilderIndexRouteImport } from './routes/builder/index'
+import { Route as AnalyticsIndexRouteImport } from './routes/analytics/index'
+import { Route as LandingIndexRouteImport } from './routes/_landing/index'
+import { Route as EmailChangeRouteImport } from './routes/email.change'
+import { Route as BuilderMapRouteImport } from './routes/builder.map'
+import { Route as AuthSuccessRouteImport } from './routes/auth/success'
+import { Route as AuthSigninRouteImport } from './routes/auth/signin'
+import { Route as AuthResetPasswordRouteImport } from './routes/auth/reset-password'
+import { Route as AuthRegisterRouteImport } from './routes/auth/register'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthForgotPasswordRouteImport } from './routes/auth/forgot-password'
+import { Route as MemberOnlyHomeLayoutRouteImport } from './routes/_memberOnly/_homeLayout'
+import { Route as LandingTermsRouteImport } from './routes/_landing/terms'
+import { Route as LandingSupportRouteImport } from './routes/_landing/support'
+import { Route as LandingPolicyRouteImport } from './routes/_landing/policy'
+import { Route as LandingFeaturesRouteImport } from './routes/_landing/features'
+import { Route as LandingDisclaimerRouteImport } from './routes/_landing/disclaimer'
+import { Route as LandingContactUsRouteImport } from './routes/_landing/contact-us'
+import { Route as LandingAboutUsRouteImport } from './routes/_landing/about-us'
+import { Route as PlayerRootIdIndexRouteImport } from './routes/player/$rootId/index'
+import { Route as PlayerRootIdItemIdRouteImport } from './routes/player/$rootId/$itemId'
+import { Route as BuilderItemsItemIdRouteImport } from './routes/builder/items/$itemId'
+import { Route as AnalyticsItemsItemIdRouteImport } from './routes/analytics/items/$itemId'
+import { Route as MemberOnlyAccountStorageRouteImport } from './routes/_memberOnly/account/storage'
+import { Route as MemberOnlyAccountStatsRouteImport } from './routes/_memberOnly/account/stats'
+import { Route as MemberOnlyAccountSettingsRouteImport } from './routes/_memberOnly/account/settings'
+import { Route as MemberOnlyHomeLayoutRecycledRouteImport } from './routes/_memberOnly/_homeLayout/recycled'
+import { Route as MemberOnlyHomeLayoutPublishedRouteImport } from './routes/_memberOnly/_homeLayout/published'
+import { Route as MemberOnlyHomeLayoutHomeRouteImport } from './routes/_memberOnly/_homeLayout/home'
+import { Route as PlayerRootIdItemIdIndexRouteImport } from './routes/player/$rootId/$itemId/index'
+import { Route as BuilderItemsItemIdIndexRouteImport } from './routes/builder/items/$itemId/index'
+import { Route as AnalyticsItemsItemIdIndexRouteImport } from './routes/analytics/items/$itemId/index'
+import { Route as PlayerRootIdItemIdAutoLoginRouteImport } from './routes/player/$rootId/$itemId/autoLogin'
+import { Route as BuilderItemsItemIdItemPageRouteImport } from './routes/builder/items/$itemId/_itemPage'
+import { Route as AnalyticsItemsItemIdExportRouteImport } from './routes/analytics/items/$itemId/export'
+import { Route as AnalyticsItemsItemIdAppsRouteImport } from './routes/analytics/items/$itemId/apps'
+import { Route as BuilderItemsItemIdItemPageShareRouteImport } from './routes/builder/items/$itemId/_itemPage/share'
+import { Route as BuilderItemsItemIdItemPageSettingsRouteImport } from './routes/builder/items/$itemId/_itemPage/settings'
+import { Route as BuilderItemsItemIdItemPagePublishRouteImport } from './routes/builder/items/$itemId/_itemPage/publish'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as SigninImport } from './routes/signin'
-import { Route as AuthImport } from './routes/auth'
-import { Route as AnalyticsImport } from './routes/analytics'
-import { Route as MemberOnlyImport } from './routes/_memberOnly'
-import { Route as LandingImport } from './routes/_landing'
-import { Route as PlayerIndexImport } from './routes/player/index'
-import { Route as BuilderIndexImport } from './routes/builder/index'
-import { Route as AnalyticsIndexImport } from './routes/analytics/index'
-import { Route as LandingIndexImport } from './routes/_landing/index'
-import { Route as EmailChangeImport } from './routes/email.change'
-import { Route as BuilderMapImport } from './routes/builder.map'
-import { Route as AuthSuccessImport } from './routes/auth/success'
-import { Route as AuthSigninImport } from './routes/auth/signin'
-import { Route as AuthResetPasswordImport } from './routes/auth/reset-password'
-import { Route as AuthRegisterImport } from './routes/auth/register'
-import { Route as AuthLoginImport } from './routes/auth/login'
-import { Route as AuthForgotPasswordImport } from './routes/auth/forgot-password'
-import { Route as MemberOnlyHomeLayoutImport } from './routes/_memberOnly/_homeLayout'
-import { Route as LandingTermsImport } from './routes/_landing/terms'
-import { Route as LandingSupportImport } from './routes/_landing/support'
-import { Route as LandingPolicyImport } from './routes/_landing/policy'
-import { Route as LandingFeaturesImport } from './routes/_landing/features'
-import { Route as LandingDisclaimerImport } from './routes/_landing/disclaimer'
-import { Route as LandingContactUsImport } from './routes/_landing/contact-us'
-import { Route as LandingAboutUsImport } from './routes/_landing/about-us'
-import { Route as PlayerRootIdIndexImport } from './routes/player/$rootId/index'
-import { Route as PlayerRootIdItemIdImport } from './routes/player/$rootId/$itemId'
-import { Route as BuilderItemsItemIdImport } from './routes/builder/items/$itemId'
-import { Route as AnalyticsItemsItemIdImport } from './routes/analytics/items/$itemId'
-import { Route as MemberOnlyAccountStorageImport } from './routes/_memberOnly/account/storage'
-import { Route as MemberOnlyAccountStatsImport } from './routes/_memberOnly/account/stats'
-import { Route as MemberOnlyAccountSettingsImport } from './routes/_memberOnly/account/settings'
-import { Route as MemberOnlyHomeLayoutRecycledImport } from './routes/_memberOnly/_homeLayout/recycled'
-import { Route as MemberOnlyHomeLayoutPublishedImport } from './routes/_memberOnly/_homeLayout/published'
-import { Route as MemberOnlyHomeLayoutHomeImport } from './routes/_memberOnly/_homeLayout/home'
-import { Route as PlayerRootIdItemIdIndexImport } from './routes/player/$rootId/$itemId/index'
-import { Route as BuilderItemsItemIdIndexImport } from './routes/builder/items/$itemId/index'
-import { Route as AnalyticsItemsItemIdIndexImport } from './routes/analytics/items/$itemId/index'
-import { Route as PlayerRootIdItemIdAutoLoginImport } from './routes/player/$rootId/$itemId/autoLogin'
-import { Route as BuilderItemsItemIdItemPageImport } from './routes/builder/items/$itemId/_itemPage'
-import { Route as AnalyticsItemsItemIdExportImport } from './routes/analytics/items/$itemId/export'
-import { Route as AnalyticsItemsItemIdAppsImport } from './routes/analytics/items/$itemId/apps'
-import { Route as BuilderItemsItemIdItemPageShareImport } from './routes/builder/items/$itemId/_itemPage/share'
-import { Route as BuilderItemsItemIdItemPageSettingsImport } from './routes/builder/items/$itemId/_itemPage/settings'
-import { Route as BuilderItemsItemIdItemPagePublishImport } from './routes/builder/items/$itemId/_itemPage/publish'
-
-// Create/Update Routes
-
-const SigninRoute = SigninImport.update({
+const SigninRoute = SigninRouteImport.update({
   id: '/signin',
   path: '/signin',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthRoute = AuthImport.update({
+const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AnalyticsRoute = AnalyticsImport.update({
+const AnalyticsRoute = AnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const MemberOnlyRoute = MemberOnlyImport.update({
+const MemberOnlyRoute = MemberOnlyRouteImport.update({
   id: '/_memberOnly',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const LandingRoute = LandingImport.update({
+const LandingRoute = LandingRouteImport.update({
   id: '/_landing',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const PlayerIndexRoute = PlayerIndexImport.update({
+const PlayerIndexRoute = PlayerIndexRouteImport.update({
   id: '/player/',
   path: '/player/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const BuilderIndexRoute = BuilderIndexImport.update({
+const BuilderIndexRoute = BuilderIndexRouteImport.update({
   id: '/builder/',
   path: '/builder/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AnalyticsIndexRoute = AnalyticsIndexImport.update({
+const AnalyticsIndexRoute = AnalyticsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AnalyticsRoute,
 } as any)
-
-const LandingIndexRoute = LandingIndexImport.update({
+const LandingIndexRoute = LandingIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const EmailChangeRoute = EmailChangeImport.update({
+const EmailChangeRoute = EmailChangeRouteImport.update({
   id: '/email/change',
   path: '/email/change',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const BuilderMapRoute = BuilderMapImport.update({
+const BuilderMapRoute = BuilderMapRouteImport.update({
   id: '/builder/map',
   path: '/builder/map',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AuthSuccessRoute = AuthSuccessImport.update({
+const AuthSuccessRoute = AuthSuccessRouteImport.update({
   id: '/success',
   path: '/success',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const AuthSigninRoute = AuthSigninImport.update({
+const AuthSigninRoute = AuthSigninRouteImport.update({
   id: '/signin',
   path: '/signin',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const AuthResetPasswordRoute = AuthResetPasswordImport.update({
+const AuthResetPasswordRoute = AuthResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const AuthRegisterRoute = AuthRegisterImport.update({
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/register',
   path: '/register',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const AuthLoginRoute = AuthLoginImport.update({
+const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
+const AuthForgotPasswordRoute = AuthForgotPasswordRouteImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
   getParentRoute: () => AuthRoute,
 } as any)
-
-const MemberOnlyHomeLayoutRoute = MemberOnlyHomeLayoutImport.update({
+const MemberOnlyHomeLayoutRoute = MemberOnlyHomeLayoutRouteImport.update({
   id: '/_homeLayout',
   getParentRoute: () => MemberOnlyRoute,
 } as any)
-
-const LandingTermsRoute = LandingTermsImport.update({
+const LandingTermsRoute = LandingTermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingSupportRoute = LandingSupportImport.update({
+const LandingSupportRoute = LandingSupportRouteImport.update({
   id: '/support',
   path: '/support',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingPolicyRoute = LandingPolicyImport.update({
+const LandingPolicyRoute = LandingPolicyRouteImport.update({
   id: '/policy',
   path: '/policy',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingFeaturesRoute = LandingFeaturesImport.update({
+const LandingFeaturesRoute = LandingFeaturesRouteImport.update({
   id: '/features',
   path: '/features',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingDisclaimerRoute = LandingDisclaimerImport.update({
+const LandingDisclaimerRoute = LandingDisclaimerRouteImport.update({
   id: '/disclaimer',
   path: '/disclaimer',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingContactUsRoute = LandingContactUsImport.update({
+const LandingContactUsRoute = LandingContactUsRouteImport.update({
   id: '/contact-us',
   path: '/contact-us',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const LandingAboutUsRoute = LandingAboutUsImport.update({
+const LandingAboutUsRoute = LandingAboutUsRouteImport.update({
   id: '/about-us',
   path: '/about-us',
   getParentRoute: () => LandingRoute,
 } as any)
-
-const PlayerRootIdIndexRoute = PlayerRootIdIndexImport.update({
+const PlayerRootIdIndexRoute = PlayerRootIdIndexRouteImport.update({
   id: '/player/$rootId/',
   path: '/player/$rootId/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const PlayerRootIdItemIdRoute = PlayerRootIdItemIdImport.update({
+const PlayerRootIdItemIdRoute = PlayerRootIdItemIdRouteImport.update({
   id: '/player/$rootId/$itemId',
   path: '/player/$rootId/$itemId',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const BuilderItemsItemIdRoute = BuilderItemsItemIdImport.update({
+const BuilderItemsItemIdRoute = BuilderItemsItemIdRouteImport.update({
   id: '/builder/items/$itemId',
   path: '/builder/items/$itemId',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdImport.update({
+const AnalyticsItemsItemIdRoute = AnalyticsItemsItemIdRouteImport.update({
   id: '/items/$itemId',
   path: '/items/$itemId',
   getParentRoute: () => AnalyticsRoute,
 } as any)
-
-const MemberOnlyAccountStorageRoute = MemberOnlyAccountStorageImport.update({
-  id: '/account/storage',
-  path: '/account/storage',
-  getParentRoute: () => MemberOnlyRoute,
-} as any)
-
-const MemberOnlyAccountStatsRoute = MemberOnlyAccountStatsImport.update({
+const MemberOnlyAccountStorageRoute =
+  MemberOnlyAccountStorageRouteImport.update({
+    id: '/account/storage',
+    path: '/account/storage',
+    getParentRoute: () => MemberOnlyRoute,
+  } as any)
+const MemberOnlyAccountStatsRoute = MemberOnlyAccountStatsRouteImport.update({
   id: '/account/stats',
   path: '/account/stats',
   getParentRoute: () => MemberOnlyRoute,
 } as any)
-
-const MemberOnlyAccountSettingsRoute = MemberOnlyAccountSettingsImport.update({
-  id: '/account/settings',
-  path: '/account/settings',
-  getParentRoute: () => MemberOnlyRoute,
-} as any)
-
+const MemberOnlyAccountSettingsRoute =
+  MemberOnlyAccountSettingsRouteImport.update({
+    id: '/account/settings',
+    path: '/account/settings',
+    getParentRoute: () => MemberOnlyRoute,
+  } as any)
 const MemberOnlyHomeLayoutRecycledRoute =
-  MemberOnlyHomeLayoutRecycledImport.update({
+  MemberOnlyHomeLayoutRecycledRouteImport.update({
     id: '/recycled',
     path: '/recycled',
     getParentRoute: () => MemberOnlyHomeLayoutRoute,
   } as any)
-
 const MemberOnlyHomeLayoutPublishedRoute =
-  MemberOnlyHomeLayoutPublishedImport.update({
+  MemberOnlyHomeLayoutPublishedRouteImport.update({
     id: '/published',
     path: '/published',
     getParentRoute: () => MemberOnlyHomeLayoutRoute,
   } as any)
-
-const MemberOnlyHomeLayoutHomeRoute = MemberOnlyHomeLayoutHomeImport.update({
-  id: '/home',
-  path: '/home',
-  getParentRoute: () => MemberOnlyHomeLayoutRoute,
-} as any)
-
-const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexImport.update({
+const MemberOnlyHomeLayoutHomeRoute =
+  MemberOnlyHomeLayoutHomeRouteImport.update({
+    id: '/home',
+    path: '/home',
+    getParentRoute: () => MemberOnlyHomeLayoutRoute,
+  } as any)
+const PlayerRootIdItemIdIndexRoute = PlayerRootIdItemIdIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PlayerRootIdItemIdRoute,
 } as any)
-
-const BuilderItemsItemIdIndexRoute = BuilderItemsItemIdIndexImport.update({
+const BuilderItemsItemIdIndexRoute = BuilderItemsItemIdIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => BuilderItemsItemIdRoute,
 } as any)
-
-const AnalyticsItemsItemIdIndexRoute = AnalyticsItemsItemIdIndexImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AnalyticsItemsItemIdRoute,
-} as any)
-
+const AnalyticsItemsItemIdIndexRoute =
+  AnalyticsItemsItemIdIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AnalyticsItemsItemIdRoute,
+  } as any)
 const PlayerRootIdItemIdAutoLoginRoute =
-  PlayerRootIdItemIdAutoLoginImport.update({
+  PlayerRootIdItemIdAutoLoginRouteImport.update({
     id: '/autoLogin',
     path: '/autoLogin',
     getParentRoute: () => PlayerRootIdItemIdRoute,
   } as any)
-
-const BuilderItemsItemIdItemPageRoute = BuilderItemsItemIdItemPageImport.update(
-  {
+const BuilderItemsItemIdItemPageRoute =
+  BuilderItemsItemIdItemPageRouteImport.update({
     id: '/_itemPage',
     getParentRoute: () => BuilderItemsItemIdRoute,
-  } as any,
-)
-
-const AnalyticsItemsItemIdExportRoute = AnalyticsItemsItemIdExportImport.update(
-  {
+  } as any)
+const AnalyticsItemsItemIdExportRoute =
+  AnalyticsItemsItemIdExportRouteImport.update({
     id: '/export',
     path: '/export',
     getParentRoute: () => AnalyticsItemsItemIdRoute,
-  } as any,
-)
-
-const AnalyticsItemsItemIdAppsRoute = AnalyticsItemsItemIdAppsImport.update({
-  id: '/apps',
-  path: '/apps',
-  getParentRoute: () => AnalyticsItemsItemIdRoute,
-} as any)
-
+  } as any)
+const AnalyticsItemsItemIdAppsRoute =
+  AnalyticsItemsItemIdAppsRouteImport.update({
+    id: '/apps',
+    path: '/apps',
+    getParentRoute: () => AnalyticsItemsItemIdRoute,
+  } as any)
 const BuilderItemsItemIdItemPageShareRoute =
-  BuilderItemsItemIdItemPageShareImport.update({
+  BuilderItemsItemIdItemPageShareRouteImport.update({
     id: '/share',
     path: '/share',
     getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
-
 const BuilderItemsItemIdItemPageSettingsRoute =
-  BuilderItemsItemIdItemPageSettingsImport.update({
+  BuilderItemsItemIdItemPageSettingsRouteImport.update({
     id: '/settings',
     path: '/settings',
     getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
-
 const BuilderItemsItemIdItemPagePublishRoute =
-  BuilderItemsItemIdItemPagePublishImport.update({
+  BuilderItemsItemIdItemPagePublishRouteImport.update({
     id: '/publish',
     path: '/publish',
     getParentRoute: () => BuilderItemsItemIdItemPageRoute,
   } as any)
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  '/analytics': typeof AnalyticsRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
+  '/about-us': typeof LandingAboutUsRoute
+  '/contact-us': typeof LandingContactUsRoute
+  '/disclaimer': typeof LandingDisclaimerRoute
+  '/features': typeof LandingFeaturesRoute
+  '/policy': typeof LandingPolicyRoute
+  '/support': typeof LandingSupportRoute
+  '/terms': typeof LandingTermsRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/success': typeof AuthSuccessRoute
+  '/builder/map': typeof BuilderMapRoute
+  '/email/change': typeof EmailChangeRoute
+  '/': typeof LandingIndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
+  '/builder': typeof BuilderIndexRoute
+  '/player': typeof PlayerIndexRoute
+  '/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
+  '/account/settings': typeof MemberOnlyAccountSettingsRoute
+  '/account/stats': typeof MemberOnlyAccountStatsRoute
+  '/account/storage': typeof MemberOnlyAccountStorageRoute
+  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
+  '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
+  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
+  '/player/$rootId': typeof PlayerRootIdIndexRoute
+  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
+  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
+  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
+  '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
+  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
+  '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
+  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
+}
+export interface FileRoutesByTo {
+  '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
+  '/about-us': typeof LandingAboutUsRoute
+  '/contact-us': typeof LandingContactUsRoute
+  '/disclaimer': typeof LandingDisclaimerRoute
+  '/features': typeof LandingFeaturesRoute
+  '/policy': typeof LandingPolicyRoute
+  '/support': typeof LandingSupportRoute
+  '/terms': typeof LandingTermsRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/success': typeof AuthSuccessRoute
+  '/builder/map': typeof BuilderMapRoute
+  '/email/change': typeof EmailChangeRoute
+  '/': typeof LandingIndexRoute
+  '/analytics': typeof AnalyticsIndexRoute
+  '/builder': typeof BuilderIndexRoute
+  '/player': typeof PlayerIndexRoute
+  '/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
+  '/account/settings': typeof MemberOnlyAccountSettingsRoute
+  '/account/stats': typeof MemberOnlyAccountStatsRoute
+  '/account/storage': typeof MemberOnlyAccountStorageRoute
+  '/player/$rootId': typeof PlayerRootIdIndexRoute
+  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
+  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
+  '/builder/items/$itemId': typeof BuilderItemsItemIdIndexRoute
+  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
+  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdIndexRoute
+  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdIndexRoute
+  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport
+  '/_landing': typeof LandingRouteWithChildren
+  '/_memberOnly': typeof MemberOnlyRouteWithChildren
+  '/analytics': typeof AnalyticsRouteWithChildren
+  '/auth': typeof AuthRouteWithChildren
+  '/signin': typeof SigninRoute
+  '/_landing/about-us': typeof LandingAboutUsRoute
+  '/_landing/contact-us': typeof LandingContactUsRoute
+  '/_landing/disclaimer': typeof LandingDisclaimerRoute
+  '/_landing/features': typeof LandingFeaturesRoute
+  '/_landing/policy': typeof LandingPolicyRoute
+  '/_landing/support': typeof LandingSupportRoute
+  '/_landing/terms': typeof LandingTermsRoute
+  '/_memberOnly/_homeLayout': typeof MemberOnlyHomeLayoutRouteWithChildren
+  '/auth/forgot-password': typeof AuthForgotPasswordRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
+  '/auth/reset-password': typeof AuthResetPasswordRoute
+  '/auth/signin': typeof AuthSigninRoute
+  '/auth/success': typeof AuthSuccessRoute
+  '/builder/map': typeof BuilderMapRoute
+  '/email/change': typeof EmailChangeRoute
+  '/_landing/': typeof LandingIndexRoute
+  '/analytics/': typeof AnalyticsIndexRoute
+  '/builder/': typeof BuilderIndexRoute
+  '/player/': typeof PlayerIndexRoute
+  '/_memberOnly/_homeLayout/home': typeof MemberOnlyHomeLayoutHomeRoute
+  '/_memberOnly/_homeLayout/published': typeof MemberOnlyHomeLayoutPublishedRoute
+  '/_memberOnly/_homeLayout/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
+  '/_memberOnly/account/settings': typeof MemberOnlyAccountSettingsRoute
+  '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
+  '/_memberOnly/account/storage': typeof MemberOnlyAccountStorageRoute
+  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
+  '/builder/items/$itemId': typeof BuilderItemsItemIdRouteWithChildren
+  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
+  '/player/$rootId/': typeof PlayerRootIdIndexRoute
+  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
+  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
+  '/builder/items/$itemId/_itemPage': typeof BuilderItemsItemIdItemPageRouteWithChildren
+  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
+  '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
+  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
+  '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
+  '/builder/items/$itemId/_itemPage/publish': typeof BuilderItemsItemIdItemPagePublishRoute
+  '/builder/items/$itemId/_itemPage/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
+  '/builder/items/$itemId/_itemPage/share': typeof BuilderItemsItemIdItemPageShareRoute
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/analytics'
+    | '/auth'
+    | '/signin'
+    | '/about-us'
+    | '/contact-us'
+    | '/disclaimer'
+    | '/features'
+    | '/policy'
+    | '/support'
+    | '/terms'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/auth/signin'
+    | '/auth/success'
+    | '/builder/map'
+    | '/email/change'
+    | '/'
+    | '/analytics/'
+    | '/builder'
+    | '/player'
+    | '/home'
+    | '/published'
+    | '/recycled'
+    | '/account/settings'
+    | '/account/stats'
+    | '/account/storage'
+    | '/analytics/items/$itemId'
+    | '/builder/items/$itemId'
+    | '/player/$rootId/$itemId'
+    | '/player/$rootId'
+    | '/analytics/items/$itemId/apps'
+    | '/analytics/items/$itemId/export'
+    | '/player/$rootId/$itemId/autoLogin'
+    | '/analytics/items/$itemId/'
+    | '/builder/items/$itemId/'
+    | '/player/$rootId/$itemId/'
+    | '/builder/items/$itemId/publish'
+    | '/builder/items/$itemId/settings'
+    | '/builder/items/$itemId/share'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/auth'
+    | '/signin'
+    | '/about-us'
+    | '/contact-us'
+    | '/disclaimer'
+    | '/features'
+    | '/policy'
+    | '/support'
+    | '/terms'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/auth/signin'
+    | '/auth/success'
+    | '/builder/map'
+    | '/email/change'
+    | '/'
+    | '/analytics'
+    | '/builder'
+    | '/player'
+    | '/home'
+    | '/published'
+    | '/recycled'
+    | '/account/settings'
+    | '/account/stats'
+    | '/account/storage'
+    | '/player/$rootId'
+    | '/analytics/items/$itemId/apps'
+    | '/analytics/items/$itemId/export'
+    | '/builder/items/$itemId'
+    | '/player/$rootId/$itemId/autoLogin'
+    | '/analytics/items/$itemId'
+    | '/player/$rootId/$itemId'
+    | '/builder/items/$itemId/publish'
+    | '/builder/items/$itemId/settings'
+    | '/builder/items/$itemId/share'
+  id:
+    | '__root__'
+    | '/_landing'
+    | '/_memberOnly'
+    | '/analytics'
+    | '/auth'
+    | '/signin'
+    | '/_landing/about-us'
+    | '/_landing/contact-us'
+    | '/_landing/disclaimer'
+    | '/_landing/features'
+    | '/_landing/policy'
+    | '/_landing/support'
+    | '/_landing/terms'
+    | '/_memberOnly/_homeLayout'
+    | '/auth/forgot-password'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/reset-password'
+    | '/auth/signin'
+    | '/auth/success'
+    | '/builder/map'
+    | '/email/change'
+    | '/_landing/'
+    | '/analytics/'
+    | '/builder/'
+    | '/player/'
+    | '/_memberOnly/_homeLayout/home'
+    | '/_memberOnly/_homeLayout/published'
+    | '/_memberOnly/_homeLayout/recycled'
+    | '/_memberOnly/account/settings'
+    | '/_memberOnly/account/stats'
+    | '/_memberOnly/account/storage'
+    | '/analytics/items/$itemId'
+    | '/builder/items/$itemId'
+    | '/player/$rootId/$itemId'
+    | '/player/$rootId/'
+    | '/analytics/items/$itemId/apps'
+    | '/analytics/items/$itemId/export'
+    | '/builder/items/$itemId/_itemPage'
+    | '/player/$rootId/$itemId/autoLogin'
+    | '/analytics/items/$itemId/'
+    | '/builder/items/$itemId/'
+    | '/player/$rootId/$itemId/'
+    | '/builder/items/$itemId/_itemPage/publish'
+    | '/builder/items/$itemId/_itemPage/settings'
+    | '/builder/items/$itemId/_itemPage/share'
+  fileRoutesById: FileRoutesById
+}
+export interface RootRouteChildren {
+  LandingRoute: typeof LandingRouteWithChildren
+  MemberOnlyRoute: typeof MemberOnlyRouteWithChildren
+  AnalyticsRoute: typeof AnalyticsRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
+  SigninRoute: typeof SigninRoute
+  BuilderMapRoute: typeof BuilderMapRoute
+  EmailChangeRoute: typeof EmailChangeRoute
+  BuilderIndexRoute: typeof BuilderIndexRoute
+  PlayerIndexRoute: typeof PlayerIndexRoute
+  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
+  PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
+  PlayerRootIdIndexRoute: typeof PlayerRootIdIndexRoute
+}
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_landing': {
-      id: '/_landing'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof LandingImport
-      parentRoute: typeof rootRoute
-    }
-    '/_memberOnly': {
-      id: '/_memberOnly'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof MemberOnlyImport
-      parentRoute: typeof rootRoute
-    }
-    '/analytics': {
-      id: '/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AnalyticsImport
-      parentRoute: typeof rootRoute
+    '/signin': {
+      id: '/signin'
+      path: '/signin'
+      fullPath: '/signin'
+      preLoaderRoute: typeof SigninRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/auth': {
       id: '/auth'
       path: '/auth'
       fullPath: '/auth'
-      preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/signin': {
-      id: '/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof SigninImport
-      parentRoute: typeof rootRoute
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_landing/about-us': {
-      id: '/_landing/about-us'
-      path: '/about-us'
-      fullPath: '/about-us'
-      preLoaderRoute: typeof LandingAboutUsImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/contact-us': {
-      id: '/_landing/contact-us'
-      path: '/contact-us'
-      fullPath: '/contact-us'
-      preLoaderRoute: typeof LandingContactUsImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/disclaimer': {
-      id: '/_landing/disclaimer'
-      path: '/disclaimer'
-      fullPath: '/disclaimer'
-      preLoaderRoute: typeof LandingDisclaimerImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/features': {
-      id: '/_landing/features'
-      path: '/features'
-      fullPath: '/features'
-      preLoaderRoute: typeof LandingFeaturesImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/policy': {
-      id: '/_landing/policy'
-      path: '/policy'
-      fullPath: '/policy'
-      preLoaderRoute: typeof LandingPolicyImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/support': {
-      id: '/_landing/support'
-      path: '/support'
-      fullPath: '/support'
-      preLoaderRoute: typeof LandingSupportImport
-      parentRoute: typeof LandingImport
-    }
-    '/_landing/terms': {
-      id: '/_landing/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof LandingTermsImport
-      parentRoute: typeof LandingImport
-    }
-    '/_memberOnly/_homeLayout': {
-      id: '/_memberOnly/_homeLayout'
+    '/_memberOnly': {
+      id: '/_memberOnly'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof MemberOnlyHomeLayoutImport
-      parentRoute: typeof MemberOnlyImport
+      preLoaderRoute: typeof MemberOnlyRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/auth/forgot-password': {
-      id: '/auth/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/auth/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordImport
-      parentRoute: typeof AuthImport
-    }
-    '/auth/login': {
-      id: '/auth/login'
-      path: '/login'
-      fullPath: '/auth/login'
-      preLoaderRoute: typeof AuthLoginImport
-      parentRoute: typeof AuthImport
-    }
-    '/auth/register': {
-      id: '/auth/register'
-      path: '/register'
-      fullPath: '/auth/register'
-      preLoaderRoute: typeof AuthRegisterImport
-      parentRoute: typeof AuthImport
-    }
-    '/auth/reset-password': {
-      id: '/auth/reset-password'
-      path: '/reset-password'
-      fullPath: '/auth/reset-password'
-      preLoaderRoute: typeof AuthResetPasswordImport
-      parentRoute: typeof AuthImport
-    }
-    '/auth/signin': {
-      id: '/auth/signin'
-      path: '/signin'
-      fullPath: '/auth/signin'
-      preLoaderRoute: typeof AuthSigninImport
-      parentRoute: typeof AuthImport
-    }
-    '/auth/success': {
-      id: '/auth/success'
-      path: '/success'
-      fullPath: '/auth/success'
-      preLoaderRoute: typeof AuthSuccessImport
-      parentRoute: typeof AuthImport
-    }
-    '/builder/map': {
-      id: '/builder/map'
-      path: '/builder/map'
-      fullPath: '/builder/map'
-      preLoaderRoute: typeof BuilderMapImport
-      parentRoute: typeof rootRoute
-    }
-    '/email/change': {
-      id: '/email/change'
-      path: '/email/change'
-      fullPath: '/email/change'
-      preLoaderRoute: typeof EmailChangeImport
-      parentRoute: typeof rootRoute
-    }
-    '/_landing/': {
-      id: '/_landing/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof LandingIndexImport
-      parentRoute: typeof LandingImport
-    }
-    '/analytics/': {
-      id: '/analytics/'
-      path: '/'
-      fullPath: '/analytics/'
-      preLoaderRoute: typeof AnalyticsIndexImport
-      parentRoute: typeof AnalyticsImport
-    }
-    '/builder/': {
-      id: '/builder/'
-      path: '/builder'
-      fullPath: '/builder'
-      preLoaderRoute: typeof BuilderIndexImport
-      parentRoute: typeof rootRoute
+    '/_landing': {
+      id: '/_landing'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof LandingRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/player/': {
       id: '/player/'
       path: '/player'
       fullPath: '/player'
-      preLoaderRoute: typeof PlayerIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof PlayerIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_memberOnly/_homeLayout/home': {
-      id: '/_memberOnly/_homeLayout/home'
-      path: '/home'
-      fullPath: '/home'
-      preLoaderRoute: typeof MemberOnlyHomeLayoutHomeImport
-      parentRoute: typeof MemberOnlyHomeLayoutImport
+    '/builder/': {
+      id: '/builder/'
+      path: '/builder'
+      fullPath: '/builder'
+      preLoaderRoute: typeof BuilderIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_memberOnly/_homeLayout/published': {
-      id: '/_memberOnly/_homeLayout/published'
-      path: '/published'
-      fullPath: '/published'
-      preLoaderRoute: typeof MemberOnlyHomeLayoutPublishedImport
-      parentRoute: typeof MemberOnlyHomeLayoutImport
+    '/analytics/': {
+      id: '/analytics/'
+      path: '/'
+      fullPath: '/analytics/'
+      preLoaderRoute: typeof AnalyticsIndexRouteImport
+      parentRoute: typeof AnalyticsRoute
     }
-    '/_memberOnly/_homeLayout/recycled': {
-      id: '/_memberOnly/_homeLayout/recycled'
-      path: '/recycled'
-      fullPath: '/recycled'
-      preLoaderRoute: typeof MemberOnlyHomeLayoutRecycledImport
-      parentRoute: typeof MemberOnlyHomeLayoutImport
+    '/_landing/': {
+      id: '/_landing/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof LandingIndexRouteImport
+      parentRoute: typeof LandingRoute
     }
-    '/_memberOnly/account/settings': {
-      id: '/_memberOnly/account/settings'
-      path: '/account/settings'
-      fullPath: '/account/settings'
-      preLoaderRoute: typeof MemberOnlyAccountSettingsImport
-      parentRoute: typeof MemberOnlyImport
+    '/email/change': {
+      id: '/email/change'
+      path: '/email/change'
+      fullPath: '/email/change'
+      preLoaderRoute: typeof EmailChangeRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_memberOnly/account/stats': {
-      id: '/_memberOnly/account/stats'
-      path: '/account/stats'
-      fullPath: '/account/stats'
-      preLoaderRoute: typeof MemberOnlyAccountStatsImport
-      parentRoute: typeof MemberOnlyImport
+    '/builder/map': {
+      id: '/builder/map'
+      path: '/builder/map'
+      fullPath: '/builder/map'
+      preLoaderRoute: typeof BuilderMapRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_memberOnly/account/storage': {
-      id: '/_memberOnly/account/storage'
-      path: '/account/storage'
-      fullPath: '/account/storage'
-      preLoaderRoute: typeof MemberOnlyAccountStorageImport
-      parentRoute: typeof MemberOnlyImport
+    '/auth/success': {
+      id: '/auth/success'
+      path: '/success'
+      fullPath: '/auth/success'
+      preLoaderRoute: typeof AuthSuccessRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/analytics/items/$itemId': {
-      id: '/analytics/items/$itemId'
-      path: '/items/$itemId'
-      fullPath: '/analytics/items/$itemId'
-      preLoaderRoute: typeof AnalyticsItemsItemIdImport
-      parentRoute: typeof AnalyticsImport
+    '/auth/signin': {
+      id: '/auth/signin'
+      path: '/signin'
+      fullPath: '/auth/signin'
+      preLoaderRoute: typeof AuthSigninRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/builder/items/$itemId': {
-      id: '/builder/items/$itemId'
-      path: '/builder/items/$itemId'
-      fullPath: '/builder/items/$itemId'
-      preLoaderRoute: typeof BuilderItemsItemIdImport
-      parentRoute: typeof rootRoute
+    '/auth/reset-password': {
+      id: '/auth/reset-password'
+      path: '/reset-password'
+      fullPath: '/auth/reset-password'
+      preLoaderRoute: typeof AuthResetPasswordRouteImport
+      parentRoute: typeof AuthRoute
     }
-    '/player/$rootId/$itemId': {
-      id: '/player/$rootId/$itemId'
-      path: '/player/$rootId/$itemId'
-      fullPath: '/player/$rootId/$itemId'
-      preLoaderRoute: typeof PlayerRootIdItemIdImport
-      parentRoute: typeof rootRoute
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/auth/forgot-password': {
+      id: '/auth/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/auth/forgot-password'
+      preLoaderRoute: typeof AuthForgotPasswordRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_memberOnly/_homeLayout': {
+      id: '/_memberOnly/_homeLayout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof MemberOnlyHomeLayoutRouteImport
+      parentRoute: typeof MemberOnlyRoute
+    }
+    '/_landing/terms': {
+      id: '/_landing/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof LandingTermsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/support': {
+      id: '/_landing/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof LandingSupportRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/policy': {
+      id: '/_landing/policy'
+      path: '/policy'
+      fullPath: '/policy'
+      preLoaderRoute: typeof LandingPolicyRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/features': {
+      id: '/_landing/features'
+      path: '/features'
+      fullPath: '/features'
+      preLoaderRoute: typeof LandingFeaturesRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/disclaimer': {
+      id: '/_landing/disclaimer'
+      path: '/disclaimer'
+      fullPath: '/disclaimer'
+      preLoaderRoute: typeof LandingDisclaimerRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/contact-us': {
+      id: '/_landing/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof LandingContactUsRouteImport
+      parentRoute: typeof LandingRoute
+    }
+    '/_landing/about-us': {
+      id: '/_landing/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof LandingAboutUsRouteImport
+      parentRoute: typeof LandingRoute
     }
     '/player/$rootId/': {
       id: '/player/$rootId/'
       path: '/player/$rootId'
       fullPath: '/player/$rootId'
-      preLoaderRoute: typeof PlayerRootIdIndexImport
-      parentRoute: typeof rootRoute
+      preLoaderRoute: typeof PlayerRootIdIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/analytics/items/$itemId/apps': {
-      id: '/analytics/items/$itemId/apps'
-      path: '/apps'
-      fullPath: '/analytics/items/$itemId/apps'
-      preLoaderRoute: typeof AnalyticsItemsItemIdAppsImport
-      parentRoute: typeof AnalyticsItemsItemIdImport
+    '/player/$rootId/$itemId': {
+      id: '/player/$rootId/$itemId'
+      path: '/player/$rootId/$itemId'
+      fullPath: '/player/$rootId/$itemId'
+      preLoaderRoute: typeof PlayerRootIdItemIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/analytics/items/$itemId/export': {
-      id: '/analytics/items/$itemId/export'
-      path: '/export'
-      fullPath: '/analytics/items/$itemId/export'
-      preLoaderRoute: typeof AnalyticsItemsItemIdExportImport
-      parentRoute: typeof AnalyticsItemsItemIdImport
-    }
-    '/builder/items/$itemId/_itemPage': {
-      id: '/builder/items/$itemId/_itemPage'
-      path: ''
+    '/builder/items/$itemId': {
+      id: '/builder/items/$itemId'
+      path: '/builder/items/$itemId'
       fullPath: '/builder/items/$itemId'
-      preLoaderRoute: typeof BuilderItemsItemIdItemPageImport
-      parentRoute: typeof BuilderItemsItemIdImport
+      preLoaderRoute: typeof BuilderItemsItemIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/player/$rootId/$itemId/autoLogin': {
-      id: '/player/$rootId/$itemId/autoLogin'
-      path: '/autoLogin'
-      fullPath: '/player/$rootId/$itemId/autoLogin'
-      preLoaderRoute: typeof PlayerRootIdItemIdAutoLoginImport
-      parentRoute: typeof PlayerRootIdItemIdImport
+    '/analytics/items/$itemId': {
+      id: '/analytics/items/$itemId'
+      path: '/items/$itemId'
+      fullPath: '/analytics/items/$itemId'
+      preLoaderRoute: typeof AnalyticsItemsItemIdRouteImport
+      parentRoute: typeof AnalyticsRoute
     }
-    '/analytics/items/$itemId/': {
-      id: '/analytics/items/$itemId/'
-      path: '/'
-      fullPath: '/analytics/items/$itemId/'
-      preLoaderRoute: typeof AnalyticsItemsItemIdIndexImport
-      parentRoute: typeof AnalyticsItemsItemIdImport
+    '/_memberOnly/account/storage': {
+      id: '/_memberOnly/account/storage'
+      path: '/account/storage'
+      fullPath: '/account/storage'
+      preLoaderRoute: typeof MemberOnlyAccountStorageRouteImport
+      parentRoute: typeof MemberOnlyRoute
     }
-    '/builder/items/$itemId/': {
-      id: '/builder/items/$itemId/'
-      path: '/'
-      fullPath: '/builder/items/$itemId/'
-      preLoaderRoute: typeof BuilderItemsItemIdIndexImport
-      parentRoute: typeof BuilderItemsItemIdImport
+    '/_memberOnly/account/stats': {
+      id: '/_memberOnly/account/stats'
+      path: '/account/stats'
+      fullPath: '/account/stats'
+      preLoaderRoute: typeof MemberOnlyAccountStatsRouteImport
+      parentRoute: typeof MemberOnlyRoute
+    }
+    '/_memberOnly/account/settings': {
+      id: '/_memberOnly/account/settings'
+      path: '/account/settings'
+      fullPath: '/account/settings'
+      preLoaderRoute: typeof MemberOnlyAccountSettingsRouteImport
+      parentRoute: typeof MemberOnlyRoute
+    }
+    '/_memberOnly/_homeLayout/recycled': {
+      id: '/_memberOnly/_homeLayout/recycled'
+      path: '/recycled'
+      fullPath: '/recycled'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutRecycledRouteImport
+      parentRoute: typeof MemberOnlyHomeLayoutRoute
+    }
+    '/_memberOnly/_homeLayout/published': {
+      id: '/_memberOnly/_homeLayout/published'
+      path: '/published'
+      fullPath: '/published'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutPublishedRouteImport
+      parentRoute: typeof MemberOnlyHomeLayoutRoute
+    }
+    '/_memberOnly/_homeLayout/home': {
+      id: '/_memberOnly/_homeLayout/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof MemberOnlyHomeLayoutHomeRouteImport
+      parentRoute: typeof MemberOnlyHomeLayoutRoute
     }
     '/player/$rootId/$itemId/': {
       id: '/player/$rootId/$itemId/'
       path: '/'
       fullPath: '/player/$rootId/$itemId/'
-      preLoaderRoute: typeof PlayerRootIdItemIdIndexImport
-      parentRoute: typeof PlayerRootIdItemIdImport
+      preLoaderRoute: typeof PlayerRootIdItemIdIndexRouteImport
+      parentRoute: typeof PlayerRootIdItemIdRoute
     }
-    '/builder/items/$itemId/_itemPage/publish': {
-      id: '/builder/items/$itemId/_itemPage/publish'
-      path: '/publish'
-      fullPath: '/builder/items/$itemId/publish'
-      preLoaderRoute: typeof BuilderItemsItemIdItemPagePublishImport
-      parentRoute: typeof BuilderItemsItemIdItemPageImport
+    '/builder/items/$itemId/': {
+      id: '/builder/items/$itemId/'
+      path: '/'
+      fullPath: '/builder/items/$itemId/'
+      preLoaderRoute: typeof BuilderItemsItemIdIndexRouteImport
+      parentRoute: typeof BuilderItemsItemIdRoute
     }
-    '/builder/items/$itemId/_itemPage/settings': {
-      id: '/builder/items/$itemId/_itemPage/settings'
-      path: '/settings'
-      fullPath: '/builder/items/$itemId/settings'
-      preLoaderRoute: typeof BuilderItemsItemIdItemPageSettingsImport
-      parentRoute: typeof BuilderItemsItemIdItemPageImport
+    '/analytics/items/$itemId/': {
+      id: '/analytics/items/$itemId/'
+      path: '/'
+      fullPath: '/analytics/items/$itemId/'
+      preLoaderRoute: typeof AnalyticsItemsItemIdIndexRouteImport
+      parentRoute: typeof AnalyticsItemsItemIdRoute
+    }
+    '/player/$rootId/$itemId/autoLogin': {
+      id: '/player/$rootId/$itemId/autoLogin'
+      path: '/autoLogin'
+      fullPath: '/player/$rootId/$itemId/autoLogin'
+      preLoaderRoute: typeof PlayerRootIdItemIdAutoLoginRouteImport
+      parentRoute: typeof PlayerRootIdItemIdRoute
+    }
+    '/builder/items/$itemId/_itemPage': {
+      id: '/builder/items/$itemId/_itemPage'
+      path: ''
+      fullPath: '/builder/items/$itemId'
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageRouteImport
+      parentRoute: typeof BuilderItemsItemIdRoute
+    }
+    '/analytics/items/$itemId/export': {
+      id: '/analytics/items/$itemId/export'
+      path: '/export'
+      fullPath: '/analytics/items/$itemId/export'
+      preLoaderRoute: typeof AnalyticsItemsItemIdExportRouteImport
+      parentRoute: typeof AnalyticsItemsItemIdRoute
+    }
+    '/analytics/items/$itemId/apps': {
+      id: '/analytics/items/$itemId/apps'
+      path: '/apps'
+      fullPath: '/analytics/items/$itemId/apps'
+      preLoaderRoute: typeof AnalyticsItemsItemIdAppsRouteImport
+      parentRoute: typeof AnalyticsItemsItemIdRoute
     }
     '/builder/items/$itemId/_itemPage/share': {
       id: '/builder/items/$itemId/_itemPage/share'
       path: '/share'
       fullPath: '/builder/items/$itemId/share'
-      preLoaderRoute: typeof BuilderItemsItemIdItemPageShareImport
-      parentRoute: typeof BuilderItemsItemIdItemPageImport
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageShareRouteImport
+      parentRoute: typeof BuilderItemsItemIdItemPageRoute
+    }
+    '/builder/items/$itemId/_itemPage/settings': {
+      id: '/builder/items/$itemId/_itemPage/settings'
+      path: '/settings'
+      fullPath: '/builder/items/$itemId/settings'
+      preLoaderRoute: typeof BuilderItemsItemIdItemPageSettingsRouteImport
+      parentRoute: typeof BuilderItemsItemIdItemPageRoute
+    }
+    '/builder/items/$itemId/_itemPage/publish': {
+      id: '/builder/items/$itemId/_itemPage/publish'
+      path: '/publish'
+      fullPath: '/builder/items/$itemId/publish'
+      preLoaderRoute: typeof BuilderItemsItemIdItemPagePublishRouteImport
+      parentRoute: typeof BuilderItemsItemIdItemPageRoute
     }
   }
 }
-
-// Create and export the route tree
 
 interface LandingRouteChildren {
   LandingAboutUsRoute: typeof LandingAboutUsRoute
@@ -812,291 +1040,6 @@ const PlayerRootIdItemIdRouteChildren: PlayerRootIdItemIdRouteChildren = {
 const PlayerRootIdItemIdRouteWithChildren =
   PlayerRootIdItemIdRoute._addFileChildren(PlayerRootIdItemIdRouteChildren)
 
-export interface FileRoutesByFullPath {
-  '': typeof MemberOnlyHomeLayoutRouteWithChildren
-  '/analytics': typeof AnalyticsRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
-  '/signin': typeof SigninRoute
-  '/about-us': typeof LandingAboutUsRoute
-  '/contact-us': typeof LandingContactUsRoute
-  '/disclaimer': typeof LandingDisclaimerRoute
-  '/features': typeof LandingFeaturesRoute
-  '/policy': typeof LandingPolicyRoute
-  '/support': typeof LandingSupportRoute
-  '/terms': typeof LandingTermsRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/success': typeof AuthSuccessRoute
-  '/builder/map': typeof BuilderMapRoute
-  '/email/change': typeof EmailChangeRoute
-  '/': typeof LandingIndexRoute
-  '/analytics/': typeof AnalyticsIndexRoute
-  '/builder': typeof BuilderIndexRoute
-  '/player': typeof PlayerIndexRoute
-  '/home': typeof MemberOnlyHomeLayoutHomeRoute
-  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
-  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
-  '/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/account/storage': typeof MemberOnlyAccountStorageRoute
-  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
-  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/player/$rootId': typeof PlayerRootIdIndexRoute
-  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
-  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
-  '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
-  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
-  '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
-  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
-  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
-}
-
-export interface FileRoutesByTo {
-  '': typeof MemberOnlyHomeLayoutRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
-  '/signin': typeof SigninRoute
-  '/about-us': typeof LandingAboutUsRoute
-  '/contact-us': typeof LandingContactUsRoute
-  '/disclaimer': typeof LandingDisclaimerRoute
-  '/features': typeof LandingFeaturesRoute
-  '/policy': typeof LandingPolicyRoute
-  '/support': typeof LandingSupportRoute
-  '/terms': typeof LandingTermsRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/success': typeof AuthSuccessRoute
-  '/builder/map': typeof BuilderMapRoute
-  '/email/change': typeof EmailChangeRoute
-  '/': typeof LandingIndexRoute
-  '/analytics': typeof AnalyticsIndexRoute
-  '/builder': typeof BuilderIndexRoute
-  '/player': typeof PlayerIndexRoute
-  '/home': typeof MemberOnlyHomeLayoutHomeRoute
-  '/published': typeof MemberOnlyHomeLayoutPublishedRoute
-  '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
-  '/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/account/storage': typeof MemberOnlyAccountStorageRoute
-  '/player/$rootId': typeof PlayerRootIdIndexRoute
-  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
-  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/builder/items/$itemId': typeof BuilderItemsItemIdIndexRoute
-  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
-  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdIndexRoute
-  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/items/$itemId/publish': typeof BuilderItemsItemIdItemPagePublishRoute
-  '/builder/items/$itemId/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
-  '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/_landing': typeof LandingRouteWithChildren
-  '/_memberOnly': typeof MemberOnlyRouteWithChildren
-  '/analytics': typeof AnalyticsRouteWithChildren
-  '/auth': typeof AuthRouteWithChildren
-  '/signin': typeof SigninRoute
-  '/_landing/about-us': typeof LandingAboutUsRoute
-  '/_landing/contact-us': typeof LandingContactUsRoute
-  '/_landing/disclaimer': typeof LandingDisclaimerRoute
-  '/_landing/features': typeof LandingFeaturesRoute
-  '/_landing/policy': typeof LandingPolicyRoute
-  '/_landing/support': typeof LandingSupportRoute
-  '/_landing/terms': typeof LandingTermsRoute
-  '/_memberOnly/_homeLayout': typeof MemberOnlyHomeLayoutRouteWithChildren
-  '/auth/forgot-password': typeof AuthForgotPasswordRoute
-  '/auth/login': typeof AuthLoginRoute
-  '/auth/register': typeof AuthRegisterRoute
-  '/auth/reset-password': typeof AuthResetPasswordRoute
-  '/auth/signin': typeof AuthSigninRoute
-  '/auth/success': typeof AuthSuccessRoute
-  '/builder/map': typeof BuilderMapRoute
-  '/email/change': typeof EmailChangeRoute
-  '/_landing/': typeof LandingIndexRoute
-  '/analytics/': typeof AnalyticsIndexRoute
-  '/builder/': typeof BuilderIndexRoute
-  '/player/': typeof PlayerIndexRoute
-  '/_memberOnly/_homeLayout/home': typeof MemberOnlyHomeLayoutHomeRoute
-  '/_memberOnly/_homeLayout/published': typeof MemberOnlyHomeLayoutPublishedRoute
-  '/_memberOnly/_homeLayout/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
-  '/_memberOnly/account/settings': typeof MemberOnlyAccountSettingsRoute
-  '/_memberOnly/account/stats': typeof MemberOnlyAccountStatsRoute
-  '/_memberOnly/account/storage': typeof MemberOnlyAccountStorageRoute
-  '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
-  '/builder/items/$itemId': typeof BuilderItemsItemIdRouteWithChildren
-  '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/player/$rootId/': typeof PlayerRootIdIndexRoute
-  '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
-  '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
-  '/builder/items/$itemId/_itemPage': typeof BuilderItemsItemIdItemPageRouteWithChildren
-  '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
-  '/analytics/items/$itemId/': typeof AnalyticsItemsItemIdIndexRoute
-  '/builder/items/$itemId/': typeof BuilderItemsItemIdIndexRoute
-  '/player/$rootId/$itemId/': typeof PlayerRootIdItemIdIndexRoute
-  '/builder/items/$itemId/_itemPage/publish': typeof BuilderItemsItemIdItemPagePublishRoute
-  '/builder/items/$itemId/_itemPage/settings': typeof BuilderItemsItemIdItemPageSettingsRoute
-  '/builder/items/$itemId/_itemPage/share': typeof BuilderItemsItemIdItemPageShareRoute
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | ''
-    | '/analytics'
-    | '/auth'
-    | '/signin'
-    | '/about-us'
-    | '/contact-us'
-    | '/disclaimer'
-    | '/features'
-    | '/policy'
-    | '/support'
-    | '/terms'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/register'
-    | '/auth/reset-password'
-    | '/auth/signin'
-    | '/auth/success'
-    | '/builder/map'
-    | '/email/change'
-    | '/'
-    | '/analytics/'
-    | '/builder'
-    | '/player'
-    | '/home'
-    | '/published'
-    | '/recycled'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
-    | '/analytics/items/$itemId'
-    | '/builder/items/$itemId'
-    | '/player/$rootId/$itemId'
-    | '/player/$rootId'
-    | '/analytics/items/$itemId/apps'
-    | '/analytics/items/$itemId/export'
-    | '/player/$rootId/$itemId/autoLogin'
-    | '/analytics/items/$itemId/'
-    | '/builder/items/$itemId/'
-    | '/player/$rootId/$itemId/'
-    | '/builder/items/$itemId/publish'
-    | '/builder/items/$itemId/settings'
-    | '/builder/items/$itemId/share'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | ''
-    | '/auth'
-    | '/signin'
-    | '/about-us'
-    | '/contact-us'
-    | '/disclaimer'
-    | '/features'
-    | '/policy'
-    | '/support'
-    | '/terms'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/register'
-    | '/auth/reset-password'
-    | '/auth/signin'
-    | '/auth/success'
-    | '/builder/map'
-    | '/email/change'
-    | '/'
-    | '/analytics'
-    | '/builder'
-    | '/player'
-    | '/home'
-    | '/published'
-    | '/recycled'
-    | '/account/settings'
-    | '/account/stats'
-    | '/account/storage'
-    | '/player/$rootId'
-    | '/analytics/items/$itemId/apps'
-    | '/analytics/items/$itemId/export'
-    | '/builder/items/$itemId'
-    | '/player/$rootId/$itemId/autoLogin'
-    | '/analytics/items/$itemId'
-    | '/player/$rootId/$itemId'
-    | '/builder/items/$itemId/publish'
-    | '/builder/items/$itemId/settings'
-    | '/builder/items/$itemId/share'
-  id:
-    | '__root__'
-    | '/_landing'
-    | '/_memberOnly'
-    | '/analytics'
-    | '/auth'
-    | '/signin'
-    | '/_landing/about-us'
-    | '/_landing/contact-us'
-    | '/_landing/disclaimer'
-    | '/_landing/features'
-    | '/_landing/policy'
-    | '/_landing/support'
-    | '/_landing/terms'
-    | '/_memberOnly/_homeLayout'
-    | '/auth/forgot-password'
-    | '/auth/login'
-    | '/auth/register'
-    | '/auth/reset-password'
-    | '/auth/signin'
-    | '/auth/success'
-    | '/builder/map'
-    | '/email/change'
-    | '/_landing/'
-    | '/analytics/'
-    | '/builder/'
-    | '/player/'
-    | '/_memberOnly/_homeLayout/home'
-    | '/_memberOnly/_homeLayout/published'
-    | '/_memberOnly/_homeLayout/recycled'
-    | '/_memberOnly/account/settings'
-    | '/_memberOnly/account/stats'
-    | '/_memberOnly/account/storage'
-    | '/analytics/items/$itemId'
-    | '/builder/items/$itemId'
-    | '/player/$rootId/$itemId'
-    | '/player/$rootId/'
-    | '/analytics/items/$itemId/apps'
-    | '/analytics/items/$itemId/export'
-    | '/builder/items/$itemId/_itemPage'
-    | '/player/$rootId/$itemId/autoLogin'
-    | '/analytics/items/$itemId/'
-    | '/builder/items/$itemId/'
-    | '/player/$rootId/$itemId/'
-    | '/builder/items/$itemId/_itemPage/publish'
-    | '/builder/items/$itemId/_itemPage/settings'
-    | '/builder/items/$itemId/_itemPage/share'
-  fileRoutesById: FileRoutesById
-}
-
-export interface RootRouteChildren {
-  LandingRoute: typeof LandingRouteWithChildren
-  MemberOnlyRoute: typeof MemberOnlyRouteWithChildren
-  AnalyticsRoute: typeof AnalyticsRouteWithChildren
-  AuthRoute: typeof AuthRouteWithChildren
-  SigninRoute: typeof SigninRoute
-  BuilderMapRoute: typeof BuilderMapRoute
-  EmailChangeRoute: typeof EmailChangeRoute
-  BuilderIndexRoute: typeof BuilderIndexRoute
-  PlayerIndexRoute: typeof PlayerIndexRoute
-  BuilderItemsItemIdRoute: typeof BuilderItemsItemIdRouteWithChildren
-  PlayerRootIdItemIdRoute: typeof PlayerRootIdItemIdRouteWithChildren
-  PlayerRootIdIndexRoute: typeof PlayerRootIdIndexRoute
-}
-
 const rootRouteChildren: RootRouteChildren = {
   LandingRoute: LandingRouteWithChildren,
   MemberOnlyRoute: MemberOnlyRouteWithChildren,
@@ -1111,250 +1054,6 @@ const rootRouteChildren: RootRouteChildren = {
   PlayerRootIdItemIdRoute: PlayerRootIdItemIdRouteWithChildren,
   PlayerRootIdIndexRoute: PlayerRootIdIndexRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/_landing",
-        "/_memberOnly",
-        "/analytics",
-        "/auth",
-        "/signin",
-        "/builder/map",
-        "/email/change",
-        "/builder/",
-        "/player/",
-        "/builder/items/$itemId",
-        "/player/$rootId/$itemId",
-        "/player/$rootId/"
-      ]
-    },
-    "/_landing": {
-      "filePath": "_landing.tsx",
-      "children": [
-        "/_landing/about-us",
-        "/_landing/contact-us",
-        "/_landing/disclaimer",
-        "/_landing/features",
-        "/_landing/policy",
-        "/_landing/support",
-        "/_landing/terms",
-        "/_landing/"
-      ]
-    },
-    "/_memberOnly": {
-      "filePath": "_memberOnly.tsx",
-      "children": [
-        "/_memberOnly/_homeLayout",
-        "/_memberOnly/account/settings",
-        "/_memberOnly/account/stats",
-        "/_memberOnly/account/storage"
-      ]
-    },
-    "/analytics": {
-      "filePath": "analytics.tsx",
-      "children": [
-        "/analytics/",
-        "/analytics/items/$itemId"
-      ]
-    },
-    "/auth": {
-      "filePath": "auth.tsx",
-      "children": [
-        "/auth/forgot-password",
-        "/auth/login",
-        "/auth/register",
-        "/auth/reset-password",
-        "/auth/signin",
-        "/auth/success"
-      ]
-    },
-    "/signin": {
-      "filePath": "signin.tsx"
-    },
-    "/_landing/about-us": {
-      "filePath": "_landing/about-us.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/contact-us": {
-      "filePath": "_landing/contact-us.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/disclaimer": {
-      "filePath": "_landing/disclaimer.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/features": {
-      "filePath": "_landing/features.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/policy": {
-      "filePath": "_landing/policy.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/support": {
-      "filePath": "_landing/support.tsx",
-      "parent": "/_landing"
-    },
-    "/_landing/terms": {
-      "filePath": "_landing/terms.tsx",
-      "parent": "/_landing"
-    },
-    "/_memberOnly/_homeLayout": {
-      "filePath": "_memberOnly/_homeLayout.tsx",
-      "parent": "/_memberOnly",
-      "children": [
-        "/_memberOnly/_homeLayout/home",
-        "/_memberOnly/_homeLayout/published",
-        "/_memberOnly/_homeLayout/recycled"
-      ]
-    },
-    "/auth/forgot-password": {
-      "filePath": "auth/forgot-password.tsx",
-      "parent": "/auth"
-    },
-    "/auth/login": {
-      "filePath": "auth/login.tsx",
-      "parent": "/auth"
-    },
-    "/auth/register": {
-      "filePath": "auth/register.tsx",
-      "parent": "/auth"
-    },
-    "/auth/reset-password": {
-      "filePath": "auth/reset-password.tsx",
-      "parent": "/auth"
-    },
-    "/auth/signin": {
-      "filePath": "auth/signin.tsx",
-      "parent": "/auth"
-    },
-    "/auth/success": {
-      "filePath": "auth/success.tsx",
-      "parent": "/auth"
-    },
-    "/builder/map": {
-      "filePath": "builder.map.tsx"
-    },
-    "/email/change": {
-      "filePath": "email.change.tsx"
-    },
-    "/_landing/": {
-      "filePath": "_landing/index.tsx",
-      "parent": "/_landing"
-    },
-    "/analytics/": {
-      "filePath": "analytics/index.tsx",
-      "parent": "/analytics"
-    },
-    "/builder/": {
-      "filePath": "builder/index.tsx"
-    },
-    "/player/": {
-      "filePath": "player/index.tsx"
-    },
-    "/_memberOnly/_homeLayout/home": {
-      "filePath": "_memberOnly/_homeLayout/home.tsx",
-      "parent": "/_memberOnly/_homeLayout"
-    },
-    "/_memberOnly/_homeLayout/published": {
-      "filePath": "_memberOnly/_homeLayout/published.tsx",
-      "parent": "/_memberOnly/_homeLayout"
-    },
-    "/_memberOnly/_homeLayout/recycled": {
-      "filePath": "_memberOnly/_homeLayout/recycled.tsx",
-      "parent": "/_memberOnly/_homeLayout"
-    },
-    "/_memberOnly/account/settings": {
-      "filePath": "_memberOnly/account/settings.tsx",
-      "parent": "/_memberOnly"
-    },
-    "/_memberOnly/account/stats": {
-      "filePath": "_memberOnly/account/stats.tsx",
-      "parent": "/_memberOnly"
-    },
-    "/_memberOnly/account/storage": {
-      "filePath": "_memberOnly/account/storage.tsx",
-      "parent": "/_memberOnly"
-    },
-    "/analytics/items/$itemId": {
-      "filePath": "analytics/items/$itemId.tsx",
-      "parent": "/analytics",
-      "children": [
-        "/analytics/items/$itemId/apps",
-        "/analytics/items/$itemId/export",
-        "/analytics/items/$itemId/"
-      ]
-    },
-    "/builder/items/$itemId": {
-      "filePath": "builder/items/$itemId.tsx",
-      "children": [
-        "/builder/items/$itemId/_itemPage",
-        "/builder/items/$itemId/"
-      ]
-    },
-    "/player/$rootId/$itemId": {
-      "filePath": "player/$rootId/$itemId.tsx",
-      "children": [
-        "/player/$rootId/$itemId/autoLogin",
-        "/player/$rootId/$itemId/"
-      ]
-    },
-    "/player/$rootId/": {
-      "filePath": "player/$rootId/index.tsx"
-    },
-    "/analytics/items/$itemId/apps": {
-      "filePath": "analytics/items/$itemId/apps.tsx",
-      "parent": "/analytics/items/$itemId"
-    },
-    "/analytics/items/$itemId/export": {
-      "filePath": "analytics/items/$itemId/export.tsx",
-      "parent": "/analytics/items/$itemId"
-    },
-    "/builder/items/$itemId/_itemPage": {
-      "filePath": "builder/items/$itemId/_itemPage.tsx",
-      "parent": "/builder/items/$itemId",
-      "children": [
-        "/builder/items/$itemId/_itemPage/publish",
-        "/builder/items/$itemId/_itemPage/settings",
-        "/builder/items/$itemId/_itemPage/share"
-      ]
-    },
-    "/player/$rootId/$itemId/autoLogin": {
-      "filePath": "player/$rootId/$itemId/autoLogin.tsx",
-      "parent": "/player/$rootId/$itemId"
-    },
-    "/analytics/items/$itemId/": {
-      "filePath": "analytics/items/$itemId/index.tsx",
-      "parent": "/analytics/items/$itemId"
-    },
-    "/builder/items/$itemId/": {
-      "filePath": "builder/items/$itemId/index.tsx",
-      "parent": "/builder/items/$itemId"
-    },
-    "/player/$rootId/$itemId/": {
-      "filePath": "player/$rootId/$itemId/index.tsx",
-      "parent": "/player/$rootId/$itemId"
-    },
-    "/builder/items/$itemId/_itemPage/publish": {
-      "filePath": "builder/items/$itemId/_itemPage/publish.tsx",
-      "parent": "/builder/items/$itemId/_itemPage"
-    },
-    "/builder/items/$itemId/_itemPage/settings": {
-      "filePath": "builder/items/$itemId/_itemPage/settings.tsx",
-      "parent": "/builder/items/$itemId/_itemPage"
-    },
-    "/builder/items/$itemId/_itemPage/share": {
-      "filePath": "builder/items/$itemId/_itemPage/share.tsx",
-      "parent": "/builder/items/$itemId/_itemPage"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
