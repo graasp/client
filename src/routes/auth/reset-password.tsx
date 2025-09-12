@@ -48,6 +48,7 @@ const resetPasswordSchema = z.object({
 export const Route = createFileRoute('/auth/reset-password')({
   validateSearch: zodValidator(resetPasswordSchema),
   component: ResetPassword,
+  errorComponent: InvalidTokenScreen,
 });
 
 type Inputs = {
