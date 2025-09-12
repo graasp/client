@@ -8,7 +8,7 @@ export * from './itemExport.js';
 export * from './itemGeolocation.js';
 export * from './itemLogin.js';
 export * from './itemPublish.js';
-export * from './itemVisibility.js';
 export * from './itemValidation.js';
+export * from './itemVisibility.js';
 export * from './mention.js';
 export * from './shortLink.js';
