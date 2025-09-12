@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.31.2](https://github.com/graasp/client/compare/v2.31.1...v2.31.2) (2025-09-12)
+
+
+### Bug Fixes
+
+* allow to add custom tag even when there are hits ([#1104](https://github.com/graasp/client/issues/1104)) ([3ca91d5](https://github.com/graasp/client/commit/3ca91d59e1245e6af087ebedc3d7531457e06f8b))
+* cypress error due to change in @tanstack/router ([#1111](https://github.com/graasp/client/issues/1111)) ([f34a4db](https://github.com/graasp/client/commit/f34a4dbc597d5321ca994d3f62b62d3688600610))
+* guests can not change their language ([#1107](https://github.com/graasp/client/issues/1107)) ([d1d8ccf](https://github.com/graasp/client/commit/d1d8ccf09fab6e4a90c20de8fd0e4f115a1424a2))
+* remove search things ([2d96fb5](https://github.com/graasp/client/commit/2d96fb5306fe62c71e845e7a4d4dc452dff7bddf))
+* udpate vite dependency ([dc7ad99](https://github.com/graasp/client/commit/dc7ad9990388eb9271caa698cbebf7b9cf5cbcb6))
+* unit tests failures related to useDebounce ([#1110](https://github.com/graasp/client/issues/1110)) ([2d96fb5](https://github.com/graasp/client/commit/2d96fb5306fe62c71e845e7a4d4dc452dff7bddf))
+
 ## [2.31.1](https://github.com/graasp/client/compare/v2.31.0...v2.31.1) (2025-09-09)
 
 
