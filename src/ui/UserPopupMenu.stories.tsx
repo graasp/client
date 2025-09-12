@@ -1,4 +1,4 @@
-import { AccountType } from '@graasp/sdk';
+import { AccountType, DiscriminatedItem } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, screen, userEvent, within } from 'storybook/test';
@@ -27,7 +27,7 @@ const CURRENT_USER = {
   id: 'some-id',
   name: 'bob',
   lang: 'en',
-  type: AccountType.Individual,
+  type: AccountType.Individual as const,
 };
 
 export const SignedIn = {
@@ -65,7 +65,11 @@ export const SignedIn = {
 export const Guest = {
   args: {
     signOutText: 'Sign Out',
-    user: { ...CURRENT_USER, type: AccountType.Guest },
+    user: {
+      ...CURRENT_USER,
+      type: AccountType.Guest,
+      item: {} as DiscriminatedItem,
+    },
     avatar: (
       <Avatar
         maxWidth={SMALL_AVATAR_SIZE}

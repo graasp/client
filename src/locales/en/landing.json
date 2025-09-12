@@ -504,6 +504,7 @@
     }
   },
   "NAV": {
-    "GO_TO_GRAASP": "Get Started"
+    "GO_TO_GRAASP": "Get Started",
+    "GO_TO_ITEM": "Go back to '{{name}}'"
   }
 }
