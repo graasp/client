@@ -85,8 +85,10 @@ function LinkItem({
     }
 
     return (
-      <Box onClick={onClick} sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative' }}>
+        {/* box above iframe to capture events */}
         <Box
+          onClick={onClick}
           sx={{
             height,
             width: '100%',
