@@ -16,7 +16,6 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
-import { type AuthenticatedUser } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
@@ -39,7 +38,7 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  currentAccount: AuthenticatedUser | null;
+  currentAccount?: { name: string; id: string };
 };
 
 export function Editor({ item, currentAccount }: Readonly<Props>) {

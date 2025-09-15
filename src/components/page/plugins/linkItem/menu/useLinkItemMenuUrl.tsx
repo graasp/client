@@ -60,6 +60,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        aria-label={t('LINK.URL.BUTTON')}
       >
         {t('LINK.URL.BUTTON')}
       </Button>

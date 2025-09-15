@@ -13,6 +13,7 @@ import {
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
 import { NS } from '@/config/constants';
+import { PAGE_TOOLBAR_INSERT_LINK_BUTTON_ID } from '@/config/selectors';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import LinkUrlField from '~builder/components/item/form/link/LinkUrlField';
@@ -46,7 +47,13 @@ export function InsertLinkItemButton() {
 
   return (
     <>
-      <Button size="small" variant="outlined" onClick={openModal}>
+      <Button
+        size="small"
+        variant="outlined"
+        onClick={openModal}
+        aria-label={t('TOOLBAR.LINK_ITEM.BUTTON')}
+        id={PAGE_TOOLBAR_INSERT_LINK_BUTTON_ID}
+      >
         {t('TOOLBAR.LINK_ITEM.BUTTON')}
       </Button>
       <Dialog onClose={closeModal} open={isOpen}>

@@ -637,3 +637,4 @@ export const buildBookmarkCardEditClassName = (id: string) =>
   `bookmarkCardEdit-${id}`;
 export const buildBookmarkCardRemoveButton = (id: string) =>
   `.${buildBookmarkCardEditClassName(id)} [aria-label="Remove bookmark"]`;
+export const PAGE_TOOLBAR_INSERT_LINK_BUTTON_ID = 'pageToolbarInsertLinkButton';
