@@ -1,7 +1,10 @@
-import { Divider, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Trans, useTranslation } from 'react-i18next';
+
+import { Alert, Divider, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { createFileRoute } from '@tanstack/react-router';
 
+import { NS } from '@/config/constants';
 import { MaintenanceAnnouncement } from '@/modules/home/MaintenanceAnnouncement';
 import { BookmarkedItems } from '@/modules/home/bookmarks/BookmarkedItems';
 
@@ -19,12 +22,27 @@ export const Route = createFileRoute('/_memberOnly/_homeLayout/home')({
 function HomeRoute() {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.up('md'));
+  const { t } = useTranslation(NS.Home);
 
   const itemSearch = useItemSearch();
 
   return (
     <>
       <MaintenanceAnnouncement suffix="home" />
+      <Alert severity="info">
+        <Trans
+          t={t}
+          i18nKey={'SURVEY.INFO'}
+          components={{
+            l1: (
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLScSSD8oPlpvLvX1YPDfvfDGQzV7zqqPoSEhkItIZ8pIAPCpTw/viewform?usp=preview">
+                {/* the text here has no impact */}
+                here
+              </a>
+            ),
+          }}
+        />
+      </Alert>
       <BookmarkedItems />
       <Divider flexItem />
       <SelectionContextProvider>
