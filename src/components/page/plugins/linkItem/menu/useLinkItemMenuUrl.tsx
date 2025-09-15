@@ -77,7 +77,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
                 rel="noreferrer"
                 endIcon={<SquareArrowOutUpRightIcon size={16} />}
               >
-                {t('Visit external link')}
+                {t('LINK.URL.VISIT_LINK_BUTTON')}
               </Button>
             </DialogContent>
 

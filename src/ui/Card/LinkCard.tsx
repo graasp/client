@@ -33,12 +33,13 @@ const FancyLink = ({
   title,
   thumbnail,
   description,
-  url,
+  url = '',
   urlText,
   onClick,
   isExternal = true,
 }: FancyLinkProps): JSX.Element => {
   const theme = useTheme();
+
   return (
     <Card
       id={id}
@@ -52,11 +53,7 @@ const FancyLink = ({
       }}
       data-testid={FANCY_LINK_CARD_TEST_ID}
     >
-      <CardActionArea
-        href={url ?? ''}
-        sx={{ height: '100%' }}
-        onClick={onClick}
-      >
+      <CardActionArea href={url} sx={{ height: '100%' }} onClick={onClick}>
         <Stack direction="row" alignItems="center" height="100%" minWidth={0}>
           <CardThumbnail
             thumbnail={thumbnail}

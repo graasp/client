@@ -1,4 +1,4 @@
-import { JSX, memo, useEffect, useState } from 'react';
+import { JSX, MouseEventHandler, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, Skeleton } from '@mui/material';
 
@@ -33,7 +33,7 @@ function LinkItem({
   errorMessage,
   nodeKey,
   memberId,
-  setSelected,
+  onClick,
 }: {
   url: string;
   layout: Layout;
@@ -43,7 +43,7 @@ function LinkItem({
   errorMessage?: string;
   nodeKey: NodeKey;
   memberId?: string;
-  setSelected?: (selected: boolean) => void;
+  onClick?: MouseEventHandler;
 }) {
   const { data: linkMetadata, isFetching } = useQuery(
     getLinkMetadataOptions({ query: { link: url } }),
@@ -85,13 +85,7 @@ function LinkItem({
     }
 
     return (
-      <Box
-        onClick={(e) => {
-          e.stopPropagation();
-          setSelected?.(true);
-        }}
-        sx={{ position: 'relative' }}
-      >
+      <Box onClick={onClick} sx={{ position: 'relative' }}>
         <Box
           sx={{
             height,
@@ -109,7 +103,6 @@ function LinkItem({
           onDoneLoading={() => {
             setIsLoading(false);
           }}
-          id="theiframe"
           itemId={nodeKey}
           memberId={memberId}
           loadingMessage={loadingMessage}
@@ -127,15 +120,12 @@ function LinkItem({
         urlText={url}
         description=""
         isExternal={isExternal}
-        onClick={(e) => {
-          e.stopPropagation();
-          setSelected?.(true);
-        }}
+        onClick={onClick}
       />
     );
   }
 
-  return <MUILink href={url}>{url}</MUILink>;
+  return <MUILink onClick={onClick}>{url}</MUILink>;
 }
 
 type LinkItemComponentProps = Readonly<{
@@ -164,7 +154,7 @@ type LinkItemComponentProps = Readonly<{
   isResizable?: boolean;
   height?: string | number;
   canEdit?: boolean;
-  setSelected?: (selected: boolean) => void;
+  onClick?: MouseEventHandler;
 }>;
 
 export function LinkItemComponent({
@@ -180,7 +170,7 @@ export function LinkItemComponent({
   errorMessage = 'The link is malformed.',
   onLayoutChange,
   onUrlChange,
-  setSelected,
+  onClick,
 }: LinkItemComponentProps) {
   const [height] = useState<string | number>(defaultHeight);
   const [isSelected] = useLexicalNodeSelection(nodeKey);
@@ -203,7 +193,7 @@ export function LinkItemComponent({
         nodeKey={nodeKey}
       >
         <LinkItem
-          setSelected={setSelected}
+          onClick={onClick}
           url={url}
           layout={layout}
           isResizable

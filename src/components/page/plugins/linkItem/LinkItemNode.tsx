@@ -172,7 +172,8 @@ export class LinkItemNode extends DecoratorBlockNode {
         onUrlChange={this.changeUrl(editor)}
         canEdit={isEditable}
         isResizable={isEditable}
-        setSelected={() => {
+        onClick={(e) => {
+          e.stopPropagation();
           this.select(editor);
         }}
       />

@@ -30,6 +30,6 @@
       "EMBED": "Embed",
       "TEXT": "Link"
     },
-    "URL": { "BUTTON": "Lien" }
+    "URL": { "BUTTON": "Link", "VISIT_LINK_BUTTON": "Visit external link" }
   }
 }

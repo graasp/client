@@ -45,16 +45,15 @@
   text-decoration: underline line-through;
 }
 
+.editor-wrapper {
+  margin-bottom: '16px';
+}
+
 .editor-container {
-  border-radius: 2px;
-  max-width: 600px;
-  color: #000;
-  position: relative;
-  line-height: 20px;
-  font-weight: 400;
-  text-align: left;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #dddddd;
 }
 
 .editor-inner {

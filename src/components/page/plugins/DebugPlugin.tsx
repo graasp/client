@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 
-function DebugPlugin() {
+export function DebugPlugin() {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
@@ -21,5 +21,3 @@ function DebugPlugin() {
 
   return null;
 }
-
-export default DebugPlugin;
