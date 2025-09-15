@@ -1,4 +1,4 @@
-import { Fragment, type JSX, memo, useEffect, useState } from 'react';
+import { Fragment, type JSX, memo, useEffect, useMemo, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 
@@ -110,25 +110,32 @@ export const LinkIframe = ({
   memberId,
   loadingMessage,
 }: LinkIframeProps): JSX.Element | null => {
-  const iframe = (
-    <StyledIFrame
-      sx={{ display: isLoading ? 'unset' : 'block' }}
-      height={height}
-      width="100%"
-      id={id}
-      isResizable={isResizable}
-      onLoad={onDoneLoading}
-      src={url}
-      title={title}
-    />
+  const iframe = useMemo(
+    () => (
+      <StyledIFrame
+        sx={{ display: isLoading ? 'unset' : 'block' }}
+        height={height}
+        width="100%"
+        id={id}
+        isResizable={isResizable}
+        onLoad={onDoneLoading}
+        src={url}
+        title={title}
+        loading="lazy"
+      />
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isLoading, height, id, isResizable, url, title],
   );
 
-  const ResizableLink = withResizing({
-    height,
-    component: iframe,
-    memberId,
-    itemId,
-  });
+  const ResizableLink = useMemo(() => {
+    return withResizing({
+      height,
+      component: iframe,
+      memberId,
+      itemId,
+    });
+  }, [height, memberId, itemId, iframe]);
 
   return (
     <>

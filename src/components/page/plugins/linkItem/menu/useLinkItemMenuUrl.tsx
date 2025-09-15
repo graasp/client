@@ -10,6 +10,8 @@ import {
   DialogContent,
 } from '@mui/material';
 
+import { SquareArrowOutUpRightIcon } from 'lucide-react';
+
 import { NS } from '@/config/constants';
 
 import LinkUrlField from '~builder/components/item/form/link/LinkUrlField';
@@ -58,6 +60,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        aria-label={t('LINK.URL.BUTTON')}
       >
         {t('LINK.URL.BUTTON')}
       </Button>
@@ -68,7 +71,18 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
           <Box component="form" onSubmit={handleSubmit(onSubmit)}>
             <DialogContent>
               <LinkUrlField />
+              <Button
+                component="a"
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                endIcon={<SquareArrowOutUpRightIcon size={16} />}
+                data-umami-event="visit-link-editor-page"
+              >
+                {t('LINK.URL.VISIT_LINK_BUTTON')}
+              </Button>
             </DialogContent>
+
             <DialogActions>
               <Button size="small" onClick={handleClose}>
                 {translateCommon('CANCEL.BUTTON_TEXT')}

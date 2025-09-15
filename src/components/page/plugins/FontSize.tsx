@@ -103,6 +103,10 @@ export function FontSize({
           width: 30,
           height: 30,
           boxSizing: 'border-box',
+          // disable arrows in input type number
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          '-moz-appearance': 'textfield',
         }}
         className="font-size-input"
         min={MIN_ALLOWED_FONT_SIZE}

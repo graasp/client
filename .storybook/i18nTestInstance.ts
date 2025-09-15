@@ -10,6 +10,7 @@ import common from '../src/locales/en/common.json';
 import landing from '../src/locales/en/landing.json';
 import map from '../src/locales/en/map.json';
 import messages from '../src/locales/en/messages.json';
+import pageEditor from '../src/locales/en/pageEditor.json';
 import player from '../src/locales/en/player.json';
 
 i18n.use(initReactI18next).init({
@@ -47,6 +48,7 @@ i18n.use(initReactI18next).init({
       map,
       builder,
       chatbox,
+      pageEditor,
     },
   },
 });

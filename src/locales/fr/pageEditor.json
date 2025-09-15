@@ -26,6 +26,6 @@
       "EMBED": "Intégration",
       "TEXT": "Lien"
     },
-    "URL": { "BUTTON": "Lien" }
+    "URL": { "BUTTON": "Lien", "VISIT_LINK_BUTTON": "Visiter le lien externe" }
   }
 }

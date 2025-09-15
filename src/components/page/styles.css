@@ -45,16 +45,15 @@
   text-decoration: underline line-through;
 }
 
+.editor-wrapper {
+  margin-bottom: '16px';
+}
+
 .editor-container {
-  border-radius: 2px;
-  max-width: 600px;
-  color: #000;
-  position: relative;
-  line-height: 20px;
-  font-weight: 400;
-  text-align: left;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #dddddd;
 }
 
 .editor-inner {
@@ -84,9 +83,10 @@
   overflow: auto;
   height: 36px;
   position: sticky;
-  top: 0;
-  /* remove zindex to avoid overlapping with item menus */
   overflow-y: hidden; /* disable vertical scroll*/
+  top: 65px; /* this value depends on the header height */
+  z-index: 5; /* unless zindex is removed, item menus will be under */
+  border-bottom: 1px solid #ddd;
 }
 
 button.toolbar-item {
@@ -211,7 +211,7 @@ button.toolbar-item.active i {
   position: relative;
   outline: 0;
   padding: 8px 46px 40px;
-  min-height: 150px;
+  min-height: 300px;
 }
 
 .editor-placeholder {

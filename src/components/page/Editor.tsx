@@ -16,7 +16,6 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
-import { type AuthenticatedUser } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
@@ -39,7 +38,7 @@ function onError(error: Error) {
 
 type Props = {
   item: PageItemType;
-  currentAccount: AuthenticatedUser | null;
+  currentAccount?: { name: string; id: string };
 };
 
 export function Editor({ item, currentAccount }: Readonly<Props>) {
@@ -71,7 +70,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="editor-wrapper">
       <StatusToolbar users={activeUsers} isConnected={connected} />
       {hasTimedOut && (
         <Alert
@@ -94,9 +93,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
       {!hasTimedOut && (
         <>
           <LexicalComposer initialConfig={initialConfig}>
-            <div
-              style={{ width: '100%', height: '100vh', background: 'white' }}
-            >
+            <div className="editor-container">
               <ToolbarPlugin />
               <div className="editor-inner">
                 {/* With CollaborationPlugin - we MUST NOT use @lexical/react/LexicalHistoryPlugin */}
