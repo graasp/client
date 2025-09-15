@@ -211,7 +211,7 @@ button.toolbar-item.active i {
   position: relative;
   outline: 0;
   padding: 8px 46px 40px;
-  min-height: 150px;
+  min-height: 300px;
 }
 
 .editor-placeholder {

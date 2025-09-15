@@ -76,6 +76,7 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
                 target="_blank"
                 rel="noreferrer"
                 endIcon={<SquareArrowOutUpRightIcon size={16} />}
+                data-umami-event="visit-link-editor-page"
               >
                 {t('LINK.URL.VISIT_LINK_BUTTON')}
               </Button>
