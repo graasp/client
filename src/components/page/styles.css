@@ -84,9 +84,10 @@
   overflow: auto;
   height: 36px;
   position: sticky;
-  top: 0;
-  /* remove zindex to avoid overlapping with item menus */
   overflow-y: hidden; /* disable vertical scroll*/
+  top: 65px; /* this value depends on the header height */
+  z-index: 5; /* unless zindex is removed, item menus will be under */
+  border-bottom: 1px solid #ddd;
 }
 
 button.toolbar-item {

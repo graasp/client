@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from 'react';
+import { JSX, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, Skeleton } from '@mui/material';
 
@@ -33,6 +33,7 @@ function LinkItem({
   errorMessage,
   nodeKey,
   memberId,
+  setSelected,
 }: {
   url: string;
   layout: Layout;
@@ -42,6 +43,7 @@ function LinkItem({
   errorMessage?: string;
   nodeKey: NodeKey;
   memberId?: string;
+  setSelected?: (selected: boolean) => void;
 }) {
   const { data: linkMetadata, isFetching } = useQuery(
     getLinkMetadataOptions({ query: { link: url } }),
@@ -83,17 +85,36 @@ function LinkItem({
     }
 
     return (
-      <LinkIframe
-        url={url}
-        isResizable={isResizable}
-        height={height}
-        title={linkMetadata?.title ?? url}
-        isLoading={isLoading}
-        onDoneLoading={() => setIsLoading(false)}
-        itemId={nodeKey}
-        memberId={memberId}
-        loadingMessage={loadingMessage}
-      />
+      <Box
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelected?.(true);
+        }}
+        sx={{ position: 'relative' }}
+      >
+        <Box
+          sx={{
+            height,
+            width: '100%',
+            position: 'absolute',
+            zIndex: 1,
+          }}
+        ></Box>
+        <LinkIframe
+          url={url}
+          isResizable={isResizable}
+          height={height}
+          title={linkMetadata?.title ?? url}
+          isLoading={isLoading}
+          onDoneLoading={() => {
+            setIsLoading(false);
+          }}
+          id="theiframe"
+          itemId={nodeKey}
+          memberId={memberId}
+          loadingMessage={loadingMessage}
+        />
+      </Box>
     );
   }
 
@@ -103,9 +124,13 @@ function LinkItem({
       <LinkCard
         thumbnail={linkMetadata?.icons?.[0]}
         title={linkMetadata?.title ?? url}
-        url={url}
+        urlText={url}
         description=""
         isExternal={isExternal}
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelected?.(true);
+        }}
       />
     );
   }
@@ -139,6 +164,7 @@ type LinkItemComponentProps = Readonly<{
   isResizable?: boolean;
   height?: string | number;
   canEdit?: boolean;
+  setSelected?: (selected: boolean) => void;
 }>;
 
 export function LinkItemComponent({
@@ -154,6 +180,7 @@ export function LinkItemComponent({
   errorMessage = 'The link is malformed.',
   onLayoutChange,
   onUrlChange,
+  setSelected,
 }: LinkItemComponentProps) {
   const [height] = useState<string | number>(defaultHeight);
   const [isSelected] = useLexicalNodeSelection(nodeKey);
@@ -176,6 +203,7 @@ export function LinkItemComponent({
         nodeKey={nodeKey}
       >
         <LinkItem
+          setSelected={setSelected}
           url={url}
           layout={layout}
           isResizable
@@ -189,3 +217,5 @@ export function LinkItemComponent({
     </>
   );
 }
+
+export const LinkItemForPage = memo(LinkItemComponent);

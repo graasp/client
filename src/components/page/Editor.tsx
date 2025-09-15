@@ -71,7 +71,7 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={{ marginBottom: '16px' }}>
       <StatusToolbar users={activeUsers} isConnected={connected} />
       {hasTimedOut && (
         <Alert
@@ -95,7 +95,12 @@ export function Editor({ item, currentAccount }: Readonly<Props>) {
         <>
           <LexicalComposer initialConfig={initialConfig}>
             <div
-              style={{ width: '100%', height: '100vh', background: 'white' }}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: '1px solid #dddddd',
+                borderRadius: '8px',
+              }}
             >
               <ToolbarPlugin />
               <div className="editor-inner">

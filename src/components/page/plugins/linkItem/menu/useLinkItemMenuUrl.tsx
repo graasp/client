@@ -10,6 +10,8 @@ import {
   DialogContent,
 } from '@mui/material';
 
+import { SquareArrowOutUpRightIcon } from 'lucide-react';
+
 import { NS } from '@/config/constants';
 
 import LinkUrlField from '~builder/components/item/form/link/LinkUrlField';
@@ -68,7 +70,17 @@ export function useLinkItemMenuUrl({ url, onUrlChange }: LinkItemMenuUrlProps) {
           <Box component="form" onSubmit={handleSubmit(onSubmit)}>
             <DialogContent>
               <LinkUrlField />
+              <Button
+                component="a"
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                endIcon={<SquareArrowOutUpRightIcon size={16} />}
+              >
+                {t('Visit external link')}
+              </Button>
             </DialogContent>
+
             <DialogActions>
               <Button size="small" onClick={handleClose}>
                 {translateCommon('CANCEL.BUTTON_TEXT')}

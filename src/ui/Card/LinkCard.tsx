@@ -1,4 +1,4 @@
-import type { JSX } from 'react';
+import type { JSX, MouseEventHandler } from 'react';
 
 import {
   Card,
@@ -20,11 +20,12 @@ const FANCY_LINK_CARD_TEST_ID = 'fancy-link-card';
 type FancyLinkProps = {
   id?: string;
   title: string;
-  url: string;
+  url?: string;
+  urlText?: string;
   thumbnail?: string;
   description: string;
   isExternal?: boolean;
-  onClick?: () => void;
+  onClick?: MouseEventHandler;
 };
 
 const FancyLink = ({
@@ -33,6 +34,7 @@ const FancyLink = ({
   thumbnail,
   description,
   url,
+  urlText,
   onClick,
   isExternal = true,
 }: FancyLinkProps): JSX.Element => {
@@ -50,7 +52,11 @@ const FancyLink = ({
       }}
       data-testid={FANCY_LINK_CARD_TEST_ID}
     >
-      <CardActionArea href={url} sx={{ height: '100%' }} onClick={onClick}>
+      <CardActionArea
+        href={url ?? ''}
+        sx={{ height: '100%' }}
+        onClick={onClick}
+      >
         <Stack direction="row" alignItems="center" height="100%" minWidth={0}>
           <CardThumbnail
             thumbnail={thumbnail}
@@ -88,7 +94,7 @@ const FancyLink = ({
                 </Stack>
                 {isExternal && (
                   <Typography color="text.secondary" noWrap variant="caption">
-                    ({url})
+                    ({urlText ?? url})
                   </Typography>
                 )}
               </Stack>

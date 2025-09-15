@@ -12,6 +12,8 @@ import {
   SerializedDecoratorBlockNode,
 } from '@lexical/react/LexicalDecoratorBlockNode';
 import {
+  $createNodeSelection,
+  $setSelection,
   DOMConversionMap,
   DOMConversionOutput,
   type DOMExportOutput,
@@ -23,7 +25,7 @@ import {
   type Spread,
 } from 'lexical';
 
-import { LinkItemComponent } from './LinkItemComponent';
+import { LinkItemForPage } from './LinkItemForPage';
 
 export type SerializedLinkItemNode = Spread<
   {
@@ -142,6 +144,14 @@ export class LinkItemNode extends DecoratorBlockNode {
     };
   }
 
+  select(editor: LexicalEditor) {
+    editor.update(() => {
+      const nodeSelection = $createNodeSelection();
+      nodeSelection.add(this.getKey());
+      $setSelection(nodeSelection);
+    });
+  }
+
   decorate(editor: LexicalEditor, config: EditorConfig): JSX.Element {
     const embedBlockTheme = config.theme.embedBlock || {};
     const className = {
@@ -152,7 +162,7 @@ export class LinkItemNode extends DecoratorBlockNode {
     const isEditable = editor.isEditable();
 
     return (
-      <LinkItemComponent
+      <LinkItemForPage
         className={className}
         format={this.__format}
         nodeKey={this.getKey()}
@@ -162,6 +172,9 @@ export class LinkItemNode extends DecoratorBlockNode {
         onUrlChange={this.changeUrl(editor)}
         canEdit={isEditable}
         isResizable={isEditable}
+        setSelected={() => {
+          this.select(editor);
+        }}
       />
     );
   }

@@ -29,7 +29,7 @@ export function NodeMenu({
           <Stack
             sx={{
               position: 'absolute',
-              zIndex: 9,
+              zIndex: 1,
               top: -50,
               boxShadow: '0 4px 8px lightgrey',
               background: 'white',
