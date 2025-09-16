@@ -45,6 +45,19 @@ describe('Empty Home', () => {
   });
 });
 
+describe('Disabled local storage', () => {
+  it('visit Home with disabled localstorage', () => {
+    cy.disableLocalStorage();
+    cy.setUpApi({
+      items: [],
+    });
+
+    cy.visit(HOME_PATH);
+    cy.get(`[role="dropzone"]`).scrollIntoView().should('be.visible');
+    cy.get(getDataCy(ADD_FOLDER_BUTTON_CY)).should('be.visible');
+  });
+});
+
 describe('Home page features', () => {
   beforeEach(() => {
     cy.setUpApi({
