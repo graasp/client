@@ -265,6 +265,8 @@ declare global {
         item: { name?: string },
         options?: { confirm?: boolean },
       ): void;
+
+      disableLocalStorage(): void;
     }
   }
 }
@@ -814,4 +816,21 @@ Cypress.Commands.add('switchMode', (mode) => {
     default:
       throw new Error(`invalid mode ${mode} provided`);
   }
+});
+
+const LOCAL_STORAGE_METHODS = ['setItem', 'removeItem', 'clear'];
+Cypress.Commands.add('disableLocalStorage', () => {
+  cy.on('window:before:load', (win) => {
+    if (
+      win.localStorage &&
+      !win.localStorage[LOCAL_STORAGE_METHODS[0]].wrappedMethod &&
+      !localStorage[LOCAL_STORAGE_METHODS[0]].wrappedMethod
+    ) {
+      LOCAL_STORAGE_METHODS.forEach((localStorageMethod) => {
+        cy.stub(win.localStorage, localStorageMethod).throws(
+          new Error(`${localStorageMethod} throws!`),
+        );
+      });
+    }
+  });
 });
