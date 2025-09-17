@@ -47,7 +47,7 @@ export function HeaderRightContent() {
 
   if (isAuthenticated) {
     return (
-      <Stack direction="row" gap={2} alignItems="center">
+      <Stack direction="row" gap={1} alignItems="center">
         {
           // only display these elements to "full users"
           user.type === AccountType.Individual && (
@@ -58,6 +58,7 @@ export function HeaderRightContent() {
                 id="languageSwitch"
                 lang={i18n.languages[0]}
                 onChange={handleLanguageChange}
+                color="white"
               />
             </>
           )

@@ -184,7 +184,12 @@ export function Footer({ onChangeLang }: Readonly<FooterProps>): JSX.Element {
                 {t('OTHER.DISCLAIMER')}
               </InternalLink>
               <Box>
-                <LanguageSwitch lang={i18n.language} onChange={onChangeLang} />
+                <LanguageSwitch
+                  dense={false}
+                  lang={i18n.language}
+                  onChange={onChangeLang}
+                  color="white"
+                />
               </Box>
             </FooterSection>
           </Stack>
