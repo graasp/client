@@ -19,8 +19,10 @@ import {
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
+import { getLinkMetadataOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import LinkCard from '@/ui/Card/LinkCard';
 import LinkItem from '@/ui/items/LinkItem';
 
@@ -60,8 +62,10 @@ export function LinkTypeFormControl() {
   const description = watch('description');
   const url = watch('url');
   const isValidUrl = isUrlValid(normalizeURL(url));
-  const { data: linkData } = hooks.useLinkMetadata(
-    isValidUrl ? normalizeURL(url) : '',
+  const { data: linkData } = useQuery(
+    getLinkMetadataOptions({
+      query: { link: isValidUrl ? normalizeURL(url) : '' },
+    }),
   );
 
   // apply the description from the api to the field
