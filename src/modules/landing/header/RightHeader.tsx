@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Stack } from '@mui/material';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
 
 import { AccountType } from '@graasp/sdk';
 
@@ -23,6 +23,9 @@ export function RightHeader({
   const { isAuthenticated, user } = useAuth();
   const { t, i18n } = useTranslation(NS.Common);
   const { t: translateLanding } = useTranslation(NS.Landing);
+
+  const theme = useTheme();
+  const showRegisterButton = useMediaQuery(theme.breakpoints.up('sm'));
 
   if (isAuthenticated) {
     if (user.type === AccountType.Individual) {
@@ -66,7 +69,9 @@ export function RightHeader({
   return (
     <Stack gap={2} direction="row" id="leftTitleWrapper" alignItems="center">
       <ButtonLink to="/auth/login">{t('LOG_IN.BUTTON_TEXT')}</ButtonLink>
-      <ButtonLink to="/auth/register">{t('REGISTER.BUTTON_TEXT')}</ButtonLink>
+      {showRegisterButton && (
+        <ButtonLink to="/auth/register">{t('REGISTER.BUTTON_TEXT')}</ButtonLink>
+      )}
       <LanguageSwitch lang={i18n.language} onChange={onChangeLang} />
     </Stack>
   );
