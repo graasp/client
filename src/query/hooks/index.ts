@@ -3,11 +3,9 @@ import { WebsocketClient } from '@graasp/sdk';
 import configureItemHooks from '../item/hooks.js';
 import configureMemberHooks from '../member/hooks.js';
 import { QueryClientConfig } from '../types.js';
-import configureEmbeddedLinkHooks from './embeddedLink.js';
 import configureEtherpadHooks from './etherpad.js';
 import configureItemLoginHooks from './itemLogin.js';
 import configureItemPublishedHooks from './itemPublish.js';
-import configureItemValidationHooks from './itemValidation.js';
 import configureMembershipHooks from './membership.js';
 import configureMentionsHooks from './mention.js';
 import useDebounce from './useDebounce.js';
@@ -29,9 +27,7 @@ export const configureHooks = (
     ...configureEtherpadHooks(queryConfig),
     ...configureItemLoginHooks(queryConfig),
     ...configureItemPublishedHooks(queryConfig),
-    ...configureItemValidationHooks(queryConfig),
     ...memberHooks,
-    ...configureEmbeddedLinkHooks(queryConfig),
     useDebounce,
   };
 };

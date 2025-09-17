@@ -4,7 +4,6 @@ export * from './apps.js';
 export * from './csvUserImport.js';
 export * from './etherpad.js';
 export * from './invitation.js';
-export * from './itemExport.js';
 export * from './itemGeolocation.js';
 export * from './itemLogin.js';
 export * from './itemPublish.js';

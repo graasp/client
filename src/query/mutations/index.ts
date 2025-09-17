@@ -4,7 +4,6 @@ import { QueryClientConfig } from '../types.js';
 import csvUserImportMutations from './csvUserImport.js';
 import etherpadMutations from './etherpad.js';
 import invitationMutations from './invitation.js';
-import itemExportMutations from './itemExport.js';
 import itemGeolocationMutations from './itemGeolocation.js';
 import itemLoginMutations from './itemLogin.js';
 import itemPublishMutations from './itemPublish.js';
@@ -17,7 +16,6 @@ const configureMutations = (queryConfig: QueryClientConfig) => ({
   ...csvUserImportMutations(queryConfig),
   ...etherpadMutations(queryConfig),
   ...invitationMutations(queryConfig),
-  ...itemExportMutations(queryConfig),
   ...itemGeolocationMutations(queryConfig),
   ...itemLoginMutations(queryConfig),
   ...itemMutations(queryConfig),
