@@ -1,4 +1,5 @@
 name: Deploy to environment
+run-name: Deploy ${{ inputs.version || 'latest' }} to ${{ inputs.environment || 'development' }}
 
 # Control when the action will run
 on:
