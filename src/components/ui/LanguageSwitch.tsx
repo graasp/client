@@ -23,11 +23,15 @@ const values = Object.entries(LANGS).map(([value, text]) => ({
 
 const LanguageSwitch = ({
   id,
-  lang,
+  lang: rawLang,
   onChange,
   color,
   dense = true,
 }: Props): JSX.Element => {
+  // we cast the language so we can use index signatures
+  const lang = rawLang in LANGS ? (rawLang as keyof typeof LANGS) : 'en';
+  const languageLabel = LANGS[lang];
+
   const handleChange = (newLang: string) => {
     onChange(newLang);
     setAnchorEl(null);
@@ -86,10 +90,6 @@ const LanguageSwitch = ({
     );
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const language = lang in LANGS ? LANGS[lang] : LANGS.en;
-
   return (
     <div id={id}>
       <Button
@@ -102,7 +102,7 @@ const LanguageSwitch = ({
         endIcon={<ChevronDown size={15} />}
         sx={{ fontWeight: 'bold', color }}
       >
-        {language}
+        {languageLabel}
       </Button>
       {menu}
     </div>
