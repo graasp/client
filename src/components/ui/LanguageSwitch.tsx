@@ -91,9 +91,9 @@ const LanguageSwitch = ({
   }
 
   return (
-    <div id={id}>
+    <div>
       <Button
-        id="basic-button"
+        id={id}
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}

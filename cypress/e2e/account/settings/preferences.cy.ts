@@ -101,7 +101,7 @@ describe('Display preferences', () => {
 const switchLanguage = (newLang: string) => {
   cy.get(`#${PREFERENCES_LANGUAGE_SWITCH_ID}`).should('be.visible'); // Ensure the element is visible
   cy.get(`#${PREFERENCES_LANGUAGE_SWITCH_ID}`).click();
-  cy.get(`[role="option"][data-value="${newLang}"]`).click();
+  cy.get(`[role="menuitem"][value="${newLang}"]`).click();
 };
 
 const switchEmailFreq = (to: string) => {
@@ -129,7 +129,7 @@ describe('Edit preferences', () => {
       // Ensure the selected language is shown as the select value
       cy.get(`#${PREFERENCES_LANGUAGE_SWITCH_ID}`).should(
         'contain.text',
-        newLang.toUpperCase(),
+        LANGS[newLang],
       );
 
       cy.get(`#${PREFERENCES_SAVE_BUTTON_ID}`).click();
