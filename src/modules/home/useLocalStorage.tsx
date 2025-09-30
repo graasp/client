@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { LocalStorage } from '@/config/LocalStorage';
+import { LocalStorage } from '@/config/localStorage';
 
 export function useLocalStorage<T>(key: string, defaultValue?: T) {
   const [value, setValue] = useState<T | undefined>();

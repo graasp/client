@@ -17,8 +17,8 @@ import {
 import * as Sentry from '@sentry/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { LocalStorage } from './config/LocalStorage';
 import { DEFAULT_LANG } from './config/constants';
+import { LocalStorage } from './config/localStorage';
 import { hooks } from './config/queryClient';
 import {
   loginMutation,

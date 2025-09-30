@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 
-import { LocalStorage } from '@/config/LocalStorage';
+import { LocalStorage } from '@/config/localStorage';
 
 const PREVIEW_STORAGE_KEY = 'graasp-preview';
 
