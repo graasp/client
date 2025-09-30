@@ -24,7 +24,6 @@ import {
   copyItemsRoutine,
   deleteItemsRoutine,
   editItemRoutine,
-  exportItemRoutine,
   moveItemsRoutine,
   postItemValidationRoutine,
   recycleItemsRoutine,
@@ -172,11 +171,6 @@ export const configureWsItemHooks = (
                 routine = copyItemsRoutine;
                 message = 'COPY_ITEMS';
                 invalidateFeedback[event.op](event);
-                break;
-              case isOperationEvent(event, FeedBackOperation.EXPORT):
-                routine = exportItemRoutine;
-                message = 'DEFAULT_SUCCESS';
-                // nothing to invalidate
                 break;
               case isOperationEvent(event, FeedBackOperation.RECYCLE):
                 routine = recycleItemsRoutine;
