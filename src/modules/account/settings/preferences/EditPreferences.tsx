@@ -92,6 +92,7 @@ export function EditPreferences({
       <FormProperty title={t('PROFILE_LANGUAGE_TITLE')}>
         <LanguageSwitch
           lang={selectedLang}
+          dense={false}
           id={PREFERENCES_LANGUAGE_SWITCH_ID}
           onChange={setSelectedLang}
         />
