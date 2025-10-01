@@ -18,6 +18,7 @@ import * as Sentry from '@sentry/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from './config/constants';
+import { LocalStorage } from './config/localStorage';
 import { hooks } from './config/queryClient';
 import {
   loginMutation,
@@ -99,12 +100,12 @@ export function AuthProvider({
 
   useEffect(() => {
     if (currentMember) {
-      localStorage.setItem(
+      LocalStorage.setItem(
         'i18nextLng',
         getCurrentAccountLang(currentMember, DEFAULT_LANG),
       );
     } else {
-      localStorage.removeItem('i18nextLng');
+      LocalStorage.removeItem('i18nextLng');
     }
   }, [currentMember]);
 

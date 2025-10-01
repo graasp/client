@@ -7,6 +7,8 @@ import {
   useState,
 } from 'react';
 
+import { LocalStorage } from '@/config/localStorage';
+
 const PREVIEW_STORAGE_KEY = 'graasp-preview';
 
 type PreviewContextType = {
@@ -21,7 +23,7 @@ const PreviewContext = createContext<PreviewContextType>({
 const isPreviewEnabled = () => {
   // only check if the element is present, value is not checked for the moment
   // maybe if we extend the feature later we will need to
-  const isPresent = localStorage.getItem(PREVIEW_STORAGE_KEY) != null;
+  const isPresent = LocalStorage.getItem(PREVIEW_STORAGE_KEY) != null;
   return isPresent;
 };
 
@@ -46,10 +48,10 @@ export function PreviewContextProvider({
     () => ({
       togglePreview: () => {
         if (isPreviewEnabled()) {
-          window.localStorage.removeItem(PREVIEW_STORAGE_KEY);
+          LocalStorage.removeItem(PREVIEW_STORAGE_KEY);
           setIsEnabled(false);
         } else {
-          window.localStorage.setItem(PREVIEW_STORAGE_KEY, 'enabled');
+          LocalStorage.setItem(PREVIEW_STORAGE_KEY, 'enabled');
           setIsEnabled(true);
         }
       },
