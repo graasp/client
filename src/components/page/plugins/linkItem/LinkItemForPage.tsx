@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from 'react';
+import { JSX, MouseEventHandler, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, Skeleton } from '@mui/material';
 
@@ -33,6 +33,7 @@ function LinkItem({
   errorMessage,
   nodeKey,
   memberId,
+  onClick,
 }: {
   url: string;
   layout: Layout;
@@ -42,6 +43,7 @@ function LinkItem({
   errorMessage?: string;
   nodeKey: NodeKey;
   memberId?: string;
+  onClick?: MouseEventHandler;
 }) {
   const { data: linkMetadata, isFetching } = useQuery(
     getLinkMetadataOptions({ query: { link: url } }),
@@ -83,17 +85,31 @@ function LinkItem({
     }
 
     return (
-      <LinkIframe
-        url={url}
-        isResizable={isResizable}
-        height={height}
-        title={linkMetadata?.title ?? url}
-        isLoading={isLoading}
-        onDoneLoading={() => setIsLoading(false)}
-        itemId={nodeKey}
-        memberId={memberId}
-        loadingMessage={loadingMessage}
-      />
+      <Box sx={{ position: 'relative' }}>
+        {/* box above iframe to capture events */}
+        <Box
+          onClick={onClick}
+          sx={{
+            height,
+            width: '100%',
+            position: 'absolute',
+            zIndex: 1,
+          }}
+        ></Box>
+        <LinkIframe
+          url={url}
+          isResizable={isResizable}
+          height={height}
+          title={linkMetadata?.title ?? url}
+          isLoading={isLoading}
+          onDoneLoading={() => {
+            setIsLoading(false);
+          }}
+          itemId={nodeKey}
+          memberId={memberId}
+          loadingMessage={loadingMessage}
+        />
+      </Box>
     );
   }
 
@@ -103,14 +119,15 @@ function LinkItem({
       <LinkCard
         thumbnail={linkMetadata?.icons?.[0]}
         title={linkMetadata?.title ?? url}
-        url={url}
+        urlText={url}
         description=""
         isExternal={isExternal}
+        onClick={onClick}
       />
     );
   }
 
-  return <MUILink href={url}>{url}</MUILink>;
+  return <MUILink onClick={onClick}>{url}</MUILink>;
 }
 
 type LinkItemComponentProps = Readonly<{
@@ -139,6 +156,7 @@ type LinkItemComponentProps = Readonly<{
   isResizable?: boolean;
   height?: string | number;
   canEdit?: boolean;
+  onClick?: MouseEventHandler;
 }>;
 
 export function LinkItemComponent({
@@ -154,6 +172,7 @@ export function LinkItemComponent({
   errorMessage = 'The link is malformed.',
   onLayoutChange,
   onUrlChange,
+  onClick,
 }: LinkItemComponentProps) {
   const [height] = useState<string | number>(defaultHeight);
   const [isSelected] = useLexicalNodeSelection(nodeKey);
@@ -176,6 +195,7 @@ export function LinkItemComponent({
         nodeKey={nodeKey}
       >
         <LinkItem
+          onClick={onClick}
           url={url}
           layout={layout}
           isResizable
@@ -189,3 +209,5 @@ export function LinkItemComponent({
     </>
   );
 }
+
+export const LinkItemForPage = memo(LinkItemComponent);
