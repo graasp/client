@@ -1,5 +1,3 @@
-import 'cypress-iframe';
-
 import {
   APP_USING_CONTEXT_ITEM,
   PUBLIC_APP_USING_CONTEXT_ITEM,
@@ -28,7 +26,7 @@ describe('Apps', () => {
 
     cy.wait(3000);
     const iframeSelector = `iframe[title="${name}"]`;
-    cy.frameLoaded(iframeSelector);
+    cy.iframe(iframeSelector);
 
     // check app receives successfully the context
     clickElementInIframe(iframeSelector, '#requestContext');
@@ -76,7 +74,7 @@ describe('Public Apps', () => {
   it('Public App should request context', () => {
     cy.wait(3000);
     const iframeSelector = `iframe[title="${name}"]`;
-    cy.frameLoaded(iframeSelector);
+    cy.iframe(iframeSelector);
 
     // check app receives successfully the context
     clickElementInIframe(iframeSelector, '#requestContext');

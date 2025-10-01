@@ -171,6 +171,8 @@ import { ApiConfig } from './types';
 declare global {
   namespace Cypress {
     interface Chainable {
+      iframe(selector: string): Chainable;
+
       checkErrorTextField(id: string, flag: unknown): Chainable;
 
       signUpAndCheck(
@@ -834,3 +836,11 @@ Cypress.Commands.add('disableLocalStorage', () => {
     }
   });
 });
+
+const waitForIframe = (selector: string) => {
+  cy.get(selector)
+    .its('0.contentDocument.body')
+    .should('not.be.empty')
+    .then(cy.wrap);
+};
+Cypress.Commands.add('iframe', waitForIframe);

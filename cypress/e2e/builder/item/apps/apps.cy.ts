@@ -1,7 +1,5 @@
 import { ItemType, PackedAppItemFactory } from '@graasp/sdk';
 
-import 'cypress-iframe';
-
 import { buildAppItemLinkForTest } from '../../fixtures/apps';
 import { buildItemPath } from '../../utils';
 
