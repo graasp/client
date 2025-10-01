@@ -18,7 +18,7 @@
     "@emotion/cache": "11.14.0",
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
-    "@fontsource-variable/nunito": "5.2.6",
+    "@fontsource-variable/nunito": "5.2.7",
     "@graasp/sdk": "5.15.1",
     "@graasp/stylis-plugin-rtl": "2.2.0",
     "@lexical/link": "0.33.1",
