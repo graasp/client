@@ -3,7 +3,6 @@ import {
   PackedShortcutItemFactory,
 } from '@graasp/sdk';
 
-import 'cypress-iframe';
 import { v4 } from 'uuid';
 
 import {
