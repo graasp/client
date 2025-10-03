@@ -345,12 +345,12 @@ Cypress.Commands.add(
     getRecycledItemsError = false,
     getPublishedItemsError = false,
   } = {}) => {
-    const cachedItems = JSON.parse(JSON.stringify(items));
-    const cachedMembers = JSON.parse(JSON.stringify(members));
-    const cachedCurrentMember = JSON.parse(JSON.stringify(currentMember));
-    const cachedCurrentProfile = JSON.parse(JSON.stringify(currentProfile));
-    const cachedCurrentStorageFiles = JSON.parse(JSON.stringify(files));
-    const cachedShortLinks = JSON.parse(JSON.stringify(shortLinks));
+    const cachedItems = structuredClone(items);
+    const cachedMembers = structuredClone(members);
+    const cachedCurrentMember = structuredClone(currentMember);
+    const cachedCurrentProfile = structuredClone(currentProfile);
+    const cachedCurrentStorageFiles = structuredClone(files);
+    const cachedShortLinks = structuredClone(shortLinks);
 
     const allItems = [...cachedItems];
 

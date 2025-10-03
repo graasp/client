@@ -40,7 +40,7 @@ class TestHelper {
   private readonly currentMember: MemberForTest;
 
   constructor(args: TestHelperInput) {
-    this.currentMember = JSON.parse(JSON.stringify(args.currentMember));
+    this.currentMember = structuredClone(args.currentMember);
   }
 
   setupServer() {

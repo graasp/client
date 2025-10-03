@@ -187,8 +187,8 @@ export class TestHelper {
     returnItemLoginSchemaType?: boolean;
     hasAccessToItem?: boolean;
   }) {
-    this.pseudoMember = JSON.parse(JSON.stringify(args.pseudoMember));
-    this.item = JSON.parse(JSON.stringify(args.item));
+    this.pseudoMember = structuredClone(args.pseudoMember);
+    this.item = structuredClone(args.item);
     if (args.initiallyIsLoggedIn) {
       this.isLoggedIn = true;
     }
