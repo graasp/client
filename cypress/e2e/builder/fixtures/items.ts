@@ -17,35 +17,33 @@ export const generateOwnItems = (number: number): ItemForTest[] => {
     const paddedI = `${i}`.padStart(12, '0');
     return `cafebabe-dead-beef-1234-${paddedI}`;
   };
-  const path = (i: number) => id(i).replace(/-/g, '_');
+  const path = (i: number) => id(i).replaceAll('-', '_');
 
-  return Array(number)
-    .fill(null)
-    .map((_, i) => {
-      const item = {
-        ...DEFAULT_FOLDER_ITEM,
-        id: id(i),
-        name: `item ${i}`,
-        path: path(i),
-      };
+  return new Array(number).fill(null).map((_, i) => {
+    const item = {
+      ...DEFAULT_FOLDER_ITEM,
+      id: id(i),
+      name: `item ${i}`,
+      path: path(i),
+    };
 
-      const paddedI = `${i}`.padStart(12, '0');
-      const mId = `dafebabe-dead-beef-1234-${paddedI}`;
-      return {
-        ...item,
-        memberships: [
-          {
-            item,
-            permission: PermissionLevel.Admin,
-            account: MEMBERS.ANNA,
-            creator: MEMBERS.ANNA,
-            createdAt: '2021-08-11T12:56:36.834Z',
-            updatedAt: '2021-08-11T12:56:36.834Z',
-            id: mId,
-          },
-        ],
-      };
-    });
+    const paddedI = `${i}`.padStart(12, '0');
+    const mId = `dafebabe-dead-beef-1234-${paddedI}`;
+    return {
+      ...item,
+      memberships: [
+        {
+          item,
+          permission: PermissionLevel.Admin,
+          account: MEMBERS.ANNA,
+          creator: MEMBERS.ANNA,
+          createdAt: '2021-08-11T12:56:36.834Z',
+          updatedAt: '2021-08-11T12:56:36.834Z',
+          id: mId,
+        },
+      ],
+    };
+  });
 };
 
 const samplePublicItems: PackedItem[] = [
@@ -245,7 +243,7 @@ export const ItemValidationGroupFactory = (
   }: {
     status?: ItemValidationStatus;
     isOutDated?: boolean;
-  } = { status: ItemValidationStatus.Success, isOutDated: false },
+  } = {},
 ): ItemValidationGroup => {
   const itemUpdateDate = new Date(validatedItem.updatedAt);
   const tmp = isOutDated ? -1 : +1;
