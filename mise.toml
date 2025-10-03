@@ -33,3 +33,9 @@ depends = ['pnpm-install']
 description = 'Calls your build script in `package.json`'
 run = 'node --run build'
 depends = ['pnpm-install']
+
+[tasks.build-storybook]
+description = "Build Storybook"
+run = 'node --run storybook build'
+depends = ['pnpm-install']
+
