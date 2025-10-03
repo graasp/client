@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on:
   # on push event to main run this workflow
@@ -18,53 +18,29 @@ on:
 #   cancel-in-progress: false
 
 jobs:
-  build:
-    name: Build
+  unit:
+    name: Unit Tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: jdx/mise-action@v3
+      - name: Install Mise
+        uses: jdx/mise-action@v3
 
-      # - uses: pnpm/action-setup@v4
-      #   name: Install pnpm
-      #   with:
-      #     version: 10
-      #     run_install: false
-
-      # - name: Install Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version-file: 'package.json'
-      #     cache: 'pnpm'
-      #     cache-dependency-path: 'pnpm-lock.yaml'
-
-      # - name: Install dependencies
-      #   run: pnpm install
-
-      - name: Type-check
+      - name: Lint, Type-check and Format
         run: mise check
 
       - name: Build
-        run: pnpm build
+        run: mise build
         env:
           VITE_RECAPTCHA: 123456789
           VITE_GRAASP_H5P_INTEGRATION_URL: http://integration.url/mock-value.html
           VITE_GRAASP_REDIRECTION_HOST: http://go.mock.com
 
-      - name: Get Latest playwright version
-        run: echo "PLAYWRIGHT_VERSION=$(pnpm show playwright version)" >> $GITHUB_ENV
-      - name: Cache playwright binaries
-        uses: actions/cache@v4
-        id: playwright-cache
-        with:
-          path: |
-            ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
-      - name: Install playwright with deps
-        run: pnpm exec playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: pnpx playwright install --with-deps
 
       - name: Unit tests
         run: pnpm test:unit
@@ -77,18 +53,8 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        name: Install pnpm
-        with:
-          version: 10
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: 'package.json'
-          cache: 'pnpm'
-          cache-dependency-path: 'pnpm-lock.yaml'
+      - name: Install Mise
+        uses: jdx/mise-action@v3
 
       - name: Cache Cypress binary
         uses: actions/cache@v4

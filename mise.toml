@@ -24,8 +24,12 @@ description = 'Calls your dev script in `package.json`'
 run = 'node --run dev'
 depends = ['pnpm-install']
 
-
 [tasks.check]
 description = 'Calls your check script in `package.json`'
 run = 'node --run check'
+depends = ['pnpm-install']
+
+[tasks.build]
+description = 'Calls your build script in `package.json`'
+run = 'node --run build'
 depends = ['pnpm-install']
