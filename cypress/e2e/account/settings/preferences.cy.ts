@@ -16,34 +16,29 @@ import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 
 describe('Display preferences', () => {
   describe('Language', () => {
-    Object.entries(LANGS)
-      .map(([lang, expectedLabel]) => ({
-        lang,
-        expectedLabel,
-      }))
-      .forEach(({ lang, expectedLabel }) => {
-        it(lang, () => {
-          const currentMember = {
-            ...CURRENT_MEMBER,
-            extra: { ...CURRENT_MEMBER.extra, lang },
-          };
-          cy.setUpApi({
-            currentMember,
-          });
-          cy.visit(ACCOUNT_SETTINGS_PATH);
-          cy.wait('@getCurrentMember');
-
-          // displays the correct member language
-          cy.get(`#${PREFERENCES_LANGUAGE_DISPLAY_ID}`).should(
-            'have.text',
-            expectedLabel,
-          );
+    for (const [lang, expectedLabel] of Object.entries(LANGS)) {
+      it(lang, () => {
+        const currentMember = {
+          ...CURRENT_MEMBER,
+          extra: { ...CURRENT_MEMBER.extra, lang },
+        };
+        cy.setUpApi({
+          currentMember,
         });
+        cy.visit(ACCOUNT_SETTINGS_PATH);
+        cy.wait('@getCurrentMember');
+
+        // displays the correct member language
+        cy.get(`#${PREFERENCES_LANGUAGE_DISPLAY_ID}`).should(
+          'have.text',
+          expectedLabel,
+        );
       });
+    }
   });
 
   describe('Email frequency', () => {
-    [
+    for (const { emailFreq, expectedText } of [
       {
         emailFreq: EmailFrequency.Always,
         expectedText: 'Always receive email notifications',
@@ -52,7 +47,7 @@ describe('Display preferences', () => {
         emailFreq: EmailFrequency.Never,
         expectedText: 'Disable email notifications',
       },
-    ].forEach(({ emailFreq, expectedText }) => {
+    ]) {
       it(emailFreq, () => {
         const currentMember = {
           ...CURRENT_MEMBER,
@@ -69,14 +64,14 @@ describe('Display preferences', () => {
           expectedText,
         );
       });
-    });
+    }
   });
 
   describe('Enable Analytics', () => {
-    [
+    for (const { enableSaveActions, expectedLabel } of [
       { enableSaveActions: true, expectedLabel: 'Enabled' },
       { enableSaveActions: false, expectedLabel: 'Disabled' },
-    ].forEach(({ enableSaveActions, expectedLabel }) => {
+    ]) {
       it(expectedLabel, () => {
         const currentMember = {
           ...CURRENT_MEMBER,
@@ -94,7 +89,7 @@ describe('Display preferences', () => {
           expectedLabel,
         );
       });
-    });
+    }
   });
 });
 
@@ -140,7 +135,7 @@ describe('Edit preferences', () => {
   });
 
   describe('Enable Analytics', () => {
-    [true, false].forEach((enableSaveActions) => {
+    for (const enableSaveActions of [true, false]) {
       it(`Switch to ${!enableSaveActions}`, () => {
         cy.setUpApi({
           currentMember: {
@@ -167,13 +162,13 @@ describe('Edit preferences', () => {
           .its('request.body.enableSaveActions')
           .should('eq', !enableSaveActions);
       });
-    });
+    }
   });
 
-  [
+  for (const { initial, final } of [
     { initial: EmailFrequency.Never, final: EmailFrequency.Always },
     { initial: EmailFrequency.Always, final: EmailFrequency.Never },
-  ].forEach(({ initial, final }) => {
+  ]) {
     it(`Email Frequency from ${initial} to ${final}`, () => {
       cy.setUpApi({
         currentMember: {
@@ -196,7 +191,7 @@ describe('Edit preferences', () => {
         expect(request.body.extra.emailFreq).to.equal(final);
       });
     });
-  });
+  }
 
   describe('Cancel should not update preferences', () => {
     beforeEach(() => {
