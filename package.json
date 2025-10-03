@@ -112,7 +112,7 @@
     "cypress:open": "env-cmd -f ./.env.test cypress open --browser chrome",
     "cypress:run": "env-cmd -f ./.env.test cypress run --browser chrome",
     "test:unit": "vitest",
-    "storybook": "storybook dev -p 6006",
+    "sb": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:test": "vitest --project storybook",
     "client:generate": "openapi-ts"
