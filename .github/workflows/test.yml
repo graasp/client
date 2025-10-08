@@ -39,11 +39,8 @@ jobs:
           VITE_GRAASP_H5P_INTEGRATION_URL: http://integration.url/mock-value.html
           VITE_GRAASP_REDIRECTION_HOST: http://go.mock.com
 
-      - name: Install Playwright Browsers
-        run: pnpx playwright install --with-deps
-
       - name: Unit tests
-        run: pnpm test:unit
+        run: mise run test-unit
 
   cypress:
     name: Cypress
