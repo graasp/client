@@ -49,8 +49,11 @@ export function RightHeader({
           <ButtonLink
             variant="contained"
             // guests only have access to a single item
-            to="/builder/items/$itemId"
-            params={{ itemId: user.item.id }}
+            to="/player/$rootId/$itemId"
+            params={{
+              rootId: user.item.id,
+              itemId: user.item.id,
+            }}
             endIcon={<ArrowRightIcon />}
           >
             {translateLanding('NAV.GO_TO_ITEM', { name: user.item.name })}
