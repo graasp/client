@@ -3,7 +3,6 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
-import istanbul from 'vite-plugin-istanbul';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsConfigPaths from 'vite-tsconfig-paths';
 
@@ -64,9 +63,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
       // forces to use the specified port
       strictPort: true,
     },
-    build: {
-      outDir: 'build',
-    },
+
     plugins: [
       TanStackRouterVite(),
       tsConfigPaths({
@@ -82,16 +79,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
             },
             overlay: { initialIsOpen: false, position: 'br' },
           })
-        : istanbul({
-            include: 'src/*',
-            exclude: ['node_modules', 'test/', '.nyc_output', 'coverage'],
-            extension: ['.js', '.ts', '.tsx'],
-            requireEnv: false,
-            // forces to instrument code also in production build only if the mode is test
-            // this is useful when we want to build and preview in CI to have faster and more stable tests
-            forceBuildInstrument: mode === 'test',
-            checkProd: true,
-          }),
+        : undefined,
       react(),
       umamiPlugin({
         websiteId: VITE_UMAMI_WEBSITE_ID,
