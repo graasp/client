@@ -42,17 +42,15 @@ const DeleteButton = ({
     default:
       return (
         <Tooltip title={text}>
-          <span>
-            <IconButton
-              id={id}
-              color={color}
-              className={className}
-              aria-label={text}
-              onClick={onClick}
-            >
-              {icon}
-            </IconButton>
-          </span>
+          <IconButton
+            id={id}
+            color={color}
+            className={className}
+            aria-label={text}
+            onClick={onClick}
+          >
+            {icon}
+          </IconButton>
         </Tooltip>
       );
   }
