@@ -1,8 +1,9 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Grid, Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
@@ -11,13 +12,13 @@ import { UserCapsuleExample } from './UserCapsuleExample';
 import { UserStory } from './UserStory';
 import { UserStoryButton } from './UserStoryButton';
 import {
-  EN_CAPSULES,
   RESEARCHER_USER_STORY,
   TEACHER_USER_STORY,
+  getCapsulesByLang,
 } from './constants';
 
 export function UserStorySection(): JSX.Element {
-  const { t } = useTranslation(NS.Landing);
+  const { t, i18n } = useTranslation(NS.Landing);
   return (
     <Stack component="section" gap={20} maxWidth="md">
       <Stack direction="row" gap={{ xs: 2, md: 4 }} justifyContent="center">
@@ -51,28 +52,29 @@ export function UserStorySection(): JSX.Element {
             {t('HOME.USER_STORY.DISCOVER.TITLE')}
           </Typography>
           <Grid container spacing={2} direction="row">
-            {EN_CAPSULES.map(({ title, imageSrc, description, url }) => {
-              return (
-                <Grid size={{ xs: 4, sm: 4, md: 2 }}>
-                  <UserCapsuleExample
-                    title={title}
-                    imageSrc={imageSrc}
-                    // description={description}
-                    url={url}
-                  />
-                </Grid>
-              );
-            })}
+            {getCapsulesByLang(i18n.language).map(
+              ({ title, imageSrc, url }) => {
+                return (
+                  <Grid size={{ xs: 4, sm: 4, md: 2 }}>
+                    <UserCapsuleExample
+                      title={title}
+                      imageSrc={imageSrc}
+                      url={url}
+                    />
+                  </Grid>
+                );
+              },
+            )}
           </Grid>
 
-          <Button
+          <ButtonLink
             component="a"
             variant="contained"
             color="library"
-            href={GRAASP_LIBRARY_HOST}
+            to={GRAASP_LIBRARY_HOST}
           >
             {t('HOME.USER_STORY.DISCOVER.BUTTON_TEXT')}
-          </Button>
+          </ButtonLink>
         </Stack>
       </Stack>
       <UserStory
