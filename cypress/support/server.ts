@@ -1219,20 +1219,28 @@ export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/parents`),
     },
     ({ url, reply }) => {
-      const id = url.slice(API_HOST.length).split('/')[2];
-      const item = getItemById(items, id);
+      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const item = getItemById(items, itemId);
 
       if (!checkMembership({ item })) {
         return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
       }
 
       // remove 36 from uuid and 1 for the dot
-      const parents = items.filter(
+      const parents: ItemForTest[] = items.filter(
         (i) =>
           item?.path.includes(i.path) &&
           i.path.length === (item?.path.length || 0) - 37,
       );
-      return reply(parents);
+
+      // return minimal response
+      return reply(
+        parents.map(({ id, name, path }) => ({
+          id,
+          name,
+          path,
+        })),
+      );
     },
   ).as('getParents');
 };

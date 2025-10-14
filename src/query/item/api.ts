@@ -7,6 +7,7 @@ import {
 } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
+import { Item } from '@/openapi/client/types.gen.js';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { verifyAuthentication } from '../api/axios.js';
@@ -79,7 +80,7 @@ export const getChildren = async (id: UUID, params: ItemChildrenParams) =>
 
 export const getParents = async ({ id }: { id: UUID }) => {
   return axios
-    .get<PackedItem[]>(`${API_HOST}/${buildGetItemParents(id)}`)
+    .get<Item[]>(`${API_HOST}/${buildGetItemParents(id)}`)
     .then(({ data }) => data);
 };
 
