@@ -13,7 +13,7 @@ export default defineConfig({
     '@tanstack/react-query',
     {
       name: '@hey-api/client-fetch',
-      runtimeConfigPath: './src/openapi/clientConfig.ts',
+      runtimeConfigPath: '../clientConfig.ts',
     },
   ],
 });

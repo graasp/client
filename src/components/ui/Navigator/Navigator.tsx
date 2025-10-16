@@ -23,7 +23,7 @@ export type NavigationProps = {
   buildMenuId?: (id: string) => string;
   id?: string;
   item?: DiscriminatedItem;
-  parents?: DiscriminatedItem[];
+  parents?: { name: string; id: string }[];
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];
   maxItems?: number;

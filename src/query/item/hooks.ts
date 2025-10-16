@@ -3,6 +3,8 @@ import { PackedItem, UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
+import { getParentItems } from '@/openapi/client/sdk.gen.js';
+
 import {
   CONSTANT_KEY_STALE_TIME_MILLISECONDS,
   PAGINATED_ITEMS_PER_PAGE,
@@ -124,7 +126,7 @@ const config = (
             throw new UndefinedArgument();
           }
 
-          return Api.getParents({ id });
+          return getParentItems({ path: { id } }).then((res) => res.data);
         },
         ...defaultQueryOptions,
         enabled: enabled && Boolean(id),

@@ -14,6 +14,11 @@ import { expect, within } from 'storybook/test';
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { ItemMenuProps, Navigation } from './Navigation.js';
 
+const buildParent = (name: string) => ({
+  id: name,
+  name,
+});
+
 const buildItem = (name: string): FileItemType =>
   FileItemFactory({
     id: name,
@@ -52,7 +57,7 @@ type Story = StoryObj<typeof meta>;
 type UseChildrenHookType = ReturnType<ItemMenuProps['useChildren']>;
 
 const item = buildItem('my item');
-const parents = [buildItem('parent 1'), buildItem('parent 2')];
+const parents = [buildParent('parent 1'), buildParent('parent 2')];
 const children = [buildItem('child 1'), buildItem('child 2')];
 const useChildren: ItemMenuProps['useChildren'] = () => {
   return { data: children } as UseChildrenHookType;
@@ -74,7 +79,6 @@ export const FolderWithParents = {
     itemPath,
     useChildren,
     item: folder,
-
     parents,
   },
 

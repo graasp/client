@@ -2,13 +2,11 @@ import type { JSX } from 'react';
 
 import { Stack } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 
 export type ParentsProps = {
-  parents: DiscriminatedItem[];
+  parents: { name: string; id: string }[];
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   useChildren: ItemMenuProps['useChildren'];
 };

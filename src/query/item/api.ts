@@ -17,7 +17,6 @@ import {
   buildDownloadFilesRoute,
   buildEditItemRoute,
   buildGetChildrenRoute,
-  buildGetItemParents,
   buildGetItemRoute,
   buildGetItemsRoute,
   buildMoveItemsRoute,
@@ -76,12 +75,6 @@ export const getChildren = async (id: UUID, params: ItemChildrenParams) =>
   axios
     .get<PackedItem[]>(`${API_HOST}/${buildGetChildrenRoute(id, params)}`)
     .then(({ data }) => data);
-
-export const getParents = async ({ id }: { id: UUID }) => {
-  return axios
-    .get<PackedItem[]>(`${API_HOST}/${buildGetItemParents(id)}`)
-    .then(({ data }) => data);
-};
 
 export const moveItems = async ({ to, ids }: { ids: UUID[]; to?: UUID }) =>
   verifyAuthentication(() => {

@@ -38,7 +38,7 @@ export type NavigationProps = {
   buildMenuId?: (id: string) => string;
   id?: string;
   item?: DiscriminatedItem;
-  parents?: DiscriminatedItem[];
+  parents?: { name: string; id: string }[];
   sx?: SxProps;
   useChildren: UseChildrenType;
   maxItems?: number;
@@ -103,7 +103,7 @@ export function Navigation({
 }
 
 export type ParentsProps = {
-  parents: DiscriminatedItem[];
+  parents: { name: string; id: string }[];
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   useChildren: UseChildrenType;
   itemPath: string;
