@@ -39,6 +39,7 @@
     },
     "USER_STORY": {
       "TEACHER": {
+        "SECTION_TITLE": "Pour les Enseignants",
         "LEADING_SENTENCE": "Êtes-vous un enseignant intéressé à rationaliser votre création de contenu numérique ?",
         "TITLE": "Créez votre matériel avec Graasp",
         "USE_CASE_1": "Intégrez des applications interactives dans votre matériel de cours",
@@ -48,12 +49,17 @@
         "IMAGE_ATTRIBUTION": "Photo de <author>Tra Nguyen</author> sur <image>Unsplash</image>"
       },
       "RESEARCHER": {
+        "SECTION_TITLE": "Pour les Chercheurs",
         "LEADING_SENTENCE": "Êtes-vous un chercheur en quête d’une plateforme qui intègre de manière transparente la collecte de données et les expériences d’apprentissage interactives ?",
         "TITLE": "Commencez à utiliser Graasp pour vos recherches",
         "USE_CASE_1": "Bénéficiez d'un environnement sécurisé pour vos recherches",
         "USE_CASE_2": "Réalisez des tests avec diverses conditions expérimentales",
         "USE_CASE_3": "Interagissez avec des collègues qui font progresser les sciences de l'apprentissage numérique",
         "BUTTON_TEXT": "S'inscrire maintenant"
+      },
+      "DISCOVER": {
+        "TITLE": "Découvrez les activités créées par nos utilisateurs",
+        "BUTTON_TEXT": "Découvrez plus dans la Bibliothèque"
       }
     },
     "USER_TESTIMONIES": {

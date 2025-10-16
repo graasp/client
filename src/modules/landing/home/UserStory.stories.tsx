@@ -19,6 +19,7 @@ export const Default = {
     id: 'test',
     caption: 'Hello',
     title: 'Awesome feature',
+    sectionTitle: 'Section title',
     href: '/',
     buttonText: 'Click me',
     children: <Paragraphs {...BasicParagraph.args} />,

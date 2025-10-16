@@ -63,6 +63,7 @@ type UserStoryProps = {
   caption: string;
   title: string;
   href: string;
+  sectionTitle: string;
   buttonText: string;
   children: ReactNode;
   image: ReactNode;
@@ -72,6 +73,7 @@ export function UserStory({
   id,
   caption,
   title,
+  sectionTitle,
   href,
   buttonText,
   children,
@@ -79,44 +81,49 @@ export function UserStory({
   imageAttribution,
 }: Readonly<UserStoryProps>): JSX.Element {
   return (
-    <InvertingStack gap={5} mt={6} position="relative">
-      <Box id={id} sx={{ position: 'absolute', top: '-200px' }} />
-      <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
-        <Stack borderRadius={6} overflow="hidden">
-          {image}
+    <Stack>
+      <Typography color="primary" variant="h1" component="h2">
+        {sectionTitle}
+      </Typography>
+      <InvertingStack gap={5} mt={3} position="relative">
+        <Box id={id} sx={{ position: 'absolute', top: '-200px' }} />
+        <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
+          <Stack borderRadius={6} overflow="hidden">
+            {image}
+          </Stack>
+          {imageAttribution && (
+            <Typography
+              variant="caption"
+              color="textSecondary"
+              sx={{ '& a': { color: 'inherit' } }}
+            >
+              {imageAttribution}
+            </Typography>
+          )}
         </Stack>
-        {imageAttribution && (
-          <Typography
-            variant="caption"
-            color="textSecondary"
-            sx={{ '& a': { color: 'inherit' } }}
+        <Stack className={TEXT_CONTAINER} gap={2} flex={2}>
+          <Box maxWidth="50ch">
+            <Typography variant="note">{caption}</Typography>
+            <Typography variant="h2" color="primary">
+              {title}
+            </Typography>
+          </Box>
+
+          {children}
+
+          <ButtonLink
+            to={href}
+            sx={{
+              // make button take only needed space
+              width: 'fit-content',
+            }}
+            color="primary"
+            variant="contained"
           >
-            {imageAttribution}
-          </Typography>
-        )}
-      </Stack>
-      <Stack className={TEXT_CONTAINER} gap={2} flex={2}>
-        <Box maxWidth="50ch">
-          <Typography variant="note">{caption}</Typography>
-          <Typography variant="h2" color="primary">
-            {title}
-          </Typography>
-        </Box>
-
-        {children}
-
-        <ButtonLink
-          to={href}
-          sx={{
-            // make button take only needed space
-            width: 'fit-content',
-          }}
-          color="primary"
-          variant="contained"
-        >
-          {buttonText}
-        </ButtonLink>
-      </Stack>
-    </InvertingStack>
+            {buttonText}
+          </ButtonLink>
+        </Stack>
+      </InvertingStack>
+    </Stack>
   );
 }

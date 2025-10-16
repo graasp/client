@@ -39,6 +39,7 @@
     },
     "USER_STORY": {
       "TEACHER": {
+        "SECTION_TITLE": "For Teachers",
         "LEADING_SENTENCE": "Are you a teacher interested to streamline your digital content creation?",
         "TITLE": "Build your material with Graasp",
         "USE_CASE_1": "Embed interactive apps in your class material",
@@ -48,12 +49,17 @@
         "IMAGE_ATTRIBUTION": "Photo by <author>Tra Nguyen</author> on <image>Unsplash</image>"
       },
       "RESEARCHER": {
+        "SECTION_TITLE": "For Researchers",
         "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive learning experiences?",
         "TITLE": "Start using Graasp for your research",
         "USE_CASE_1": "Benefit from a safe environnement for research investigations",
         "USE_CASE_2": "Conduct tests with various experimental conditions",
         "USE_CASE_3": "Interact with peers advancing digital learning sciences",
         "BUTTON_TEXT": "Register Now"
+      },
+      "DISCOVER": {
+        "TITLE": "Check out real activities from our users",
+        "BUTTON_TEXT": "Discover More on the Library"
       }
     },
     "USER_TESTIMONIES": {
