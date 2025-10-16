@@ -2,12 +2,7 @@ import { forwardRef } from 'react';
 
 import { MenuItem, MenuItemProps } from '@mui/material';
 
-import {
-  LinkComponent,
-  UseLinkPropsOptions,
-  createLink,
-  useLinkProps,
-} from '@tanstack/react-router';
+import { LinkComponent, createLink } from '@tanstack/react-router';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface MUIMenuItemProps extends Omit<MenuItemProps, 'href'> {
@@ -16,14 +11,7 @@ interface MUIMenuItemProps extends Omit<MenuItemProps, 'href'> {
 
 const MUIMenuItemComponent = forwardRef<HTMLAnchorElement, MUIMenuItemProps>(
   (props, ref) => {
-    const linkProps = useLinkProps(props as UseLinkPropsOptions);
-
-    // obtain 'selected', usually from activeProps
-    const selected = Boolean(linkProps.selected);
-
-    return (
-      <MenuItem component={'a'} ref={ref} selected={selected} {...props} />
-    );
+    return <MenuItem component={'a'} ref={ref} {...props} />;
   },
 );
 
