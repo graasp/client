@@ -18,9 +18,8 @@ const MUIMenuItemComponent = forwardRef<HTMLAnchorElement, MUIMenuItemProps>(
   (props, ref) => {
     const linkProps = useLinkProps(props as UseLinkPropsOptions);
 
-    // obtain fontweight, usually from activeProps
-    const selected =
-      'selected' in linkProps ? Boolean(linkProps.selected) : false;
+    // obtain 'selected', usually from activeProps
+    const selected = Boolean(linkProps.selected);
 
     return (
       <MenuItem component={'a'} ref={ref} selected={selected} {...props} />

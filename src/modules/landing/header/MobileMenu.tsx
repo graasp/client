@@ -30,7 +30,6 @@ export default function MobileMenu() {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        sx={{ border: '1px solid' }}
       >
         <MenuIcon />
       </IconButton>
@@ -40,7 +39,7 @@ export default function MobileMenu() {
         open={open}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'left',
         }}
         transformOrigin={{

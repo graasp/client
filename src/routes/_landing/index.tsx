@@ -9,7 +9,7 @@ import { NewsLetter } from '~landing/home/NewsLetter';
 import { OurMissionSection } from '~landing/home/OurMissionSection';
 import { TitleSection } from '~landing/home/TitleSection';
 import { UserStorySection } from '~landing/home/UserStorySection';
-// import { UserTestimoniesSection } from '~landing/home/UserTestimoniesSection';
+import { UserTestimoniesSection } from '~landing/home/UserTestimoniesSection';
 import { Preview } from '~landing/preview/PreviewModeContext';
 
 export const Route = createFileRoute('/_landing/')({
@@ -26,9 +26,9 @@ function Index() {
       <PlatformCube />
       <UserStorySection />
       <OurMissionSection />
-      {/* <Preview>
+      <Preview>
         <UserTestimoniesSection />
-      </Preview> */}
+      </Preview>
       <Preview>
         <NewsLetter />
       </Preview>
