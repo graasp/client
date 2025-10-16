@@ -1,5 +1,29 @@
 # Changelog
 
+## [2.32.0](https://github.com/graasp/client/compare/v2.31.2...v2.32.0) (2025-10-16)
+
+
+### Features
+
+* add user survey on home ([#1113](https://github.com/graasp/client/issues/1113)) ([12855ea](https://github.com/graasp/client/commit/12855ea1862758144aa73bd198bf823c9def634b))
+* improve landing menu responsiveness ([#1120](https://github.com/graasp/client/issues/1120)) ([1a2f8e5](https://github.com/graasp/client/commit/1a2f8e5fe9e3ed765533aafb74ee21158fb14cbe))
+* improve language switch design ([#1119](https://github.com/graasp/client/issues/1119)) ([17b9012](https://github.com/graasp/client/commit/17b90123f3ebb4cf882abd549534fdaaa852ce20))
+* show capsule examples on landing page ([#1061](https://github.com/graasp/client/issues/1061)) ([a4ada89](https://github.com/graasp/client/commit/a4ada8929c3410dcad81f7d7c9159b8167f10343))
+
+
+### Bug Fixes
+
+* catch local storage errors ([#1115](https://github.com/graasp/client/issues/1115)) ([e7f463c](https://github.com/graasp/client/commit/e7f463c883e6c9c794f37bbe971f5ec9aef374fc))
+* **deps:** update dependency @fontsource-variable/nunito to v5.2.7 ([#1123](https://github.com/graasp/client/issues/1123)) ([0e74691](https://github.com/graasp/client/commit/0e7469106bf53697923eb3a05cd093566b1788d1))
+* **deps:** update dependency axios to v1.12.2 ([#1124](https://github.com/graasp/client/issues/1124)) ([75294d7](https://github.com/graasp/client/commit/75294d77a21910783a3730c77cac36cb84c7b3c6))
+* fix link related bugs in pages ([#1112](https://github.com/graasp/client/issues/1112)) ([8ec5b8d](https://github.com/graasp/client/commit/8ec5b8d82be02a20541bac5cdf86b79f670ab8d2))
+* redirect guest to player view for their item ([#1131](https://github.com/graasp/client/issues/1131)) ([2264095](https://github.com/graasp/client/commit/226409528123f30758f337cd95d8a778c6deda7b))
+* remove cypress iframe package ([#1125](https://github.com/graasp/client/issues/1125)) ([d25c2e2](https://github.com/graasp/client/commit/d25c2e25b8cc7c56196dc3329ec6f2f6e2e8d4fb))
+* update deploy workflows ([#1130](https://github.com/graasp/client/issues/1130)) ([1b13fa8](https://github.com/graasp/client/commit/1b13fa898c0b73d2d9372489d0bdf420795ce6c2))
+* use mise en place for node and pnpm installation ([#1128](https://github.com/graasp/client/issues/1128)) ([052a7f2](https://github.com/graasp/client/commit/052a7f20e7ffb87e354875c67f38f42987b98cd2))
+* use structured clone instead of JSON copy ([#1129](https://github.com/graasp/client/issues/1129)) ([2cf82c1](https://github.com/graasp/client/commit/2cf82c1c6e61ff393578d769e6d6e7d18d68ee95))
+* use v8 for coverage ([#1132](https://github.com/graasp/client/issues/1132)) ([311e95f](https://github.com/graasp/client/commit/311e95f8c1c59ee71ab03e375bb811fe9b6c3e12))
+
 ## [2.31.2](https://github.com/graasp/client/compare/v2.31.1...v2.31.2) (2025-09-12)
 
 
