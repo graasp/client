@@ -16,23 +16,25 @@ import {
   getFileExtra,
 } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { NS } from '@/config/constants';
-import { hooks } from '@/config/queryClient';
 import { ITEM_PANEL_NAME_ID, ITEM_PANEL_TABLE_ID } from '@/config/selectors';
+import { getOneMemberOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
 
 import { BUILDER } from '../../../langs';
 import LanguageSelect from './LanguageSelect';
 
-const { useMember } = hooks;
-
 const ItemMetadataContent = (): JSX.Element => {
   const { t: translateBuilder, i18n } = useTranslation(NS.Builder);
   const { t: translateCommon } = useTranslation(NS.Common);
   const { item } = useOutletContext();
 
-  const { data: creator } = useMember(item?.creator?.id);
+  const { data: creator } = useQuery(
+    getOneMemberOptions({ path: { id: item.creator?.id ?? '' } }),
+  );
 
   let size = null;
   let mimetype = null;

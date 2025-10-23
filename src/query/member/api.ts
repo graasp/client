@@ -1,6 +1,5 @@
 import {
   CurrentAccount,
-  Member,
   MemberStorage,
   MemberStorageItem,
   Paginated,
@@ -22,17 +21,11 @@ import {
   buildDownloadAvatarRoute,
   buildExportMemberDataRoute,
   buildGetCurrentMemberRoute,
-  buildGetMemberRoute,
   buildGetMemberStorageFilesRoute,
   buildGetMemberStorageRoute,
   buildPostMemberEmailUpdateRoute,
   buildUploadAvatarRoute,
 } from './routes.js';
-
-export const getMember = async ({ id }: { id: UUID }) =>
-  axios
-    .get<Member>(`${API_HOST}/${buildGetMemberRoute(id)}`)
-    .then(({ data }) => data);
 
 export const getCurrentMember = async () =>
   verifyAuthentication(() =>

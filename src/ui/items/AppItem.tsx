@@ -3,8 +3,8 @@ import { type JSX, memo, useMemo, useRef, useState } from 'react';
 import { Skeleton, styled } from '@mui/material';
 
 import {
+  Account,
   AppItemType,
-  Member,
   appendQueryParamToUrl,
   getAppExtra,
 } from '@graasp/sdk';
@@ -75,7 +75,7 @@ type AppItemProps = {
   /**
    * id of the member currently signed in
    */
-  memberId?: Member['id'];
+  memberId?: Account['id'];
   /**
    * Whether the caption is shown
    */

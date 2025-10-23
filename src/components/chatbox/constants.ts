@@ -1,6 +1,6 @@
 import { SuggestionDataItem } from 'react-mentions';
 
-import { PartialMemberDisplay } from './types.js';
+import { Account } from '@graasp/sdk';
 
 export const SCROLL_SAFETY_MARGIN = 64;
 export const CONTAINER_HEIGHT_SAFETY_MARGIN = 16;
@@ -25,7 +25,7 @@ export const ALL_MEMBERS_SUGGESTION: SuggestionDataItem = {
   id: ALL_MEMBERS_ID,
   display: ALL_MEMBERS_DISPLAY,
 };
-export const ALL_MEMBERS_MEMBER: PartialMemberDisplay = {
+export const ALL_MEMBERS_MEMBER: Account = {
   id: ALL_MEMBERS_ID,
   name: ALL_MEMBERS_DISPLAY,
 };
