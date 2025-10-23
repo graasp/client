@@ -21,7 +21,6 @@ import { MEMBER_STORAGE_ITEM_RESPONSE } from './fixtures.js';
 import {
   buildDownloadAvatarRoute,
   buildGetCurrentMemberRoute,
-  buildGetMemberRoute,
   buildGetMemberStorageFilesRoute,
   buildGetMemberStorageRoute,
 } from './routes.js';
@@ -68,55 +67,6 @@ describe('Member Hooks', () => {
       expect(data).toBeNull();
       expect(isSuccess).toBeTruthy();
       expect(queryClient.getQueryData(memberKeys.current().content)).toBeNull();
-    });
-  });
-
-  describe('useMember', () => {
-    const id = 'member-id';
-    const response = AccountFactory();
-
-    it(`Receive member id = ${id}`, async () => {
-      const endpoints = [
-        {
-          route: `/${buildGetMemberRoute(id)}`,
-          response,
-        },
-      ];
-      const hook = () => hooks.useMember(id);
-      const { data } = await mockHook({
-        hook,
-        wrapper,
-        endpoints,
-      });
-
-      expect(data).toMatchObject(response);
-      // verify cache keys
-      expect(
-        queryClient.getQueryData(memberKeys.single(id).content),
-      ).toMatchObject(data!);
-    });
-
-    it(`Unauthorized`, async () => {
-      const hook = () => hooks.useMember(id);
-      const endpoints = [
-        {
-          route: `/${buildGetMemberRoute(id)}`,
-          response: UNAUTHORIZED_RESPONSE,
-          statusCode: StatusCodes.UNAUTHORIZED,
-        },
-      ];
-      const { data, isError } = await mockHook({
-        hook,
-        wrapper,
-        endpoints,
-      });
-
-      expect(data).toBeFalsy();
-      expect(isError).toBeTruthy();
-      // verify cache keys
-      expect(
-        queryClient.getQueryData(memberKeys.single(id).content),
-      ).toBeFalsy();
     });
   });
 

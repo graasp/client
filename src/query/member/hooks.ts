@@ -22,19 +22,6 @@ export default (queryConfig: QueryClientConfig) => {
         ...defaultQueryOptions,
       }),
 
-    useMember: (id?: UUID) =>
-      useQuery({
-        queryKey: memberKeys.single(id).content,
-        queryFn: () => {
-          if (!id) {
-            throw new UndefinedArgument();
-          }
-          return Api.getMember({ id });
-        },
-        enabled: Boolean(id),
-        ...defaultQueryOptions,
-      }),
-
     // use another hook because of key content
     useAvatarUrl: ({
       id,
