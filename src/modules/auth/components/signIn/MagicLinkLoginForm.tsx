@@ -111,6 +111,7 @@ export function MagicLinkLoginForm({
         sx={{ textTransform: 'none' }}
         fullWidth
         loading={isLoadingSignIn}
+        data-umami-event="magic-link-sign-in"
       >
         {t(AUTH.SIGN_IN_BUTTON)}
       </Button>

@@ -124,6 +124,7 @@ export function PasswordLoginForm() {
         sx={{ textTransform: 'none' }}
         fullWidth
         loading={isLoadingPasswordSignIn || signInWithPasswordSuccess}
+        data-umami-event="password-sign-in"
       >
         {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
       </Button>
