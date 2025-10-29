@@ -17,6 +17,7 @@ export function Footer() {
       <LanguageSwitch
         lang={i18n.language}
         onChange={(lang) => i18n.changeLanguage(lang)}
+        dense={false}
       />
       <Typography variant="caption" color="darkgrey">
         © Graasp 2014 - {new Date().getFullYear()}

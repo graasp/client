@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Alert, Button, Stack } from '@mui/material';
+import { Alert, Button, Divider, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
@@ -22,6 +22,7 @@ import { AUTH } from '~auth/langs';
 
 import { PasswordInput } from '../common/PasswordInput';
 import { EmailInput } from './EmailInput';
+import { useLoginMethodContext } from './LoginMethodContext';
 
 type Inputs = {
   email: string;
@@ -30,6 +31,7 @@ type Inputs = {
 
 export function PasswordLoginForm() {
   const { t } = useTranslation(NS.Auth);
+  const { setMode } = useLoginMethodContext();
 
   const { t: translateMessage } = useTranslation(NS.Messages);
   const {
@@ -71,68 +73,84 @@ export function PasswordLoginForm() {
 
   return (
     <Stack
-      component="form"
-      onSubmit={handleSubmit(handlePasswordSignIn)}
       direction="column"
-      spacing={1}
       alignItems="center"
+      divider={<Divider flexItem>{t('LOGIN_METHODS_DIVIDER')}</Divider>}
+      gap={3}
     >
-      <EmailInput
-        id={EMAIL_SIGN_IN_FIELD_ID}
-        form={register('email', {
-          required: t('REQUIRED_FIELD_ERROR'),
-          validate: (email) => isEmail(email, {}) || t('INVALID_EMAIL_ERROR'),
-        })}
-        placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
-        error={emailError}
-      />
-      <Stack direction="column" alignItems="flex-end">
-        <PasswordInput
-          id={PASSWORD_SIGN_IN_FIELD_ID}
-          error={passwordError}
-          form={register('password', {
-            required: t('REQUIRED_FIELD_ERROR'),
-          })}
-        />
-        <TypographyLink
-          color="textSecondary"
-          variant="caption"
-          sx={{
-            textDecoration: 'none',
-            '&:hover': { color: 'palette.primary.main' },
-          }}
-          to="/auth/forgot-password"
-        >
-          {t(AUTH.REQUEST_PASSWORD_RESET_LINK)}
-        </TypographyLink>
-      </Stack>
-      {passwordSignInError && (
-        <Alert severity="error">
-          {'message' in passwordSignInError
-            ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              translateMessage(passwordSignInError.message)
-            : translateMessage('UNEXPECTED_ERROR')}
-        </Alert>
-      )}
-      <Button
-        type="submit"
-        disabled={Boolean(passwordError) || Boolean(emailError)}
-        id={PASSWORD_SIGN_IN_BUTTON_ID}
-        variant="contained"
-        color="primary"
-        sx={{ textTransform: 'none' }}
-        fullWidth
-        loading={isLoadingPasswordSignIn || signInWithPasswordSuccess}
+      <Stack
+        component="form"
+        onSubmit={handleSubmit(handlePasswordSignIn)}
+        direction="column"
+        spacing={1}
+        alignItems="center"
       >
-        {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
-      </Button>
+        <EmailInput
+          id={EMAIL_SIGN_IN_FIELD_ID}
+          form={register('email', {
+            required: t('REQUIRED_FIELD_ERROR'),
+            validate: (email) => isEmail(email, {}) || t('INVALID_EMAIL_ERROR'),
+          })}
+          placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
+          error={emailError}
+        />
+        <Stack direction="column" alignItems="flex-end">
+          <PasswordInput
+            id={PASSWORD_SIGN_IN_FIELD_ID}
+            error={passwordError}
+            form={register('password', {
+              required: t('REQUIRED_FIELD_ERROR'),
+            })}
+          />
+          <TypographyLink
+            color="textSecondary"
+            variant="caption"
+            sx={{
+              textDecoration: 'none',
+              '&:hover': { color: 'palette.primary.main' },
+            }}
+            to="/auth/forgot-password"
+          >
+            {t(AUTH.REQUEST_PASSWORD_RESET_LINK)}
+          </TypographyLink>
+        </Stack>
+        {passwordSignInError && (
+          <Alert severity="error">
+            {'message' in passwordSignInError
+              ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                translateMessage(passwordSignInError.message)
+              : translateMessage('UNEXPECTED_ERROR')}
+          </Alert>
+        )}
+        <Button
+          type="submit"
+          disabled={Boolean(passwordError) || Boolean(emailError)}
+          id={PASSWORD_SIGN_IN_BUTTON_ID}
+          variant="contained"
+          color="primary"
+          sx={{ textTransform: 'none' }}
+          fullWidth
+          loading={isLoadingPasswordSignIn || signInWithPasswordSuccess}
+        >
+          {t(AUTH.SIGN_IN_PASSWORD_BUTTON)}
+        </Button>
 
-      {signInWithPasswordSuccess && (
-        <Alert severity="success" id={PASSWORD_SUCCESS_ALERT}>
-          {t(AUTH.PASSWORD_SUCCESS_ALERT)}
-        </Alert>
-      )}
+        {signInWithPasswordSuccess && (
+          <Alert severity="success" id={PASSWORD_SUCCESS_ALERT}>
+            {t(AUTH.PASSWORD_SUCCESS_ALERT)}
+          </Alert>
+        )}
+      </Stack>
+      <Button
+        variant="outlined"
+        fullWidth
+        onClick={() => {
+          setMode('magic-link');
+        }}
+      >
+        {t('EMAIL_SIGN_IN_METHOD')}
+      </Button>
     </Stack>
   );
 }
