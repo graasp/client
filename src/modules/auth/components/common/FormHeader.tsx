@@ -12,7 +12,12 @@ export function FormHeader({ id, title }: FormHeaderProps): JSX.Element {
   const theme = useTheme();
   return (
     <Stack spacing={1}>
-      <GraaspLogo height={90} sx={{ fill: theme.palette.primary.main }} />
+      <Stack direction="row" justifyContent="center" alignItems="center">
+        <GraaspLogo height={60} sx={{ fill: theme.palette.primary.main }} />
+        <Typography variant="h2" id={id} color="primary">
+          Graasp
+        </Typography>
+      </Stack>
       <Typography variant="h4" component="h2" id={id} textAlign="center">
         {title}
       </Typography>

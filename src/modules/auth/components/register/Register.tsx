@@ -21,7 +21,7 @@ import {
 import { useMutation } from '@tanstack/react-query';
 import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 
-import { TypographyLink } from '@/components/ui/TypographyLink';
+import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import {
   EMAIL_SIGN_UP_FIELD_ID,
@@ -284,9 +284,16 @@ export function RegisterForm({ search, initialData }: Readonly<RegisterProps>) {
           {t('SIGN_UP_BUTTON')}
         </Button>
       </Stack>
-      <TypographyLink color="textSecondary" to="/auth/login" search={search}>
-        {t('SIGN_IN_LINK_TEXT')}
-      </TypographyLink>
+      <Typography variant="body2">
+        {t('SIGN_IN_LINK_CATCH_TEXT')}{' '}
+        <CustomLink
+          to="/auth/login"
+          search={search}
+          sx={{ fontWeight: 'bold', textDecoration: 'none' }}
+        >
+          {t('SIGN_IN_LINK_TEXT')}
+        </CustomLink>
+      </Typography>
     </Stack>
   );
 }

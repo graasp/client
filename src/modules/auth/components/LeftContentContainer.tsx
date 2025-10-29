@@ -1,7 +1,7 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Box, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { PLATFORM_ADVERTISEMENT_CONTAINER_ID } from '@/config/selectors';
@@ -15,7 +15,6 @@ import { AUTH } from '~auth/langs';
 
 import { BACKGROUND_PATTERN } from '../constants';
 import { APIChecker } from './APIChecker';
-import { BrandingLogo } from './BrandingLogo';
 import { Footer } from './Footer';
 import { PlatformContent } from './leftContent/PlatformContent';
 import { styledBox } from './styles';
@@ -31,15 +30,6 @@ export function LeftContentContainer({
 
   return (
     <>
-      <Box
-        display={{
-          xs: 'none',
-          sm: 'block',
-          md: 'block',
-        }}
-      >
-        <BrandingLogo />
-      </Box>
       <Stack
         direction="row"
         // need to be minHeight for screen in landscape with potentially shallow heights

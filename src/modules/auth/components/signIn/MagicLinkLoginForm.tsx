@@ -1,13 +1,14 @@
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { Button, Stack } from '@mui/material';
+import { Button, Divider, Stack } from '@mui/material';
 
 import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import {
   MAGIC_LINK_EMAIL_FIELD_ID,
@@ -20,6 +21,7 @@ import { AUTH } from '~auth/langs';
 import { executeCaptcha } from '../../context/RecaptchaContext';
 import { ErrorDisplay } from '../common/ErrorDisplay';
 import { EmailInput } from './EmailInput';
+import { useLoginMode } from './useLoginMode';
 
 type Inputs = {
   email: string;
@@ -28,6 +30,7 @@ type Inputs = {
 type MagicLinkLoginFormProps = {
   search: {
     url?: string;
+    mode?: 'magic-link' | 'password';
   };
 };
 
@@ -40,6 +43,7 @@ export function MagicLinkLoginForm({
     keyPrefix: 'FIELD_ERROR',
   });
   const { t } = useTranslation(NS.Auth);
+  const [_mode, setMode] = useLoginMode(search.mode);
 
   const {
     register,
@@ -85,35 +89,53 @@ export function MagicLinkLoginForm({
 
   return (
     <Stack
-      component="form"
       direction="column"
-      spacing={1}
       alignItems="center"
-      onSubmit={handleSubmit(handleSignIn)}
+      divider={<Divider flexItem>{t('LOGIN_METHODS_DIVIDER')}</Divider>}
+      gap={3}
     >
-      <EmailInput
-        id={MAGIC_LINK_EMAIL_FIELD_ID}
-        // eslint-disable-next-line jsx-a11y/no-autofocus
-        autoFocus
-        form={register('email', {
-          required: translateCommon('REQUIRED'),
-          validate: (email) =>
-            isEmail(email, {}) || translateCommon('INVALID_EMAIL'),
-        })}
-        placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
-        error={emailError}
-      />
-      <ErrorDisplay error={signInError} />
-      <Button
-        type="submit"
-        id={SIGN_IN_BUTTON_ID}
-        variant="contained"
-        sx={{ textTransform: 'none' }}
-        fullWidth
-        loading={isLoadingSignIn}
+      <Stack
+        component="form"
+        direction="column"
+        spacing={1}
+        alignItems="center"
+        onSubmit={handleSubmit(handleSignIn)}
       >
-        {t(AUTH.SIGN_IN_BUTTON)}
-      </Button>
+        <EmailInput
+          id={MAGIC_LINK_EMAIL_FIELD_ID}
+          // eslint-disable-next-line jsx-a11y/no-autofocus
+          autoFocus
+          form={register('email', {
+            required: translateCommon('REQUIRED'),
+            validate: (email) =>
+              isEmail(email, {}) || translateCommon('INVALID_EMAIL'),
+          })}
+          placeholder={t(AUTH.EMAIL_INPUT_PLACEHOLDER)}
+          error={emailError}
+        />
+        <ErrorDisplay error={signInError} />
+        <Button
+          type="submit"
+          id={SIGN_IN_BUTTON_ID}
+          variant="contained"
+          sx={{ textTransform: 'none' }}
+          fullWidth
+          loading={isLoadingSignIn}
+        >
+          {t(AUTH.SIGN_IN_BUTTON)}
+        </Button>
+      </Stack>
+      <ButtonLink
+        variant="outlined"
+        fullWidth
+        to="/auth/login"
+        search={{ ...search, mode: 'password' }}
+        onClick={() => {
+          setMode('password');
+        }}
+      >
+        {t('PASSWORD_SIGN_IN_METHOD')}
+      </ButtonLink>
     </Stack>
   );
 }
