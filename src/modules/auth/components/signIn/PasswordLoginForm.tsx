@@ -7,7 +7,6 @@ import { RecaptchaAction, isEmail } from '@graasp/sdk';
 
 import { useMutation } from '@tanstack/react-query';
 
-import { ButtonLink } from '@/components/ui/ButtonLink';
 import { TypographyLink } from '@/components/ui/TypographyLink';
 import { NS } from '@/config/constants';
 import {
@@ -23,18 +22,16 @@ import { AUTH } from '~auth/langs';
 
 import { PasswordInput } from '../common/PasswordInput';
 import { EmailInput } from './EmailInput';
-import { useLoginMode } from './useLoginMode';
+import { useLoginMethodContext } from './LoginMethodContext';
 
 type Inputs = {
   email: string;
   password: string;
 };
 
-export function PasswordLoginForm({
-  search,
-}: Readonly<{ search: { url?: string } }>) {
+export function PasswordLoginForm() {
   const { t } = useTranslation(NS.Auth);
-  const { setMode } = useLoginMode();
+  const { setMode } = useLoginMethodContext();
 
   const { t: translateMessage } = useTranslation(NS.Messages);
   const {
@@ -145,17 +142,15 @@ export function PasswordLoginForm({
           </Alert>
         )}
       </Stack>
-      <ButtonLink
+      <Button
         variant="outlined"
         fullWidth
-        to="/auth/login"
-        search={search}
         onClick={() => {
           setMode('magic-link');
         }}
       >
         {t('EMAIL_SIGN_IN_METHOD')}
-      </ButtonLink>
+      </Button>
     </Stack>
   );
 }

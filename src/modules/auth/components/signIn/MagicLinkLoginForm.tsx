@@ -8,7 +8,6 @@ import { RecaptchaAction, isEmail } from '@graasp/sdk';
 import { useMutation } from '@tanstack/react-query';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
-import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import {
   MAGIC_LINK_EMAIL_FIELD_ID,
@@ -21,7 +20,7 @@ import { AUTH } from '~auth/langs';
 import { executeCaptcha } from '../../context/RecaptchaContext';
 import { ErrorDisplay } from '../common/ErrorDisplay';
 import { EmailInput } from './EmailInput';
-import { useLoginMode } from './useLoginMode';
+import { useLoginMethodContext } from './LoginMethodContext';
 
 type Inputs = {
   email: string;
@@ -42,7 +41,7 @@ export function MagicLinkLoginForm({
     keyPrefix: 'FIELD_ERROR',
   });
   const { t } = useTranslation(NS.Auth);
-  const { setMode } = useLoginMode();
+  const { setMode } = useLoginMethodContext();
 
   const {
     register,
@@ -124,17 +123,15 @@ export function MagicLinkLoginForm({
           {t(AUTH.SIGN_IN_BUTTON)}
         </Button>
       </Stack>
-      <ButtonLink
+      <Button
         variant="outlined"
         fullWidth
-        to="/auth/login"
-        search={search}
         onClick={() => {
           setMode('password');
         }}
       >
         {t('PASSWORD_SIGN_IN_METHOD')}
-      </ButtonLink>
+      </Button>
     </Stack>
   );
 }
