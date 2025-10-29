@@ -23,7 +23,7 @@ import { AUTH } from '~auth/langs';
 
 import { PasswordInput } from '../common/PasswordInput';
 import { EmailInput } from './EmailInput';
-import { type Mode, useLoginMode } from './useLoginMode';
+import { useLoginMode } from './useLoginMode';
 
 type Inputs = {
   email: string;
@@ -32,9 +32,9 @@ type Inputs = {
 
 export function PasswordLoginForm({
   search,
-}: Readonly<{ search: { url?: string; mode?: Mode } }>) {
+}: Readonly<{ search: { url?: string } }>) {
   const { t } = useTranslation(NS.Auth);
-  const [_mode, setMode] = useLoginMode(search.mode);
+  const { setMode } = useLoginMode();
 
   const { t: translateMessage } = useTranslation(NS.Messages);
   const {
@@ -149,7 +149,7 @@ export function PasswordLoginForm({
         variant="outlined"
         fullWidth
         to="/auth/login"
-        search={{ ...search, mode: 'magic-link' }}
+        search={search}
         onClick={() => {
           setMode('magic-link');
         }}

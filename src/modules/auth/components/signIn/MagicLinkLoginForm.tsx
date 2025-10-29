@@ -30,7 +30,6 @@ type Inputs = {
 type MagicLinkLoginFormProps = {
   search: {
     url?: string;
-    mode?: 'magic-link' | 'password';
   };
 };
 
@@ -43,7 +42,7 @@ export function MagicLinkLoginForm({
     keyPrefix: 'FIELD_ERROR',
   });
   const { t } = useTranslation(NS.Auth);
-  const [_mode, setMode] = useLoginMode(search.mode);
+  const { setMode } = useLoginMode();
 
   const {
     register,
@@ -129,7 +128,7 @@ export function MagicLinkLoginForm({
         variant="outlined"
         fullWidth
         to="/auth/login"
-        search={{ ...search, mode: 'password' }}
+        search={search}
         onClick={() => {
           setMode('password');
         }}

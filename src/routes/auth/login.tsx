@@ -18,7 +18,6 @@ import { useLoginMode } from '~auth/components/signIn/useLoginMode';
 
 const loginSearchSchema = z.object({
   url: z.string().url().optional(),
-  mode: z.enum(['magic-link', 'password']).optional(),
 });
 
 export const Route = createFileRoute('/auth/login')({
@@ -30,7 +29,7 @@ function LoginRoute() {
   const search = Route.useSearch();
   const { t } = useTranslation(NS.Auth);
 
-  const [mode] = useLoginMode(search.mode);
+  const { mode } = useLoginMode();
 
   return (
     <LeftContentContainer>
