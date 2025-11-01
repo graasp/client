@@ -12,7 +12,7 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@10.18.0",
+  "packageManager": "pnpm@10.18.3",
   "type": "module",
   "dependencies": {
     "@air/react-drag-to-select": "5.0.11",
