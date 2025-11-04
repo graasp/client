@@ -195,12 +195,18 @@ export function Footer({ onChangeLang }: Readonly<FooterProps>): JSX.Element {
           </Stack>
         </Stack>
         <Stack
-          direction="row"
+          direction="column"
           gap={2}
           alignItems="center"
           justifyContent="center"
         >
           <CopyrightText />
+          <a
+            style={{ fontSize: 10, color: 'lightgrey', textDecoration: 'none' }}
+            href="https://storyset.com/idea"
+          >
+            Idea illustrations by Storyset
+          </a>
         </Stack>
       </Stack>
     </Stack>
