@@ -304,16 +304,6 @@ export function SDC({ width, height }: Readonly<Props>) {
   );
 }
 
-export function BeLEARN({ width, height }: Readonly<Props>) {
-  return (
-    <img
-      alt="BeLEARN logo"
-      style={{ maxWidth: width, maxHeight: height }}
-      src="/projects/BeLEARN.webp"
-    />
-  );
-}
-
 export function SwissUniversities({ width, height }: Readonly<Props>) {
   return (
     <img

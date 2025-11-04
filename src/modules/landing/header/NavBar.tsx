@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
+import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { LANDING_PAGE_PATH } from '@/config/paths';
 import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
@@ -90,15 +91,21 @@ export function NavBar() {
           <Stack direction="row" gap={1} alignItems="center">
             {!showFullLengthMenu && <MobileMenu />}
             <Stack
+              direction="row"
+              gap={1}
+              alignItems="center"
               to={LANDING_PAGE_PATH}
               component={Link}
               // override link styling
               sx={{ textDecoration: 'none', color: 'inherit' }}
             >
               <GraaspLogo height={44} sx={{ fill: primary! }} />
-            </Stack>
-            {!isMobile && (
-              <Typography fontWeight="bold" variant="h2" color="primary">
+              <Typography
+                fontWeight="bold"
+                variant="h2"
+                color="primary"
+                sx={{ textDecoration: 'none' }}
+              >
                 Graasp
                 {isPreviewEnabled ? (
                   <Typography variant="note">preview</Typography>
@@ -106,7 +113,7 @@ export function NavBar() {
                   ''
                 )}
               </Typography>
-            )}
+            </Stack>
           </Stack>
           {showFullLengthMenu && <Menu />}
         </Stack>

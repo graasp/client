@@ -5,6 +5,7 @@ import { ContactSection } from '~landing/aboutUs/ContactSection';
 import PresentationVideoSection from '~landing/aboutUs/PresentationVideoSection';
 import TeamMembers from '~landing/aboutUs/TeamMembers';
 import { TitleSection } from '~landing/aboutUs/TitleSection';
+import BodyWrapper from '~landing/components/BodyWrapper';
 import { Preview } from '~landing/preview/PreviewModeContext';
 
 export const Route = createFileRoute('/_landing/about-us')({
@@ -13,7 +14,7 @@ export const Route = createFileRoute('/_landing/about-us')({
 
 function RouteComponent() {
   return (
-    <>
+    <BodyWrapper>
       <TitleSection />
       <Association />
       <TeamMembers />
@@ -22,6 +23,6 @@ function RouteComponent() {
       <Preview>
         <PresentationVideoSection />
       </Preview>
-    </>
+    </BodyWrapper>
   );
 }

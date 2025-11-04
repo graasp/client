@@ -25,7 +25,7 @@ export function RightHeader({
   const { t: translateLanding } = useTranslation(NS.Landing);
 
   const theme = useTheme();
-  const showRegisterButton = useMediaQuery(theme.breakpoints.up('sm'));
+  const showButtons = useMediaQuery(theme.breakpoints.up('sm'));
 
   if (isAuthenticated) {
     if (user.type === AccountType.Individual) {
@@ -68,10 +68,14 @@ export function RightHeader({
 
   return (
     <Stack gap={2} direction="row" id="leftTitleWrapper" alignItems="center">
-      <ButtonLink to="/auth/login">{t('LOG_IN.BUTTON_TEXT')}</ButtonLink>
-      {showRegisterButton && (
-        <ButtonLink to="/auth/register">{t('REGISTER.BUTTON_TEXT')}</ButtonLink>
-      )}
+      {showButtons ? (
+        <>
+          <ButtonLink to="/auth/login">{t('LOG_IN.BUTTON_TEXT')}</ButtonLink>
+          <ButtonLink color="primary" variant="contained" to="/auth/register">
+            {t('REGISTER.BUTTON_TEXT')}
+          </ButtonLink>
+        </>
+      ) : null}
       <LanguageSwitch lang={i18n.language} onChange={onChangeLang} />
     </Stack>
   );

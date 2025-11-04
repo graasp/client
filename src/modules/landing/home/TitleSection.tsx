@@ -1,154 +1,125 @@
 import type { JSX } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
-import { Button, Stack, Typography } from '@mui/material';
+import { Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
 
-import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
+import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 
 import { ButtonLink } from '../../../components/ui/ButtonLink';
-import {
-  BeLEARN,
-  EdTech,
-  Epfl,
-  GoLab,
-  SDC,
-  SupporterLink,
-  SwissUniversities,
-  Unine,
-} from './supporterIcons';
+import { StyledBackgroundContainer } from './StyledBackgroundContainer';
+import { SwitzerlandFlagIcon } from './icons/SwitzerlandFlagIcon';
 
 export function TitleSection(): JSX.Element {
   const { t } = useTranslation(NS.Landing);
+  const theme = useTheme();
+
+  const isLg = useMediaQuery(theme.breakpoints.up('lg'));
+
   return (
-    <Stack component="section" direction="column" my={5} maxWidth="lg" gap={5}>
-      <Stack
-        direction={{ xs: 'column', lg: 'row-reverse' }}
-        justifyItems="flex-start"
-        alignItems="center"
-        width="100%"
-        gap={10}
-      >
+    <Stack>
+      <StyledBackgroundContainer direction="column" width="100%" px={8} py={10}>
         <Stack
-          flex={{ lg: 1 }}
-          maxHeight={{ xs: '400px', lg: 'unset' }}
-          borderRadius={4}
-          overflow="hidden"
+          component="section"
+          direction="column"
+          my={5}
+          maxWidth="lg"
+          gap={5}
+          mx="auto"
         >
-          <Image
-            alt="cover"
-            sx={{ objectPosition: '0 70%' }}
-            src="/illustration/landing.webp"
-          />
-        </Stack>
-        <Stack direction="column" gap={10} flex={{ lg: 2 }}>
-          <Stack direction="column" gap={4}>
-            <Stack direction="column">
-              <Typography
-                variant="h2"
-                color="primary"
-                alignSelf={{ xs: 'center', lg: 'flex-start' }}
+          <Stack
+            direction="row"
+            justifyItems="flex-start"
+            alignItems="center"
+            width="100%"
+            gap={10}
+          >
+            <Stack direction="column" flex={{ lg: 2 }} gap={4}>
+              <Stack
+                direction="row"
+                justifyContent={{ xs: 'center', lg: 'flex-start' }}
+                alignItems="center"
+                gap={1}
               >
-                {t('HOME.TITLE')}
-              </Typography>
+                {!isLg ? (
+                  <GraaspLogo height={60} sx={{ fill: 'white' }} />
+                ) : null}
+                <Typography
+                  variant={!isLg ? 'h1' : 'h2'}
+                  fontSize={{ xs: 70, lg: theme.typography.h1.fontSize }}
+                  component="h1"
+                  color="white"
+                  alignSelf={{ xs: 'center', lg: 'flex-start' }}
+                >
+                  {t('HOME.TITLE')}
+                </Typography>
+              </Stack>
               <Typography
-                variant="h1"
-                color="primary"
+                variant={!isLg ? 'h2' : 'h1'}
+                component="h2"
+                color="white"
                 textAlign={{ xs: 'center', lg: 'unset' }}
                 alignSelf={{ xs: 'center', lg: 'flex-start' }}
+                fontWeight="800"
               >
                 {t('HOME.SUBTITLE')}
               </Typography>
-            </Stack>
-            <Typography
-              variant="h4"
-              component="p"
-              textAlign={{ xs: 'center', lg: 'unset' }}
-              alignSelf={{ xs: 'center', lg: 'flex-start' }}
-            >
-              {t('HOME.DESCRIPTION')}
-            </Typography>
-          </Stack>
-          <Stack direction="column" gap={4}>
-            <Stack
-              id="buttonsContainer"
-              direction={{ xs: 'column', sm: 'row' }}
-              justifyItems="center"
-              alignItems="center"
-              justifyContent={{ xs: 'center', lg: 'flex-start' }}
-              gap={4}
-            >
-              <ButtonLink variant="contained" to="/auth/register">
-                {t('HOME.REGISTER_CALL_TO_ACTION')}
-              </ButtonLink>
-              <Button
-                component="a"
-                variant="contained"
-                color="library"
-                href={GRAASP_LIBRARY_HOST}
+              <Typography
+                color="white"
+                variant="h4"
+                component="p"
+                textAlign={{ xs: 'center', lg: 'unset' }}
+                alignSelf={{ xs: 'center', lg: 'flex-start' }}
               >
-                {t('HOME.LIBRARY_CALL_TO_ACTION')}
-              </Button>
+                <Trans
+                  t={t}
+                  i18nKey="HOME.DESCRIPTION"
+                  components={{ b: <strong /> }}
+                />
+              </Typography>
+              <Stack
+                gap={1}
+                direction="row"
+                alignItems="center"
+                justifyContent={{ xs: 'center', lg: 'left' }}
+              >
+                <Typography variant="subtitle1" color="white">
+                  {t('HOME.CAPTION')}
+                </Typography>
+                <SwitzerlandFlagIcon />
+              </Stack>
+              <Stack
+                id="buttonsContainer"
+                direction={{ xs: 'column', sm: 'row' }}
+                justifyItems="center"
+                alignItems="center"
+                justifyContent={{ xs: 'center', lg: 'flex-start' }}
+                gap={4}
+              >
+                <ButtonLink
+                  variant="contained"
+                  to="/auth/register"
+                  sx={{
+                    background: 'white',
+                    color: theme.palette.primary.main,
+                  }}
+                >
+                  {t('HOME.REGISTER_CALL_TO_ACTION')}
+                </ButtonLink>
+              </Stack>
             </Stack>
+            {isLg ? (
+              <Stack
+                flex={{ lg: 1 }}
+                maxHeight={{ xs: 400, lg: 'unset' }}
+                overflow="hidden"
+              >
+                <GraaspLogo height={400} sx={{ fill: 'white' }} />
+              </Stack>
+            ) : null}
           </Stack>
         </Stack>
-      </Stack>
-      <Stack direction="column" gap={1}>
-        <Typography color="textSecondary">
-          {t('HOME.SUPPORTERS_LABEL')}
-        </Typography>
-        <Stack
-          id="logosContainer"
-          direction="row"
-          gap={1}
-          flexWrap="wrap"
-          alignItems="center"
-        >
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={Epfl}
-            href="https://www.epfl.ch"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={BeLEARN}
-            href="https://belearn.swiss/en/"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={EdTech}
-            href="https://www.edtech-collider.ch"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={Unine}
-            href="https://www.unine.ch/imi/en/"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={GoLab}
-            href="https://www.golabz.eu/"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={SwissUniversities}
-            href="https://www.swissuniversities.ch/fr/themes/digitalisation/open-education-digital-competencies/projets-soutenus"
-          />
-          <SupporterLink
-            width="150px"
-            height="3rem"
-            Icon={SDC}
-            href="https://www.eda.admin.ch/eda/en/fdfa/fdfa/organisation-fdfa/directorates-divisions/sdc.html"
-          />
-        </Stack>
-      </Stack>
+      </StyledBackgroundContainer>
     </Stack>
   );
 }

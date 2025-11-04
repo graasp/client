@@ -5,8 +5,10 @@ import { createFileRoute } from '@tanstack/react-router';
 import { MaintenanceAnnouncement } from '@/modules/home/MaintenanceAnnouncement';
 
 import { PlatformCube } from '~landing/Platforms/PlatformCube';
+import BodyWrapper from '~landing/components/BodyWrapper';
 import { NewsLetter } from '~landing/home/NewsLetter';
 import { OurMissionSection } from '~landing/home/OurMissionSection';
+import { Supporters } from '~landing/home/Supporters';
 import { TitleSection } from '~landing/home/TitleSection';
 import { UserStorySection } from '~landing/home/UserStorySection';
 import { UserTestimoniesSection } from '~landing/home/UserTestimoniesSection';
@@ -19,19 +21,22 @@ export const Route = createFileRoute('/_landing/')({
 function Index() {
   return (
     <>
-      <Stack>
+      <Stack mb={15}>
         <MaintenanceAnnouncement showCloseButton={false} suffix="landing" />
         <TitleSection />
+        <Supporters />
       </Stack>
-      <PlatformCube />
-      <UserStorySection />
-      <OurMissionSection />
-      <Preview>
-        <UserTestimoniesSection />
-      </Preview>
-      <Preview>
-        <NewsLetter />
-      </Preview>
+      <BodyWrapper>
+        <PlatformCube />
+        <UserStorySection />
+        <OurMissionSection />
+        <Preview>
+          <UserTestimoniesSection />
+        </Preview>
+        <Preview>
+          <NewsLetter />
+        </Preview>
+      </BodyWrapper>
     </>
   );
 }

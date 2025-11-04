@@ -51,29 +51,25 @@ function RouteComponent() {
   };
 
   return (
-    <Stack alignItems="center" minHeight="100svh">
+    <>
       <NavBar />
       <Stack
-        id="bodyWrapper"
         direction="column"
         width="100%"
-        alignItems="center"
         mt={
           // compensate the nav bar height
-          10
+          5
         }
-        p={4}
         pb={
           // give some breathing room before the footer
           15
         }
-        gap={15}
         bgcolor={DEFAULT_BACKGROUND_COLOR}
         flexGrow={1}
       >
         <Outlet />
       </Stack>
       <Footer onChangeLang={onChangeLang} />
-    </Stack>
+    </>
   );
 }
