@@ -9,7 +9,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 
 import { useAuth } from '@/AuthContext';
-import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { LANDING_PAGE_PATH } from '@/config/paths';
 import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
@@ -17,7 +16,6 @@ import { memberKeys } from '@/query/keys';
 import { OnChangeLangProp } from '@/types';
 import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 import { useButtonColor } from '@/ui/buttons/hooks';
-import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { Menu } from '~landing/header/Menu';
 import MobileMenu from '~landing/header/MobileMenu';
@@ -28,7 +26,6 @@ export function NavBar() {
   const { i18n } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
   const { t: translateMessage } = useTranslation(NS.Messages);
   const { isAuthenticated, user } = useAuth();
-  const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
 
   const theme = useTheme();
