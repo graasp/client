@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.32.1](https://github.com/graasp/client/compare/v2.32.0...v2.32.1) (2025-10-29)
+
+
+### Bug Fixes
+
+* add umami event on login buttons ([#1139](https://github.com/graasp/client/issues/1139)) ([4e00a39](https://github.com/graasp/client/commit/4e00a39b0e54bff0093aeec8c1335b6e1675c1ae))
+
 ## [2.32.0](https://github.com/graasp/client/compare/v2.31.2...v2.32.0) (2025-10-16)
 
 
