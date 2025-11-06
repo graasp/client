@@ -41,11 +41,11 @@ export function TitleSection(): JSX.Element {
                 alignItems="center"
                 gap={1}
               >
-                {!isLg ? (
+                {isLg ? null : (
                   <GraaspLogo height={60} sx={{ fill: 'white' }} />
-                ) : null}
+                )}
                 <Typography
-                  variant={!isLg ? 'h1' : 'h2'}
+                  variant={isLg ? 'h2' : 'h1'}
                   fontSize={{ xs: 70, lg: theme.typography.h1.fontSize }}
                   component="h1"
                   color="white"
@@ -55,7 +55,7 @@ export function TitleSection(): JSX.Element {
                 </Typography>
               </Stack>
               <Typography
-                variant={!isLg ? 'h2' : 'h1'}
+                variant={isLg ? 'h1' : 'h2'}
                 component="h2"
                 color="white"
                 textAlign={{ xs: 'center', lg: 'unset' }}
