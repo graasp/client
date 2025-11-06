@@ -16,7 +16,6 @@ import { memberKeys } from '@/query/keys';
 import { OnChangeLangProp } from '@/types';
 import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 import { useButtonColor } from '@/ui/buttons/hooks';
-import { useMobileView } from '@/ui/hooks/useMobileView';
 
 import { Menu } from '~landing/header/Menu';
 import MobileMenu from '~landing/header/MobileMenu';
@@ -27,7 +26,6 @@ export function NavBar() {
   const { i18n } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
   const { t: translateMessage } = useTranslation(NS.Messages);
   const { isAuthenticated, user } = useAuth();
-  const { isMobile } = useMobileView();
   const { fill: primary } = useButtonColor('primary');
 
   const theme = useTheme();
@@ -90,15 +88,21 @@ export function NavBar() {
           <Stack direction="row" gap={1} alignItems="center">
             {!showFullLengthMenu && <MobileMenu />}
             <Stack
+              direction="row"
+              gap={1}
+              alignItems="center"
               to={LANDING_PAGE_PATH}
               component={Link}
               // override link styling
               sx={{ textDecoration: 'none', color: 'inherit' }}
             >
               <GraaspLogo height={44} sx={{ fill: primary! }} />
-            </Stack>
-            {!isMobile && (
-              <Typography fontWeight="bold" variant="h2" color="primary">
+              <Typography
+                fontWeight="bold"
+                variant="h2"
+                color="primary"
+                sx={{ textDecoration: 'none' }}
+              >
                 Graasp
                 {isPreviewEnabled ? (
                   <Typography variant="note">preview</Typography>
@@ -106,7 +110,7 @@ export function NavBar() {
                   ''
                 )}
               </Typography>
-            )}
+            </Stack>
           </Stack>
           {showFullLengthMenu && <Menu />}
         </Stack>

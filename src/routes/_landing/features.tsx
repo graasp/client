@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import BodyWrapper from '~landing/components/BodyWrapper';
 import { BlendedLearningSection } from '~landing/features/BlendedLearningSection';
 import { BlogSection } from '~landing/features/BlogSection';
 import { GraaspFeaturesSection } from '~landing/features/GraaspFeaturesSection';
@@ -15,7 +16,7 @@ export const Route = createFileRoute('/_landing/features')({
 
 function RouteComponent() {
   return (
-    <>
+    <BodyWrapper>
       <TitleSection />
       <PlatformOverviewSection />
       <BlendedLearningSection />
@@ -29,6 +30,6 @@ function RouteComponent() {
       <Preview>
         <NewsLetter />
       </Preview>
-    </>
+    </BodyWrapper>
   );
 }

@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+import BodyWrapper from '~landing/components/BodyWrapper';
 import { Preview } from '~landing/preview/PreviewModeContext';
 import { Developers } from '~landing/support/Developers';
 import { Faq } from '~landing/support/Faq';
@@ -13,7 +14,7 @@ export const Route = createFileRoute('/_landing/support')({
 
 function RouteComponent() {
   return (
-    <>
+    <BodyWrapper>
       <TitleSection />
       <Faq />
       <Tutorials />
@@ -21,6 +22,6 @@ function RouteComponent() {
       <Preview>
         <NeedHelp />
       </Preview>
-    </>
+    </BodyWrapper>
   );
 }

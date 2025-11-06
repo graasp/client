@@ -1,6 +1,6 @@
 {
   "NAVBAR": {
-    "HOME":"Home",
+    "HOME": "Home",
     "GETTING_STARTED": "Getting started",
     "FEATURES": "Features",
     "LIBRARY": "Library",
@@ -8,9 +8,10 @@
   },
   "HOME": {
     "TITLE": "Graasp",
-    "SUBTITLE": "Your learning experience platform",
-    "DESCRIPTION": "For building, exploring and sharing engaging educational resources integrating interactive and intelligent elements in active learning scenarios for education and research.",
-    "REGISTER_CALL_TO_ACTION": "Create an account",
+    "SUBTITLE": "Your Learning Experience Platform",
+    "DESCRIPTION": "An open and flexible <b>learning experience platform</b> to easily <b>create</b> and <b>share interactive learning materials</b>, including rich <b>Open Educational Resources</b>",
+    "CAPTION": "Brought to you by the Graasp Association based in Switzerland",
+    "REGISTER_CALL_TO_ACTION": "Get Started",
     "LIBRARY_CALL_TO_ACTION": "Visit the Library",
     "SUPPORTERS_LABEL": "Supported by",
     "MISSION": {

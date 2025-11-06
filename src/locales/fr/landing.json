@@ -7,11 +7,12 @@
   },
   "HOME": {
     "TITLE": "Graasp",
-    "SUBTITLE": "Votre plateforme d'expérience d'apprentissage",
-    "DESCRIPTION": "Pour créer, explorer et partager des ressources éducatives attrayantes intégrant des éléments interactifs et intelligents dans des scénarios d'apprentissage actifs pour l'éducation et la recherche.",
+    "SUBTITLE": "La plateforme d'expérience d'apprentissage",
+    "DESCRIPTION": "Une plateforme ouverte et flexible qui permet de <b>créer</b> et <b>partager</b> des <b>supports pédagogiques interactifs</b>, ainsi que des <b>Ressources Educatives Libres</b>",
+    "CAPTION": "Par l'association Graasp, basée en Suisse",
     "REGISTER_CALL_TO_ACTION": "Créer un compte",
     "LIBRARY_CALL_TO_ACTION": "Visiter la bibliothèque",
-    "SUPPORTERS_LABEL": "Soutenu par",
+    "SUPPORTERS_LABEL": "Soutenue par",
     "MISSION": {
       "TITLE": "Notre vision",
       "DESCRIPTION": "Notre objectif est de permettre aux enseignants d'adopter pleinement la technologie numérique à valeur ajoutée pour impliquer leurs élèves dans des scénarios d'apprentissage innovants et pour développer leurs compétences numériques.",

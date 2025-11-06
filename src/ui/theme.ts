@@ -152,6 +152,7 @@ const components = {
     styleOverrides: {
       root: {
         textTransform: 'none',
+        borderRadius: '10px',
       },
     },
   },

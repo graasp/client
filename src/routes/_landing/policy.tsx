@@ -7,6 +7,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 import { NS, PRIVACY_EMAIL } from '@/config/constants';
 
+import BodyWrapper from '~landing/components/BodyWrapper';
 import {
   EnumeratedParagraph,
   ListItem,
@@ -24,20 +25,22 @@ export const Route = createFileRoute('/_landing/policy')({
 function RouteComponent() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'PRIVACY_POLICY' });
   return (
-    <Page title={t('TITLE')}>
-      <WhoWeAre />
-      <Responsibilities />
-      <DataUsage />
-      <DataCollection />
-      <Cookies />
-      <DataRetention />
-      <DataSharing />
-      <ServiceProviders />
-      <Security />
-      <YourRights />
-      <PolicyChanges />
-      <FinalProvisions />
-    </Page>
+    <BodyWrapper>
+      <Page title={t('TITLE')}>
+        <WhoWeAre />
+        <Responsibilities />
+        <DataUsage />
+        <DataCollection />
+        <Cookies />
+        <DataRetention />
+        <DataSharing />
+        <ServiceProviders />
+        <Security />
+        <YourRights />
+        <PolicyChanges />
+        <FinalProvisions />
+      </Page>
+    </BodyWrapper>
   );
 }
 
