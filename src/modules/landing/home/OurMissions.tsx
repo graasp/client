@@ -101,7 +101,7 @@ export function OurMissions(): JSX.Element {
             <Trans
               i18nKey="MISSIONS.RESEARCH.DESCRIPTION_1"
               t={t}
-              components={{ a: <a href="http://localhost:3000">link</a> }}
+              components={{ a: <a href="/about-us#papers">link</a> }}
             />
           </Typography>
           <Typography>{t('MISSIONS.RESEARCH.DESCRIPTION_2')}</Typography>

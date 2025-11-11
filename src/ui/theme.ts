@@ -216,6 +216,7 @@ export const createGraaspTheme = () => {
       secondary: {
         main: SECONDARY_COLOR,
         contrastText: PRIMARY_COLOR,
+        dark: '#8888eeff',
       },
     },
     zIndex: {

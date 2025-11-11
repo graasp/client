@@ -1,12 +1,11 @@
-import { Component, ElementType, ReactNode } from 'react';
+import { ElementType } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Stack, Typography, useTheme } from '@mui/material';
 
-import { FolderLockIcon, ShareIcon, UsersIcon } from 'lucide-react';
+import { FolderLockIcon, UsersIcon } from 'lucide-react';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 
 import { Message } from '../Message';
@@ -51,7 +50,7 @@ function PropCard({
 }
 
 export function MessageShare() {
-  const { t, i18n } = useTranslation(NS.Landing, { keyPrefix: 'HOME' });
+  const { t } = useTranslation(NS.Landing, { keyPrefix: 'HOME' });
 
   return (
     <Stack gap={4}>

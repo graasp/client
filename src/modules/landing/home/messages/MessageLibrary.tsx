@@ -43,6 +43,8 @@ function MessageLibrary() {
           </ButtonLink>
           {isSmUp && (
             <ButtonLink
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-expect-error
               to={`${GRAASP_LIBRARY_HOST}/oer`}
               sx={{
                 // make button take only needed space
