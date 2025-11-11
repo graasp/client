@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Box, Button, Stack, Typography } from '@mui/material';
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  Button,
+  Stack,
+  Typography,
+} from '@mui/material';
 
 import { RecaptchaAction } from '@graasp/sdk';
 
@@ -74,6 +81,15 @@ function RouteComponent() {
             <MailIcon size={30} />
             {t('SIGN_IN_SUCCESS_TITLE')}
           </Typography>
+          {import.meta.env.DEV && (
+            <Alert severity="info">
+              <AlertTitle>Development Mailbox</AlertTitle>
+              <Typography variant="body1">
+                You are running in development mode. The emails are caught by{' '}
+                <a href="http://localhost:1080">the development mailbox</a>.
+              </Typography>
+            </Alert>
+          )}
           <Typography variant="body1" align="justify">
             <Trans
               ns={NS.Auth}
