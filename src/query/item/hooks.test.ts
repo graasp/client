@@ -19,7 +19,6 @@ import { Endpoint, mockHook, setUpTest } from '../test/utils.js';
 import {
   buildDownloadFilesRoute,
   buildGetChildrenRoute,
-  buildGetItemParents,
   buildGetItemRoute,
 } from './routes.js';
 
@@ -191,11 +190,16 @@ describe('useParents', () => {
     // build endpoint for each item
     const endpoints = [
       {
-        route: `/${buildGetItemParents(childItem.id)}`,
+        route: `/api/items/${childItem.id}/parents`,
         response,
       },
     ];
-    const { data } = await mockHook({ endpoints, hook, wrapper });
+    const { data } = await mockHook({
+      endpoints,
+      hook,
+      wrapper,
+      host: 'http://localhost:3000',
+    });
 
     expect(data).toMatchObject(response);
     // verify cache keys
@@ -208,7 +212,7 @@ describe('useParents', () => {
     // build endpoint for each item
     const endpoints = [
       {
-        route: `/${buildGetItemParents(childItem.id)}`,
+        route: `/api/items/${childItem.id}/parents`,
         response,
       },
     ];
@@ -236,7 +240,7 @@ describe('useParents', () => {
     // build endpoint for each item
     const endpoints = [
       {
-        route: `/${buildGetItemParents(childItem.id)}`,
+        route: `/api/items/${childItem.id}/parents`,
         response: UNAUTHORIZED_RESPONSE,
         statusCode: StatusCodes.UNAUTHORIZED,
       },
