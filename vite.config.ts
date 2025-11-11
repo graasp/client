@@ -1,5 +1,5 @@
 /// <reference types="./src/vite-env.d.ts"/>
-import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import react from '@vitejs/plugin-react';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
@@ -65,7 +65,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
     },
 
     plugins: [
-      TanStackRouterVite(),
+      tanstackRouter({ target: 'react', autoCodeSplitting: true }),
       tsConfigPaths({
         projects: ['./tsconfig.json'],
       }),
