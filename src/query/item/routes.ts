@@ -106,7 +106,6 @@ export const buildGetChildrenRoute = (
   return route;
 };
 export const buildGetItemRoute = (id: UUID) => `${ITEMS_ROUTE}/${id}`;
-export const buildGetItemParents = (id: UUID) => `${ITEMS_ROUTE}/${id}/parents`;
 export const buildGetItemDescendants = (id: UUID) =>
   `${ITEMS_ROUTE}/${id}/descendants`;
 export const buildGetItemsRoute = (ids: UUID[]) =>
