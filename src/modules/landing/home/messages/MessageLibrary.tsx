@@ -1,33 +1,34 @@
 import { useTranslation } from 'react-i18next';
 
-import { Grid, Stack, Typography } from '@mui/material';
+import {
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
+import { Message } from '../Message';
 import { UserCapsuleExample } from '../UserCapsuleExample';
-import { UserStory } from '../UserStory';
 import { getCapsulesByLang } from '../constants';
 
 function MessageLibrary() {
   const { t, i18n } = useTranslation(NS.Landing);
 
+  const theme = useTheme();
+  const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <Stack gap={6}>
-      <UserStory
-        title={t(
-          'Benefit and contribute to an Open Educational Resources (OER) Library',
-        )}
-        image={<Image src="/illustration/teacher-red.webp" />}
+      <Message
+        title={t('HOME.MESSAGES.LIBRARY.TITLE')}
+        image="/illustration/landing-message-library.svg"
       >
-        <Typography>
-          Collaboration is at the heart of Graasp Library, where educators and
-          professionals come together to share, co-create, and learn. By sharing
-          Open Educational Resources (OER), educators have access and contribute
-          to a growing library of collective knowledge.
-        </Typography>
+        <Typography>{t('HOME.MESSAGES.LIBRARY.DESCRIPTION')}</Typography>
         <Stack direction="row" gap={2}>
           <ButtonLink
             to={GRAASP_LIBRARY_HOST}
@@ -38,24 +39,26 @@ function MessageLibrary() {
             color="primary"
             variant="contained"
           >
-            Go to Graasp Library
+            {t('HOME.MESSAGES.LIBRARY.LIBRARY_BUTTON_TEXT')}
           </ButtonLink>
-          <ButtonLink
-            to={`${GRAASP_LIBRARY_HOST}/oer`}
-            sx={{
-              // make button take only needed space
-              width: 'fit-content',
-            }}
-            color="secondary"
-            variant="contained"
-          >
-            What are OERs?
-          </ButtonLink>
+          {isSmUp && (
+            <ButtonLink
+              to={`${GRAASP_LIBRARY_HOST}/oer`}
+              sx={{
+                // make button take only needed space
+                width: 'fit-content',
+              }}
+              color="secondary"
+              variant="contained"
+            >
+              {t('HOME.MESSAGES.LIBRARY.OER_BUTTON_TEXT')}
+            </ButtonLink>
+          )}
         </Stack>
-      </UserStory>
+      </Message>
       <Stack gap={3}>
         <Typography color="primary" variant="h5">
-          {t('HOME.USER_STORY.DISCOVER.TITLE')}
+          {t('HOME.MESSAGES.LIBRARY.DISCOVER_TITLE')}
         </Typography>
         <Grid container spacing={2} direction="row">
           {getCapsulesByLang(i18n.language).map(({ title, imageSrc, url }) => {

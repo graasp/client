@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 
-import { OurMissionSection } from './OurMissionSection';
+import { OurMissionSection } from './OurMissions';
 
 const meta = {
   component: OurMissionSection,

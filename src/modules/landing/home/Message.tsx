@@ -5,25 +5,28 @@ import { Stack, Typography } from '@mui/material';
 const IMAGE_CONTAINER = 'image-container';
 const TEXT_CONTAINER = 'text-container';
 
-type UserStoryProps = {
+type MessageProps = {
   title: string;
   children: ReactNode;
-  image: ReactNode;
+  image: string;
   imageAttribution?: ReactNode;
 };
-export function UserStory({
+export function Message({
   title,
   children,
   image,
   imageAttribution,
-}: Readonly<UserStoryProps>): JSX.Element {
+}: Readonly<MessageProps>): JSX.Element {
   return (
     <Stack>
-      <Stack direction="row" gap={5} mt={3} position="relative">
+      <Stack
+        direction={{ md: 'row' }}
+        gap={{ xs: 0, md: 3 }}
+        mt={3}
+        position="relative"
+      >
         <Stack className={IMAGE_CONTAINER} flex={1} gap={1} alignItems="center">
-          <Stack borderRadius={6} overflow="hidden">
-            {image}
-          </Stack>
+          <img style={{ maxWidth: '500px' }} alt={title} src={image} />
           {imageAttribution && (
             <Typography
               variant="caption"

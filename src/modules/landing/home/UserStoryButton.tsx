@@ -18,7 +18,7 @@ const StyledAnchor = styled('a')(({ theme }) => ({
   padding: theme.spacing(2, 4),
 }));
 
-export function UserStoryButton({
+export function MessageButton({
   id,
   text,
 }: Readonly<{ id: string; text: string }>) {

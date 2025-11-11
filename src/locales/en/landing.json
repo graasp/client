@@ -14,59 +14,68 @@
     "REGISTER_CALL_TO_ACTION": "Get Started",
     "LIBRARY_CALL_TO_ACTION": "Visit the Library",
     "SUPPORTERS_LABEL": "Supported by",
-    "MISSION": {
-      "TITLE": "Our vision",
-      "DESCRIPTION": "We aim at empowering educators to fully embrace value-adding digital technology for engaging their students in innovative learning scenarios and for developing their digital skills",
-      "CALL_TO_ACTION_LABEL": "Do you want to know more?",
-      "CALL_TO_ACTION_BUTTON_TEXT": "Get to know us"
+    "MISSIONS": {
+      "TITLE": "Our Missions",
+      "RESEARCH": {
+        "TITLE": "We advance Research in Education",
+        "DESCRIPTION_1": "Numerous academic papers and practical experiences have built upon and been supported by Graasp, highlighting its effectiveness in fostering collaborative, inquiry-based learning and its significant impact on the educational technology community. <a>Discover all papers</a>.",
+        "DESCRIPTION_2": "Need support with your research? Don’t hesitate to contact us—we’re here to help",
+        "BUTTON_TEXT": "Contact Us"
+      },
+      "PRIVACY": {
+        "TITLE": "We protect Privacy and Data Sovereignty",
+        "DESCRIPTION": "Developed with a strong emphasis on privacy and data sovereignty, Graasp empowers users to retain full control over their data, free from third-party exploitation. Hosted in Switzerland and operated by the non-profit Graasp Association, it benefits from strong Swiss data protection laws that reinforce these core principles.",
+        "BUTTON_TEXT": "About the association"
+      },
+      "OPEN": {
+        "TITLE": "We champion Openness and Transparency",
+        "DESCRIPTION_1": "Built on an open-source foundation, Graasp promotes transparency, trust, and collaboration.",
+        "DESCRIPTION_2": "Its open nature encourages community contributions, continuous improvement, and adaptability. We ensure the platform evolves alongside the needs of educators and learners.",
+        "BUTTON_TEXT": "Read our policies"
+      }
     },
-    "PUZZLE": {
-      "TITLE": "An all-in-one platform, how?",
-      "BUILDER": {
-        "DESCRIPTION": "Create your own interactive and intelligent educational resources with the <strong>Builder</strong>",
-        "BUTTON_TEXT": "Create"
+    "MESSAGES": {
+      "CREATE": {
+        "TITLE": "Digitize and Create Interactive Learning Materials",
+        "DESCRIPTION_1": "With Graasp, you can easily bring your teaching materials online, turning images, PDFs, and traditional resources into interactive digital lessons in minutes.",
+        "DESCRIPTION_2": "And what makes Graasp truly powerful is its ability to help you design engaging learning activities by integrating videos and interactive apps. You can create lessons that captivate students, ignite curiosity, and encourage active participation.",
+        "BUTTON_TEXT": "Learn More",
+        "CONTENT_TITLE": "Compose your learning material with interactive content"
       },
-      "PLAYER": {
-        "DESCRIPTION": "Engage your students in active learning scenarios with the <strong>Player</strong>",
-        "BUTTON_TEXT": "Experience"
-      },
-      "ANALYTICS": {
-        "DESCRIPTION": "Gain valuable insights and explore dashboards with <strong>Analytics</strong>",
-        "BUTTON_TEXT": "Analyze"
+      "SHARE": {
+        "TITLE": "Easily share with your audience",
+        "DESCRIPTION_1": "Share your content seamlessly with your audience. Limit access to just your class or open it up to a wider audience.",
+        "DESCRIPTION_2": "You stay in control of who sees what and when, whether it's a small group project or a classroom activity. Choose from different sharing options and adjust permissions at any time.",
+        "BUTTON_TEXT": "Learn More",
+        "MEMBERSHIPS": {
+          "TITLE": "Decide who you invite",
+          "DESCRIPTION": "Only people you approve can access your content. You stay in control, and requests for access can be reviewed before allowing entry."
+        },
+        "ITEM_LOGIN": {
+          "TITLE": "Ease access for participants",
+          "DESCRIPTION": "Share your content through a private link, with the option to add a password. Perfect for participants who don’t have emails."
+        }
       },
       "LIBRARY": {
-        "DESCRIPTION": "Explore and share open educational resources in our <strong>Library</strong>",
-        "BUTTON_TEXT": "Explore"
+        "TITLE": "Benefit and contribute to an Open Educational Resources (OER) Library",
+        "DESCRIPTION": "Collaboration is at the heart of Graasp Library, where educators and professionals come together to share, co-create, and learn. By sharing Open Educational Resources (OER), educators have access and contribute to a growing library of collective knowledge.",
+        "LIBRARY_BUTTON_TEXT": "Go to Graasp Library",
+        "OER_BUTTON_TEXT": "What are OERs?",
+        "DISCOVER_TITLE": "Check out real activities from our users"
       }
     },
-    "USER_STORY": {
-      "TEACHER": {
-        "SECTION_TITLE": "For Teachers",
-        "LEADING_SENTENCE": "Are you a teacher interested to streamline your digital content creation?",
-        "TITLE": "Build your material with Graasp",
-        "USE_CASE_1": "Embed interactive apps in your class material",
-        "USE_CASE_2": "Co-create and share resources with peers",
-        "USE_CASE_3": "Explore detailed analytics about your students",
-        "BUTTON_TEXT": "Start Today",
-        "IMAGE_ATTRIBUTION": "Photo by <author>Tra Nguyen</author> on <image>Unsplash</image>"
-      },
-      "RESEARCHER": {
-        "SECTION_TITLE": "For Researchers",
-        "LEADING_SENTENCE": "Are you a researcher seeking a platform that seamlessly integrates data collection and interactive learning experiences?",
-        "TITLE": "Start using Graasp for your research",
-        "USE_CASE_1": "Benefit from a safe environnement for research investigations",
-        "USE_CASE_2": "Conduct tests with various experimental conditions",
-        "USE_CASE_3": "Interact with peers advancing digital learning sciences",
-        "BUTTON_TEXT": "Register Now"
-      },
-      "DISCOVER": {
-        "TITLE": "Check out real activities from our users",
-        "BUTTON_TEXT": "Discover More on the Library"
-      }
+    "CALL_TO_ACTION": {
+      "TEXT": "Join Graasp and revolutionize your teaching with interactive learning tools!",
+      "BUTTON_TEXT": "Start Now"
     },
     "USER_TESTIMONIES": {
       "TITLE": "What our users say about us",
       "JOIN_US": "Join us and embark on a bright journey in education and professional development!"
+    },
+    "NEED_SUPPORT": {
+      "TITLE": "Need support?",
+      "DESCRIPTION": "We are happy to help if you have any questions, doubts or need guidance on how Graasp can fulfill your needs. Write to support@graasp.org and our team will come back to you as soon as possible.",
+      "BUTTON_TEXT": "Contact Us"
     }
   },
   "TERMS": {

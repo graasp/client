@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Grid, Stack, Typography } from '@mui/material';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
-import { Image } from '@/components/ui/StyledImages';
 import { NS } from '@/config/constants';
 
+import { Message } from '../Message';
 import { UserCapsuleExample } from '../UserCapsuleExample';
-import { UserStory } from '../UserStory';
 import { getCapsulesByLang } from '../constants';
 
 function MessageCreate() {
@@ -15,21 +14,12 @@ function MessageCreate() {
 
   return (
     <Stack gap={6}>
-      <UserStory
-        title={t('HOME.USER_STORY.TEACHER.TITLE')}
-        image={<Image src="/illustration/landing-message-share.svg" />}
+      <Message
+        title={t('HOME.MESSAGES.CREATE.TITLE')}
+        image="/illustration/landing-message-create.svg"
       >
-        <Typography>
-          With Graasp, you can easily bring your teaching materials online,
-          turning images, PDFs, and traditional resources into interactive
-          digital lessons in minutes.
-        </Typography>
-        <Typography>
-          And what makes Graasp truly powerful is its ability to help you design
-          engaging learning activities by integrating videos and interactive
-          apps. You can create lessons that captivate students, ignite
-          curiosity, and encourage active participation.
-        </Typography>
+        <Typography>{t('HOME.MESSAGES.CREATE.DESCRIPTION_1')}</Typography>
+        <Typography>{t('HOME.MESSAGES.CREATE.DESCRIPTION_2')}</Typography>
         <ButtonLink
           to="/features"
           sx={{
@@ -39,12 +29,12 @@ function MessageCreate() {
           color="secondary"
           variant="contained"
         >
-          Learn More
+          {t('HOME.MESSAGES.CREATE.BUTTON_TEXT')}
         </ButtonLink>
-      </UserStory>
+      </Message>
       <Stack gap={3}>
         <Typography color="primary" variant="h5">
-          {t('Compose your learning material with interactive content')}
+          {t('HOME.MESSAGES.CREATE.CONTENT_TITLE')}
         </Typography>
         <Grid container spacing={2} direction="row">
           {getCapsulesByLang(i18n.language).map(({ title, imageSrc, url }) => {
