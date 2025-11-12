@@ -13,14 +13,13 @@ export function ErrorDisplay({
   error: Error | null;
 }>): JSX.Element | null {
   const { t } = useTranslation(NS.Messages);
-
   if (!error) {
     return null;
   }
 
   return (
     <Alert id={ERROR_DISPLAY_ID} severity="error">
-      {t(getErrorMessageFromPayload({ error }))}
+      {t(getErrorMessageFromPayload(error))}
     </Alert>
   );
 }
