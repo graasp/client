@@ -130,7 +130,7 @@ export const mockGetAppListRoute = (apps: App[]): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/${buildAppListRoute}`,
+      pathname: `/api/app-items/list`,
     },
     (req) => {
       req.reply(apps);
@@ -183,27 +183,35 @@ export const mockGetCurrentMember = (
   currentGuest: CompleteGuest | null,
   shouldThrowError = false,
 ): void => {
+  const handler = ({ reply }) => {
+    // simulate member accessing without log in
+    if (currentMember == null) {
+      if (currentGuest == null) {
+        return reply({ statusCode: StatusCodes.UNAUTHORIZED });
+      } else {
+        return reply(currentGuest);
+      }
+    }
+    if (shouldThrowError) {
+      return reply({ statusCode: StatusCodes.BAD_REQUEST, body: null });
+    }
+    // avoid sign in redirection
+    return reply(currentMember);
+  };
   cy.intercept(
     {
       method: HttpMethod.Get,
       pathname: `/${buildGetCurrentMemberRoute()}`,
     },
-    ({ reply }) => {
-      // simulate member accessing without log in
-      if (currentMember == null) {
-        if (currentGuest == null) {
-          return reply({ statusCode: StatusCodes.UNAUTHORIZED });
-        } else {
-          return reply(currentGuest);
-        }
-      }
-      if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST, body: null });
-      }
-      // avoid sign in redirection
-      return reply(currentMember);
-    },
+    handler,
   ).as('getCurrentMember');
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: `/api/${buildGetCurrentMemberRoute()}`,
+    },
+    handler,
+  ).as('getCurrentMemberAPI');
 };
 
 export const mockEditCurrentMember = (
