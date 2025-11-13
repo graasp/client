@@ -24,11 +24,41 @@ const Paper = ({
 
 const papers = [
   {
+    title: 'Integrated model for comprehensive digital education platforms',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&cstart=20&pagesize=80&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:8VtEwCQfWZkC',
+    authors:
+      'Denis Gillet, Isabelle Vonèche-Cardia, Juan Carlos Farah, Kim Lan Phan Hoang, María Jesús Rodríguez-Triana',
+    date: '2022',
+  },
+  {
+    title:
+      'Understanding teacher design practices for digital inquiry–based science learning: The case of Go-Lab',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&cstart=20&pagesize=80&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:WWeOtg8bX_EC',
+    authors:
+      'Ton de Jong, Denis Gillet, María Jesús Rodríguez-Triana, Tasos Hovardas, Diana Dikke, Rosa Doran, Olga Dziabenko, Jens Koslowsky, Miikka Korventausta, Effie Law, Margus Pedaste, Evita Tasiopoulou, Gérard Vidal, Zacharias C Zacharia',
+    date: '2021',
+  },
+  {
+    title:
+      'Stimulating Brainstorming Activities with Generative AI in Higher Education',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:cB__R-XWw9UC',
+    authors: 'Jérémy La Scala, Sonia Sahli, Denis Gillet',
+    date: '2025',
+  },
+  {
     title:
       'Digital Intervention for Collaborative and Human-Centered Activities in Design-Based Learning Scenarios',
     src: 'https://ieeexplore.ieee.org/abstract/document/10398356',
     authors: 'Jérémy La Scala; Isabelle Vonèche-Cardia; Denis Gillet',
     date: '2023',
+  },
+  {
+    title:
+      'Implementation Framework and Strategies for AI-Augmented Open Educational Resources (OER): A Comprehensive Approach Applied to Secondary and Higher Education',
+    src: 'https://ieeexplore.ieee.org/abstract/document/10398356',
+    authors:
+      'Denis Gillet, Michele Notari, Basile Spacnlchauer, Thibault Reidy',
+    date: '2024',
   },
   {
     title:
@@ -47,11 +77,26 @@ const papers = [
   },
   {
     title:
-      'Application of an Inquiry-Based Learning Space (ILS) GRAASP in the Course of Differential Equations for Engineering Students Within the Framework of the Project Wp@ELAB',
-    src: 'https://ieeexplore.ieee.org/abstract/document/10040873',
+      'Promoting computational thinking skills in non-computer-science students: Gamifying computational notebooks to increase student engagement',
     authors:
-      'Dayana Barrera-Buitrago; Nidia Lugo López; Freddy Torres-Payoma; Diana Carolina Herrera; Francesc Alpiste Penalba; Jordi Torner Ribé',
+      'Alessio De Santo, Juan Carlos Farah, Marc Lafuente Martínez, Arielle Moro, Kristoffer Bergram, Aditya Kumar Purohit, Pascal Felber, Denis Gillet, Adrian Holzer',
     date: '2022',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&cstart=20&pagesize=80&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:Kqc1aDSOPooC',
+  },
+  {
+    title:
+      'Supporting developers in creating web apps for education via an app development framework',
+    authors: 'Juan Carlos Farah, Sandy Ingram, Denis Gillet',
+    date: '2022',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&cstart=20&pagesize=80&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:uUvzmPk0f8oC',
+  },
+  {
+    title:
+      'Promoting and implementing digital STEM education at secondary schools in Africa',
+    authors:
+      'Denis Gillet, Bosun Tijani, Senam Beheton, Juan Carlos Farah, Diana Dikke, Aurelle Noutahi, Rosa Doran, Nuno RC Gomes, Sam Rich, Ton De Jong, Célia Gavaud',
+    date: '2019',
+    src: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=eDrc2o8AAAAJ&cstart=20&pagesize=80&sortby=pubdate&citation_for_view=eDrc2o8AAAAJ:Vr2j17o0sqMC',
   },
   {
     title:
