@@ -8,7 +8,7 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "La plateforme d'apprentissage interactive",
-    "DESCRIPTION": "Une plateforme ouverte et flexible qui permet de <b>créer</b> et <b>partager</b> des <b>supports pédagogiques interactifs</b>, ainsi que des <b>Ressources Éducatives Libres</b>",
+    "DESCRIPTION": "Une plateforme <b>ouverte</b> et <b>gratuite</b> qui permet de <b>créer</b> et <b>partager</b> des <b>supports pédagogiques interactifs</b>, ainsi que des <b>Ressources Éducatives Libres</b>",
     "CAPTION": "Par l'association Graasp, basée en Suisse",
     "REGISTER_CALL_TO_ACTION": "Créer un compte",
     "LIBRARY_CALL_TO_ACTION": "Visiter la bibliothèque",
@@ -28,7 +28,7 @@
         "CONTENT_TITLE": "Intégrer du contenu interactif dans des supports pédagogiques"
       },
       "SHARE": {
-        "TITLE": "Partager facilement avec une audience",
+        "TITLE": "Partager facilement avec les apprenants",
         "DESCRIPTION_1": "Que ce soit pour collaborer avec une <b>classe entière</b>, un <b>groupe spécifique</b> ou un <b>collègue</b>, Graasp offre des <b>options de partage flexibles</b> et personnalisables à tout moment, ainsi qu'un <b>contrôle total</b> sur qui peut voir, modifier ou commenter vos ressources.",
         "BUTTON_TEXT": "En savoir plus",
         "MEMBERSHIPS": {

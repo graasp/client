@@ -9,7 +9,7 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Your Learning Experience Platform",
-    "DESCRIPTION": "An open and flexible <b>learning experience platform</b> to easily <b>create</b> and <b>share interactive learning materials</b>, including rich <b>Open Educational Resources</b>",
+    "DESCRIPTION": "An <b>open</b> and <b>free</b> learning experience platform to easily <b>create</b> and <b>share interactive learning materials</b>, including rich <b>Open Educational Resources</b>",
     "CAPTION": "Brought to you by the Graasp Association based in Switzerland",
     "REGISTER_CALL_TO_ACTION": "Get Started",
     "LIBRARY_CALL_TO_ACTION": "Visit the Library",
@@ -43,7 +43,7 @@
         "CONTENT_TITLE": "Compose your learning material with interactive content"
       },
       "SHARE": {
-        "TITLE": "Easily share with your audience",
+        "TITLE": "Easily share with your class and collegues",
         "DESCRIPTION_1": "<b>Share your content</b> seamlessly with your audience. You stay in control of who sees what and when, whether it's a <b>small group project</b> or a <b>classroom activity</b>. Choose from <b>different sharing options</b> and adjust permissions at any time.",
         "BUTTON_TEXT": "Learn More",
         "MEMBERSHIPS": {

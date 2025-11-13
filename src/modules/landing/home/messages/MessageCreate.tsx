@@ -56,19 +56,34 @@ function MessageCreate() {
         <Typography color="primary" variant="h5">
           {t('CONTENT_TITLE')}
         </Typography>
-        <Grid container spacing={2} direction="row">
-          {getCapsulesByLang(i18n.language).map(({ title, imageSrc, url }) => {
-            return (
-              <Grid size={{ xs: 4, sm: 4, md: 2 }}>
-                <UserCapsuleExample
-                  title={title}
-                  imageSrc={imageSrc}
-                  url={url}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
+        <Stack
+          gap={{ xs: 1, sm: 2 }}
+          direction="row"
+          width="100%"
+          position="relative"
+        >
+          <Stack>
+            <img alt="img icon" width={'100%'} src="/landing/img.svg" />
+          </Stack>
+          <Stack>
+            <img alt="audio icon" width={'100%'} src="/landing/audio.svg" />
+          </Stack>
+          <Stack>
+            <img alt="video icon" width={'100%'} src="/landing/video.svg" />
+          </Stack>
+          <Stack>
+            <img alt="h5p icon" width={'100%'} src="/landing/h5p.svg" />
+          </Stack>
+          <Stack>
+            <img alt="pdf icon" width={'100%'} src="/landing/pdf.svg" />
+          </Stack>
+          <Stack>
+            <img alt="quiz icon" width={'100%'} src="/landing/quiz.svg" />
+          </Stack>
+          <Stack>
+            <img alt="sim icon" width={'100%'} src="/landing/sim.svg" />
+          </Stack>
+        </Stack>
       </Stack>
     </Stack>
   );
