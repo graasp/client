@@ -17,7 +17,7 @@ describe('Email and Password Validation', () => {
 
     cy.intercept(
       {
-        pathname: '/login-password',
+        pathname: '/api/login-password',
       },
       ({ reply }) => {
         isSignedIn = true;
@@ -58,7 +58,7 @@ describe('Email and Password Validation', () => {
   it('Sign In With Wrong Password', () => {
     cy.intercept(
       {
-        pathname: '/login-password',
+        pathname: '/api/login-password',
       },
       (req) => {
         req.reply({
@@ -81,7 +81,7 @@ describe('Email and Password Validation', () => {
   it('Check errors if  shows success message if no redirect', () => {
     cy.intercept(
       {
-        pathname: '/login-password',
+        pathname: '/api/login-password',
       },
       (req) => {
         req.reply({ statusCode: 303 });
