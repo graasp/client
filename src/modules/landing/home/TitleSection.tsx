@@ -108,6 +108,7 @@ export function TitleSection(): JSX.Element {
                     background: 'white',
                     color: theme.palette.primary.main,
                   }}
+                  dataUmamiEvent="header-register-button"
                 >
                   {t('HOME.REGISTER_CALL_TO_ACTION')}
                 </ButtonLink>

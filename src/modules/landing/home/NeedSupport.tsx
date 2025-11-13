@@ -1,10 +1,12 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { Button, Stack, Typography, useTheme } from '@mui/material';
 
 import { HeadsetIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
+
+import { strongTag } from './constants';
 
 export function NeedSupport() {
   const theme = useTheme();
@@ -32,13 +34,22 @@ export function NeedSupport() {
           <Typography variant="h2" color="primary">
             {t('TITLE')}
           </Typography>
-          <Typography>{t('DESCRIPTION')}</Typography>
+          <Typography>
+            <Trans
+              t={t}
+              i18nKey={'DESCRIPTION'}
+              components={{
+                b: strongTag,
+              }}
+            />
+          </Typography>
           <Button
             href="mailto:support@graasp.org"
             component="a"
             sx={{ maxWidth: 200 }}
             variant="contained"
             color="secondary"
+            data-umami-event="need-support-button"
           >
             {t('BUTTON_TEXT')}
           </Button>

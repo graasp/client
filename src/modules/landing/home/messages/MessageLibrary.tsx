@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import {
   Grid,
@@ -15,9 +15,12 @@ import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { Message } from '../Message';
 import { UserCapsuleExample } from '../UserCapsuleExample';
 import { getCapsulesByLang } from '../constants';
+import { strongTag } from '../constants';
 
 function MessageLibrary() {
-  const { t, i18n } = useTranslation(NS.Landing);
+  const { t, i18n } = useTranslation(NS.Landing, {
+    keyPrefix: 'HOME.MESSAGES.LIBRARY',
+  });
 
   const theme = useTheme();
   const isSmUp = useMediaQuery(theme.breakpoints.up('sm'));
@@ -25,10 +28,18 @@ function MessageLibrary() {
   return (
     <Stack gap={6}>
       <Message
-        title={t('HOME.MESSAGES.LIBRARY.TITLE')}
+        title={t('TITLE')}
         image="/illustration/landing-message-library.svg"
       >
-        <Typography>{t('HOME.MESSAGES.LIBRARY.DESCRIPTION')}</Typography>
+        <Typography>
+          <Trans
+            t={t}
+            i18nKey={'DESCRIPTION'}
+            components={{
+              b: strongTag,
+            }}
+          />
+        </Typography>
         <Stack direction="row" gap={2}>
           <ButtonLink
             to={GRAASP_LIBRARY_HOST}
@@ -38,8 +49,9 @@ function MessageLibrary() {
             }}
             color="primary"
             variant="contained"
+            dataUmamiEvent="messages-library-button"
           >
-            {t('HOME.MESSAGES.LIBRARY.LIBRARY_BUTTON_TEXT')}
+            {t('LIBRARY_BUTTON_TEXT')}
           </ButtonLink>
           {isSmUp && (
             <ButtonLink
@@ -52,15 +64,16 @@ function MessageLibrary() {
               }}
               color="secondary"
               variant="contained"
+              dataUmamiEvent="messages-library-oer-button"
             >
-              {t('HOME.MESSAGES.LIBRARY.OER_BUTTON_TEXT')}
+              {t('OER_BUTTON_TEXT')}
             </ButtonLink>
           )}
         </Stack>
       </Message>
       <Stack gap={3}>
         <Typography color="primary" variant="h5">
-          {t('HOME.MESSAGES.LIBRARY.DISCOVER_TITLE')}
+          {t('DISCOVER_TITLE')}
         </Typography>
         <Grid container spacing={2} direction="row">
           {getCapsulesByLang(i18n.language).map(({ title, imageSrc, url }) => {

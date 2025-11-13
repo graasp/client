@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { Grid, Stack, Typography } from '@mui/material';
 
@@ -8,18 +8,37 @@ import { NS } from '@/config/constants';
 import { Message } from '../Message';
 import { UserCapsuleExample } from '../UserCapsuleExample';
 import { getCapsulesByLang } from '../constants';
+import { strongTag } from '../constants';
 
 function MessageCreate() {
-  const { t, i18n } = useTranslation(NS.Landing);
+  const { t, i18n } = useTranslation(NS.Landing, {
+    keyPrefix: 'HOME.MESSAGES.CREATE',
+  });
 
   return (
     <Stack gap={6}>
       <Message
-        title={t('HOME.MESSAGES.CREATE.TITLE')}
+        title={t('TITLE')}
         image="/illustration/landing-message-create.svg"
       >
-        <Typography>{t('HOME.MESSAGES.CREATE.DESCRIPTION_1')}</Typography>
-        <Typography>{t('HOME.MESSAGES.CREATE.DESCRIPTION_2')}</Typography>
+        <Typography>
+          <Trans
+            t={t}
+            i18nKey={'DESCRIPTION_1'}
+            components={{
+              b: strongTag,
+            }}
+          />
+        </Typography>
+        <Typography>
+          <Trans
+            t={t}
+            i18nKey={'DESCRIPTION_2'}
+            components={{
+              b: strongTag,
+            }}
+          />
+        </Typography>
         <ButtonLink
           to="/features"
           sx={{
@@ -28,13 +47,14 @@ function MessageCreate() {
           }}
           color="secondary"
           variant="contained"
+          dataUmamiEvent="messages-create-button"
         >
-          {t('HOME.MESSAGES.CREATE.BUTTON_TEXT')}
+          {t('BUTTON_TEXT')}
         </ButtonLink>
       </Message>
       <Stack gap={3}>
         <Typography color="primary" variant="h5">
-          {t('HOME.MESSAGES.CREATE.CONTENT_TITLE')}
+          {t('CONTENT_TITLE')}
         </Typography>
         <Grid container spacing={2} direction="row">
           {getCapsulesByLang(i18n.language).map(({ title, imageSrc, url }) => {

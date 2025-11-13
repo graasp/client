@@ -22,15 +22,14 @@
     "MESSAGES": {
       "CREATE": {
         "TITLE": "Création de supports interactifs pédagogiques",
-        "DESCRIPTION_1": "Avec Graasp, il est facile de mettre des supports pédagogiques en ligne, en transformant images, PDF et ressources traditionnelles en leçons numériques interactives en quelques minutes.",
-        "DESCRIPTION_2": "Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des activités d'apprentissage engageantes en intégrant des vidéos et des applications interactives. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.",
+        "DESCRIPTION_1": "Avec Graasp, il est facile de mettre des <b>supports pédagogiques en ligne</b>, en transformant <b>images</b>, <b>PDFs</b> et ressources traditionnelles en <b>leçons numériques interactives</b> en quelques minutes.",
+        "DESCRIPTION_2": "Ce qui rend Graasp réellement puissant, c'est sa capacité à aider à concevoir des <b>activités d'apprentissage engageantes</b> en intégrant des <b>vidéos</b> et des <b>applications interactives</b>. Il est possible de créer des leçons qui captivent les élèves, suscitent la curiosité et favorisent une participation active.",
         "BUTTON_TEXT": "En savoir plus",
         "CONTENT_TITLE": "Intégrer du contenu interactif dans des supports pédagogiques"
       },
       "SHARE": {
         "TITLE": "Partager facilement avec une audience",
-        "DESCRIPTION_1": "Partage du contenu simplifié avec Graasp, la plateforme qui facilite la diffusion de supports pédagogiques interactifs à une audience.",
-        "DESCRIPTION_2": "Que ce soit le partage avec une classe, un groupe spécifique ou le grand public, Graasp offre des options flexibles pour répondre à tous les besoins.",
+        "DESCRIPTION_1": "Que ce soit pour collaborer avec une <b>classe entière</b>, un <b>groupe spécifique</b> ou un <b>collègue</b>, Graasp offre des <b>options de partage flexibles</b> et personnalisables à tout moment, ainsi qu'un <b>contrôle total</b> sur qui peut voir, modifier ou commenter vos ressources.",
         "BUTTON_TEXT": "En savoir plus",
         "MEMBERSHIPS": {
           "TITLE": "Contrôle d'accès granulaire",
@@ -43,14 +42,14 @@
       },
       "LIBRARY": {
         "TITLE": "Profiter et contribuer à une bibliothèque de Ressources Éducatives Libres (REL)",
-        "DESCRIPTION": "La collaboration est au cœur de la Graasp Library, où enseignants et professionnels se réunissent pour partager, co-créer et apprendre. En partageant des ressources éducatives libres (REL), les éducateurs ont accès à une bibliothèque en constante expansion et y contribuent, enrichissant ainsi le savoir collectif.",
+        "DESCRIPTION": "La <b>collaboration</b> est au cœur de la <b>Graasp Library</b>, où enseignants et professionnels se réunissent pour <b>partager, co-créer et apprendre</b>. En partageant des <b>ressources éducatives libres</b> (REL), les éducateurs ont accès à une bibliothèque en constante expansion et y contribuent, enrichissant ainsi le <b>savoir collectif</b>.",
         "LIBRARY_BUTTON_TEXT": "Aller sur Graasp Library",
-        "OER_BUTTON_TEXT": "Qu'est-ce que les RELs ?",
+        "OER_BUTTON_TEXT": "Qu'est-ce que les RELs ?",
         "DISCOVER_TITLE": "Découvrez les activités créées par nos utilisateurs"
       }
     },
     "CALL_TO_ACTION": {
-      "TEXT": "Révolutionner l'enseignement grâce à des outils d’apprentissage interactifs sur Graasp maintenant !",
+      "TEXT": "Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp maintenant !",
       "BUTTON_TEXT": "Créer un compte"
     },
     "MISSIONS": {
@@ -58,7 +57,7 @@
       "RESEARCH": {
         "TITLE": "Nous faisons avancer la recherche dans l'éducation",
         "DESCRIPTION_1": "De nombreux articles académiques et retours d'expériences pratiques se sont appuyés sur Graasp, mettant en évidence son efficacité à favoriser l'apprentissage collaboratif fondé sur l'investigation ainsi que son impact significatif au sein de la communauté des technologies éducatives. <a>Découvrir tous les articles</a>.",
-        "DESCRIPTION_2": "Besoin d'aide pour vos recherches ? Nous sommes à l'écoute pour vous aider.",
+        "DESCRIPTION_2": "Besoin d'aide pour vos recherches ? Nous sommes à l'écoute pour vous aider.",
         "BUTTON_TEXT": "Nous contacter"
       },
       "PRIVACY": {
@@ -68,14 +67,14 @@
       },
       "OPEN": {
         "TITLE": "Nous défendons l'ouverture et la transparence",
-        "DESCRIPTION_1": "Construit sur une base open source, Graasp promeut la transparence, la confiance et la collaboration.",
+        "DESCRIPTION_1": "En tant que projet open source, Graasp promeut la transparence, la confiance et la collaboration.",
         "DESCRIPTION_2": "Sa nature ouverte encourage les contributions de la communauté, l'amélioration continue et l'adaptabilité. Nous veillons à ce que la plateforme évolue en harmonie avec les besoins des enseignants et des apprenants.",
-        "BUTTON_TEXT": "Lire nos politiques"
+        "BUTTON_TEXT": "Voir sur GitHub"
       }
     },
     "NEED_SUPPORT": {
-      "TITLE": "Besoin d'aide ?",
-      "DESCRIPTION": "Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email support@graasp.org est ouverte et notre équipe répondra dans les plus brefs délais.",
+      "TITLE": "Besoin d'aide ?",
+      "DESCRIPTION": "Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email <b>support@graasp.org</b> est ouverte et notre équipe répondra dans les plus brefs délais.",
       "BUTTON_TEXT": "Contact Us"
     },
     "USER_TESTIMONIES": {
@@ -374,8 +373,8 @@
       }
     },
     "BLOG": {
-      "LEAD_SENTENCE": "Graasp est en constante croissance !",
-      "TITLE": "Visitez notre blog pour découvrir toutes les dernières mises à jour !",
+      "LEAD_SENTENCE": "Graasp est en constante croissance !",
+      "TITLE": "Visitez notre blog pour découvrir toutes les dernières mises à jour !",
       "DESCRIPTION": "Découvrez les mises à jour, enrichissez votre expérience Graasp",
       "BUTTON_TEXT": "Visitez notre blog"
     }
@@ -400,7 +399,7 @@
       }
     },
     "TEAM": {
-      "TITLE": "Rencontre l'équipe !",
+      "TITLE": "Rencontre l'équipe !",
       "STATUSES": {
         "TITLE_PRESIDENT": "Président",
         "TITLE_MANAGING_DIRECTOR": "Directrice Générale",
@@ -426,7 +425,7 @@
     "TITLE": "Nous Contacter",
     "DESCRIPTION": "Nous apprécions les retours de nos utilisateurs. Que vous rencontriez un problème, souhaitiez nous parler d'une idée ou d'une fonctionnalité manquante, n'hésitez pas à nous en faire part !",
     "SUPPORT": {
-      "TITLE": "Vous êtes confronté à un problème ?",
+      "TITLE": "Vous êtes confronté à un problème ?",
       "DESCRIPTION": "Nous proposons une assistance pour les problèmes de connexion et de publication de contenu, ainsi que pour les questions générales liées au l'utilisation de Graasp. Envoyez-nous un e-mail et nous vous répondrons dans les plus brefs délais. Nous répondons sous 3 à 5 jours ouvrés.",
       "EMAIL": "support@graasp.org"
     },
@@ -435,8 +434,8 @@
       "DESCRIPTION": "Vous avez créé quelque chose de génial avec Graasp ? Envie de partager votre création ? Mentionnez-nous sur les réseaux sociaux ; nous serons ravis de repartager !"
     },
     "OTHER": {
-      "TITLE": "Autre chose ?",
-      "DESCRIPTION": "Avez-vous autre chose dont vous souhaitez discuter avec nous ?",
+      "TITLE": "Autre chose ?",
+      "DESCRIPTION": "Avez-vous autre chose dont vous souhaitez discuter avec nous ?",
       "EMAIL": "contact@graasp.org"
     }
   },
@@ -452,11 +451,11 @@
         "RESPONSE": "Vous pouvez créer un compte gratuitement."
       },
       "BUILDER_PLAYER_DIFFERENCE": {
-        "QUESTION": "Quelle est la différence entre Builder et Player ?",
+        "QUESTION": "Quelle est la différence entre Builder et Player ?",
         "RESPONSE": "Builder et Player sont deux interfaces disponibles dans Graasp. Les utilisateurs choisissent l'interface qu'ils souhaitent utiliser en fonction de leur utilisation. Traditionnellement, Builder est le mieux adapté pour créer le contenu éducatif, construire les leçons, ajouter des éléments et mettre à jour leurs paramètres. Player est principalement utilisé lors de la consommation du contenu créé. Les étudiants et autres lecteurs sont l'audience principale ciblée par cette interface."
       },
       "IMPORT_FROM_OTHER_PLATFORM": {
-        "QUESTION": "Comment importer mon contenu existant depuis une autre plateforme dans Graasp ?",
+        "QUESTION": "Comment importer mon contenu existant depuis une autre plateforme dans Graasp ?",
         "RESPONSE": "Vous pouvez glisser-déposer des documents, des images et d'autres médias riches. Nous prenons en charge le contenu H5P et une large gamme de contenus multimédias, audio, vidéo, images et liens Web. Nous n'avons actuellement pas de procédures spéciales pour importer à partir de plateformes spécifiques."
       }
     },
@@ -486,18 +485,18 @@
     },
     "DEVELOPERS": {
       "TITLE": "Développeurs",
-      "SUBTITLE": "Le développement vous intéresse ? Adoptez l'éducation ouverte avec Graasp !",
+      "SUBTITLE": "Le développement vous intéresse ? Adoptez l'éducation ouverte avec Graasp !",
       "DESCRIPTION": "Chez Graasp, nous croyons au pouvoir du logiciel libre autant qu'à l'éducation ouverte. C'est pourquoi nous partageons le code de nos services sur GitHub et invitons les développeurs à nous rejoindre dans notre mission de façonner le paysage de l'éducation numérique.",
       "GITHUB": {
         "TITLE": "Education ouverte",
-        "SUBTITLE": "Envie de collaborer ?",
+        "SUBTITLE": "Envie de collaborer ?",
         "BUTTON_TEXT": "Visiter le Dépôt",
-        "DESCRIPTION": "Visitez notre dépôt sur GitHub où nous collaborons activement et partageons du code, favorisant une approche de l'éducation axée sur la communauté. Contactez l'équipe si vous souhaitez commencer à collaborer !"
+        "DESCRIPTION": "Visitez notre dépôt sur GitHub où nous collaborons activement et partageons du code, favorisant une approche de l'éducation axée sur la communauté. Contactez l'équipe si vous souhaitez commencer à collaborer !"
       }
     },
     "HELP": {
-      "TITLE": "Besoin d'aide ? Contactez-nous",
-      "DESCRIPTION": "N'hésitez pas à nous contacter pour tout besoin ou question que vous pourriez avoir ! Nous nous ferons un plaisir de répondre à vos doutes et à vos curiosités.",
+      "TITLE": "Besoin d'aide ? Contactez-nous",
+      "DESCRIPTION": "N'hésitez pas à nous contacter pour tout besoin ou question que vous pourriez avoir ! Nous nous ferons un plaisir de répondre à vos doutes et à vos curiosités.",
       "CONTACT_FORM_BUTTON": "Aller au formulaire de contact"
     }
   },

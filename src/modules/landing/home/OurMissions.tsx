@@ -9,8 +9,12 @@ import {
   useTheme,
 } from '@mui/material';
 
+import { Link } from '@tanstack/react-router';
+
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
+
+import { GithubIcon } from '~landing/footer/icons';
 
 function Mission({
   title,
@@ -18,12 +22,16 @@ function Mission({
   children,
   imgSrc,
   buttonLink,
+  dataUmamiEvent,
+  buttonStartIcon,
 }: {
   title: string;
   buttonText: string;
   children: ReactNode;
   imgSrc: string;
   buttonLink: string;
+  dataUmamiEvent?: string;
+  buttonStartIcon?: ReactNode;
 }): JSX.Element {
   const theme = useTheme();
   const isMd = useMediaQuery(theme.breakpoints.only('md'));
@@ -67,11 +75,13 @@ function Mission({
           </Stack>
           <Stack>
             <ButtonLink
+              startIcon={buttonStartIcon}
               sx={isMd ? { width: 'fit-content' } : {}}
               to={buttonLink}
               variant="contained"
               size="large"
               color="secondary"
+              dataUmamiEvent={dataUmamiEvent}
             >
               {buttonText}
             </ButtonLink>
@@ -83,6 +93,7 @@ function Mission({
 }
 
 export function OurMissions(): JSX.Element {
+  const theme = useTheme();
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'HOME' });
 
   return (
@@ -96,12 +107,25 @@ export function OurMissions(): JSX.Element {
           buttonText={t('MISSIONS.RESEARCH.BUTTON_TEXT')}
           imgSrc="/illustration/landing-mission-research.svg"
           buttonLink="/contact-us"
+          dataUmamiEvent="missions-contact-us-button"
         >
           <Typography>
             <Trans
               i18nKey="MISSIONS.RESEARCH.DESCRIPTION_1"
               t={t}
-              components={{ a: <a href="/about-us#papers">link</a> }}
+              components={{
+                a: (
+                  <Link
+                    onClick={() => {
+                      window.umami.track('landing-home-missions-papers-link');
+                    }}
+                    hash="papers"
+                    to="/about-us"
+                  >
+                    link
+                  </Link>
+                ),
+              }}
             />
           </Typography>
           <Typography>{t('MISSIONS.RESEARCH.DESCRIPTION_2')}</Typography>
@@ -111,6 +135,7 @@ export function OurMissions(): JSX.Element {
           buttonText={t('MISSIONS.PRIVACY.BUTTON_TEXT')}
           imgSrc="/illustration/landing-mission-privacy.svg"
           buttonLink="/about-us"
+          dataUmamiEvent="about-us"
         >
           {t('MISSIONS.PRIVACY.DESCRIPTION')}
         </Mission>
@@ -118,7 +143,11 @@ export function OurMissions(): JSX.Element {
           title={t('MISSIONS.OPEN.TITLE')}
           buttonText={t('MISSIONS.OPEN.BUTTON_TEXT')}
           imgSrc="/illustration/landing-mission-open.svg"
-          buttonLink="/policy"
+          buttonLink="https://github.com/graasp"
+          buttonStartIcon={
+            <GithubIcon size={20} fill={theme.palette.secondary.contrastText} />
+          }
+          dataUmamiEvent="github"
         >
           <Typography>{t('MISSIONS.OPEN.DESCRIPTION_1')}</Typography>
           <Typography>{t('MISSIONS.OPEN.DESCRIPTION_2')}</Typography>

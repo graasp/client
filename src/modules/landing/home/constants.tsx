@@ -1,5 +1,11 @@
+import { theme } from '@/ui/theme';
+
 export const TEACHER_USER_STORY = 'teacher-story';
 export const RESEARCHER_USER_STORY = 'researcher-story';
+
+export const strongTag = (
+  <strong style={{ color: theme.palette.primary.main }} />
+);
 
 export const EN_CAPSULES = [
   {

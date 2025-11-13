@@ -29,23 +29,22 @@
       },
       "OPEN": {
         "TITLE": "We champion Openness and Transparency",
-        "DESCRIPTION_1": "Built on an open-source foundation, Graasp promotes transparency, trust, and collaboration.",
+        "DESCRIPTION_1": "As an open-source project, Graasp promotes transparency, trust, and collaboration.",
         "DESCRIPTION_2": "Its open nature encourages community contributions, continuous improvement, and adaptability. We ensure the platform evolves alongside the needs of educators and learners.",
-        "BUTTON_TEXT": "Read our policies"
+        "BUTTON_TEXT": "View on GitHub"
       }
     },
     "MESSAGES": {
       "CREATE": {
         "TITLE": "Digitize and Create Interactive Learning Materials",
-        "DESCRIPTION_1": "With Graasp, you can easily bring your teaching materials online, turning images, PDFs, and traditional resources into interactive digital lessons in minutes.",
-        "DESCRIPTION_2": "And what makes Graasp truly powerful is its ability to help you design engaging learning activities by integrating videos and interactive apps. You can create lessons that captivate students, ignite curiosity, and encourage active participation.",
+        "DESCRIPTION_1": "With Graasp, you can easily bring your <b>teaching materials online</b>, turning <b>images</b>, <b>PDFs</b>, and traditional resources into <b>interactive digital lessons</b> in minutes.",
+        "DESCRIPTION_2": "And what makes Graasp truly powerful is its ability to help you design <b>engaging learning activities</b> by integrating <b>videos</b> and <b>interactive apps</b>. You can create lessons that captivate students, ignite curiosity, and encourage active participation.",
         "BUTTON_TEXT": "Learn More",
         "CONTENT_TITLE": "Compose your learning material with interactive content"
       },
       "SHARE": {
         "TITLE": "Easily share with your audience",
-        "DESCRIPTION_1": "Share your content seamlessly with your audience. Limit access to just your class or open it up to a wider audience.",
-        "DESCRIPTION_2": "You stay in control of who sees what and when, whether it's a small group project or a classroom activity. Choose from different sharing options and adjust permissions at any time.",
+        "DESCRIPTION_1": "<b>Share your content</b> seamlessly with your audience. You stay in control of who sees what and when, whether it's a <b>small group project</b> or a <b>classroom activity</b>. Choose from <b>different sharing options</b> and adjust permissions at any time.",
         "BUTTON_TEXT": "Learn More",
         "MEMBERSHIPS": {
           "TITLE": "Decide who you invite",
@@ -58,7 +57,7 @@
       },
       "LIBRARY": {
         "TITLE": "Benefit and contribute to an Open Educational Resources (OER) Library",
-        "DESCRIPTION": "Collaboration is at the heart of Graasp Library, where educators and professionals come together to share, co-create, and learn. By sharing Open Educational Resources (OER), educators have access and contribute to a growing library of collective knowledge.",
+        "DESCRIPTION": "<b>Collaboration</b> is at the heart of <b>Graasp Library</b>, where educators and professionals come together to <b>share, co-create, and learn</b>. By sharing <b>Open Educational Resources</b> (OER), educators have access and contribute to a growing library of <b>collective knowledge</b>.",
         "LIBRARY_BUTTON_TEXT": "Go to Graasp Library",
         "OER_BUTTON_TEXT": "What are OERs?",
         "DISCOVER_TITLE": "Check out real activities from our users"
@@ -74,7 +73,7 @@
     },
     "NEED_SUPPORT": {
       "TITLE": "Need support?",
-      "DESCRIPTION": "We are happy to help if you have any questions, doubts or need guidance on how Graasp can fulfill your needs. Write to support@graasp.org and our team will come back to you as soon as possible.",
+      "DESCRIPTION": "We are happy to help if you have any questions, doubts or need guidance on how Graasp can fulfill your needs. Write to <b>support@graasp.org</b> and our team will come back to you as soon as possible.",
       "BUTTON_TEXT": "Contact Us"
     }
   },

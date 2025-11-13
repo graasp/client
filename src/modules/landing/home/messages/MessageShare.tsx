@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { Box, Grid, Stack, Typography, useTheme } from '@mui/material';
 
@@ -9,6 +9,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
 import { Message } from '../Message';
+import { strongTag } from '../constants';
 
 function PropCard({
   Icon,
@@ -50,16 +51,25 @@ function PropCard({
 }
 
 export function MessageShare() {
-  const { t } = useTranslation(NS.Landing, { keyPrefix: 'HOME' });
+  const { t } = useTranslation(NS.Landing, {
+    keyPrefix: 'HOME.MESSAGES.SHARE',
+  });
 
   return (
     <Stack gap={4}>
       <Message
-        title={t('MESSAGES.SHARE.TITLE')}
+        title={t('TITLE')}
         image="/illustration/landing-message-share.svg"
       >
-        <Typography>{t('MESSAGES.SHARE.DESCRIPTION_1')}</Typography>
-        <Typography>{t('MESSAGES.SHARE.DESCRIPTION_2')}</Typography>
+        <Typography>
+          <Trans
+            t={t}
+            i18nKey={'DESCRIPTION_1'}
+            components={{
+              b: strongTag,
+            }}
+          />
+        </Typography>
         <ButtonLink
           to="/features"
           sx={{
@@ -68,23 +78,24 @@ export function MessageShare() {
           }}
           color="secondary"
           variant="contained"
+          dataUmamiEvent="messages-share-button"
         >
-          {t('MESSAGES.SHARE.BUTTON_TEXT')}
+          {t('BUTTON_TEXT')}
         </ButtonLink>
       </Message>
       <Grid container spacing={2} direction="row">
         <Grid size={{ xs: 12, sm: 12, md: 6 }}>
           <PropCard
             Icon={FolderLockIcon}
-            title={t('MESSAGES.SHARE.MEMBERSHIPS.TITLE')}
-            description={t('MESSAGES.SHARE.MEMBERSHIPS.DESCRIPTION')}
+            title={t('MEMBERSHIPS.TITLE')}
+            description={t('MEMBERSHIPS.DESCRIPTION')}
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 12, md: 6 }}>
           <PropCard
             Icon={UsersIcon}
-            title={t('MESSAGES.SHARE.ITEM_LOGIN.TITLE')}
-            description={t('MESSAGES.SHARE.ITEM_LOGIN.DESCRIPTION')}
+            title={t('ITEM_LOGIN.TITLE')}
+            description={t('ITEM_LOGIN.DESCRIPTION')}
           />
         </Grid>
       </Grid>

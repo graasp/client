@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography, useTheme } from '@mui/material';
 
+import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
-import Button from '@/ui/buttons/Button/Button';
 
 function CallToAction() {
   const theme = useTheme();
@@ -24,14 +24,15 @@ function CallToAction() {
       <Typography variant="h2" textAlign="center" lineHeight={1.5}>
         {t('TEXT')}
       </Typography>
-      <Button
+      <ButtonLink
         variant="contained"
         size="large"
-        href="/auth/register"
-        withPadding
+        to="/auth/register"
+        dataUmamiEvent="call-to-action-register-button"
+        sx={{ px: 8 }}
       >
         {t('BUTTON_TEXT')}
-      </Button>
+      </ButtonLink>
     </Stack>
   );
 }

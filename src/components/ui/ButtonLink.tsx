@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { MouseEventHandler, forwardRef } from 'react';
 
 import { Button, ButtonProps } from '@mui/material';
 
@@ -9,9 +9,9 @@ import {
   useLinkProps,
 } from '@tanstack/react-router';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface MUIButtonProps extends Omit<ButtonProps, 'href'> {
   // Add any additional props you want to pass to the button
+  dataUmamiEvent?: string;
 }
 
 const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIButtonProps>(
@@ -21,6 +21,13 @@ const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIButtonProps>(
     // obtain fontweight, usually from activeProps
     const fw =
       'fontWeight' in linkProps ? (linkProps.fontWeight as string) : 'inherit';
+
+    const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+      props.onClick?.(e);
+      if (props.dataUmamiEvent) {
+        window.umami.track(props.dataUmamiEvent);
+      }
+    };
 
     return (
       <Button
@@ -33,6 +40,7 @@ const MUILinkComponent = forwardRef<HTMLAnchorElement, MUIButtonProps>(
           fontWeight: fw,
           ...props.sx,
         }}
+        onClick={onClick}
       />
     );
   },
