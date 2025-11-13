@@ -46,9 +46,11 @@ const itemsWithInvitations: DiscriminatedItem[] = [
 
 export const ITEMS_WITH_INVITATIONS = {
   items: [
-    itemsWithInvitations[0],
+    { ...itemsWithInvitations[0], permission: 'admin' },
     {
       ...itemsWithInvitations[1],
+      permission: 'admin',
+
       // for tests only
       memberships: [
         {

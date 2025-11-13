@@ -64,51 +64,51 @@ import {
 } from './utils';
 
 const {
-  buildGetCurrentMemberRoute,
-  buildUploadAvatarRoute,
-  buildPatchPublicProfileRoute,
-  buildPostMemberEmailUpdateRoute,
-  buildGetMemberStorageRoute,
-  buildGetItemGeolocationRoute,
-  buildGetItemChatRoute,
-  buildGetItemRoute,
-  buildGetItemLoginSchemaRoute,
-  buildDownloadFilesRoute,
-  buildGetItemPublishedInformationRoute,
-  buildAppListRoute,
-  buildGetLastItemValidationGroupRoute,
-  buildEditItemRoute,
-  buildItemUnpublishRoute,
-  buildGetMemberRoute,
   ITEMS_ROUTE,
-  buildUploadFilesRoute,
-  buildPostItemLoginSignInRoute,
-  buildPostItemVisibilityRoute,
-  buildPostItemFlagRoute,
-  buildExportItemChatRoute,
-  buildPostItemChatMessageRoute,
+  buildAppListRoute,
   buildClearItemChatRoute,
-  buildDeleteItemVisibilityRoute,
-  buildUploadItemThumbnailRoute,
-  buildImportZipRoute,
-  buildPostInvitationsRoute,
-  buildGetItemInvitationsForItemRoute,
   buildDeleteInvitationRoute,
-  buildPatchInvitationRoute,
-  buildPostUserCSVUploadWithTemplateRoute,
-  buildResendInvitationRoute,
-  buildPostUserCSVUploadRoute,
-  buildGetPublishedItemsForMemberRoute,
-  buildItemPublishRoute,
+  buildDeleteItemThumbnailRoute,
+  buildDeleteItemVisibilityRoute,
+  buildDeleteShortLinkRoute,
+  buildDownloadFilesRoute,
+  buildEditItemRoute,
+  buildExportItemChatRoute,
+  buildGetCurrentMemberRoute,
+  buildGetItemChatRoute,
+  buildGetItemGeolocationRoute,
+  buildGetItemInvitationsForItemRoute,
+  buildGetItemLoginSchemaRoute,
+  buildGetItemPublishedInformationRoute,
+  buildGetItemRoute,
+  buildGetLastItemValidationGroupRoute,
+  buildGetMemberRoute,
+  buildGetMemberStorageRoute,
   buildGetPublicationStatusRoute,
-  buildPostItemValidationRoute,
+  buildGetPublishedItemsForMemberRoute,
   buildGetShortLinkAvailableRoute,
   buildGetShortLinksItemRoute,
-  buildPostShortLinkRoute,
-  buildPatchShortLinkRoute,
-  buildDeleteShortLinkRoute,
-  buildDeleteItemThumbnailRoute,
   buildImportH5PRoute,
+  buildImportZipRoute,
+  buildItemPublishRoute,
+  buildItemUnpublishRoute,
+  buildPatchInvitationRoute,
+  buildPatchPublicProfileRoute,
+  buildPatchShortLinkRoute,
+  buildPostInvitationsRoute,
+  buildPostItemChatMessageRoute,
+  buildPostItemFlagRoute,
+  buildPostItemLoginSignInRoute,
+  buildPostItemValidationRoute,
+  buildPostItemVisibilityRoute,
+  buildPostMemberEmailUpdateRoute,
+  buildPostShortLinkRoute,
+  buildPostUserCSVUploadRoute,
+  buildPostUserCSVUploadWithTemplateRoute,
+  buildResendInvitationRoute,
+  buildUploadAvatarRoute,
+  buildUploadFilesRoute,
+  buildUploadItemThumbnailRoute,
 } = API_ROUTES;
 
 const checkMembership = ({ item }: { item: ItemForTest }) => {
@@ -1214,12 +1214,11 @@ export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      pathname: `/api/items/${ID_FORMAT}/parents`,
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/parents`),
     },
     ({ url, reply }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[3];
       const item = getItemById(items, itemId);
-
       if (!checkMembership({ item })) {
         return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
       }
@@ -1250,7 +1249,7 @@ export const mockGetTagsByItem = (items: ItemForTest[]): void => {
       url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags`),
     },
     ({ reply, url }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[2];
       const result = items.find(({ id }) => id === itemId)?.tags || [];
       return reply(result);
     },
@@ -1301,7 +1300,7 @@ export const mockGetLatestValidationGroup = (
       ),
     },
     ({ reply, url }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[2];
 
       const validationGroup = itemValidationGroups?.find(
         (ivg) => ivg.item.id === itemId,
@@ -1345,7 +1344,7 @@ export const mockAddBookmark = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1361,7 +1360,7 @@ export const mockDeleteBookmark = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1421,8 +1420,8 @@ export const mockGetItemInvitations = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/${buildGetItemInvitationsForItemRoute(ID_FORMAT)}`,
+      pathname: new RegExp(
+        `/${buildGetItemInvitationsForItemRoute(ID_FORMAT)}`,
       ),
     },
     ({ reply, url }) => {
@@ -2258,13 +2257,11 @@ export const mockGetOwnMembershipRequests = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/requests/own$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/requests/own$`),
     },
     ({ reply, url }) => {
-      const urlParams = url.split('/');
-      const itemId = urlParams[4];
+      const urlParams = new URL(url).pathname.split('/');
+      const itemId = urlParams[3];
 
       const mr = membershipRequests.find(
         ({ item, member }) =>
@@ -2282,7 +2279,7 @@ export const mockRequestMembership = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/requests$`),
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('requestMembership');
@@ -2322,7 +2319,7 @@ export const mockEnroll = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/enroll`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/enroll`),
     },
     ({ reply }) => {
       reply({ statusCode: StatusCodes.NO_CONTENT });
