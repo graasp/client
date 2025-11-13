@@ -66,12 +66,9 @@ import {
 const {
   buildGetCurrentMemberRoute,
   buildUploadAvatarRoute,
-  buildPatchMemberPasswordRoute,
-  buildGetOwnPublicProfileRoute,
   buildPatchPublicProfileRoute,
   buildPostMemberEmailUpdateRoute,
   buildGetMemberStorageRoute,
-  buildExportMemberDataRoute,
   buildGetItemGeolocationRoute,
   buildGetItemChatRoute,
   buildGetItemRoute,
@@ -148,7 +145,7 @@ export const mockGetOwnProfile = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/${buildGetOwnPublicProfileRoute()}`,
+      pathname: `/api/members/profile/own`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -584,11 +581,10 @@ export const mockGetMemberStorageFiles = (
   files = MEMBER_STORAGE_ITEM_RESPONSE,
   shouldThrowError = false,
 ): void => {
-  const route = new RegExp(`${API_HOST}/members/current/storage/files`);
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: route,
+      pathname: `/api/members/current/storage/files`,
     },
     ({ url, reply }) => {
       const params = new URL(url).searchParams;
@@ -638,7 +634,7 @@ export const mockUpdatePassword = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      pathname: `/${buildPatchMemberPasswordRoute()}`,
+      pathname: `/api/password`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -654,7 +650,7 @@ export const mockCreatePassword = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      pathname: `/password`,
+      pathname: `/api/password`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -688,7 +684,7 @@ export const mockExportData = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      pathname: `/${buildExportMemberDataRoute()}`,
+      pathname: `/api/members/export-data`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -701,20 +697,22 @@ export const mockExportData = (shouldThrowError: boolean): void => {
 };
 
 export const mockDeleteCurrentMember = (): void => {
+  // uses the generation
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      pathname: `/members/current`,
+      pathname: `/api/members/current`,
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('deleteCurrentMember');
 };
 
 export const mockGetPasswordStatus = (hasPassword: boolean): void => {
+  // uses the generation
   cy.intercept(
     {
       method: HttpMethod.Get,
-      pathname: `/members/current/password/status`,
+      pathname: `/api/members/current/password/status`,
     },
     ({ reply }) => reply({ hasPassword }),
   ).as('getPasswordStatus');
@@ -739,7 +737,7 @@ export const mockRequestPasswordReset = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/password/reset`,
+      pathname: `/api/password/reset`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -755,7 +753,7 @@ export const mockResetPassword = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: `${API_HOST}/password/reset`,
+      pathname: `/api/password/reset`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -771,7 +769,7 @@ export const mockLogin = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/login`,
+      pathname: `/api/login`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -1216,7 +1214,7 @@ export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/parents`),
+      pathname: `/api/items/${ID_FORMAT}/parents`,
     },
     ({ url, reply }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
@@ -1328,7 +1326,7 @@ export const mockGetItemBookmarks = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/items/bookmarks`,
+      pathname: `/api/items/bookmarks`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1798,7 +1796,7 @@ export const mockEditMember = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(`${API_HOST}/members/current`),
+      pathname: `/api/members/current`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
