@@ -16,7 +16,7 @@ describe('Success Content', () => {
       const { GRAASP, GRAASP_OTHER } = AUTH_MEMBERS;
       cy.visit('/auth/login');
 
-      cy.intercept('/login', ({ reply }) => {
+      cy.intercept('/api/login', ({ reply }) => {
         return reply({
           statusCode: StatusCodes.NO_CONTENT,
         });
@@ -55,7 +55,7 @@ describe('Success Content', () => {
       const { GRAASP, GRAASP_OTHER } = AUTH_MEMBERS;
       cy.visit('/auth/login');
 
-      cy.intercept('/login', ({ reply }) => {
+      cy.intercept('/api/login', ({ reply }) => {
         return reply({
           statusCode: StatusCodes.NO_CONTENT,
         });
@@ -68,7 +68,7 @@ describe('Success Content', () => {
       cy.signInByMailAndCheck(GRAASP);
 
       // checks so request body contains correct email
-      cy.intercept('/login', ({ body }) => {
+      cy.intercept('/api/login', ({ body }) => {
         expect(body.email).to.eq(GRAASP.email);
       });
 
@@ -79,11 +79,14 @@ describe('Success Content', () => {
 
   describe('Register', () => {
     beforeEach(() => {
-      cy.intercept({ method: 'post', pathname: '/register' }, ({ reply }) => {
-        return reply({
-          statusCode: StatusCodes.NO_CONTENT,
-        });
-      });
+      cy.intercept(
+        { method: 'post', pathname: '/api/register' },
+        ({ reply }) => {
+          return reply({
+            statusCode: StatusCodes.NO_CONTENT,
+          });
+        },
+      );
     });
     it('Back Button', () => {
       const { GRAASP, GRAASP_OTHER } = AUTH_MEMBERS;
@@ -124,7 +127,7 @@ describe('Success Content', () => {
       cy.signUpAndCheck(AUTH_MEMBERS.GRAASP, true);
 
       // checks so request body contains correct email
-      cy.intercept('/login', ({ body }) => {
+      cy.intercept('/api/login', ({ body }) => {
         expect(body.email).to.eq(AUTH_MEMBERS.GRAASP.email);
       });
 
