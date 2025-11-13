@@ -49,7 +49,7 @@
       }
     },
     "CALL_TO_ACTION": {
-      "TEXT": "Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp maintenant !",
+      "TEXT": "Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp !",
       "BUTTON_TEXT": "Créer un compte"
     },
     "MISSIONS": {
@@ -75,7 +75,7 @@
     "NEED_SUPPORT": {
       "TITLE": "Besoin d'aide ?",
       "DESCRIPTION": "Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email <b>support@graasp.org</b> est ouverte et notre équipe répondra dans les plus brefs délais.",
-      "BUTTON_TEXT": "Contact Us"
+      "BUTTON_TEXT": "Nous contacter"
     },
     "USER_TESTIMONIES": {
       "TITLE": "Ce que nos utilisateurs disent de nous",

@@ -1,17 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import { Grid, Stack, Typography } from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 
 import { Message } from '../Message';
-import { UserCapsuleExample } from '../UserCapsuleExample';
-import { getCapsulesByLang } from '../constants';
 import { strongTag } from '../constants';
 
 function MessageCreate() {
-  const { t, i18n } = useTranslation(NS.Landing, {
+  const { t } = useTranslation(NS.Landing, {
     keyPrefix: 'HOME.MESSAGES.CREATE',
   });
 
