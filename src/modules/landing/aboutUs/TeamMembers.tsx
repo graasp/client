@@ -36,11 +36,6 @@ function TeamMembers() {
       role: 'STATUSES.TITLE_VP_OUTREACH',
     },
     {
-      name: 'Sandy Ingram',
-      image: 'sandy.webp',
-      role: 'STATUSES.TITLE_VP_INNOVATION',
-    },
-    {
       name: 'Basile Spaenlehauer',
       image: 'basile.webp',
       role: 'STATUSES.TITLE_VP_TECHNOLOGY',
