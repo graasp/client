@@ -2236,7 +2236,7 @@ export const mockGetLinkMetadata = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/embedded-links/metadata*`),
+      pathname: new RegExp(`/api/items/embedded-links/metadata*`),
     },
     ({ reply, url }) => {
       let linkUrl = new URL(url).searchParams.get('link');
