@@ -38,7 +38,7 @@ export type GraaspButtonProps = {
   startIcon?: ReactNode;
   type?: ButtonProps['type'];
   variant?: ButtonProps['variant'];
-
+  withPadding?: boolean;
   role?: ButtonProps['role'];
 } & Pick<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'target'>;
 
@@ -59,6 +59,7 @@ export const GraaspButton = ({
   variant = 'contained',
   href,
   role,
+  withPadding,
   ...other
 }: GraaspButtonProps): JSX.Element => (
   <Button
@@ -79,6 +80,7 @@ export const GraaspButton = ({
     variant={variant}
     href={href}
     title={href}
+    sx={withPadding ? { px: 5 } : undefined}
     {...other}
   >
     {children}

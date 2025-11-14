@@ -5,6 +5,7 @@ import { Stack, Typography } from '@mui/material';
 import { NS } from '@/config/constants';
 
 import {
+  BeLEARN,
   EdTech,
   Epfl,
   GoLab,
@@ -42,6 +43,12 @@ export function Supporters() {
             height="3rem"
             Icon={Epfl}
             href="https://www.epfl.ch"
+          />
+          <SupporterLink
+            width="150px"
+            height="3rem"
+            Icon={BeLEARN}
+            href="https://belearn.swiss/en/"
           />
           <SupporterLink
             width="90px"

@@ -35,6 +35,7 @@ export function RightHeader({
             variant="contained"
             to="/home"
             endIcon={<ArrowRightIcon />}
+            dataUmamiEvent="header-go-to-graasp-button"
           >
             {translateLanding('NAV.GO_TO_GRAASP')}
           </ButtonLink>
@@ -58,6 +59,7 @@ export function RightHeader({
               itemId: user.item.id,
             }}
             endIcon={<ArrowRightIcon />}
+            dataUmamiEvent="header-go-to-item-button"
           >
             {translateLanding('NAV.GO_TO_ITEM', { name: user.item.name })}
           </ButtonLink>
@@ -70,8 +72,15 @@ export function RightHeader({
     <Stack gap={2} direction="row" id="leftTitleWrapper" alignItems="center">
       {showButtons ? (
         <>
-          <ButtonLink to="/auth/login">{t('LOG_IN.BUTTON_TEXT')}</ButtonLink>
-          <ButtonLink color="primary" variant="contained" to="/auth/register">
+          <ButtonLink to="/auth/login" dataUmamiEvent="header-login-button">
+            {t('LOG_IN.BUTTON_TEXT')}
+          </ButtonLink>
+          <ButtonLink
+            dataUmamiEvent="header-register-button"
+            color="primary"
+            variant="contained"
+            to="/auth/register"
+          >
             {t('REGISTER.BUTTON_TEXT')}
           </ButtonLink>
         </>

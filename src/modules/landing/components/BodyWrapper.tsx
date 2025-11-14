@@ -10,7 +10,7 @@ function BodyWrapper({ children }: { children: React.ReactNode }): JSX.Element {
       width="100%"
       alignItems="center"
       p={4}
-      gap={15}
+      gap={{ xs: 10, md: 18, lg: 23 }}
     >
       {children}
     </Stack>

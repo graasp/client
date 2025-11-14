@@ -7,7 +7,7 @@ import { Context } from '@graasp/sdk';
 import { AllowedContext } from './types';
 
 export const PRIMARY_COLOR = '#5050d2';
-export const SECONDARY_COLOR = '#d4b8ff';
+export const SECONDARY_COLOR = '#96CCFF';
 
 /**
  * Here we explicitly set primary and secondary text colors.
@@ -215,6 +215,8 @@ export const createGraaspTheme = () => {
       },
       secondary: {
         main: SECONDARY_COLOR,
+        contrastText: PRIMARY_COLOR,
+        dark: '#8888eeff',
       },
     },
     zIndex: {

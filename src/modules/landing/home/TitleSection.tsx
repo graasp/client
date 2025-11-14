@@ -18,7 +18,12 @@ export function TitleSection(): JSX.Element {
 
   return (
     <Stack>
-      <StyledBackgroundContainer direction="column" width="100%" px={8} py={10}>
+      <StyledBackgroundContainer
+        direction="column"
+        width="100%"
+        px={{ xs: 3, sm: 8 }}
+        py={10}
+      >
         <Stack
           component="section"
           direction="column"
@@ -83,7 +88,7 @@ export function TitleSection(): JSX.Element {
                 alignItems="center"
                 justifyContent={{ xs: 'center', lg: 'left' }}
               >
-                <Typography variant="subtitle1" color="white">
+                <Typography variant="subtitle1" color="white" noWrap>
                   {t('HOME.CAPTION')}
                 </Typography>
                 <SwitzerlandFlagIcon />
@@ -103,6 +108,7 @@ export function TitleSection(): JSX.Element {
                     background: 'white',
                     color: theme.palette.primary.main,
                   }}
+                  dataUmamiEvent="header-register-button"
                 >
                   {t('HOME.REGISTER_CALL_TO_ACTION')}
                 </ButtonLink>
