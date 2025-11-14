@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.33.0](https://github.com/graasp/client/compare/v2.32.1...v2.33.0) (2025-11-14)
+
+
+### Features
+
+* update landing content ([#1153](https://github.com/graasp/client/issues/1153)) ([32476b2](https://github.com/graasp/client/commit/32476b24fff7299d47caf07a98fd7438b97ec41d))
+* update landing design ([#1147](https://github.com/graasp/client/issues/1147)) ([1e418eb](https://github.com/graasp/client/commit/1e418eb72631855da6d48665518cb6d27f1fa362))
+
+
+### Bug Fixes
+
+* add login error message and dev mailbox ([#1150](https://github.com/graasp/client/issues/1150)) ([c38da33](https://github.com/graasp/client/commit/c38da333c5742dadcd858ce333b83459d2eb0900))
+* code coverage ([#1157](https://github.com/graasp/client/issues/1157)) ([6881f95](https://github.com/graasp/client/commit/6881f95d1a71c0a4843a61170f7e8954bfa51b12))
+* **deps:** update dependency i18next to v25.5.3 ([#1143](https://github.com/graasp/client/issues/1143)) ([3cac0b5](https://github.com/graasp/client/commit/3cac0b5824df60fd321c38940fc7d4d3c2d17a5a))
+* update to use alternative to deprecated TanStackRouterVite ([#1149](https://github.com/graasp/client/issues/1149)) ([6ff1b69](https://github.com/graasp/client/commit/6ff1b69b63acae356964b99edbeb44931595fe84))
+
 ## [2.32.1](https://github.com/graasp/client/compare/v2.32.0...v2.32.1) (2025-10-29)
 
 
