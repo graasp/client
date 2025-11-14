@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.33.1](https://github.com/graasp/client/compare/v2.33.0...v2.33.1) (2025-11-14)
+
+
+### Bug Fixes
+
+* remove sandy from team ([#1158](https://github.com/graasp/client/issues/1158)) ([91e117d](https://github.com/graasp/client/commit/91e117d15f9075a2b59fc35cdab87e956cc372a4))
+
 ## [2.33.0](https://github.com/graasp/client/compare/v2.32.1...v2.33.0) (2025-11-14)
 
 
