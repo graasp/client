@@ -1,5 +1,6 @@
 {
   "NAVBAR": {
+    "HOME": "Startseite",
     "GETTING_STARTED": "Erste Schritte",
     "FEATURES": "Merkmale",
     "LIBRARY": "Bibliothek",
@@ -10,6 +11,7 @@
     "SUBTITLE": "Ihre Lernplattform",
     "DESCRIPTION": "Eine <b>offene</b> und <b>kostenlose</b> Lernplattform zum einfachen <b>Erstellen</b> und <b>Teilen</b> interaktiver Lernmaterialien, einschließlich umfangreicher offener Bildungsressourcen.",
     "CAPTION": "Präsentiert von der Graasp Association mit Sitz in der Schweiz",
+    "REGISTER_CALL_TO_ACTION": "Jetzt starten",
     "LIBRARY_CALL_TO_ACTION": "Besuchen Sie die Bibliothek",
     "SUPPORTERS_LABEL": "Unterstützt von",
     "MISSIONS": {
@@ -504,6 +506,7 @@
     "TAG_LINE": "Entwickelt in der Schweiz von der Graasp Association",
     "CONTENT": {
       "TITLE": "Inhalt",
+      "HOME": "Startseite",
       "FEATURES": "Merkmale",
       "ABOUT_US": "Über uns",
       "SUPPORT": "Unterstützung",
