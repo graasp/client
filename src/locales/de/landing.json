@@ -7,58 +7,72 @@
   },
   "HOME": {
     "TITLE": "Graasp",
-    "SUBTITLE": "Ihre Lernerlebnisplattform",
-    "DESCRIPTION": "Zum Erstellen, Erkunden und Teilen ansprechender Bildungsressourcen, die interaktive und intelligente Elemente in aktive Lernszenarien für Bildung und Forschung integrieren.",
-    "REGISTER_CALL_TO_ACTION": "Ein Konto erstellen",
+    "SUBTITLE": "Ihre Lernplattform",
+    "DESCRIPTION": "Eine <b>offene</b> und <b>kostenlose</b> Lernplattform zum einfachen <b>Erstellen</b> und <b>Teilen</b> interaktiver Lernmaterialien, einschließlich umfangreicher offener Bildungsressourcen.",
+    "CAPTION": "Präsentiert von der Graasp Association mit Sitz in der Schweiz",
     "LIBRARY_CALL_TO_ACTION": "Besuchen Sie die Bibliothek",
     "SUPPORTERS_LABEL": "Unterstützt von",
-    "MISSION": {
-      "TITLE": "Unsere Vision",
-      "DESCRIPTION": "Unser Ziel ist es, Pädagogen dabei zu unterstützen, wertschöpfende digitale Technologien voll zu nutzen, um ihre Schüler in innovative Lernszenarien einzubinden und ihre digitalen Fähigkeiten zu entwickeln.",
-      "CALL_TO_ACTION_LABEL": "Möchten Sie mehr wissen?",
-      "CALL_TO_ACTION_BUTTON_TEXT": "Lernen Sie uns kennen"
+    "MISSIONS": {
+      "TITLE": "Unsere Missionen",
+      "RESEARCH": {
+        "TITLE": "Wir fördern die Bildungsforschung.",
+        "DESCRIPTION_1": "Zahlreiche wissenschaftliche Arbeiten und praktische Erfahrungen haben auf Graasp aufgebaut und es unterstützt. Dies unterstreicht seine Wirksamkeit bei der Förderung kollaborativen, forschenden Lernens und seinen bedeutenden Einfluss auf die Bildungstechnologie-Community. <a>Alle Arbeiten ansehen</a>",
+        "DESCRIPTION_2": "Benötigen Sie Unterstützung bei Ihrer Forschung? Zögern Sie nicht, uns zu kontaktieren – wir helfen Ihnen gerne.",
+        "BUTTON_TEXT": "Kontaktieren Sie uns"
+      },
+      "PRIVACY": {
+        "TITLE": "Wir schützen die Privatsphäre und die Datensouveränität.",
+        "DESCRIPTION": "Graasp wurde mit einem starken Fokus auf Datenschutz und Datensouveränität entwickelt und ermöglicht Nutzern die volle Kontrolle über ihre Daten, geschützt vor deren Missbrauch durch Dritte. Die Plattform wird in der Schweiz gehostet und vom gemeinnützigen Verein Graasp betrieben und profitiert von den strengen Schweizer Datenschutzgesetzen, die diese Grundprinzipien stärken.",
+        "BUTTON_TEXT": "Über den Verband"
+      },
+      "OPEN": {
+        "TITLE": "Wir setzen uns für Offenheit und Transparenz ein.",
+        "DESCRIPTION_1": "Als Open-Source-Projekt fördert Graasp Transparenz, Vertrauen und Zusammenarbeit.",
+        "DESCRIPTION_2": "Die offene Struktur fördert die Beteiligung der Gemeinschaft, kontinuierliche Verbesserung und Anpassungsfähigkeit. Wir stellen sicher, dass sich die Plattform entsprechend den Bedürfnissen von Lehrenden und Lernenden weiterentwickelt.",
+        "BUTTON_TEXT": "Auf GitHub ansehen"
+      }
     },
-    "PUZZLE": {
-      "TITLE": "Eine All-in-One-Plattform, wie?",
-      "BUILDER": {
-        "DESCRIPTION": "Erstellen Sie Ihre eigenen interaktiven und intelligenten Bildungsressourcen mit dem <strong>Builder</strong>",
-        "BUTTON_TEXT": "Erstellen"
+    "MESSAGES": {
+      "CREATE": {
+        "TITLE": "Digitalisieren und Erstellen interaktiver Lernmaterialien",
+        "DESCRIPTION_1": "Mit Graasp können Sie Ihre <b>Lehrmaterialien</b> ganz einfach online stellen und <b>Bilder</b>, <b>PDFs</b> und traditionelle Ressourcen innerhalb von Minuten in <b>interaktive digitale Lektionen</b> verwandeln.",
+        "DESCRIPTION_2": "Die wahre Stärke von Graasp liegt in seiner Fähigkeit, Sie bei der Gestaltung ansprechender Lernaktivitäten zu unterstützen, indem Sie Videos und interaktive Apps integrieren. So können Sie Lektionen erstellen, die Schüler fesseln, ihre Neugier wecken und zur aktiven Teilnahme anregen.",
+        "BUTTON_TEXT": "Mehr erfahren",
+        "CONTENT_TITLE": "Gestalten Sie Ihr Lernmaterial mit interaktiven Inhalten"
       },
-      "PLAYER": {
-        "DESCRIPTION": "Binden Sie Ihre Schüler mit dem <strong>Player</strong> in aktive Lernszenarien ein",
-        "BUTTON_TEXT": "Erfahrung"
-      },
-      "ANALYTICS": {
-        "DESCRIPTION": "Gewinnen Sie wertvolle Einblicke und erkunden Sie Dashboards mit <strong>Analytics</strong>",
-        "BUTTON_TEXT": "Analysieren"
+      "SHARE": {
+        "TITLE": "Teilen Sie es ganz einfach mit Ihrer Klasse und Ihren Kollegen.",
+        "DESCRIPTION_1": "Teilen Sie Ihre Inhalte nahtlos mit Ihrer Zielgruppe. Sie behalten die Kontrolle darüber, wer was wann sieht – egal ob es sich um ein Gruppenprojekt oder eine Unterrichtsaktivität handelt. Wählen Sie aus verschiedenen Freigabeoptionen und passen Sie die Berechtigungen jederzeit an.",
+        "BUTTON_TEXT": "Mehr erfahren",
+        "MEMBERSHIPS": {
+          "TITLE": "Überlege dir, wen du einlädst.",
+          "DESCRIPTION": "Nur von Ihnen autorisierte Personen haben Zugriff auf Ihre Inhalte. Sie behalten die Kontrolle und können Zugriffsanfragen vor der Genehmigung prüfen."
+        },
+        "ITEM_LOGIN": {
+          "TITLE": "Einfacher Zugang für die Teilnehmer",
+          "DESCRIPTION": "Teilen Sie Ihre Inhalte über einen privaten Link mit der Option, ein Passwort hinzuzufügen. Ideal für Teilnehmer ohne E-Mail-Adresse."
+        }
       },
       "LIBRARY": {
-        "DESCRIPTION": "Entdecken und teilen Sie offene Bildungsressourcen in unserer <strong>Bibliothek</strong>",
-        "BUTTON_TEXT": "Erkunden"
+        "TITLE": "Nutzen Sie eine Bibliothek für offene Bildungsressourcen (OER) und tragen Sie dazu bei.",
+        "DESCRIPTION": "Zusammenarbeit steht im Mittelpunkt der Grasp Library, wo Pädagogen und Fachkräfte zusammenkommen, um Wissen auszutauschen, gemeinsam Inhalte zu entwickeln und voneinander zu lernen. Durch das Teilen von offenen Bildungsressourcen (OER) erhalten Pädagogen Zugang zu einer wachsenden Bibliothek kollektiven Wissens und tragen aktiv dazu bei.",
+        "LIBRARY_BUTTON_TEXT": "Gehe zur Graasp-Bibliothek",
+        "OER_BUTTON_TEXT": "Was sind OERs?",
+        "DISCOVER_TITLE": "Sehen Sie sich echte Aktivitäten unserer Nutzer an."
       }
     },
-    "USER_STORY": {
-      "TEACHER": {
-        "LEADING_SENTENCE": "Sind Sie Lehrer und möchten die Erstellung digitaler Inhalte optimieren?",
-        "TITLE": "Erstellen Sie Ihr Material mit Graasp",
-        "USE_CASE_1": "Integrieren Sie interaktive Apps in Ihr Unterrichtsmaterial",
-        "USE_CASE_2": "Gemeinsames Erstellen und Teilen von Ressourcen mit Kollegen",
-        "USE_CASE_3": "Entdecken Sie detaillierte Analysen über Ihre Schüler",
-        "BUTTON_TEXT": "Beginnen Sie noch heute",
-        "IMAGE_ATTRIBUTION": "Foto von <author>Tra Nguyen</author> auf <image>Unsplash</image>"
-      },
-      "RESEARCHER": {
-        "LEADING_SENTENCE": "Sind Sie ein Forscher auf der Suche nach einer Plattform, die Datenerfassung und interaktive Lernerfahrungen nahtlos integriert?",
-        "TITLE": "Beginnen Sie mit der Nutzung von Graasp für Ihre Forschung",
-        "USE_CASE_1": "Profitieren Sie von einer sicheren Umgebung für Forschungsuntersuchungen",
-        "USE_CASE_2": "Durchführen von Tests unter verschiedenen Versuchsbedingungen",
-        "USE_CASE_3": "Interagieren Sie mit Kollegen, die digitale Lernwissenschaften vorantreiben",
-        "BUTTON_TEXT": "Jetzt registrieren"
-      }
+    "CALL_TO_ACTION": {
+      "TEXT": "Werden Sie Teil von Graasp und revolutionieren Sie Ihren Unterricht mit interaktiven Lernwerkzeugen!",
+      "BUTTON_TEXT": "Jetzt starten"
     },
     "USER_TESTIMONIES": {
       "TITLE": "Was unsere Nutzer über uns sagen",
       "JOIN_US": "Kommen Sie zu uns und begeben Sie sich auf eine vielversprechende Reise in Sachen Bildung und berufliche Entwicklung!"
+    },
+    "NEED_SUPPORT": {
+      "TITLE": "Benötigen Sie Unterstützung?",
+      "DESCRIPTION": "Wir helfen Ihnen gerne weiter, wenn Sie Fragen oder Zweifel haben oder Unterstützung bei der Nutzung von Graasp für Ihre Bedürfnisse benötigen. Schreiben Sie an <b>support@graasp.org</b>, und unser Team meldet sich schnellstmöglich bei Ihnen.",
+      "BUTTON_TEXT": "Kontaktieren Sie uns"
     }
   },
   "TERMS": {
@@ -490,7 +504,6 @@
     "TAG_LINE": "Entwickelt in der Schweiz von der Graasp Association",
     "CONTENT": {
       "TITLE": "Inhalt",
-      "HOME": "Heim",
       "FEATURES": "Merkmale",
       "ABOUT_US": "Über uns",
       "SUPPORT": "Unterstützung",
@@ -511,6 +524,7 @@
     }
   },
   "NAV": {
-    "GO_TO_GRAASP": "Erste Schritte"
+    "GO_TO_GRAASP": "Erste Schritte",
+    "GO_TO_ITEM": "Zurück zu '{{name}}'"
   }
 }
