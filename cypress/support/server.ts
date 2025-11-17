@@ -422,9 +422,7 @@ export const mockEditItemMembershipForItem = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`),
     },
     ({ reply }) => {
       reply({
@@ -438,9 +436,7 @@ export const mockDeleteItemMembershipForItem = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`),
     },
     ({ reply }) => {
       reply({
@@ -1398,7 +1394,7 @@ export const mockPostInvitations = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${buildPostInvitationsRoute(ID_FORMAT)}`),
+      pathname: new RegExp(`/api/${buildPostInvitationsRoute(ID_FORMAT)}`),
     },
     ({ reply, body, url }) => {
       if (shouldThrowError) {
@@ -1749,7 +1745,7 @@ export const mockPostItemMembership = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2324,8 +2320,8 @@ export const mockRejectMembershipRequest = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/requests/${ID_FORMAT}`,
+      pathname: new RegExp(
+        `/api/items/${ID_FORMAT}/memberships/requests/${ID_FORMAT}`,
       ),
     },
     ({ reply }) => {
