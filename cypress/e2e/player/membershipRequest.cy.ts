@@ -9,7 +9,6 @@ import {
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../fixtures/members';
-import { API_HOST } from '../../support/env';
 import { ID_FORMAT } from '../../support/utils';
 import { buildContentPagePath } from './utils';
 
@@ -42,9 +41,7 @@ describe('Membership Request', () => {
       cy.intercept(
         {
           method: HttpMethod.Post,
-          url: new RegExp(
-            `${API_HOST}/items/${ID_FORMAT}/memberships/requests$`,
-          ),
+          pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/requests$`),
         },
         ({ reply }) => {
           reply({

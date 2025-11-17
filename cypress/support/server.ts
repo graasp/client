@@ -248,12 +248,24 @@ export const mockSignOut = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: '/logout',
+      pathname: '/api/logout',
     },
     ({ reply }) => {
       reply(redirectionReply);
     },
   ).as('signOut');
+};
+
+export const mockNextMaintenance = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: '/api/maintenance/next',
+    },
+    ({ reply }) => {
+      reply({ body: null });
+    },
+  ).as('nextMaintenance');
 };
 
 export const mockPostItemLogin = (
