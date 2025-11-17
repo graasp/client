@@ -28,6 +28,7 @@ import {
   isRootItem,
 } from '@graasp/sdk';
 
+import { CyHttpMessages } from 'cypress/types/net-stubbing';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
@@ -65,7 +66,6 @@ import {
 
 const {
   ITEMS_ROUTE,
-  buildAppListRoute,
   buildClearItemChatRoute,
   buildDeleteInvitationRoute,
   buildDeleteItemThumbnailRoute,
@@ -183,7 +183,7 @@ export const mockGetCurrentMember = (
   currentGuest: CompleteGuest | null,
   shouldThrowError = false,
 ): void => {
-  const handler = ({ reply }) => {
+  const handler = ({ reply }: CyHttpMessages.IncomingHttpRequest) => {
     // simulate member accessing without log in
     if (currentMember == null) {
       if (currentGuest == null) {
