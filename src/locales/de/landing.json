@@ -9,7 +9,7 @@
   "HOME": {
     "TITLE": "Graasp",
     "SUBTITLE": "Ihre Lernplattform",
-    "DESCRIPTION": "Eine <b>offene</b> und <b>kostenlose</b> Lernplattform zum einfachen <b>Erstellen</b> und <b>Teilen</b> interaktiver Lernmaterialien, einschließlich umfangreicher offener Bildungsressourcen.",
+    "DESCRIPTION": "Eine <b>offene</b> und <b>kostenlose</b> Lernplattform zum einfachen <b>Erstellen</b> und <b>Teilen</b> interaktiver Lernmaterialien, einschliesslich umfangreicher offener Bildungsressourcen.",
     "CAPTION": "Präsentiert von der Graasp Association mit Sitz in der Schweiz",
     "REGISTER_CALL_TO_ACTION": "Jetzt starten",
     "LIBRARY_CALL_TO_ACTION": "Besuchen Sie die Bibliothek",
@@ -24,8 +24,8 @@
       },
       "PRIVACY": {
         "TITLE": "Wir schützen die Privatsphäre und die Datensouveränität.",
-        "DESCRIPTION": "Graasp wurde mit einem starken Fokus auf Datenschutz und Datensouveränität entwickelt und ermöglicht Nutzern die volle Kontrolle über ihre Daten, geschützt vor deren Missbrauch durch Dritte. Die Plattform wird in der Schweiz gehostet und vom gemeinnützigen Verein Graasp betrieben und profitiert von den strengen Schweizer Datenschutzgesetzen, die diese Grundprinzipien stärken.",
-        "BUTTON_TEXT": "Über den Verband"
+        "DESCRIPTION": "Graasp wurde mit einem starken Fokus auf Datenschutz und Datensouveränität entwickelt und ermöglicht Nutzern die volle Kontrolle über ihre Daten. Wir teilen Ihre Daten nicht. Die Plattform wird in der Schweiz gehostet und vom gemeinnützigen Verein Graasp betrieben und profitiert von den strengen Schweizer Datenschutzgesetzen, die diese Grundprinzipien stärken.",
+        "BUTTON_TEXT": "Über den Verein"
       },
       "OPEN": {
         "TITLE": "Wir setzen uns für Offenheit und Transparenz ein.",
@@ -58,7 +58,7 @@
       "LIBRARY": {
         "TITLE": "Nutzen Sie eine Bibliothek für offene Bildungsressourcen (OER) und tragen Sie dazu bei.",
         "DESCRIPTION": "Zusammenarbeit steht im Mittelpunkt der Grasp Library, wo Pädagogen und Fachkräfte zusammenkommen, um Wissen auszutauschen, gemeinsam Inhalte zu entwickeln und voneinander zu lernen. Durch das Teilen von offenen Bildungsressourcen (OER) erhalten Pädagogen Zugang zu einer wachsenden Bibliothek kollektiven Wissens und tragen aktiv dazu bei.",
-        "LIBRARY_BUTTON_TEXT": "Gehe zur Graasp-Bibliothek",
+        "LIBRARY_BUTTON_TEXT": "Graasp Bibliothek besuchen",
         "OER_BUTTON_TEXT": "Was sind OERs?",
         "DISCOVER_TITLE": "Sehen Sie sich echte Aktivitäten unserer Nutzer an."
       }
