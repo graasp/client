@@ -25,6 +25,7 @@ export default defineConfig({
     baseUrl: `http://localhost:${process.env.VITE_PORT ?? 3333}`,
     defaultCommandTimeout: 7000,
     requestTimeout: 8000,
+    numTestsKeptInMemory: 25,
   },
   component: {
     devServer: {
@@ -33,4 +34,5 @@ export default defineConfig({
     },
     env: ENV,
   },
+  experimentalMemoryManagement: true,
 });

@@ -14,7 +14,7 @@ import {
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 describe('Export Folder as ZIP', () => {
-  const buildExportZipUrl = (itemId: string) => `/items/${itemId}/export`;
+  const buildExportZipUrl = (itemId: string) => `/api/items/${itemId}/export`;
 
   it('Export ZIP exists in item menu for folder', () => {
     const item = PackedFolderItemFactory();

@@ -518,7 +518,7 @@ export const mockPostItemFlag = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${buildPostItemFlagRoute(ID_FORMAT)}$`),
+      pathname: new RegExp(`/api/${buildPostItemFlagRoute(ID_FORMAT)}$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1254,10 +1254,10 @@ export const mockGetTagsByItem = (items: ItemForTest[]): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags`),
     },
     ({ reply, url }) => {
-      const itemId = new URL(url).pathname.split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[3];
       const result = items.find(({ id }) => id === itemId)?.tags || [];
       return reply(result);
     },
@@ -1268,7 +1268,7 @@ export const mockAddTag = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags`),
     },
     ({ reply }) => reply({ status: StatusCodes.NO_CONTENT }),
   ).as('addTag');
@@ -1278,7 +1278,7 @@ export const mockRemoveTag = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags/${ID_FORMAT}`),
     },
     ({ reply }) => reply({ status: StatusCodes.NO_CONTENT }),
   ).as('removeTag');
