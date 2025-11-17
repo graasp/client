@@ -1060,7 +1060,7 @@ export const mockClearItemChat = (
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/${buildClearItemChatRoute(ID_FORMAT)}$`),
+      pathname: new RegExp(`/api/${buildClearItemChatRoute(ID_FORMAT)}$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
