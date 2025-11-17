@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.34.0](https://github.com/graasp/client/compare/v2.33.0...v2.34.0) (2025-11-17)
+
+
+### Features
+
+* add german translations for landing homepage ([#1160](https://github.com/graasp/client/issues/1160)) ([91f495e](https://github.com/graasp/client/commit/91f495ecc964a0014242b005b97fdb3240650425))
+
+
+### Bug Fixes
+
+* **deps:** update dependency @sentry/react to v9.46.0 ([#1069](https://github.com/graasp/client/issues/1069)) ([f55f39b](https://github.com/graasp/client/commit/f55f39b48cd76df1f02d79b5587e757649bfe064))
+* remove sandy from team ([#1158](https://github.com/graasp/client/issues/1158)) ([91e117d](https://github.com/graasp/client/commit/91e117d15f9075a2b59fc35cdab87e956cc372a4))
+
 ## [2.33.0](https://github.com/graasp/client/compare/v2.32.1...v2.33.0) (2025-11-14)
 
 
