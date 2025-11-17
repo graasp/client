@@ -54,7 +54,8 @@ describe('Edit Folder', () => {
 
     cy.fillFolderModal(
       {
-        // put an empty name for the folder
+        name: item.name,
+        // put a value too long for the folder description
         description: 'x'.repeat(MAX_DESCRIPTION_LENGTH + 10),
       },
       { confirm: false },
