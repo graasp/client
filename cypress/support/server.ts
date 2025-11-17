@@ -102,7 +102,6 @@ const {
   buildPostItemValidationRoute,
   buildPostItemVisibilityRoute,
   buildPostMemberEmailUpdateRoute,
-  buildPostShortLinkRoute,
   buildPostUserCSVUploadRoute,
   buildPostUserCSVUploadWithTemplateRoute,
   buildResendInvitationRoute,
@@ -2135,8 +2134,8 @@ export const mockCheckShortLink = (shouldAliasBeAvailable: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/${buildGetShortLinkAvailableRoute(SHORTLINK_FORMAT)}`,
+      pathname: new RegExp(
+        `/api/${buildGetShortLinkAvailableRoute(SHORTLINK_FORMAT)}`,
       ),
     },
     ({ reply }) => {
@@ -2156,7 +2155,7 @@ export const mockPostShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${buildPostShortLinkRoute()}`),
+      pathname: '/api/items/short-links',
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
@@ -2177,8 +2176,8 @@ export const mockPatchShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(
-        `${API_HOST}/${buildPatchShortLinkRoute(SHORTLINK_FORMAT)}`,
+      pathname: new RegExp(
+        `/api/${buildPatchShortLinkRoute(SHORTLINK_FORMAT)}`,
       ),
     },
     ({ reply, body, url }) => {
