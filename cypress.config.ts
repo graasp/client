@@ -1,4 +1,3 @@
-import setupCoverage from '@cypress/code-coverage/task.js';
 import { defineConfig } from 'cypress';
 
 const ENV = {
@@ -17,9 +16,9 @@ export default defineConfig({
     // needed for redirection tests to pass
     chromeWebSecurity: false,
     env: ENV,
-    setupNodeEvents(on, config) {
+    setupNodeEvents(_on, config) {
       // implement node event listeners here
-      setupCoverage(on, config);
+      // setupCoverage(on, config);
       return config;
     },
     baseUrl: `http://localhost:${process.env.VITE_PORT ?? 3333}`,
