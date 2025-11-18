@@ -214,7 +214,6 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "cypress",
       "esbuild",
       "msw",
       "unrs-resolver"
