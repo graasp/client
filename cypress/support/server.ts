@@ -1391,41 +1391,53 @@ export const mockPostInvitations = (
   items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
+  const handler = ({
+    reply,
+    body,
+    url,
+  }: CyHttpMessages.IncomingHttpRequest) => {
+    if (shouldThrowError) {
+      return reply({ statusCode: StatusCodes.BAD_REQUEST });
+    }
+
+    const itemId = url.split('/')[4];
+    const invitations = items.find(({ id }) => id === itemId)?.invitations;
+
+    const result: {
+      data: { [key: string]: Invitation };
+      errors: { statusCode: number; message: string; data: unknown }[];
+    } = {
+      data: {},
+      errors: [],
+    };
+    body.invitations.forEach((inv: Parameters<typeof buildInvitation>[0]) => {
+      const thisInv = invitations?.find(({ email }) => email === inv.email);
+      if (thisInv) {
+        result.errors.push({
+          statusCode: StatusCodes.BAD_REQUEST,
+          message: 'An invitation already exists for this email',
+          data: inv,
+        });
+      } else {
+        result.data[inv.email] = buildInvitation(inv);
+      }
+    });
+    return reply({ status: StatusCodes.NO_CONTENT });
+  };
   cy.intercept(
     {
       method: HttpMethod.Post,
       pathname: new RegExp(`/api/${buildPostInvitationsRoute(ID_FORMAT)}`),
     },
-    ({ reply, body, url }) => {
-      if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST });
-      }
-
-      const itemId = url.split('/')[4];
-      const invitations = items.find(({ id }) => id === itemId)?.invitations;
-
-      const result: {
-        data: { [key: string]: Invitation };
-        errors: { statusCode: number; message: string; data: unknown }[];
-      } = {
-        data: {},
-        errors: [],
-      };
-      body.invitations.forEach((inv: Parameters<typeof buildInvitation>[0]) => {
-        const thisInv = invitations?.find(({ email }) => email === inv.email);
-        if (thisInv) {
-          result.errors.push({
-            statusCode: StatusCodes.BAD_REQUEST,
-            message: 'An invitation already exists for this email',
-            data: inv,
-          });
-        } else {
-          result.data[inv.email] = buildInvitation(inv);
-        }
-      });
-      return reply({ status: StatusCodes.NO_CONTENT });
-    },
+    handler,
   ).as('postInvitations');
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      url: new RegExp(`${API_HOST}/${buildPostInvitationsRoute(ID_FORMAT)}`),
+    },
+    handler,
+  ).as('postInvitationsExternal');
 };
 
 export const mockGetItemInvitations = (
