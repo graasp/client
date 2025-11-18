@@ -7,9 +7,9 @@ import { hslToRgb } from '@mui/material';
  */
 export const getColorFromId = (id: string): string => {
   const rawHue = id.slice(0, 2);
-  const hue = (parseInt(rawHue, 16) / 256) * 360;
+  const hue = (Number.parseInt(rawHue, 16) / 256) * 360;
   const rawSaturation = id[2];
-  const saturation = 65 + (16 - parseInt(rawSaturation, 16));
+  const saturation = 65 + (16 - Number.parseInt(rawSaturation, 16));
   const newRgb = hslToRgb(`hsl(${hue}, ${saturation}, ${60})`);
   return newRgb;
 };
