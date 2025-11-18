@@ -42,7 +42,7 @@ describe('Email and Password Validation', () => {
 
     const { INVALID_EMAIL: WRONG_EMAIL, GRAASP } = AUTH_MEMBERS;
     const loginPageUrl = new URL(
-      `${Cypress.config().baseUrl}/${LOG_IN_PAGE_PATH}`,
+      `${Cypress.config().baseUrl}${LOG_IN_PAGE_PATH}`,
     );
     loginPageUrl.searchParams.set('url', redirectionLink);
     cy.visit(loginPageUrl.href);

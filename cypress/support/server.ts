@@ -93,7 +93,6 @@ const {
   buildItemPublishRoute,
   buildItemUnpublishRoute,
   buildPatchInvitationRoute,
-  buildPatchPublicProfileRoute,
   buildPatchShortLinkRoute,
   buildPostInvitationsRoute,
   buildPostItemChatMessageRoute,
@@ -165,7 +164,7 @@ export const mockEditPublicProfile = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: `${API_HOST}/${buildPatchPublicProfileRoute()}`,
+    pathname: `/api/members/profile`,
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
