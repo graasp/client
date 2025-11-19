@@ -172,7 +172,7 @@
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/ui": "3.2.4",
     "concurrently": "9.2.1",
-    "cypress": "15.3.0",
+    "cypress": "15.6.0",
     "env-cmd": "10.1.0",
     "eslint": "9.36.0",
     "eslint-config-prettier": "10.1.8",
@@ -214,6 +214,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
+      "cypress",
       "esbuild",
       "msw",
       "unrs-resolver"
