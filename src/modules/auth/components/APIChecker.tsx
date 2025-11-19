@@ -13,7 +13,6 @@ import {
 import { RotateCcwIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import { API_HOST } from '@/config/env';
 import { axios, useQuery } from '@/config/queryClient';
 
 import { AUTH } from '~auth/langs';
@@ -23,10 +22,7 @@ export function APIChecker(): JSX.Element | null {
 
   const { isSuccess, isLoading, refetch, isError } = useQuery({
     queryKey: ['apiStatus'],
-    queryFn: () =>
-      axios
-        .get(`${API_HOST}/status`, { withCredentials: false })
-        .then(({ data }) => data),
+    queryFn: () => axios.get(`/api/status`).then(({ data }) => data),
     retry: 0,
   });
 

@@ -9,7 +9,6 @@ import {
   buildSelectExportFormatID,
 } from '../../../src/modules/analytics/config/selectors';
 import { ITEM_TO_EXPORT } from '../../fixtures/analytics/items';
-import { API_HOST } from '../../support/env';
 
 describe('Check exporting analytics for allowed formats', () => {
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('Check exporting analytics for allowed formats', () => {
         cy.intercept(
           {
             method: HttpMethod.Post,
-            url: `${API_HOST}/items/${ITEM_TO_EXPORT.id}/actions/export?format=${format}`,
+            pathname: `/api/items/${ITEM_TO_EXPORT.id}/actions/export`,
           },
           ({ reply }) => {
             return reply({});

@@ -133,6 +133,7 @@ import {
   mockImportZip,
   mockLogin,
   mockMoveItems,
+  mockNextMaintenance,
   mockPatchAppData,
   mockPatchInvitation,
   mockPatchShortLink,
@@ -362,6 +363,7 @@ Cypress.Commands.add(
     mockSignInRedirection();
 
     mockSignOut();
+    mockNextMaintenance();
 
     mockEditCurrentMember(cachedCurrentMember, editMemberError);
     mockEditPublicProfile(cachedCurrentProfile, editPublicProfileError);

@@ -15,7 +15,7 @@ import { checkInvitationFields, fillSignUpLayout } from './util';
 describe('Must accept all terms to register', () => {
   beforeEach(() => {
     cy.visit('/auth/register');
-    cy.intercept({ method: 'post', pathname: '/register' }, ({ reply }) => {
+    cy.intercept({ method: 'post', pathname: '/api/register' }, ({ reply }) => {
       return reply({
         statusCode: StatusCodes.NO_CONTENT,
       });
@@ -40,7 +40,7 @@ describe('Must accept all terms to register', () => {
 describe('Name and Email Validation', () => {
   beforeEach(() => {
     cy.visit('/auth/register');
-    cy.intercept({ method: 'post', pathname: '/register' }, ({ reply }) => {
+    cy.intercept({ method: 'post', pathname: '/api/register' }, ({ reply }) => {
       return reply({
         statusCode: StatusCodes.NO_CONTENT,
       });
@@ -129,7 +129,7 @@ describe('Invitations', () => {
 describe('Defining analytics on register', () => {
   beforeEach(() => {
     cy.visit('/auth/register');
-    cy.intercept({ method: 'post', pathname: '/register' }, ({ reply }) => {
+    cy.intercept({ method: 'post', pathname: '/api/register' }, ({ reply }) => {
       return reply({
         statusCode: StatusCodes.NO_CONTENT,
       });

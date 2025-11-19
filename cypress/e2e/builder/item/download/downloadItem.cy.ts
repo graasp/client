@@ -15,7 +15,8 @@ import {
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
-const buildExportFileUrl = (itemId: string) => `/items/${itemId}/download-file`;
+const buildExportFileUrl = (itemId: string) =>
+  `/api/items/${itemId}/download-file`;
 
 describe('Download Item', () => {
   it('Download menu item should exist for document', () => {
