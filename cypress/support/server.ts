@@ -164,7 +164,7 @@ export const mockEditPublicProfile = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-    pathname: `/api/members/profile`,
+      pathname: `/api/members/profile`,
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
@@ -736,7 +736,7 @@ export const mockGetStatus = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/status`,
+      pathname: `/api/status`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
