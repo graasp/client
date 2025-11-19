@@ -61,14 +61,13 @@ jobs:
         shell: bash
 
       - name: Deploy
-        uses: graasp/graasp-deploy/.github/actions/deploy-s3@6ccf47769e443dc6162ed1daedbd869c94e8ce27
+        uses: graasp/graasp-deploy/.github/actions/deploy-s3@4c6235738596b9cfad72cd7fd4524e379a5b211a
         # Replace input build-folder or version if needed
         with:
           build-folder: 'dist'
           role-to-assume: ${{ secrets.AWS_ROLE }}
           aws-region: ${{ vars.AWS_REGION }}
           aws-s3-bucket-name: ${{ vars.AWS_S3_BUCKET_NAME }}
-          cloudfront-distribution-id: ${{ vars.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
 
       - name: Invalidate index.html
         shell: bash
