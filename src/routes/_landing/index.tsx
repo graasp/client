@@ -34,9 +34,7 @@ function Index() {
         <Preview>
           <UserTestimoniesSection />
         </Preview>
-        <Preview>
-          <NewsLetter />
-        </Preview>
+        <NewsLetter />
         <CallToAction />
       </BodyWrapper>
     </>

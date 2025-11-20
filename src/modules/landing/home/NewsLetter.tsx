@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Box, Button, Stack, TextField, Typography } from '@mui/material';
+import { Button, Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 
@@ -30,8 +30,15 @@ export function NewsLetter() {
         <Typography>{t('DESCRIPTION')}</Typography>
       </Stack>
       <Stack gap={2} width="100%">
-        <Box>
-          <Typography variant="note" fontWeight="bold">
+        <Button
+          variant="contained"
+          color="primary"
+          href="https://forms.gle/QAUYtioZvDtKwozXA"
+        >
+          {t('BUTTON_TEXT')}
+        </Button>
+        {/*<Box>
+            <Typography variant="note" fontWeight="bold">
             {t('INPUT_LABEL')}
           </Typography>
           <TextField
@@ -49,6 +56,7 @@ export function NewsLetter() {
         <Button variant="contained" color="primary">
           {t('BUTTON_TEXT')}
         </Button>
+        */}
       </Stack>
     </Stack>
   );
