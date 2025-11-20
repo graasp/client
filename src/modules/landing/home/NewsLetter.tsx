@@ -37,26 +37,6 @@ export function NewsLetter() {
         >
           {t('BUTTON_TEXT')}
         </Button>
-        {/*<Box>
-            <Typography variant="note" fontWeight="bold">
-            {t('INPUT_LABEL')}
-          </Typography>
-          <TextField
-            slotProps={{
-              input: {
-                sx: {
-                  overflow: 'hidden',
-                },
-              },
-            }}
-            placeholder={t('INPUT_PLACEHOLDER')}
-            fullWidth
-          />
-        </Box>
-        <Button variant="contained" color="primary">
-          {t('BUTTON_TEXT')}
-        </Button>
-        */}
       </Stack>
     </Stack>
   );
