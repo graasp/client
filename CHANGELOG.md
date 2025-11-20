@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.34.1](https://github.com/graasp/client/compare/v2.34.0...v2.34.1) (2025-11-20)
+
+
+### Bug Fixes
+
+* add cypress post-install script back ([#1163](https://github.com/graasp/client/issues/1163)) ([aca44f8](https://github.com/graasp/client/commit/aca44f84a747d082dadbc6211c386cfc4284af12))
+* add newsletter link and enable block in landing page ([#1164](https://github.com/graasp/client/issues/1164)) ([fdda65c](https://github.com/graasp/client/commit/fdda65c35e8a9cf263b3501cdbee9fb2f929a5e0))
+* remove cypress post-install script ([a035e75](https://github.com/graasp/client/commit/a035e754c737eb715be4cb7a1b14b272237cb717))
+
 ## [2.34.0](https://github.com/graasp/client/compare/v2.33.0...v2.34.0) (2025-11-17)
 
 
