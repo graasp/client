@@ -1436,7 +1436,7 @@ export const mockPostInvitations = (
       url: new RegExp(`${API_HOST}/${buildPostInvitationsRoute(ID_FORMAT)}`),
     },
     handler,
-  ).as('postInvitationsExternal');
+  ).as('postInvitationsAPI');
 };
 
 export const mockGetItemInvitations = (
