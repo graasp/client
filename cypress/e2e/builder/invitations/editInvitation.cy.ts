@@ -56,7 +56,7 @@ describe('Edit Invitation', () => {
     const { id: iId } = invitations[0];
     editInvitation({ itemId: id, id: iId, permission });
 
-    cy.wait('@postInvitationsExternal').then(({ request: { url, body } }) => {
+    cy.wait('@postInvitationsAPI').then(({ request: { url, body } }) => {
       const {
         invitations: [invitation],
       } = body;
