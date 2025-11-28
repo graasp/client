@@ -113,5 +113,5 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      - name: coverage report
-        run: npx nyc report --reporter=text-summary
+      # - name: coverage report
+      #   run: npx nyc report --reporter=text-summary

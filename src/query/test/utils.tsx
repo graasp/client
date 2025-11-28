@@ -76,6 +76,7 @@ export type Endpoint = {
 
 interface MockArguments<TProps> {
   endpoints?: Endpoint[];
+  host?: string;
   wrapper: RenderHookOptions<TProps>['wrapper'];
 }
 
@@ -102,9 +103,10 @@ type NockMethodType = Exclude<
 export const mockEndpoints = (
   endpoints: Endpoint[],
   persist: boolean = false,
+  host: string = API_HOST,
 ) => {
   // mock endpoint with given response
-  const server = nock(API_HOST);
+  const server = nock(host);
   endpoints.forEach(({ route, method, statusCode, response, headers }) => {
     const mock = server[
       (method || HttpMethod.Get).toLowerCase() as NockMethodType
@@ -122,12 +124,13 @@ export const mockHook = async <
   TResult extends QueryObserverBaseResult,
 >({
   endpoints,
+  host,
   hook,
   wrapper,
   enabled,
 }: MockHookArguments<TProps, TResult>): Promise<TResult> => {
   if (endpoints) {
-    mockEndpoints(endpoints);
+    mockEndpoints(endpoints, undefined, host);
   }
   // wait for rendering hook
   const { result } = renderHook(hook, { wrapper });

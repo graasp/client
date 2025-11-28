@@ -260,7 +260,7 @@ export class TestHelper {
     cy.intercept(
       {
         method: HttpMethod.Post,
-        url: '/logout',
+        pathname: '/api/logout',
       },
       ({ reply }) => {
         this.isLoggedIn = false;

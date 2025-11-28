@@ -3,7 +3,7 @@ import { defineConfig } from '@hey-api/openapi-ts';
 import { API_HOST } from './src/config/env';
 
 export default defineConfig({
-  input: `${API_HOST}/docs/json`,
+  input: `${API_HOST}/api/docs/json`,
   output: {
     format: 'prettier',
     lint: 'eslint',

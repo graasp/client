@@ -53,7 +53,7 @@ describe('Edit Etherpad', () => {
     cy.setUpApi({ items: [itemToEdit] });
     cy.visit(HOME_PATH);
 
-    cy.intercept(`/items/etherpad/${itemToEdit.id}`, (request) => {
+    cy.intercept(`/api/items/etherpad/${itemToEdit.id}`, (request) => {
       request.reply(itemToEdit);
     }).as('editEtherpad');
 
@@ -91,7 +91,7 @@ describe('Edit Etherpad', () => {
       },
     });
     cy.setUpApi({ items: [parentItem, itemToEdit] });
-    cy.intercept(`/items/etherpad/${itemToEdit.id}`, (request) => {
+    cy.intercept(`/api/items/etherpad/${itemToEdit.id}`, (request) => {
       request.reply(itemToEdit);
     }).as('editEtherpad');
 

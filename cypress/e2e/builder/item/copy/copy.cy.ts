@@ -250,7 +250,7 @@ describe('Copy Item', () => {
 
     cy.intercept(
       {
-        pathname: '/login-password',
+        pathname: '/api/login-password',
       },
       ({ reply }) => {
         reply({ statusCode: StatusCodes.NO_CONTENT });

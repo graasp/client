@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 import { Divider, Stack } from '@mui/material';
@@ -28,27 +29,32 @@ function LoginRoute() {
   const search = Route.useSearch();
   const { t } = useTranslation(NS.Auth);
   return (
-    <LeftContentContainer>
-      <Stack direction="column" alignItems="center" gap={3}>
-        <FormHeader id={LOG_IN_HEADER_ID} title={t('LOGIN_TITLE')} />
-        <Stack
-          direction="column"
-          alignItems="center"
-          divider={<Divider flexItem>{t('LOGIN_METHODS_DIVIDER')}</Divider>}
-          gap={3}
-        >
-          <MagicLinkLoginForm search={search} />
-          <PasswordLoginForm />
-          <ButtonLink
-            variant="contained"
-            fullWidth
-            to="/auth/register"
-            search={search}
+    <>
+      <Helmet>
+        <title>{t('LOGIN_TITLE')} | Graasp</title>
+      </Helmet>
+      <LeftContentContainer>
+        <Stack direction="column" alignItems="center" gap={3}>
+          <FormHeader id={LOG_IN_HEADER_ID} title={t('LOGIN_TITLE')} />
+          <Stack
+            direction="column"
+            alignItems="center"
+            divider={<Divider flexItem>{t('LOGIN_METHODS_DIVIDER')}</Divider>}
+            gap={3}
           >
-            {t('SIGN_UP_LINK_TEXT')}
-          </ButtonLink>
+            <MagicLinkLoginForm search={search} />
+            <PasswordLoginForm />
+            <ButtonLink
+              variant="contained"
+              fullWidth
+              to="/auth/register"
+              search={search}
+            >
+              {t('SIGN_UP_LINK_TEXT')}
+            </ButtonLink>
+          </Stack>
         </Stack>
-      </Stack>
-    </LeftContentContainer>
+      </LeftContentContainer>
+    </>
   );
 }

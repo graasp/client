@@ -28,6 +28,7 @@ import {
   isRootItem,
 } from '@graasp/sdk';
 
+import { CyHttpMessages } from 'cypress/types/net-stubbing';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
@@ -64,54 +65,48 @@ import {
 } from './utils';
 
 const {
-  buildGetCurrentMemberRoute,
-  buildUploadAvatarRoute,
-  buildPatchMemberPasswordRoute,
-  buildGetOwnPublicProfileRoute,
-  buildPatchPublicProfileRoute,
-  buildPostMemberEmailUpdateRoute,
-  buildGetMemberStorageRoute,
-  buildExportMemberDataRoute,
-  buildGetItemGeolocationRoute,
-  buildGetItemChatRoute,
-  buildGetItemRoute,
-  buildGetItemLoginSchemaRoute,
-  buildDownloadFilesRoute,
-  buildGetItemPublishedInformationRoute,
-  buildAppListRoute,
-  buildGetLastItemValidationGroupRoute,
-  buildEditItemRoute,
-  buildItemUnpublishRoute,
-  buildGetMemberRoute,
   ITEMS_ROUTE,
-  buildUploadFilesRoute,
-  buildPostItemLoginSignInRoute,
-  buildPostItemVisibilityRoute,
-  buildPostItemFlagRoute,
-  buildExportItemChatRoute,
-  buildPostItemChatMessageRoute,
   buildClearItemChatRoute,
-  buildDeleteItemVisibilityRoute,
-  buildUploadItemThumbnailRoute,
-  buildImportZipRoute,
-  buildPostInvitationsRoute,
-  buildGetItemInvitationsForItemRoute,
   buildDeleteInvitationRoute,
-  buildPatchInvitationRoute,
-  buildPostUserCSVUploadWithTemplateRoute,
-  buildResendInvitationRoute,
-  buildPostUserCSVUploadRoute,
-  buildGetPublishedItemsForMemberRoute,
-  buildItemPublishRoute,
+  buildDeleteItemThumbnailRoute,
+  buildDeleteItemVisibilityRoute,
+  buildDeleteShortLinkRoute,
+  buildDownloadFilesRoute,
+  buildEditItemRoute,
+  buildExportItemChatRoute,
+  buildGetCurrentMemberRoute,
+  buildGetItemChatRoute,
+  buildGetItemGeolocationRoute,
+  buildGetItemInvitationsForItemRoute,
+  buildGetItemLoginSchemaRoute,
+  buildGetItemPublishedInformationRoute,
+  buildGetItemRoute,
+  buildGetLastItemValidationGroupRoute,
+  buildGetMemberRoute,
+  buildGetMemberStorageRoute,
   buildGetPublicationStatusRoute,
-  buildPostItemValidationRoute,
+  buildGetPublishedItemsForMemberRoute,
   buildGetShortLinkAvailableRoute,
   buildGetShortLinksItemRoute,
-  buildPostShortLinkRoute,
-  buildPatchShortLinkRoute,
-  buildDeleteShortLinkRoute,
-  buildDeleteItemThumbnailRoute,
   buildImportH5PRoute,
+  buildImportZipRoute,
+  buildItemPublishRoute,
+  buildItemUnpublishRoute,
+  buildPatchInvitationRoute,
+  buildPatchShortLinkRoute,
+  buildPostInvitationsRoute,
+  buildPostItemChatMessageRoute,
+  buildPostItemFlagRoute,
+  buildPostItemLoginSignInRoute,
+  buildPostItemValidationRoute,
+  buildPostItemVisibilityRoute,
+  buildPostMemberEmailUpdateRoute,
+  buildPostUserCSVUploadRoute,
+  buildPostUserCSVUploadWithTemplateRoute,
+  buildResendInvitationRoute,
+  buildUploadAvatarRoute,
+  buildUploadFilesRoute,
+  buildUploadItemThumbnailRoute,
 } = API_ROUTES;
 
 const checkMembership = ({ item }: { item: ItemForTest }) => {
@@ -133,7 +128,7 @@ export const mockGetAppListRoute = (apps: App[]): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/${buildAppListRoute}`,
+      pathname: `/api/app-items/list`,
     },
     (req) => {
       req.reply(apps);
@@ -148,7 +143,7 @@ export const mockGetOwnProfile = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/${buildGetOwnPublicProfileRoute()}`,
+      pathname: `/api/members/profile/own`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -169,7 +164,7 @@ export const mockEditPublicProfile = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: `${API_HOST}/${buildPatchPublicProfileRoute()}`,
+      pathname: `/api/members/profile`,
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
@@ -186,27 +181,35 @@ export const mockGetCurrentMember = (
   currentGuest: CompleteGuest | null,
   shouldThrowError = false,
 ): void => {
+  const handler = ({ reply }: CyHttpMessages.IncomingHttpRequest) => {
+    // simulate member accessing without log in
+    if (currentMember == null) {
+      if (currentGuest == null) {
+        return reply({ statusCode: StatusCodes.UNAUTHORIZED });
+      } else {
+        return reply(currentGuest);
+      }
+    }
+    if (shouldThrowError) {
+      return reply({ statusCode: StatusCodes.BAD_REQUEST, body: null });
+    }
+    // avoid sign in redirection
+    return reply(currentMember);
+  };
   cy.intercept(
     {
       method: HttpMethod.Get,
       pathname: `/${buildGetCurrentMemberRoute()}`,
     },
-    ({ reply }) => {
-      // simulate member accessing without log in
-      if (currentMember == null) {
-        if (currentGuest == null) {
-          return reply({ statusCode: StatusCodes.UNAUTHORIZED });
-        } else {
-          return reply(currentGuest);
-        }
-      }
-      if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST, body: null });
-      }
-      // avoid sign in redirection
-      return reply(currentMember);
-    },
+    handler,
   ).as('getCurrentMember');
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: `/api/${buildGetCurrentMemberRoute()}`,
+    },
+    handler,
+  ).as('getCurrentMemberAPI');
 };
 
 export const mockEditCurrentMember = (
@@ -244,12 +247,24 @@ export const mockSignOut = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: '/logout',
+      pathname: '/api/logout',
     },
     ({ reply }) => {
       reply(redirectionReply);
     },
   ).as('signOut');
+};
+
+export const mockNextMaintenance = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: '/api/maintenance/next',
+    },
+    ({ reply }) => {
+      reply({ body: null });
+    },
+  ).as('nextMaintenance');
 };
 
 export const mockPostItemLogin = (
@@ -406,9 +421,7 @@ export const mockEditItemMembershipForItem = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`),
     },
     ({ reply }) => {
       reply({
@@ -422,9 +435,7 @@ export const mockDeleteItemMembershipForItem = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/${ID_FORMAT}$`),
     },
     ({ reply }) => {
       reply({
@@ -513,7 +524,7 @@ export const mockPostItemFlag = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${buildPostItemFlagRoute(ID_FORMAT)}$`),
+      pathname: new RegExp(`/api/${buildPostItemFlagRoute(ID_FORMAT)}$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -584,11 +595,10 @@ export const mockGetMemberStorageFiles = (
   files = MEMBER_STORAGE_ITEM_RESPONSE,
   shouldThrowError = false,
 ): void => {
-  const route = new RegExp(`${API_HOST}/members/current/storage/files`);
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: route,
+      pathname: `/api/members/current/storage/files`,
     },
     ({ url, reply }) => {
       const params = new URL(url).searchParams;
@@ -638,7 +648,7 @@ export const mockUpdatePassword = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      pathname: `/${buildPatchMemberPasswordRoute()}`,
+      pathname: `/api/password`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -654,7 +664,7 @@ export const mockCreatePassword = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      pathname: `/password`,
+      pathname: `/api/password`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -688,7 +698,7 @@ export const mockExportData = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      pathname: `/${buildExportMemberDataRoute()}`,
+      pathname: `/api/members/export-data`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -701,20 +711,22 @@ export const mockExportData = (shouldThrowError: boolean): void => {
 };
 
 export const mockDeleteCurrentMember = (): void => {
+  // uses the generation
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      pathname: `/members/current`,
+      pathname: `/api/members/current`,
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('deleteCurrentMember');
 };
 
 export const mockGetPasswordStatus = (hasPassword: boolean): void => {
+  // uses the generation
   cy.intercept(
     {
       method: HttpMethod.Get,
-      pathname: `/members/current/password/status`,
+      pathname: `/api/members/current/password/status`,
     },
     ({ reply }) => reply({ hasPassword }),
   ).as('getPasswordStatus');
@@ -724,7 +736,7 @@ export const mockGetStatus = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/status`,
+      pathname: `/api/status`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -739,7 +751,7 @@ export const mockRequestPasswordReset = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/password/reset`,
+      pathname: `/api/password/reset`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -755,7 +767,7 @@ export const mockResetPassword = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: `${API_HOST}/password/reset`,
+      pathname: `/api/password/reset`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -771,7 +783,7 @@ export const mockLogin = (shouldThrowServerError = false) => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: `${API_HOST}/login`,
+      pathname: `/api/login`,
     },
     ({ reply }) => {
       if (shouldThrowServerError) {
@@ -1054,7 +1066,7 @@ export const mockClearItemChat = (
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/${buildClearItemChatRoute(ID_FORMAT)}$`),
+      pathname: new RegExp(`/api/${buildClearItemChatRoute(ID_FORMAT)}$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1216,12 +1228,11 @@ export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/parents`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/parents`),
     },
     ({ url, reply }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[3];
       const item = getItemById(items, itemId);
-
       if (!checkMembership({ item })) {
         return reply({ statusCode: StatusCodes.UNAUTHORIZED, body: null });
       }
@@ -1249,10 +1260,10 @@ export const mockGetTagsByItem = (items: ItemForTest[]): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags`),
     },
     ({ reply, url }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[3];
       const result = items.find(({ id }) => id === itemId)?.tags || [];
       return reply(result);
     },
@@ -1263,7 +1274,7 @@ export const mockAddTag = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags`),
     },
     ({ reply }) => reply({ status: StatusCodes.NO_CONTENT }),
   ).as('addTag');
@@ -1273,7 +1284,7 @@ export const mockRemoveTag = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/tags/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/tags/${ID_FORMAT}`),
     },
     ({ reply }) => reply({ status: StatusCodes.NO_CONTENT }),
   ).as('removeTag');
@@ -1303,7 +1314,7 @@ export const mockGetLatestValidationGroup = (
       ),
     },
     ({ reply, url }) => {
-      const itemId = url.slice(API_HOST.length).split('/')[2];
+      const itemId = new URL(url).pathname.split('/')[2];
 
       const validationGroup = itemValidationGroups?.find(
         (ivg) => ivg.item.id === itemId,
@@ -1328,7 +1339,7 @@ export const mockGetItemBookmarks = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: `${API_HOST}/items/bookmarks`,
+      pathname: `/api/items/bookmarks`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1347,7 +1358,7 @@ export const mockAddBookmark = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1363,7 +1374,7 @@ export const mockDeleteBookmark = (shouldThrowError: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/items/bookmarks/${ID_FORMAT}`),
+      pathname: new RegExp(`/api/items/bookmarks/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1379,41 +1390,53 @@ export const mockPostInvitations = (
   items: ItemForTest[],
   shouldThrowError: boolean,
 ): void => {
+  const handler = ({
+    reply,
+    body,
+    url,
+  }: CyHttpMessages.IncomingHttpRequest) => {
+    if (shouldThrowError) {
+      return reply({ statusCode: StatusCodes.BAD_REQUEST });
+    }
+
+    const itemId = url.split('/')[4];
+    const invitations = items.find(({ id }) => id === itemId)?.invitations;
+
+    const result: {
+      data: { [key: string]: Invitation };
+      errors: { statusCode: number; message: string; data: unknown }[];
+    } = {
+      data: {},
+      errors: [],
+    };
+    body.invitations.forEach((inv: Parameters<typeof buildInvitation>[0]) => {
+      const thisInv = invitations?.find(({ email }) => email === inv.email);
+      if (thisInv) {
+        result.errors.push({
+          statusCode: StatusCodes.BAD_REQUEST,
+          message: 'An invitation already exists for this email',
+          data: inv,
+        });
+      } else {
+        result.data[inv.email] = buildInvitation(inv);
+      }
+    });
+    return reply({ status: StatusCodes.NO_CONTENT });
+  };
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      pathname: new RegExp(`/api/${buildPostInvitationsRoute(ID_FORMAT)}`),
+    },
+    handler,
+  ).as('postInvitations');
   cy.intercept(
     {
       method: HttpMethod.Post,
       url: new RegExp(`${API_HOST}/${buildPostInvitationsRoute(ID_FORMAT)}`),
     },
-    ({ reply, body, url }) => {
-      if (shouldThrowError) {
-        return reply({ statusCode: StatusCodes.BAD_REQUEST });
-      }
-
-      const itemId = url.split('/')[4];
-      const invitations = items.find(({ id }) => id === itemId)?.invitations;
-
-      const result: {
-        data: { [key: string]: Invitation };
-        errors: { statusCode: number; message: string; data: unknown }[];
-      } = {
-        data: {},
-        errors: [],
-      };
-      body.invitations.forEach((inv: Parameters<typeof buildInvitation>[0]) => {
-        const thisInv = invitations?.find(({ email }) => email === inv.email);
-        if (thisInv) {
-          result.errors.push({
-            statusCode: StatusCodes.BAD_REQUEST,
-            message: 'An invitation already exists for this email',
-            data: inv,
-          });
-        } else {
-          result.data[inv.email] = buildInvitation(inv);
-        }
-      });
-      return reply({ status: StatusCodes.NO_CONTENT });
-    },
-  ).as('postInvitations');
+    handler,
+  ).as('postInvitationsAPI');
 };
 
 export const mockGetItemInvitations = (
@@ -1423,8 +1446,8 @@ export const mockGetItemInvitations = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/${buildGetItemInvitationsForItemRoute(ID_FORMAT)}`,
+      pathname: new RegExp(
+        `/${buildGetItemInvitationsForItemRoute(ID_FORMAT)}`,
       ),
     },
     ({ reply, url }) => {
@@ -1733,7 +1756,7 @@ export const mockPostItemMembership = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -1798,7 +1821,7 @@ export const mockEditMember = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(`${API_HOST}/members/current`),
+      pathname: `/api/members/current`,
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2130,8 +2153,8 @@ export const mockCheckShortLink = (shouldAliasBeAvailable: boolean): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/${buildGetShortLinkAvailableRoute(SHORTLINK_FORMAT)}`,
+      pathname: new RegExp(
+        `/api/${buildGetShortLinkAvailableRoute(SHORTLINK_FORMAT)}`,
       ),
     },
     ({ reply }) => {
@@ -2151,7 +2174,7 @@ export const mockPostShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/${buildPostShortLinkRoute()}`),
+      pathname: '/api/items/short-links',
     },
     ({ reply, body }) => {
       if (shouldThrowError) {
@@ -2172,8 +2195,8 @@ export const mockPatchShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Patch,
-      url: new RegExp(
-        `${API_HOST}/${buildPatchShortLinkRoute(SHORTLINK_FORMAT)}`,
+      pathname: new RegExp(
+        `/api/${buildPatchShortLinkRoute(SHORTLINK_FORMAT)}`,
       ),
     },
     ({ reply, body, url }) => {
@@ -2231,7 +2254,7 @@ export const mockGetLinkMetadata = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/embedded-links/metadata*`),
+      pathname: new RegExp(`/api/items/embedded-links/metadata*`),
     },
     ({ reply, url }) => {
       let linkUrl = new URL(url).searchParams.get('link');
@@ -2260,13 +2283,11 @@ export const mockGetOwnMembershipRequests = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/requests/own$`,
-      ),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/requests/own$`),
     },
     ({ reply, url }) => {
-      const urlParams = url.split('/');
-      const itemId = urlParams[4];
+      const urlParams = new URL(url).pathname.split('/');
+      const itemId = urlParams[3];
 
       const mr = membershipRequests.find(
         ({ item, member }) =>
@@ -2284,7 +2305,7 @@ export const mockRequestMembership = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/memberships/requests$`),
     },
     ({ reply }) => reply({ statusCode: StatusCodes.NO_CONTENT }),
   ).as('requestMembership');
@@ -2310,8 +2331,8 @@ export const mockRejectMembershipRequest = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/items/${ID_FORMAT}/memberships/requests/${ID_FORMAT}`,
+      pathname: new RegExp(
+        `/api/items/${ID_FORMAT}/memberships/requests/${ID_FORMAT}`,
       ),
     },
     ({ reply }) => {
@@ -2324,7 +2345,7 @@ export const mockEnroll = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/enroll`),
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/enroll`),
     },
     ({ reply }) => {
       reply({ statusCode: StatusCodes.NO_CONTENT });
