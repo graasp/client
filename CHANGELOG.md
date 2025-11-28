@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.34.2](https://github.com/graasp/client/compare/v2.34.1...v2.34.2) (2025-11-28)
+
+
+### Bug Fixes
+
+* make changes to support single origin ([#1151](https://github.com/graasp/client/issues/1151)) ([18b4a46](https://github.com/graasp/client/commit/18b4a46604b9c753cf9e836a8e69c46b77692a3e))
+
 ## [2.34.1](https://github.com/graasp/client/compare/v2.34.0...v2.34.1) (2025-11-20)
 
 
