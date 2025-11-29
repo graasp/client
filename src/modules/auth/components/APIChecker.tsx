@@ -13,7 +13,8 @@ import {
 import { RotateCcwIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import { axios, useQuery } from '@/config/queryClient';
+import { useQuery } from '@/config/queryClient';
+import { getApiStatusOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import { AUTH } from '~auth/langs';
 
@@ -21,8 +22,7 @@ export function APIChecker(): JSX.Element | null {
   const { t } = useTranslation(NS.Auth);
 
   const { isSuccess, isLoading, refetch, isError } = useQuery({
-    queryKey: ['apiStatus'],
-    queryFn: () => axios.get(`/api/status`).then(({ data }) => data),
+    ...getApiStatusOptions(),
     retry: 0,
   });
 
