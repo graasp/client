@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.34.3](https://github.com/graasp/client/compare/v2.34.2...v2.34.3) (2025-11-29)
+
+
+### Bug Fixes
+
+* api status query ([775c598](https://github.com/graasp/client/commit/775c598dbbc57cda9d7360e66fed1681e4b7d376))
+
 ## [2.34.2](https://github.com/graasp/client/compare/v2.34.1...v2.34.2) (2025-11-28)
 
 
