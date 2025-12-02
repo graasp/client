@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.34.3](https://github.com/graasp/client/compare/v2.34.2...v2.34.3) (2025-12-02)
+
+
+### Bug Fixes
+
+* api status query ([775c598](https://github.com/graasp/client/commit/775c598dbbc57cda9d7360e66fed1681e4b7d376))
+* **deps:** update dependency @sentry/react to v9.47.1 ([#1171](https://github.com/graasp/client/issues/1171)) ([599a6c3](https://github.com/graasp/client/commit/599a6c31d13e08d0d05685139030e8395c9e6148))
+* **deps:** update dependency @tanstack/react-query to v5.90.11 ([#1170](https://github.com/graasp/client/issues/1170)) ([1be4a61](https://github.com/graasp/client/commit/1be4a61417efdfd42ae53d493d7a03407fb6fb0b))
+
 ## [2.34.2](https://github.com/graasp/client/compare/v2.34.1...v2.34.2) (2025-11-28)
 
 
