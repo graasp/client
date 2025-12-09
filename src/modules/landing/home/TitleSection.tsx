@@ -88,10 +88,9 @@ export function TitleSection(): JSX.Element {
                 alignItems="center"
                 justifyContent={{ xs: 'center', lg: 'left' }}
               >
-                <Typography variant="subtitle1" color="white" noWrap>
-                  {t('HOME.CAPTION')}
+                <Typography variant="subtitle1" color="white" align="center">
+                  {t('HOME.CAPTION')} <SwitzerlandFlagIcon />
                 </Typography>
-                <SwitzerlandFlagIcon />
               </Stack>
               <Stack
                 id="buttonsContainer"
