@@ -18,7 +18,7 @@ import GraaspLogo from '@/ui/GraaspLogo/GraaspLogo';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { Menu } from '~landing/header/Menu';
-import MobileMenu from '~landing/header/MobileMenu';
+import { MobileMenu } from '~landing/header/MobileMenu';
 import { RightHeader } from '~landing/header/RightHeader';
 import { usePreviewMode } from '~landing/preview/PreviewModeContext';
 

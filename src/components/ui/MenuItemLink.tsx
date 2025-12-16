@@ -4,9 +4,9 @@ import { MenuItem, MenuItemProps } from '@mui/material';
 
 import { LinkComponent, createLink } from '@tanstack/react-router';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface MUIMenuItemProps extends Omit<MenuItemProps, 'href'> {
   // Add any additional props you want to pass to the typography
+  dataUmamiEvent?: string;
 }
 
 const MUIMenuItemComponent = forwardRef<HTMLAnchorElement, MUIMenuItemProps>(
