@@ -3,6 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, useMediaQuery, useTheme } from '@mui/material';
 
+import { AccountType } from '@graasp/sdk';
+
+import { useAuth } from '@/AuthContext';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
 import { NS } from '@/config/constants';
@@ -20,12 +23,16 @@ export function RightHeader({
   const { i18n } = useTranslation(NS.Common);
   const theme = useTheme();
 
+  const { user } = useAuth();
   const menu = useUserMenu();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   if (isMobile) {
     return null;
   }
+
+  // show language switch only for logged out user or individual accounts
+  const showLanguageSwitch = !user || user?.type === AccountType.Individual;
 
   return (
     <Stack gap={2} direction="row" alignItems="center">
@@ -40,11 +47,13 @@ export function RightHeader({
           {menuItem.label}
         </ButtonLink>
       ))}
-      <LanguageSwitch
-        id="languageSwitch"
-        lang={i18n.language}
-        onChange={onChangeLang}
-      />
+      {Boolean(showLanguageSwitch) && (
+        <LanguageSwitch
+          id="languageSwitch"
+          lang={i18n.language}
+          onChange={onChangeLang}
+        />
+      )}
     </Stack>
   );
 }
