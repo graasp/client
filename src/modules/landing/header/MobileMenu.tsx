@@ -1,7 +1,8 @@
-import * as React from 'react';
+import type { MouseEvent } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IconButton } from '@mui/material';
+import { Divider, IconButton } from '@mui/material';
 import Menu from '@mui/material/Menu';
 
 import { MenuIcon } from 'lucide-react';
@@ -10,12 +11,35 @@ import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { NS } from '@/config/constants';
 import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
-export default function MobileMenu() {
+import useUserMenu from './useUserMenu';
+
+function CustomMenu({ handleClose }: Readonly<{ handleClose: () => void }>) {
+  const menu = useUserMenu();
+
+  return menu.map((menuItem) => (
+    <MenuItemLink
+      key={menuItem.event}
+      to={menuItem.to}
+      params={menuItem.params}
+      onClick={handleClose}
+      dataUmamiEvent={`menu-${menuItem.event}`}
+      sx={
+        menuItem.highlight
+          ? { fontWeight: 'bold', color: 'primary.main' }
+          : undefined
+      }
+    >
+      {menuItem.label}
+    </MenuItemLink>
+  ));
+}
+
+export function MobileMenu() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
@@ -82,6 +106,8 @@ export default function MobileMenu() {
         >
           {t('ABOUT_US')}
         </MenuItemLink>
+        <Divider />
+        <CustomMenu handleClose={handleClose} />
       </Menu>
     </div>
   );
