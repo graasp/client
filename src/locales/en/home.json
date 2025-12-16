@@ -23,5 +23,6 @@
   },
   "SURVEY": {
     "INFO": "We are conducting a user survey to better understand how you use Graasp. Your feedback is valuable!<br/>Please find the survey link <l1>here</l1>."
-  }
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "Starting mid-January, items <b>deleted</b> more than 90 days ago will be permanently removed from your Trash. To prevent accidental loss of important items, please regularly review and manage your Trash."
 }

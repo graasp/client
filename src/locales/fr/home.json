@@ -23,5 +23,6 @@
   },
   "SURVEY": {
     "INFO": "Nous lançons une enquête afin de mieux comprendre votre utilisation de la plateforme Graasp. Votre avis compte !<br/>Retrouvez le lien de l'enquête <l1>ici</l1>."
-  }
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "A partir de mi-janvier, les éléments <b>supprimés</b> depuis plus de 90 jours seront définitivement retirés de votre Corbeille. Pour éviter la perte accidentelle d'éléments importants, veuillez régulièrement vérifier et gérer votre Corbeille."
 }

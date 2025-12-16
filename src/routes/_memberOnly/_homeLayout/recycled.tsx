@@ -9,6 +9,7 @@ import {
   RECYCLED_ITEMS_EMPTY_ID,
   RECYCLED_ITEMS_ERROR_ALERT_ID,
 } from '@/config/selectors';
+import { OldDeletedItemsNotice } from '@/modules/home/OldDeletedItemsNotice';
 import { useInfiniteOwnRecycledItems } from '@/query/item/recycled/hooks';
 
 import DeleteButton from '~builder/components/common/DeleteButton';
@@ -67,6 +68,7 @@ function RecycledItemsScreenContent() {
       return (
         <>
           <Stack gap={1} height="100%">
+            <OldDeletedItemsNotice forceOpen />
             <Stack
               alignItems="space-between"
               direction="column"
