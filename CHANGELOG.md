@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.35.0](https://github.com/graasp/client/compare/v2.34.2...v2.35.0) (2025-12-18)
+
+
+### Features
+
+* show landing auth buttons in mobile menu ([#1173](https://github.com/graasp/client/issues/1173)) ([e390132](https://github.com/graasp/client/commit/e3901327e2fc529d9007cf0ba7067f5946cd6550))
+* show notice for old deleted items ([#1174](https://github.com/graasp/client/issues/1174)) ([edbdfd8](https://github.com/graasp/client/commit/edbdfd8ebebea7632fbf8a0653ff4f73c05a8b39))
+
+
+### Bug Fixes
+
+* allow wrap with swiss flag ([#1172](https://github.com/graasp/client/issues/1172)) ([50ea920](https://github.com/graasp/client/commit/50ea920e3779a0ec9e972053e74e9a3680726f3c))
+* api status query ([775c598](https://github.com/graasp/client/commit/775c598dbbc57cda9d7360e66fed1681e4b7d376))
+* **deps:** update dependency @sentry/react to v9.47.1 ([#1171](https://github.com/graasp/client/issues/1171)) ([599a6c3](https://github.com/graasp/client/commit/599a6c31d13e08d0d05685139030e8395c9e6148))
+* **deps:** update dependency @tanstack/react-query to v5.90.11 ([#1170](https://github.com/graasp/client/issues/1170)) ([1be4a61](https://github.com/graasp/client/commit/1be4a61417efdfd42ae53d493d7a03407fb6fb0b))
+
 ## [2.34.2](https://github.com/graasp/client/compare/v2.34.1...v2.34.2) (2025-11-28)
 
 
