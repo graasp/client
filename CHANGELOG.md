@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.35.1](https://github.com/graasp/client/compare/v2.35.0...v2.35.1) (2025-12-18)
+
+
+### Bug Fixes
+
+* update cloudfront invalidation to include language files ([#1175](https://github.com/graasp/client/issues/1175)) ([571470e](https://github.com/graasp/client/commit/571470ede157fb270c7284f271e93b54eb336a89))
+
 ## [2.35.0](https://github.com/graasp/client/compare/v2.34.2...v2.35.0) (2025-12-18)
 
 
