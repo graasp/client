@@ -86,7 +86,7 @@ const H5PItem = ({
           return;
         }
         // height should be int
-        const newHeight = parseInt(event.data.height);
+        const newHeight = Number.parseInt(event.data.height);
         iframeRef.current.height = newHeight.toString();
       };
 

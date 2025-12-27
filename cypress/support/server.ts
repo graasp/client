@@ -603,8 +603,8 @@ export const mockGetMemberStorageFiles = (
     ({ url, reply }) => {
       const params = new URL(url).searchParams;
 
-      const page = window.parseInt(params.get('page') ?? '1');
-      const pageSize = window.parseInt(params.get('pageSize') ?? '10', 10);
+      const page = Number.parseInt(params.get('page') ?? '1');
+      const pageSize = Number.parseInt(params.get('pageSize') ?? '10', 10);
 
       const result = files.slice((page - 1) * pageSize, page * pageSize);
 
@@ -804,8 +804,8 @@ export const mockGetAccessibleItems = (items: ItemForTest[]): void => {
     ({ url, reply }) => {
       const params = new URL(url).searchParams;
 
-      const page = parseInt(params.get('page') ?? '1', 10);
-      const pageSize = parseInt(params.get('pageSize') ?? '10', 10);
+      const page = Number.parseInt(params.get('page') ?? '1', 10);
+      const pageSize = Number.parseInt(params.get('pageSize') ?? '10', 10);
 
       // warning: we don't check memberships
       const root = items.filter(isRootItem);
@@ -836,8 +836,8 @@ export const mockGetOwnRecycledItemData = (
 
       const params = new URL(url).searchParams;
 
-      const page = parseInt(params.get('page') ?? '1', 10);
-      const pageSize = parseInt(params.get('pageSize') ?? '10', 10);
+      const page = Number.parseInt(params.get('page') ?? '1', 10);
+      const pageSize = Number.parseInt(params.get('pageSize') ?? '10', 10);
 
       const result = recycledItemData.slice(
         (page - 1) * pageSize,
