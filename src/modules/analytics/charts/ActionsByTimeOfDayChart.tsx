@@ -65,7 +65,7 @@ const ActionsByTimeOfDayChart = ({
             data={Object.values(
               data as { [key: string]: { hour: string } },
             ).toSorted((a, b) =>
-              parseInt(a.hour) > parseInt(b.hour) ? 1 : -1,
+              Number.parseInt(a.hour) > Number.parseInt(b.hour) ? 1 : -1,
             )}
           >
             <CartesianGrid strokeDasharray="2" />

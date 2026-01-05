@@ -27,7 +27,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   }
 
   // compute the port to use
-  const PORT = parseInt(VITE_PORT ?? '3114', 10);
+  const PORT = Number.parseInt(VITE_PORT ?? '3114', 10);
   // compute whether we should open the browser
   // this defines if we should automatically open the browser
   const shouldOpen = BROWSER && BROWSER !== 'none';
