@@ -10,7 +10,6 @@ import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import { ClientManager } from '@/lib/ClientManager';
 import { getShortLinksForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
-import { itemKeys } from '@/query/keys';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
 import { randomAlias } from '~builder/utils/shortLink';
@@ -40,10 +39,9 @@ const ShortLinksRenderer = ({
   canAdminShortLink,
 }: Props): JSX.Element => {
   const { mode } = useLayoutContext();
-  const { data: apiLinks, isLoading } = useQuery({
-    ...getShortLinksForItemOptions({ path: { itemId } }),
-    queryKey: itemKeys.single(itemId).shortLinks,
-  });
+  const { data: apiLinks, isLoading } = useQuery(
+    getShortLinksForItemOptions({ path: { itemId } }),
+  );
   const { data: publishedEntry } = useItemPublishedInformation({ itemId });
   const [modalOpen, setModalOpen] = useState(false);
   const [isNew, setIsNew] = useState(false);

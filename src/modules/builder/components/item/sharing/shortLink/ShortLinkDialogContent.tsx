@@ -23,9 +23,10 @@ import {
 } from '@/config/selectors';
 import {
   createShortLinkMutation,
+  getShortLinksForItemQueryKey,
   updateShortLinkMutation,
 } from '@/openapi/client/@tanstack/react-query.gen';
-import { buildShortLinkKey, itemKeys } from '@/query/keys';
+import { buildShortLinkKey } from '@/query/keys';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
@@ -60,7 +61,7 @@ const usePutShortLink = ({
 
   const onSettled = () => {
     queryClient.invalidateQueries({
-      queryKey: itemKeys.single(itemId).shortLinks,
+      queryKey: getShortLinksForItemQueryKey({ path: { itemId } }),
     });
     queryClient.invalidateQueries({
       queryKey: buildShortLinkKey(initialAlias),
