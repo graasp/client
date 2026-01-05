@@ -108,8 +108,9 @@ export const useTagsManager = ({ itemId }: Props): UseMultiSelectChipInput => {
   };
 
   const addValue = (tag: Pick<Tag, 'category' | 'name'>) => {
-    if (valueIsValid(tag.name) && !valueExist(tag)) {
-      addTag({ path: { itemId }, body: tag });
+    const trimmedTag = { ...tag, name: tag.name.trim() };
+    if (valueIsValid(trimmedTag.name) && !valueExist(trimmedTag)) {
+      addTag({ path: { itemId }, body: trimmedTag });
 
       resetCurrentValue();
     }
