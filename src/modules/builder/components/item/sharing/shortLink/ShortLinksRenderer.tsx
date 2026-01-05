@@ -4,9 +4,12 @@ import { Box, Dialog, Stack } from '@mui/material';
 
 import { Context, ShortLink, appendPathToUrl } from '@graasp/sdk';
 
+import { useQuery } from '@tanstack/react-query';
+
 import { GRAASP_REDIRECTION_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import { ClientManager } from '@/lib/ClientManager';
+import { getShortLinksForItemOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { useShortLinksItem } from '@/query/hooks/shortLink';
 
 import { useLayoutContext } from '~builder/components/context/LayoutContext';
@@ -37,7 +40,9 @@ const ShortLinksRenderer = ({
   canAdminShortLink,
 }: Props): JSX.Element => {
   const { mode } = useLayoutContext();
-  const { data: apiLinks, isLoading } = useShortLinksItem(itemId);
+  const { data: apiLinks, isLoading } = useQuery(
+    getShortLinksForItemOptions({ path: { itemId } }),
+  );
   const { data: publishedEntry } = useItemPublishedInformation({ itemId });
   const [modalOpen, setModalOpen] = useState(false);
   const [isNew, setIsNew] = useState(false);
@@ -75,11 +80,11 @@ const ShortLinksRenderer = ({
 
       const apiShortLinkAlias = apiLinks?.[platform];
       if (apiShortLinkAlias) {
-        shortLink.alias = apiShortLinkAlias;
+        shortLink.alias = apiShortLinkAlias.alias;
         shortLink.isShorten = true;
         shortLink.url = appendPathToUrl({
           baseURL: GRAASP_REDIRECTION_HOST,
-          pathname: apiShortLinkAlias,
+          pathname: apiShortLinkAlias.alias,
         });
       }
 
