@@ -2133,7 +2133,7 @@ export const mockGetShortLinksItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/${buildGetShortLinksItemRoute(ID_FORMAT)}`),
+      url: new RegExp(`/items/short-links/list/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2141,8 +2141,14 @@ export const mockGetShortLinksItem = (
       }
 
       return reply(
-        shortLinks.reduce<ShortLinksOfItem>((acc, s) => {
-          return { ...acc, [s.platform]: s.alias };
+        shortLinks.reduce((acc, s) => {
+          return {
+            ...acc,
+            [s.platform]: {
+              alias: s.alias,
+              url: `http://mock.${s.platform}.org/${s.itemId}`,
+            },
+          };
         }, {}),
       );
     },
