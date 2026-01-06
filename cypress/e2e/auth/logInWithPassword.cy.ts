@@ -1,3 +1,5 @@
+import { FAILURE_MESSAGES } from '@graasp/sdk';
+
 import { StatusCodes } from 'http-status-codes';
 
 import { LOG_IN_PAGE_PATH } from '../../../src/config/paths';
@@ -6,6 +8,7 @@ import {
   PASSWORD_SIGN_IN_BUTTON_ID,
   PASSWORD_SIGN_IN_FIELD_ID,
 } from '../../../src/config/selectors';
+import * as messages from '../../../src/locales/en/messages.json';
 import { AUTH_MEMBERS, CURRENT_MEMBER } from '../../fixtures/members';
 import { PUBLISHED_ITEMS_PATH } from '../builder/utils';
 import { fillPasswordSignInLayout } from './util';
@@ -63,7 +66,7 @@ describe('Email and Password Validation', () => {
       (req) => {
         req.reply({
           statusCode: StatusCodes.UNAUTHORIZED,
-          body: { message: 'Unauthorized member' },
+          body: { message: FAILURE_MESSAGES.BAD_CREDENTIALS },
         });
       },
     ).as('signInWithPassword');
@@ -75,7 +78,7 @@ describe('Email and Password Validation', () => {
     cy.get(`#${PASSWORD_SIGN_IN_BUTTON_ID}`).click();
     cy.get(`#${EMAIL_SIGN_IN_FIELD_ID}-helper-text`).should('not.exist');
     cy.get(`#${PASSWORD_SIGN_IN_FIELD_ID}-helper-text`).should('not.exist');
-    cy.get(`[role="alert"]`).should('contain', 'Unauthorized member');
+    cy.get(`[role="alert"]`).should('contain', messages.BAD_CREDENTIALS);
   });
 
   it('Check errors if  shows success message if no redirect', () => {

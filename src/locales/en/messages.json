@@ -161,5 +161,6 @@
   "NOT_MEMBER_OR_GUEST": "Your account is not registered as member or pseudonimized user",
   "INVALID_ITEM_NAME_PATTERN_ERROR": "The item's name is not valid. It should start and end with an alphabetical character.",
   "INVALID_ITEM_NAME_MAX_LENGTH_ERROR": "The item's name is too long.",
-  "INVALID_ITEM_DESCRIPTION_MAX_LENGTH_ERROR": "Your description is too long, descriptions should be short. If you want longer descriptions, use a text element inside your page."
+  "INVALID_ITEM_DESCRIPTION_MAX_LENGTH_ERROR": "Your description is too long, descriptions should be short. If you want longer descriptions, use a text element inside your page.",
+  "BAD_CREDENTIALS": "The email or password is incorrect."
 }
