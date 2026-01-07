@@ -11,8 +11,7 @@ import {
   buildPermissionOptionId,
   buildShareButtonId,
 } from '../../../../src/config/selectors';
-import { CURRENT_MEMBER } from '../../../fixtures/members';
-import { MEMBERS } from '../../../fixtures/members';
+import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
 import { ITEMS_WITH_MEMBERSHIPS } from '../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../utils';

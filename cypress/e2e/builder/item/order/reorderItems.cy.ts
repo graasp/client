@@ -27,7 +27,7 @@ describe('Order Items', () => {
       cy.intercept(
         {
           method: HttpMethod.Get,
-          url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/children`),
+          url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/children`),
         },
         ({ reply }) => reply(orderedItems),
       ).as('getChildren');

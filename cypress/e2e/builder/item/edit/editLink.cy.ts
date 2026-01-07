@@ -1,18 +1,18 @@
 import { HttpMethod, PackedLinkItemFactory, buildLinkExtra } from '@graasp/sdk';
 
 import {
-    ACCESSIBLE_ITEMS_TABLE_ID,
-    EDIT_ITEM_BUTTON_CLASS,
-    EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
-    EDIT_MODAL_ID,
-    ITEM_FORM_CONFIRM_BUTTON_ID,
-    ITEM_FORM_LINK_INPUT_ID,
-    ITEM_FORM_NAME_INPUT_ID,
-    ITEM_MAIN_CLASS,
-    TEXT_EDITOR_CLASS,
-    buildDataCyWrapper,
-    buildEditButtonId,
-    buildItemMenuDataCy,
+  ACCESSIBLE_ITEMS_TABLE_ID,
+  EDIT_ITEM_BUTTON_CLASS,
+  EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
+  EDIT_MODAL_ID,
+  ITEM_FORM_CONFIRM_BUTTON_ID,
+  ITEM_FORM_LINK_INPUT_ID,
+  ITEM_FORM_NAME_INPUT_ID,
+  ITEM_MAIN_CLASS,
+  TEXT_EDITOR_CLASS,
+  buildDataCyWrapper,
+  buildEditButtonId,
+  buildItemMenuDataCy,
 } from '../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { EDIT_ITEM_PAUSE } from '../../../../support/constants';
@@ -124,7 +124,8 @@ describe('Edit Link', () => {
     cy.get(buildDataCyWrapper(buildItemMenuDataCy(itemToEdit.id))).click();
     editItemLink({
       ...itemToEdit,
-      ...{ name: newName, url: newUrl },
+      name: newName,
+      url: newUrl,
     });
 
     cy.wait('@editItemLink').then(

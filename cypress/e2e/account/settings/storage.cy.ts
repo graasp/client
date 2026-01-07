@@ -49,8 +49,7 @@ describe('Storage files', () => {
     const numberPages = Math.ceil(files.length / filesPerPage);
 
     for (let i = 1; i <= numberPages; i += 1) {
-      const currentNbOfFiles =
-        files.length > i * filesPerPage ? i * filesPerPage : files.length;
+      const currentNbOfFiles = Math.min(files.length, i * filesPerPage);
       cy.get('tbody tr').should('have.length', currentNbOfFiles);
 
       files.slice(0, currentNbOfFiles).forEach((file, fileIndex) => {

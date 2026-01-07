@@ -473,7 +473,7 @@ export const generateLotsOfFoldersOnHome = ({
   creator?: ItemForTest['creator'];
   memberships?: ItemForTest['memberships'];
 }): ItemForTest[] =>
-  Array.from(Array(folderCount)).map(() => {
+  Array.from(new Array(folderCount)).map(() => {
     const itemId = v4();
     return {
       ...DEFAULT_FOLDER_ITEM,

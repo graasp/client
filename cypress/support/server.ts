@@ -317,7 +317,7 @@ export const mockPutItemLoginSchema = (
   cy.intercept(
     {
       method: HttpMethod.Put,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
+      url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -336,7 +336,7 @@ export const mockDeleteItemLoginSchema = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
+      url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/login-schema$`),
     },
     ({ reply }) => {
       // check query match item login schema
@@ -372,7 +372,9 @@ export const mockGetItemLoginSchema = (items: ItemForTest[]): void => {
     {
       method: HttpMethod.Get,
       // TODO: use build url
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login\\-schema$`),
+      url: new RegExp(
+        String.raw`${API_HOST}/items/${ID_FORMAT}/login\-schema$`,
+      ),
     },
     ({ reply, url }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
@@ -395,7 +397,9 @@ export const mockGetItemLoginSchemaType = (items: ItemForTest[]): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/login\\-schema\\-type$`),
+      url: new RegExp(
+        String.raw`${API_HOST}/items/${ID_FORMAT}/login\-schema\-type$`,
+      ),
     },
     ({ reply, url }) => {
       const itemId = url.slice(API_HOST.length).split('/')[2];
@@ -1197,7 +1201,7 @@ export const mockGetChildren = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/children`),
+      url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/children`),
     },
     ({ url, reply }) => {
       const id = url.slice(API_HOST.length).split('/')[2];
@@ -1898,7 +1902,7 @@ export const mockGetDescendants = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/descendants`),
+      url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/descendants`),
     },
     ({ url, reply }) => {
       const id = url.slice(API_HOST.length).split('/')[2];
@@ -2319,7 +2323,9 @@ export const mockGetMembershipRequestsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`),
+      url: new RegExp(
+        String.raw`${API_HOST}/items/${ID_FORMAT}/memberships/requests$`,
+      ),
     },
     ({ reply, url }) => {
       const urlParams = url.split('/');
@@ -2362,7 +2368,7 @@ export const mockGetItemMembershipsForItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/items/${ID_FORMAT}/memberships$`),
+      url: new RegExp(String.raw`${API_HOST}/items/${ID_FORMAT}/memberships$`),
     },
     ({ reply, url }) => {
       const itemId = url.split('/')[4];
