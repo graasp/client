@@ -30,7 +30,7 @@ export type ItemMetaData = {
   mimetype?: string;
 };
 
-type PartialItemWithChildren = {
+export type PartialItemWithChildren = {
   id: string;
   name: string;
   metadata: ItemMetaData;

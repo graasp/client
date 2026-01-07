@@ -143,9 +143,6 @@ importers:
       react:
         specifier: 19.1.1
         version: 19.1.1
-      react-accessible-treeview:
-        specifier: 2.11.0
-        version: 2.11.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       react-date-range:
         specifier: 2.0.1
         version: 2.0.1(date-fns@4.1.0)(react@19.1.1)
@@ -5467,14 +5464,6 @@ packages:
     peerDependencies:
       react: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  react-accessible-treeview@2.11.0:
-    resolution: {integrity: sha512-KgyDQNq64tfy1AOOlxc2qzkDXjQ8dAlPb2jrFlamF2BagkrM3s4qQKg6YaOuAcZLw1wtps4RfFB2sEO3Hh+SvA==}
-    peerDependencies:
-      classnames: ^2.2.6
-      prop-types: ^15.7.2
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   react-date-range@2.0.1:
     resolution: {integrity: sha512-jwKYc9zcjYMg2hWbPht+6BF2wjGG5DkRVNJLRXn2Y0B/QCOOnvQX6YXziZVujVADWmgsBaoQnILdmzYw+Bwh0g==}
@@ -12643,13 +12632,6 @@ snapshots:
 
   re-resizable@6.10.3(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
     dependencies:
-      react: 19.1.1
-      react-dom: 19.1.1(react@19.1.1)
-
-  react-accessible-treeview@2.11.0(classnames@2.5.1)(prop-types@15.8.1)(react-dom@19.1.1(react@19.1.1))(react@19.1.1):
-    dependencies:
-      classnames: 2.5.1
-      prop-types: 15.8.1
       react: 19.1.1
       react-dom: 19.1.1(react@19.1.1)
 

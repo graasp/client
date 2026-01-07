@@ -6,16 +6,15 @@ import { useParams, useSearch } from '@tanstack/react-router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useAuth } from '@/AuthContext';
+import {
+  combineUuids,
+  shuffleAllButLastItemInArray,
+} from '@/components/tree/shuffle';
 import { hooks } from '@/config/queryClient';
 import {
   NEXT_ITEM_NAV_BUTTON_ID,
   PREVIOUS_ITEM_NAV_BUTTON_ID,
 } from '@/config/selectors';
-
-import {
-  combineUuids,
-  shuffleAllButLastItemInArray,
-} from '~player/utils/shuffle';
 
 import { LoadingButton, NavigationButton } from './customButtons';
 

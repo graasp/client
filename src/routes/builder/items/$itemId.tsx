@@ -19,6 +19,9 @@ import { z } from 'zod';
 
 import { useAuth } from '@/AuthContext';
 import { EnrollContent } from '@/components/EnrollContent';
+import { ItemNavigation } from '@/components/tree/ItemNavigation';
+import { LoadingTree } from '@/components/tree/LoadingTree';
+import { GRAASP_MENU_ITEMS } from '@/components/tree/TreeView';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
@@ -46,10 +49,7 @@ import { FilterItemsContextProvider } from '~builder/components/context/FilterIt
 import ModalProviders from '~builder/components/context/ModalProviders';
 import { OutletContext } from '~builder/contexts/OutletContext';
 import { ItemLayoutMode } from '~builder/enums';
-import ItemNavigation from '~player/ItemNavigation';
 import { RequestAccessContent } from '~player/access/RequestAccessContent';
-import { LoadingTree } from '~player/tree/LoadingTree';
-import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
 
 const schema = z.object({
   chatOpen: z.boolean().optional(),
