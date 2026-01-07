@@ -20,7 +20,6 @@ import {
   PublicationStatus,
   RecycledItemData,
   ShortLink,
-  ShortLinksOfItem,
   buildPathFromIds,
   getIdsFromPath,
   isDescendantOf,
@@ -87,7 +86,6 @@ const {
   buildGetPublicationStatusRoute,
   buildGetPublishedItemsForMemberRoute,
   buildGetShortLinkAvailableRoute,
-  buildGetShortLinksItemRoute,
   buildImportH5PRoute,
   buildImportZipRoute,
   buildItemPublishRoute,
@@ -2133,7 +2131,7 @@ export const mockGetShortLinksItem = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      url: new RegExp(`${API_HOST}/${buildGetShortLinksItemRoute(ID_FORMAT)}`),
+      url: new RegExp(`/items/short-links/list/${ID_FORMAT}`),
     },
     ({ reply }) => {
       if (shouldThrowError) {
@@ -2141,8 +2139,14 @@ export const mockGetShortLinksItem = (
       }
 
       return reply(
-        shortLinks.reduce<ShortLinksOfItem>((acc, s) => {
-          return { ...acc, [s.platform]: s.alias };
+        shortLinks.reduce((acc, s) => {
+          return {
+            ...acc,
+            [s.platform]: {
+              alias: s.alias,
+              url: `http://mock.${s.platform}.org/${s.itemId}`,
+            },
+          };
         }, {}),
       );
     },
@@ -2226,9 +2230,7 @@ export const mockDeleteShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/${buildDeleteShortLinkRoute(SHORTLINK_FORMAT)}`,
-      ),
+      url: new RegExp(`/${buildDeleteShortLinkRoute(SHORTLINK_FORMAT)}`),
     },
     ({ reply, url }) => {
       if (shouldThrowError) {
