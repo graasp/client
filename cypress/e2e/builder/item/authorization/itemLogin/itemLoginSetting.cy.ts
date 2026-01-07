@@ -27,7 +27,7 @@ const checkItemLoginSettingIsEnabled = ({ mode }: { mode: string }) => {
     mode,
   );
 };
-const checkItemLoginSettingIsDisabled = ({ mode }: { mode: string }) => {
+const checkItemLoginSettingIsDisabled = () => {
   cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}`).then((el) => {
     // test classnames are 'disabled'
     expect(el.parent().html()).to.contain('disabled');
@@ -78,9 +78,7 @@ describe('Item Login', () => {
       // disabled at child level
       cy.visit(buildItemPath(child.id));
       cy.get(`#${buildShareButtonId(child.id)}`).click();
-      checkItemLoginSettingIsDisabled({
-        mode: ItemLoginSchemaType.UsernameAndPassword,
-      });
+      checkItemLoginSettingIsDisabled();
     });
 
     it('read permission', () => {
