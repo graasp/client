@@ -13,13 +13,13 @@ import { hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
 import MainMenu from '@/ui/MainMenu/MainMenu';
 
-import { LoadingTree } from './tree/LoadingTree';
-import { TreeView } from './tree/TreeView';
-import { combineUuids, shuffleAllButLastItemInArray } from './utils/shuffle';
+import { LoadingTree } from './LoadingTree';
+import { TreeView } from './TreeView';
+import { combineUuids, shuffleAllButLastItemInArray } from './shuffle';
 
 const { useItem, useDescendants } = hooks;
 
-const DrawerNavigation = ({
+export const ItemNavigation = ({
   rootId,
   itemId,
   shuffle = false,
@@ -66,7 +66,6 @@ const DrawerNavigation = ({
             id={TREE_VIEW_ID}
             rootItems={[rootItem]}
             items={[rootItem, ...shuffledDescendants]}
-            firstLevelStyle={{ fontWeight: 'bold' }}
             onTreeItemSelect={handleNavigationOnClick}
             itemId={itemId}
             allowedTypes={types}
@@ -93,5 +92,3 @@ const DrawerNavigation = ({
 
   return null;
 };
-
-export default DrawerNavigation;
