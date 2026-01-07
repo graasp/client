@@ -145,6 +145,20 @@ describe('Customized Tags', () => {
       expect(body.name).contains(newTag.name);
       expect(body.category).contains(newTag.category);
     });
+
+    // add tag with ending spacing
+    const tagWithSpacing = 'Tag with spacing ';
+    cy.get(
+      buildDataCyWrapper(buildMultiSelectChipInputId(TagCategory.Level)),
+    ).type(`${tagWithSpacing}{Enter}`);
+
+    cy.wait('@addTag', { timeout: EDIT_TAG_REQUEST_TIMEOUT }).then((data) => {
+      const {
+        request: { url, body },
+      } = data;
+      expect(url.split('/')).contains(item.id);
+      expect(body.name).contains('Tag with spacing');
+    });
   });
 });
 
