@@ -6,6 +6,10 @@ export const expectNumberOfShortLinks = (expectedNumber: number): void => {
 
 export const expectShortLinksEquals = (expectedAlias: string[]): void => {
   cy.wait('@getShortLinksItem').then(({ response: { body } }) => {
-    expectedAlias.forEach((a) => expect(Object.values(body)).includes(a));
+    expectedAlias.forEach((a) =>
+      expect(
+        Object.values<object>(body).map((v) => ('alias' in v ? v.alias : null)),
+      ).includes(a),
+    );
   });
 };

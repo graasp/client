@@ -2230,9 +2230,7 @@ export const mockDeleteShortLink = (
   cy.intercept(
     {
       method: HttpMethod.Delete,
-      url: new RegExp(
-        `${API_HOST}/${buildDeleteShortLinkRoute(SHORTLINK_FORMAT)}`,
-      ),
+      url: new RegExp(`/${buildDeleteShortLinkRoute(SHORTLINK_FORMAT)}`),
     },
     ({ reply, url }) => {
       if (shouldThrowError) {

@@ -1,15 +1,23 @@
 import { type JSX, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { Link, Stack, styled } from '@mui/material';
 
 import { ShortLink } from '@graasp/sdk';
 
-import { mutations } from '@/config/queryClient';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { NS } from '@/config/constants';
 import {
   SHORT_LINK_COMPONENT,
   buildShortLinkPlatformTextId,
   buildShortLinkUrlTextId,
 } from '@/config/selectors';
+import {
+  deleteAliasMutation,
+  getShortLinksForItemQueryKey,
+} from '@/openapi/client/@tanstack/react-query.gen';
 import { AccentColors } from '@/ui/theme';
 
 import {
@@ -21,8 +29,6 @@ import {
 import ConfirmDeleteLink from './ConfirmDeleteLink';
 import PlatformIcon from './PlatformIcon';
 import ShortLinkMenu from './ShortLinkMenu';
-
-const { useDeleteShortLink } = mutations;
 
 type Props = {
   url: string;
@@ -54,6 +60,33 @@ const StyledText = styled('p')(({ color = 'auto' }) => ({
   textTransform: 'capitalize',
 }));
 
+const useDeleteShortLink = ({
+  itemId,
+  alias,
+}: {
+  itemId: string;
+  alias: string;
+}) => {
+  const { t } = useTranslation(NS.Messages);
+  const queryClient = useQueryClient();
+  const { mutate: deleteShortLink } = useMutation({
+    ...deleteAliasMutation({ path: { alias } }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: getShortLinksForItemQueryKey({
+          path: { itemId },
+        }),
+      });
+    },
+    onError: (error: Error) => {
+      console.error(error);
+      toast.error?.(t('SHORT_LINK_UNEXPECTED_ERROR'));
+    },
+  });
+
+  return deleteShortLink;
+};
+
 const ShortLinkDisplay = ({
   url,
   shortLink,
@@ -62,13 +95,17 @@ const ShortLinkDisplay = ({
   onUpdate,
   onCreate,
 }: Props): JSX.Element => {
-  const { alias, platform } = shortLink;
-  const { mutate: deleteShortLink } = useDeleteShortLink();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const { alias, platform } = shortLink;
+
+  const deleteShortLink = useDeleteShortLink({
+    itemId: shortLink.itemId,
+    alias,
+  });
 
   const handleDeleteAlias = () => {
     if (canAdminShortLink) {
-      deleteShortLink(alias);
+      deleteShortLink({ path: { alias } });
     } else {
       console.error('Only administrators can delete short link.');
     }
