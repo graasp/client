@@ -6,6 +6,8 @@ import { DiscriminatedItem, ItemType, getIdsFromPath } from '@graasp/sdk';
 
 import { ErrorBoundary } from '@sentry/react';
 
+import { buildTreeItemClass } from '@/config/selectors';
+
 import { ExpandButton } from './ExpandButton';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
 import { PartialItemWithChildren, buildItemsTree } from './utils';
@@ -34,6 +36,7 @@ function ListItem({
   return (
     <>
       <ListItemButton
+        className={buildTreeItemClass(item.id)}
         selected={isSelected}
         sx={{
           ml: 3 * level,
