@@ -73,9 +73,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [2, 4, 1, 3, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -112,9 +110,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [2, 4, 1, 3, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -151,9 +147,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [2, 4, 1, 3, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -191,9 +185,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [1, 4, 3, 2, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -244,9 +236,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [1, 2, 3, 4, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -285,9 +275,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [3, 4, 2, 1, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -340,9 +328,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [3, 2, 1, 4, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -380,9 +366,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [3, 2, 1, 4, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
@@ -423,9 +407,7 @@ describe.skip('Shuffle', () => {
       const shuffledOrder = [3, 4, 1, 2, 5];
 
       // last should always be last
-      expect(shuffledOrder[shuffledOrder.length - 1]).to.equal(
-        shuffledOrder.length,
-      );
+      expect(shuffledOrder.at(-1)).to.equal(shuffledOrder.length);
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
         .siblings(`ul.${TREE_NODE_GROUP_CLASS}:first`)
