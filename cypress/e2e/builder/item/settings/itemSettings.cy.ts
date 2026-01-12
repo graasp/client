@@ -442,6 +442,55 @@ describe('Item Settings', () => {
         );
       });
     });
+
+    it('switch to capsule', function () {
+      const item = PackedFolderItemFactory();
+      cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
+        'switchToCapsule',
+      );
+      cy.setUpApi({ items: [item] });
+      // enable preview by default
+      cy.visit(buildItemSettingsPath(item.id), {
+        onBeforeLoad: function (window) {
+          window.localStorage.setItem('graasp-preview', 'enabled');
+        },
+      });
+      cy.get('[aria-label="Convert to Capsule"]').click();
+      cy.get('[aria-label="confirm transforming to capsule"]').click();
+      cy.wait('@switchToCapsule');
+    });
+
+    it('switch to capsule not visible outside of preview', function () {
+      const item = PackedFolderItemFactory();
+      cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
+        'switchToCapsule',
+      );
+      cy.setUpApi({ items: [item] });
+      cy.visit(buildItemSettingsPath(item.id));
+      cy.get(`#${ITEM_PANEL_TABLE_ID}`).should('be.visible');
+      cy.get('[aria-label="Confirm converting to Capsule"]').should(
+        'not.exist',
+      );
+    });
+
+    it('switch to folder', function () {
+      const item = PackedFolderItemFactory({
+        extra: { folder: { isCapsule: true } },
+      });
+      cy.intercept('PATCH', `/api/items/capsules/${item.id}/to-folder`).as(
+        'switchToFolder',
+      );
+      cy.setUpApi({ items: [item] });
+      // enable preview by default
+      cy.visit(buildItemSettingsPath(item.id), {
+        onBeforeLoad: function (window) {
+          window.localStorage.setItem('graasp-preview', 'enabled');
+        },
+      });
+      cy.get('[aria-label="Convert to Folder"]').click();
+      cy.get('[aria-label="Confirm converting to Folder"]').click();
+      cy.wait('@switchToFolder');
+    });
   });
 
   describe('in item menu', () => {

@@ -3303,7 +3303,7 @@ export type CreateFolderResponses = {
             [key: string]: unknown;
         } & {
             folder: {
-                isRoot?: boolean;
+                isCapsule?: boolean;
             };
         };
         /**
@@ -3405,7 +3405,7 @@ export type UpdateFolderResponses = {
             [key: string]: unknown;
         } & {
             folder: {
-                isRoot?: boolean;
+                isCapsule?: boolean;
             };
         };
         /**
@@ -3443,6 +3443,77 @@ export type UpdateFolderResponses = {
 
 export type UpdateFolderResponse = UpdateFolderResponses[keyof UpdateFolderResponses];
 
+export type ConvertFolderToCapsuleData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: never;
+    url: '/api/items/folders/{id}/to-capsule';
+};
+
+export type ConvertFolderToCapsuleErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type ConvertFolderToCapsuleError = ConvertFolderToCapsuleErrors[keyof ConvertFolderToCapsuleErrors];
+
+export type ConvertFolderToCapsuleResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        id: string;
+        name: string;
+        description?: null | string;
+        type: string;
+        path: string;
+        lang: string;
+        extra: {
+            [key: string]: unknown;
+        } & {
+            folder: {
+                isCapsule?: boolean;
+            };
+        };
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMinimalAccount;
+        createdAt: string;
+        updatedAt: string;
+    };
+};
+
+export type ConvertFolderToCapsuleResponse = ConvertFolderToCapsuleResponses[keyof ConvertFolderToCapsuleResponses];
+
 export type CreateFolderWithThumbnailData = {
     body?: never;
     path?: never;
@@ -3476,7 +3547,7 @@ export type CreateFolderWithThumbnailResponses = {
             [key: string]: unknown;
         } & {
             folder: {
-                isRoot?: boolean;
+                isCapsule?: boolean;
             };
         };
         /**
@@ -3513,6 +3584,180 @@ export type CreateFolderWithThumbnailResponses = {
 };
 
 export type CreateFolderWithThumbnailResponse = CreateFolderWithThumbnailResponses[keyof CreateFolderWithThumbnailResponses];
+
+export type CreateCapsuleData = {
+    body: {
+        name: string;
+        description?: null | string;
+        lang?: string;
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings?: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+    };
+    path?: never;
+    query?: {
+        parentId?: string;
+        previousItemId?: string;
+    };
+    url: '/api/items/capsules';
+};
+
+export type CreateCapsuleErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type CreateCapsuleError = CreateCapsuleErrors[keyof CreateCapsuleErrors];
+
+export type CreateCapsuleResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        id: string;
+        name: string;
+        description?: null | string;
+        type: string;
+        path: string;
+        lang: string;
+        extra: {
+            [key: string]: unknown;
+        } & {
+            folder: {
+                isCapsule?: boolean;
+            };
+        };
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMinimalAccount;
+        createdAt: string;
+        updatedAt: string;
+    };
+};
+
+export type CreateCapsuleResponse = CreateCapsuleResponses[keyof CreateCapsuleResponses];
+
+export type ConvertCapsuleToFolderData = {
+    body?: never;
+    path: {
+        id: string;
+    };
+    query?: never;
+    url: '/api/items/capsules/{id}/to-folder';
+};
+
+export type ConvertCapsuleToFolderErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type ConvertCapsuleToFolderError = ConvertCapsuleToFolderErrors[keyof ConvertCapsuleToFolderErrors];
+
+export type ConvertCapsuleToFolderResponses = {
+    /**
+     * Default Response
+     */
+    200: {
+        id: string;
+        name: string;
+        description?: null | string;
+        type: string;
+        path: string;
+        lang: string;
+        extra: {
+            [key: string]: unknown;
+        } & {
+            folder: {
+                isCapsule?: boolean;
+            };
+        };
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMinimalAccount;
+        createdAt: string;
+        updatedAt: string;
+    };
+};
+
+export type ConvertCapsuleToFolderResponse = ConvertCapsuleToFolderResponses[keyof ConvertCapsuleToFolderResponses];
 
 export type CreateAppData = {
     body: {
