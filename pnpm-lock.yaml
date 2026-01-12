@@ -27,8 +27,8 @@ importers:
         specifier: 5.2.7
         version: 5.2.7
       '@graasp/sdk':
-        specifier: 5.17.0
-        version: 5.17.0(date-fns@4.1.0)(uuid@11.1.0)
+        specifier: 5.18.0
+        version: 5.18.0(date-fns@4.1.0)(uuid@11.1.0)
       '@graasp/stylis-plugin-rtl':
         specifier: 2.2.0
         version: 2.2.0(stylis@4.3.6)
@@ -1594,8 +1594,8 @@ packages:
   '@fontsource-variable/nunito@5.2.7':
     resolution: {integrity: sha512-2N8QhatkyKgSUbAGZO2FYLioxA32+RyI1EplVLawbpkGjUeui9Qg9VMrpkCaik1ydjFjfLV+kzQ0cGEsMrMenQ==}
 
-  '@graasp/sdk@5.17.0':
-    resolution: {integrity: sha512-9r9c7hN0UHK3boJpCZBFIaK+C2ivviTehWbkKZZ1NsB8lULT3ERaymgZXhINsxICXBTguVP001+Q+7WxehPHNQ==}
+  '@graasp/sdk@5.18.0':
+    resolution: {integrity: sha512-pTTALeQSUCudleKYH6uTnmORzZEGCDP9PPJVW+rBvdhbV9jvtUamg1PGp8+Gr0AHwTIgbCZ44LNPHwzUNzjjgA==}
     peerDependencies:
       date-fns: ^4
       uuid: ^11.0.0
@@ -8087,7 +8087,7 @@ snapshots:
 
   '@fontsource-variable/nunito@5.2.7': {}
 
-  '@graasp/sdk@5.17.0(date-fns@4.1.0)(uuid@11.1.0)':
+  '@graasp/sdk@5.18.0(date-fns@4.1.0)(uuid@11.1.0)':
     dependencies:
       '@faker-js/faker': 9.9.0
       date-fns: 4.1.0

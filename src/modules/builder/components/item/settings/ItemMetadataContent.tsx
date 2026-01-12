@@ -14,6 +14,7 @@ import {
   formatDate,
   formatFileSize,
   getFileExtra,
+  isCapsule,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
@@ -21,8 +22,11 @@ import { hooks } from '@/config/queryClient';
 import { ITEM_PANEL_NAME_ID, ITEM_PANEL_TABLE_ID } from '@/config/selectors';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
+import { Preview } from '~landing/preview/PreviewModeContext';
 
 import { BUILDER } from '../../../langs';
+import { ConvertToCapsuleButton } from './ConvertToCapsuleButton';
+import { ConvertToFolderButton } from './ConvertToFolderButton';
 import LanguageSelect from './LanguageSelect';
 
 const { useMember } = hooks;
@@ -76,7 +80,23 @@ const ItemMetadataContent = (): JSX.Element => {
               <TableCell component="th" scope="row">
                 {translateBuilder(BUILDER.ITEM_METADATA_TYPE_TITLE)}
               </TableCell>
-              <TableCell align="right">{mimetype ?? item.type}</TableCell>
+              <TableCell align="right">
+                {mimetype ?? item.type}
+                <Preview>
+                  {item.type === ItemType.FOLDER &&
+                    (isCapsule(item) ? (
+                      <ConvertToFolderButton
+                        itemPath={item.path}
+                        itemId={item.id}
+                      />
+                    ) : (
+                      <ConvertToCapsuleButton
+                        itemPath={item.path}
+                        itemId={item.id}
+                      />
+                    ))}
+                </Preview>
+              </TableCell>
             </TableRow>
             {size && (
               <TableRow>

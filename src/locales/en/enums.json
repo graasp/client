@@ -4,6 +4,7 @@
   "admin": "admin",
 
   "app": "app",
+  "capsule": "capsule",
   "document": "document",
   "embeddedLink": "link",
   "file": "file",
