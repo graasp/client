@@ -9,6 +9,8 @@ import { Outlet, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { fallback, zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
+import { ItemNavigation } from '@/components/tree/ItemNavigation';
+import { GRAASP_MENU_ITEMS } from '@/components/tree/TreeView';
 import { CustomLink } from '@/components/ui/CustomLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
@@ -18,9 +20,6 @@ import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
 import { Platform } from '@/ui/PlatformSwitch/hooks';
 import { useMobileView } from '@/ui/hooks/useMobileView';
-
-import ItemNavigation from '~player/ItemNavigation';
-import { GRAASP_MENU_ITEMS } from '~player/tree/TreeView';
 
 const playerSchema = z.object({
   shuffle: z.boolean().optional(),
