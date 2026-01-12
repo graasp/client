@@ -56,7 +56,7 @@ class TestHelper {
       {
         method: HttpMethod.Get,
         url: new RegExp(
-          `${API_HOST}/members/${ID_FORMAT}/avatar/(original|large|medium|small)\\?replyUrl\\=true`,
+          String.raw`${API_HOST}/members/${ID_FORMAT}/avatar/(original|large|medium|small)\?replyUrl\=true`,
         ),
       },
       ({ reply }) => {

@@ -1,4 +1,4 @@
-import { type MouseEvent, useState } from 'react';
+import { type JSX, type MouseEvent, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Delete, Edit, MoreVert } from '@mui/icons-material';
@@ -36,7 +36,11 @@ const StyledListItemIcon = styled(ListItemIcon)({
   },
 });
 
-export function MessageActions({ message, isOwn = false, itemId }: Props) {
+export function MessageActions({
+  message,
+  isOwn = false,
+  itemId,
+}: Readonly<Props>): JSX.Element {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
   const { t } = useTranslation(NS.Chatbox);

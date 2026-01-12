@@ -21,24 +21,17 @@ import { addItemLoginSchema } from './utils';
 const ALERT_BUTTON = `[role="alert"] button`;
 const DIALOG_SELECTOR = `[role="dialog"]`;
 
-const checkItemLoginSetting = ({
-  mode,
-  disabled = false,
-}: {
-  mode: string;
-  disabled?: boolean;
-}) => {
-  if (!disabled) {
-    cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID} + input`).should(
-      'have.value',
-      mode,
-    );
-  } else {
-    cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}`).then((el) => {
-      // test classnames are 'disabled'
-      expect(el.parent().html()).to.contain('disabled');
-    });
-  }
+const checkItemLoginSettingIsEnabled = ({ mode }: { mode: string }) => {
+  cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID} + input`).should(
+    'have.value',
+    mode,
+  );
+};
+const checkItemLoginSettingIsDisabled = () => {
+  cy.get(`#${SHARE_ITEM_PSEUDONYMIZED_SCHEMA_ID}`).then((el) => {
+    // test classnames are 'disabled'
+    expect(el.parent().html()).to.contain('disabled');
+  });
 };
 
 const editItemLoginSetting = (mode: string) => {
@@ -77,7 +70,7 @@ describe('Item Login', () => {
       cy.visit(buildItemPath(item.id));
       cy.get(`#${buildShareButtonId(item.id)}`).click();
 
-      checkItemLoginSetting({
+      checkItemLoginSettingIsEnabled({
         mode: ItemLoginSchemaType.Username,
       });
       editItemLoginSetting(ItemLoginSchemaType.UsernameAndPassword);
@@ -85,10 +78,7 @@ describe('Item Login', () => {
       // disabled at child level
       cy.visit(buildItemPath(child.id));
       cy.get(`#${buildShareButtonId(child.id)}`).click();
-      checkItemLoginSetting({
-        mode: ItemLoginSchemaType.UsernameAndPassword,
-        disabled: true,
-      });
+      checkItemLoginSettingIsDisabled();
     });
 
     it('read permission', () => {
