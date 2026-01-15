@@ -8,6 +8,7 @@ import {
   ItemType,
   formatDate,
   getLinkThumbnailUrl,
+  isCapsule,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
@@ -43,12 +44,16 @@ const ItemCard = ({
   CardLink,
 }: Props): JSX.Element => {
   const { t: translateCommon, i18n } = useTranslation(NS.Common);
+  const { t: translateEnum } = useTranslation(NS.Enums);
 
   const dateColumnFormatter = (value: string) =>
     formatDate(value, {
       locale: i18n.language,
       defaultValue: translateCommon('UNKNOWN_DATE'),
     });
+
+  const itemType =
+    item.type === ItemType.FOLDER && isCapsule(item) ? 'capsule' : item.type;
 
   const content = (
     <Grid
@@ -67,7 +72,7 @@ const ItemCard = ({
               md: 6,
             }}
           >
-            <Typography variant="caption">{item.type}</Typography>
+            <Typography variant="caption">{translateEnum(itemType)}</Typography>
           </Grid>
           <Grid
             size={{
