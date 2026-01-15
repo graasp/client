@@ -443,7 +443,7 @@ describe('Item Settings', () => {
       });
     });
 
-    it('switch to capsule', function () {
+    it('convert to capsule', function () {
       const item = PackedFolderItemFactory();
       cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
         'switchToCapsule',
@@ -456,11 +456,11 @@ describe('Item Settings', () => {
         },
       });
       cy.get('[aria-label="Convert to Capsule"]').click();
-      cy.get('[aria-label="confirm transforming to capsule"]').click();
+      cy.get('[aria-label="Confirm converting to capsule"]').click();
       cy.wait('@switchToCapsule');
     });
 
-    it('switch to capsule not visible outside of preview', function () {
+    it('convert to capsule not visible outside of preview', function () {
       const item = PackedFolderItemFactory();
       cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
         'switchToCapsule',
@@ -473,7 +473,7 @@ describe('Item Settings', () => {
       );
     });
 
-    it('switch to folder', function () {
+    it('convert to folder', function () {
       const item = PackedFolderItemFactory({
         extra: { folder: { isCapsule: true } },
       });
