@@ -456,7 +456,7 @@ describe('Item Settings', () => {
         },
       });
       cy.get('[aria-label="Convert to Capsule"]').click();
-      cy.get('[aria-label="Confirm converting to capsule"]').click();
+      cy.get('[aria-label="Confirm converting to Capsule"]').click();
       cy.wait('@switchToCapsule');
     });
 
