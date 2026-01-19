@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.36.0](https://github.com/graasp/client/compare/v2.35.0...v2.36.0) (2026-01-12)
+
+
+### Features
+
+* refactor descendant item navigation to remove dependency ([#1184](https://github.com/graasp/client/issues/1184)) ([bba9dc4](https://github.com/graasp/client/commit/bba9dc4d66a9fd71d610dd50965e0204dd6f0af1))
+* show bad credentials message on wrong password ([#1183](https://github.com/graasp/client/issues/1183)) ([d5fbcb7](https://github.com/graasp/client/commit/d5fbcb7ed9a4a2ee7ba6c65260979cb0d8eecb6f))
+
+
+### Bug Fixes
+
+* trim tag name before saving ([#1181](https://github.com/graasp/client/issues/1181)) ([da4a668](https://github.com/graasp/client/commit/da4a668870528f20f247d34c78a886f4a72a1106))
+* update cloudfront invalidation to include language files ([#1175](https://github.com/graasp/client/issues/1175)) ([571470e](https://github.com/graasp/client/commit/571470ede157fb270c7284f271e93b54eb336a89))
+* use generated hook to fix short link crash ([#1182](https://github.com/graasp/client/issues/1182)) ([aace258](https://github.com/graasp/client/commit/aace258cc7d8a80c195dd9ba1796e4ef3af01613))
+
 ## [2.35.0](https://github.com/graasp/client/compare/v2.34.2...v2.35.0) (2025-12-18)
 
 
