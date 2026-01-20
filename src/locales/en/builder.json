@@ -550,5 +550,51 @@
     "EDIT_MESSAGE_ERROR": "An error happened when editing the message.",
     "DELETE_MESSAGE_ERROR": "An error happened when deleting the message.",
     "CLEAR_ERROR": "An error happened when clearing the chat."
-  }
+  },
+  "CONVERT_TO_CAPSULE_MODAL_TITLE": "Convert to Capsule",
+  "CONVERT_TO_CAPSULE_MODAL_CONTENT": "Converting a Folder into a Capsule preserves all of its existing content and data. Capsules are ideal for organizing a complete learning unit. If you find that a Capsule doesn't fit your needs, you can easily revert to a Folder from the settings panel at any time.",
+  "CONVERT_TO_CAPSULE_MODAL_CONTENT_DETAILS": {
+    "TITLE": "Why use Capsules? (Coming soon)",
+    "SIMPLIFIED_PERMISSIONS": {
+      "TITLE": "Simplified permissions",
+      "DESCRIPTION": "Manage access permission only at the Capsule level."
+    },
+    "INLINE_EDITOR": {
+      "TITLE": "Inline editor",
+      "DESCRIPTION": "Create and edit content directly within the Capsule for a faster, smoother workflow."
+    },
+    "CLEAR_ROLES_AND_VIEWS": {
+      "TITLE": "Clear roles and views",
+      "DESCRIPTION": "Role-based views for a focused learning experience:",
+      "READERS": "Readers see only the Player view.",
+      "WRITERS_AND_ADMINS": "Writers and admins have access to the Builder view for content creation and management."
+    },
+    "ACTIVITY_UNITY": {
+      "TITLE": "Actvity unity",
+      "DESCRIPTION": "The Player view presents the complete content at once; partial playback isn’t possible."
+    }
+  },
+  "CONVERT_TO_CAPSULE_MODAL_CONFIRM_BUTTON_ARIA_LABEL": "Confirm converting to Capsule",
+  "CONVERT_TO_CAPSULE_MODAL_CONFIRM_BUTTON": "Convert to Capsule",
+  "CONVERT_TO_CAPSULE_SUCCESS_MESSAGE": "The item has been successfully converted to a Capsule.",
+  "CONVERT_TO_CAPSULE_ERROR_MESSAGE": "An error occurred while converting the item to a Capsule. Please try again later.",
+  "CONVERT_TO_FOLDER_MODAL_TITLE": "Convert to Folder",
+  "CONVERT_TO_FOLDER_MODAL_CONTENT": "Converting a Capsule into a Folder preserves all of its existing content and data. Folders are best suited for organizing and managing data. If a Folder doesn't meet your needs, you can easily revert to a Folder from the settings panel at any time.",
+  "CONVERT_TO_FOLDER_MODAL_CONTENT_DETAILS": {
+    "TITLE": "Why use Folders?",
+    "FLEXIBLE_PERMISSIONS": {
+      "TITLE": "Flexible permissions",
+      "DESCRIPTION": "Manage access rights at every level, giving you more granular control."
+    },
+    "FOLDER_EDITOR": {
+      "TITLE": "Folder editor",
+      "DESCRIPTION": "Content is displayed as a file structure for easier management."
+    },
+    "EXPANDED_VISIBILITY": {
+      "TITLE": "Expanded visibility",
+      "DESCRIPTION": "Readers can access both the Player view and the Builder view."
+    }
+  },
+  "CONVERT_TO_FOLDER_MODAL_CONFIRM_BUTTON_ARIA_LABEL": "Confirm converting to Folder",
+  "CONVERT_TO_FOLDER_MODAL_CONFIRM_BUTTON": "Convert to Folder"
 }
