@@ -3,26 +3,25 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectChangeEvent } from '@mui/material';
 
-import { CompleteMember, EmailFrequency } from '@graasp/sdk';
-
 import { NS, emailFrequency } from '@/config/constants';
+import type { NotificationFrequency } from '@/openapi/client';
 import Select from '@/ui/Select/Select';
 
 type EmailPreferenceSwitchProps = {
   id?: string;
-  emailFreq: CompleteMember['extra']['emailFreq'];
-  onChange: (newEmailFreq: `${EmailFrequency}`) => void;
+  value: NotificationFrequency;
+  onChange: (newEmailFreq: NotificationFrequency) => void;
 };
 
 export function EmailPreferenceSwitch({
   id,
-  emailFreq,
+  value,
   onChange,
 }: Readonly<EmailPreferenceSwitchProps>): JSX.Element {
   const { t } = useTranslation(NS.Account);
 
   const handleChange = (event: SelectChangeEvent<string>) => {
-    const newEmailFreq = event.target.value as `${EmailFrequency}`;
+    const newEmailFreq = event.target.value as NotificationFrequency;
     if (newEmailFreq) {
       onChange(newEmailFreq);
     } else {
@@ -33,7 +32,7 @@ export function EmailPreferenceSwitch({
   return (
     <Select
       id={id}
-      defaultValue={emailFreq}
+      defaultValue={value}
       onChange={handleChange}
       variant="outlined"
       size="small"

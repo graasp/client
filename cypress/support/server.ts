@@ -31,7 +31,7 @@ import { CyHttpMessages } from 'cypress/types/net-stubbing';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import { Profile } from '@/openapi/client/types.gen';
+import { CurrentSettings, Profile } from '@/openapi/client/types.gen';
 
 import { ITEM_PAGE_SIZE, SETTINGS } from '../../src/modules/builder/constants';
 import { API_ROUTES } from '../../src/query/routes';
@@ -73,7 +73,6 @@ const {
   buildDownloadFilesRoute,
   buildEditItemRoute,
   buildExportItemChatRoute,
-  buildGetCurrentMemberRoute,
   buildGetItemChatRoute,
   buildGetItemGeolocationRoute,
   buildGetItemInvitationsForItemRoute,
@@ -197,14 +196,14 @@ export const mockGetCurrentMember = (
   cy.intercept(
     {
       method: HttpMethod.Get,
-      pathname: `/${buildGetCurrentMemberRoute()}`,
+      pathname: /\/members\/current$/,
     },
     handler,
   ).as('getCurrentMember');
   cy.intercept(
     {
       method: HttpMethod.Get,
-      pathname: `/api/${buildGetCurrentMemberRoute()}`,
+      pathname: /\/api\/members\/current$/,
     },
     handler,
   ).as('getCurrentMemberAPI');
@@ -2397,4 +2396,18 @@ export const mockGetItemMembershipsForItem = (
       reply(result);
     },
   ).as('getItemMemberships');
+};
+
+export const mockGetCurrentSettings = (
+  currentSettings: CurrentSettings,
+): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: /\/api\/members\/current\/settings$/,
+    },
+    ({ reply }) => {
+      reply(currentSettings);
+    },
+  ).as('getCurrentSettings');
 };

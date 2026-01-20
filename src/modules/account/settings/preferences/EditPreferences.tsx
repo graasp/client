@@ -3,55 +3,55 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Stack, Switch, Tooltip } from '@mui/material';
 
-import { CompleteMember } from '@graasp/sdk';
-
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
-import { DEFAULT_EMAIL_FREQUENCY, DEFAULT_LANG, NS } from '@/config/constants';
+import { DEFAULT_LANG, NS } from '@/config/constants';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
   PREFERENCES_CANCEL_BUTTON_ID,
   PREFERENCES_EDIT_CONTAINER_ID,
-  PREFERENCES_EMAIL_FREQUENCY_ID,
   PREFERENCES_LANGUAGE_SWITCH_ID,
   PREFERENCES_SAVE_BUTTON_ID,
 } from '@/config/selectors';
-import { updateCurrentAccountMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import { memberKeys } from '@/query/keys';
+import type { CurrentSettings, NotificationFrequency } from '@/openapi/client';
 
-import { EmailPreferenceSwitch } from '../EmailPreferenceSwitch';
+import { EmailPreferenceSwitch } from './EmailPreferenceSwitch';
+import { MarketingEmailsSubscribeSwitch } from './MarketingEmailsSubscribeSwitch';
+import { useUpdatePreferences } from './useUpdatePreferences';
 
-type EditPreferencesProp = {
-  readonly member: CompleteMember;
-  readonly onClose: () => void;
-};
+type EditPreferencesProp = Readonly<{
+  lang: string;
+  enableSaveActions: boolean;
+  notificationFrequency: NotificationFrequency;
+  marketingEmailsSubscribedAt: CurrentSettings['marketingEmailsSubscribedAt'];
+  onClose: () => void;
+}>;
 export function EditPreferences({
-  member,
+  lang,
+  enableSaveActions,
+  marketingEmailsSubscribedAt,
+  notificationFrequency,
   onClose,
 }: EditPreferencesProp): JSX.Element {
   const { i18n, t } = useTranslation(NS.Account);
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateMessage } = useTranslation(NS.Messages);
-  const queryClient = useQueryClient();
-  const { mutateAsync: editMember, error } = useMutation({
-    ...updateCurrentAccountMutation(),
-    onSettled: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: memberKeys.current().content,
-      });
-    },
+  const { saveSettings, error } = useUpdatePreferences({
+    marketingEmailsSubscribedAt,
   });
 
-  const memberLang = member?.extra?.lang ?? DEFAULT_LANG;
-  const memberEmailFreq = member?.extra?.emailFreq ?? DEFAULT_EMAIL_FREQUENCY;
-  const memberSaveActions = member?.enableSaveActions ?? true;
+  const memberLang = lang ?? DEFAULT_LANG;
+  const memberSaveActions = enableSaveActions ?? true;
 
   const [selectedLang, setSelectedLang] = useState<string>(memberLang);
-  const [selectedEmailFreq, setSelectedEmailFreq] = useState(memberEmailFreq);
+  const [
+    selectedIsSubscribedToMarketingEmails,
+    setSelectedIsSubscribedToMarketingEmails,
+  ] = useState(Boolean(marketingEmailsSubscribedAt));
+  const [selectedNotificationFrequency, setSelectedNotificationFrequency] =
+    useState(notificationFrequency);
   const [switchedSaveActions, setSwitchedSaveActions] =
     useState(memberSaveActions);
 
@@ -59,29 +59,26 @@ export function EditPreferences({
     const { checked } = event.target;
     setSwitchedSaveActions(checked);
   };
-  const saveSettings = async () => {
-    try {
-      await editMember({
-        body: {
-          extra: {
-            lang: selectedLang,
-            emailFreq: selectedEmailFreq,
-          },
-          enableSaveActions: switchedSaveActions,
-        },
-      });
-      if (selectedLang !== memberLang) {
-        i18n.changeLanguage(selectedLang);
-      }
-      onClose();
-    } catch (e) {
-      console.error(e);
+
+  const onSubmit = () => {
+    saveSettings({
+      lang: selectedLang,
+      enableSaveActions: switchedSaveActions,
+      notificationFrequency: selectedNotificationFrequency,
+      isSubscribedToMarketingEmails: selectedIsSubscribedToMarketingEmails,
+    });
+
+    if (selectedLang !== memberLang) {
+      i18n.changeLanguage(selectedLang);
     }
+    onClose();
   };
 
   const hasChanges =
     selectedLang !== memberLang ||
-    selectedEmailFreq !== memberEmailFreq ||
+    selectedIsSubscribedToMarketingEmails !==
+      Boolean(marketingEmailsSubscribedAt) ||
+    selectedNotificationFrequency !== notificationFrequency ||
     switchedSaveActions !== memberSaveActions;
 
   return (
@@ -97,13 +94,7 @@ export function EditPreferences({
           onChange={setSelectedLang}
         />
       </FormProperty>
-      <FormProperty title={t('PROFILE_EMAIL_FREQUENCY_TITLE')}>
-        <EmailPreferenceSwitch
-          emailFreq={member.extra?.emailFreq ?? DEFAULT_EMAIL_FREQUENCY}
-          onChange={setSelectedEmailFreq}
-          id={PREFERENCES_EMAIL_FREQUENCY_ID}
-        />
-      </FormProperty>
+
       <FormProperty title={t('PROFILE_SAVE_ACTIONS_TITLE')}>
         <Tooltip title={t('SAVE_ACTIONS_TOGGLE_TOOLTIP')}>
           <Switch
@@ -114,6 +105,19 @@ export function EditPreferences({
           />
         </Tooltip>
       </FormProperty>
+      <FormProperty title={t('PROFILE_EMAIL_FREQUENCY_TITLE')}>
+        <EmailPreferenceSwitch
+          value={selectedNotificationFrequency}
+          onChange={setSelectedNotificationFrequency}
+        />
+      </FormProperty>
+      <FormProperty title={t('PROFILE_ENABLE_EMAIL_SUBSCRIPTION.TITLE')}>
+        <MarketingEmailsSubscribeSwitch
+          value={selectedIsSubscribedToMarketingEmails}
+          onChange={setSelectedIsSubscribedToMarketingEmails}
+        />
+      </FormProperty>
+
       {error && (
         <Alert severity="error">{translateMessage('EDIT_MEMBER_ERROR')}</Alert>
       )}
@@ -128,7 +132,7 @@ export function EditPreferences({
         </Button>
         <Button
           variant="contained"
-          onClick={saveSettings}
+          onClick={onSubmit}
           id={PREFERENCES_SAVE_BUTTON_ID}
           disabled={!hasChanges}
           size="small"

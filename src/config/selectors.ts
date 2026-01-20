@@ -9,6 +9,10 @@ export const SETTINGS_PAGE_CONTAINER_ID = 'settings-page-container';
 
 export const PREFERENCES_LANGUAGE_SWITCH_ID = 'preferences-language-switch';
 export const PREFERENCES_LANGUAGE_DISPLAY_ID = 'preferences-language-display';
+export const PREFERENCES_MARKETING_SUBSCRIPTION_SWITCH_ID =
+  'preferences-marketing-subscription-switch';
+export const PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID =
+  'preferences-marketing-subscription-display';
 export const PREFERENCES_ANALYTICS_SWITCH_ID = 'preferences-analytics-switch';
 export const PREFERENCES_EMAIL_FREQUENCY_ID = 'preferences-email-frequency';
 export const PREFERENCES_EDIT_BUTTON_ID = 'preferences-edit-button';

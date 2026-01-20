@@ -23,7 +23,11 @@ import {
   ThumbnailsBySize,
 } from '@graasp/sdk';
 
-import { ItemVisibility, Profile } from '@/openapi/client/types.gen';
+import {
+  CurrentSettings,
+  ItemVisibility,
+  Profile,
+} from '@/openapi/client/types.gen';
 
 export type ItemForTest = DiscriminatedItem & {
   geolocation?: Partial<ItemGeolocation>;
@@ -48,6 +52,7 @@ export type FileItemForTest = FileItemType & {
 };
 export type ApiConfig = {
   currentGuest?: CompleteGuest | null;
+  currentSettings?: Partial<CurrentSettings>;
   hasPassword?: boolean;
   currentProfile?: Profile | null;
   getCurrentProfileError?: boolean;

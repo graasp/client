@@ -1,38 +1,39 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { AccountType } from '@graasp/sdk';
-
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { DEFAULT_LANG, NS } from '@/config/constants';
 import { LANGS } from '@/config/langs';
-import { hooks } from '@/config/queryClient';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
   PREFERENCES_EDIT_BUTTON_ID,
   PREFERENCES_EMAIL_FREQUENCY_ID,
   PREFERENCES_LANGUAGE_DISPLAY_ID,
+  PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID,
 } from '@/config/selectors';
+import type { CurrentSettings, NotificationFrequency } from '@/openapi/client';
 
 import { SettingItem } from '~account/settings/SettingItem';
 
 import { EditPreferences } from './EditPreferences';
 
-export const Preferences = (): JSX.Element | null => {
-  const { data: member } = hooks.useCurrentMember();
-
+export const Preferences = ({
+  lang,
+  enableSaveActions,
+  marketingEmailsSubscribedAt,
+  notificationFrequency,
+}: {
+  lang: string;
+  enableSaveActions: boolean;
+  marketingEmailsSubscribedAt: CurrentSettings['marketingEmailsSubscribedAt'];
+  notificationFrequency: NotificationFrequency;
+}): JSX.Element | null => {
   const { t } = useTranslation(NS.Account);
 
   const [isEditing, setIsEditing] = useState(false);
 
-  // in case there is no member or they are not of the individual type, we render nothing
-  if (!member || member?.type !== AccountType.Individual) {
-    return null;
-  }
-
-  const languageCode = (member.extra?.lang ??
-    DEFAULT_LANG) as keyof typeof LANGS;
+  const languageCode = (lang ?? DEFAULT_LANG) as keyof typeof LANGS;
   const languageName = LANGS[languageCode];
 
   const handleEditClick = () => {
@@ -44,7 +45,15 @@ export const Preferences = (): JSX.Element | null => {
   };
 
   if (isEditing) {
-    return <EditPreferences member={member} onClose={handleClose} />;
+    return (
+      <EditPreferences
+        lang={lang}
+        enableSaveActions={enableSaveActions}
+        marketingEmailsSubscribedAt={marketingEmailsSubscribedAt}
+        notificationFrequency={notificationFrequency}
+        onClose={handleClose}
+      />
+    );
   }
   return (
     <BorderedSection
@@ -67,22 +76,31 @@ export const Preferences = (): JSX.Element | null => {
         contentId={PREFERENCES_LANGUAGE_DISPLAY_ID}
       />
       <SettingItem
+        title={t('PROFILE_SAVE_ACTIONS_TITLE')}
+        content={
+          enableSaveActions
+            ? t('PROFILE_SAVE_ACTIONS_ENABLED')
+            : t('PROFILE_SAVE_ACTIONS_DISABLED')
+        }
+        contentId={PREFERENCES_ANALYTICS_SWITCH_ID}
+      />
+      <SettingItem
         title={t('PROFILE_EMAIL_FREQUENCY_TITLE')}
         content={
-          member.extra?.emailFreq === 'always'
+          notificationFrequency === 'always'
             ? t('ALWAYS_RECEIVE_EMAILS')
             : t('DISABLE_EMAILS')
         }
         contentId={PREFERENCES_EMAIL_FREQUENCY_ID}
       />
       <SettingItem
-        title={t('PROFILE_SAVE_ACTIONS_TITLE')}
+        title={t('PROFILE_ENABLE_EMAIL_SUBSCRIPTION.TITLE')}
         content={
-          member.enableSaveActions
-            ? t('PROFILE_SAVE_ACTIONS_ENABLED')
-            : t('PROFILE_SAVE_ACTIONS_DISABLED')
+          marketingEmailsSubscribedAt
+            ? t('PROFILE_ENABLE_EMAIL_SUBSCRIPTION.ENABLED')
+            : t('PROFILE_ENABLE_EMAIL_SUBSCRIPTION.DISABLED')
         }
-        contentId={PREFERENCES_ANALYTICS_SWITCH_ID}
+        contentId={PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID}
       />
     </BorderedSection>
   );
