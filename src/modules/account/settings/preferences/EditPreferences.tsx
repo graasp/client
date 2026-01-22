@@ -7,7 +7,7 @@ import { BorderedSection } from '@/components/layout/BorderedSection';
 import FormProperty from '@/components/layout/FormProperty';
 import { Button } from '@/components/ui/Button';
 import LanguageSwitch from '@/components/ui/LanguageSwitch';
-import { DEFAULT_LANG, NS } from '@/config/constants';
+import { NS } from '@/config/constants';
 import {
   PREFERENCES_ANALYTICS_SWITCH_ID,
   PREFERENCES_CANCEL_BUTTON_ID,
