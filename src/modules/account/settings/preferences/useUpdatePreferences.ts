@@ -65,7 +65,7 @@ export const useUpdatePreferences = ({
         },
       });
 
-      // subscribe or unsubscribe from the email notifications on change
+      // subscribe or unsubscribe from the marketing emails on change
       if (
         Boolean(marketingEmailsSubscribedAt) !== isSubscribedToMarketingEmails
       ) {

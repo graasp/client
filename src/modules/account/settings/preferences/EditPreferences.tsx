@@ -42,10 +42,7 @@ export function EditPreferences({
     marketingEmailsSubscribedAt,
   });
 
-  const memberLang = lang ?? DEFAULT_LANG;
-  const memberSaveActions = enableSaveActions ?? true;
-
-  const [selectedLang, setSelectedLang] = useState<string>(memberLang);
+  const [selectedLang, setSelectedLang] = useState<string>(lang);
   const [
     selectedIsSubscribedToMarketingEmails,
     setSelectedIsSubscribedToMarketingEmails,
@@ -53,7 +50,7 @@ export function EditPreferences({
   const [selectedNotificationFrequency, setSelectedNotificationFrequency] =
     useState(notificationFrequency);
   const [switchedSaveActions, setSwitchedSaveActions] =
-    useState(memberSaveActions);
+    useState(enableSaveActions);
 
   const handleOnToggle = (event: { target: { checked: boolean } }): void => {
     const { checked } = event.target;

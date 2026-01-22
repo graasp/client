@@ -16,7 +16,7 @@ import {
 import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 
 const MARKETING_EMAIL_SUBSCRIPTION_SWITCH_SELECTOR =
-  '[name="I want to receive Graasp platform updates and communication"]';
+  '[name="I want to receive Graasp\'s updates and communication"]';
 
 describe('Display preferences', () => {
   describe('Language', () => {

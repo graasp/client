@@ -23,7 +23,7 @@
   "PROFILE_EMAIL_TITLE": "Email",
   "PROFILE_EMAIL_FREQUENCY_TITLE": "Notification Frequency",
   "PROFILE_ENABLE_EMAIL_SUBSCRIPTION": {
-    "TITLE": "I want to receive Graasp platform updates and communication",
+    "TITLE": "I want to receive Graasp's updates and communication",
     "ENABLED": "Enabled",
     "DISABLED": "Disabled"
   },

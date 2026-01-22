@@ -1,4 +1,4 @@
-import {
+import type {
   ChatMention,
   ChatMessage,
   CompleteGuest,
@@ -23,7 +23,7 @@ import {
   ThumbnailsBySize,
 } from '@graasp/sdk';
 
-import {
+import type {
   CurrentSettings,
   ItemVisibility,
   Profile,
