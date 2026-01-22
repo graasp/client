@@ -1,10 +1,4 @@
-import {
-  AppItemFactory,
-  Context,
-  ItemType,
-  MemberFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { AppItemFactory, Context, ItemType, MemberFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -42,7 +36,7 @@ export const Example = {
       apiHost: 'apiHost',
       itemId: 'itemId',
       settings: {},
-      permission: PermissionLevel.Read,
+      permission: 'read',
       lang: 'en',
       context: Context.Library,
     },

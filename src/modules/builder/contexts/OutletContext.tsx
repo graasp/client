@@ -1,12 +1,12 @@
 import { createContext, useContext } from 'react';
 
-import { PackedItem, PermissionLevelOptions } from '@graasp/sdk';
+import { PackedItem, PermissionLevel } from '@graasp/sdk';
 
 type OutletContextType = {
   item: PackedItem;
   canWrite: boolean;
   canAdmin: boolean;
-  permission?: PermissionLevelOptions | null;
+  permission?: PermissionLevel | null;
 };
 export const OutletContext = createContext<OutletContextType>({
   item: undefined!,

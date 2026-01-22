@@ -2,7 +2,6 @@ import {
   GuestFactory,
   ItemLoginSchemaFactory,
   PackedFolderItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import {
@@ -36,10 +35,7 @@ const children = [child1, child2, child3, child4];
 const items = [parentItem, item1, ...children];
 describe('View folder as guest', () => {
   it('Show limited features', () => {
-    const item = PackedFolderItemFactory(
-      {},
-      { permission: PermissionLevel.Read },
-    );
+    const item = PackedFolderItemFactory({}, { permission: 'read' });
     const guest = GuestFactory({
       itemLoginSchema: ItemLoginSchemaFactory({
         item,
@@ -64,10 +60,7 @@ describe('View folder as guest', () => {
 
 describe('View folder as reader', () => {
   it('Show limited features', () => {
-    const item = PackedFolderItemFactory(
-      {},
-      { permission: PermissionLevel.Read },
-    );
+    const item = PackedFolderItemFactory({}, { permission: 'read' });
     cy.setUpApi({
       items: [item],
     });

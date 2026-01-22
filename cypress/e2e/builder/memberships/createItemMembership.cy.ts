@@ -1,9 +1,6 @@
-import {
-  PackedFileItemFactory,
-  PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
-} from '@graasp/sdk';
+import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -25,7 +22,7 @@ const shareItem = ({
   submit,
 }: {
   email: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
   submit?: boolean;
   id: string;
 }) => {
@@ -54,7 +51,7 @@ describe('Create Membership', () => {
 
     // share
     const member = MEMBERS.FANNY;
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     shareItem({ id, email: member.email, permission });
 
     cy.wait('@postInvitations').then(
@@ -88,7 +85,7 @@ describe('Create Membership', () => {
 
     // share
     const member = MEMBERS.FANNY;
-    const permission = PermissionLevel.Admin;
+    const permission = 'admin';
     cy.fillShareForm({
       email: member.email,
       permission,
@@ -100,7 +97,7 @@ describe('Create Membership', () => {
     cy.get(`#${SHARE_ITEM_EMAIL_INPUT_ID}`).should('be.empty');
     cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS} input`).should(
       'have.value',
-      PermissionLevel.Read,
+      'read',
     );
   });
 
@@ -113,7 +110,7 @@ describe('Create Membership', () => {
 
     // share
     const member = MEMBERS.FANNY;
-    const permission = PermissionLevel.Admin;
+    const permission = 'admin';
     shareItem({
       id,
       email: `${member.email}{Enter}`,
@@ -149,7 +146,7 @@ describe('Create Membership', () => {
             {
               id: '97ebc357-5c7a-438c-b684-a34a35cf77a2',
               item: ITEM,
-              permission: PermissionLevel.Read,
+              permission: 'read',
               account,
               createdAt: '2021-08-11T12:56:36.834Z',
               updatedAt: '2021-08-11T12:56:36.834Z',
@@ -165,7 +162,7 @@ describe('Create Membership', () => {
     cy.visit(buildItemPath(id));
 
     // fill
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     shareItem({ id, email: account.email, permission });
 
     cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
@@ -188,7 +185,7 @@ describe('Create Membership', () => {
     cy.visit(buildItemPath(id));
 
     // fill
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     shareItem({ id, email, permission });
 
     cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
@@ -202,7 +199,7 @@ describe('Create Membership', () => {
     cy.visit(buildItemPath(id));
 
     // fill
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     shareItem({ id, email: 'wrong', permission });
 
     cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');

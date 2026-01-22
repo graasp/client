@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { PackedItem, PermissionLevel } from '@graasp/sdk';
+import { PackedItem } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -30,7 +30,7 @@ const Chatbox = ({ item }: Props): JSX.Element | null => {
   }
 
   // only show export chat when user has admin right on the item
-  const isAdmin = item.permission === PermissionLevel.Admin;
+  const isAdmin = item.permission === 'admin';
 
   return (
     <GraaspChatbox

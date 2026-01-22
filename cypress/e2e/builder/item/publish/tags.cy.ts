@@ -1,8 +1,4 @@
-import {
-  PackedFolderItemFactory,
-  PermissionLevel,
-  TagCategory,
-} from '@graasp/sdk';
+import { PackedFolderItemFactory, TagCategory } from '@graasp/sdk';
 
 import {
   ITEM_HEADER_ID,
@@ -25,7 +21,7 @@ const ITEM_WITH_TAGS = {
         displayCoEditors: true,
       },
     },
-    { permission: PermissionLevel.Admin },
+    { permission: 'admin' },
   ),
   tags: SAMPLE_TAGS.slice(0, 2),
 };
@@ -45,7 +41,7 @@ describe('Customized Tags', () => {
     const packedItem = PackedFolderItemFactory(
       {},
       {
-        permission: PermissionLevel.Admin,
+        permission: 'admin',
         publicVisibility: { type: 'public' },
       },
     );
@@ -200,7 +196,7 @@ describe('Tags permissions', () => {
   it('Read-only user cannot edit tags', () => {
     const item = PackedFolderItemFactory(
       {},
-      { permission: PermissionLevel.Read, publicVisibility: {} },
+      { permission: 'read', publicVisibility: {} },
     );
     const publishedItem: ItemForTest = {
       ...item,

@@ -6,7 +6,6 @@ import {
   ItemType,
   LinkItemFactory,
   PackedFolderItemFactory,
-  PermissionLevel,
   buildDocumentExtra,
   buildFileExtra,
   buildLinkExtra,
@@ -33,7 +32,7 @@ export const STATIC_ELECTRICITY: {
           [ItemType.FOLDER]: {},
         },
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     ),
     FolderItemFactory({
       id: 'gcafbd2a-5688-11eb-ae92-0242ac130015',
@@ -220,13 +219,13 @@ export const STATIC_ELECTRICITY: {
     }),
   ].map((i) => ({
     ...i,
-    permission: PermissionLevel.Admin,
+    permission: 'admin',
   })),
 };
 
 const items: ItemForTest[] = STATIC_ELECTRICITY.items.map((i) => ({
   ...i,
-  permission: PermissionLevel.Read,
+  permission: 'read',
 }));
 export const PUBLIC_STATIC_ELECTRICITY = {
   items,

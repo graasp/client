@@ -1,4 +1,4 @@
-import { AccountType, DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import { AccountType, DiscriminatedItem } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
 import { ItemMembership } from '@/openapi/client';
@@ -22,8 +22,7 @@ export const useHighestMemberships = ({
     hooks.useItemMemberships(item.id);
 
   const hasOnlyOneAdmin =
-    rawMemberships?.filter((per) => per.permission === PermissionLevel.Admin)
-      .length === 1;
+    rawMemberships?.filter((per) => per.permission === 'admin').length === 1;
 
   let memberships = rawMemberships;
 

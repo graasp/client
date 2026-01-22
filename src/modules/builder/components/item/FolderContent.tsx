@@ -10,11 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import {
-  PackedItem,
-  PermissionLevel,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { PackedItem, PermissionLevelCompare } from '@graasp/sdk';
 
 import { SectionHeader } from '@/components/SectionHeader';
 import { NS } from '@/config/constants';
@@ -125,10 +121,7 @@ const Content = ({
   }
 
   // no items show drop zone
-  if (
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
-  ) {
+  if (item.permission && PermissionLevelCompare.gte(item.permission, 'write')) {
     return (
       <Box mt={1}>
         <FileUploader

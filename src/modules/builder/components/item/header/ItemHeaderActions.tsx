@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  PermissionLevel,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { DiscriminatedItem, PermissionLevelCompare } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -46,10 +42,10 @@ const ItemHeaderActions = ({
   } = useModalStatus();
 
   const canWrite = item?.permission
-    ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
+    ? PermissionLevelCompare.gte(item.permission, 'write')
     : false;
   const canAdmin = item?.permission
-    ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin)
+    ? PermissionLevelCompare.gte(item.permission, 'admin')
     : false;
 
   // if id is defined, we are looking at an item

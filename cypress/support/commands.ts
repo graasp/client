@@ -4,12 +4,13 @@ import {
   DiscriminatedItem,
   DocumentItemExtra,
   Member,
-  PermissionLevelOptions,
   PublicationStatus,
   getAppExtra,
   getDocumentExtra,
   getIdsFromPath,
 } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   CUSTOM_APP_CYPRESS_ID,
@@ -210,7 +211,7 @@ declare global {
 
       fillShareForm(args: {
         email: string;
-        permission: PermissionLevelOptions;
+        permission: PermissionLevel;
         submit?: boolean;
         selector?: string;
       }): void;

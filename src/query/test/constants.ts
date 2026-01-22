@@ -21,7 +21,6 @@ import {
   MemberFactory,
   MentionStatus,
   PackedFolderItemFactory,
-  PermissionLevel,
   RecycledItemData,
   UUID,
 } from '@graasp/sdk';
@@ -95,7 +94,7 @@ export const createMockMembership = (
   id: membership?.id ?? v4(),
   account: { ...AccountFactory(), type: AccountType.Guest },
   item: FolderItemFactory(),
-  permission: PermissionLevel.Read,
+  permission: 'read',
   createdAt: '2023-04-26T08:46:34.812Z',
   updatedAt: '2023-04-26T08:46:34.812Z',
   creator: AccountFactory(),
@@ -105,13 +104,13 @@ export const createMockMembership = (
 const MEMBERSHIP_1: ItemMembership = createMockMembership({
   id: 'membership-id',
   account: { ...AccountFactory(), type: AccountType.Guest },
-  permission: PermissionLevel.Read,
+  permission: 'read',
 });
 
 const MEMBERSHIP_2: ItemMembership = createMockMembership({
   id: 'membership-id1',
   account: { ...AccountFactory(), type: AccountType.Guest },
-  permission: PermissionLevel.Admin,
+  permission: 'admin',
 });
 
 export const ITEM_MEMBERSHIPS_RESPONSE: ItemMembership[] = [
@@ -338,7 +337,7 @@ export const buildInvitation = (values: Partial<Invitation>): Invitation => ({
   name: 'member-name',
   email: 'email',
   creator: MemberFactory(),
-  permission: PermissionLevel.Read,
+  permission: 'read',
   item: FolderItemFactory(),
   createdAt: '2023-09-06T11:50:32.894Z',
   updatedAt: '2023-09-06T11:50:32.894Z',

@@ -16,7 +16,6 @@ import {
   ItemVisibilityType,
   Member,
   MembershipRequestStatus,
-  PermissionLevel,
   PermissionLevelCompare,
   PublicationStatus,
   RecycledItemData,
@@ -108,7 +107,7 @@ const {
 } = API_ROUTES;
 
 const checkMembership = ({ item }: { item: ItemForTest }) => {
-  return PermissionLevelCompare.gte(item?.permission, PermissionLevel.Read);
+  return PermissionLevelCompare.gte(item?.permission, 'read');
 };
 
 export const redirectionReply = {
@@ -2386,7 +2385,7 @@ export const mockGetItemMembershipsForItem = (
       // return defined memberships or default membership
       const result = memberships || [
         {
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: { ...creator, type: AccountType.Individual },
           item,
           id: v4(),

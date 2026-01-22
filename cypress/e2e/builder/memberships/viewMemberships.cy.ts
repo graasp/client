@@ -5,9 +5,9 @@ import {
   ItemLoginSchemaType,
   Member,
   PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
 } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   buildDataCyWrapper,
@@ -24,33 +24,33 @@ import { buildItemPath, buildItemSharePath } from '../utils';
 const itemWithAdmin = { ...PackedFolderItemFactory() };
 const adminMembership = buildItemMembership({
   item: itemWithAdmin,
-  permission: PermissionLevel.Admin,
+  permission: 'admin',
   account: MEMBERS.ANNA,
   creator: MEMBERS.ANNA,
 });
 const membershipsWithoutAdmin = [
   buildItemMembership({
     item: itemWithAdmin,
-    permission: PermissionLevel.Write,
+    permission: 'write',
     account: MEMBERS.BOB,
     creator: MEMBERS.ANNA,
   }),
   buildItemMembership({
     item: itemWithAdmin,
-    permission: PermissionLevel.Write,
+    permission: 'write',
     account: MEMBERS.CEDRIC,
     creator: MEMBERS.ANNA,
   }),
   buildItemMembership({
     item: itemWithAdmin,
-    permission: PermissionLevel.Read,
+    permission: 'read',
     account: MEMBERS.DAVID,
     creator: MEMBERS.ANNA,
   }),
 ];
 
 const getLocalizedPermissionText = (
-  permission: 'disabled' | PermissionLevelOptions,
+  permission: 'disabled' | PermissionLevel,
 ) => {
   switch (permission) {
     case 'disabled':
@@ -73,7 +73,7 @@ const checkItemMembershipRow = ({
 }: {
   id: string;
   name: string;
-  permission: 'disabled' | PermissionLevelOptions;
+  permission: 'disabled' | PermissionLevel;
 }): void => {
   cy.get(buildDataCyWrapper(buildItemMembershipRowId(id)))
     .should('contain', name)
@@ -125,19 +125,19 @@ describe('View Memberships - Hidden item', () => {
     const hiddenItem = PackedFolderItemFactory({}, { hiddenVisibility: {} });
     const adminHiddenMembership = buildItemMembership({
       item: hiddenItem,
-      permission: PermissionLevel.Admin,
+      permission: 'admin',
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
     });
     const writeHiddenMembership = buildItemMembership({
       item: hiddenItem,
-      permission: PermissionLevel.Write,
+      permission: 'write',
       account: MEMBERS.EVAN,
       creator: MEMBERS.ANNA,
     });
     const readHiddenMembership = buildItemMembership({
       item: hiddenItem,
-      permission: PermissionLevel.Read,
+      permission: 'read',
       account: MEMBERS.GARRY,
       creator: MEMBERS.ANNA,
     });
@@ -148,7 +148,7 @@ describe('View Memberships - Hidden item', () => {
     const guestMemberships = [
       buildItemMembership({
         item: hiddenItem,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -156,7 +156,7 @@ describe('View Memberships - Hidden item', () => {
       }),
       buildItemMembership({
         item: hiddenItem,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -224,7 +224,7 @@ describe('View Memberships - Hidden item', () => {
     const guestMemberships = [
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -232,7 +232,7 @@ describe('View Memberships - Hidden item', () => {
       }),
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -275,7 +275,7 @@ describe('View Memberships - Hidden item', () => {
     const guestMemberships = [
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -283,7 +283,7 @@ describe('View Memberships - Hidden item', () => {
       }),
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -328,7 +328,7 @@ describe('View Memberships - Guest', () => {
     const guestMemberships = [
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -336,7 +336,7 @@ describe('View Memberships - Guest', () => {
       }),
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -378,7 +378,7 @@ describe('View Memberships - Guest', () => {
     const guestMemberships = [
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -386,7 +386,7 @@ describe('View Memberships - Guest', () => {
       }),
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -429,7 +429,7 @@ describe('View Memberships - Guest', () => {
     const guestMemberships = [
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -437,7 +437,7 @@ describe('View Memberships - Guest', () => {
       }),
       buildItemMembership({
         item: itemWithAdmin,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: GuestFactory({
           itemLoginSchema,
         }),
@@ -475,26 +475,23 @@ describe('View Memberships - Guest', () => {
 
 describe('View Memberships Read-Only Mode', () => {
   it('view membership in settings read-only mode', () => {
-    const item = PackedFolderItemFactory(
-      {},
-      { permission: PermissionLevel.Write },
-    );
+    const item = PackedFolderItemFactory({}, { permission: 'write' });
     const ownMembership = buildItemMembership({
       item,
-      permission: PermissionLevel.Write,
+      permission: 'write',
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
     });
     const memberships = [
       buildItemMembership({
         item,
-        permission: PermissionLevel.Admin,
+        permission: 'admin',
         account: MEMBERS.BOB,
         creator: MEMBERS.ANNA,
       }),
       buildItemMembership({
         item,
-        permission: PermissionLevel.Read,
+        permission: 'read',
         account: MEMBERS.CEDRIC,
         creator: MEMBERS.ANNA,
       }),

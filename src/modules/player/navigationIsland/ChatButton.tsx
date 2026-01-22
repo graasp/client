@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Tooltip } from '@mui/material';
 
-import { ItemType, PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import { ItemType, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 import { MessageSquareOff, MessageSquareText } from 'lucide-react';
@@ -35,7 +35,7 @@ const useChatButton = (): { chatButton: JSX.Element | null } => {
 
   if ((chatEnabledItems ?? []).length > 0 || root?.settings.showChatbox) {
     const canWrite = item?.permission
-      ? PermissionLevelCompare.gte(item?.permission, PermissionLevel.Write)
+      ? PermissionLevelCompare.gte(item?.permission, 'write')
       : false;
 
     const isDisabled = !item?.settings?.showChatbox;

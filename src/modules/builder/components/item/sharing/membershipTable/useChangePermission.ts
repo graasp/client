@@ -1,4 +1,4 @@
-import { DiscriminatedItem, PermissionLevelOptions } from '@graasp/sdk';
+import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -44,7 +44,7 @@ export function useChangePermission({
 
   const changePermission = async (
     itemMembership: ItemMembership,
-    newPermission: PermissionLevelOptions,
+    newPermission: PermissionLevel,
   ) => {
     if (itemMembership.item.path === itemPath) {
       await editItemMembership({

@@ -12,10 +12,9 @@ import {
   Typography,
 } from '@mui/material';
 
-import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { getErrorMessage } from '@/config/notifier';
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -27,8 +26,8 @@ type Props = {
   email?: string;
   name?: string;
   allowDowngrade?: boolean;
-  permission: PermissionLevelOptions;
-  handleUpdate: (p: PermissionLevelOptions) => Promise<void>;
+  permission: PermissionLevel;
+  handleUpdate: (p: PermissionLevel) => Promise<void>;
   id?: string;
   loading: boolean;
 };
@@ -50,7 +49,7 @@ const EditPermissionButton = ({
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { t: translateMessage } = useTranslation(NS.Messages);
 
-  if (!allowDowngrade && permission === PermissionLevel.Admin) {
+  if (!allowDowngrade && permission === 'admin') {
     return null;
   }
 
@@ -101,7 +100,7 @@ const EditPermissionButton = ({
               <ItemMembershipSelect
                 value={currentPermission}
                 onChange={(e) =>
-                  setCurrentPermission(e.target.value as PermissionLevelOptions)
+                  setCurrentPermission(e.target.value as PermissionLevel)
                 }
                 size="medium"
                 allowDowngrade={allowDowngrade}

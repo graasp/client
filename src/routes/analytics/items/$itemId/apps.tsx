@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Typography } from '@mui/material';
 
-import { Context, ItemType, PackedItem, PermissionLevel } from '@graasp/sdk';
+import { Context, ItemType, PackedItem } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -85,7 +85,7 @@ function AppContent({
               apiHost: API_HOST,
               itemId: item.id,
               accountId: member.id,
-              permission: permission || PermissionLevel.Read,
+              permission: permission || 'read',
               settings: item.settings,
               lang: item.lang || member.lang,
               context: Context.Analytics,

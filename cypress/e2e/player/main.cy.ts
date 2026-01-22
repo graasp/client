@@ -1,8 +1,6 @@
-import {
-  DiscriminatedItem,
-  DocumentItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { DiscriminatedItem, DocumentItemFactory } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   FOLDER_NAME_TITLE_CLASS,
@@ -40,17 +38,17 @@ import {
 
 const GRAASP_DOCUMENT_ITEM = DocumentItemFactory();
 const items = [
-  { ...GRAASP_LINK_ITEM, permission: PermissionLevel.Admin },
+  { ...GRAASP_LINK_ITEM, permission: 'admin' as PermissionLevel },
   {
     ...GRAASP_LINK_ITEM_IFRAME_ONLY,
-    permission: PermissionLevel.Admin,
+    permission: 'admin' as PermissionLevel,
   },
-  { ...YOUTUBE_LINK_ITEM, permission: PermissionLevel.Admin },
-  { ...IMAGE_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-  { ...VIDEO_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-  { ...PDF_ITEM_DEFAULT, permission: PermissionLevel.Admin },
-  { ...GRAASP_DOCUMENT_ITEM, permission: PermissionLevel.Admin },
-  { ...GRAASP_APP_ITEM, permission: PermissionLevel.Admin },
+  { ...YOUTUBE_LINK_ITEM, permission: 'admin' as PermissionLevel },
+  { ...IMAGE_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
+  { ...VIDEO_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
+  { ...PDF_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
+  { ...GRAASP_DOCUMENT_ITEM, permission: 'admin' as PermissionLevel },
+  { ...GRAASP_APP_ITEM, permission: 'admin' as PermissionLevel },
   ...FOLDER_WITH_SUBFOLDER_ITEM.items,
   ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
 ];

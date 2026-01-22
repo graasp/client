@@ -1,6 +1,6 @@
 import { type JSX, useState } from 'react';
 
-import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { useQueryClientContext } from '../context/QueryClientContext';
 import CurrentLocationMarker from './CurrentLocationMarker';
@@ -26,8 +26,7 @@ const MapContent = ({
   // can write in root or with right permission in item
   const canWrite =
     !item ||
-    (item.permission &&
-      PermissionLevelCompare.gte(item.permission, PermissionLevel.Write));
+    (item.permission && PermissionLevelCompare.gte(item.permission, 'write'));
 
   return (
     <>

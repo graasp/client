@@ -4,7 +4,6 @@ import {
   ItemType,
   PackedDocumentItemFactory,
   PackedFolderItemFactory,
-  PermissionLevel,
   ShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
@@ -87,7 +86,7 @@ export const FOLDER_WITH_SUBFOLDER_ITEM: { items: ItemForTest[] } = {
         },
       },
       {
-        permission: PermissionLevel.Admin,
+        permission: 'admin',
       },
     ),
     {
@@ -234,7 +233,7 @@ const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
       name: 'Parent folder',
       creator: CURRENT_MEMBER,
     },
-    { permission: PermissionLevel.Admin },
+    { permission: 'admin' },
   );
   const children = [
     PackedDocumentItemFactory(
@@ -245,7 +244,7 @@ const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
         parentItem: parent,
         creator: CURRENT_MEMBER,
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     ),
     PackedFolderItemFactory(
       {
@@ -254,7 +253,7 @@ const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
         parentItem: parent,
         creator: CURRENT_MEMBER,
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     ),
     PackedFolderItemFactory(
       {
@@ -263,7 +262,7 @@ const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
         parentItem: parent,
         creator: CURRENT_MEMBER,
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     ),
   ];
   const childrenOfChildren = [

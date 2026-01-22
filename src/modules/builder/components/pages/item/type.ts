@@ -1,8 +1,8 @@
-import { PackedItem, PermissionLevelOptions } from '@graasp/sdk';
+import { PackedItem, PermissionLevel } from '@graasp/sdk';
 
 export interface OutletType {
   item: PackedItem;
-  permission?: PermissionLevelOptions;
+  permission?: PermissionLevel;
   canWrite: boolean;
   canAdmin: boolean;
 }

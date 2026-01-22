@@ -7,7 +7,6 @@ import {
   AccountType,
   Context,
   ItemType,
-  PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
@@ -97,11 +96,11 @@ function RouteComponent() {
 
   const { mutate: itemLoginSignIn } = mutations.usePostItemLogin();
   const canWrite = item?.permission
-    ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
+    ? PermissionLevelCompare.gte(item.permission, 'write')
     : false;
 
   const canAdmin = item?.permission
-    ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin)
+    ? PermissionLevelCompare.gte(item.permission, 'admin')
     : false;
 
   const errorStatusCode =

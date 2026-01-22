@@ -2,7 +2,6 @@ import {
   CompleteMember,
   DocumentItemType,
   LinkItemType,
-  PermissionLevel,
   PermissionLevelCompare,
   getDocumentExtra,
   getLinkExtra,
@@ -40,7 +39,7 @@ export const expectItemHeaderLayout = ({
     itemPath: path,
   })?.permission;
   const canEditSettings = permission
-    ? PermissionLevelCompare.gte(permission, PermissionLevel.Write)
+    ? PermissionLevelCompare.gte(permission, 'write')
     : false;
 
   if (canEditSettings) {

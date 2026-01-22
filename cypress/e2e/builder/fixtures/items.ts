@@ -5,7 +5,6 @@ import {
   ItemValidationProcess,
   ItemValidationStatus,
   PackedItem,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
@@ -34,7 +33,7 @@ export const generateOwnItems = (number: number): ItemForTest[] => {
       memberships: [
         {
           item,
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -107,7 +106,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       memberships: [
         {
           item: samplePublicItems[0],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd2a-5688-12db-ae93-0242ac130032',
@@ -116,7 +115,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
         },
         {
           item: samplePublicItems[0],
-          permission: PermissionLevel.Read,
+          permission: 'read',
           account: MEMBERS.BOB,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd2a-5688-12db-ae91-0242ac130002',
@@ -130,7 +129,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       memberships: [
         {
           item: samplePublicItems[1],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd2a-5688-121b-ae93-0242ac130002',
@@ -153,7 +152,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       memberships: [
         {
           item: samplePublicItems[2],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd1a-5688-12db-ae93-0242ac130002',
@@ -176,7 +175,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
       memberships: [
         {
           item: samplePublicItems[1],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd2a-5644-12db-ae93-0242ac130002',
@@ -185,7 +184,7 @@ export const SAMPLE_PUBLIC_ITEMS: ApiConfig = {
         },
         {
           item: samplePublicItems[1],
-          permission: PermissionLevel.Read,
+          permission: 'read',
           account: MEMBERS.BOB,
           creator: MEMBERS.ANNA,
           id: 'ecbfbd2a-5338-12db-ae93-0242ac130002',

@@ -14,8 +14,6 @@ import {
   LinkItemType,
   PackedItem,
   PageItemType,
-  PermissionLevel,
-  PermissionLevelOptions,
   ShortcutItemType,
   buildPdfViewerLink,
   getH5PExtra,
@@ -34,6 +32,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 import { Api } from '@/query';
 import Loader from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';
@@ -136,7 +135,7 @@ const AppContent = ({
 }: {
   item: AppItemType;
   member?: AuthenticatedUser | null;
-  permission?: PermissionLevelOptions | null;
+  permission?: PermissionLevel | null;
 }): JSX.Element => (
   <AppItem
     isResizable={false}
@@ -151,7 +150,7 @@ const AppContent = ({
       apiHost: API_HOST,
       itemId: item.id,
       accountId: member?.id,
-      permission: permission ?? PermissionLevel.Read,
+      permission: permission ?? 'read',
       settings: item.settings,
       lang: item.lang || member?.lang || DEFAULT_LANG,
       context: Context.Builder,

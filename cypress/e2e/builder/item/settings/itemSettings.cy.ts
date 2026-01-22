@@ -5,7 +5,6 @@ import {
   PackedFileItemFactory,
   PackedFolderItemFactory,
   PackedLinkItemFactory,
-  PermissionLevel,
   formatFileSize,
   getFileExtra,
 } from '@graasp/sdk';
@@ -36,10 +35,7 @@ import { buildItemPath, buildItemSettingsPath } from '../../utils';
 
 describe('Item Settings', () => {
   describe('read rights', () => {
-    const item = PackedFolderItemFactory(
-      {},
-      { permission: PermissionLevel.Read },
-    );
+    const item = PackedFolderItemFactory({}, { permission: 'read' });
 
     beforeEach(() => {
       cy.setUpApi({
@@ -495,10 +491,7 @@ describe('Item Settings', () => {
 
   describe('in item menu', () => {
     describe('read', () => {
-      const item = PackedFolderItemFactory(
-        {},
-        { permission: PermissionLevel.Read },
-      );
+      const item = PackedFolderItemFactory({}, { permission: 'read' });
       const itemId = item.id;
       beforeEach(() => {
         cy.setUpApi({
@@ -513,10 +506,7 @@ describe('Item Settings', () => {
       });
     });
     describe('admin', () => {
-      const item = PackedFolderItemFactory(
-        {},
-        { permission: PermissionLevel.Admin },
-      );
+      const item = PackedFolderItemFactory({}, { permission: 'admin' });
       const itemId = item.id;
       beforeEach(() => {
         cy.setUpApi({

@@ -1,8 +1,6 @@
-import {
-  PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
-} from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -21,7 +19,7 @@ const inviteItem = ({
 }: {
   id: string;
   email: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
   submit?: boolean;
 }) => {
   cy.get(`#${buildShareButtonId(id)}`).click();
@@ -44,7 +42,7 @@ describe('Create Invitation', () => {
 
     // invite
     const email = 'mock@email.com';
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     inviteItem({ id, email, permission });
 
     cy.wait('@postInvitations').then(({ request: { url, body } }) => {
@@ -68,7 +66,7 @@ describe('Create Invitation', () => {
             id: '79c25df6-8f2b-4bba-be9b-6459b2694ee7',
             item,
             account: MEMBERS.ANNA,
-            permission: PermissionLevel.Admin,
+            permission: 'admin' as PermissionLevel,
             createdAt: '2024-02-05T16:45:00Z',
             updatedAt: '2024-02-05T16:45:00Z',
           },
@@ -83,7 +81,7 @@ describe('Create Invitation', () => {
 
     // person to invite
     const { email } = MEMBERS.ANNA;
-    inviteItem({ id, email, permission: PermissionLevel.Read });
+    inviteItem({ id, email, permission: 'read' });
 
     cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');
   });
@@ -97,7 +95,7 @@ describe('Create Invitation', () => {
 
     // invite
     const email = 'mock';
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     inviteItem({ id, email, permission });
 
     cy.get(`#${SHARE_ITEM_SHARE_BUTTON_ID}`).should('be.disabled');

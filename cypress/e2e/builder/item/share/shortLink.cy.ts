@@ -1,9 +1,4 @@
-import {
-  Context,
-  PackedFolderItemFactory,
-  PermissionLevel,
-  ShortLink,
-} from '@graasp/sdk';
+import { Context, PackedFolderItemFactory, ShortLink } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
 
@@ -389,8 +384,8 @@ describe('Short links', () => {
     let shortLinks: ShortLink[];
 
     const READ_ITEMS = [
-      PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
-      PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
+      PackedFolderItemFactory({}, { permission: 'read' }),
+      PackedFolderItemFactory({}, { permission: 'read' }),
     ];
     const itemId = READ_ITEMS[0].id;
 

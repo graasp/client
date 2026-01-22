@@ -1,4 +1,6 @@
-import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client/types.gen';
 
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
@@ -43,15 +45,12 @@ describe('View Invitations', () => {
 
 describe('Cannot view Invitations for writers and readers', () => {
   it('view invitation in share item modal write-only mode', () => {
-    const item = PackedFolderItemFactory(
-      {},
-      { permission: PermissionLevel.Write },
-    );
+    const item = PackedFolderItemFactory({}, { permission: 'write' });
     const invitations = [
       {
         id: 'ecafbd2a-5688-11eb-be92-0242ac130005',
         item,
-        permission: PermissionLevel.Write,
+        permission: 'write' as PermissionLevel,
         email: MEMBERS.CEDRIC.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',
@@ -60,7 +59,7 @@ describe('Cannot view Invitations for writers and readers', () => {
       {
         id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
         item,
-        permission: PermissionLevel.Read,
+        permission: 'read' as PermissionLevel,
         email: MEMBERS.DAVID.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',

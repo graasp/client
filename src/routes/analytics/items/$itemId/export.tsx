@@ -11,7 +11,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { Navigate, createFileRoute } from '@tanstack/react-router';
 
@@ -77,7 +77,7 @@ function ExportAnalyticsPage(): JSX.Element {
   if (
     !isLoading &&
     item?.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
+    PermissionLevelCompare.gte(item.permission, 'write')
   ) {
     return (
       <Stack paddingY={2} spacing={2}>

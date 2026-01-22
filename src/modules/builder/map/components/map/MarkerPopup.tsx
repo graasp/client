@@ -4,11 +4,7 @@ import { Popup } from 'react-leaflet';
 
 import { Box, Chip, Link, Stack, Tooltip, Typography } from '@mui/material';
 
-import {
-  ItemGeolocation,
-  PermissionLevel,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { ItemGeolocation, PermissionLevelCompare } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 
@@ -69,10 +65,7 @@ const MarkerPopup = ({
       <Stack direction="row">
         <ViewButton item={item} />
         {item?.permission &&
-          PermissionLevelCompare.gte(
-            item.permission,
-            PermissionLevel.Admin,
-          ) && (
+          PermissionLevelCompare.gte(item.permission, 'admin') && (
             <>
               <DeleteLocationButton item={item} />
               <DeleteItemButton item={item} />

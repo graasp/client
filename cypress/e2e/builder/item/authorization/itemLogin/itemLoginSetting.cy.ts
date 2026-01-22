@@ -3,7 +3,6 @@ import {
   ItemLoginSchemaStatus,
   ItemLoginSchemaType,
   PackedFolderItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import {
@@ -83,7 +82,7 @@ describe('Item Login', () => {
 
     it('read permission', () => {
       const item = addItemLoginSchema(
-        PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
+        PackedFolderItemFactory({}, { permission: 'read' }),
         ItemLoginSchemaType.UsernameAndPassword,
       );
       cy.setUpApi({
@@ -150,7 +149,7 @@ describe('Item Login Delete Button', () => {
               buildItemMembership({
                 item,
                 account: guest,
-                permission: PermissionLevel.Read,
+                permission: 'read',
               }),
             ],
           },
@@ -184,7 +183,7 @@ describe('Item Login Delete Button', () => {
               buildItemMembership({
                 item,
                 account: guest,
-                permission: PermissionLevel.Read,
+                permission: 'read',
               }),
             ],
           },

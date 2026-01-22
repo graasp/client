@@ -15,7 +15,6 @@ import type {
   ItemValidationGroup,
   MemberStorageItem,
   MembershipRequestStatus,
-  PermissionLevelOptions,
   PublicationStatus,
   RecycledItemData,
   ShortLink,
@@ -26,6 +25,7 @@ import type {
 import type {
   CurrentSettings,
   ItemVisibility,
+  PermissionLevel,
   Profile,
 } from '@/openapi/client/types.gen';
 
@@ -40,7 +40,7 @@ export type ItemForTest = DiscriminatedItem & {
   memberships?: ItemMembership[];
   invitations?: Partial<Invitation>[];
   published?: ItemPublished;
-  permission?: PermissionLevelOptions | null;
+  permission?: PermissionLevel | null;
   public?: ItemVisibility;
 };
 
