@@ -70,7 +70,7 @@ const ItemMembershipSelect = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const values = (['read', 'write', 'admin'] as PermissionLevel[]).filter(
+  const values = (['read', 'write', 'admin'] as const[]).filter(
     (p) =>
       value ? allowDowngrade || PermissionLevelCompare.gte(p, value) : true,
   );

@@ -99,9 +99,7 @@ const EditPermissionButton = ({
               </div>
               <ItemMembershipSelect
                 value={currentPermission}
-                onChange={(e) =>
-                  setCurrentPermission(e.target.value as PermissionLevel)
-                }
+                onChange={(e) => setCurrentPermission(e.target.value as const)}
                 size="medium"
                 allowDowngrade={allowDowngrade}
               />

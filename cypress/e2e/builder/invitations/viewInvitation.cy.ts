@@ -1,7 +1,5 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
-
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
   buildInvitationTableRowId,
@@ -50,7 +48,7 @@ describe('Cannot view Invitations for writers and readers', () => {
       {
         id: 'ecafbd2a-5688-11eb-be92-0242ac130005',
         item,
-        permission: 'write' as PermissionLevel,
+        permission: 'write' as const,
         email: MEMBERS.CEDRIC.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',
@@ -59,7 +57,7 @@ describe('Cannot view Invitations for writers and readers', () => {
       {
         id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
         item,
-        permission: 'read' as PermissionLevel,
+        permission: 'read' as const,
         email: MEMBERS.DAVID.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',

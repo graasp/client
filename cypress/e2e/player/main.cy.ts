@@ -1,7 +1,5 @@
 import { DiscriminatedItem, DocumentItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
-
 import {
   FOLDER_NAME_TITLE_CLASS,
   MAIN_MENU_ID,
@@ -38,17 +36,17 @@ import {
 
 const GRAASP_DOCUMENT_ITEM = DocumentItemFactory();
 const items = [
-  { ...GRAASP_LINK_ITEM, permission: 'admin' as PermissionLevel },
+  { ...GRAASP_LINK_ITEM, permission: 'admin' as const },
   {
     ...GRAASP_LINK_ITEM_IFRAME_ONLY,
-    permission: 'admin' as PermissionLevel,
+    permission: 'admin' as const,
   },
-  { ...YOUTUBE_LINK_ITEM, permission: 'admin' as PermissionLevel },
-  { ...IMAGE_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
-  { ...VIDEO_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
-  { ...PDF_ITEM_DEFAULT, permission: 'admin' as PermissionLevel },
-  { ...GRAASP_DOCUMENT_ITEM, permission: 'admin' as PermissionLevel },
-  { ...GRAASP_APP_ITEM, permission: 'admin' as PermissionLevel },
+  { ...YOUTUBE_LINK_ITEM, permission: 'admin' as const },
+  { ...IMAGE_ITEM_DEFAULT, permission: 'admin' as const },
+  { ...VIDEO_ITEM_DEFAULT, permission: 'admin' as const },
+  { ...PDF_ITEM_DEFAULT, permission: 'admin' as const },
+  { ...GRAASP_DOCUMENT_ITEM, permission: 'admin' as const },
+  { ...GRAASP_APP_ITEM, permission: 'admin' as const },
   ...FOLDER_WITH_SUBFOLDER_ITEM.items,
   ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
 ];

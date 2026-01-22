@@ -66,7 +66,7 @@ describe('Create Invitation', () => {
             id: '79c25df6-8f2b-4bba-be9b-6459b2694ee7',
             item,
             account: MEMBERS.ANNA,
-            permission: 'admin' as PermissionLevel,
+            permission: 'admin' as const,
             createdAt: '2024-02-05T16:45:00Z',
             updatedAt: '2024-02-05T16:45:00Z',
           },

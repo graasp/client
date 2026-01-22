@@ -83,7 +83,7 @@ describe('Edit Membership', () => {
     const memberships = [
       {
         id: 'membership-0',
-        permission: 'admin' as PermissionLevel,
+        permission: 'admin' as const,
         account: CURRENT_MEMBER,
         item: child,
         createdAt: '2021-08-11T12:56:36.834Z',
@@ -91,7 +91,7 @@ describe('Edit Membership', () => {
       },
       {
         id: 'membership-1',
-        permission: 'write' as PermissionLevel,
+        permission: 'write' as const,
         account: MEMBERS.BOB,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',

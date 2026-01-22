@@ -146,7 +146,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
               value={permission}
               onChange={(event) => {
                 if (event.target.value) {
-                  setValue('permission', event.target.value as PermissionLevel);
+                  setValue('permission', event.target.value as const);
                 }
               }}
               size="medium"
