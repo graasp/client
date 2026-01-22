@@ -65,18 +65,18 @@ export function EditPreferences({
       isSubscribedToMarketingEmails: selectedIsSubscribedToMarketingEmails,
     });
 
-    if (selectedLang !== memberLang) {
+    if (selectedLang !== lang) {
       i18n.changeLanguage(selectedLang);
     }
     onClose();
   };
 
   const hasChanges =
-    selectedLang !== memberLang ||
+    selectedLang !== lang ||
     selectedIsSubscribedToMarketingEmails !==
       Boolean(marketingEmailsSubscribedAt) ||
     selectedNotificationFrequency !== notificationFrequency ||
-    switchedSaveActions !== memberSaveActions;
+    switchedSaveActions !== enableSaveActions;
 
   return (
     <BorderedSection
