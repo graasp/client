@@ -2399,7 +2399,8 @@ export const mockGetItemMembershipsForItem = (
 };
 
 export const mockGetCurrentSettings = (
-  currentSettings: CurrentSettings,
+  currentMember?: CompleteMember,
+  currentSettings?: Partial<CurrentSettings>,
 ): void => {
   cy.intercept(
     {
@@ -2407,7 +2408,18 @@ export const mockGetCurrentSettings = (
       pathname: /\/api\/members\/current\/settings$/,
     },
     ({ reply }) => {
-      reply(currentSettings);
+      if (!currentMember) {
+        reply({ statusCode: StatusCodes.FORBIDDEN });
+      }
+
+      const completeCurrentSettings = {
+        marketingEmailsSubscribedAt: new Date().toISOString(),
+        notificationFrequency: currentMember.extra.emailFreq,
+        enableSaveActions: currentMember.enableSaveActions,
+        ...currentSettings,
+      };
+
+      reply(completeCurrentSettings);
     },
   ).as('getCurrentSettings');
 };

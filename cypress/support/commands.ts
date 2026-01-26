@@ -540,13 +540,7 @@ Cypress.Commands.add(
 
     mockEnroll();
 
-    const completeCurrentSettings = {
-      marketingEmailsSubscribedAt: new Date().toISOString(),
-      notificationFrequency: currentMember.extra.emailFreq,
-      enableSaveActions: currentMember.enableSaveActions,
-      ...currentSettings,
-    };
-    mockGetCurrentSettings(completeCurrentSettings);
+    mockGetCurrentSettings(currentMember, currentSettings);
   },
 );
 
