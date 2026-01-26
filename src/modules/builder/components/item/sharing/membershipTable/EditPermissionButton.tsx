@@ -14,7 +14,7 @@ import {
 
 import { NS } from '@/config/constants';
 import { getErrorMessage } from '@/config/notifier';
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 import EditButton from '@/ui/buttons/EditButton/EditButton';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -99,7 +99,9 @@ const EditPermissionButton = ({
               </div>
               <ItemMembershipSelect
                 value={currentPermission}
-                onChange={(e) => setCurrentPermission(e.target.value as const)}
+                onChange={(e) =>
+                  setCurrentPermission(e.target.value as PermissionLevel)
+                }
                 size="medium"
                 allowDowngrade={allowDowngrade}
               />

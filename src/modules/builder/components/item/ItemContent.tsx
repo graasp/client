@@ -32,7 +32,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 import { Api } from '@/query';
 import Loader from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';

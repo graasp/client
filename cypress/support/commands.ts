@@ -10,7 +10,7 @@ import {
   getIdsFromPath,
 } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   CUSTOM_APP_CYPRESS_ID,

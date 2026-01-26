@@ -1,6 +1,6 @@
 import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,

@@ -27,7 +27,7 @@ import type {
   ItemVisibility,
   PermissionLevel,
   Profile,
-} from '@/openapi/client/types.gen';
+} from '@/openapi/client';
 
 export type ItemForTest = DiscriminatedItem & {
   geolocation?: Partial<ItemGeolocation>;

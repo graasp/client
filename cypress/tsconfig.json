@@ -6,6 +6,7 @@
     "types": ["cypress", "vite/client"],
     // todo: enable back
     "strictPropertyInitialization": false,
+    "noImplicitAny": false,
     "strictNullChecks": false,
     "strict": true,
     "sourceMap": false

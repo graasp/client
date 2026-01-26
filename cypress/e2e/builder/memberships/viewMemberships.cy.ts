@@ -7,7 +7,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   buildDataCyWrapper,

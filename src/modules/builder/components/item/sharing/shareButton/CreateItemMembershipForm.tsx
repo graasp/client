@@ -26,8 +26,8 @@ import {
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 import { createInvitationMutation } from '@/openapi/client/@tanstack/react-query.gen';
-import type { PermissionLevel } from '@/openapi/client/types.gen';
 import { useItemInvitations } from '@/query/hooks/invitation';
 import { itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
@@ -146,7 +146,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
               value={permission}
               onChange={(event) => {
                 if (event.target.value) {
-                  setValue('permission', event.target.value as const);
+                  setValue('permission', event.target.value as PermissionLevel);
                 }
               }}
               size="medium"

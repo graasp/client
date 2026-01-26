@@ -3,17 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, AlertTitle, Stack, Typography } from '@mui/material';
 
-import {
-  AccountType,
-  Invitation,
-  ItemMembership,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { AccountType, Invitation, ItemMembership } from '@graasp/sdk';
 
 import { AxiosError } from 'axios';
 
 import { NS } from '@/config/constants';
 import { SHARE_CSV_TEMPLATE_SUMMARY_CONTAINER_ID } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 import { getErrorFromPayload } from '~builder/utils/errorMessages';

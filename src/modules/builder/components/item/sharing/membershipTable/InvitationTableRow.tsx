@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { TableCell, Typography } from '@mui/material';
 
-import { DiscriminatedItem, Invitation, PermissionLevel } from '@graasp/sdk';
+import { DiscriminatedItem, Invitation } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -11,6 +11,7 @@ import {
   buildInvitationTableRowId,
   buildItemInvitationRowDeleteButtonId,
 } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 

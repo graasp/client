@@ -115,7 +115,6 @@ describe('Item Settings', () => {
         const { id, lang } = FILE;
         cy.visit(buildItemSettingsPath(id));
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
         const langName = LANGS[lang];
         cy.get(`#${LANGUAGE_SELECTOR_ID}`)
           .scrollIntoView()

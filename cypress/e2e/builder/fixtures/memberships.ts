@@ -9,7 +9,7 @@ import {
 
 import { v4 } from 'uuid';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 
 import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';

@@ -1,8 +1,8 @@
-import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { ItemMembership } from '@/openapi/client';
+import type { ItemMembership, PermissionLevel } from '@/openapi/client';
 import {
   createItemMembershipMutation,
   updateItemMembershipMutation,

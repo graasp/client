@@ -1,6 +1,6 @@
 import { ItemMembership, PackedFolderItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client/types.gen';
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
