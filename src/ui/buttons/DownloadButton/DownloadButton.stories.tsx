@@ -1,5 +1,5 @@
 import type { StoryObj } from '@storybook/react';
-import { expect, fn, userEvent, within } from 'storybook/test';
+import { expect, fn, within } from 'storybook/test';
 
 import { ActionButton, ColorVariants } from '../../types.js';
 import { TABLE_CATEGORIES } from '../../utils/storybook.js';
@@ -32,36 +32,32 @@ export default {
         category: TABLE_CATEGORIES.MUI,
       },
     },
-    handleDownload: {
-      action: 'click',
-      table: {
-        category: TABLE_CATEGORIES.EVENTS,
-      },
-    },
   },
 };
 
 type Story = StoryObj<typeof DownloadButton>;
 
 export const Default: Story = {
+  args: { link: 'https://picsum.photos/100' },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.click(canvas.getByLabelText('download'));
-
-    expect(args.handleDownload).toHaveBeenCalled();
+    const button = canvas.getByLabelText('download');
+    await expect(button).toHaveProperty('download');
+    await expect(button).toHaveProperty('href', args.link);
   },
 };
 
 export const MenuItem: Story = {
   args: {
     type: ActionButton.MENU_ITEM,
+    link: 'https://picsum.photos/100',
   },
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
 
-    await userEvent.click(canvas.getByText('Download'));
-
-    expect(args.handleDownload).toHaveBeenCalled();
+    const button = canvas.getByText('Download').parentElement;
+    await expect(button).toHaveProperty('download');
+    await expect(button).toHaveProperty('href', args.link);
   },
 };
