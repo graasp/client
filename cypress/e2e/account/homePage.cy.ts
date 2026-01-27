@@ -111,7 +111,14 @@ describe('Upload Avatar', () => {
 
 describe('Image is not set', () => {
   beforeEach(() => {
-    cy.setUpApi({ currentMember: MEMBERS.BOB });
+    const memberWithoutAvatar = MemberFactory({
+      name: 'Cedric',
+      email: 'cedric@example.com',
+    });
+    cy.setUpApi({
+      currentMember: memberWithoutAvatar,
+      members: [memberWithoutAvatar],
+    });
     cy.visit('/account/settings');
   });
 
