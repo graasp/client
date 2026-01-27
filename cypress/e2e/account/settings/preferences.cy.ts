@@ -169,8 +169,10 @@ const switchLanguage = (newLang: string) => {
 };
 
 const switchEmailFreq = (to: string) => {
-  cy.get(`#${PREFERENCES_EMAIL_FREQUENCY_ID}`).should('be.visible'); // Ensure the element is visible
-  cy.get(`#${PREFERENCES_EMAIL_FREQUENCY_ID}`).click();
+  const notificationFrequencySelectSelector =
+    '[role="combobox"]:has(+ [name="notification-frequency"])';
+  cy.get(notificationFrequencySelectSelector).should('be.visible'); // Ensure the element is visible
+  cy.get(notificationFrequencySelectSelector).click();
   cy.get(`[role="option"][data-value="${to}"]`).click();
 };
 

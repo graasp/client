@@ -445,7 +445,7 @@ describe('Item Settings', () => {
 
     it('convert to capsule', function () {
       const item = PackedFolderItemFactory();
-      cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
+      cy.intercept('POST', `/api/items/folders/${item.id}/convert`).as(
         'switchToCapsule',
       );
       cy.setUpApi({ items: [item] });
@@ -462,7 +462,7 @@ describe('Item Settings', () => {
 
     it('convert to capsule not visible outside of preview', function () {
       const item = PackedFolderItemFactory();
-      cy.intercept('PATCH', `/api/items/folders/${item.id}/to-capsule`).as(
+      cy.intercept('POST', `/api/items/folders/${item.id}/convert`).as(
         'switchToCapsule',
       );
       cy.setUpApi({ items: [item] });
@@ -477,7 +477,7 @@ describe('Item Settings', () => {
       const item = PackedFolderItemFactory({
         extra: { folder: { isCapsule: true } },
       });
-      cy.intercept('PATCH', `/api/items/capsules/${item.id}/to-folder`).as(
+      cy.intercept('POST', `/api/items/capsules/${item.id}/convert`).as(
         'switchToFolder',
       );
       cy.setUpApi({ items: [item] });

@@ -110,7 +110,7 @@ describe('Edit Link', () => {
     );
   });
 
-  it.only('update name and link', () => {
+  it('update name and link', () => {
     cy.visit(HOME_PATH);
 
     const itemToEdit = GRAASP_LINK_ITEM;

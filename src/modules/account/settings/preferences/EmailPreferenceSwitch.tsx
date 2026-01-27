@@ -31,6 +31,7 @@ export function EmailPreferenceSwitch({
 
   return (
     <Select
+      name="notification-frequency"
       id={id}
       defaultValue={value}
       onChange={handleChange}

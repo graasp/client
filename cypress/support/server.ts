@@ -5,6 +5,7 @@ import {
   CompleteGuest,
   CompleteMember,
   CompleteMembershipRequest,
+  DEFAULT_LANG,
   HttpMethod,
   Invitation,
   ItemBookmark,
@@ -2413,6 +2414,7 @@ export const mockGetCurrentSettings = (
       }
 
       const completeCurrentSettings = {
+        lang: currentMember.extra.lang ?? DEFAULT_LANG,
         marketingEmailsSubscribedAt: new Date().toISOString(),
         notificationFrequency: currentMember.extra.emailFreq,
         enableSaveActions: currentMember.enableSaveActions,
