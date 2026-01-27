@@ -60,6 +60,7 @@ const DownloadButton = ({
           id={id}
           key={title}
           href={link}
+          // disable link default styles
           style={{ font: 'unset', textDecoration: 'unset', color: 'unset' }}
           component="a"
           download
