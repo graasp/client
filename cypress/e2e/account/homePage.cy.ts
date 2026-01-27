@@ -24,6 +24,7 @@ import {
   THUMBNAIL_MEDIUM_PATH,
 } from '../../fixtures/thumbnails/links';
 import { API_HOST } from '../../support/env';
+import { mockGetCurrentSettings } from '../../support/server';
 import { MemberForTest } from '../../support/types';
 import { ID_FORMAT } from '../../support/utils';
 
@@ -79,6 +80,8 @@ class TestHelper {
         return reply({ statusCode: StatusCodes.OK });
       },
     ).as('uploadAvatar');
+
+    mockGetCurrentSettings(this.currentMember);
   }
 }
 
