@@ -1,4 +1,4 @@
-import { EmailFrequency } from '@graasp/sdk';
+import { EmailFrequency, HttpMethod } from '@graasp/sdk';
 
 import { LANGS } from '../../../../src/config/langs';
 import { ACCOUNT_SETTINGS_PATH } from '../../../../src/config/paths';
@@ -10,9 +10,13 @@ import {
   PREFERENCES_EMAIL_FREQUENCY_ID,
   PREFERENCES_LANGUAGE_DISPLAY_ID,
   PREFERENCES_LANGUAGE_SWITCH_ID,
+  PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID,
   PREFERENCES_SAVE_BUTTON_ID,
 } from '../../../../src/config/selectors';
 import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
+
+const MARKETING_EMAIL_SUBSCRIPTION_SWITCH_SELECTOR =
+  '[name="I want to receive Graasp\'s updates and communication"]';
 
 describe('Display preferences', () => {
   describe('Language', () => {
@@ -37,7 +41,7 @@ describe('Display preferences', () => {
     }
   });
 
-  describe('Email frequency', () => {
+  describe('Notification frequency', () => {
     for (const { emailFreq, expectedText } of [
       {
         emailFreq: EmailFrequency.Always,
@@ -58,13 +62,78 @@ describe('Display preferences', () => {
           currentMember,
         });
         cy.visit(ACCOUNT_SETTINGS_PATH);
-        cy.wait('@getCurrentMember');
         cy.get(`#${PREFERENCES_EMAIL_FREQUENCY_ID}`).should(
           'contain',
           expectedText,
         );
       });
     }
+  });
+
+  describe('Marketing emails subscription', () => {
+    it('Enabled', () => {
+      cy.setUpApi({
+        currentSettings: {
+          marketingEmailsSubscribedAt: new Date().toISOString(),
+        },
+      });
+      cy.intercept(
+        {
+          method: HttpMethod.Post,
+          pathname: /\/api\/members\/current\/marketing\/unsubscribe$/,
+        },
+        ({ reply }) => {
+          reply();
+        },
+      ).as('unsubscribe');
+
+      cy.visit(ACCOUNT_SETTINGS_PATH);
+      cy.get(`#${PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID}`).should(
+        'contain',
+        'Enabled',
+      );
+
+      // edit setting
+      cy.get(`#${PREFERENCES_EDIT_BUTTON_ID}`).click();
+      cy.get(MARKETING_EMAIL_SUBSCRIPTION_SWITCH_SELECTOR)
+        .should('be.checked')
+        .click();
+
+      cy.get(`#${PREFERENCES_SAVE_BUTTON_ID}`).click();
+      cy.wait('@unsubscribe');
+    });
+
+    it('Disabled', () => {
+      cy.setUpApi({
+        currentSettings: {
+          marketingEmailsSubscribedAt: null,
+        },
+      });
+      cy.intercept(
+        {
+          method: HttpMethod.Post,
+          pathname: /\/api\/members\/current\/marketing\/subscribe$/,
+        },
+        ({ reply }) => {
+          reply();
+        },
+      ).as('subscribe');
+
+      cy.visit(ACCOUNT_SETTINGS_PATH);
+      cy.get(`#${PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID}`).should(
+        'contain',
+        'Disabled',
+      );
+
+      // edit setting
+      cy.get(`#${PREFERENCES_EDIT_BUTTON_ID}`).click();
+      cy.get(MARKETING_EMAIL_SUBSCRIPTION_SWITCH_SELECTOR)
+        .should('not.be.checked')
+        .click();
+
+      cy.get(`#${PREFERENCES_SAVE_BUTTON_ID}`).click();
+      cy.wait('@subscribe');
+    });
   });
 
   describe('Enable Analytics', () => {
@@ -100,8 +169,10 @@ const switchLanguage = (newLang: string) => {
 };
 
 const switchEmailFreq = (to: string) => {
-  cy.get(`#${PREFERENCES_EMAIL_FREQUENCY_ID}`).should('be.visible'); // Ensure the element is visible
-  cy.get(`#${PREFERENCES_EMAIL_FREQUENCY_ID}`).click();
+  const notificationFrequencySelectSelector =
+    '[role="combobox"]:has(+ [name="notification-frequency"])';
+  cy.get(notificationFrequencySelectSelector).should('be.visible'); // Ensure the element is visible
+  cy.get(notificationFrequencySelectSelector).click();
   cy.get(`[role="option"][data-value="${to}"]`).click();
 };
 

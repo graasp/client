@@ -100,6 +100,7 @@ import {
   mockGetChildren,
   mockGetCurrentMember,
   mockGetCurrentMemberAvatar,
+  mockGetCurrentSettings,
   mockGetDescendants,
   mockGetItem,
   mockGetItemBookmarks,
@@ -278,6 +279,7 @@ Cypress.Commands.add(
   'setUpApi',
   ({
     currentMember = CURRENT_MEMBER,
+    currentSettings = {},
     currentGuest = null,
     currentProfile = MEMBER_PUBLIC_PROFILE,
     storageAmountInBytes = 10000,
@@ -537,6 +539,8 @@ Cypress.Commands.add(
     mockRejectMembershipRequest();
 
     mockEnroll();
+
+    mockGetCurrentSettings(currentMember, currentSettings);
   },
 );
 

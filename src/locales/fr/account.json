@@ -21,7 +21,12 @@
   "PROFILE_LANGUAGE_TITLE": "Langue",
   "PROFILE_CREATED_AT_INFO": "Membre depuis {{date}}",
   "PROFILE_EMAIL_TITLE": "Email",
-  "PROFILE_EMAIL_FREQUENCY_TITLE": "Fréquence d'envoi d'email",
+  "PROFILE_EMAIL_FREQUENCY_TITLE": "Fréquence d'envoi des notifications",
+  "PROFILE_ENABLE_EMAIL_SUBSCRIPTION": {
+    "TITLE": "Je veux recevoir les informations sur les mises à jour et communication de Graasp",
+    "ENABLED": "Activé",
+    "DISABLED": "Désactivé"
+  },
   "PROFILE_SAVE_ACTIONS_TITLE": "Activer la sauvegarde des interactions",
   "PROFILE_SAVE_ACTIONS_ENABLED": "Activé",
   "PROFILE_SAVE_ACTIONS_DISABLED": "Désactivé",

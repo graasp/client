@@ -25,6 +25,7 @@ type Props<T> = {
   values: { value: T; text: string; disabled?: boolean }[];
   variant?: MuiSelectProps['variant'];
   size?: MuiSelectProps['size'];
+  name?: string;
 };
 
 const Select = <T extends string | number>({
@@ -43,6 +44,7 @@ const Select = <T extends string | number>({
   variant,
   size,
   value,
+  name,
 }: Props<T>): JSX.Element => {
   const showLabel = Boolean(labelId ?? label);
   return (
@@ -69,6 +71,7 @@ const Select = <T extends string | number>({
         id={id}
         value={value}
         sx={sx}
+        inputProps={{ name }}
       >
         {values.map(({ value: localValue, text, disabled: localDisabled }) => (
           <MenuItem

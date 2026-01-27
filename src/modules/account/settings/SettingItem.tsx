@@ -5,7 +5,7 @@ import { Stack, Typography } from '@mui/material';
 type Props = {
   title: string;
   content?: ReactNode;
-  contentId: string;
+  contentId?: string;
 };
 export function SettingItem({
   title,

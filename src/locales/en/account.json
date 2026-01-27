@@ -21,7 +21,12 @@
   "PROFILE_LANGUAGE_TITLE": "Language",
   "PROFILE_CREATED_AT_INFO": "Member since {{date}}",
   "PROFILE_EMAIL_TITLE": "Email",
-  "PROFILE_EMAIL_FREQUENCY_TITLE": "Email Frequency",
+  "PROFILE_EMAIL_FREQUENCY_TITLE": "Notification Frequency",
+  "PROFILE_ENABLE_EMAIL_SUBSCRIPTION": {
+    "TITLE": "I want to receive Graasp's updates and communication",
+    "ENABLED": "Enabled",
+    "DISABLED": "Disabled"
+  },
   "PROFILE_SAVE_ACTIONS_TITLE": "Enable Analytics",
   "PROFILE_SAVE_ACTIONS_ENABLED": "Enabled",
   "PROFILE_SAVE_ACTIONS_DISABLED": "Disabled",

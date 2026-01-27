@@ -1,5 +1,7 @@
 import { HttpMethod, PackedLinkItemFactory, buildLinkExtra } from '@graasp/sdk';
 
+import { StatusCodes } from 'http-status-codes';
+
 import {
   ACCESSIBLE_ITEMS_TABLE_ID,
   EDIT_ITEM_BUTTON_CLASS,
@@ -23,7 +25,9 @@ import { HOME_PATH, buildItemPath } from '../../utils';
 const editItemLink = (payload: { name?: string; url?: string }) => {
   cy.get(`.${EDIT_ITEM_BUTTON_CLASS}`).click();
   if (payload.name) {
-    cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).clear().type(payload.name);
+    cy.get(`#${ITEM_FORM_NAME_INPUT_ID}`).type(
+      `{selectAll}{del}${payload.name}`,
+    );
   }
   if (payload.url) {
     cy.get(`#${ITEM_FORM_LINK_INPUT_ID}`).clear().type(payload.url);
@@ -48,10 +52,15 @@ describe('Edit Link', () => {
   beforeEach(() => {
     cy.setUpApi({ items: [GRAASP_LINK_ITEM] });
 
-    cy.intercept({
-      method: HttpMethod.Patch,
-      pathname: new RegExp(`/api/items/embedded-links/${ID_FORMAT}`),
-    }).as('editItemLink');
+    cy.intercept(
+      {
+        method: HttpMethod.Patch,
+        pathname: new RegExp(`/api/items/embedded-links/${ID_FORMAT}`),
+      },
+      ({ reply }) => {
+        return reply({ statusCode: StatusCodes.NO_CONTENT });
+      },
+    ).as('editItemLink');
   });
 
   it('edit caption', () => {
@@ -110,7 +119,7 @@ describe('Edit Link', () => {
     );
   });
 
-  it.only('update name and link', () => {
+  it('update name and link', () => {
     cy.visit(HOME_PATH);
 
     const itemToEdit = GRAASP_LINK_ITEM;

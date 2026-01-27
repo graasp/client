@@ -78,7 +78,7 @@ describe('Create Shortcut', () => {
     checkCreateShortcutRequest({ id, toItemId });
   });
 
-  it.only('create shortcut from Item to Item', () => {
+  it('create shortcut from Item to Item', () => {
     cy.setUpApi({ items: [FOLDER, FOLDER2, IMAGE_ITEM_CHILD] });
     cy.visit(buildItemPath(FOLDER.id));
 

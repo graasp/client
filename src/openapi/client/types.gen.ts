@@ -158,7 +158,10 @@ export type CurrentAccount = {
     userAgreementsDate: null | string;
     enableSaveActions: boolean;
     extra: {
-        [key: string]: unknown;
+        hasAvatar?: boolean;
+        lang?: string;
+        emailFreq?: string;
+        hasCompletedTour?: boolean;
     };
 } | {
     id: string;
@@ -194,7 +197,10 @@ export type NullableCurrentAccount = null | {
     userAgreementsDate: null | string;
     enableSaveActions: boolean;
     extra: {
-        [key: string]: unknown;
+        hasAvatar?: boolean;
+        lang?: string;
+        emailFreq?: string;
+        hasCompletedTour?: boolean;
     };
 } | null | {
     id: string;
@@ -211,6 +217,21 @@ export type NullableCurrentAccount = null | {
             path: string;
         };
     };
+};
+
+/**
+ * Notification Frequency
+ */
+export type NotificationFrequency = 'always' | 'never';
+
+/**
+ * CurrentSettings
+ */
+export type CurrentSettings = {
+    lang?: string;
+    marketingEmailsSubscribedAt: string | null;
+    notificationFrequency: NotificationFrequency;
+    enableSaveActions: boolean;
 };
 
 /**
@@ -1105,12 +1126,10 @@ export type UpdateCurrentAccountError = UpdateCurrentAccountErrors[keyof UpdateC
 
 export type UpdateCurrentAccountResponses = {
     /**
-     * Current authenticated account, that can be a member or a guest
+     * Successful Response
      */
-    200: CurrentAccount;
+    200: unknown;
 };
-
-export type UpdateCurrentAccountResponse = UpdateCurrentAccountResponses[keyof UpdateCurrentAccountResponses];
 
 export type GetStorageData = {
     body?: never;
@@ -1284,6 +1303,97 @@ export type PostChangeEmailResponses = {
 };
 
 export type PostChangeEmailResponse = PostChangeEmailResponses[keyof PostChangeEmailResponses];
+
+export type MarketingEmailsSubscribeData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/members/current/marketing/subscribe';
+};
+
+export type MarketingEmailsSubscribeErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    401: _Error;
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '5XX': _Error;
+};
+
+export type MarketingEmailsSubscribeError = MarketingEmailsSubscribeErrors[keyof MarketingEmailsSubscribeErrors];
+
+export type MarketingEmailsSubscribeResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type MarketingEmailsSubscribeResponse = MarketingEmailsSubscribeResponses[keyof MarketingEmailsSubscribeResponses];
+
+export type MarketingEmailsUnsubscribeData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/members/current/marketing/unsubscribe';
+};
+
+export type MarketingEmailsUnsubscribeErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '5XX': _Error;
+};
+
+export type MarketingEmailsUnsubscribeError = MarketingEmailsUnsubscribeErrors[keyof MarketingEmailsUnsubscribeErrors];
+
+export type MarketingEmailsUnsubscribeResponses = {
+    /**
+     * Successful Response
+     */
+    204: void;
+};
+
+export type MarketingEmailsUnsubscribeResponse = MarketingEmailsUnsubscribeResponses[keyof MarketingEmailsUnsubscribeResponses];
+
+export type GetCurrentSettingsData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/members/current/settings';
+};
+
+export type GetCurrentSettingsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '5XX': _Error;
+};
+
+export type GetCurrentSettingsError = GetCurrentSettingsErrors[keyof GetCurrentSettingsErrors];
+
+export type GetCurrentSettingsResponses = {
+    /**
+     * Default Response
+     */
+    200: CurrentSettings;
+};
+
+export type GetCurrentSettingsResponse = GetCurrentSettingsResponses[keyof GetCurrentSettingsResponses];
 
 export type PostApiMembersAvatarData = {
     body?: never;
@@ -3449,7 +3559,7 @@ export type ConvertFolderToCapsuleData = {
         id: string;
     };
     query?: never;
-    url: '/api/items/folders/{id}/to-capsule';
+    url: '/api/items/folders/{id}/convert';
 };
 
 export type ConvertFolderToCapsuleErrors = {
@@ -3694,7 +3804,7 @@ export type ConvertCapsuleToFolderData = {
         id: string;
     };
     query?: never;
-    url: '/api/items/capsules/{id}/to-folder';
+    url: '/api/items/capsules/{id}/convert';
 };
 
 export type ConvertCapsuleToFolderErrors = {
