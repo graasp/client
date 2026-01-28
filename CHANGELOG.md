@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.37.0](https://github.com/graasp/client/compare/v2.36.0...v2.37.0) (2026-01-28)
+
+
+### Features
+
+* allow converting a folder into a capsule ([#1188](https://github.com/graasp/client/issues/1188)) ([4e9b67d](https://github.com/graasp/client/commit/4e9b67d99e56d26ea7395a1571301353f1615ebe))
+* allow users to subscribe to email notifications ([#1190](https://github.com/graasp/client/issues/1190)) ([8d951b8](https://github.com/graasp/client/commit/8d951b88f4192dad762e06d5bc764e9664b38da2))
+
 ## [2.36.0](https://github.com/graasp/client/compare/v2.35.0...v2.36.0) (2026-01-12)
 
 
