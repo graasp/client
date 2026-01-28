@@ -5,22 +5,22 @@ import {
   Member,
   MemberFactory,
   PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
+
+import type { PermissionLevel } from '@/openapi/client';
 
 import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
 
 export const buildItemMembership = (args: {
-  permission?: PermissionLevelOptions;
+  permission?: PermissionLevel;
   item: DiscriminatedItem;
   account: Partial<Account>;
   creator?: Member;
 }): ItemMembership => ({
-  permission: args.permission ?? PermissionLevel.Admin,
+  permission: args.permission ?? 'admin',
   account: MemberFactory(args.account),
   item: args.item,
   creator: MemberFactory(args.creator ?? args.account),
@@ -56,7 +56,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be93-0242ac130002',
           item: sampleItems[0],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -65,7 +65,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be92-0242ac130002',
           item: sampleItems[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           account: MEMBERS.BOB,
           creator: MEMBERS.ANNA,
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -74,7 +74,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecafbd1a-5688-11eb-be93-0242ac130002',
           item: sampleItems[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           account: MEMBERS.CEDRIC,
           updatedAt: '2021-08-11T12:56:36.834Z',
           createdAt: '2021-08-11T12:56:36.834Z',
@@ -83,7 +83,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecbfbd2a-5688-11eb-be93-0242ac130002',
           item: sampleItems[0],
-          permission: PermissionLevel.Read,
+          permission: 'read',
           account: MEMBERS.DAVID,
           creator: MEMBERS.ANNA,
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -97,7 +97,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be93-0242ac130002',
           item: sampleItems[1],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           creator: MEMBERS.ANNA,
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -106,7 +106,7 @@ export const ITEMS_WITH_MEMBERSHIPS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be92-0242ac130002',
           item: sampleItems[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           account: MEMBERS.BOB,
           creator: MEMBERS.ANNA,
           updatedAt: '2021-08-11T12:56:36.834Z',

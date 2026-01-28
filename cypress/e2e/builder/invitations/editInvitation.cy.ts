@@ -1,4 +1,4 @@
-import { PermissionLevel, PermissionLevelOptions } from '@graasp/sdk';
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
@@ -16,7 +16,7 @@ const editInvitation = ({
 }: {
   itemId: string;
   id: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
 }) => {
   cy.get(`#${buildShareButtonId(itemId)}`).click();
   cy.get(`#${buildInvitationTableRowId(id)} [aria-label="Edit"]`).click();
@@ -34,7 +34,7 @@ describe('Edit Invitation', () => {
     cy.visit(buildItemPath(id));
 
     // update membership
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     const { id: iId } = invitations[1];
     editInvitation({ itemId: id, id: iId, permission });
 
@@ -52,7 +52,7 @@ describe('Edit Invitation', () => {
     cy.visit(buildItemPath(id));
 
     // update membership
-    const permission = PermissionLevel.Admin;
+    const permission = 'admin';
     const { id: iId } = invitations[0];
     editInvitation({ itemId: id, id: iId, permission });
 

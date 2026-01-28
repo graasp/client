@@ -7,7 +7,6 @@ import {
   AccountType,
   ItemType,
   PackedItem,
-  PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
@@ -133,11 +132,9 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   }
 
   const canWrite =
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Write);
+    item.permission && PermissionLevelCompare.gte(item.permission, 'write');
   const canAdmin =
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin);
+    item.permission && PermissionLevelCompare.gte(item.permission, 'admin');
 
   const modificationMenus = [
     canWrite ? (

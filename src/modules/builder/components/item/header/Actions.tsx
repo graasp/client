@@ -7,7 +7,6 @@ import {
   AccountType,
   ItemType,
   PackedItem,
-  PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
@@ -69,11 +68,9 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
   } = useModalStatus({ isInitiallyOpen: copyOpen });
 
   const canWrite =
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Write);
+    item.permission && PermissionLevelCompare.gte(item.permission, 'write');
   const canAdmin =
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Admin);
+    item.permission && PermissionLevelCompare.gte(item.permission, 'admin');
 
   if (!member?.id) {
     return null;

@@ -3,7 +3,6 @@ import {
   AppItemType,
   ItemType,
   PackedAppItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import { API_HOST } from '../support/env';
@@ -76,7 +75,7 @@ export const APP_USING_CONTEXT_ITEM: ItemForTest = PackedAppItemFactory(
     creator: CURRENT_MEMBER,
   },
   {
-    permission: PermissionLevel.Admin,
+    permission: 'admin',
   },
 );
 

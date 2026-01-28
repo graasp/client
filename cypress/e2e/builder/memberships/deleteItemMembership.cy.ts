@@ -1,8 +1,4 @@
-import {
-  ItemMembership,
-  PackedFolderItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { ItemMembership, PackedFolderItemFactory } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
 
@@ -67,13 +63,13 @@ describe('Delete Membership', () => {
         memberships: [
           {
             id: v4(),
-            permission: PermissionLevel.Admin,
+            permission: 'admin',
             account: CURRENT_MEMBER,
             item,
           } as unknown as ItemMembership,
           {
             id: v4(),
-            permission: PermissionLevel.Read,
+            permission: 'read',
             account: MEMBERS.BOB,
             item,
           } as unknown as ItemMembership,

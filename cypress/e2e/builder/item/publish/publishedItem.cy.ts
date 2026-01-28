@@ -5,7 +5,6 @@ import {
   ItemValidationStatus,
   PackedFolderItemFactory,
   PackedItem,
-  PermissionLevel,
   PublicationStatus,
   PublishableItemTypeChecker,
 } from '@graasp/sdk';
@@ -116,12 +115,12 @@ describe('Unauthorized members should not have access to publish tab', () => {
   });
 
   it('Readers should not view publish tab', () => {
-    item = PackedFolderItemFactory({}, { permission: PermissionLevel.Read });
+    item = PackedFolderItemFactory({}, { permission: 'read' });
     setUpAndVisitItemPage(item, { currentMember: MEMBERS.BOB });
   });
 
   it('Writers should not view publish tab', () => {
-    item = PackedFolderItemFactory({}, { permission: PermissionLevel.Write });
+    item = PackedFolderItemFactory({}, { permission: 'write' });
     setUpAndVisitItemPage(item, { currentMember: MEMBERS.BOB });
   });
 });

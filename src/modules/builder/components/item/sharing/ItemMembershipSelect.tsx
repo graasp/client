@@ -3,17 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectProps } from '@mui/material';
 
-import {
-  PermissionLevel,
-  PermissionLevelCompare,
-  PermissionLevelOptions,
-} from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
   buildPermissionOptionId,
 } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 import Select from '@/ui/Select/Select';
 
 import { BUILDER } from '../../../langs';
@@ -23,7 +20,7 @@ import { BUILDER } from '../../../langs';
  * Undefined keys are considered as not disabled.
  */
 type DisabledMap = {
-  [key in PermissionLevelOptions]?: boolean;
+  [key in PermissionLevel]?: boolean;
 };
 
 const defaultDisabledMap: DisabledMap = {
@@ -33,7 +30,7 @@ const defaultDisabledMap: DisabledMap = {
 };
 
 export type ItemMembershipSelectProps = {
-  value?: PermissionLevelOptions;
+  value?: PermissionLevel;
   onChange?: SelectProps['onChange'];
   color?: SelectProps['color'];
   showLabel?: boolean;
@@ -73,8 +70,9 @@ const ItemMembershipSelect = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
-  const values = Object.values(PermissionLevel).filter((p) =>
-    value ? allowDowngrade || PermissionLevelCompare.gte(p, value) : true,
+  const values = ['read' as const, 'write' as const, 'admin' as const].filter(
+    (p) =>
+      value ? allowDowngrade || PermissionLevelCompare.gte(p, value) : true,
   );
 
   return (

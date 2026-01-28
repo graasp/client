@@ -1,8 +1,4 @@
-import {
-  LinkItemFactory,
-  PackedFolderItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { LinkItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   NEXT_ITEM_NAV_BUTTON_ID,
@@ -91,14 +87,14 @@ describe('Internal navigation', () => {
         name: 'Parent',
         creator: CURRENT_MEMBER,
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     );
     const target = PackedFolderItemFactory(
       {
         name: 'Target',
         creator: CURRENT_MEMBER,
       },
-      { permission: PermissionLevel.Admin },
+      { permission: 'admin' },
     );
     const url = new URL(
       `/player/${target.id}`,

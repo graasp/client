@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import AppsIcon from '@mui/icons-material/Apps';
 import { Stack } from '@mui/material';
 
-import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { ChartPieIcon, FileChartPieIcon } from 'lucide-react';
 
@@ -54,7 +54,7 @@ export function AnalyticsSidebar({
   // read access users don't have permission over export actions
   if (
     item?.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
+    PermissionLevelCompare.gte(item.permission, 'write')
   ) {
     menuItems.push(
       <MainMenuItem

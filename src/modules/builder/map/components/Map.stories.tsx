@@ -1,8 +1,4 @@
-import {
-  MemberFactory,
-  PackedFolderItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { MemberFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
@@ -540,7 +536,7 @@ export const MapFrench = {
 
 export const MapRead = {
   args: {
-    item: PackedFolderItemFactory({}, { permission: PermissionLevel.Read }),
+    item: PackedFolderItemFactory({}, { permission: 'read' }),
     currentMember: MemberFactory({ extra: { lang: 'fr' } }),
     useItemsInMap: () =>
       ({

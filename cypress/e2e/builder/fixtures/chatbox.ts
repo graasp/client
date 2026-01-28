@@ -5,7 +5,6 @@ import {
   ItemType,
   MentionStatus,
   PackedFolderItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
@@ -29,7 +28,7 @@ export const ITEM_WITH_CHATBOX_MESSAGES: ItemForTest = {
   memberships: [
     {
       item,
-      permission: PermissionLevel.Write,
+      permission: 'write',
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
       createdAt: '2021-09-11T12:56:36.834Z',
@@ -71,7 +70,7 @@ const ITEM_WITH_CHATBOX_MESSAGES_AND_ADMIN: ItemForTest = {
   memberships: [
     {
       item: items[0],
-      permission: PermissionLevel.Admin,
+      permission: 'admin',
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
       createdAt: '2021-08-11T12:56:36.834Z',

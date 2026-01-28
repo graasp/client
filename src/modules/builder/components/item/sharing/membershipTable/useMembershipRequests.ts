@@ -1,5 +1,3 @@
-import { PermissionLevel } from '@graasp/sdk';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { hooks } from '@/config/queryClient';
@@ -45,7 +43,7 @@ export function useMembershipRequests({
       path: { itemId: itemId },
       body: {
         accountId: memberId,
-        permission: PermissionLevel.Read,
+        permission: 'read',
       },
     });
   };

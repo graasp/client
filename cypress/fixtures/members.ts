@@ -85,8 +85,6 @@ export const NOT_VALIDATED_MEMBER = MEMBERS.GARRY;
 export const VALIDATED_MEMBER = MEMBERS.ANNA;
 export const LEGACY_NOT_VALIDATED_MEMBER = {
   ...NOT_VALIDATED_MEMBER,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
   isValidated: undefined,
 };
 

@@ -1,9 +1,6 @@
-import {
-  ItemMembership,
-  PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
-} from '@graasp/sdk';
+import { ItemMembership, PackedFolderItemFactory } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client';
 
 import {
   ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS,
@@ -21,7 +18,7 @@ const openPermissionSelect = ({
   permission,
 }: {
   id: ItemMembership['id'];
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
 }) => {
   cy.get(`#${buildItemMembershipRowEditButtonId(id)}`).click();
   const select = cy.get(`.${ITEM_MEMBERSHIP_PERMISSION_SELECT_CLASS}`);
@@ -36,7 +33,7 @@ const editItemMembership = ({
 }: {
   id: string;
   itemId: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
 }) => {
   cy.get(`#${buildShareButtonId(itemId)}`).click();
   openPermissionSelect({ id, permission });
@@ -52,7 +49,7 @@ describe('Edit Membership', () => {
     cy.visit(buildItemPath(id));
 
     // update membership
-    const permission = PermissionLevel.Read;
+    const permission = 'read';
     const { id: mId } = memberships[1];
     editItemMembership({ itemId: id, id: mId, permission });
 
@@ -70,7 +67,7 @@ describe('Edit Membership', () => {
     cy.visit(buildItemPath(id));
 
     // update membership
-    const permission = PermissionLevel.Admin;
+    const permission = 'admin';
     const { id: mId } = memberships[1];
     editItemMembership({ itemId: id, id: mId, permission });
 
@@ -86,7 +83,7 @@ describe('Edit Membership', () => {
     const memberships = [
       {
         id: 'membership-0',
-        permission: PermissionLevel.Admin,
+        permission: 'admin' as const,
         account: CURRENT_MEMBER,
         item: child,
         createdAt: '2021-08-11T12:56:36.834Z',
@@ -94,7 +91,7 @@ describe('Edit Membership', () => {
       },
       {
         id: 'membership-1',
-        permission: PermissionLevel.Write,
+        permission: 'write' as const,
         account: MEMBERS.BOB,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',
@@ -116,8 +113,6 @@ describe('Edit Membership', () => {
     openPermissionSelect(m);
 
     // should not show read
-    cy.get(`#${buildPermissionOptionId(PermissionLevel.Read)}`).should(
-      'not.exist',
-    );
+    cy.get(`#${buildPermissionOptionId('read')}`).should('not.exist');
   });
 });

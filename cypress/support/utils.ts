@@ -3,7 +3,6 @@ import {
   DiscriminatedItem,
   ItemMembership,
   Member,
-  PermissionLevel,
   PermissionLevelCompare,
   isChildOf,
 } from '@graasp/sdk';
@@ -146,10 +145,7 @@ export const checkMemberHasAccess = ({
   items: ItemForTest[];
   member: Member | null;
 }): undefined | { statusCode: number } => {
-  if (
-    item.permission &&
-    PermissionLevelCompare.gte(item.permission, PermissionLevel.Read)
-  ) {
+  if (item.permission && PermissionLevelCompare.gte(item.permission, 'read')) {
     return undefined;
   }
 
@@ -163,7 +159,7 @@ export const checkMemberHasAccess = ({
         i.memberships?.find(
           ({ account, permission }) =>
             account.id === member?.id &&
-            PermissionLevelCompare.gte(permission, PermissionLevel.Write),
+            PermissionLevelCompare.gte(permission, 'write'),
         ),
     );
   const haveReadMembership =
@@ -173,7 +169,7 @@ export const checkMemberHasAccess = ({
         i.memberships?.find(
           ({ account, permission }) =>
             account.id === member?.id &&
-            PermissionLevelCompare.lt(permission, PermissionLevel.Write),
+            PermissionLevelCompare.lt(permission, 'write'),
         ),
     ) ?? false;
 

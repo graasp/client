@@ -3,7 +3,6 @@ import {
   ItemLoginSchemaStatus,
   ItemLoginSchemaType,
   PackedFolderItemFactory,
-  PermissionLevel,
   PublicationStatus,
 } from '@graasp/sdk';
 
@@ -115,7 +114,7 @@ describe('Visibility of an Item', () => {
             buildItemMembership({
               item,
               account: guest,
-              permission: PermissionLevel.Read,
+              permission: 'read',
             }),
           ],
         },

@@ -5,7 +5,6 @@ import {
   ItemType,
   PackedAppItemFactory,
   PackedFolderItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import { CURRENT_MEMBER, MEMBERS } from '../members';
@@ -77,7 +76,7 @@ export const CALC_APP_ITEM = PackedAppItemFactory(
     path: '820fb440_66dc_44d9_b6b4_bd767ac6085f',
     creator: CURRENT_MEMBER,
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 export const APP_ITEM_WITH_PARENT = PackedAppItemFactory(
@@ -87,7 +86,7 @@ export const APP_ITEM_WITH_PARENT = PackedAppItemFactory(
     creator: CURRENT_MEMBER,
     parentItem: MOCK_ITEMS[0],
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 export const CALC_APP_ITEM_WITH_PARENT = PackedAppItemFactory(
@@ -97,7 +96,7 @@ export const CALC_APP_ITEM_WITH_PARENT = PackedAppItemFactory(
     creator: CURRENT_MEMBER,
     parentItem: MOCK_ITEMS[0],
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 export const ITEM_TO_EXPORT = PackedFolderItemFactory({

@@ -1,4 +1,4 @@
-import { PackedDocumentItemFactory, PermissionLevel } from '@graasp/sdk';
+import { PackedDocumentItemFactory } from '@graasp/sdk';
 
 import {
   CHATBOX_DRAWER_ID,
@@ -18,7 +18,7 @@ const GRAASP_DOCUMENT_ITEM_WITH_CHAT_BOX = PackedDocumentItemFactory(
       showChatbox: true,
     },
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 describe('Chatbox', () => {

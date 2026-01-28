@@ -8,7 +8,6 @@ import {
   PackedH5PItemFactory,
   PackedLinkItemFactory,
   PackedShortcutItemFactory,
-  PermissionLevel,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
@@ -50,7 +49,7 @@ export const createPublicItemByType = (
         extra: {} as never,
         settings: {},
         createdAt: new Date().toISOString(),
-        permission: PermissionLevel.Admin,
+        permission: 'admin',
         ...publicVisibility,
       };
     default:

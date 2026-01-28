@@ -3,7 +3,6 @@ import {
   ItemType,
   MimeTypes,
   PackedFileItemFactory,
-  PermissionLevel,
   buildFileExtra,
 } from '@graasp/sdk';
 
@@ -108,7 +107,7 @@ export const IMAGE_ITEM_S3 = PackedFileItemFactory(
     },
   },
   {
-    permission: PermissionLevel.Admin,
+    permission: 'admin',
   },
 );
 
@@ -133,7 +132,7 @@ export const VIDEO_ITEM_S3 = PackedFileItemFactory(
       showChatbox: false,
     },
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 export const PDF_ITEM_S3 = PackedFileItemFactory(
@@ -154,5 +153,5 @@ export const PDF_ITEM_S3 = PackedFileItemFactory(
       showChatbox: false,
     },
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );

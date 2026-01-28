@@ -1,8 +1,4 @@
-import {
-  FolderItemFactory,
-  ItemMembership,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { FolderItemFactory, ItemMembership } from '@graasp/sdk';
 
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -65,7 +61,7 @@ describe('Ws Membership Hooks', () => {
       ]);
       const updatedMembership = {
         ...newItemMembership,
-        permission: PermissionLevel.Write,
+        permission: 'write',
       };
       await mockWsHook({ hook, wrapper });
 

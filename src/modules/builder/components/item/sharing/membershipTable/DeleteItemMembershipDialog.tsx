@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { DiscriminatedItem, PermissionLevel } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
@@ -75,7 +75,7 @@ const DeleteItemMembershipDialog = ({
 
   let dialogText = '';
   const isDeletingLastAdmin =
-    hasOnlyOneAdmin && membershipToDelete?.permission === PermissionLevel.Admin;
+    hasOnlyOneAdmin && membershipToDelete?.permission === 'admin';
   // incase of deleting the only admin
   if (isDeletingLastAdmin) {
     dialogText = translateBuilder(BUILDER.DELETE_LAST_ADMIN_ALERT_MESSAGE);

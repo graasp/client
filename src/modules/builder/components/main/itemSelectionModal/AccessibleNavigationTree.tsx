@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Button, Skeleton, Stack } from '@mui/material';
 
-import { ItemType, PermissionLevel } from '@graasp/sdk';
+import { ItemType } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -40,7 +40,7 @@ const AccessibleNavigationTree = ({
     isFetching,
   } = hooks.useInfiniteAccessibleItems(
     {
-      permissions: [PermissionLevel.Write, PermissionLevel.Admin],
+      permissions: ['write', 'admin'],
       types: [ItemType.FOLDER],
     },
     { pageSize: PAGE_SIZE },

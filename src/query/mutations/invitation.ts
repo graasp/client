@@ -1,6 +1,8 @@
-import { Invitation, PermissionLevelOptions, UUID } from '@graasp/sdk';
+import { Invitation, UUID } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import type { PermissionLevel } from '@/openapi/client';
 
 import * as Api from '../api/invitation.js';
 import { itemKeys } from '../keys.js';
@@ -48,7 +50,7 @@ export default (queryConfig: QueryClientConfig) => {
       }: {
         itemId: UUID;
         id: UUID;
-        permission: PermissionLevelOptions;
+        permission: PermissionLevel;
         name?: string;
       }) => Api.patchInvitation({ itemId, id }, { permission, name }),
       onSuccess: () => {

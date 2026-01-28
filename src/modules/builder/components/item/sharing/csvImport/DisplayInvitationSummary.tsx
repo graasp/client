@@ -3,17 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, AlertTitle, Stack, Typography } from '@mui/material';
 
-import {
-  AccountType,
-  Invitation,
-  ItemMembership,
-  PermissionLevelOptions,
-} from '@graasp/sdk';
+import { AccountType, Invitation, ItemMembership } from '@graasp/sdk';
 
 import { AxiosError } from 'axios';
 
 import { NS } from '@/config/constants';
 import { SHARE_CSV_TEMPLATE_SUMMARY_CONTAINER_ID } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 import { getErrorFromPayload } from '~builder/utils/errorMessages';
@@ -33,7 +29,7 @@ const LineDisplay = ({
   permission,
 }: {
   email: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
 }) => (
   <Stack direction="row" gap={1}>
     <Typography>{email}</Typography>

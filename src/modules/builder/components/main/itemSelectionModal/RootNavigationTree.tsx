@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Skeleton, Typography } from '@mui/material';
 
-import { DiscriminatedItem, ItemType, PermissionLevel } from '@graasp/sdk';
+import { DiscriminatedItem, ItemType } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -43,7 +43,7 @@ const RootNavigationTree = ({
   } = hooks.useAccessibleItems(
     // you can move into an item you have at least write permission
     {
-      permissions: [PermissionLevel.Admin, PermissionLevel.Write],
+      permissions: ['admin', 'write'],
       types: [ItemType.FOLDER],
     },
     { pageSize: 5 },

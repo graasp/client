@@ -1,4 +1,4 @@
-import { PackedFolderItemFactory, PermissionLevel } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   HIDDEN_ITEM_BUTTON_CLASS,
@@ -24,7 +24,7 @@ const HIDDEN_ITEM: ItemForTest = {
   memberships: [
     {
       item: hiddenItem,
-      permission: PermissionLevel.Admin,
+      permission: 'admin',
       account: MEMBERS.ANNA,
       creator: MEMBERS.ANNA,
       id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
@@ -33,7 +33,7 @@ const HIDDEN_ITEM: ItemForTest = {
     },
     {
       item: hiddenItem,
-      permission: PermissionLevel.Read,
+      permission: 'read',
       account: MEMBERS.BOB,
       creator: MEMBERS.ANNA,
       id: 'ecbfbd2a-5688-12db-ae93-0242ac130002',
@@ -48,7 +48,7 @@ const CHILD_HIDDEN_ITEM = PackedFolderItemFactory({ parentItem: HIDDEN_ITEM });
 const ITEM = PackedFolderItemFactory(
   {},
   {
-    permission: PermissionLevel.Admin,
+    permission: 'admin',
   },
 );
 

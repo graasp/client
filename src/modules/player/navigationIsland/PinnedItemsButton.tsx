@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Tooltip } from '@mui/material';
 
-import { PermissionLevel, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 import { Pin, PinOff } from 'lucide-react';
@@ -35,7 +35,7 @@ const usePinnedItemsButton = (): { pinnedButton: JSX.Element | null } => {
   }
 
   const canWrite = item?.permission
-    ? PermissionLevelCompare.gte(item?.permission, PermissionLevel.Write)
+    ? PermissionLevelCompare.gte(item?.permission, 'write')
     : false;
   // we should show the icon as open if there are pinned items and the drawer is open
   const isOpen = isPinnedOpen && childrenPinnedCount > 0;

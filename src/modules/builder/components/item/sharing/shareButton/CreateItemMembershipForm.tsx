@@ -13,13 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import {
-  AccountType,
-  DiscriminatedItem,
-  PermissionLevel,
-  PermissionLevelOptions,
-  isEmail,
-} from '@graasp/sdk';
+import { AccountType, DiscriminatedItem, isEmail } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import truncate from 'lodash.truncate';
@@ -32,6 +26,7 @@ import {
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
+import type { PermissionLevel } from '@/openapi/client';
 import { createInvitationMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { useItemInvitations } from '@/query/hooks/invitation';
 import { itemKeys } from '@/query/keys';
@@ -47,7 +42,7 @@ type ContentProps = {
 
 type Inputs = {
   email: string;
-  permission: PermissionLevelOptions;
+  permission: PermissionLevel;
 };
 
 const Content = ({ handleClose, item }: ContentProps) => {
@@ -76,7 +71,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
     watch,
     setValue,
     formState: { errors },
-  } = useForm<Inputs>({ defaultValues: { permission: PermissionLevel.Read } });
+  } = useForm<Inputs>({ defaultValues: { permission: 'read' } });
   const permission = watch('permission');
 
   const handleShare = async (data: Inputs) => {
@@ -151,10 +146,7 @@ const Content = ({ handleClose, item }: ContentProps) => {
               value={permission}
               onChange={(event) => {
                 if (event.target.value) {
-                  setValue(
-                    'permission',
-                    event.target.value as PermissionLevelOptions,
-                  );
+                  setValue('permission', event.target.value as PermissionLevel);
                 }
               }}
               size="medium"

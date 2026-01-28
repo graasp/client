@@ -23,7 +23,6 @@ import {
   ItemType,
   LinkItemType,
   PackedItem,
-  PermissionLevel,
   ShortcutItemType,
   buildPdfViewerURL,
 } from '@graasp/sdk';
@@ -243,7 +242,7 @@ const AppContent = ({ item }: { item: AppItemType }): JSX.Element => {
           apiHost: API_HOST,
           settings: item.settings,
           lang: item.lang ?? user?.lang,
-          permission: PermissionLevel.Read,
+          permission: 'read',
           context: Context.Player,
           accountId: user?.id,
           itemId: item.id,

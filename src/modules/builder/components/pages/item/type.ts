@@ -1,8 +1,10 @@
-import { PackedItem, PermissionLevelOptions } from '@graasp/sdk';
+import type { PackedItem } from '@graasp/sdk';
+
+import type { PermissionLevel } from '@/openapi/client';
 
 export interface OutletType {
   item: PackedItem;
-  permission?: PermissionLevelOptions;
+  permission?: PermissionLevel;
   canWrite: boolean;
   canAdmin: boolean;
 }

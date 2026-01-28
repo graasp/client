@@ -1,8 +1,4 @@
-import {
-  MemberFactory,
-  PackedFolderItemFactory,
-  PermissionLevel,
-} from '@graasp/sdk';
+import { MemberFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   MEMBERSHIPS_TAB_SELECTOR,
@@ -38,7 +34,7 @@ describe('Membership requests table', () => {
   it('Writers cannot see', () => {
     const itemWithWrite = PackedFolderItemFactory(
       { creator: CURRENT_MEMBER },
-      { permission: PermissionLevel.Write },
+      { permission: 'write' },
     );
     cy.setUpApi({ items: [itemWithWrite], membershipRequests });
     cy.visit(`/builder/items/${itemWithWrite.id}/share`);
@@ -83,7 +79,7 @@ describe('Membership requests table', () => {
 
       cy.wait('@postItemMembership').then(({ request: { body } }) => {
         expect(body.accountId).to.equal(member.id);
-        expect(body.permission).to.equal(PermissionLevel.Read);
+        expect(body.permission).to.equal('read');
       });
     });
     it('reject membership requests', () => {

@@ -2,11 +2,11 @@ import {
   DiscriminatedItem,
   Invitation,
   PackedFolderItemFactory,
-  PermissionLevel,
-  PermissionLevelOptions,
 } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
+
+import type { PermissionLevel } from '@/openapi/client';
 
 import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
@@ -14,14 +14,14 @@ import { ApiConfig } from '../../../support/types';
 export const buildInvitation = (args: {
   item: DiscriminatedItem;
   email?: string;
-  permission?: PermissionLevelOptions;
+  permission?: PermissionLevel;
 }): Invitation => {
   const { item, email, permission } = args;
   return {
     // set temporary id for react-key
     id: v4(),
     email: email ?? '',
-    permission: permission ?? PermissionLevel.Read,
+    permission: permission ?? 'read',
     createdAt: '2021-08-11T12:56:36.834Z',
     updatedAt: '2021-08-11T12:56:36.834Z',
     creator: MEMBERS.ANNA,
@@ -56,7 +56,7 @@ export const ITEMS_WITH_INVITATIONS = {
         {
           id: 'ecafbd2a-5688-11eb-be93-0242ac130002',
           item: itemsWithInvitations[0],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.FANNY,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -65,7 +65,7 @@ export const ITEMS_WITH_INVITATIONS = {
         {
           id: 'ecafbd2a-5688-11eb-be93-0212ac130002',
           item: itemsWithInvitations[0],
-          permission: PermissionLevel.Admin,
+          permission: 'admin',
           account: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -76,7 +76,7 @@ export const ITEMS_WITH_INVITATIONS = {
         {
           id: 'ecafbd2a-5688-11eb-be92-0242ac130005',
           item: itemsWithInvitations[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           email: MEMBERS.BOB.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -85,7 +85,7 @@ export const ITEMS_WITH_INVITATIONS = {
         {
           id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
           item: itemsWithInvitations[1],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           email: MEMBERS.CEDRIC.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -94,7 +94,7 @@ export const ITEMS_WITH_INVITATIONS = {
         {
           id: 'ecbfbd2a-5688-11eb-be93-0242ac130007',
           item: itemsWithInvitations[1],
-          permission: PermissionLevel.Read,
+          permission: 'read',
           email: MEMBERS.DAVID.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -113,7 +113,7 @@ const itemsWithInvitationsWriteAccess: DiscriminatedItem[] = [
       id: 'bcafbd2a-5688-11eb-ae93-0242ac130002',
       path: 'bcafbd2a_5688_11eb_ae93_0242ac130002',
     },
-    { permission: PermissionLevel.Write },
+    { permission: 'write' },
   ),
   PackedFolderItemFactory(
     {
@@ -121,7 +121,7 @@ const itemsWithInvitationsWriteAccess: DiscriminatedItem[] = [
       creator: MEMBERS.BOB,
       path: 'bcafbd2a_5688_11eb_ae93_0242ac130002.ecafbd2a_5688_11eb_ae93_0242ac130002',
     },
-    { permission: PermissionLevel.Write },
+    { permission: 'write' },
   ),
 ];
 export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
@@ -134,7 +134,7 @@ export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be93-0242ac130002',
           item: itemsWithInvitationsWriteAccess[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           account: MEMBERS.ANNA,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -145,7 +145,7 @@ export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
         {
           id: 'ecafbd2a-5688-11eb-be92-0242ac130005',
           item: itemsWithInvitationsWriteAccess[0],
-          permission: PermissionLevel.Write,
+          permission: 'write',
           email: MEMBERS.CEDRIC.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
@@ -154,7 +154,7 @@ export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
         {
           id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
           item: itemsWithInvitationsWriteAccess[1],
-          permission: PermissionLevel.Read,
+          permission: 'read',
           email: MEMBERS.DAVID.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',

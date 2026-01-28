@@ -2,11 +2,7 @@ import type { JSX } from 'react';
 
 import { SelectProps } from '@mui/material';
 
-import {
-  PackedItem,
-  PermissionLevel,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { PackedItem, PermissionLevelCompare } from '@graasp/sdk';
 
 import { LANGS } from '@/config/langs';
 import { mutations } from '@/config/queryClient';
@@ -17,7 +13,7 @@ const LanguageSelect = ({ item }: { item: PackedItem }): JSX.Element => {
   const { mutate: changeLang } = mutations.useEditItem();
 
   const canWrite = item.permission
-    ? PermissionLevelCompare.gte(item.permission, PermissionLevel.Write)
+    ? PermissionLevelCompare.gte(item.permission, 'write')
     : false;
 
   const onChange: SelectProps['onChange'] = (e) => {

@@ -2,7 +2,6 @@ import {
   ItemType,
   LinkItemType,
   PackedLinkItemFactory,
-  PermissionLevel,
   buildLinkExtra,
 } from '@graasp/sdk';
 
@@ -29,7 +28,7 @@ export const GRAASP_LINK_ITEM = PackedLinkItemFactory(
       showLinkIframe: true,
     },
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );
 
 export const GRAASP_LINK_ITEM_IFRAME_ONLY: LinkItemType = {
@@ -61,5 +60,5 @@ export const YOUTUBE_LINK_ITEM: LinkItemType = PackedLinkItemFactory(
       showChatbox: false,
     },
   },
-  { permission: PermissionLevel.Admin },
+  { permission: 'admin' },
 );

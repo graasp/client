@@ -14,7 +14,6 @@ import {
 import {
   AccountType,
   ItemLoginSchemaStatus,
-  PermissionLevel,
   PermissionLevelCompare,
 } from '@graasp/sdk';
 
@@ -95,16 +94,14 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
             key={im.id}
             data={im}
             item={item}
-            isOnlyAdmin={
-              hasOnlyOneAdmin && im.permission === PermissionLevel.Admin
-            }
+            isOnlyAdmin={hasOnlyOneAdmin && im.permission === 'admin'}
             allowDowngrade={
               // can downgrade for same item
               im.item.path === item.path
             }
             isDisabled={
               Boolean(item.hidden) &&
-              PermissionLevelCompare.lt(im.permission, PermissionLevel.Write)
+              PermissionLevelCompare.lt(im.permission, 'write')
             }
           />
         ) : (
@@ -135,12 +132,9 @@ const ItemMembershipsTable = ({ showEmail = true }: Props): JSX.Element => {
       ({ permission }) => permission,
     );
 
-    const adminRows =
-      groupedRows[PermissionLevel.Admin]?.toSorted(sortByNameAndEmail);
-    const writeRows =
-      groupedRows[PermissionLevel.Write]?.toSorted(sortByNameAndEmail);
-    const readRows =
-      groupedRows[PermissionLevel.Read]?.toSorted(sortByNameAndEmail);
+    const adminRows = groupedRows['admin']?.toSorted(sortByNameAndEmail);
+    const writeRows = groupedRows['write']?.toSorted(sortByNameAndEmail);
+    const readRows = groupedRows['read']?.toSorted(sortByNameAndEmail);
     const allRows = [adminRows, writeRows, readRows]
       .filter(Boolean)
       .flatMap((rows) => [

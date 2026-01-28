@@ -372,6 +372,11 @@ export type ItemLoginSchema = {
 };
 
 /**
+ * PermissionLevel
+ */
+export type PermissionLevel = 'read' | 'write' | 'admin';
+
+/**
  * Item Membership
  * Define the permission access between account and item
  */
@@ -379,7 +384,7 @@ export type ItemMembership = {
     id: string;
     account: AugmentedAccount;
     item: Item;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     creator?: NullableAugmentedAccount;
     createdAt: string;
     updatedAt: string;
@@ -393,7 +398,7 @@ export type RawItemMembership = {
     id: string;
     accountId: string;
     itemPath: string;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     creator?: string;
     createdAt: string;
     updatedAt: string;
@@ -2779,7 +2784,7 @@ export type GetItemMembershipsForItemResponse = GetItemMembershipsForItemRespons
 export type CreateItemMembershipData = {
     body: {
         accountId: string;
-        permission: 'read' | 'write' | 'admin';
+        permission: PermissionLevel;
     };
     path: {
         itemId: string;
@@ -2838,7 +2843,7 @@ export type DeleteItemMembershipResponse = DeleteItemMembershipResponses[keyof D
 
 export type UpdateItemMembershipData = {
     body: {
-        permission: 'read' | 'write' | 'admin';
+        permission: PermissionLevel;
     };
     path: {
         id: string;
