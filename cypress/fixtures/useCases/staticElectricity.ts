@@ -3,7 +3,6 @@ import {
   DocumentItemFactory,
   FileItemFactory,
   FolderItemFactory,
-  ItemType,
   LinkItemFactory,
   PackedFolderItemFactory,
   buildDocumentExtra,
@@ -28,9 +27,6 @@ export const STATIC_ELECTRICITY: {
         name: 'Static Electricity',
         description: '',
         creator: CURRENT_MEMBER,
-        extra: {
-          [ItemType.FOLDER]: {},
-        },
       },
       { permission: 'admin' },
     ),
@@ -39,9 +35,6 @@ export const STATIC_ELECTRICITY: {
       path: 'fdf09f5a_5688_11eb_ae31_0242ac130003.gcafbd2a_5688_11eb_ae92_0242ac130015',
       name: 'Causes and experiences',
       creator: CURRENT_MEMBER,
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
     }),
     DocumentItemFactory({
       id: 'gcefbd2a-5688-11eb-ae92-0542bc120002',
@@ -107,9 +100,6 @@ export const STATIC_ELECTRICITY: {
       name: 'Introduction',
       description: '',
       creator: CURRENT_MEMBER,
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
     }),
     AppItemFactory({
       id: 'gcafbd2a-4118-31eb-fe32-0542bc120002',
@@ -119,7 +109,7 @@ export const STATIC_ELECTRICITY: {
         '<p>Grab a balloon to explore concepts of static electricity such as charge transfer, attraction, repulsion, and induced charge.</p>',
       creator: CURRENT_MEMBER,
       extra: {
-        [ItemType.APP]: {
+        app: {
           url: 'https://gateway.golabz.eu/os/pub/phet/http%25253A%25252F%25252Fphet.colorado.edu%25252Fen%25252Fsimulation%25252Fballoons-and-static-electricity/w_default.html',
         },
       },
@@ -141,9 +131,6 @@ export const STATIC_ELECTRICITY: {
       name: 'Removal and Prevention',
       description: '',
       creator: CURRENT_MEMBER,
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
     }),
     DocumentItemFactory({
       id: 'gcbffd2a-4218-31eb-fe32-0542bc121102',
@@ -173,9 +160,6 @@ export const STATIC_ELECTRICITY: {
       path: 'fdf09f5a_5688_11eb_ae31_0242ac130003.gfbfed2a_4218_31eb_fe32_0542bc120002',
       name: 'Static Discharge: Lightning',
       creator: CURRENT_MEMBER,
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
     }),
     {
       ...FileItemFactory({

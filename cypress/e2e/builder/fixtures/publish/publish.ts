@@ -1,5 +1,4 @@
 import {
-  ItemTypeUnion,
   PackedAppItemFactory,
   PackedDocumentItemFactory,
   PackedEtherpadItemFactory,
@@ -12,11 +11,11 @@ import {
 
 import { v4 } from 'uuid';
 
+import { ItemType } from '@/openapi/client';
+
 import { ItemForTest } from '../../../../support/types';
 
-export const createPublicItemByType = (
-  itemType: ItemTypeUnion,
-): ItemForTest => {
+export const createPublicItemByType = (itemType: ItemType): ItemForTest => {
   const publicVisibility = { publicVisibility: {} };
 
   switch (itemType) {

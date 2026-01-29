@@ -1,16 +1,13 @@
 import { type JSX, createContext, useContext, useMemo, useState } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
-type ItemTypeConst = DiscriminatedItem['type'];
-type ItemTypes = ItemTypeConst[];
+import { ItemType } from '@/openapi/client';
 
 type FilterItemsContextType = {
-  itemTypes: ItemTypes;
+  itemTypes: ItemType[];
   setItemTypes: (
-    newTypes: ItemTypes | ((types: ItemTypes) => ItemTypes),
+    newTypes: ItemType[] | ((types: ItemType[]) => ItemType[]),
   ) => void;
-  shouldDisplayItem: (itemType: ItemTypeConst) => boolean;
+  shouldDisplayItem: (itemType: ItemType) => boolean;
 };
 
 const FilterItemsContext = createContext<FilterItemsContextType>({
@@ -35,16 +32,13 @@ type Props = {
 export const FilterItemsContextProvider = ({
   children,
 }: Props): JSX.Element => {
-  // const location = useLocation();
-  const [itemTypes, setItemTypes] = useState<ItemTypes>([]);
-
-  // useEffect(() => setItemTypes([]), [location]);
+  const [itemTypes, setItemTypes] = useState<ItemType[]>([]);
 
   const value = useMemo(
     () => ({
       itemTypes,
       setItemTypes,
-      shouldDisplayItem: (itemType: ItemTypeConst) =>
+      shouldDisplayItem: (itemType: ItemType) =>
         itemTypes.length === 0 || itemTypes.includes(itemType),
     }),
     [itemTypes],

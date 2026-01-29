@@ -8,8 +8,6 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { Link } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 
@@ -53,7 +51,7 @@ const FolderCard = ({
             minHeight={CARD_HEIGHT}
             thumbnail={thumbnail}
             alt={name}
-            type={ItemType.FOLDER}
+            type={'folder'}
           />
           <CardHeader
             sx={{

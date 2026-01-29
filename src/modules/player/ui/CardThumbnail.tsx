@@ -2,8 +2,7 @@ import type { JSX } from 'react';
 
 import { Box, useTheme } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
-
+import { ItemType } from '@/openapi/client';
 import Thumbnail from '@/ui/Thumbnail/Thumbnail';
 import ItemIcon from '@/ui/icons/ItemIcon';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
@@ -13,14 +12,14 @@ export type CardThumbnailProps = {
   alt: string;
   width?: number;
   minHeight: number;
-  type?: DiscriminatedItem['type'];
+  type?: ItemType;
 };
 export function CardThumbnail({
   thumbnail,
   alt,
   width,
   minHeight,
-  type = ItemType.FOLDER,
+  type = 'folder',
 }: Readonly<CardThumbnailProps>): JSX.Element {
   const theme = useTheme();
 

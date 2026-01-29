@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Card, Stack, Typography } from '@mui/material';
 
-import {
-  ItemType,
-  ShortcutItemType,
-  formatDate,
-  getShortcutExtra,
-} from '@graasp/sdk';
+import { ShortcutItemType, formatDate, getShortcutExtra } from '@graasp/sdk';
 
 import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
@@ -25,7 +20,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
   const { i18n } = useTranslation(NS.Player);
 
   const itemId =
-    item.type === ItemType.SHORTCUT
+    item.type === 'shortcut'
       ? // TODO: fix type
         getShortcutExtra((item as unknown as ShortcutItemType).extra)?.target
       : item.id;

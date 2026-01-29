@@ -1,4 +1,4 @@
-import { FolderItemFactory, ItemType } from '@graasp/sdk';
+import { FolderItemFactory } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
@@ -25,7 +25,7 @@ describe('useDescendants', () => {
   const response = { item, ...generateFolders(3) };
 
   it('Gets descendants with type filter', async () => {
-    const types = [ItemType.FOLDER, ItemType.APP];
+    const types = ['folder' as const, 'app' as const];
     const key = itemKeys.single(item.id).descendants({ types });
     const hook = () => hooks.useDescendants({ id: item.id, types });
     const route = `/${buildGetItemDescendants(item.id)}?${types.map((t) => `types=${t}`).join('&')}`;

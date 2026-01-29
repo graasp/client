@@ -22,7 +22,7 @@ import {
 } from '../routes.js';
 import { uploadFilesRoutine } from '../routines.js';
 
-const { FolderItemFactory, HttpMethod, ItemType, buildPathFromIds } = sdk;
+const { FolderItemFactory, HttpMethod, buildPathFromIds } = sdk;
 
 const mockedNotifier = vi.fn();
 const { wrapper, queryClient, mutations } = setUpTest({
@@ -33,7 +33,7 @@ describe('usePostItem', () => {
   const mutation = mutations.usePostItem;
   const newItem = {
     name: 'new item',
-    type: ItemType.FOLDER,
+    type: 'folder' as const,
   };
 
   it('Post item in root', async () => {
@@ -272,7 +272,7 @@ describe('useUploadFiles', () => {
     data: [
       {
         name: 'new item',
-        type: ItemType.FOLDER,
+        type: 'folder',
         id: 'someid',
       },
     ],

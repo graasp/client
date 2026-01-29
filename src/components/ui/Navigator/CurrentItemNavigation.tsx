@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Stack } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
@@ -36,7 +36,7 @@ export function CurrentItemNavigation({
       >
         {item.name}
       </TypographyLink>
-      {(item.type === ItemType.FOLDER || showArrow) && (
+      {(item.type === 'folder' || showArrow) && (
         <ItemMenu
           useChildren={useChildren}
           itemId={item.id}

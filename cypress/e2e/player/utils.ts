@@ -5,7 +5,6 @@ import {
   DocumentItemType,
   FileItemType,
   HttpMethod,
-  ItemType,
   LinkItemType,
   MimeTypes,
   appendQueryParamToUrl,
@@ -135,19 +134,19 @@ export const expectFolderLayout = ({
 
   children.forEach((item) => {
     switch (item.type) {
-      case ItemType.FOLDER:
+      case 'folder':
         expectFolderButtonLayout(item);
         break;
-      case ItemType.FILE:
+      case 'file':
         expectFileViewScreenLayout(item);
         break;
-      case ItemType.LINK:
+      case 'embeddedLink':
         expectLinkViewScreenLayout(item);
         break;
-      case ItemType.DOCUMENT:
+      case 'document':
         expectDocumentViewScreenLayout(item);
         break;
-      case ItemType.APP:
+      case 'app':
         expectAppViewScreenLayout(item);
         break;
       default:
@@ -156,7 +155,7 @@ export const expectFolderLayout = ({
   });
 
   children
-    .filter(({ type }) => type === ItemType.FOLDER)
+    .filter(({ type }) => type === 'folder')
     .forEach(({ id }) => {
       // click in mainmenu
       // there are two because of th two menus

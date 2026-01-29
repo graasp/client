@@ -1,5 +1,3 @@
-import { ItemType } from '@graasp/sdk';
-
 import type { Meta, StoryObj } from '@storybook/react';
 
 import ItemSkeleton from './ItemSkeleton.js';
@@ -15,37 +13,37 @@ type Story = StoryObj<typeof ItemSkeleton>;
 
 export const Folder: Story = {
   args: {
-    itemType: ItemType.FOLDER,
+    itemType: 'folder',
   },
 };
 
 export const File: Story = {
   args: {
-    itemType: ItemType.FILE,
+    itemType: 'file',
   },
 };
 
 export const App: Story = {
   args: {
-    itemType: ItemType.APP,
+    itemType: 'app',
   },
 };
 
 export const Document: Story = {
   args: {
-    itemType: ItemType.DOCUMENT,
+    itemType: 'document',
   },
 };
 
 export const Link: Story = {
   args: {
-    itemType: ItemType.LINK,
+    itemType: 'embeddedLink',
   },
 };
 
 export const Collpasible: Story = {
   args: {
     isCollapsible: true,
-    itemType: ItemType.LINK,
+    itemType: 'embeddedLink',
   },
 };

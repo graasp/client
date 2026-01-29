@@ -1,7 +1,6 @@
 import {
   DocumentItemExtraFlavor,
   DocumentItemFactory,
-  ItemType,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
@@ -72,7 +71,7 @@ describe('Create Document', () => {
       DocumentItemFactory({
         name: '',
         extra: {
-          [ItemType.DOCUMENT]: {
+          document: {
             content: '<h1>Some Title</h1>',
           },
         },
@@ -101,7 +100,7 @@ describe('Create Document', () => {
       DocumentItemFactory({
         name: 'name',
         extra: {
-          [ItemType.DOCUMENT]: {
+          document: {
             content: '',
           },
         },
@@ -134,7 +133,7 @@ describe('Create Document', () => {
     const documentToCreate = DocumentItemFactory({
       name: 'document',
       extra: {
-        [ItemType.DOCUMENT]: {
+        document: {
           content: '<h1>Some Title</h1>',
           flavor: DocumentItemExtraFlavor.Error,
         },

@@ -13,8 +13,6 @@ import {
   Stack,
 } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import ItemIcon from '@/ui/icons/ItemIcon';
 
@@ -37,9 +35,17 @@ export const SelectTypes = (): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const types = Object.values(ItemType).sort((t1, t2) =>
-    translateEnums(t1).localeCompare(translateEnums(t2)),
-  );
+  const types = [
+    'app' as const,
+    'page' as const,
+    'file' as const,
+    'document' as const,
+    'folder' as const,
+    'h5p' as const,
+    'embeddedLink' as const,
+    'shortcut' as const,
+    'etherpad' as const,
+  ].sort((t1, t2) => translateEnums(t1).localeCompare(translateEnums(t2)));
 
   const handleChange = (event: SelectChangeEvent<typeof itemTypes>) => {
     const {

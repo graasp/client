@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from '@mui/material';
 
-import { ItemGeolocation, ItemType } from '@graasp/sdk';
+import { ItemGeolocation } from '@graasp/sdk';
 
 import { MapPinPlus } from 'lucide-react';
 
@@ -46,7 +46,7 @@ const AddItemButton = ({ location }: Props): JSX.Element | null => {
         parentId: parent?.id,
         name,
         description,
-        type: ItemType.FOLDER,
+        type: 'folder',
         geolocation: location,
       });
     }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ItemType, PackedItem, Paginated } from '@graasp/sdk';
+import { PackedItem, Paginated } from '@graasp/sdk';
 
 import { waitFor } from '@testing-library/dom';
 import { act, renderHook } from '@testing-library/react';
@@ -45,13 +45,13 @@ describe('useAccessibleItems', () => {
   });
 
   it(`Route constructed correctly for accessible folders`, async () => {
-    const typesParams = { types: [ItemType.FOLDER] };
+    const typesParams = { types: ['folder' as const] };
     const url = `/${buildGetAccessibleItems(typesParams, {})}`;
     const urlObject = new URL(url, 'https://no-existing-url.tmp');
     const queryParams = urlObject.searchParams;
     const typesValue = queryParams.get('types');
 
-    expect(typesValue).toEqual(ItemType.FOLDER);
+    expect(typesValue).toEqual('folder');
   });
 
   it(`Receive accessible folders for search`, async () => {
@@ -215,11 +215,11 @@ describe('useInfiniteAccessibleItems', () => {
   });
 
   it(`Route constructed correctly for accessible folders`, async () => {
-    const typesParams = { types: [ItemType.FOLDER] };
+    const typesParams = { types: ['folder' as const] };
     const url = `/${buildGetAccessibleItems(typesParams, {})}`;
     const urlObject = new URL(url, 'https://no-existing-url.tmp');
     const queryParams = urlObject.searchParams;
     const typesValue = queryParams.get('types');
-    expect(typesValue).toEqual(ItemType.FOLDER);
+    expect(typesValue).toEqual('folder');
   });
 });

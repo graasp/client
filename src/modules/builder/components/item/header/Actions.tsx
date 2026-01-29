@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, IconButton, Menu } from '@mui/material';
 
-import {
-  AccountType,
-  ItemType,
-  PackedItem,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { AccountType, PackedItem, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useSearch } from '@tanstack/react-router';
 import { MoreVerticalIcon } from 'lucide-react';
@@ -77,7 +72,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
   }
 
   const downloadButton =
-    item.type === ItemType.FOLDER ? (
+    item.type === 'folder' ? (
       <ExportRawZipButton
         key="export-zip"
         item={item}
@@ -152,7 +147,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
                 item={item}
               />,
               <PinButton key="pin" type={ActionButton.MENU_ITEM} item={item} />,
-              item.type !== ItemType.FOLDER && (
+              item.type !== 'folder' && (
                 <CollapseButton
                   key="collapse"
                   type={ActionButton.MENU_ITEM}

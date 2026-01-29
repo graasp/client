@@ -5,6 +5,11 @@ export type ClientOptions = {
 };
 
 /**
+ * PermissionLevel
+ */
+export type PermissionLevel = 'read' | 'write' | 'admin';
+
+/**
  * Error
  * Error object with useful information about the unexpected behavior that occured
  */
@@ -16,6 +21,11 @@ export type _Error = {
     data?: unknown;
     origin?: string;
 };
+
+/**
+ * Item Type
+ */
+export type ItemType = 'app' | 'document' | 'embeddedLink' | 'etherpad' | 'file' | 'folder' | 'h5p' | 'page' | 'shortcut';
 
 /**
  * Minimal Account
@@ -254,7 +264,7 @@ export type PackedItem = {
     id: string;
     name: string;
     description?: null | string;
-    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page';
+    type: ItemType;
     path: string;
     lang: string;
     extra: {
@@ -266,7 +276,7 @@ export type PackedItem = {
     creator: NullableMember;
     createdAt: string;
     updatedAt: string;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel | null;
     hidden?: ItemVisibility;
     public?: ItemVisibility;
     thumbnails?: {
@@ -370,11 +380,6 @@ export type ItemLoginSchema = {
     createdAt: string;
     updatedAt: string;
 };
-
-/**
- * PermissionLevel
- */
-export type PermissionLevel = 'read' | 'write' | 'admin';
 
 /**
  * Item Membership
@@ -518,7 +523,7 @@ export type Invitation = {
     id: string;
     email: string;
     name?: null | string;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     item: Item;
     createdAt: string;
     updatedAt: string;
@@ -532,7 +537,7 @@ export type InvitationWithoutRelations = {
     id: string;
     email: string;
     name?: null | string;
-    permission: 'read' | 'write' | 'admin';
+    permission: PermissionLevel;
     itemPath: string;
     createdAt: string;
     updatedAt: string;
@@ -604,7 +609,7 @@ export type SearchHit = {
     discipline: Array<string>;
     'resource-type': Array<string>;
     id: string;
-    type: 'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page';
+    type: ItemType;
     isPublishedRoot: boolean;
     isHidden: boolean;
     createdAt: string;
@@ -5061,7 +5066,7 @@ export type CreateInvitationData = {
     body: {
         invitations: Array<{
             email: string;
-            permission: 'read' | 'write' | 'admin';
+            permission: PermissionLevel;
         }>;
     };
     path: {
@@ -5151,7 +5156,7 @@ export type DeleteInvitationResponse = DeleteInvitationResponses[keyof DeleteInv
 export type UpdateInvitationData = {
     body?: {
         name?: string;
-        permission?: 'read' | 'write' | 'admin';
+        permission?: PermissionLevel;
     };
     path: {
         id: string;
@@ -6927,8 +6932,8 @@ export type GetAccessibleItemsData = {
         page: number;
         pageSize: number;
         creatorId?: string;
-        permissions?: Array<'read' | 'write' | 'admin'>;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
+        permissions?: Array<PermissionLevel>;
+        types?: Array<ItemType>;
         keywords?: Array<string>;
         sortBy?: 'item.type' | 'item.updated_at' | 'item.created_at' | 'item.creator.name' | 'item.name';
         ordering?: 'asc' | 'desc' | 'ASC' | 'DESC';
@@ -6967,7 +6972,7 @@ export type GetChildrenData = {
     };
     query?: {
         keywords?: Array<string>;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
+        types?: Array<ItemType>;
     };
     url: '/api/items/{id}/children';
 };
@@ -6997,7 +7002,7 @@ export type GetDescendantItemsData = {
     };
     query?: {
         showHidden?: boolean;
-        types?: Array<'app' | 'document' | 'folder' | 'embeddedLink' | 'file' | 'shortcut' | 'h5p' | 'etherpad' | 'page'>;
+        types?: Array<ItemType>;
     };
     url: '/api/items/{id}/descendants';
 };

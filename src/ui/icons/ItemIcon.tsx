@@ -1,12 +1,6 @@
 import { type JSX, type ReactNode } from 'react';
 
-import {
-  FileItemExtra,
-  ItemType,
-  MimeTypes,
-  UnionOfConst,
-  getMimetype,
-} from '@graasp/sdk';
+import { FileItemExtra, MimeTypes, getMimetype } from '@graasp/sdk';
 
 import {
   AppWindowIcon,
@@ -24,6 +18,8 @@ import {
   TextIcon,
 } from 'lucide-react';
 
+import { type ItemType } from '@/openapi/client';
+
 import { StyledImage } from '../StyledComponents/StyledBaseComponents.js';
 import EtherpadIcon from './EtherpadIcon.js';
 import H5PIcon from './H5PIcon.js';
@@ -35,7 +31,7 @@ export type ItemIconProps = {
   /**
    * item type
    */
-  type: UnionOfConst<typeof ItemType> | 'upload' | 'capsule';
+  type: ItemType | 'upload' | 'capsule';
   /**
    * An HTML Color to use for the foreground of the icon
    */
@@ -88,20 +84,20 @@ const ItemIcon = ({
     color?: string;
   }) => JSX.Element | ReactNode = FileIcon;
   switch (type) {
-    case ItemType.FOLDER:
+    case 'folder':
       Icon = FolderIcon;
       break;
     case 'capsule':
       Icon = BookOpenTextIcon;
       break;
-    case ItemType.SHORTCUT:
+    case 'shortcut':
       Icon = CableIcon;
       break;
-    case ItemType.DOCUMENT: {
+    case 'document': {
       Icon = TextIcon;
       break;
     }
-    case ItemType.FILE: {
+    case 'file': {
       if (mimetype) {
         if (MimeTypes.isImage(mimetype)) {
           Icon = ImageIcon;
@@ -128,19 +124,19 @@ const ItemIcon = ({
       Icon = FileIcon;
       break;
     }
-    case ItemType.LINK: {
+    case 'embeddedLink': {
       Icon = LinkIcon;
       break;
     }
-    case ItemType.APP: {
+    case 'app': {
       Icon = AppWindowIcon;
       break;
     }
-    case ItemType.H5P: {
+    case 'h5p': {
       Icon = H5PIcon;
       break;
     }
-    case ItemType.ETHERPAD: {
+    case 'etherpad': {
       Icon = EtherpadIcon;
       break;
     }

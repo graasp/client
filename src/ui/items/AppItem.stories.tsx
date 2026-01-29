@@ -1,4 +1,4 @@
-import { AppItemFactory, Context, ItemType, MemberFactory } from '@graasp/sdk';
+import { AppItemFactory, Context, MemberFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, within } from 'storybook/test';
@@ -21,7 +21,7 @@ export const Example = {
       id: 'item-id',
       description: 'item-description',
       extra: {
-        [ItemType.APP]: {
+        app: {
           url: 'https://graasp.org',
         },
       },

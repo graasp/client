@@ -1,5 +1,4 @@
 import {
-  ItemType,
   PackedFileItemFactory,
   PackedFolderItemFactory,
   buildShortcutExtra,
@@ -43,7 +42,7 @@ const checkCreateShortcutRequest = ({
     // check post item request is correct
 
     expect(body.extra).to.eql(buildShortcutExtra(id));
-    expect(body.type).to.eql(ItemType.SHORTCUT);
+    expect(body.type).to.eql('shortcut');
 
     if (toItemId) {
       const search = new URLSearchParams();

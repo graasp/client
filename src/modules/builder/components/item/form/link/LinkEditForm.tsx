@@ -11,7 +11,6 @@ import {
 
 import {
   DescriptionPlacementType,
-  ItemType,
   LinkItemType,
   UnionOfConst,
   getParentFromPath,
@@ -61,7 +60,7 @@ export function LinkEditForm({
     defaultValues: {
       name: item.name,
       description: item.description ?? '',
-      url: item.extra[ItemType.LINK].url,
+      url: item.extra.embeddedLink.url,
       descriptionPlacement: item.settings.descriptionPlacement,
       linkType: getLinkType(item.settings),
     },

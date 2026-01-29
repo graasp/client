@@ -4,12 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogTitle, Stack } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  ItemGeolocation,
-  ItemType,
-  buildAppExtra,
-} from '@graasp/sdk';
+import { DiscriminatedItem, ItemGeolocation, buildAppExtra } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -56,7 +51,7 @@ const AppForm = ({
   async function onSubmit(data: Inputs) {
     try {
       await createItem({
-        type: ItemType.APP,
+        type: 'app',
         name: data.name,
         extra: buildAppExtra({
           url: data.url,

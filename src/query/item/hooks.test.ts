@@ -2,7 +2,6 @@ import {
   FileItemFactory,
   FolderItemFactory,
   FolderItemType,
-  ItemType,
 } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
@@ -53,13 +52,13 @@ describe.skip('useChildren', () => {
   });
 
   it(`Route constructed correctly for children folders`, async () => {
-    const typesParams = { types: [ItemType.FOLDER] };
+    const typesParams = { types: ['folder' as const] };
     const url = `/${buildGetChildrenRoute(id, typesParams)}`;
     const urlObject = new URL(url, 'https://no-existing-url.tmp');
     const queryParams = urlObject.searchParams;
     const typesValue = queryParams.get('types');
 
-    expect(typesValue).toEqual(ItemType.FOLDER);
+    expect(typesValue).toEqual('folder');
   });
 
   it(`Undefined id does not fetch`, async () => {

@@ -7,7 +7,6 @@ import { Box, DialogActions, DialogContent } from '@mui/material';
 import {
   DocumentItemExtraFlavor,
   DocumentItemType,
-  ItemType,
   buildDocumentExtra,
 } from '@graasp/sdk';
 
@@ -51,11 +50,9 @@ export function DocumentEditForm({
   const methods = useForm<Inputs>({
     defaultValues: {
       name: item?.name,
-      flavor:
-        item?.extra?.[ItemType.DOCUMENT]?.flavor ??
-        DocumentItemExtraFlavor.None,
-      content: item?.extra?.[ItemType.DOCUMENT]?.content || '',
-      isRaw: item?.extra?.[ItemType.DOCUMENT]?.isRaw ?? false,
+      flavor: item?.extra?.document?.flavor ?? DocumentItemExtraFlavor.None,
+      content: item?.extra?.document?.content || '',
+      isRaw: item?.extra?.document?.isRaw ?? false,
     },
   });
   const {

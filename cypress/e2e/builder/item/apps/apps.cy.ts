@@ -1,4 +1,4 @@
-import { ItemType, PackedAppItemFactory } from '@graasp/sdk';
+import { PackedAppItemFactory } from '@graasp/sdk';
 
 import { buildAppItemLinkForTest } from '../../fixtures/apps';
 import { buildItemPath } from '../../utils';
@@ -19,7 +19,7 @@ const checkContentInElementInIframe = (
 
 const APP = PackedAppItemFactory({
   extra: {
-    [ItemType.APP]: {
+    app: {
       url: `${Cypress.env('VITE_GRAASP_API_HOST')}/${buildAppItemLinkForTest(
         'app.html',
       )}`,

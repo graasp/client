@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import { ItemType, PackedItem } from '@graasp/sdk';
+import { PackedItem } from '@graasp/sdk';
 
 import { BarChart3, MessageSquareOff, MessageSquareText } from 'lucide-react';
 
@@ -64,9 +64,9 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
 
   const renderSettingsPerType = () => {
     switch (item.type) {
-      case ItemType.LINK:
+      case 'embeddedLink':
         return <LinkSettings item={item} />;
-      case ItemType.FILE:
+      case 'file':
         return (
           <>
             <FileMaxWidthSetting item={item} variant={SettingVariant.List} />
@@ -74,7 +74,7 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
           </>
         );
 
-      case ItemType.APP:
+      case 'app':
         return (
           <ItemSettingCheckBoxProperty
             id={SETTINGS_RESIZE_TOGGLE_ID}
@@ -101,12 +101,12 @@ const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
         title={translateBuilder('ITEM_SETTINGS_IS_COLLAPSED_TITLE')}
         icon={<CollapseButton type={ActionButton.ICON} item={item} />}
         checked={Boolean(settings.isCollapsible)}
-        disabled={item.type === ItemType.FOLDER}
+        disabled={item.type === 'folder'}
         onClick={(checked: boolean): void => {
           handleOnToggle({ target: { checked } }, 'isCollapsible');
         }}
         valueText={(() => {
-          if (item.type === ItemType.FOLDER) {
+          if (item.type === 'folder') {
             return translateBuilder('SETTINGS_COLLAPSE_FOLDER_INFORMATION');
           }
           return settings.isCollapsible

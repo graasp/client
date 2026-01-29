@@ -9,8 +9,6 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { ExternalLink } from 'lucide-react';
 
 import CardThumbnail from './components/CardThumbnail.js';
@@ -58,7 +56,7 @@ const FancyLink = ({
           <CardThumbnail
             thumbnail={thumbnail}
             alt="Link thumbnail"
-            itemType={ItemType.LINK}
+            itemType={'embeddedLink'}
           />
           <CardHeader
             sx={{

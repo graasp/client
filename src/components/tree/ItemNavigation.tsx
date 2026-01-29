@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { isAxiosError } from 'axios';
 
 import { useAuth } from '@/AuthContext.tsx';
 import { NS } from '@/config/constants.ts';
 import { hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
+import { ItemType } from '@/openapi/client';
 import MainMenu from '@/ui/MainMenu/MainMenu';
 
 import { LoadingTree } from './LoadingTree';
@@ -30,7 +29,7 @@ export const ItemNavigation = ({
   rootId: string;
   itemId: string;
   shuffle?: boolean;
-  types?: DiscriminatedItem['type'][];
+  types?: ItemType[];
   showHidden?: boolean;
   handleNavigationOnClick: (newItemId: string) => void;
 }): JSX.Element | null => {

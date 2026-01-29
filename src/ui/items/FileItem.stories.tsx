@@ -1,7 +1,6 @@
 import {
   DescriptionPlacement,
   FileItemFactory,
-  ItemType,
   MaxWidth,
   MemberFactory,
   MimeTypes,
@@ -41,7 +40,7 @@ const buildImageStory = (
         id: 'my-id',
         name: 'my item name',
         extra: {
-          [ItemType.FILE]: {
+          file: {
             path: '/test-assets/small_photo.jpg',
             mimetype: MimeTypes.Image.PNG,
             name: 'original file name',
@@ -50,7 +49,7 @@ const buildImageStory = (
             content: '',
           },
         },
-        type: ItemType.FILE,
+        type: 'file',
         description: 'my image description',
         path: 'item-path',
         settings: descriptionPlacement ? { descriptionPlacement } : {},
@@ -76,7 +75,7 @@ export const BigContainedImage = {
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.FILE]: {
+        file: {
           path: '/test-assets/big_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
@@ -85,7 +84,7 @@ export const BigContainedImage = {
           content: '',
         },
       },
-      type: ItemType.FILE,
+      type: 'file',
       description:
         'This image is really big but is constrained to its container',
       path: 'item-path',
@@ -110,7 +109,7 @@ export const SmallContainedImage = {
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.FILE]: {
+        file: {
           path: '/test-assets/small_photo.jpg',
           mimetype: MimeTypes.Image.PNG,
           name: 'original file name',
@@ -119,7 +118,7 @@ export const SmallContainedImage = {
           content: '',
         },
       },
-      type: ItemType.FILE,
+      type: 'file',
       description:
         'This image is small but is constrained to its big container',
       path: 'item-path',
@@ -142,7 +141,7 @@ export const ImageSVG = {
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.FILE]: {
+        file: {
           path: '/test-assets/test.svg',
           mimetype: MimeTypes.Image.SVG, // Should be image/svg+xml
           name: 'original file name',
@@ -151,7 +150,7 @@ export const ImageSVG = {
           content: '',
         },
       },
-      type: ItemType.FILE,
+      type: 'file',
       description: 'my svg description',
       path: 'item-path',
       settings: {},
@@ -171,7 +170,7 @@ export const ImageWebP = {
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.FILE]: {
+        file: {
           path: '/test-assets/test.webp',
           mimetype: MimeTypes.Image.WEBP, // Should be image/svg+xml
           name: 'original file name',
@@ -180,7 +179,7 @@ export const ImageWebP = {
           content: '',
         },
       },
-      type: ItemType.FILE,
+      type: 'file',
       description: 'my webp description',
       path: 'item-path',
       settings: {},
@@ -200,7 +199,7 @@ export const WAVAudio = {
       id: 'my-id',
       name: 'my item name',
       extra: {
-        [ItemType.FILE]: {
+        file: {
           path: '/test-assets/sample.wav',
           mimetype: MimeTypes.Audio.WAV, // Should be audio/wav
           name: 'original file name',
@@ -208,7 +207,7 @@ export const WAVAudio = {
           content: '',
         },
       },
-      type: ItemType.FILE,
+      type: 'file',
       description: 'my audio description',
       path: 'item-path',
       settings: {},

@@ -5,7 +5,6 @@ import { Box, Grid, Typography } from '@mui/material';
 
 import {
   DiscriminatedItem,
-  ItemType,
   formatDate,
   getLinkThumbnailUrl,
 } from '@graasp/sdk';
@@ -98,7 +97,7 @@ const ItemCard = ({
 
   // show link thumbnail
   let thumbnail = thumbnailUrl;
-  if (!thumbnail && item.type === ItemType.LINK) {
+  if (!thumbnail && item.type === 'embeddedLink') {
     thumbnail = getLinkThumbnailUrl(item.extra);
   }
 

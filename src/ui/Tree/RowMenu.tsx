@@ -10,8 +10,6 @@ import {
   styled,
 } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import ItemIcon from '@/ui/icons/ItemIcon.js';
 
 import type { NavigationElement } from './types.js';
@@ -70,11 +68,7 @@ const RowMenu = ({
           isSelected={selectedId === item.id}
           disabled={isDisabled?.(item)}
           startIcon={
-            <ItemIcon
-              size="20px"
-              alt={`${item.name} icon`}
-              type={ItemType.FOLDER}
-            />
+            <ItemIcon size="20px" alt={`${item.name} icon`} type={'folder'} />
           }
         >
           <Typography

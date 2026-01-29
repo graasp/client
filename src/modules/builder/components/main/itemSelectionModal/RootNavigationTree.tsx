@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Skeleton, Typography } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
@@ -44,7 +44,7 @@ const RootNavigationTree = ({
     // you can move into an item you have at least write permission
     {
       permissions: ['admin', 'write'],
-      types: [ItemType.FOLDER],
+      types: ['folder'],
     },
     { pageSize: 5 },
   );

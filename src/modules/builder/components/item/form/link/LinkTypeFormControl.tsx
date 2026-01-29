@@ -12,12 +12,7 @@ import {
   styled,
 } from '@mui/material';
 
-import {
-  ItemType,
-  UnionOfConst,
-  buildLinkExtra,
-  getLinkThumbnailUrl,
-} from '@graasp/sdk';
+import { UnionOfConst, buildLinkExtra, getLinkThumbnailUrl } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -95,9 +90,9 @@ export function LinkTypeFormControl() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         item={{
-          type: ItemType.LINK,
+          type: 'embeddedLink',
           settings: {},
-          extra: { [ItemType.LINK]: { url: normalizeURL(url) } },
+          extra: { embeddedLink: { url: normalizeURL(url) } },
         }}
         showIframe
         showButton={false}

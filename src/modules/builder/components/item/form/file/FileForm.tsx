@@ -13,7 +13,6 @@ import {
   DescriptionPlacementType,
   FileItemExtra,
   FileItemType,
-  ItemType,
   MimeTypes,
 } from '@graasp/sdk';
 
@@ -70,7 +69,7 @@ export function FileForm({
   function buildFileExtra() {
     if (altText) {
       return {
-        [ItemType.FILE]: {
+        file: {
           altText,
         },
       } as FileItemExtra;

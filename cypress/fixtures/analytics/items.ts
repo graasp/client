@@ -2,7 +2,6 @@ import {
   DiscriminatedItem,
   DocumentItemFactory,
   FolderItemFactory,
-  ItemType,
   PackedAppItemFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
@@ -27,7 +26,7 @@ const MOCK_ITEMS: DiscriminatedItem[] = [
     name: 'document1',
     path: '865fad9a_a6e8_4c5f_899d_7f845bf37a1d',
     extra: {
-      [ItemType.DOCUMENT]: {
+      document: {
         content: '',
       },
     },
@@ -38,7 +37,7 @@ const MOCK_ITEMS: DiscriminatedItem[] = [
     name: 'document2',
     path: '2162f6ec_60f3_4339_be17_765a49d638c3.81950088_ec8b_4afc_a8d2_4c6ddffdc497.02ae7c43_aaf8_45b7_a665_829fcf160550',
     extra: {
-      [ItemType.DOCUMENT]: {
+      document: {
         content: '',
       },
     },
@@ -61,7 +60,7 @@ const MOCK_ITEMS: DiscriminatedItem[] = [
     name: 'sharedDocument1',
     path: 'c884c33a_f8db_4a20_9935_d10b8ca758a4.5dd7ed57_59b2_4058_9e70_b171a5c50be9.676d82b9_5a4c_4127_9807_2ad19b073526',
     extra: {
-      [ItemType.DOCUMENT]: {
+      document: {
         content: '',
       },
     },

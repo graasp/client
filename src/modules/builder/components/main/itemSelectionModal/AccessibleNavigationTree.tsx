@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Button, Skeleton, Stack } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
@@ -41,7 +39,7 @@ const AccessibleNavigationTree = ({
   } = hooks.useInfiniteAccessibleItems(
     {
       permissions: ['write', 'admin'],
-      types: [ItemType.FOLDER],
+      types: ['folder'],
     },
     { pageSize: PAGE_SIZE },
   );

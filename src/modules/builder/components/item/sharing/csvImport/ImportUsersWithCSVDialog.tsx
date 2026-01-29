@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Dialog } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import ImportUsersDialogContent, {
   DIALOG_ID_LABEL,
@@ -27,7 +27,7 @@ const ImportUsersWithCSVDialog = ({
   >
     <ImportUsersDialogContent
       item={item}
-      isFolder={item.type === ItemType.FOLDER}
+      isFolder={item.type === 'folder'}
       handleClose={handleCloseModal}
     />
   </Dialog>

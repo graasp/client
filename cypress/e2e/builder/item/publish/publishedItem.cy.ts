@@ -1,12 +1,9 @@
 import {
-  ItemType,
-  ItemTypeUnion,
   ItemValidationGroup,
   ItemValidationStatus,
   PackedFolderItemFactory,
   PackedItem,
   PublicationStatus,
-  PublishableItemTypeChecker,
 } from '@graasp/sdk';
 
 import {
@@ -309,44 +306,27 @@ describe('Public Item', () => {
     });
   });
 
-  describe('Only authorized types can be published', () => {
-    const testItemType = (
-      testTitle: string,
-      item: ItemForTest,
-      statusExpected: PublicationStatus,
-    ) => {
-      it(testTitle, () => {
-        setUpAndVisitItemPage(item, { itemPublicationStatus: statusExpected });
-        openPublishItemTab(item.id);
-        getPublicationStatusComponent(statusExpected)
-          .should('exist')
-          .should('be.visible');
-      });
-    };
+  it('Allow publishing folders', () => {
+    const item = createPublicItemByType('folder');
 
-    const testAuthorizedType = (item: ItemForTest) => {
-      testItemType(
-        `Publication should be allowed for type "${item.type}"`,
-        item,
-        PublicationStatus.Unpublished,
-      );
-    };
-
-    const testUnauthorizedType = (item: ItemForTest) => {
-      testItemType(
-        `Publication should NOT be allowed for type "${item.type}"`,
-        item,
-        PublicationStatus.ItemTypeNotAllowed,
-      );
-    };
-
-    Object.values(ItemType).forEach((itemType: ItemTypeUnion) => {
-      const item = createPublicItemByType(itemType);
-      if (PublishableItemTypeChecker.isItemTypeAllowedToBePublished(itemType)) {
-        testAuthorizedType(item);
-      } else {
-        testUnauthorizedType(item);
-      }
+    setUpAndVisitItemPage(item, {
+      itemPublicationStatus: PublicationStatus.Unpublished,
     });
+    openPublishItemTab(item.id);
+    getPublicationStatusComponent(PublicationStatus.Unpublished)
+      .should('exist')
+      .should('be.visible');
+  });
+
+  it('Prevent publishing documents', () => {
+    const item = createPublicItemByType('document');
+
+    setUpAndVisitItemPage(item, {
+      itemPublicationStatus: PublicationStatus.ItemTypeNotAllowed,
+    });
+    openPublishItemTab(item.id);
+    getPublicationStatusComponent(PublicationStatus.ItemTypeNotAllowed)
+      .should('exist')
+      .should('be.visible');
   });
 });

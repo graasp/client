@@ -2,8 +2,6 @@ import type { JSX } from 'react';
 
 import { Box, useTheme } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import Thumbnail from '@/ui/Thumbnail/Thumbnail.js';
 import ItemIcon, { ItemIconProps } from '@/ui/icons/ItemIcon.js';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme.js';
@@ -18,7 +16,7 @@ type CardThumbnailProps = {
 const CardThumbnail = ({
   thumbnail,
   alt,
-  itemType = ItemType.FOLDER,
+  itemType = 'folder',
 }: CardThumbnailProps): JSX.Element => {
   const theme = useTheme();
   if (thumbnail) {

@@ -1,4 +1,4 @@
-import { ItemType, PackedFolderItemFactory, PageItemType } from '@graasp/sdk';
+import { PackedFolderItemFactory, PageItemType } from '@graasp/sdk';
 
 import {
   ITEM_FORM_LINK_INPUT_ID,
@@ -8,7 +8,7 @@ import { buildItemPath } from '../../utils';
 
 const page = {
   ...PackedFolderItemFactory(),
-  type: ItemType.PAGE,
+  type: 'page',
   extra: {} as never,
 } as PageItemType;
 

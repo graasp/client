@@ -9,7 +9,7 @@ import {
   Stack,
 } from '@mui/material';
 
-import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useRouter } from '@tanstack/react-router';
@@ -82,7 +82,7 @@ export function FolderCreateForm({
     try {
       await createItem({
         name: data.name,
-        type: ItemType.FOLDER,
+        type: 'folder',
         description: data.description,
         thumbnail,
         parentId,

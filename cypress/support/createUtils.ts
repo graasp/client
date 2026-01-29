@@ -1,9 +1,4 @@
-import {
-  AppItemType,
-  DiscriminatedItem,
-  DocumentItemType,
-  ItemType,
-} from '@graasp/sdk';
+import { AppItemType, DiscriminatedItem, DocumentItemType } from '@graasp/sdk';
 
 import {
   ADD_FOLDER_BUTTON_CY,
@@ -82,7 +77,7 @@ export const createItem = (
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
 
   switch (payload.type) {
-    case ItemType.FILE: {
+    case 'file': {
       const { confirm = true } = options;
       cy.get(`#${CREATE_ITEM_FILE_ID}`).click();
 
@@ -109,7 +104,7 @@ export const createItem = (
       cy.attachFile(cy.get(`#${ZIP_DASHBOARD_UPLOADER_ID}`), payload?.filepath);
       break;
     }
-    case ItemType.H5P: {
+    case 'h5p': {
       cy.get(`#${CREATE_ITEM_H5P_ID}`).click();
 
       // drag-drop a file in the uploader
@@ -119,15 +114,15 @@ export const createItem = (
       );
       break;
     }
-    case ItemType.DOCUMENT:
+    case 'document':
       cy.get(`#${CREATE_ITEM_DOCUMENT_ID}`).click();
       cy.fillDocumentModal(payload, options);
       break;
-    case ItemType.APP:
+    case 'app':
       cy.get(`#${CREATE_ITEM_APP_ID}`).click();
       cy.fillAppModal(payload, options);
       break;
-    case ItemType.FOLDER:
+    case 'folder':
     default:
       cy.fillFolderModal(payload, options);
       break;

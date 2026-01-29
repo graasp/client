@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Box, Skeleton } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
@@ -33,7 +31,7 @@ const ChildrenNavigationTree = ({
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { data: children, isLoading } = hooks.useChildren(
     selectedNavigationItem.id,
-    { types: [ItemType.FOLDER] },
+    { types: ['folder'] },
   );
 
   if (children) {
