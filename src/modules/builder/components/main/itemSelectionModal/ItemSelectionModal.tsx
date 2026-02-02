@@ -44,7 +44,7 @@ export type ItemSelectionModalProps = {
   // items can be undefined because "many" operations start empty
   items?: GenericItem[];
   onClose: (args: { id: string | null; open: boolean }) => void;
-  onConfirm: (destination: string | undefined) => void;
+  onConfirm: (destination: string | undefined) => Promise<void>;
   open?: boolean;
   title: string;
 };
@@ -92,8 +92,8 @@ const ItemSelectionModal = ({
     onClose({ id: null, open: false });
   };
 
-  const onClickConfirm = () => {
-    onConfirm(
+  const onClickConfirm = async () => {
+    await onConfirm(
       selectedItem?.id === MY_GRAASP_BREADCRUMB.id
         ? undefined
         : selectedItem?.id,

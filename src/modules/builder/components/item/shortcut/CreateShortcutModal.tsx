@@ -9,9 +9,7 @@ import { createShortcutMutation } from '@/openapi/client/@tanstack/react-query.g
 import { getKeyForParentId } from '@/query/keys';
 
 import { BUILDER } from '../../../langs';
-import ItemSelectionModal, {
-  ItemSelectionModalProps,
-} from '../../main/itemSelectionModal/ItemSelectionModal';
+import ItemSelectionModal from '../../main/itemSelectionModal/ItemSelectionModal';
 
 export type Props = {
   item: GenericItem;
@@ -26,12 +24,17 @@ const CreateShortcutModal = ({
 }: Props): JSX.Element | null => {
   const queryClient = useQueryClient();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { mutateAsync: createShortcut } = useMutation(createShortcutMutation());
+  const { mutateAsync: createShortcut } = useMutation({
+    ...createShortcutMutation(),
+    onSuccess: async (_data, { query }) => {
+      // invalidate children of parent
+      const key = getKeyForParentId(query?.parentId);
+      await queryClient.invalidateQueries({ queryKey: key });
+    },
+  });
   const [item] = useState<GenericItem>(defaultItem);
 
-  const onConfirm: ItemSelectionModalProps['onConfirm'] = async (
-    destination,
-  ): Promise<void> => {
+  const onConfirm = async (destination?: string) => {
     const target = item.id; // id of the item where the shortcut is pointing
 
     await createShortcut({
@@ -45,10 +48,6 @@ const CreateShortcutModal = ({
         parentId: destination,
       },
     });
-
-    // invalidate children of parent
-    const key = getKeyForParentId(destination);
-    queryClient.invalidateQueries({ queryKey: key });
 
     onClose();
   };
