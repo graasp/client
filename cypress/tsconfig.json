@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "lib": ["ESNext", "dom", "ES2021.String"],
-    "types": ["cypress", "vite/client"],
+    "types": ["cypress", "vite/client", "node"],
     // todo: enable back
     "strictPropertyInitialization": false,
     "noImplicitAny": false,

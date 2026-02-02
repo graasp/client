@@ -1,7 +1,6 @@
-import { type JSX, MouseEventHandler } from 'react';
+import { type JSX } from 'react';
 
 import {
-  CircularProgress,
   IconButton,
   ListItemIcon,
   MenuItem,
@@ -24,19 +23,11 @@ export const DEFAULT_LOADER_SIZE = 24;
 
 export type DownloadButtonProps = {
   ariaLabel: string;
-  /**
-   * button onClick
-   */
-  handleDownload: MouseEventHandler;
-  isLoading: boolean;
+  link: string;
   /**
    * CircularProgress's color
    */
   color?: ColorVariantsType;
-  /**
-   * CircularProgress's size
-   */
-  loaderSize?: number;
   /**
    * Tooltip's title
    */
@@ -50,15 +41,13 @@ export type DownloadButtonProps = {
 };
 
 const DownloadButton = ({
-  ariaLabel = 'download',
-  handleDownload,
-  isLoading = false,
+  id,
+  link,
   color,
-  loaderSize = DEFAULT_LOADER_SIZE,
+  ariaLabel = 'download',
   title = 'Download',
   placement = 'bottom',
   type = ActionButton.ICON_BUTTON,
-  id,
 }: DownloadButtonProps): JSX.Element => {
   const { color: iconColor } = useButtonColor(color);
   const icon = <DownloadIcon color={iconColor} />;
@@ -67,7 +56,15 @@ const DownloadButton = ({
       return icon;
     case ActionButton.MENU_ITEM:
       return (
-        <MenuItem id={id} key={title} onClick={handleDownload}>
+        <MenuItem
+          id={id}
+          key={title}
+          href={link}
+          // disable link default styles
+          style={{ font: 'unset', textDecoration: 'unset', color: 'unset' }}
+          component="a"
+          download
+        >
           <ListItemIcon>{icon}</ListItemIcon>
           <Typography color={color}>{title}</Typography>
         </MenuItem>
@@ -78,16 +75,12 @@ const DownloadButton = ({
         <Tooltip title={title} placement={placement}>
           <span id={id}>
             <IconButton
-              disabled={isLoading}
               color={color}
-              onClick={handleDownload}
+              href={link}
               aria-label={ariaLabel}
+              download
             >
-              {isLoading ? (
-                <CircularProgress color={color} size={loaderSize} />
-              ) : (
-                icon
-              )}
+              {icon}
             </IconButton>
           </span>
         </Tooltip>

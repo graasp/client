@@ -6,6 +6,8 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
+import path from 'path';
+
 import {
   buildDataCyWrapper,
   buildDownloadButtonId,
@@ -15,20 +17,43 @@ import {
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
-const buildExportFileUrl = (itemId: string) =>
-  `/api/items/${itemId}/download-file`;
+const interceptDownloadedFile = ({
+  itemId,
+  name,
+}: {
+  itemId: string;
+  name: string;
+}) => {
+  const exportFileUrl = `/api/items/${itemId}/download-file`;
+  cy.intercept('GET', exportFileUrl, ({ reply }) => {
+    reply({
+      headers: {
+        'Content-Type': 'text/html',
+        'Content-Disposition': `attachment; filename="${name}"`,
+      },
+    });
+  }).as('exportFile');
+};
+
+const expectFileInDownloads = (name: string) => {
+  const downloadsFolder = Cypress.config('downloadsFolder');
+  cy.readFile(path.join(downloadsFolder, name));
+};
 
 describe('Download Item', () => {
   it('Download menu item should exist for document', () => {
     const item = PackedDocumentItemFactory();
     cy.setUpApi({ items: [item] });
 
-    cy.intercept('POST', buildExportFileUrl(item.id)).as('exportFile');
+    const downloadName = 'myfile.html';
+    interceptDownloadedFile({ itemId: item.id, name: downloadName });
 
     cy.visit(HOME_PATH);
     cy.get(buildDataCyWrapper(buildItemMenuDataCy(item.id))).click();
     cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).click();
-    cy.wait('@exportFile');
+
+    expectFileInDownloads(downloadName);
+
     // no zip export button
     cy.get(`[role="menu"] #${buildExportAsZipButtonId(item.id)}`).should(
       'not.exist',
@@ -42,12 +67,16 @@ describe('Download Item', () => {
       items: [folder, document],
       currentMember: null,
     });
-    cy.intercept('POST', buildExportFileUrl(document.id)).as('exportFile');
+
+    const downloadName = 'myfile.html';
+    interceptDownloadedFile({ itemId: document.id, name: downloadName });
+
     cy.visit(buildItemPath(folder.id));
 
     cy.get(buildItemsGridMoreButtonSelector(document.id)).click();
     cy.get(`[role="menu"] #${buildDownloadButtonId(document.id)}`).click();
-    cy.wait('@exportFile');
+
+    expectFileInDownloads(downloadName);
   });
 
   it('Download menu item should exist in card for guest', () => {
@@ -62,11 +91,15 @@ describe('Download Item', () => {
       currentMember: null,
       currentGuest: GuestFactory({ itemLoginSchema }),
     });
-    cy.intercept('POST', buildExportFileUrl(document.id)).as('exportFile');
+
+    const downloadName = 'myfile.html';
+    interceptDownloadedFile({ itemId: document.id, name: downloadName });
+
     cy.visit(buildItemPath(folder.id));
 
     cy.get(buildItemsGridMoreButtonSelector(document.id)).click();
     cy.get(`[role="menu"] #${buildDownloadButtonId(document.id)}`).click();
-    cy.wait('@exportFile');
+
+    expectFileInDownloads(downloadName);
   });
 });
