@@ -27,7 +27,9 @@ export const CopyModal = ({
     return null;
   }
 
-  const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
+  const onConfirm: ItemSelectionModalProps['onConfirm'] = async (
+    destination,
+  ) => {
     copyItems({
       ids: items.map((i) => i.id),
       to: destination,

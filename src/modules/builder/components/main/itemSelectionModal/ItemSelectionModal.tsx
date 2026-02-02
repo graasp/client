@@ -76,7 +76,10 @@ const ItemSelectionModal = ({
     path: MY_GRAASP_ITEM_PATH,
   };
 
-  const SPECIAL_BREADCRUMB_IDS = [ROOT_BREADCRUMB.id, MY_GRAASP_BREADCRUMB.id];
+  const SPECIAL_BREADCRUMB_IDS = new Set([
+    ROOT_BREADCRUMB.id,
+    MY_GRAASP_BREADCRUMB.id,
+  ]);
 
   const [selectedItem, setSelectedItem] = useState<NavigationElement>();
 
@@ -86,7 +89,7 @@ const ItemSelectionModal = ({
 
   const { data: navigationParents } = hooks.useParents({
     id: selectedNavigationItem.id,
-    enabled: !SPECIAL_BREADCRUMB_IDS.includes(selectedNavigationItem.id),
+    enabled: !SPECIAL_BREADCRUMB_IDS.has(selectedNavigationItem.id),
   });
 
   const handleClose = () => {
@@ -158,7 +161,7 @@ const ItemSelectionModal = ({
               selectedId={selectedItem?.id}
             />
           )}
-          {!SPECIAL_BREADCRUMB_IDS.includes(selectedNavigationItem.id) && (
+          {!SPECIAL_BREADCRUMB_IDS.has(selectedNavigationItem.id) && (
             <ChildrenNavigationTree
               isDisabled={isDisabledLocal}
               onClick={setSelectedItem}

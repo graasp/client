@@ -1,15 +1,13 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import {
-  DiscriminatedItem,
-  ItemType,
-  ShortcutItemType,
-  buildShortcutExtra,
-} from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import { mutations } from '@/config/queryClient';
+import { createShortcutMutation } from '@/openapi/client/@tanstack/react-query.gen';
+import { getKeyForParentId } from '@/query/keys';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -27,27 +25,37 @@ const CreateShortcutModal = ({
   onClose,
   open,
 }: Props): JSX.Element | null => {
+  const queryClient = useQueryClient();
   const { t: translateBuilder } = useTranslation(NS.Builder);
-  const { mutate: createShortcut } = mutations.usePostItem();
+  const { mutate: createShortcut } = useMutation({
+    ...createShortcutMutation(),
+    onSuccess: async (_data, { query }) => {
+      // invalidate children of parent
+      const key = getKeyForParentId(query?.parentId);
+      await queryClient.invalidateQueries({ queryKey: key });
+    },
+    onSettled: () => {
+      onClose();
+    },
+  });
   const [item] = useState<DiscriminatedItem>(defaultItem);
 
-  const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
+  const onConfirm: ItemSelectionModalProps['onConfirm'] = (
+    destination?: string,
+  ) => {
     const target = item.id; // id of the item where the shortcut is pointing
 
-    const shortcut: Partial<ShortcutItemType> &
-      Pick<DiscriminatedItem, 'name' | 'type'> & {
-        parentId?: string;
-      } = {
-      name: translateBuilder(BUILDER.CREATE_SHORTCUT_DEFAULT_NAME, {
-        name: item?.name,
-      }),
-      extra: buildShortcutExtra(target),
-      type: ItemType.SHORTCUT,
-      parentId: destination,
-    };
-
-    createShortcut(shortcut);
-    onClose();
+    createShortcut({
+      body: {
+        name: translateBuilder(BUILDER.CREATE_SHORTCUT_DEFAULT_NAME, {
+          name: item?.name,
+        }),
+        target,
+      },
+      query: {
+        parentId: destination,
+      },
+    });
   };
 
   const buttonText = (name?: string) =>
