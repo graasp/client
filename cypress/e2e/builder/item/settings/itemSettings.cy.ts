@@ -1,5 +1,4 @@
 import {
-  ItemType,
   MaxWidth,
   MimeTypes,
   PackedFileItemFactory,
@@ -99,7 +98,7 @@ describe('Item Settings', () => {
           .should('exist')
           .contains(creator.name);
 
-        if (type === ItemType.FILE) {
+        if (type === 'file') {
           const { mimetype, size } = getFileExtra(extra);
           cy.get(`#${ITEM_PANEL_TABLE_ID}`).contains(mimetype);
 
@@ -114,7 +113,6 @@ describe('Item Settings', () => {
         cy.setUpApi({ items: [FILE] });
         const { id, lang } = FILE;
         cy.visit(buildItemSettingsPath(id));
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         const langName = LANGS[lang];
         cy.get(`#${LANGUAGE_SELECTOR_ID}`)
           .scrollIntoView()
@@ -374,7 +372,7 @@ describe('Item Settings', () => {
       it('Change default maximum width', () => {
         const FILE = PackedFileItemFactory({
           extra: {
-            [ItemType.FILE]: {
+            file: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
               name: 'name',
@@ -414,7 +412,7 @@ describe('Item Settings', () => {
       it('Shows set maximum width for file', () => {
         const FILE = PackedFileItemFactory({
           extra: {
-            [ItemType.FILE]: {
+            file: {
               mimetype: MimeTypes.Image.JPEG,
               size: 30,
               name: 'name',

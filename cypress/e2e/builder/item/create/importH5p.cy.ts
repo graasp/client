@@ -1,4 +1,4 @@
-import { ItemType, PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   CREATE_ITEM_BUTTON_ID,
@@ -9,7 +9,7 @@ import { buildItemPath } from '../../utils';
 
 const NEW_H5P_ITEM = {
   filepath: 'files/accordion.h5p',
-  type: ItemType.H5P,
+  type: 'h5p' as const,
 };
 
 describe('Import H5P', () => {

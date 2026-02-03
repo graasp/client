@@ -1,10 +1,6 @@
-import {
-  DiscriminatedItem,
-  ItemType,
-  UnionOfConst,
-  getMimetype,
-  getParentFromPath,
-} from '@graasp/sdk';
+import { DiscriminatedItem, getMimetype, getParentFromPath } from '@graasp/sdk';
+
+import { ItemType } from '@/openapi/client';
 
 type ItemIdToDirectChildren = {
   [nodeId: string]: DiscriminatedItem[];
@@ -26,7 +22,7 @@ const createMapTree = (data: DiscriminatedItem[]): ItemIdToDirectChildren =>
 // we can't pass all the item as metadata because nested objects are currently not supported by the library.
 // we expose the mimetype on the first level of metadata so it can be accessed and the icons of the files can be rendered
 export type ItemMetaData = {
-  type: UnionOfConst<typeof ItemType>;
+  type: ItemType;
   mimetype?: string;
 };
 
@@ -60,7 +56,7 @@ export const buildItemsTree = (
   const mapTree = createMapTree(data);
 
   const buildTree = (node: DiscriminatedItem) => {
-    if (node.type === ItemType.FOLDER && mapTree[node.id]) {
+    if (node.type === 'folder' && mapTree[node.id]) {
       const children = mapTree[node.id] ?? [];
 
       const entry: PartialItemWithChildren = {

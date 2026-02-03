@@ -8,8 +8,6 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { ItemType } from '@graasp/sdk';
-
 import { LinkComponent, createLink } from '@tanstack/react-router';
 import { ChevronRight } from 'lucide-react';
 
@@ -54,7 +52,7 @@ const FolderCardComponent = forwardRef<HTMLAnchorElement, FolderCardProps>(
               minHeight={CARD_HEIGHT}
               thumbnail={thumbnail}
               alt={name}
-              type={ItemType.FOLDER}
+              type={'folder'}
             />
             <CardHeader
               sx={{

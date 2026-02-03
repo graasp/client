@@ -11,7 +11,7 @@ import {
   styled,
 } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import truncate from 'lodash.truncate';
 import { ChevronRightIcon } from 'lucide-react';
@@ -169,7 +169,7 @@ const CurrentItemNavigation = ({
       >
         {truncate(item.name, { length: ITEM_NAME_MAX_LENGTH })}
       </TypographyLink>
-      {(item.type === ItemType.FOLDER || showArrow) && (
+      {(item.type === 'folder' || showArrow) && (
         <ItemMenu
           useChildren={useChildren}
           itemId={item.id}

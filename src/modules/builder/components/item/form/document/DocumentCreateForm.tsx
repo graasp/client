@@ -8,7 +8,6 @@ import {
   DiscriminatedItem,
   DocumentItemExtraFlavor,
   ItemGeolocation,
-  ItemType,
   buildDocumentExtra,
 } from '@graasp/sdk';
 
@@ -65,7 +64,7 @@ export function DocumentCreateForm({
   async function onSubmit(data: Inputs) {
     try {
       await createItem({
-        type: ItemType.DOCUMENT,
+        type: 'document',
         name: data.name,
         extra: buildDocumentExtra({
           content: data.content,

@@ -1,5 +1,4 @@
 import {
-  ItemType,
   LinkItemType,
   PackedLinkItemFactory,
   buildLinkExtra,
@@ -43,7 +42,7 @@ export const GRAASP_LINK_ITEM_IFRAME_ONLY: LinkItemType = {
 export const YOUTUBE_LINK_ITEM: LinkItemType = PackedLinkItemFactory(
   {
     id: 'gcafbd2a-5688-11eb-ae93-0242ac130002',
-    type: ItemType.LINK,
+    type: 'embeddedLink',
     name: 'graasp youtube link',
     description: 'a description for graasp youtube link',
     creator: CURRENT_MEMBER,

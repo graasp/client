@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 
@@ -37,7 +37,7 @@ const CollapseButton = ({
     setIsCollapsible(item?.settings?.isCollapsible ?? false);
   }, [item]);
 
-  const disabled = item.type === ItemType.FOLDER;
+  const disabled = item.type === 'folder';
 
   const handleCollapse = () => {
     editItem({

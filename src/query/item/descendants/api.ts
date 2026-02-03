@@ -1,6 +1,7 @@
-import { ItemTypeUnion, PackedItem, UUID } from '@graasp/sdk';
+import { PackedItem, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
+import { type ItemType } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildGetItemDescendants } from '../routes.js';
@@ -11,7 +12,7 @@ export const getDescendants = async ({
   showHidden,
 }: {
   id: UUID;
-  types?: ItemTypeUnion[];
+  types?: ItemType[];
   showHidden?: boolean;
 }) => {
   const url = new URL(`${API_HOST}/${buildGetItemDescendants(id)}`);

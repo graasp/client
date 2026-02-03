@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Typography } from '@mui/material';
 
-import { Context, ItemType, PackedItem } from '@graasp/sdk';
+import { Context, PackedItem } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
 
@@ -63,7 +63,7 @@ function AppContent({
   item: PackedItem;
   member: AuthenticatedUser;
 }>): JSX.Element | null {
-  if (item.permission && item.type == ItemType.APP) {
+  if (item.permission && item.type == 'app') {
     const permission = item.permission;
 
     return (

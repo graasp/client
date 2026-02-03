@@ -10,7 +10,6 @@ import {
   EtherpadItemType,
   FileItemType,
   H5PItemType,
-  ItemType,
   LinkItemType,
   PackedItem,
   PageItemType,
@@ -291,29 +290,29 @@ export function ItemContent({ item }: Readonly<{ item: PackedItem }>) {
   const { user: member } = useAuth();
 
   switch (item.type) {
-    case ItemType.FILE: {
+    case 'file': {
       return <FileContent item={item} />;
     }
-    case ItemType.LINK:
+    case 'embeddedLink':
       return <LinkContent item={item} member={member} />;
-    case ItemType.DOCUMENT:
+    case 'document':
       return <DocumentContent item={item} />;
-    case ItemType.APP:
+    case 'app':
       return (
         <AppContent item={item} member={member} permission={item?.permission} />
       );
-    case ItemType.FOLDER:
+    case 'folder':
       return <FolderContent item={item} />;
-    case ItemType.H5P: {
+    case 'h5p': {
       return <H5PContent item={item} />;
     }
-    case ItemType.ETHERPAD: {
+    case 'etherpad': {
       return <EtherpadContent item={item} />;
     }
-    case ItemType.SHORTCUT: {
+    case 'shortcut': {
       return <ShortcutContent item={item} />;
     }
-    case ItemType.PAGE: {
+    case 'page': {
       return <PageContent item={item} currentAccount={member} />;
     }
 

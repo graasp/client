@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Tab, Tabs, styled } from '@mui/material';
 
-import { ItemType, MimeTypes } from '@graasp/sdk';
+import { MimeTypes } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
@@ -40,9 +40,7 @@ type Props = {
 const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
-  const [value, setValue] = useState<NewItemTabType>(
-    initialValue ?? ItemType.FOLDER,
-  );
+  const [value, setValue] = useState<NewItemTabType>(initialValue ?? 'folder');
 
   const handleChange = (_event: unknown, newValue: NewItemTabType) => {
     setValue(newValue);
@@ -52,7 +50,7 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
   const zipIcon = (
     <ItemIcon
       alt={translateBuilder(BUILDER.NEW_ITEM_ZIP_TAB_TEXT)}
-      type={ItemType.FILE}
+      type={'file'}
       mimetype={MimeTypes.ZIP}
     />
   );
@@ -67,18 +65,18 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
     >
       <Tab
         id={CREATE_ITEM_FOLDER_ID}
-        value={ItemType.FOLDER}
+        value={'folder'}
         label={translateBuilder(BUILDER.NEW_ITEM_FOLDER_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_FOLDER_TAB_TEXT)}
-            type={ItemType.FOLDER}
+            type={'folder'}
           />
         }
       />
       <Tab
         id={CREATE_ITEM_FILE_ID}
-        value={ItemType.FILE}
+        value={'file'}
         label={translateBuilder(BUILDER.NEW_ITEM_FILE_TAB_TEXT)}
         icon={
           <ItemIcon
@@ -89,34 +87,34 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
       />
       <Tab
         id={CREATE_ITEM_LINK_ID}
-        value={ItemType.LINK}
+        value={'embeddedLink'}
         label={translateBuilder(BUILDER.NEW_ITEM_LINK_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_LINK_TAB_TEXT)}
-            type={ItemType.LINK}
+            type={'embeddedLink'}
           />
         }
       />
       <Tab
         id={CREATE_ITEM_DOCUMENT_ID}
-        value={ItemType.DOCUMENT}
+        value={'document'}
         label={translateBuilder(BUILDER.NEW_ITEM_DOCUMENT_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_DOCUMENT_TAB_TEXT)}
-            type={ItemType.DOCUMENT}
+            type={'document'}
           />
         }
       />
       <Tab
         id={CREATE_ITEM_APP_ID}
-        value={ItemType.APP}
+        value={'app'}
         label={translateBuilder(BUILDER.NEW_ITEM_APP_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_APP_TAB_TEXT)}
-            type={ItemType.APP}
+            type={'app'}
           />
         }
       />
@@ -128,23 +126,23 @@ const ItemTypeTabs = ({ onTypeChange, initialValue }: Props): JSX.Element => {
       />
       <Tab
         id={CREATE_ITEM_H5P_ID}
-        value={ItemType.H5P}
+        value={'h5p'}
         label={translateBuilder(BUILDER.NEW_ITEM_H5P_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_H5P_TAB_TEXT)}
-            type={ItemType.H5P}
+            type={'h5p'}
           />
         }
       />
       <Tab
         id={CREATE_ITEM_ETHERPAD_ID}
-        value={ItemType.ETHERPAD}
+        value={'etherpad'}
         label={translateBuilder(BUILDER.NEW_ITEM_ETHERPAD_TAB_TEXT)}
         icon={
           <ItemIcon
             alt={translateBuilder(BUILDER.NEW_ITEM_ETHERPAD_TAB_TEXT)}
-            type={ItemType.ETHERPAD}
+            type={'etherpad'}
           />
         }
       />

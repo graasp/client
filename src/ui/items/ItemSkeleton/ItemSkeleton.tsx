@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Skeleton } from '@mui/material';
 
-import { DiscriminatedItem, ItemType, UnionOfConst } from '@graasp/sdk';
+import { type ItemType } from '@/openapi/client';
 
 import { SCREEN_MAX_HEIGHT } from '../../constants.js';
 
@@ -15,7 +15,7 @@ export type ItemSkeletonProps = {
    */
   isChildren: boolean;
   isCollapsible?: boolean;
-  itemType: DiscriminatedItem['type'];
+  itemType: ItemType;
   screenMaxHeight?: number;
 };
 
@@ -35,10 +35,10 @@ const ItemSkeleton = ({
         />
       );
     }
-    case itemType === ItemType.FOLDER && isChildren: {
+    case itemType === 'folder' && isChildren: {
       return null;
     }
-    case itemType === ItemType.FOLDER: {
+    case itemType === 'folder': {
       return (
         <Skeleton
           variant="rectangular"
@@ -47,11 +47,7 @@ const ItemSkeleton = ({
         />
       );
     }
-    case (
-      [ItemType.FILE, ItemType.LINK, ItemType.APP] as UnionOfConst<
-        typeof ItemType
-      >[]
-    ).includes(itemType): {
+    case (['file', 'embeddedLink', 'app'] as ItemType[]).includes(itemType): {
       return (
         <Skeleton
           variant="rectangular"
@@ -60,7 +56,7 @@ const ItemSkeleton = ({
         />
       );
     }
-    case itemType === ItemType.DOCUMENT: {
+    case itemType === 'document': {
       return (
         <>
           <Skeleton variant="text" />

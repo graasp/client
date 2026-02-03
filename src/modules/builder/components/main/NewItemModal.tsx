@@ -2,7 +2,7 @@ import { type JSX, ReactNode, useState } from 'react';
 
 import { Dialog, Stack } from '@mui/material';
 
-import { DiscriminatedItem, ItemGeolocation, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 
@@ -38,7 +38,7 @@ function NewItemModalContent({
   let content: ReactNode = null;
 
   switch (selectedItemType) {
-    case ItemType.FOLDER: {
+    case 'folder': {
       content = (
         <FolderCreateForm
           onClose={handleClose}
@@ -49,7 +49,7 @@ function NewItemModalContent({
       );
       break;
     }
-    case ItemType.LINK: {
+    case 'embeddedLink': {
       content = (
         <LinkForm
           onClose={handleClose}
@@ -60,7 +60,7 @@ function NewItemModalContent({
       );
       break;
     }
-    case ItemType.APP: {
+    case 'app': {
       content = (
         <AppForm
           onClose={handleClose}
@@ -71,7 +71,7 @@ function NewItemModalContent({
       );
       break;
     }
-    case ItemType.DOCUMENT: {
+    case 'document': {
       content = (
         <DocumentCreateForm
           onClose={handleClose}
@@ -82,17 +82,17 @@ function NewItemModalContent({
       );
       break;
     }
-    case ItemType.ETHERPAD: {
+    case 'etherpad': {
       content = <EtherpadForm onClose={handleClose} parentId={parentId} />;
       break;
     }
-    case ItemType.H5P: {
+    case 'h5p': {
       content = (
         <ImportH5P onClose={handleClose} previousItemId={previousItemId} />
       );
       break;
     }
-    case ItemType.FILE: {
+    case 'file': {
       content = (
         <UploadFileModalContent
           previousItemId={previousItemId}
@@ -120,9 +120,8 @@ const NewItemModal = ({
   geolocation,
   previousItemId,
 }: Props): JSX.Element => {
-  const [selectedItemType, setSelectedItemType] = useState<NewItemTabType>(
-    ItemType.FILE,
-  );
+  const [selectedItemType, setSelectedItemType] =
+    useState<NewItemTabType>('file');
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md" fullWidth>

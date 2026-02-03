@@ -1,7 +1,6 @@
 import {
   DocumentItemFactory,
   FolderItemFactory,
-  ItemType,
   PackedDocumentItemFactory,
   PackedFolderItemFactory,
   ShortcutItemFactory,
@@ -16,7 +15,6 @@ import { CURRENT_MEMBER } from './members';
 
 export const DEFAULT_FOLDER_ITEM = PackedFolderItemFactory({
   name: 'default folder',
-  extra: { [ItemType.FOLDER]: {} },
   creator: CURRENT_MEMBER,
 });
 
@@ -76,10 +74,7 @@ export const FOLDER_WITH_SUBFOLDER_ITEM: { items: ItemForTest[] } = {
         id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
         name: 'parent folder',
         path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
-        type: ItemType.FOLDER,
-        extra: {
-          [ItemType.FOLDER]: {},
-        },
+        type: 'folder',
         settings: {
           isPinned: false,
           showChatbox: false,
@@ -137,49 +132,54 @@ export const FOLDER_WITH_SUBFOLDER_ITEM_AND_PARTIAL_ORDER: {
   items: ItemForTest[];
 } = {
   items: [
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
-      name: 'parent folder',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
-      extra: {
-        [ItemType.FOLDER]: {},
+    PackedFolderItemFactory(
+      {
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
+        name: 'parent folder',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+      { permission: 'admin' },
+    ),
+    PackedFolderItemFactory(
+      {
+        id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
+        name: 'child folder 1',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130003',
+        settings: {
+          isPinned: true,
+          showChatbox: false,
+        },
       },
-    },
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
-      name: 'child folder 1',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130003',
-      settings: {
-        isPinned: true,
-        showChatbox: false,
+      { permission: 'admin' },
+    ),
+    PackedFolderItemFactory(
+      {
+        id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
+        name: 'child folder 2',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130004',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-    },
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
-      name: 'child folder 2',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130004',
-      settings: {
-        isPinned: false,
-        showChatbox: false,
+      { permission: 'admin' },
+    ),
+    PackedFolderItemFactory(
+      {
+        id: 'fdf09f5a-5688-11eb-ae93-0242ac130005',
+        name: 'child of child folder 1',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130003.fdf09f5a_5688_11eb_ae93_0242ac130005',
+        settings: {
+          isPinned: true,
+          showChatbox: false,
+        },
       },
-    },
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'fdf09f5a-5688-11eb-ae93-0242ac130005',
-      name: 'child of child folder 1',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130002.fdf09f5a_5688_11eb_ae93_0242ac130003.fdf09f5a_5688_11eb_ae93_0242ac130005',
-      settings: {
-        isPinned: true,
-        showChatbox: false,
-      },
-    },
+      { permission: 'admin' },
+    ),
   ],
 };
 
@@ -197,12 +197,12 @@ export const FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
     },
     {
       ...DEFAULT_FOLDER_ITEM,
-      type: ItemType.LINK,
+      type: 'embeddedLink',
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130006',
       name: 'NOT PINNED',
       path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130006',
       extra: {
-        [ItemType.LINK]: {
+        embeddedLink: {
           url: 'http://example.com',
           html: '',
           thumbnails: [],
@@ -321,8 +321,8 @@ export const PINNED_AND_HIDDEN_ITEM: { items: ItemForTest[] } = {
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'Normal child',
       description: 'I am a normal item',
-      type: ItemType.DOCUMENT,
-      extra: { [ItemType.DOCUMENT]: { content: 'hello' } },
+      type: 'document',
+      extra: { document: { content: 'hello' } },
       path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130008',
       settings: {
         isPinned: false,
@@ -351,7 +351,7 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
     },
     {
       ...DEFAULT_FOLDER_ITEM,
-      type: ItemType.LINK,
+      type: 'embeddedLink',
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130006',
       name: 'NOT PINNED',
       path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130006',
@@ -360,7 +360,7 @@ export const PUBLIC_FOLDER_WITH_PINNED_ITEMS: { items: ItemForTest[] } = {
         showChatbox: false,
       },
       extra: {
-        [ItemType.LINK]: {
+        embeddedLink: {
           url: 'http://example.com',
           html: '',
           thumbnails: [],
@@ -454,9 +454,9 @@ export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
       ShortcutItemFactory({
         name: 'Shortcut to original document',
         path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a_5688_11eb_ae93_0242ac130012',
-        type: ItemType.SHORTCUT,
+        type: 'shortcut',
         extra: {
-          [ItemType.SHORTCUT]: { target: tmpDocument.id },
+          shortcut: { target: tmpDocument.id },
         },
         settings: { isCollapsible: true },
       }),
@@ -479,7 +479,7 @@ export const generateLotsOfFoldersOnHome = ({
       id: itemId,
       name: itemId,
       path: buildPathFromIds(itemId),
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -496,7 +496,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -507,7 +507,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -518,7 +518,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -529,7 +529,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -540,7 +540,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -551,7 +551,7 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
       id: 'gcefbd2a-5688-11eb-ae92-0242ac130002',
       name: 'folder',
       path: 'gcefbd2a_5688_11eb_ae92_0242ac130002',
-      type: ItemType.FOLDER,
+      type: 'folder',
       settings: {
         isPinned: false,
         showChatbox: false,
@@ -562,19 +562,19 @@ export const HOME_FOLDERS: { items: ItemForTest[] } = {
 
 export const FOLDER_WITHOUT_CHILDREN_ORDER: { items: ItemForTest[] } = {
   items: [
-    {
-      ...DEFAULT_FOLDER_ITEM,
-      id: 'ecafbd2a-5688-11eb-ae93-0242ac130122',
-      name: 'parent folder',
-      path: 'ecafbd2a_5688_11eb_ae93_0242ac130122',
-      extra: {
-        [ItemType.FOLDER]: {},
+    PackedFolderItemFactory(
+      {
+        ...DEFAULT_FOLDER_ITEM,
+        id: 'ecafbd2a-5688-11eb-ae93-0242ac130122',
+        name: 'parent folder',
+        path: 'ecafbd2a_5688_11eb_ae93_0242ac130122',
+        settings: {
+          isPinned: false,
+          showChatbox: false,
+        },
       },
-      settings: {
-        isPinned: false,
-        showChatbox: false,
-      },
-    },
+      { permission: 'admin' },
+    ),
   ],
 };
 
@@ -583,21 +583,18 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
       name: 'parent folder',
       path: 'ecafbd2a_5688_11eb_ae93_0242ac130002',
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
       settings: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
     // children (need to be in order to respect test)
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
       name: 'child folder 1',
@@ -606,8 +603,8 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: true,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
       name: 'child folder 2',
@@ -616,8 +613,8 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
       name: 'child folder 3',
@@ -626,8 +623,8 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'child folder 4',
@@ -636,8 +633,8 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130009',
       name: 'child folder 5',
@@ -646,7 +643,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
   ],
 };
 
@@ -655,21 +652,18 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'acafbd2a-5688-11eb-ae93-0242ac130002',
       name: 'parent folder',
       path: 'acafbd2a_5688_11eb_ae93_0242ac130002',
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
       settings: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
     // children (need to be in order to respect test)
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
       name: 'child folder 1',
@@ -678,8 +672,8 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: true,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
       name: 'child folder 2',
@@ -688,8 +682,8 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
       name: 'child folder 3',
@@ -698,8 +692,8 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'child folder 4',
@@ -708,8 +702,8 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130009',
       name: 'child folder 5',
@@ -718,7 +712,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
   ],
 };
 
@@ -727,21 +721,18 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'acafbd2a-5688-11eb-ae93-0242ac130012',
       name: 'parent folder',
       path: 'acafbd2a_5688_11eb_ae93_0242ac130012',
-      extra: {
-        [ItemType.FOLDER]: {},
-      },
       settings: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
     // children (need to be in order to respect test)
-    {
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130013',
       name: 'child folder 1',
@@ -750,8 +741,8 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: true,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130014',
       name: 'child folder 2',
@@ -760,8 +751,8 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130017',
       name: 'child folder 3',
@@ -770,8 +761,8 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130018',
       name: 'child folder 4',
@@ -780,8 +771,8 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
-    {
+    }),
+    FolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130019',
       name: 'child folder 5',
@@ -790,6 +781,6 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         isPinned: false,
         showChatbox: false,
       },
-    },
+    }),
   ],
 };

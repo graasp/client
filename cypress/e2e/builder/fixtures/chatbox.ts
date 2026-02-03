@@ -1,8 +1,8 @@
 import {
   ChatMention,
   DiscriminatedItem,
+  FolderItemFactory,
   FolderItemType,
-  ItemType,
   MentionStatus,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
@@ -11,16 +11,14 @@ import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
 import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
 
-const item: FolderItemType = {
+const item: FolderItemType = FolderItemFactory({
   ...DEFAULT_FOLDER_ITEM,
-  type: ItemType.FOLDER,
-  extra: { [ItemType.FOLDER]: {} },
   id: 'adf09f5a-5688-11eb-ae93-0242ac130004',
   path: 'adf09f5a_5688_11eb_ae93_0242ac130004',
   name: 'item with chatbox messages',
   description: 'description',
   settings: {},
-};
+});
 
 // warning: permission admin by default
 export const ITEM_WITH_CHATBOX_MESSAGES: ItemForTest = {

@@ -2,17 +2,18 @@ import { type JSX, useState } from 'react';
 
 import { Collapse, List, ListItemButton, Typography } from '@mui/material';
 
-import { DiscriminatedItem, ItemType, getIdsFromPath } from '@graasp/sdk';
+import { DiscriminatedItem, getIdsFromPath } from '@graasp/sdk';
 
 import { ErrorBoundary } from '@sentry/react';
 
 import { buildTreeItemClass } from '@/config/selectors';
+import { ItemType } from '@/openapi/client';
 
 import { ExpandButton } from './ExpandButton';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
 import { PartialItemWithChildren, buildItemsTree } from './utils';
 
-export const GRAASP_MENU_ITEMS = [ItemType.FOLDER, ItemType.SHORTCUT];
+export const GRAASP_MENU_ITEMS = ['folder' as const, 'shortcut' as const];
 
 function ListItem({
   expandedIds,
@@ -90,7 +91,7 @@ type TreeViewProps = {
   /**
    * Item whose type is not in the list is filtered out. If the array is empty, no item is filtered.
    */
-  allowedTypes?: DiscriminatedItem['type'][];
+  allowedTypes?: ItemType[];
 };
 
 export function TreeView({

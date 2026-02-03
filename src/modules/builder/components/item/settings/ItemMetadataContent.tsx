@@ -10,7 +10,6 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
 import {
-  ItemType,
   formatDate,
   formatFileSize,
   getFileExtra,
@@ -41,7 +40,7 @@ const ItemMetadataContent = (): JSX.Element => {
 
   let size = null;
   let mimetype = null;
-  if (item.type === ItemType.FILE) {
+  if (item.type === 'file') {
     const extra = getFileExtra(item.extra);
     mimetype = extra?.mimetype;
     size = extra?.size;
@@ -56,11 +55,11 @@ const ItemMetadataContent = (): JSX.Element => {
         <TableCell align="right">{link}</TableCell>
       </TableRow>
     );
-    if (item.type === ItemType.APP) {
-      return buildTableRow(item.extra[ItemType.APP].url);
+    if (item.type === 'app') {
+      return buildTableRow(item.extra.app.url);
     }
-    if (item.type === ItemType.LINK) {
-      return buildTableRow(item.extra[ItemType.LINK].url);
+    if (item.type === 'embeddedLink') {
+      return buildTableRow(item.extra.embeddedLink.url);
     }
     return null;
   };
@@ -84,7 +83,7 @@ const ItemMetadataContent = (): JSX.Element => {
               <TableCell align="right">
                 {mimetype ?? getItemType(item)}
                 <Preview>
-                  {item.type === ItemType.FOLDER &&
+                  {item.type === 'folder' &&
                     (isCapsule(item) ? (
                       <ConvertToFolderButton
                         itemPath={item.path}

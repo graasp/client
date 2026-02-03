@@ -1,14 +1,12 @@
 import {
   DiscriminatedItem,
   ItemGeolocation,
-  ItemType,
-  ItemTypeUnion,
   Pagination,
   UUID,
-  UnionOfConst,
 } from '@graasp/sdk';
 
 import { DEFAULT_LANG } from '@/config/constants.js';
+import { type ItemType } from '@/openapi/client';
 
 import { DEFAULT_THUMBNAIL_SIZE } from './config/constants.js';
 import { ItemSearchParams } from './item/types.js';
@@ -55,7 +53,7 @@ export const itemKeys = {
         keywords,
       }: {
         ordered?: boolean;
-        types?: UnionOfConst<typeof ItemType>[];
+        types?: ItemType[];
         keywords?: string;
       } = {}) => [...allChildren, { ordered, types, keywords }] as const,
 
@@ -66,10 +64,8 @@ export const itemKeys = {
 
       // descendants
       allDescendants,
-      descendants: (options?: {
-        types?: ItemTypeUnion[];
-        showHidden?: boolean;
-      }) => [...allDescendants, options].filter(Boolean),
+      descendants: (options?: { types?: ItemType[]; showHidden?: boolean }) =>
+        [...allDescendants, options].filter(Boolean),
 
       // parents
       parents: [...singleBaseKey, 'parents'] as const,

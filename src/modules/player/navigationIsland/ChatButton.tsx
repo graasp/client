@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Tooltip } from '@mui/material';
 
-import { ItemType, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 import { MessageSquareOff, MessageSquareText } from 'lucide-react';
@@ -24,7 +24,7 @@ const useChatButton = (): { chatButton: JSX.Element | null } => {
   const { data: descendants } = hooks.useDescendants({
     id: rootId,
     // only fetch folder descendants as this is what the button will show
-    types: [ItemType.FOLDER],
+    types: ['folder'],
     showHidden: false,
   });
   const { toggleChatbox, isChatboxOpen } = useLayoutContext();

@@ -1,7 +1,6 @@
 import {
   AppItemType,
   FolderItemType,
-  ItemType,
   PackedAppItemFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
@@ -19,14 +18,14 @@ export const buildAppItemLinkForTest = (filename = '.*'): string =>
 export const GRAASP_APP_ITEM: AppItemType = PackedAppItemFactory({
   name: 'test app',
   extra: {
-    [ItemType.APP]: { url: APPS_LIST[0].url },
+    app: { url: APPS_LIST[0].url },
   },
   creator: CURRENT_MEMBER,
 });
 export const GRAASP_CUSTOM_APP_ITEM: AppItemType = PackedAppItemFactory({
   name: 'Add Your Custom App',
   extra: {
-    [ItemType.APP]: { url: APPS_LIST[0].url },
+    app: { url: APPS_LIST[0].url },
   },
   creator: CURRENT_MEMBER,
 });
@@ -40,7 +39,7 @@ export const GRAASP_APP_PARENT_FOLDER: FolderItemType = PackedFolderItemFactory(
 export const GRAASP_APP_CHILDREN_ITEM: AppItemType = PackedAppItemFactory({
   name: 'my app',
   extra: {
-    [ItemType.APP]: {
+    app: {
       url: 'http://localhost.com:3333',
     },
   },

@@ -1,4 +1,4 @@
-import { ItemType, LinkItemFactory, MemberFactory } from '@graasp/sdk';
+import { LinkItemFactory, MemberFactory } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, within } from 'storybook/test';
@@ -8,10 +8,10 @@ import LinkItem from './LinkItem.js';
 const item = LinkItemFactory({
   id: 'item-id',
   name: 'item-name',
-  type: ItemType.LINK,
+  type: 'embeddedLink',
   path: 'item_id',
   extra: {
-    [ItemType.LINK]: {
+    embeddedLink: {
       thumbnails: [],
       html: '',
       url: `${window.location.href}#`,
@@ -25,7 +25,7 @@ const item = LinkItemFactory({
 const itemWithRealUrl = LinkItemFactory({
   ...item,
   extra: {
-    [ItemType.LINK]: {
+    embeddedLink: {
       thumbnails: [],
       html: '',
       url: 'https://graasp.org',
@@ -37,10 +37,10 @@ const itemWithRealUrl = LinkItemFactory({
 const itemWithHTMLDescription = LinkItemFactory({
   id: 'item-id',
   name: 'item-name',
-  type: ItemType.LINK,
+  type: 'embeddedLink',
   path: 'item_id',
   extra: {
-    [ItemType.LINK]: {
+    embeddedLink: {
       thumbnails: [],
       html: '',
       url: `${window.location.href}#`,

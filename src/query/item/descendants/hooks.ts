@@ -1,6 +1,8 @@
-import { ItemTypeUnion, UUID } from '@graasp/sdk';
+import { UUID } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
+
+import { type ItemType } from '@/openapi/client';
 
 import { UndefinedArgument } from '../../config/errors.js';
 import { itemKeys } from '../../keys.js';
@@ -13,7 +15,7 @@ export const useDescendants = ({
   enabled,
 }: {
   id?: UUID;
-  types?: ItemTypeUnion[];
+  types?: ItemType[];
   showHidden?: boolean;
   enabled?: boolean;
 }) => {

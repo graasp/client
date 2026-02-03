@@ -1,9 +1,4 @@
-import {
-  AppItemFactory,
-  AppItemType,
-  ItemType,
-  PackedAppItemFactory,
-} from '@graasp/sdk';
+import { AppItemFactory, AppItemType, PackedAppItemFactory } from '@graasp/sdk';
 
 import { API_HOST } from '../support/env';
 import { ItemForTest } from '../support/types';
@@ -50,9 +45,9 @@ export const GRAASP_APP_CHILDREN_ITEM = AppItemFactory({
   path: 'bdf09f5a_5688_11eb_ae93_0242ac130002.ecafbd2a_5688_12eb_ae91_0272ac130002',
   name: 'my app',
   description: 'my app description',
-  type: ItemType.APP,
+  type: 'app',
   extra: {
-    [ItemType.APP]: {
+    app: {
       url: 'http://localhost.com:3333',
     },
   },
@@ -65,10 +60,10 @@ export const APP_USING_CONTEXT_ITEM: ItemForTest = PackedAppItemFactory(
     path: 'ecafbd2a_5688_12eb_ae91_0272ac130002',
     name: 'my app',
     description: 'my app description',
-    type: ItemType.APP,
+    type: 'app',
     settings: {},
     extra: {
-      [ItemType.APP]: {
+      app: {
         url: `${API_HOST}/${buildAppItemLinkForTest('app.html')}`,
       },
     },
@@ -87,7 +82,7 @@ export const PUBLIC_APP_USING_CONTEXT_ITEM: ItemForTest = {
       name: 'my app',
       description: 'my app description',
       extra: {
-        [ItemType.APP]: {
+        app: {
           url: `${API_HOST}/${buildAppItemLinkForTest('app.html')}`,
         },
       },

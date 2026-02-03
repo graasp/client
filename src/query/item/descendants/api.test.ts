@@ -1,5 +1,3 @@
-import { ItemType } from '@graasp/sdk';
-
 import nock from 'nock';
 import { v4 } from 'uuid';
 import { describe, it } from 'vitest';
@@ -23,19 +21,19 @@ describe('getDescendants', () => {
     { inputs: { showHidden: true }, query: 'showHidden=true' },
     { inputs: { showHidden: false }, query: 'showHidden=false' },
     {
-      inputs: { types: [ItemType.FOLDER], showHidden: false },
+      inputs: { types: ['folder' as const], showHidden: false },
       query: 'types=folder&showHidden=false',
     },
     {
-      inputs: { types: [ItemType.FOLDER], showHidden: true },
+      inputs: { types: ['folder' as const], showHidden: true },
       query: 'types=folder&showHidden=true',
     },
     {
-      inputs: { types: [ItemType.FOLDER, ItemType.APP], showHidden: false },
+      inputs: { types: ['folder' as const, 'app' as const], showHidden: false },
       query: 'types=folder&types=app&showHidden=false',
     },
     {
-      inputs: { types: [ItemType.FOLDER, ItemType.APP], showHidden: true },
+      inputs: { types: ['folder' as const, 'app' as const], showHidden: true },
       query: 'types=folder&types=app&showHidden=true',
     },
   ])('With parameters: $inputs', async ({ inputs, query }) => {

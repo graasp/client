@@ -20,7 +20,6 @@ import {
   EtherpadItemType,
   FileItemType,
   H5PItemType,
-  ItemType,
   LinkItemType,
   PackedItem,
   ShortcutItemType,
@@ -63,9 +62,7 @@ import { useCollapseAction } from './useCollapseAction';
 import usePageTitle from './usePageTitle';
 
 const paginationContentFilter = (items: PackedItem[]): PackedItem[] =>
-  items
-    .filter((i) => i.type !== ItemType.FOLDER)
-    .filter((i) => !i.settings?.isPinned);
+  items.filter((i) => i.type !== 'folder').filter((i) => !i.settings?.isPinned);
 
 const itemRoute = getRouteApi('/player/$rootId/$itemId');
 const DEFAULT_RESIZABLE_SETTING = false;
@@ -161,7 +158,7 @@ const FileContent = ({ item }: FileContentProps) => {
   if (isFileContentPending) {
     return (
       <ItemSkeleton
-        itemType={ItemType.FILE}
+        itemType={'file'}
         isChildren={false}
         screenMaxHeight={SCREEN_MAX_HEIGHT}
       />
@@ -329,35 +326,35 @@ type ItemContentProps = {
 
 const ItemContent = ({ item }: ItemContentProps) => {
   switch (item.type) {
-    case ItemType.FOLDER: {
+    case 'folder': {
       return <FolderButtonContent item={item} />;
     }
-    case ItemType.LINK: {
+    case 'embeddedLink': {
       return <LinkContent item={item} />;
     }
-    case ItemType.FILE: {
+    case 'file': {
       return <FileContent item={item} />;
     }
-    case ItemType.DOCUMENT: {
+    case 'document': {
       return <DocumentContent item={item} />;
     }
-    case ItemType.APP: {
+    case 'app': {
       return <AppContent item={item} />;
     }
 
-    case ItemType.H5P: {
+    case 'h5p': {
       return <H5PContent item={item} />;
     }
 
-    case ItemType.ETHERPAD: {
+    case 'etherpad': {
       return <EtherpadContent item={item} />;
     }
 
-    case ItemType.SHORTCUT: {
+    case 'shortcut': {
       return <ShortcutContent item={item} />;
     }
 
-    case ItemType.PAGE: {
+    case 'page': {
       return <PageReader item={item} />;
     }
 
@@ -485,7 +482,7 @@ const Item = ({
   const { t } = useTranslation(NS.Common);
   const { data: item, isLoading: isLoadingItem, isError } = useItem(id);
   const title = usePageTitle();
-  if (item && item.type === ItemType.FOLDER) {
+  if (item && item.type === 'folder') {
     if (isChildren) {
       return <ItemContentWrapper item={item} />;
     }
@@ -503,7 +500,7 @@ const Item = ({
   if (isLoadingItem) {
     return (
       <ItemSkeleton
-        itemType={ItemType.FOLDER}
+        itemType={'folder'}
         isChildren={isChildren}
         screenMaxHeight={SCREEN_MAX_HEIGHT}
       />

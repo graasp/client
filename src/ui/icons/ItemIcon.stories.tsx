@@ -1,4 +1,4 @@
-import { ItemType, MimeTypes } from '@graasp/sdk';
+import { MimeTypes } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -17,7 +17,18 @@ const meta: Meta<typeof ItemIcon> = {
     },
     type: {
       control: 'radio',
-      options: [...Object.values(ItemType), 'upload'],
+      options: [
+        'app',
+        'page',
+        'file',
+        'document',
+        'folder',
+        'h5p',
+        'embeddedLink',
+        'shortcut',
+        'etherpad',
+        'upload',
+      ],
     },
   },
 };
@@ -28,20 +39,20 @@ type Story = StoryObj<typeof ItemIcon>;
 
 export const Folder: Story = {
   args: {
-    type: ItemType.FOLDER,
+    type: 'folder',
   },
 };
 
 export const Default: Story = {
   args: {
-    type: ItemType.FOLDER,
+    type: 'folder',
     iconSrc: 'https://picsum.photos/100',
   },
 };
 
 export const ImageWithStyle: Story = {
   args: {
-    type: ItemType.FOLDER,
+    type: 'folder',
     iconSrc: 'https://picsum.photos/200/100',
     size: '100px',
   },
@@ -49,73 +60,73 @@ export const ImageWithStyle: Story = {
 
 export const Image: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     mimetype: MimeTypes.Image.JPEG,
   },
 };
 
 export const Video: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     mimetype: MimeTypes.Video.MP4,
   },
 };
 
 export const Audio: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     mimetype: MimeTypes.Audio.MP3,
   },
 };
 
 export const PDF: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     mimetype: MimeTypes.PDF,
   },
 };
 
 export const ZIP: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     mimetype: MimeTypes.ZIP,
   },
 };
 
 export const App: Story = {
   args: {
-    type: ItemType.APP,
+    type: 'app',
   },
 };
 
 export const H5P: Story = {
   name: 'H5P',
   args: {
-    type: ItemType.H5P,
+    type: 'h5p',
   },
 };
 
 export const Link: Story = {
   args: {
-    type: ItemType.LINK,
+    type: 'embeddedLink',
   },
 };
 
 export const Shortcut: Story = {
   args: {
-    type: ItemType.SHORTCUT,
+    type: 'shortcut',
   },
 };
 
 export const EtherPad: Story = {
   args: {
-    type: ItemType.ETHERPAD,
+    type: 'etherpad',
   },
 };
 
 export const FancyImage: Story = {
   args: {
-    type: ItemType.FILE,
+    type: 'file',
     color: 'red',
     size: '3rem',
     mimetype: MimeTypes.Image.JPEG,

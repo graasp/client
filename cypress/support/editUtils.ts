@@ -1,4 +1,4 @@
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { ItemType } from '@/openapi/client';
 
 import {
   EDIT_ITEM_BUTTON_CLASS,
@@ -12,7 +12,7 @@ import { CAPTION_EDIT_PAUSE } from './constants';
 export const editItem = (
   payload: {
     id: string;
-    type: DiscriminatedItem['type'] | string;
+    type: ItemType | string;
     name: string;
     description: string;
   },
@@ -22,18 +22,18 @@ export const editItem = (
   cy.get(`${container} .${EDIT_ITEM_BUTTON_CLASS}`).click();
 
   switch (type) {
-    case ItemType.H5P:
-    case ItemType.APP:
-    case ItemType.ETHERPAD:
-    case ItemType.LINK:
-    case ItemType.FILE:
-    case ItemType.SHORTCUT:
+    case 'h5p':
+    case 'app':
+    case 'etherpad':
+    case 'embeddedLink':
+    case 'file':
+    case 'shortcut':
       cy.fillBaseItemModal(payload);
       break;
-    case ItemType.DOCUMENT:
+    case 'document':
       cy.fillDocumentModal(payload);
       break;
-    case ItemType.FOLDER:
+    case 'folder':
     default:
       cy.fillFolderModal(payload);
   }

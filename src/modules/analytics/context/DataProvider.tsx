@@ -8,13 +8,7 @@ import {
   useState,
 } from 'react';
 
-import {
-  Context,
-  DiscriminatedItem,
-  ItemType,
-  Member,
-  PackedItem,
-} from '@graasp/sdk';
+import { Context, DiscriminatedItem, Member, PackedItem } from '@graasp/sdk';
 
 import { addDays } from 'date-fns/addDays';
 
@@ -94,7 +88,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
   const requestedSampleSize = DEFAULT_REQUEST_SAMPLE_SIZE;
   const { data: appDescendants = [] } = useDescendants({
     id: itemId || '',
-    types: [ItemType.APP],
+    types: ['app'],
     showHidden: false,
   });
 
@@ -104,14 +98,12 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
     isLoading: itemIsLoading,
   } = hooks.useItem(itemId);
   const { data: itemChildren } = hooks.useChildren(itemId, undefined, {
-    enabled: itemData?.type === ItemType.FOLDER,
+    enabled: itemData?.type === 'folder',
   });
   // TODO: fix issue by refactoring code depending on this
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const descendantApps =
-    itemData?.type === ItemType.APP
-      ? [itemData, ...appDescendants]
-      : appDescendants;
+    itemData?.type === 'app' ? [itemData, ...appDescendants] : appDescendants;
 
   useEffect(() => {
     if (itemIsError) {

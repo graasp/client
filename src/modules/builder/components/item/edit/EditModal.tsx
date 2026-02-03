@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Dialog, DialogTitle } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { EDIT_MODAL_ID } from '@/config/selectors';
@@ -46,28 +46,28 @@ export function EditModal({
 
   // temporary solution for displaying separate dialog content
   const renderContent = () => {
-    if (item.type === ItemType.FOLDER) {
+    if (item.type === 'folder') {
       return <FolderEditForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.FILE) {
+    if (item.type === 'file') {
       return <FileForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.SHORTCUT) {
+    if (item.type === 'shortcut') {
       return <EditShortcutForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.DOCUMENT) {
+    if (item.type === 'document') {
       return <DocumentEditForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.ETHERPAD) {
+    if (item.type === 'etherpad') {
       return <EtherpadEditForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.LINK) {
+    if (item.type === 'embeddedLink') {
       return <LinkEditForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.APP || item.type === ItemType.H5P) {
+    if (item.type === 'app' || item.type === 'h5p') {
       return <BaseItemForm onClose={onClose} item={item} />;
     }
-    if (item.type === ItemType.PAGE) {
+    if (item.type === 'page') {
       return <EditPageForm onClose={onClose} item={item} />;
     }
 

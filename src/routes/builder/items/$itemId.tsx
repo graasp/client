@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, Stack, useTheme } from '@mui/material';
 
-import {
-  AccountType,
-  Context,
-  ItemType,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { AccountType, Context, PermissionLevelCompare } from '@graasp/sdk';
 
 import { Outlet, createFileRoute, useNavigate } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
@@ -139,7 +134,7 @@ function RouteComponent() {
         itemId={
           // if the current item is not a folder, the item is not displayed in the tree
           // so we highlight the parent (if it has parents)
-          item?.type !== ItemType.FOLDER && parents?.length
+          item?.type !== 'folder' && parents?.length
             ? parents[parents.length - 1].id
             : itemId
         }

@@ -1,4 +1,4 @@
-import { EtherpadItemType, ItemType } from '@graasp/sdk';
+import { EtherpadItemType } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -15,7 +15,7 @@ export default (queryConfig: QueryClientConfig) => {
       useQuery({
         queryKey: itemKeys.single(item?.id).etherpad,
         queryFn: () => {
-          if (item?.type !== ItemType.ETHERPAD) {
+          if (item?.type !== 'etherpad') {
             throw new Error('Item is not an etherpad item');
           }
 

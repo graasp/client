@@ -3,12 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, IconButton, Menu } from '@mui/material';
 
-import {
-  AccountType,
-  ItemType,
-  PackedItem,
-  PermissionLevelCompare,
-} from '@graasp/sdk';
+import { AccountType, PackedItem, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 import { MoreVerticalIcon } from 'lucide-react';
@@ -61,7 +56,7 @@ function GuestAndPublicMenu({
   };
 
   // logged out user see nothing for public folder
-  if (!account && item.type === ItemType.FOLDER) {
+  if (!account && item.type === 'folder') {
     return null;
   }
 
@@ -77,7 +72,7 @@ function GuestAndPublicMenu({
         <MoreVerticalIcon />
       </IconButton>
       <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
-        {item.type !== ItemType.FOLDER && (
+        {item.type !== 'folder' && (
           <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
         )}
         {account?.id ? <FlagButton key="flag" item={item} /> : false}
@@ -185,7 +180,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const downloadMenus = [
-    item.type === ItemType.FOLDER ? (
+    item.type === 'folder' ? (
       <ExportRawZipButton
         key="export-zip"
         item={item}
@@ -208,7 +203,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
         ]
       : []),
 
-    canWrite && item.type !== ItemType.FOLDER ? (
+    canWrite && item.type !== 'folder' ? (
       <CollapseButton
         key="collapse"
         type={ActionButton.MENU_ITEM}

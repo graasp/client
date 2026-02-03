@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   DiscriminatedItem,
-  ItemType,
   ShortcutItemType,
   buildShortcutExtra,
 } from '@graasp/sdk';
@@ -42,7 +41,7 @@ const CreateShortcutModal = ({
         name: item?.name,
       }),
       extra: buildShortcutExtra(target),
-      type: ItemType.SHORTCUT,
+      type: 'shortcut',
       parentId: destination,
     };
 

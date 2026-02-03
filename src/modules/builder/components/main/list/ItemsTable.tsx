@@ -10,7 +10,7 @@ import {
   Skeleton,
 } from '@mui/material';
 
-import { DiscriminatedItem, ItemType, PackedItem } from '@graasp/sdk';
+import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 
@@ -79,7 +79,7 @@ const ItemsTable = ({
     targetItem: PackedItem,
   ) => {
     // prevent drop in non-folder item
-    if (targetItem.type !== ItemType.FOLDER) {
+    if (targetItem.type !== 'folder') {
       toast.error(
         translateBuilder('MOVE_IN_NON_FOLDER_ERROR_MESSAGE', {
           type: translateEnums(targetItem.type),

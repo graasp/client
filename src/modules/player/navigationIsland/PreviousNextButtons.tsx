@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { DiscriminatedItem } from '@graasp/sdk';
 
 import { useParams, useSearch } from '@tanstack/react-router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -54,7 +54,7 @@ export function usePreviousNextButtons(): {
 
   const { data: descendants, isLoading } = hooks.useDescendants({
     id: rootId,
-    types: [ItemType.FOLDER],
+    types: ['folder'],
     showHidden: false,
     enabled: Boolean(rootId),
   });

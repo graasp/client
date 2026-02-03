@@ -1,6 +1,7 @@
-import { ItemType, Member, UnionOfConst } from '@graasp/sdk';
+import { Member } from '@graasp/sdk';
 
 import type { PermissionLevel } from '@/openapi/client';
+import { ItemType } from '@/openapi/client';
 
 export type ItemSearchParams = {
   creatorId?: Member['id'];
@@ -12,12 +13,12 @@ export type ItemSearchParams = {
     | 'item.created_at'
     | 'item.updated_at';
   permissions?: PermissionLevel[];
-  types?: UnionOfConst<typeof ItemType>[];
+  types?: ItemType[];
   keywords?: string;
 };
 
 export type ItemChildrenParams = {
   ordered?: boolean;
-  types?: UnionOfConst<typeof ItemType>[];
+  types?: ItemType[];
   keywords?: string;
 };

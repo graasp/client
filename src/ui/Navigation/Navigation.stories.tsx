@@ -2,7 +2,6 @@ import {
   FileItemFactory,
   FileItemType,
   FolderItemFactory,
-  ItemType,
   MemberFactory,
   MimeTypes,
 } from '@graasp/sdk';
@@ -24,7 +23,7 @@ const buildItem = (name: string): FileItemType =>
     id: name,
     name,
     extra: {
-      [ItemType.FILE]: {
+      file: {
         path: 'https://picsum.photos/100',
         mimetype: MimeTypes.Image.PNG,
         name: 'original file name',
@@ -67,7 +66,7 @@ const navigateNextIconDataTestId = 'NavigateNextIcon';
 const folder = FolderItemFactory({
   id: 'folder-id',
   name: 'folder',
-  type: ItemType.FOLDER,
+  type: 'folder',
   description: 'my image description',
   path: 'item-path',
   settings: {},
