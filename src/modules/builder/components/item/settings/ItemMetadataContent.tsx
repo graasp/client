@@ -22,6 +22,7 @@ import { hooks } from '@/config/queryClient';
 import { ITEM_PANEL_NAME_ID, ITEM_PANEL_TABLE_ID } from '@/config/selectors';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';
+import { getItemType } from '~builder/utils/capsule';
 import { Preview } from '~landing/preview/PreviewModeContext';
 
 import { BUILDER } from '../../../langs';
@@ -81,7 +82,7 @@ const ItemMetadataContent = (): JSX.Element => {
                 {translateBuilder(BUILDER.ITEM_METADATA_TYPE_TITLE)}
               </TableCell>
               <TableCell align="right">
-                {mimetype ?? item.type}
+                {mimetype ?? getItemType(item)}
                 <Preview>
                   {item.type === ItemType.FOLDER &&
                     (isCapsule(item) ? (

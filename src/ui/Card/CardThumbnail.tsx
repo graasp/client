@@ -2,8 +2,9 @@ import type { JSX } from 'react';
 
 import { Box, useTheme } from '@mui/material';
 
-import { DiscriminatedItem, ItemType } from '@graasp/sdk';
+import { ItemType } from '@graasp/sdk';
 
+import { ItemTypeOptions } from '@/types';
 import Thumbnail from '@/ui/Thumbnail/Thumbnail.js';
 import ItemIcon from '@/ui/icons/ItemIcon.js';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme.js';
@@ -13,7 +14,7 @@ export type CardThumbnailProps = {
   alt: string;
   width?: number;
   minHeight: number;
-  type?: DiscriminatedItem['type'];
+  type?: ItemTypeOptions;
 };
 const CardThumbnail = ({
   thumbnail,

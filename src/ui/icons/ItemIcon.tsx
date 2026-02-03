@@ -10,6 +10,7 @@ import {
 
 import {
   AppWindowIcon,
+  BookOpenTextIcon,
   CableIcon,
   ClapperboardIcon,
   FileIcon,
@@ -34,7 +35,7 @@ export type ItemIconProps = {
   /**
    * item type
    */
-  type: UnionOfConst<typeof ItemType> | 'upload';
+  type: UnionOfConst<typeof ItemType> | 'upload' | 'capsule';
   /**
    * An HTML Color to use for the foreground of the icon
    */
@@ -89,6 +90,9 @@ const ItemIcon = ({
   switch (type) {
     case ItemType.FOLDER:
       Icon = FolderIcon;
+      break;
+    case 'capsule':
+      Icon = BookOpenTextIcon;
       break;
     case ItemType.SHORTCUT:
       Icon = CableIcon;

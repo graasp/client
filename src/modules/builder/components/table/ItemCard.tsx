@@ -8,13 +8,14 @@ import {
   ItemType,
   formatDate,
   getLinkThumbnailUrl,
-  isCapsule,
 } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
 import { Card, type CardProps } from '@/ui/Card/Card';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
+
+import { getItemType } from '~builder/utils/capsule';
 
 type Props = {
   item: DiscriminatedItem;
@@ -52,8 +53,7 @@ const ItemCard = ({
       defaultValue: translateCommon('UNKNOWN_DATE'),
     });
 
-  const itemType =
-    item.type === ItemType.FOLDER && isCapsule(item) ? 'capsule' : item.type;
+  const itemType = getItemType(item);
 
   const content = (
     <Grid
@@ -114,7 +114,7 @@ const ItemCard = ({
         thumbnail={thumbnail}
         name={item.name}
         alt={item.name}
-        type={item.type}
+        type={itemType}
         footer={footer}
         creator={item.creator?.name}
         content={content}
