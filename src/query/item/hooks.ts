@@ -21,7 +21,6 @@ import {
 } from './accessible/hooks.js';
 import * as Api from './api.js';
 import { useDescendants } from './descendants/hooks.js';
-import { useItemThumbnailUrl } from './thumbnail/hooks.js';
 import { ItemChildrenParams } from './types.js';
 
 const config = (
@@ -166,8 +165,6 @@ const config = (
       }),
 
     useItemFeedbackUpdates: itemWsHooks?.useItemFeedbackUpdates,
-
-    useItemThumbnailUrl,
   };
 };
 
