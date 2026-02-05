@@ -11,8 +11,6 @@ import {
   styled,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import truncate from 'lodash.truncate';
 import { ChevronRightIcon } from 'lucide-react';
 
@@ -20,6 +18,7 @@ import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 import { TypographyLink } from '@/components/ui/TypographyLink.js';
 import { ITEM_NAME_MAX_LENGTH } from '@/config/constants';
 import { hooks } from '@/config/queryClient.js';
+import type { Item } from '@/openapi/client';
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(() => ({
   '.MuiBreadcrumbs-separator': {
@@ -37,7 +36,7 @@ export type NavigationProps = {
   itemPath: string;
   buildMenuId?: (id: string) => string;
   id?: string;
-  item?: DiscriminatedItem;
+  item?: Item;
   parents?: { name: string; id: string }[];
   sx?: SxProps;
   useChildren: UseChildrenType;
@@ -139,7 +138,7 @@ function ParentsNavigation({
 }
 
 type CurrentItemProps = {
-  item: DiscriminatedItem;
+  item: Item;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   buildIconId?: (id: string) => string;
   buildMenuId?: (id: string) => string;

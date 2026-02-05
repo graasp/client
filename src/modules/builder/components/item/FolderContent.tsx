@@ -10,7 +10,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { PackedItem, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { SectionHeader } from '@/components/SectionHeader';
 import { NS } from '@/config/constants';
@@ -19,6 +19,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildItemsTableId,
 } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client';
 import Loader from '@/ui/Loader/Loader';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';

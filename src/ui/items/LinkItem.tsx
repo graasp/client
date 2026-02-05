@@ -2,9 +2,10 @@ import { Fragment, type JSX, memo, useEffect, useMemo, useState } from 'react';
 
 import { Alert, Box, Link as MUILink, styled } from '@mui/material';
 
-import { LinkItemType, getLinkExtra } from '@graasp/sdk';
+import { getLinkExtra } from '@graasp/sdk';
 
 import { DEFAULT_LINK_SHOW_BUTTON } from '@/config/constants.js';
+import { EmbeddedLinkItem } from '@/openapi/client';
 import LinkCard from '@/ui/Card/LinkCard.js';
 
 import withCollapse from '../Collapse/withCollapse.js';
@@ -45,7 +46,7 @@ type LinkItemProps = {
    * whether the link can be resized
    */
   isResizable?: boolean;
-  item: LinkItemType;
+  item: EmbeddedLinkItem;
   /**
    * Thumbnail url of the item
    */

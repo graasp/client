@@ -9,11 +9,10 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { CONFIRM_DELETE_BUTTON_ID } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../langs';
@@ -25,7 +24,7 @@ const descriptionId = 'alert-dialog-description';
 type Props = {
   open?: boolean;
   handleClose: () => void;
-  items: DiscriminatedItem[];
+  items: Item[];
   onConfirm?: () => void;
 };
 

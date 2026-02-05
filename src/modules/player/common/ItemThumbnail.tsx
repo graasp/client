@@ -1,11 +1,6 @@
 import type { JSX } from 'react';
 
-import {
-  DiscriminatedItem,
-  ThumbnailSize,
-  ThumbnailsBySize,
-  getMimetype,
-} from '@graasp/sdk';
+import { ThumbnailSize, ThumbnailsBySize, getMimetype } from '@graasp/sdk';
 
 import { type PackedItem } from '@/openapi/client';
 import ItemIcon from '@/ui/icons/ItemIcon';
@@ -25,7 +20,8 @@ const ItemThumbnail = ({
     <ItemIcon
       type={item.type}
       // TODO: fix type
-      mimetype={getMimetype((item as DiscriminatedItem).extra)}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mimetype={getMimetype((item as any).extra)}
       alt={item.name}
       iconSrc={thumbnailSrc}
     />

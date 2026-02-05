@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useMutation } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
+
+import type { Item } from '@/openapi/client';
 
 import { type QueryClientConfig } from '../../types.js';
 import { importZipRoutine } from '../routines.js';
@@ -12,7 +12,7 @@ export const useImportZip = (queryConfig: QueryClientConfig) => () => {
   const { notifier } = queryConfig;
   return useMutation({
     mutationFn: async (args: {
-      id?: DiscriminatedItem['id'];
+      id?: Item['id'];
       file: Blob;
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => importZip(args),

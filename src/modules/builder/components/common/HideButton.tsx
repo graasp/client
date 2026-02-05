@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { PackedItem, getParentFromPath } from '@graasp/sdk';
+import { getParentFromPath } from '@graasp/sdk';
 
 import { useQueryClient } from '@tanstack/react-query';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
@@ -14,6 +14,7 @@ import {
   HIDDEN_ITEM_BUTTON_CLASS,
   buildHideButtonId,
 } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client';
 import { itemKeys } from '@/query/keys';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 

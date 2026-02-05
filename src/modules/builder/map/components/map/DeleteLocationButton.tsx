@@ -11,16 +11,15 @@ import {
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { PackedItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import { MAP } from '../../constants';
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 export interface Props {
-  item: DiscriminatedItem;
+  item: PackedItem;
 }
 
 const DeleteLocationButton = ({ item }: Props): JSX.Element => {

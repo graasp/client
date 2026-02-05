@@ -1,4 +1,4 @@
-import { FolderItemFactory, MembershipRequestStatus } from '@graasp/sdk';
+import { MembershipRequestStatus, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
@@ -7,11 +7,10 @@ import {
   buildDataCyWrapper,
 } from '../../../../../../src/config/selectors';
 import { CURRENT_MEMBER } from '../../../../../fixtures/members';
-import { ItemForTest } from '../../../../../support/types';
 import { buildItemPath } from '../../../utils';
 
 it('Request membership when signed in', () => {
-  const item = FolderItemFactory();
+  const item = PackedFolderItemFactory({}, { permission: null });
   cy.setUpApi({
     items: [item],
   });
@@ -30,18 +29,11 @@ it('Request membership when signed in', () => {
   cy.get(`#${REQUEST_MEMBERSHIP_BUTTON_ID}`).should('be.disabled');
 });
 it('Cannot request membership if item is hidden', () => {
-  const tmp = FolderItemFactory();
-  const item: ItemForTest = {
-    ...tmp,
-    visibilities: [
-      {
-        type: 'hidden',
-        itemPath: tmp.path,
-        createdAt: '2021-08-11T12:56:36.834Z',
-        id: 'ecbfbd2a-9644-12db-ae93-0242ac130002',
-      },
-    ],
-  };
+  const item = PackedFolderItemFactory(
+    {},
+    { permission: null, hiddenVisibility: { type: 'hidden' } },
+  );
+
   cy.setUpApi({
     items: [item],
   });
@@ -52,7 +44,7 @@ it('Cannot request membership if item is hidden', () => {
 });
 
 it('Membership request is already sent', () => {
-  const item = FolderItemFactory();
+  const item = PackedFolderItemFactory();
   cy.setUpApi({
     items: [item],
     membershipRequests: [

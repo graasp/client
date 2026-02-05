@@ -13,7 +13,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import { AccountType, DiscriminatedItem, isEmail } from '@graasp/sdk';
+import { AccountType, isEmail } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import truncate from 'lodash.truncate';
@@ -26,7 +26,7 @@ import {
   SHARE_ITEM_EMAIL_INPUT_ID,
   SHARE_ITEM_SHARE_BUTTON_ID,
 } from '@/config/selectors';
-import type { PermissionLevel } from '@/openapi/client';
+import type { Item, PermissionLevel } from '@/openapi/client';
 import { createInvitationMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { useItemInvitations } from '@/query/hooks/invitation';
 import { itemKeys } from '@/query/keys';
@@ -36,7 +36,7 @@ import { BUILDER } from '../../../../langs';
 import ItemMembershipSelect from '../ItemMembershipSelect';
 
 type ContentProps = {
-  item: DiscriminatedItem;
+  item: Item;
   handleClose: () => void;
 };
 

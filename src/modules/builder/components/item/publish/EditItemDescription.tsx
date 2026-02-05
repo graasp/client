@@ -5,10 +5,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import WarningIcon from '@mui/icons-material/Warning';
 import { IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { Item } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
@@ -22,7 +21,7 @@ import PublicationModal from './PublicationModal';
 const SYNC_STATUS_KEY = 'PublishItemDescription';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
 };
 
 export const EditItemDescription = ({ item }: Props): JSX.Element => {

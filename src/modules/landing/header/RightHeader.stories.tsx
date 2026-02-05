@@ -1,11 +1,12 @@
 import { ComponentProps } from 'react';
 
-import { AccountType, DiscriminatedItem } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
 import { AuthContext } from '@/AuthContext';
+import { PackedItem } from '@/openapi/client';
 
 import { RightHeader } from './RightHeader';
 
@@ -27,7 +28,7 @@ function getUser(userType: AccountType) {
     name: 'Bob',
     lang: 'en',
     type: AccountType.Guest as const,
-    item: {} as DiscriminatedItem,
+    item: {} as PackedItem,
   };
 }
 

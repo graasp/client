@@ -6,10 +6,10 @@ import {
   ItemLoginSchemaType,
   ItemPublished,
   ItemVisibility,
-  PackedItem,
 } from '@graasp/sdk';
 
 import { hooks, mutations } from '@/config/queryClient';
+import type { PackedItem } from '@/openapi/client';
 
 import { SETTINGS } from '~builder/constants';
 

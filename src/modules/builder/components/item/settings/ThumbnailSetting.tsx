@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { PackedItem } from '@/openapi/client';
 
 import ThumbnailUploader, {
   EventChanges,

@@ -3,21 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Typography } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  formatDate,
-  getLinkThumbnailUrl,
-} from '@graasp/sdk';
+import { formatDate, getLinkThumbnailUrl } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client';
 import { Card, type CardProps } from '@/ui/Card/Card';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 
 import { getItemType } from '~builder/utils/capsule';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: PackedItem;
   dense?: boolean;
   footer: JSX.Element;
   isOver?: boolean;

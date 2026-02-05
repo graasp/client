@@ -3,11 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Stack, Typography } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  Member,
-  MembershipRequestStatus,
-} from '@graasp/sdk';
+import { Member, MembershipRequestStatus } from '@graasp/sdk';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Check, Lock } from 'lucide-react';
@@ -17,6 +13,7 @@ import {
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
+import { Item } from '@/openapi/client';
 import {
   createMembershipRequestMutation,
   getOwnMembershipRequestByItemIdOptions,
@@ -28,7 +25,7 @@ export function RequestAccessContent({
   itemId,
 }: Readonly<{
   member: Member;
-  itemId: DiscriminatedItem['id'];
+  itemId: Item['id'];
 }>): JSX.Element {
   const { t: translatePlayer } = useTranslation(NS.Player);
   const queryClient = useQueryClient();

@@ -1,5 +1,7 @@
 import { CCLicenseAdaptions, PackedFolderItemFactory } from '@graasp/sdk';
 
+import { PackedItem } from '@/openapi/client';
+
 import {
   CC_ALLOW_COMMERCIAL_CONTROL_ID,
   CC_CC0_CONTROL_ID,
@@ -27,22 +29,22 @@ const itemCCLicenseCCBY = PackedFolderItemFactory({
   name: 'public item with cc by',
   settings: { ccLicenseAdaption: 'CC BY' },
   description: EMPTY_DESCRIPTION,
-});
+}) as PackedItem;
 const itemCCLicenseCCBYNC = PackedFolderItemFactory({
   name: 'public item with cc by nc',
   settings: { ccLicenseAdaption: 'CC BY-NC' },
   description: EMPTY_DESCRIPTION,
-});
+}) as PackedItem;
 const itemCCLicenseCCBYSA = PackedFolderItemFactory({
   name: 'public item with cc by sa',
   settings: { ccLicenseAdaption: 'CC BY-SA' },
   description: EMPTY_DESCRIPTION,
-});
+}) as PackedItem;
 const itemCCLicenseCCBYNCND = PackedFolderItemFactory({
   name: 'public item with cc by nc nd',
   settings: { ccLicenseAdaption: 'CC BY-NC-ND' },
   description: EMPTY_DESCRIPTION,
-});
+}) as PackedItem;
 
 const itemWithoutLicense = PackedFolderItemFactory({
   name: 'public item without license',
@@ -67,7 +69,6 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       item: itemCCLicenseCCBY,
       createdAt: '2021-08-11T12:56:36.834Z',
       creator: MEMBERS.ANNA,
-      totalViews: 0,
     },
   },
   {
@@ -78,7 +79,6 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
         type: 'public',
         itemPath: itemCCLicenseCCBYNC.path,
         createdAt: '2021-08-11T12:56:36.834Z',
-        // creator: MEMBERS.ANNA,
       },
     ],
     published: {
@@ -86,7 +86,6 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       item: itemCCLicenseCCBYNC,
       createdAt: '2021-08-11T12:56:36.834Z',
       creator: MEMBERS.ANNA,
-      totalViews: 0,
     },
   },
   {
@@ -105,7 +104,6 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       item: itemCCLicenseCCBYSA,
       createdAt: '2021-08-11T12:56:36.834Z',
       creator: MEMBERS.ANNA,
-      totalViews: 0,
     },
   },
   {
@@ -124,7 +122,6 @@ const PUBLISHED_ITEMS_WITH_CC_LICENSE: ItemForTest[] = [
       item: itemCCLicenseCCBYNCND,
       createdAt: '2021-08-11T12:56:36.834Z',
       creator: MEMBERS.ANNA,
-      totalViews: 0,
     },
   },
 ];

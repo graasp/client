@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Box, Button, LinearProgress, Stack } from '@mui/material';
 
-import { PackedItem, Paginated } from '@graasp/sdk';
+import { Paginated } from '@graasp/sdk';
 
 import { InfiniteData } from '@tanstack/react-query';
 
@@ -11,6 +11,7 @@ import { useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ACCESSIBLE_ITEMS_TABLE_ID } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client';
 
 import SelectTypes from '~builder/components/common/SelectTypes';
 import { useFilterItemsContext } from '~builder/components/context/FilterItemsContext';

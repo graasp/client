@@ -11,18 +11,17 @@ import {
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
+import type { Item } from '@/openapi/client';
 import { useItemGeolocation } from '@/query/hooks/itemGeolocation';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '~builder/langs';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
 };
 
 export const GeolocationModalButton = ({ item }: Props): JSX.Element => {

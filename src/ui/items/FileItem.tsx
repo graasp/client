@@ -2,13 +2,9 @@ import { type JSX, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Skeleton } from '@mui/material';
 
-import {
-  FileItemType,
-  MimeTypes,
-  formatFileSize,
-  getFileExtra,
-} from '@graasp/sdk';
+import { MimeTypes, formatFileSize, getFileExtra } from '@graasp/sdk';
 
+import { FileItem as FileItemType } from '@/openapi/client';
 import { Errors } from '@/ui/enums/errors.js';
 
 import withCollapse from '../Collapse/withCollapse.js';

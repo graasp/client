@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { FormControlLabel, FormGroup, Switch, Typography } from '@mui/material';
 
-import { LinkItemType } from '@graasp/sdk';
-
 import {
   DEFAULT_LINK_SHOW_BUTTON,
   DEFAULT_LINK_SHOW_IFRAME,
@@ -15,11 +13,12 @@ import {
   SETTINGS_LINK_SHOW_BUTTON_ID,
   SETTINGS_LINK_SHOW_IFRAME_ID,
 } from '@/config/selectors';
+import { EmbeddedLinkItem } from '@/openapi/client';
 
 import { BUILDER } from '../../../langs';
 
 type Props = {
-  item: LinkItemType;
+  item: EmbeddedLinkItem;
 };
 
 const LinkSettings = ({ item }: Props): JSX.Element => {

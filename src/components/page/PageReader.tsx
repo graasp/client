@@ -1,7 +1,5 @@
 import { useRef } from 'react';
 
-import { PageItemType } from '@graasp/sdk';
-
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import {
   InitialConfigType,
@@ -11,6 +9,8 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
+
+import { PageItem } from '@/openapi/client';
 
 import { LinkItemNode } from './plugins/linkItem/LinkItemNode';
 import { LinkItemPlugin } from './plugins/linkItem/LinkItemPlugin';
@@ -26,7 +26,7 @@ function onError(error: Error) {
 }
 
 type Props = {
-  item: PageItemType;
+  item: PageItem;
 };
 
 export function PageReader({ item }: Readonly<Props>) {

@@ -1,9 +1,7 @@
 import {
-  DocumentItemFactory,
-  FolderItemFactory,
   PackedDocumentItemFactory,
   PackedFolderItemFactory,
-  ShortcutItemFactory,
+  PackedShortcutItemFactory,
   buildPathFromIds,
 } from '@graasp/sdk';
 
@@ -266,14 +264,14 @@ const getPinnedElementWithoutInheritance = (): ItemForTest[] => {
     ),
   ];
   const childrenOfChildren = [
-    DocumentItemFactory({
+    PackedDocumentItemFactory({
       name: 'text in children 1',
       extra: { document: { content: 'Not pinned' } },
       settings: { isPinned: false },
       parentItem: children[1],
       creator: CURRENT_MEMBER,
     }),
-    DocumentItemFactory({
+    PackedDocumentItemFactory({
       name: 'pinned text in children 2',
       extra: { document: { content: 'I am pinned from child 2' } },
       parentItem: children[2],
@@ -317,11 +315,10 @@ export const PINNED_AND_HIDDEN_ITEM: { items: ItemForTest[] } = {
         },
       ),
     },
-    {
+    PackedDocumentItemFactory({
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'Normal child',
       description: 'I am a normal item',
-      type: 'document',
       extra: { document: { content: 'hello' } },
       path: 'ecafbd2a_5688_11eb_ae93_0242ac130005.fdf09f5a_5688_11eb_ae93_0242ac130008',
       settings: {
@@ -332,7 +329,7 @@ export const PINNED_AND_HIDDEN_ITEM: { items: ItemForTest[] } = {
       creator: CURRENT_MEMBER,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
-    },
+    }),
   ],
 };
 
@@ -393,7 +390,7 @@ export const FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
         showChatbox: false,
       },
     },
-    DocumentItemFactory(),
+    PackedDocumentItemFactory(),
     PackedDocumentItemFactory({}, { hiddenVisibility: {} }),
     PackedDocumentItemFactory(
       {
@@ -411,13 +408,16 @@ export const FOLDER_WITH_HIDDEN_ITEMS: { items: ItemForTest[] } = {
 };
 
 export const getFolderWithShortcutFixture = (): ItemForTest[] => {
-  const parent = FolderItemFactory({ name: 'Lesson', creator: CURRENT_MEMBER });
-  const child = FolderItemFactory({
+  const parent = PackedFolderItemFactory({
+    name: 'Lesson',
+    creator: CURRENT_MEMBER,
+  });
+  const child = PackedFolderItemFactory({
     parentItem: parent,
     name: 'Part 1',
     creator: CURRENT_MEMBER,
   });
-  const documentItem = DocumentItemFactory({
+  const documentItem = PackedDocumentItemFactory({
     extra: { document: { content: 'I am a document' } },
     creator: CURRENT_MEMBER,
   });
@@ -425,8 +425,8 @@ export const getFolderWithShortcutFixture = (): ItemForTest[] => {
     parent,
     documentItem,
     child,
-    DocumentItemFactory({ parentItem: parent, creator: CURRENT_MEMBER }),
-    ShortcutItemFactory({
+    PackedDocumentItemFactory({ parentItem: parent, creator: CURRENT_MEMBER }),
+    PackedShortcutItemFactory({
       parentItem: parent,
       creator: CURRENT_MEMBER,
       extra: { shortcut: { target: documentItem.id } },
@@ -434,7 +434,7 @@ export const getFolderWithShortcutFixture = (): ItemForTest[] => {
   ];
 };
 
-const tmpDocument = DocumentItemFactory();
+const tmpDocument = PackedDocumentItemFactory();
 export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
   {
     items: [
@@ -451,10 +451,9 @@ export const FOLDER_WITH_COLLAPSIBLE_SHORTCUT_ITEMS: { items: ItemForTest[] } =
         },
       },
       // shortcut with collapse enabled
-      ShortcutItemFactory({
+      PackedShortcutItemFactory({
         name: 'Shortcut to original document',
         path: 'ecafbd2a_5688_11eb_ae93_0242ac130008.ecafbd2a_5688_11eb_ae93_0242ac130012',
-        type: 'shortcut',
         extra: {
           shortcut: { target: tmpDocument.id },
         },
@@ -583,7 +582,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
       name: 'parent folder',
@@ -594,7 +593,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
       },
     }),
     // children (need to be in order to respect test)
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
       name: 'child folder 1',
@@ -604,7 +603,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
       name: 'child folder 2',
@@ -614,7 +613,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
       name: 'child folder 3',
@@ -624,7 +623,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'child folder 4',
@@ -634,7 +633,7 @@ export const FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130009',
       name: 'child folder 5',
@@ -652,7 +651,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'acafbd2a-5688-11eb-ae93-0242ac130002',
       name: 'parent folder',
@@ -663,7 +662,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
       },
     }),
     // children (need to be in order to respect test)
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130003',
       name: 'child folder 1',
@@ -673,7 +672,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130004',
       name: 'child folder 2',
@@ -683,7 +682,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130007',
       name: 'child folder 3',
@@ -693,7 +692,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130008',
       name: 'child folder 4',
@@ -703,7 +702,7 @@ export const ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130009',
       name: 'child folder 5',
@@ -721,7 +720,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
 } = {
   items: [
     // root
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'acafbd2a-5688-11eb-ae93-0242ac130012',
       name: 'parent folder',
@@ -732,7 +731,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
       },
     }),
     // children (need to be in order to respect test)
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130013',
       name: 'child folder 1',
@@ -742,7 +741,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130014',
       name: 'child folder 2',
@@ -752,7 +751,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130017',
       name: 'child folder 3',
@@ -762,7 +761,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130018',
       name: 'child folder 4',
@@ -772,7 +771,7 @@ export const YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS: {
         showChatbox: false,
       },
     }),
-    FolderItemFactory({
+    PackedFolderItemFactory({
       ...DEFAULT_FOLDER_ITEM,
       id: 'fdf09f5a-5688-11eb-ae93-0242ac130019',
       name: 'child folder 5',

@@ -3,16 +3,15 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { PackedItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
 import CustomizedTags from '../publish/customizedTags/CustomizedTags';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: PackedItem;
 };
 
 export const CustomizedTagsSettings = ({ item }: Props): JSX.Element => {

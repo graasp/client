@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogTitle, Stack } from '@mui/material';
 
-import { DiscriminatedItem, ItemGeolocation, buildAppExtra } from '@graasp/sdk';
+import { ItemGeolocation, buildAppExtra } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import { Item } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
@@ -18,9 +19,9 @@ import { CustomAppForm } from './CustomAppForm';
 
 type Props = {
   onClose: () => void;
-  parentId?: DiscriminatedItem['id'];
+  parentId?: Item['id'];
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: Item['id'];
 };
 
 type Inputs = {

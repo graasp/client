@@ -11,11 +11,12 @@ import {
   Typography,
 } from '@mui/material';
 
-import { DiscriminatedItem, ItemLoginSchemaStatus } from '@graasp/sdk';
+import { ItemLoginSchemaStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { DELETE_GUEST_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import { Item } from '@/openapi/client';
 
 import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -24,7 +25,7 @@ import { BUILDER } from '~builder/langs';
 function DeleteItemLoginSchemaButton({
   itemId,
 }: Readonly<{
-  itemId: DiscriminatedItem['id'];
+  itemId: Item['id'];
 }>): JSX.Element | null {
   const { data: itemLoginSchema } = hooks.useItemLoginSchema({ itemId });
   const { mutate: deleteItemLoginSchema, isPending } =

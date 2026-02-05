@@ -1,4 +1,4 @@
-import { AppItemType, DiscriminatedItem, DocumentItemType } from '@graasp/sdk';
+import type { AppItem, DocumentItem, PackedItem } from '@/openapi/client';
 
 import {
   ADD_FOLDER_BUTTON_CY,
@@ -19,7 +19,7 @@ import { ZIPInternalItem } from '../e2e/builder/fixtures/files';
 import { FileItemForTest } from './types';
 
 export const createApp = (
-  payload: AppItemType,
+  payload: AppItem,
   options?: { confirm?: boolean; custom?: boolean; id?: string },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
@@ -28,7 +28,7 @@ export const createApp = (
 };
 
 export const createDocument = (
-  payload: DocumentItemType,
+  payload: DocumentItem,
   options?: { confirm?: boolean },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
@@ -68,10 +68,7 @@ export const createFile = (
 
 // todo: question: only used by import zip ??
 export const createItem = (
-  payload:
-    | DiscriminatedItem
-    | ZIPInternalItem
-    | { type: 'h5p'; filepath: string },
+  payload: PackedItem | ZIPInternalItem | { type: 'h5p'; filepath: string },
   options?: { confirm?: boolean },
 ): void => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();

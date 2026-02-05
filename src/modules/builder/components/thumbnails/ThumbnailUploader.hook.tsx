@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { PackedItem, ThumbnailSize, ThumbnailsBySize } from '@graasp/sdk';
+import { ThumbnailSize, ThumbnailsBySize } from '@graasp/sdk';
 
 import { AxiosProgressEvent } from 'axios';
 
 import { mutations } from '@/config/queryClient';
+import { PackedItem } from '@/openapi/client';
 
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 

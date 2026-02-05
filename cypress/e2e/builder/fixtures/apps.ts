@@ -1,9 +1,10 @@
 import {
-  AppItemType,
   FolderItemType,
   PackedAppItemFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
+
+import { AppItem } from '@/openapi/client';
 
 import { APPS_LIST } from '../../../fixtures/apps/apps';
 import { CURRENT_MEMBER } from '../../../fixtures/members';
@@ -15,14 +16,14 @@ export const buildGetAppData = (id: string): string =>
 export const buildAppItemLinkForTest = (filename = '.*'): string =>
   `apps/${filename}`;
 
-export const GRAASP_APP_ITEM: AppItemType = PackedAppItemFactory({
+export const GRAASP_APP_ITEM: AppItem = PackedAppItemFactory({
   name: 'test app',
   extra: {
     app: { url: APPS_LIST[0].url },
   },
   creator: CURRENT_MEMBER,
 });
-export const GRAASP_CUSTOM_APP_ITEM: AppItemType = PackedAppItemFactory({
+export const GRAASP_CUSTOM_APP_ITEM: AppItem = PackedAppItemFactory({
   name: 'Add Your Custom App',
   extra: {
     app: { url: APPS_LIST[0].url },
@@ -36,7 +37,7 @@ export const GRAASP_APP_PARENT_FOLDER: FolderItemType = PackedFolderItemFactory(
   },
 );
 
-export const GRAASP_APP_CHILDREN_ITEM: AppItemType = PackedAppItemFactory({
+export const GRAASP_APP_CHILDREN_ITEM: AppItem = PackedAppItemFactory({
   name: 'my app',
   extra: {
     app: {

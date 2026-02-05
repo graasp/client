@@ -33,7 +33,7 @@ const MarkerPopup = ({
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link
             component={Typography}
-            onClick={() => viewItemInBuilder(item)}
+            onClick={() => viewItemInBuilder(item.id)}
             variant="h5"
             sx={{
               margin: '0 !important',
@@ -63,7 +63,7 @@ const MarkerPopup = ({
         ))}
       </Box>
       <Stack direction="row">
-        <ViewButton item={item} />
+        <ViewButton itemId={item.id} />
         {item?.permission &&
           PermissionLevelCompare.gte(item.permission, 'admin') && (
             <>

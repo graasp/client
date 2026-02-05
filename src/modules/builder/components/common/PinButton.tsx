@@ -1,11 +1,10 @@
 import { type JSX, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { PIN_ITEM_BUTTON_CLASS } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import GraaspPinButton from '@/ui/buttons/PinButton/PinButton';
 import { ActionButtonVariant } from '@/ui/types';
 
@@ -13,7 +12,7 @@ import { BUILDER } from '../../langs';
 
 type Props = {
   type?: ActionButtonVariant;
-  item: DiscriminatedItem;
+  item: PackedItem;
   onClick?: () => void;
 };
 

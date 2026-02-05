@@ -1,6 +1,5 @@
 import {
   FileItemFactory,
-  FileItemType,
   FolderItemFactory,
   MemberFactory,
   MimeTypes,
@@ -10,6 +9,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { CogIcon } from 'lucide-react';
 import { expect, within } from 'storybook/test';
 
+import type { FileItem, FolderItem } from '@/openapi/client';
+
 import ExtraItemsMenu from './ExtraItemsMenu.js';
 import { ItemMenuProps, Navigation } from './Navigation.js';
 
@@ -18,7 +19,7 @@ const buildParent = (name: string) => ({
   name,
 });
 
-const buildItem = (name: string): FileItemType =>
+const buildItem = (name: string): FileItem =>
   FileItemFactory({
     id: name,
     name,
@@ -71,7 +72,7 @@ const folder = FolderItemFactory({
   path: 'item-path',
   settings: {},
   creator: MemberFactory(),
-});
+}) as FolderItem;
 
 export const FolderWithParents = {
   args: {
@@ -103,7 +104,6 @@ export const FileWithParents = {
     itemPath,
     useChildren,
     item,
-
     parents,
   },
 

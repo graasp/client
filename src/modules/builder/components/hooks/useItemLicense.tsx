@@ -2,9 +2,8 @@ import { type JSX, useEffect, useState } from 'react';
 
 import { SxProps } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { mutations } from '@/config/queryClient';
+import type { Item } from '@/openapi/client';
 import CreativeCommons from '@/ui/CreativeCommons/CreativeCommons';
 import { CCSharingVariant } from '@/ui/types';
 
@@ -44,7 +43,7 @@ const useItemLicense = ({
   commonsSx,
   enableNotifications = true,
 }: {
-  item: DiscriminatedItem;
+  item: Item;
   iconSize?: number;
   disabled?: boolean;
   commonsSx?: SxProps;

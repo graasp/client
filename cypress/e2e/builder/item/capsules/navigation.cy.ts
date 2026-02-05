@@ -1,10 +1,10 @@
-import { CapsuleItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedCapsuleItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
 import { buildItemCard } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
 it('capsule navigates to player from home', () => {
-  const capsule = CapsuleItemFactory();
+  const capsule = PackedCapsuleItemFactory();
 
   cy.setUpApi({ items: [capsule] });
   cy.visit(HOME_PATH);
@@ -22,7 +22,7 @@ it('capsule navigates to player from home', () => {
 
 it('capsule navigates to player from parent folder', () => {
   const parentItem = PackedFolderItemFactory();
-  const capsule = CapsuleItemFactory({ parentItem });
+  const capsule = PackedCapsuleItemFactory({ parentItem });
 
   cy.setUpApi({ items: [parentItem, capsule] });
   cy.visit(buildItemPath(parentItem.id));

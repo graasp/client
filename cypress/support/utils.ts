@@ -1,7 +1,5 @@
 import {
   ChatMessage,
-  DiscriminatedItem,
-  ItemMembership,
   Member,
   PermissionLevelCompare,
   isChildOf,
@@ -9,6 +7,8 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
+
+import type { Item, ItemMembership } from '@/openapi/client';
 
 import { ItemForTest } from './types';
 
@@ -216,7 +216,7 @@ export const getHighestPermissionForMemberFromMemberships = ({
 }: {
   memberships?: ItemMembership[];
   memberId?: string;
-  itemPath: DiscriminatedItem['path'];
+  itemPath: Item['path'];
 }): null | ItemMembership => {
   if (!memberId) {
     return null;

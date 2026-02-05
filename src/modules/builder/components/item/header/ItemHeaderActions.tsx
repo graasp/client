@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import { DiscriminatedItem, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_CHATBOX_BUTTON_ID } from '@/config/selectors';
+import { Item } from '@/openapi/client';
 import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
 import { ActionButton } from '@/ui/types';
 
@@ -23,7 +24,7 @@ import Actions from './Actions';
 const { useItem } = hooks;
 
 type Props = {
-  itemId: DiscriminatedItem['id'];
+  itemId: Item['id'];
   isChatboxOpen: boolean;
   toggleChatbox: () => void;
 };

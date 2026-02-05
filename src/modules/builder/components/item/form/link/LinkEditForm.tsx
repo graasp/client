@@ -11,7 +11,6 @@ import {
 
 import {
   DescriptionPlacementType,
-  LinkItemType,
   UnionOfConst,
   getParentFromPath,
 } from '@graasp/sdk';
@@ -23,6 +22,7 @@ import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { EmbeddedLinkItem } from '@/openapi/client';
 import { updateLinkMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { getKeyForParentId, itemKeys } from '@/query/keys';
 
@@ -51,7 +51,7 @@ export function LinkEditForm({
   item,
   onClose,
 }: Readonly<{
-  item: LinkItemType;
+  item: EmbeddedLinkItem;
   onClose: () => void;
 }>) {
   const queryClient = useQueryClient();

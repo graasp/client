@@ -1,5 +1,4 @@
 import {
-  FileItemFactory,
   MaxWidth,
   MimeTypes,
   PackedFileItemFactory,
@@ -41,7 +40,7 @@ export const IMAGE_ITEM_DEFAULT: FileItemForTest = {
 };
 
 export const IMAGE_ITEM_DEFAULT_WITH_MAX_WIDTH: FileItemForTest = {
-  ...FileItemFactory({
+  ...PackedFileItemFactory({
     id: 'bd5519a2-5ba9-4305-b221-185facbe6a29',
     name: 'icon.png',
     description: 'a default image description',

@@ -86,59 +86,12 @@ export type NullableAugmentedAccount = null | {
 };
 
 /**
- * Item
- * Smallest unit of a learning collection
- */
-export type Item = {
-    id: string;
-    name: string;
-    description?: null | string;
-    type: string;
-    path: string;
-    lang: string;
-    extra: {
-        [key: string]: unknown;
-    };
-    /**
-     * Item settings
-     * Parameters, mostly visual, common to all types of items.
-     */
-    settings: {
-        /**
-         * @deprecated
-         */
-        lang?: string;
-        isPinned?: boolean;
-        /**
-         * @deprecated
-         */
-        tags?: Array<string>;
-        showChatbox?: boolean;
-        isResizable?: boolean;
-        hasThumbnail?: boolean;
-        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
-        displayCoEditors?: boolean;
-        descriptionPlacement?: 'above' | 'below';
-        isCollapsible?: boolean;
-        enableSaveActions?: boolean;
-        showLinkIframe?: boolean;
-        showLinkButton?: boolean;
-        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-        alignment?: 'center' | 'left' | 'right';
-    };
-    creator?: NullableMinimalAccount;
-    createdAt: string;
-    updatedAt: string;
-};
-
-/**
  * Member
  * Member sharable information
  */
 export type Member = {
     id: string;
     name: string;
-    email: string;
 };
 
 /**
@@ -148,7 +101,6 @@ export type Member = {
 export type NullableMember = null | {
     id: string;
     name: string;
-    email: string;
 };
 
 /**
@@ -245,6 +197,404 @@ export type CurrentSettings = {
 };
 
 /**
+ * Item
+ */
+export type Item = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+} & {
+    type: ItemType;
+    extra: {
+        [key: string]: unknown;
+    };
+};
+
+/**
+ * App Item
+ * Item of type app, represents an interactive application that can access to the app API.
+ */
+export type AppItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'app';
+    extra: {
+        app: {
+            url: string;
+        };
+    };
+};
+
+/**
+ * Document Item
+ * Item of type document, represents a text.
+ */
+export type DocumentItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'document';
+    extra: {
+        document: {
+            content: string;
+            flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
+            isRaw?: boolean;
+        };
+    };
+};
+
+/**
+ * Embedded Link Item
+ * Item of type embedded link, represents a resource to an external website.
+ */
+export type EmbeddedLinkItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    } & {
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'embeddedLink';
+    extra: {
+        embeddedLink: {
+            url: string;
+            thumbnails?: Array<string>;
+            icons?: Array<string>;
+            html?: string;
+            description?: string;
+            title?: string;
+        };
+    };
+};
+
+/**
+ * Etherpad Item
+ */
+export type EtherpadItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'etherpad';
+    extra: {
+        etherpad: {
+            padID: string;
+            groupID: string;
+            readerPermission?: 'read' | 'write';
+        };
+    };
+};
+
+/**
+ * File Item
+ * Item of type file, represents a file.
+ */
+export type FileItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'file';
+    extra: {
+        file: {
+            name: string;
+            path: string;
+            mimetype: string;
+            size: number;
+            altText?: string;
+            content: string;
+        };
+    };
+};
+
+/**
+ * Folder Item
+ */
+export type FolderItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'folder';
+    extra: {
+        folder: {
+            isCapsule?: boolean;
+            /**
+             * @deprecated
+             */
+            childrenOrder?: Array<string>;
+        };
+    };
+};
+
+/**
+ * H5P Item
+ */
+export type H5pItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'h5p';
+    extra: {
+        h5p: {
+            contentId: string;
+            h5pFilePath: string;
+            contentFilePath: string;
+        };
+    };
+};
+
+/**
  * Item Visibility
  * Visibility attached to an item and its descendants.
  */
@@ -257,25 +607,107 @@ export type ItemVisibility = {
 };
 
 /**
+ * Page Item
+ */
+export type PageItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'page';
+    extra: {
+        [key: string]: never;
+    };
+};
+
+/**
+ * Shortcut Item
+ */
+export type ShortcutItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    creator?: NullableMember;
+    createdAt: string;
+    updatedAt: string;
+    type: 'shortcut';
+    extra: {
+        shortcut: {
+            target: string;
+        };
+    };
+};
+
+/**
+ * DiscriminatedItem
+ */
+export type DiscriminatedItem = AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | FileItem | FolderItem | H5pItem | PageItem | ShortcutItem;
+
+/**
  * Packed Item
  * Item with additional information
  */
-export type PackedItem = {
-    id: string;
-    name: string;
-    description?: null | string;
-    type: ItemType;
-    path: string;
-    lang: string;
-    extra: {
-        [key: string]: unknown;
-    };
-    settings: {
-        [key: string]: unknown;
-    };
-    creator: NullableMember;
-    createdAt: string;
-    updatedAt: string;
+export type PackedItem = (AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | FileItem | FolderItem | H5pItem | PageItem | ShortcutItem) & {
     permission: PermissionLevel | null;
     hidden?: ItemVisibility;
     public?: ItemVisibility;
@@ -595,6 +1027,17 @@ export type RawItemLike = {
 };
 
 /**
+ * Item Published
+ * Information of a published item
+ */
+export type ItemPublished = {
+    id: string;
+    item: Item;
+    creator: NullableMember;
+    createdAt: string;
+};
+
+/**
  * Search Hit
  */
 export type SearchHit = {
@@ -642,6 +1085,24 @@ export type SearchHit = {
         lang: string;
         likes: number;
     };
+};
+
+/**
+ * Item Validation Group
+ * Group of validations for an item, without nested item
+ */
+export type ItemValidationGroup = {
+    id: string;
+    item: Item;
+    createdAt: string;
+    itemValidations: Array<{
+        id: string;
+        process: 'bad-words-detection' | 'image-classification';
+        status: 'success' | 'failure' | 'pending' | 'pending-manual';
+        result: null | string;
+        createdAt: string;
+        updatedAt: string;
+    }>;
 };
 
 /**
@@ -1721,7 +2182,7 @@ export type GetAppContextResponses = {
      * App context
      */
     200: {
-        item: Item;
+        item: AppItem;
         members: Array<MinimalAccount>;
     };
 };
@@ -2494,10 +2955,6 @@ export type GetCollectionInformationsResponses = {
      * Default Response
      */
     200: null | {
-        id: string;
-        item: Item;
-        creator: NullableMember;
-        createdAt: string;
         totalViews: number;
     };
 };
@@ -2976,22 +3433,15 @@ export type CreateShortcutError = CreateShortcutErrors[keyof CreateShortcutError
 
 export type CreateShortcutResponses = {
     /**
+     * Shortcut Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            shortcut: {
-                target: string;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3009,7 +3459,7 @@ export type CreateShortcutResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3019,15 +3469,24 @@ export type CreateShortcutResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'shortcut';
+        extra: {
+            shortcut: {
+                target: string;
+            };
+        };
     };
 };
 
 export type CreateShortcutResponse = CreateShortcutResponses[keyof CreateShortcutResponses];
 
 export type UpdateShortcutData = {
+    /**
+     * Shortcut Item
+     */
     body?: {
         name?: string;
         description?: null | string;
@@ -3050,22 +3509,15 @@ export type UpdateShortcutError = UpdateShortcutErrors[keyof UpdateShortcutError
 
 export type UpdateShortcutResponses = {
     /**
+     * Shortcut Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            shortcut: {
-                target: string;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3083,7 +3535,7 @@ export type UpdateShortcutResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3093,9 +3545,15 @@ export type UpdateShortcutResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'shortcut';
+        extra: {
+            shortcut: {
+                target: string;
+            };
+        };
     };
 };
 
@@ -3243,8 +3701,8 @@ export type GetUrlResponse = GetUrlResponses[keyof GetUrlResponses];
 
 export type UpdateFileData = {
     /**
-     * Item
-     * Smallest unit of a learning collection
+     * File Item
+     * Item of type file, represents a file.
      */
     body?: {
         name?: string;
@@ -3267,7 +3725,7 @@ export type UpdateFileData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3379,7 +3837,7 @@ export type CreateFolderData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3389,7 +3847,7 @@ export type CreateFolderData = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        geolocation?: GeoCoordinate;
+        geolocation?: unknown;
     };
     path?: never;
     query?: {
@@ -3410,22 +3868,15 @@ export type CreateFolderError = CreateFolderErrors[keyof CreateFolderErrors];
 
 export type CreateFolderResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3443,7 +3894,7 @@ export type CreateFolderResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3453,15 +3904,28 @@ export type CreateFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
 export type CreateFolderResponse = CreateFolderResponses[keyof CreateFolderResponses];
 
 export type UpdateFolderData = {
+    /**
+     * Folder Item
+     */
     body?: {
         name?: string;
         description?: null | string;
@@ -3483,7 +3947,7 @@ export type UpdateFolderData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3512,22 +3976,15 @@ export type UpdateFolderError = UpdateFolderErrors[keyof UpdateFolderErrors];
 
 export type UpdateFolderResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3545,7 +4002,7 @@ export type UpdateFolderResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3555,9 +4012,19 @@ export type UpdateFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
@@ -3583,22 +4050,15 @@ export type ConvertFolderToCapsuleError = ConvertFolderToCapsuleErrors[keyof Con
 
 export type ConvertFolderToCapsuleResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3616,7 +4076,7 @@ export type ConvertFolderToCapsuleResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3626,9 +4086,19 @@ export type ConvertFolderToCapsuleResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
@@ -3654,22 +4124,15 @@ export type CreateFolderWithThumbnailError = CreateFolderWithThumbnailErrors[key
 
 export type CreateFolderWithThumbnailResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3687,7 +4150,7 @@ export type CreateFolderWithThumbnailResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3697,9 +4160,19 @@ export type CreateFolderWithThumbnailResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
@@ -3727,7 +4200,7 @@ export type CreateCapsuleData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3757,22 +4230,15 @@ export type CreateCapsuleError = CreateCapsuleErrors[keyof CreateCapsuleErrors];
 
 export type CreateCapsuleResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3790,7 +4256,7 @@ export type CreateCapsuleResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3800,9 +4266,19 @@ export type CreateCapsuleResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
@@ -3828,22 +4304,15 @@ export type ConvertCapsuleToFolderError = ConvertCapsuleToFolderErrors[keyof Con
 
 export type ConvertCapsuleToFolderResponses = {
     /**
+     * Folder Item
      * Default Response
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            folder: {
-                isCapsule?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3861,7 +4330,7 @@ export type ConvertCapsuleToFolderResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3871,9 +4340,19 @@ export type ConvertCapsuleToFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'folder';
+        extra: {
+            folder: {
+                isCapsule?: boolean;
+                /**
+                 * @deprecated
+                 */
+                childrenOrder?: Array<string>;
+            };
+        };
     };
 };
 
@@ -3901,7 +4380,7 @@ export type CreateAppData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3912,7 +4391,7 @@ export type CreateAppData = {
             alignment?: 'center' | 'left' | 'right';
         };
         url: string;
-        geolocation?: GeoCoordinate;
+        geolocation?: unknown;
     };
     path?: never;
     query?: {
@@ -3939,17 +4418,9 @@ export type CreateAppResponses = {
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            app: {
-                url: string;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -3967,7 +4438,7 @@ export type CreateAppResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -3977,9 +4448,15 @@ export type CreateAppResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'app';
+        extra: {
+            app: {
+                url: string;
+            };
+        };
     };
 };
 
@@ -4007,7 +4484,7 @@ export type UpdateAppData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4042,17 +4519,9 @@ export type UpdateAppResponses = {
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            app: {
-                url: string;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -4070,7 +4539,7 @@ export type UpdateAppResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4080,9 +4549,15 @@ export type UpdateAppResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'app';
+        extra: {
+            app: {
+                url: string;
+            };
+        };
     };
 };
 
@@ -4290,20 +4765,6 @@ export type GetApiItemsPublicationByItemIdStatusResponses = {
     200: unknown;
 };
 
-export type GetApiItemsH5pAssetsIntegrationHtmlData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/items/h5p-assets/integration.html';
-};
-
-export type GetApiItemsH5pAssetsIntegrationHtmlResponses = {
-    /**
-     * Default Response
-     */
-    200: unknown;
-};
-
 export type ImportH5pData = {
     body?: never;
     path?: never;
@@ -4331,9 +4792,9 @@ export type ImportH5pError = ImportH5pErrors[keyof ImportH5pErrors];
 
 export type ImportH5pResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Default Response
      */
-    200: Item;
+    200: H5pItem;
 };
 
 export type ImportH5pResponse = ImportH5pResponses[keyof ImportH5pResponses];
@@ -4361,9 +4822,9 @@ export type CreateEtherpadError = CreateEtherpadErrors[keyof CreateEtherpadError
 
 export type CreateEtherpadResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Successful Response
      */
-    200: Item;
+    204: void;
 };
 
 export type CreateEtherpadResponse = CreateEtherpadResponses[keyof CreateEtherpadResponses];
@@ -4390,7 +4851,7 @@ export type UpdateEtherpadData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4600,10 +5061,6 @@ export type CreateLinkData = {
         name: string;
         description?: null | string;
         lang?: string;
-        /**
-         * Item settings
-         * Parameters, mostly visual, common to all types of items.
-         */
         settings?: {
             /**
              * @deprecated
@@ -4617,7 +5074,7 @@ export type CreateLinkData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4626,11 +5083,14 @@ export type CreateLinkData = {
             showLinkButton?: boolean;
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
+        } & {
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
         };
         url: string;
         showLinkIframe?: boolean;
         showLinkButton?: boolean;
-        geolocation?: GeoCoordinate;
+        geolocation?: unknown;
     };
     path?: never;
     query?: {
@@ -4651,58 +5111,9 @@ export type CreateLinkError = CreateLinkErrors[keyof CreateLinkErrors];
 
 export type CreateLinkResponses = {
     /**
-     * Embedded Link
      * Item of type embedded link, represents a resource to an external website.
      */
-    200: {
-        id: string;
-        name: string;
-        description?: null | string;
-        type: string;
-        path: string;
-        lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            embeddedLink: {
-                url: string;
-                thumbnails?: Array<string>;
-                icons?: Array<string>;
-                html?: string;
-                description?: string;
-                title?: string;
-            };
-        };
-        settings: {
-            /**
-             * @deprecated
-             */
-            lang?: string;
-            isPinned?: boolean;
-            /**
-             * @deprecated
-             */
-            tags?: Array<string>;
-            showChatbox?: boolean;
-            isResizable?: boolean;
-            hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
-            displayCoEditors?: boolean;
-            descriptionPlacement?: 'above' | 'below';
-            isCollapsible?: boolean;
-            enableSaveActions?: boolean;
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-            alignment?: 'center' | 'left' | 'right';
-        } & {
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-        };
-        creator?: NullableMinimalAccount;
-        createdAt: string;
-        updatedAt: string;
-    };
+    200: EmbeddedLinkItem;
 };
 
 export type CreateLinkResponse = CreateLinkResponses[keyof CreateLinkResponses];
@@ -4712,10 +5123,6 @@ export type UpdateLinkData = {
         name?: string;
         description?: null | string;
         lang?: string;
-        /**
-         * Item settings
-         * Parameters, mostly visual, common to all types of items.
-         */
         settings?: {
             /**
              * @deprecated
@@ -4729,7 +5136,7 @@ export type UpdateLinkData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4738,6 +5145,9 @@ export type UpdateLinkData = {
             showLinkButton?: boolean;
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
+        } & {
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
         };
         url?: string;
         showLinkIframe?: boolean;
@@ -4761,58 +5171,9 @@ export type UpdateLinkError = UpdateLinkErrors[keyof UpdateLinkErrors];
 
 export type UpdateLinkResponses = {
     /**
-     * Embedded Link
      * Item of type embedded link, represents a resource to an external website.
      */
-    200: {
-        id: string;
-        name: string;
-        description?: null | string;
-        type: string;
-        path: string;
-        lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            embeddedLink: {
-                url: string;
-                thumbnails?: Array<string>;
-                icons?: Array<string>;
-                html?: string;
-                description?: string;
-                title?: string;
-            };
-        };
-        settings: {
-            /**
-             * @deprecated
-             */
-            lang?: string;
-            isPinned?: boolean;
-            /**
-             * @deprecated
-             */
-            tags?: Array<string>;
-            showChatbox?: boolean;
-            isResizable?: boolean;
-            hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
-            displayCoEditors?: boolean;
-            descriptionPlacement?: 'above' | 'below';
-            isCollapsible?: boolean;
-            enableSaveActions?: boolean;
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-            alignment?: 'center' | 'left' | 'right';
-        } & {
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-        };
-        creator?: NullableMinimalAccount;
-        createdAt: string;
-        updatedAt: string;
-    };
+    200: EmbeddedLinkItem;
 };
 
 export type UpdateLinkResponse = UpdateLinkResponses[keyof UpdateLinkResponses];
@@ -4820,39 +5181,10 @@ export type UpdateLinkResponse = UpdateLinkResponses[keyof UpdateLinkResponses];
 export type CreateDocumentData = {
     body: {
         name: string;
-        description?: null | string;
-        lang?: string;
-        /**
-         * Item settings
-         * Parameters, mostly visual, common to all types of items.
-         */
-        settings?: {
-            /**
-             * @deprecated
-             */
-            lang?: string;
-            isPinned?: boolean;
-            /**
-             * @deprecated
-             */
-            tags?: Array<string>;
-            showChatbox?: boolean;
-            isResizable?: boolean;
-            hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
-            displayCoEditors?: boolean;
-            descriptionPlacement?: 'above' | 'below';
-            isCollapsible?: boolean;
-            enableSaveActions?: boolean;
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-            alignment?: 'center' | 'left' | 'right';
-        };
         content: string;
         flavor?: 'none' | 'info' | 'success' | 'warning' | 'error';
         isRaw?: boolean;
-        geolocation?: GeoCoordinate;
+        geolocation?: unknown;
     };
     path?: never;
     query?: {
@@ -4873,25 +5205,15 @@ export type CreateDocumentError = CreateDocumentErrors[keyof CreateDocumentError
 
 export type CreateDocumentResponses = {
     /**
-     * Document
+     * Document Item
      * Item of type document, represents a text.
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            document: {
-                content: string;
-                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
-                isRaw?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -4909,7 +5231,7 @@ export type CreateDocumentResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4919,9 +5241,17 @@ export type CreateDocumentResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'document';
+        extra: {
+            document: {
+                content: string;
+                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
+                isRaw?: boolean;
+            };
+        };
     };
 };
 
@@ -4949,7 +5279,7 @@ export type UpdateDocumentData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -4981,25 +5311,15 @@ export type UpdateDocumentError = UpdateDocumentErrors[keyof UpdateDocumentError
 
 export type UpdateDocumentResponses = {
     /**
-     * Document
+     * Document Item
      * Item of type document, represents a text.
      */
     200: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {
-            document: {
-                content: string;
-                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
-                isRaw?: boolean;
-            };
-        };
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -5017,7 +5337,7 @@ export type UpdateDocumentResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -5027,9 +5347,17 @@ export type UpdateDocumentResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'document';
+        extra: {
+            document: {
+                content: string;
+                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
+                isRaw?: boolean;
+            };
+        };
     };
 };
 
@@ -5452,6 +5780,7 @@ export type GetLatestItemValidationGroupError = GetLatestItemValidationGroupErro
 
 export type GetLatestItemValidationGroupResponses = {
     /**
+     * Item Validation Group
      * Group of validations for an item, without nested item
      */
     200: null | {
@@ -6339,7 +6668,7 @@ export type CreatePageData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6349,7 +6678,7 @@ export type CreatePageData = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        geolocation?: GeoCoordinate;
+        geolocation?: unknown;
     };
     path?: never;
     query?: {
@@ -6370,18 +6699,15 @@ export type CreatePageError = CreatePageErrors[keyof CreatePageErrors];
 
 export type CreatePageResponses = {
     /**
+     * Page Item
      * Default Response
      */
     201: {
         id: string;
         name: string;
-        description?: null | string;
-        type: string;
+        description: null | string;
         path: string;
         lang: string;
-        extra: {
-            [key: string]: unknown;
-        } & {};
         /**
          * Item settings
          * Parameters, mostly visual, common to all types of items.
@@ -6399,7 +6725,7 @@ export type CreatePageResponses = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6409,9 +6735,13 @@ export type CreatePageResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMinimalAccount;
+        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
+        type: 'page';
+        extra: {
+            [key: string]: never;
+        };
     };
 };
 
@@ -6500,7 +6830,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6538,7 +6868,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6576,7 +6906,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6621,7 +6951,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6654,7 +6984,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6692,7 +7022,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6731,7 +7061,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6771,7 +7101,7 @@ export type CreateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6806,7 +7136,7 @@ export type CreateItemError = CreateItemErrors[keyof CreateItemErrors];
 
 export type CreateItemResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Default Response
      */
     200: Item;
 };
@@ -6862,7 +7192,7 @@ export type UpdateItemData = {
             showChatbox?: boolean;
             isResizable?: boolean;
             hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0';
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
             displayCoEditors?: boolean;
             descriptionPlacement?: 'above' | 'below';
             isCollapsible?: boolean;
@@ -6918,7 +7248,7 @@ export type UpdateItemError = UpdateItemErrors[keyof UpdateItemErrors];
 
 export type UpdateItemResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Default Response
      */
     200: Item;
 };
@@ -7084,7 +7414,7 @@ export type ReorderItemError = ReorderItemErrors[keyof ReorderItemErrors];
 
 export type ReorderItemResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Default Response
      */
     200: Item;
 };
@@ -7181,7 +7511,7 @@ export type CreateItemWithThumbnailError = CreateItemWithThumbnailErrors[keyof C
 
 export type CreateItemWithThumbnailResponses = {
     /**
-     * Smallest unit of a learning collection
+     * Default Response
      */
     200: Item;
 };

@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { buildPublishWarningIcon } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import ThumbnailUploader, {

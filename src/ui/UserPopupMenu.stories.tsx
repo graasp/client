@@ -1,8 +1,9 @@
-import { AccountType, DiscriminatedItem } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
+import type { PackedItem } from '@/openapi/client';
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from './Avatar/Avatar.js';
@@ -68,7 +69,7 @@ export const Guest = {
     user: {
       ...CURRENT_USER,
       type: AccountType.Guest,
-      item: {} as DiscriminatedItem,
+      item: {} as PackedItem,
     },
     avatar: (
       <Avatar

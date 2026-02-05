@@ -8,11 +8,12 @@ import {
   useState,
 } from 'react';
 
-import { Context, DiscriminatedItem, Member, PackedItem } from '@graasp/sdk';
+import { Context, Member } from '@graasp/sdk';
 
 import { addDays } from 'date-fns/addDays';
 
 import { hooks } from '@/config/queryClient';
+import { PackedItem } from '@/openapi/client';
 import { useDescendants } from '@/query/item/descendants/hooks';
 
 import { DateRange } from '~analytics/config/type';
@@ -27,8 +28,8 @@ const defaultValue: {
   selectedActionTypes: string[];
   setSelectedActionTypes: Dispatch<string[]>;
   error: boolean;
-  itemData?: DiscriminatedItem;
-  itemChildren?: DiscriminatedItem[];
+  itemData?: PackedItem;
+  itemChildren?: PackedItem[];
   isLoading: boolean;
   requestedSampleSize: number;
   descendantApps: PackedItem[];
@@ -132,7 +133,7 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       selectedActionTypes,
       setSelectedActionTypes,
       error,
-      itemData,
+      itemData: itemData,
       itemChildren,
       isLoading: itemIsLoading,
       requestedSampleSize,
@@ -142,7 +143,6 @@ const DataProvider = ({ children, itemId }: Props): JSX.Element => {
       itemId,
     }),
     [
-      // allMembers,
       error,
       selectedUsers,
       selectedActionTypes,

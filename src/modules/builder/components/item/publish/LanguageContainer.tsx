@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Chip, Stack, Typography } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { DEFAULT_LANG, NS } from '@/config/constants';
 import { LANGS } from '@/config/langs';
 import { LIBRARY_SETTINGS_LANGUAGES_ID } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';

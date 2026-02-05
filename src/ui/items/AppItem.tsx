@@ -2,12 +2,9 @@ import { type JSX, memo, useMemo, useRef, useState } from 'react';
 
 import { Skeleton, styled } from '@mui/material';
 
-import {
-  AppItemType,
-  Member,
-  appendQueryParamToUrl,
-  getAppExtra,
-} from '@graasp/sdk';
+import { Member, appendQueryParamToUrl, getAppExtra } from '@graasp/sdk';
+
+import type { AppItem as AppItemType } from '@/openapi/client';
 
 import withCollapse from '../Collapse/withCollapse.js';
 import { SCREEN_MAX_HEIGHT } from '../constants.js';

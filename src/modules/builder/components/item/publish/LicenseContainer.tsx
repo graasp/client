@@ -14,8 +14,6 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import {
   CC_DELETE_BUTTON_HEADER,
@@ -23,6 +21,7 @@ import {
   CC_SAVE_BUTTON,
   LIBRARY_SETTINGS_CC_SETTINGS_ID,
 } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import { CC_LICENSE_ABOUT_URL } from '~builder/constants';
@@ -35,7 +34,7 @@ import PublicationModal from './PublicationModal';
 const SYNC_STATUS_KEY = 'PublishLicense';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: PackedItem;
 };
 
 export const LicenseContainer = ({ item }: Props): JSX.Element => {

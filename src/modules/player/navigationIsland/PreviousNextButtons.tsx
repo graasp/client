@@ -1,7 +1,5 @@
 import type { JSX } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useParams, useSearch } from '@tanstack/react-router';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -15,14 +13,15 @@ import {
   NEXT_ITEM_NAV_BUTTON_ID,
   PREVIOUS_ITEM_NAV_BUTTON_ID,
 } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 
 import { LoadingButton, NavigationButton } from './customButtons';
 
 function getPrevious(
   itemId: string,
   // includes the rootItem
-  folderHierarchy: DiscriminatedItem[],
-): DiscriminatedItem | null {
+  folderHierarchy: PackedItem[],
+): PackedItem | null {
   const idx = folderHierarchy.findIndex(({ id }) => id === itemId);
   if (idx < 0) {
     return null;
@@ -32,8 +31,8 @@ function getPrevious(
 
 function getNext(
   itemId: string,
-  folderHierarchy: DiscriminatedItem[],
-): DiscriminatedItem | null {
+  folderHierarchy: PackedItem[],
+): PackedItem | null {
   const idx = folderHierarchy.findIndex(({ id }) => id === itemId);
   if (idx < 0 || idx + 1 > folderHierarchy.length) {
     return null;

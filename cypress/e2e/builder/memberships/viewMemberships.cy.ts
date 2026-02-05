@@ -1,5 +1,6 @@
 import {
   GuestFactory,
+  ItemLoginSchema,
   ItemLoginSchemaFactory,
   ItemLoginSchemaStatus,
   ItemLoginSchemaType,
@@ -7,7 +8,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client';
+import type { PackedItem, PermissionLevel } from '@/openapi/client';
 
 import {
   buildDataCyWrapper,
@@ -21,7 +22,7 @@ import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { buildItemMembership } from '../fixtures/memberships';
 import { buildItemPath, buildItemSharePath } from '../utils';
 
-const itemWithAdmin = { ...PackedFolderItemFactory() };
+const itemWithAdmin = { ...PackedFolderItemFactory() } as PackedItem;
 const adminMembership = buildItemMembership({
   item: itemWithAdmin,
   permission: 'admin',
@@ -122,7 +123,10 @@ describe('View Memberships - Individual', () => {
 
 describe('View Memberships - Hidden item', () => {
   it('view disabled memberships for hidden item', () => {
-    const hiddenItem = PackedFolderItemFactory({}, { hiddenVisibility: {} });
+    const hiddenItem = PackedFolderItemFactory(
+      {},
+      { hiddenVisibility: {} },
+    ) as PackedItem;
     const adminHiddenMembership = buildItemMembership({
       item: hiddenItem,
       permission: 'admin',
@@ -143,7 +147,7 @@ describe('View Memberships - Hidden item', () => {
     });
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: hiddenItem,
+      item: hiddenItem as unknown as ItemLoginSchema['item'],
     });
     const guestMemberships = [
       buildItemMembership({
@@ -218,7 +222,7 @@ describe('View Memberships - Hidden item', () => {
   it('view frozen guest membership', () => {
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: itemWithAdmin,
+      item: itemWithAdmin as unknown as ItemLoginSchema['item'],
       status: ItemLoginSchemaStatus.Freeze,
     });
     const guestMemberships = [
@@ -269,7 +273,7 @@ describe('View Memberships - Hidden item', () => {
   it('view disabled guest membership', () => {
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: itemWithAdmin,
+      item: itemWithAdmin as unknown as ItemLoginSchema['item'],
       status: ItemLoginSchemaStatus.Disabled,
     });
     const guestMemberships = [
@@ -323,7 +327,7 @@ describe('View Memberships - Guest', () => {
   it('view guest membership', () => {
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: itemWithAdmin,
+      item: itemWithAdmin as unknown as ItemLoginSchema['item'],
     });
     const guestMemberships = [
       buildItemMembership({
@@ -372,7 +376,7 @@ describe('View Memberships - Guest', () => {
   it('view frozen guest membership', () => {
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: itemWithAdmin,
+      item: itemWithAdmin as unknown as ItemLoginSchema['item'],
       status: ItemLoginSchemaStatus.Freeze,
     });
     const guestMemberships = [
@@ -423,7 +427,7 @@ describe('View Memberships - Guest', () => {
   it('view disabled guest membership', () => {
     const itemLoginSchema = ItemLoginSchemaFactory({
       type: ItemLoginSchemaType.Username,
-      item: itemWithAdmin,
+      item: itemWithAdmin as unknown as ItemLoginSchema['item'],
       status: ItemLoginSchemaStatus.Disabled,
     });
     const guestMemberships = [
@@ -475,7 +479,10 @@ describe('View Memberships - Guest', () => {
 
 describe('View Memberships Read-Only Mode', () => {
   it('view membership in settings read-only mode', () => {
-    const item = PackedFolderItemFactory({}, { permission: 'write' });
+    const item = PackedFolderItemFactory(
+      {},
+      { permission: 'write' },
+    ) as PackedItem;
     const ownMembership = buildItemMembership({
       item,
       permission: 'write',

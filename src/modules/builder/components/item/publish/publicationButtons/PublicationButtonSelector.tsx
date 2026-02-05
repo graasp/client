@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 
-import { PackedItem, PublicationStatus } from '@graasp/sdk';
+import { PublicationStatus } from '@graasp/sdk';
 
+import { PackedItem } from '@/openapi/client';
 import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import InvalidButton from './InvalidButton';

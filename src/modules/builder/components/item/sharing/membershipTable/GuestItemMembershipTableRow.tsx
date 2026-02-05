@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { TableCell, Tooltip, Typography } from '@mui/material';
 
-import { DiscriminatedItem, ItemLoginSchemaStatus } from '@graasp/sdk';
+import { ItemLoginSchemaStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { buildItemMembershipRowId } from '@/config/selectors';
-import { ItemMembership } from '@/openapi/client';
+import type { Item, ItemMembership } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
@@ -20,7 +20,7 @@ const GuestItemMembershipTableRow = ({
   isDisabled,
 }: {
   data: ItemMembership;
-  itemId: DiscriminatedItem['id'];
+  itemId: Item['id'];
   isDisabled?: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);

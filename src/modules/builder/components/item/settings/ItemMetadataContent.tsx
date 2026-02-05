@@ -84,7 +84,9 @@ const ItemMetadataContent = (): JSX.Element => {
                 {mimetype ?? getItemType(item)}
                 <Preview>
                   {item.type === 'folder' &&
-                    (isCapsule(item) ? (
+                    // TODO: fix any
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (isCapsule(item as any) ? (
                       <ConvertToFolderButton
                         itemPath={item.path}
                         itemId={item.id}

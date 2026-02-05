@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { PackedItem, UUID, WebsocketClient } from '@graasp/sdk';
+import { UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import { getParentItems } from '@/openapi/client/sdk.gen.js';
+import { type PackedItem, getParentItems } from '@/openapi/client';
 
 import {
   CONSTANT_KEY_STALE_TIME_MILLISECONDS,
@@ -67,7 +67,7 @@ const config = (
             ...params,
             ordered,
             keywords: debouncedKeywords,
-          });
+          }) as Promise<PackedItem[]>;
         },
         ...defaultQueryOptions,
         enabled: Boolean(id) && enabled,
@@ -141,7 +141,7 @@ const config = (
           if (!id) {
             throw new UndefinedArgument();
           }
-          return Api.getItem(id);
+          return Api.getItem(id) as Promise<PackedItem>;
         },
         enabled: Boolean(id),
         ...defaultQueryOptions,

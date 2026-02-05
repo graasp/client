@@ -3,19 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 import { ButtonProps, IconButton, useTheme } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { PlusIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { CREATE_ITEM_BUTTON_ID } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../langs';
 import NewItemModal from './NewItemModal';
 
 type Props = {
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: Item['id'];
   size?: ButtonProps['size'];
   type?: 'button' | 'icon';
 };

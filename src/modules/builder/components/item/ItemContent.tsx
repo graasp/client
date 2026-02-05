@@ -4,16 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { Alert, Container, Skeleton, Stack, styled } from '@mui/material';
 
 import {
-  AppItemType,
   Context,
-  DocumentItemType,
-  EtherpadItemType,
-  FileItemType,
-  H5PItemType,
-  LinkItemType,
-  PackedItem,
-  PageItemType,
-  ShortcutItemType,
   buildPdfViewerLink,
   getH5PExtra,
   getLinkThumbnailUrl,
@@ -31,7 +22,18 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildFileItemId,
 } from '@/config/selectors';
-import type { PermissionLevel } from '@/openapi/client';
+import type {
+  AppItem as AppItemType,
+  DocumentItem as DocumentItemType,
+  EtherpadItem as EtherpadItemType,
+  FileItem as FileItemType,
+  H5pItem as H5PItemType,
+  EmbeddedLinkItem as LinkItemType,
+  PackedItem,
+  PageItem as PageItemType,
+  PermissionLevel,
+  ShortcutItem as ShortcutItemType,
+} from '@/openapi/client';
 import { Api } from '@/query';
 import Loader from '@/ui/Loader/Loader';
 import AppItem from '@/ui/items/AppItem';

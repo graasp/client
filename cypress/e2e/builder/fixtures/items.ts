@@ -1,11 +1,11 @@
 import {
-  DiscriminatedItem,
   ItemValidation,
-  ItemValidationGroup,
   ItemValidationProcess,
   ItemValidationStatus,
-  PackedItem,
+  PackedFolderItemFactory,
 } from '@graasp/sdk';
+
+import type { ItemValidationGroup, PackedItem } from '@/openapi/client';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
 import { MEMBERS } from '../../../fixtures/members';
@@ -19,12 +19,11 @@ export const generateOwnItems = (number: number): ItemForTest[] => {
   const path = (i: number) => id(i).replaceAll('-', '_');
 
   return new Array(number).fill(null).map((_, i) => {
-    const item = {
-      ...DEFAULT_FOLDER_ITEM,
+    const item = PackedFolderItemFactory({
       id: id(i),
       name: `item ${i}`,
       path: path(i),
-    };
+    }) as PackedItem;
 
     const paddedI = `${i}`.padStart(12, '0');
     const mId = `dafebabe-dead-beef-1234-${paddedI}`;
@@ -230,12 +229,11 @@ export const PublishedItemFactory = (
     item: itemToPublish,
     createdAt: new Date().toISOString(),
     creator: itemToPublish.creator,
-    totalViews: 0,
   },
 });
 
 export const ItemValidationGroupFactory = (
-  validatedItem: DiscriminatedItem,
+  validatedItem: PackedItem,
   {
     status = ItemValidationStatus.Success,
     isOutDated = false,

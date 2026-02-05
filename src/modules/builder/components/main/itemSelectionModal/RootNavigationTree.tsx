@@ -3,14 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Skeleton, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import type { RowMenuProps } from '@/ui/Tree/RowMenu';
 import RowMenu from '@/ui/Tree/RowMenu';
 import RowMenus from '@/ui/Tree/RowMenus';
@@ -18,7 +17,7 @@ import type { NavigationElement } from '@/ui/Tree/types';
 
 interface RootNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];
-  items: DiscriminatedItem[];
+  items: Item[];
   onClick: RowMenuProps['onClick'];
   onNavigate: RowMenuProps['onNavigate'];
   rootMenuItems: NavigationElement[];

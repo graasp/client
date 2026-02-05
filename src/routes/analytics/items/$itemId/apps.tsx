@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Grid, Typography } from '@mui/material';
 
-import { Context, PackedItem } from '@graasp/sdk';
+import { Context } from '@graasp/sdk';
 
 import { createFileRoute } from '@tanstack/react-router';
 
 import { type AuthenticatedUser, useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { API_HOST } from '@/config/env';
+import { PackedItem } from '@/openapi/client';
 import { Api } from '@/query';
 import AppItem from '@/ui/items/AppItem';
 

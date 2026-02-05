@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
-import { PackedItem, Paginated } from '@graasp/sdk';
+import { Paginated } from '@graasp/sdk';
 
 import { waitFor } from '@testing-library/dom';
 import { act, renderHook } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import type { PackedItem } from '@/openapi/client';
 
 import { itemKeys } from '../../keys.js';
 import {

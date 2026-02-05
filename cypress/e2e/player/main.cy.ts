@@ -1,4 +1,4 @@
-import { DiscriminatedItem, DocumentItemFactory } from '@graasp/sdk';
+import { PackedDocumentItemFactory } from '@graasp/sdk';
 
 import {
   FOLDER_NAME_TITLE_CLASS,
@@ -34,7 +34,7 @@ import {
   expectLinkViewScreenLayout,
 } from './utils';
 
-const GRAASP_DOCUMENT_ITEM = DocumentItemFactory();
+const GRAASP_DOCUMENT_ITEM = PackedDocumentItemFactory();
 const items = [
   { ...GRAASP_LINK_ITEM, permission: 'admin' as const },
   {
@@ -158,14 +158,13 @@ describe('Main Screen', () => {
 
       expectFolderLayout({
         rootId,
-        items: STATIC_ELECTRICITY.items as DiscriminatedItem[],
+        items: STATIC_ELECTRICITY.items,
       });
     });
     it(`Cannot display ${STATIC_ELECTRICITY.items[0].name} if does not have membership`, () => {
       cy.setUpApi({
         items: STATIC_ELECTRICITY.items.map((i) => {
-          const { permission: _permission, ...item } = i;
-          return item;
+          return { ...i, permission: null };
         }),
         currentMember: MEMBERS.BOB,
       });
@@ -182,7 +181,7 @@ describe('Main Screen', () => {
 
       expectFolderLayout({
         rootId,
-        items: PUBLIC_STATIC_ELECTRICITY.items as DiscriminatedItem[],
+        items: PUBLIC_STATIC_ELECTRICITY.items,
       });
     });
   });

@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Breadcrumbs, SxProps, styled } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
+import type { Item } from '@/openapi/client';
 
 import { CurrentItemNavigation } from './CurrentItemNavigation';
 import { ExtraItem, ExtraItemsNavigation } from './ExtraItemsNavigation';
@@ -22,7 +22,7 @@ export type NavigationProps = {
   buildMenuItemId?: (id: string) => string;
   buildMenuId?: (id: string) => string;
   id?: string;
-  item?: DiscriminatedItem;
+  item?: Item;
   parents?: { name: string; id: string }[];
   sx?: SxProps;
   useChildren: ItemMenuProps['useChildren'];

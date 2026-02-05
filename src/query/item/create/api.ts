@@ -1,8 +1,7 @@
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
+import type { Item, PackedItem } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import {
@@ -24,10 +23,10 @@ export const postItem = async ({
   geolocation,
   settings,
   previousItemId,
-}: PostItemPayloadType): Promise<DiscriminatedItem> =>
+}: PostItemPayloadType): Promise<PackedItem> =>
   verifyAuthentication(() =>
     axios
-      .post<DiscriminatedItem>(
+      .post<PackedItem>(
         `${API_HOST}/${buildPostItemRoute(parentId, previousItemId)}`,
         {
           name: name.trim(),
@@ -51,7 +50,7 @@ export const postItemWithThumbnail = async ({
   settings,
   thumbnail,
   previousItemId,
-}: PostItemWithThumbnailPayloadType): Promise<DiscriminatedItem> =>
+}: PostItemWithThumbnailPayloadType): Promise<PackedItem> =>
   verifyAuthentication(() => {
     const itemPayload = new FormData();
     // name and type are required
@@ -75,7 +74,7 @@ export const postItemWithThumbnail = async ({
      */
     itemPayload.append('file', thumbnail);
     return axios
-      .post<DiscriminatedItem>(
+      .post<PackedItem>(
         `${API_HOST}/${buildPostItemWithThumbnailRoute(parentId, previousItemId)}`,
         itemPayload,
         {
@@ -86,11 +85,11 @@ export const postItemWithThumbnail = async ({
   });
 
 export const uploadFiles = async (args: {
-  id?: DiscriminatedItem['id'];
+  id?: Item['id'];
   files: File[];
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: Item['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<DiscriminatedItem> =>
+}): Promise<PackedItem> =>
   verifyAuthentication(() => {
     const { id, previousItemId, files } = args;
     const itemPayload = new FormData();
@@ -99,7 +98,7 @@ export const uploadFiles = async (args: {
       itemPayload.append('files', f);
     }
     return axios
-      .post<DiscriminatedItem>(
+      .post<PackedItem>(
         `${API_HOST}/${buildUploadFilesRoute(id, previousItemId)}`,
         itemPayload,
         {

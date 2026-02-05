@@ -4,7 +4,9 @@ import { Box } from '@mui/material';
 
 import { MaxWidth } from '@graasp/sdk';
 
-const getWidthFromSizing = (size?: MaxWidth): string => {
+import { Item } from '@/openapi/client';
+
+const getWidthFromSizing = (size?: Item['settings']['maxWidth']): string => {
   switch (size) {
     case MaxWidth.ExtraSmall:
       return '100px';
@@ -25,7 +27,7 @@ export const SizingWrapper = ({
   size = MaxWidth.ExtraLarge,
   children,
 }: {
-  size?: MaxWidth;
+  size?: Item['settings']['maxWidth'];
   children: ReactNode;
 }): JSX.Element => {
   const width = getWidthFromSizing(size);

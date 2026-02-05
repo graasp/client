@@ -1,17 +1,16 @@
 import { type JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { buildDownloadButtonId } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import GraaspDownloadButton from '@/ui/buttons/DownloadButton/DownloadButton';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
   type?: ActionButtonVariant;
 };
 

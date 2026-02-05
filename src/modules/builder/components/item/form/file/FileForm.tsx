@@ -12,7 +12,6 @@ import {
 import {
   DescriptionPlacementType,
   FileItemExtra,
-  FileItemType,
   MimeTypes,
 } from '@graasp/sdk';
 
@@ -23,6 +22,7 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_IMAGE_ALT_TEXT_EDIT_FIELD_ID,
 } from '@/config/selectors';
+import { FileItem } from '@/openapi/client';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
@@ -41,7 +41,7 @@ export function FileForm({
   item,
   onClose,
 }: Readonly<{
-  item: FileItemType;
+  item: FileItem;
   onClose: () => void;
 }>) {
   const { t: translateBuilder } = useTranslation(NS.Builder);

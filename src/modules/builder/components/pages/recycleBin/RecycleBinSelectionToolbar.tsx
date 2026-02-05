@@ -1,11 +1,10 @@
 import type { JSX } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import {
   RECYCLE_BIN_DELETE_MANY_ITEMS_BUTTON_ID,
   RECYCLE_BIN_RESTORE_MANY_ITEMS_BUTTON_ID,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import DeleteButton from '~builder/components/common/DeleteButton';
 import RestoreButton from '~builder/components/common/RestoreButton';
@@ -15,7 +14,7 @@ import SelectionToolbar from '~builder/components/main/list/SelectionToolbar';
 const RecycleBinSelectionToolbar = ({
   items,
 }: {
-  items: DiscriminatedItem[];
+  items: Item[];
 }): JSX.Element => {
   const { selectedIds, clearSelection } = useSelectionContext();
 

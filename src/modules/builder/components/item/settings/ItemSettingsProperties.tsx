@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { BarChart3, MessageSquareOff, MessageSquareText } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -15,6 +13,7 @@ import {
   SETTINGS_RESIZE_TOGGLE_ID,
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
 } from '@/config/selectors';
+import type { Item, PackedItem } from '@/openapi/client';
 import PinButton from '@/ui/buttons/PinButton/PinButton';
 import { ActionButton } from '@/ui/types';
 
@@ -34,7 +33,7 @@ type Props = {
   item: PackedItem;
 };
 
-type ItemSetting = PackedItem['settings'];
+type ItemSetting = Item['settings'];
 
 const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);

@@ -4,13 +4,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import { Chip, Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem, TagCategory } from '@graasp/sdk';
+import { TagCategory } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
   buildCustomizedTagsSelector,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import { MultiSelectTagChipInput } from '~builder/components/input/MultiSelectTagChipInput';
 import { TAGS_DOCUMENTATION } from '~builder/constants';
@@ -21,7 +22,7 @@ import PublicationModal from '../PublicationModal';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
 };
 
 export const CustomizedTags = ({ item }: Props): JSX.Element => {

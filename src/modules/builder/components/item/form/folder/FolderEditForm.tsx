@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
@@ -13,6 +11,7 @@ import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
@@ -21,7 +20,7 @@ import { ItemNameField } from '../ItemNameField';
 import { DescriptionForm } from '../description/DescriptionForm';
 
 type FolderEditFormProps = {
-  item: DiscriminatedItem;
+  item: Item;
   onClose: () => void;
 };
 

@@ -1,9 +1,8 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { Item, PackedItem } from '@/openapi/client';
 import ItemBadges from '@/ui/ItemBadges/ItemBadges';
 
 type ItemStatuses = {
@@ -22,10 +21,10 @@ const DEFAULT_ITEM_STATUSES: ItemStatuses = {
   isPublic: false,
 };
 
-export type ItemsStatuses = { [key: DiscriminatedItem['id']]: ItemStatuses };
+export type ItemsStatuses = { [key: Item['id']]: ItemStatuses };
 
 type ChildCompProps = {
-  data: DiscriminatedItem;
+  data: PackedItem;
   itemsStatuses?: ItemsStatuses;
 };
 

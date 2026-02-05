@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Button, DialogActions, DialogContent } from '@mui/material';
 
-import { DescriptionPlacementType, DiscriminatedItem } from '@graasp/sdk';
+import { DescriptionPlacementType } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -12,6 +12,7 @@ import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
@@ -28,7 +29,7 @@ const BaseItemForm = ({
   item,
   onClose,
 }: {
-  item: DiscriminatedItem;
+  item: Item;
   onClose: () => void;
 }): JSX.Element => {
   const { t: translateCommon } = useTranslation(NS.Common);

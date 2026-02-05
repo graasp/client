@@ -1,8 +1,6 @@
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { ItemMembership, PermissionLevel } from '@/openapi/client';
+import type { Item, ItemMembership, PermissionLevel } from '@/openapi/client';
 import {
   createItemMembershipMutation,
   updateItemMembershipMutation,
@@ -13,8 +11,8 @@ export function useChangePermission({
   itemPath,
   itemId,
 }: {
-  itemId: DiscriminatedItem['id'];
-  itemPath: DiscriminatedItem['path'];
+  itemId: Item['id'];
+  itemPath: Item['path'];
 }) {
   const queryClient = useQueryClient();
   const {

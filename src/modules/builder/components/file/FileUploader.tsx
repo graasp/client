@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem, MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
+import { MAX_NUMBER_OF_FILES_UPLOAD } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 import { AxiosProgressEvent } from 'axios';
@@ -13,6 +13,7 @@ import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { getErrorMessage } from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
+import { Item } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
 
@@ -24,7 +25,7 @@ type Props = {
   onStart?: () => void;
   /** id of the component */
   id?: string;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: Item['id'];
 };
 
 export function FileUploader({

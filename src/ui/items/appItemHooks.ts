@@ -1,6 +1,8 @@
 import { RefObject, useEffect } from 'react';
 
-import { DiscriminatedItem, LocalContext, UUID } from '@graasp/sdk';
+import { LocalContext, UUID } from '@graasp/sdk';
+
+import { AppItem } from '@/openapi/client';
 
 export type Token = string;
 
@@ -37,7 +39,7 @@ const useAppCommunication = ({
   iFrameRef,
   requestApiAccessToken,
 }: {
-  item: DiscriminatedItem;
+  item: AppItem;
   appUrl: string;
   contextPayload: ContextPayload;
   iFrameRef: RefObject<HTMLIFrameElement | null>;

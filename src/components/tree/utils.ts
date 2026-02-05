@@ -1,16 +1,16 @@
-import { DiscriminatedItem, getMimetype, getParentFromPath } from '@graasp/sdk';
+import { getMimetype, getParentFromPath } from '@graasp/sdk';
 
-import { ItemType } from '@/openapi/client';
+import type { ItemType, PackedItem } from '@/openapi/client';
 
 type ItemIdToDirectChildren = {
-  [nodeId: string]: DiscriminatedItem[];
+  [nodeId: string]: PackedItem[];
 };
 
 /**
  * build parent -> children map
  * items without parent are not in the map
  */
-const createMapTree = (data: DiscriminatedItem[]): ItemIdToDirectChildren =>
+const createMapTree = (data: PackedItem[]): ItemIdToDirectChildren =>
   data.reduce<ItemIdToDirectChildren>((treeMap, elem) => {
     const parentId = getParentFromPath(elem.path);
     if (parentId) {
@@ -39,23 +39,24 @@ type TreeNode = {
 };
 
 // handle item children tree
-export const buildItemsTree = (
-  data: DiscriminatedItem[],
-  rootItems: DiscriminatedItem[],
-) => {
+export const buildItemsTree = (data: PackedItem[], rootItems: PackedItem[]) => {
   const tree: TreeNode = {};
   if (data.length === 1) {
     // this for non children one item as tree map build based on children to parent relation
     tree[data[0].id] = {
       id: data[0].id,
       name: data[0].name,
-      metadata: { type: data[0].type, mimetype: getMimetype(data[0].extra) },
+      metadata: {
+        type: data[0].type,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mimetype: getMimetype(data[0].extra as any),
+      },
       children: [],
     };
   }
   const mapTree = createMapTree(data);
 
-  const buildTree = (node: DiscriminatedItem) => {
+  const buildTree = (node: PackedItem) => {
     if (node.type === 'folder' && mapTree[node.id]) {
       const children = mapTree[node.id] ?? [];
 
@@ -73,7 +74,8 @@ export const buildItemsTree = (
       name: node.name,
       metadata: {
         type: node.type,
-        mimetype: getMimetype(node.extra),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mimetype: getMimetype(node.extra as any),
       },
     };
   };

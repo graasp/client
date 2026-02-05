@@ -1,16 +1,15 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { Item } from '@/openapi/client';
 import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
 import { ActionButtonVariant } from '@/ui/types';
 
 type Props = {
   type?: ActionButtonVariant;
-  item: DiscriminatedItem;
+  item: Item;
 };
 
 const ShowChatboxButton = ({ item, type }: Props): JSX.Element => {

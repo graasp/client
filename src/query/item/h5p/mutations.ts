@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
+
+import type { Item } from '@/openapi/client';
 
 import { getKeyForParentId } from '../../keys.js';
 import { type QueryClientConfig } from '../../types.js';
@@ -14,9 +14,9 @@ export const useImportH5P = (queryConfig: QueryClientConfig) => () => {
   const { notifier } = queryConfig;
   return useMutation({
     mutationFn: async (args: {
-      id?: DiscriminatedItem['id'];
+      id?: Item['id'];
       file: Blob;
-      previousItemId?: DiscriminatedItem['id'];
+      previousItemId?: Item['id'];
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => importH5P(args),
     onSuccess: () => {

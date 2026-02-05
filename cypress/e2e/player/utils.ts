@@ -1,11 +1,6 @@
 import {
-  AppItemType,
   CompleteGuest,
-  DiscriminatedItem,
-  DocumentItemType,
-  FileItemType,
   HttpMethod,
-  LinkItemType,
   MimeTypes,
   appendQueryParamToUrl,
   getDocumentExtra,
@@ -15,6 +10,15 @@ import {
 } from '@graasp/sdk';
 
 import { StatusCodes } from 'http-status-codes';
+
+import type {
+  AppItem,
+  DiscriminatedItem,
+  DocumentItem,
+  EmbeddedLinkItem,
+  FileItem,
+  Item,
+} from '@/openapi/client';
 
 import { DEFAULT_LINK_SHOW_BUTTON } from '../../../src/config/constants';
 import {
@@ -48,7 +52,7 @@ export const expectLinkViewScreenLayout = ({
   id,
   extra,
   settings,
-}: LinkItemType): void => {
+}: EmbeddedLinkItem): void => {
   const { url, html } = getLinkExtra(extra) || {};
 
   // embedded element
@@ -81,7 +85,7 @@ export const expectLinkViewScreenLayout = ({
   }
 };
 
-export const expectAppViewScreenLayout = ({ id, extra }: AppItemType): void => {
+export const expectAppViewScreenLayout = ({ id, extra }: AppItem): void => {
   const { url } = extra.app;
 
   const appUrl = appendQueryParamToUrl(url, { itemId: id });
@@ -91,10 +95,7 @@ export const expectAppViewScreenLayout = ({ id, extra }: AppItemType): void => {
     .should('contain', appUrl);
 };
 
-export const expectFileViewScreenLayout = ({
-  id,
-  extra,
-}: FileItemType): void => {
+export const expectFileViewScreenLayout = ({ id, extra }: FileItem): void => {
   const mimetype = getFileExtra(extra)?.mimetype ?? '';
   // embedded element
   let selector = '';
@@ -111,7 +112,7 @@ export const expectFileViewScreenLayout = ({
 export const expectDocumentViewScreenLayout = ({
   id,
   extra,
-}: DocumentItemType): void => {
+}: DocumentItem): void => {
   cy.get(`#${buildDocumentId(id)}`).then((editor) => {
     expect(editor.html()).to.contain(getDocumentExtra(extra)?.content);
   });
@@ -176,12 +177,12 @@ export class TestHelper {
   private isLoggedIn: boolean = false;
   private readonly hasAccessToItem: boolean = true;
   private readonly pseudoMember: CompleteGuest;
-  private readonly item: DiscriminatedItem;
+  private readonly item: Item;
   private readonly returnItemLoginSchemaType: boolean = true;
 
   constructor(args: {
     pseudoMember: CompleteGuest;
-    item: DiscriminatedItem;
+    item: Item;
     initiallyIsLoggedIn?: boolean;
     returnItemLoginSchemaType?: boolean;
     hasAccessToItem?: boolean;

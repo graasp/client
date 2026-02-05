@@ -1,8 +1,9 @@
-import { DiscriminatedItem, UUID } from '@graasp/sdk';
+import { UUID } from '@graasp/sdk';
 
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
+import type { Item, PackedItem } from '@/openapi/client';
 import {
   axiosClient as axios,
   verifyAuthentication,
@@ -38,10 +39,10 @@ export const deleteItemThumbnail = async (id: UUID) =>
     .then(({ data }) => data);
 
 export const uploadItemThumbnail = async (args: {
-  id: DiscriminatedItem['id'];
+  id: Item['id'];
   file: Blob;
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<DiscriminatedItem> =>
+}): Promise<PackedItem> =>
   verifyAuthentication(() => {
     const { id, file } = args;
     const itemPayload = new FormData();
@@ -52,7 +53,7 @@ export const uploadItemThumbnail = async (args: {
      */
     itemPayload.append('file', file);
     return axios
-      .post<DiscriminatedItem>(
+      .post<PackedItem>(
         `${API_HOST}/${buildUploadItemThumbnailRoute(id)}`,
         itemPayload,
         {

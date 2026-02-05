@@ -3,21 +3,20 @@ import { useTranslation } from 'react-i18next';
 
 import { ListItemIcon, MenuItem } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { FlagIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { ITEM_MENU_FLAG_BUTTON_CLASS } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import { FlagItemModalContext } from '../context/FlagItemModalContext';
 
-const FlagButton = ({ item }: { item: PackedItem }): JSX.Element => {
+const FlagButton = ({ itemId }: { itemId: Item['id'] }): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
 
   const { openModal: openFlagModal } = useContext(FlagItemModalContext);
   const handleFlag = () => {
-    openFlagModal?.(item.id);
+    openFlagModal?.(itemId);
   };
 
   return (

@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import Clear from '@mui/icons-material/Clear';
 import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { PackedItem } from '@/openapi/client';
 import {
   useItemGeolocation,
   useSuggestionsForAddress,
@@ -20,11 +19,7 @@ import MapGeolocationPicker, {
 
 import GeolocationModalButton from './GeolocationModalButton';
 
-const GeolocationPicker = ({
-  item,
-}: {
-  item: DiscriminatedItem;
-}): JSX.Element => {
+const GeolocationPicker = ({ item }: { item: PackedItem }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { data: geoloc } = useItemGeolocation(item.id);
   const { mutate: putGeoloc } = mutations.usePutItemGeolocation();

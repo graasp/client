@@ -13,8 +13,6 @@ import {
   Typography,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { Table2 } from 'lucide-react';
 import Papa from 'papaparse';
 
@@ -27,6 +25,7 @@ import {
   SHARE_ITEM_FROM_CSV_CANCEL_BUTTON_ID,
   SHARE_ITEM_FROM_CSV_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import ChoiceDisplay from './ChoiceDisplay';
 import DisplayInvitationSummary from './DisplayInvitationSummary';
@@ -78,7 +77,7 @@ const CSVFileSelectionButton = ({
 };
 
 type ImportUsersDialogContentProps = {
-  item: DiscriminatedItem;
+  item: Item;
   isFolder: boolean;
   handleClose: () => void;
 };

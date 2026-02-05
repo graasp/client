@@ -1,6 +1,6 @@
 import type { JSX } from 'react';
 
-import { PackedItem } from '@graasp/sdk';
+import type { PackedItem } from '@/openapi/client';
 
 import RecycleButton from '~builder/components/common/RecycleButton';
 import useModalStatus from '~builder/components/hooks/useModalStatus';

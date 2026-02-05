@@ -1,15 +1,15 @@
 import {
-  DiscriminatedItem,
   ItemValidation,
-  ItemValidationGroup,
   ItemValidationProcess,
   ItemValidationStatus,
 } from '@graasp/sdk';
 
+import type { ItemValidationGroup, PackedItem } from '@/openapi/client';
+
 import { ApiConfig } from '../../../support/types';
 import { SAMPLE_PUBLIC_ITEMS } from './items';
 
-export const VALIDATED_ITEM: DiscriminatedItem = {
+export const VALIDATED_ITEM: PackedItem = {
   ...SAMPLE_PUBLIC_ITEMS.items[0],
   updatedAt: '2019-07-27T07:45:00Z',
 };

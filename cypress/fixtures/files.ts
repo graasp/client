@@ -1,9 +1,6 @@
-import {
-  FileItemType,
-  MimeTypes,
-  PackedFileItemFactory,
-  buildFileExtra,
-} from '@graasp/sdk';
+import { MimeTypes, PackedFileItemFactory, buildFileExtra } from '@graasp/sdk';
+
+import { FileItem } from '@/openapi/client';
 
 import { MOCK_IMAGE_URL, MOCK_PDF_URL, MOCK_VIDEO_URL } from './fileLinks';
 import { CURRENT_MEMBER } from './members';
@@ -11,7 +8,7 @@ import { CURRENT_MEMBER } from './members';
 export const ICON_FILEPATH = 'files/icon.png';
 export const TEXT_FILEPATH = 'files/sometext.txt';
 
-export const IMAGE_ITEM_DEFAULT: FileItemType & { readFilepath: string } = {
+export const IMAGE_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   id: 'bd5519a2-5ba9-4305-b221-185facbe6a99',
   name: 'icon.png',
   description: 'a default image description',
@@ -36,7 +33,7 @@ export const IMAGE_ITEM_DEFAULT: FileItemType & { readFilepath: string } = {
   lang: 'en',
 };
 
-export const VIDEO_ITEM_DEFAULT: FileItemType & { readFilepath: string } = {
+export const VIDEO_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   id: 'qd5519a2-5ba9-4305-b221-185facbe6a99',
   name: 'video.mp4',
   description: 'a default video description',
@@ -61,7 +58,7 @@ export const VIDEO_ITEM_DEFAULT: FileItemType & { readFilepath: string } = {
   lang: 'en',
 };
 
-export const PDF_ITEM_DEFAULT: FileItemType & { readFilepath: string } = {
+export const PDF_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   id: 'cd5519a2-5ba9-4305-b221-185facbe6a99',
   name: 'doc.pdf',
   description: 'a default pdf description',

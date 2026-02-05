@@ -1,5 +1,4 @@
 import {
-  DiscriminatedItem,
   FolderItemFactory,
   ItemOpFeedbackEvent,
   PublicationStatus,
@@ -8,6 +7,8 @@ import {
 } from '@graasp/sdk';
 
 import { afterEach, describe, expect, it } from 'vitest';
+
+import type { FolderItem, Item } from '@/openapi/client';
 
 import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
@@ -29,12 +30,12 @@ describe('Ws Item Hooks', () => {
   });
 
   describe('useItemFeedbackUpdates', () => {
-    const item = FolderItemFactory();
+    const item = FolderItemFactory() as FolderItem;
     const itemActorId = item.creator?.id ?? 'random-id';
     const channel = { name: itemActorId, topic: TOPICS.ITEM_MEMBER };
     const hook = () => hooks.useItemFeedbackUpdates(itemActorId);
 
-    const handleWS = (itemEvent: ItemOpFeedbackEvent<DiscriminatedItem>) => {
+    const handleWS = (itemEvent: ItemOpFeedbackEvent<Item>) => {
       const handler = getHandlerByChannel(handlers, channel);
       expect(handler).not.toBeUndefined();
       handler?.handler(itemEvent);
@@ -47,10 +48,7 @@ describe('Ws Item Hooks', () => {
 
         await mockWsHook({ hook, wrapper });
 
-        const itemEvent: ItemOpFeedbackEvent<
-          DiscriminatedItem,
-          typeof OPS.DELETE
-        > = {
+        const itemEvent: ItemOpFeedbackEvent<Item, typeof OPS.DELETE> = {
           kind: KINDS.FEEDBACK,
           resource: [item.id],
           op: OPS.DELETE,
@@ -77,9 +75,9 @@ describe('Ws Item Hooks', () => {
       };
 
       const MoveItemEventFactory = (
-        originalItem: DiscriminatedItem,
-        movedItem: DiscriminatedItem,
-      ): ItemOpFeedbackEvent<DiscriminatedItem, typeof OPS.MOVE> => ({
+        originalItem: Item,
+        movedItem: Item,
+      ): ItemOpFeedbackEvent<Item, typeof OPS.MOVE> => ({
         kind: KINDS.FEEDBACK,
         resource: [originalItem.id],
         op: OPS.MOVE,
@@ -172,9 +170,9 @@ describe('Ws Item Hooks', () => {
       };
 
       const CopyItemEventFactory = (
-        originalItem: DiscriminatedItem,
-        copiedItem: DiscriminatedItem,
-      ): ItemOpFeedbackEvent<DiscriminatedItem, typeof OPS.COPY> => ({
+        originalItem: Item,
+        copiedItem: Item,
+      ): ItemOpFeedbackEvent<Item, typeof OPS.COPY> => ({
         kind: KINDS.FEEDBACK,
         resource: [originalItem.id],
         op: OPS.COPY,
@@ -254,8 +252,8 @@ describe('Ws Item Hooks', () => {
       };
 
       const RecycleItemEventFactory = (
-        recycledItem: DiscriminatedItem,
-      ): ItemOpFeedbackEvent<DiscriminatedItem, typeof OPS.RECYCLE> => ({
+        recycledItem: Item,
+      ): ItemOpFeedbackEvent<Item, typeof OPS.RECYCLE> => ({
         kind: KINDS.FEEDBACK,
         resource: [recycledItem.id],
         op: OPS.RECYCLE,
@@ -301,9 +299,9 @@ describe('Ws Item Hooks', () => {
         queryClient.setQueryData(parentItemKey, null);
       };
 
-      const RestoreItemEventFactory = (
-        recycledItem: DiscriminatedItem,
-      ): ItemOpFeedbackEvent<DiscriminatedItem, typeof OPS.RESTORE> => ({
+      const RestoreItemEventFactory = (recycledItem: {
+        id: string;
+      }): ItemOpFeedbackEvent<Item, typeof OPS.RESTORE> => ({
         kind: KINDS.FEEDBACK,
         resource: [recycledItem.id],
         op: OPS.RESTORE,
@@ -336,10 +334,7 @@ describe('Ws Item Hooks', () => {
 
         await mockWsHook({ hook, wrapper });
 
-        const itemEvent: ItemOpFeedbackEvent<
-          DiscriminatedItem,
-          typeof OPS.VALIDATE
-        > = {
+        const itemEvent: ItemOpFeedbackEvent<Item, typeof OPS.VALIDATE> = {
           kind: KINDS.FEEDBACK,
           resource: [item.id],
           op: OPS.VALIDATE,

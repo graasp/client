@@ -10,12 +10,11 @@ import {
   Skeleton,
 } from '@mui/material';
 
-import { DiscriminatedItem, PackedItem } from '@graasp/sdk';
-
 import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
+import type { Item, PackedItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 import DraggingWrapper from '@/ui/draggable/DraggingWrapper';
 
@@ -31,7 +30,7 @@ export type ItemsTableProps = {
   showThumbnail?: boolean;
   canMove?: boolean;
   enableMoveInBetween?: boolean;
-  onCardClick?: (id: DiscriminatedItem['id']) => void;
+  onCardClick?: (id: Item['id']) => void;
   selectedIds?: string[];
   onMove?: () => void;
 };

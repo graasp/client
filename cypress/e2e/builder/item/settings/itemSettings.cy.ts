@@ -59,7 +59,9 @@ describe('Item Settings', () => {
 
   describe('admin rights', () => {
     it('setting button opens settings page', () => {
-      const item = PackedFolderItemFactory({ settings: { showChatbox: true } });
+      const item = PackedFolderItemFactory({
+        settings: { showChatbox: true },
+      });
       cy.setUpApi({ items: [item] });
       // manual click to verify settings button works correctly
       cy.visit(buildItemPath(item.id));
@@ -70,7 +72,9 @@ describe('Item Settings', () => {
 
     describe('Metadata table', () => {
       it('folder', () => {
-        const item = PackedFolderItemFactory({ creator: MEMBERS.BOB });
+        const item = PackedFolderItemFactory({
+          creator: MEMBERS.BOB,
+        });
         const { id, name, type, creator } = item;
         cy.setUpApi({ items: [item] });
 
@@ -85,7 +89,9 @@ describe('Item Settings', () => {
       });
 
       it('file', () => {
-        const FILE = PackedFileItemFactory({ creator: MEMBERS.BOB });
+        const FILE = PackedFileItemFactory({
+          creator: MEMBERS.BOB,
+        });
         cy.setUpApi({ items: [FILE] });
 
         const { id, name, type, extra, creator } = FILE;

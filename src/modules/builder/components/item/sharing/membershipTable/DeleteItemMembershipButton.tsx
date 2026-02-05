@@ -1,10 +1,9 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { buildItemMembershipRowDeleteButtonId } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 import { ItemMembership } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -18,7 +17,7 @@ const DeleteItemMembershipButton = ({
   itemId,
 }: {
   data: ItemMembership;
-  itemId: DiscriminatedItem['id'];
+  itemId: Item['id'];
 }): JSX.Element => {
   const { isOpen, closeModal, openModal } = useModalStatus();
   const { t: translateBuilder } = useTranslation(NS.Builder);

@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, IconButton, Menu } from '@mui/material';
 
-import { AccountType, PackedItem, PermissionLevelCompare } from '@graasp/sdk';
+import { AccountType, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 import { MoreVerticalIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { buildItemMenuDataCy, buildItemMenuId } from '@/config/selectors';
-import { NullableAugmentedAccount } from '@/openapi/client';
+import { NullableAugmentedAccount, PackedItem } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import { ActionButton } from '@/ui/types';
 
@@ -75,7 +75,7 @@ function GuestAndPublicMenu({
         {item.type !== 'folder' && (
           <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
         )}
-        {account?.id ? <FlagButton key="flag" item={item} /> : false}
+        {account?.id ? <FlagButton key="flag" itemId={item.id} /> : false}
       </Menu>
     </>
   );
@@ -183,7 +183,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
     item.type === 'folder' ? (
       <ExportRawZipButton
         key="export-zip"
-        item={item}
+        itemId={item.id}
         dataUmamiContext="card"
       />
     ) : (
@@ -244,7 +244,7 @@ const ItemMenuContent = ({ item }: Props): JSX.Element | null => {
   ].filter(Boolean) as JSX.Element[];
 
   const destructiveMenus = [
-    <FlagButton key="flag" item={item} />,
+    <FlagButton key="flag" itemId={item.id} />,
     canAdmin ? (
       <RecycleButton
         key="recycle"

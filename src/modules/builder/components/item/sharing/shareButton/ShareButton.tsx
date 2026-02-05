@@ -10,8 +10,6 @@ import MenuList from '@mui/material/MenuList';
 import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { ChevronDown } from 'lucide-react';
 
 import { NS } from '@/config/constants';
@@ -20,6 +18,7 @@ import {
   SHARE_BUTTON_SELECTOR,
   SHARE_ITEM_CSV_PARSER_BUTTON_ID,
 } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';
@@ -28,7 +27,7 @@ import ImportUsersWithCSVDialog from '../csvImport/ImportUsersWithCSVDialog';
 import CreateItemMembershipForm from './CreateItemMembershipForm';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
 };
 
 const ShareButton = ({ item }: Props): JSX.Element => {

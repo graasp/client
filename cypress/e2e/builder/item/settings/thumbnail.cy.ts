@@ -1,4 +1,6 @@
-import { PackedFolderItemFactory, PackedItem } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
+
+import type { PackedItem } from '@/openapi/client';
 
 import {
   CROP_MODAL_CONFIRM_BUTTON_ID,

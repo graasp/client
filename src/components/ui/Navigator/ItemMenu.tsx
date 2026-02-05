@@ -2,10 +2,10 @@ import { type JSX, useState } from 'react';
 
 import { IconButton, IconButtonProps, Menu, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { type UseQueryResult } from '@tanstack/react-query';
 import { ChevronRightIcon } from 'lucide-react';
+
+import type { PackedItem } from '@/openapi/client';
 
 import { MenuItemLink } from '../MenuItemLink';
 
@@ -17,7 +17,7 @@ export type ItemMenuProps = {
   buildMenuItemId?: (itemId: string) => string;
   icon?: JSX.Element;
   itemId: string;
-  useChildren: (itemId: string) => UseQueryResult<DiscriminatedItem[]>;
+  useChildren: (itemId: string) => UseQueryResult<PackedItem[]>;
   renderArrow?: boolean;
 };
 
