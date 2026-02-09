@@ -9,7 +9,7 @@ import { ItemGeolocation, buildAppExtra } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';

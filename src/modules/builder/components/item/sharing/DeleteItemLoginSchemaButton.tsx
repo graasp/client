@@ -16,7 +16,7 @@ import { ItemLoginSchemaStatus } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
 import { DELETE_GUEST_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { useGuestMemberships } from '~builder/components/hooks/useGuestMemberships';
 import useModalStatus from '~builder/components/hooks/useModalStatus';

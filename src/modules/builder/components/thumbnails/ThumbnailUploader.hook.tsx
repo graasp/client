@@ -5,7 +5,7 @@ import { ThumbnailSize, ThumbnailsBySize } from '@graasp/sdk';
 import { AxiosProgressEvent } from 'axios';
 
 import { mutations } from '@/config/queryClient';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import { useUploadWithProgress } from '../hooks/uploadWithProgress';
 

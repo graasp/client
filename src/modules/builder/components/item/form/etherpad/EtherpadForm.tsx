@@ -16,7 +16,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import { createEtherpadMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { getKeyForParentId } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';

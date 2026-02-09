@@ -1,12 +1,11 @@
 import { ItemGeolocation, ResultOf, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import type { PackedItem } from '@/openapi/client';
+import type { Item, PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { verifyAuthentication } from '../api/axios.js';
 import {
-  SHARED_ITEM_WITH_ROUTE,
   buildCopyItemsRoute,
   buildDeleteItemsRoute,
   buildDownloadFilesRoute,
@@ -31,7 +30,7 @@ export const getItems = async (ids: UUID[]) =>
     .then(({ data }) => data);
 
 export type PostItemPayloadType = Partial<PackedItem> &
-  Pick<PackedItem, 'type' | 'name'> &
+  Pick<Item, 'type' | 'name'> &
   Partial<{
     parentId: UUID;
     geolocation: Pick<ItemGeolocation, 'lat' | 'lng'>;
@@ -52,12 +51,12 @@ export const deleteItems = async (ids: UUID[]) =>
 // querystring = {parentId}
 export const editItem = async (
   id: UUID,
-  item: Pick<PackedItem, 'id'> &
-    Partial<Pick<PackedItem, 'name' | 'description' | 'extra' | 'settings'>>,
-): Promise<PackedItem> =>
+  item: Pick<Item, 'id'> &
+    Partial<Pick<Item, 'name' | 'description' | 'extra' | 'settings'>>,
+): Promise<Item> =>
   verifyAuthentication(() =>
     axios
-      .patch<PackedItem>(`${API_HOST}/${buildEditItemRoute(id)}`, {
+      .patch<Item>(`${API_HOST}/${buildEditItemRoute(id)}`, {
         ...item,
         name: item.name?.trim(),
       })
@@ -90,13 +89,6 @@ export const copyItems = async ({ ids, to }: { ids: UUID[]; to?: UUID }) =>
       })
       .then(({ data }) => data);
   });
-
-export const getSharedItems = async () =>
-  verifyAuthentication(() =>
-    axios
-      .get<PackedItem[]>(`${API_HOST}/${SHARED_ITEM_WITH_ROUTE}`, {})
-      .then(({ data }) => data),
-  );
 
 export const getFileContentUrl = async (id: UUID) =>
   axios

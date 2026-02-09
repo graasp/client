@@ -8,7 +8,7 @@ import { ShortcutItemType, formatDate, getShortcutExtra } from '@graasp/sdk';
 import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
 import { buildItemBookmarkCard } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client/types.gen';
+import { PackedItem } from '@/openapi/client';
 
 import ItemThumbnail from '../../player/common/ItemThumbnail';
 

@@ -18,11 +18,11 @@ import { XIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { buildBookmarkCardEditClassName } from '@/config/selectors';
+import { PackedItem } from '@/openapi/client';
 import {
   deleteBookmarkMutation,
   getOwnBookmarkQueryKey,
 } from '@/openapi/client/@tanstack/react-query.gen';
-import { PackedItem } from '@/openapi/client/types.gen';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import ItemThumbnail from '../../player/common/ItemThumbnail';

@@ -5,7 +5,7 @@ import { Stack, Typography, useMediaQuery } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { FOLDER_NAME_TITLE_CLASS } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 import Thumbnail from '@/ui/Thumbnail/Thumbnail';
 import { theme } from '@/ui/theme';

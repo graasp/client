@@ -24,7 +24,7 @@ const DEFAULT_ITEM_STATUSES: ItemStatuses = {
 export type ItemsStatuses = { [key: Item['id']]: ItemStatuses };
 
 type ChildCompProps = {
-  data: PackedItem;
+  data: Item;
   itemsStatuses?: ItemsStatuses;
 };
 

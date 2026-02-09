@@ -10,12 +10,13 @@ import { StatusCodes } from 'http-status-codes';
 import { expect, fn, within } from 'storybook/test';
 import { v4 } from 'uuid';
 
+import type { PackedItem } from '@/openapi/client';
 import { Card } from '@/ui/Card/Card.js';
 
 import ItemLoginWrapper from './ItemLoginWrapper.js';
 import { FORBIDDEN_TEXT } from './constants.js';
 
-const item = PackedDocumentItemFactory();
+const item = PackedDocumentItemFactory() as PackedItem;
 const currentAccount = {
   id: 'member',
   name: 'member',

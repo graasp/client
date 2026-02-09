@@ -8,7 +8,7 @@ import { PermissionLevelCompare } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_CHATBOX_BUTTON_ID } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import ChatboxButton from '@/ui/buttons/ChatboxButton/ChatboxButton';
 import { ActionButton } from '@/ui/types';
 

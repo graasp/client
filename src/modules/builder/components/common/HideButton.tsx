@@ -14,7 +14,7 @@ import {
   HIDDEN_ITEM_BUTTON_CLASS,
   buildHideButtonId,
 } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import { itemKeys } from '@/query/keys';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 

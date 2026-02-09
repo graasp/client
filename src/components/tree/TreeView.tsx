@@ -7,7 +7,7 @@ import { getIdsFromPath } from '@graasp/sdk';
 import { ErrorBoundary } from '@sentry/react';
 
 import { buildTreeItemClass } from '@/config/selectors';
-import { ItemType, PackedItem } from '@/openapi/client';
+import type { Item, ItemType } from '@/openapi/client';
 
 import { ExpandButton } from './ExpandButton';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
@@ -84,8 +84,8 @@ function ListItem({
 type TreeViewProps = {
   id: string;
   header?: string;
-  rootItems: (PackedItem & { children?: PackedItem[] })[];
-  items?: (PackedItem & { children?: PackedItem[] })[];
+  rootItems: (Item & { children?: Item[] })[];
+  items?: (Item & { children?: Item[] })[];
   onTreeItemSelect?: (value: string) => void;
   itemId: string;
   /**

@@ -1,7 +1,7 @@
 import { Paginated, Pagination } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { verifyAuthentication } from '../../api/axios.js';

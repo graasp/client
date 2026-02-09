@@ -19,7 +19,7 @@ import {
   ITEM_SCREEN_ERROR_ALERT_ID,
   buildItemsTableId,
 } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import Loader from '@/ui/Loader/Loader';
 
 import { useOutletContext } from '~builder/contexts/OutletContext';

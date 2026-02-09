@@ -1,13 +1,13 @@
 import { ItemType, isCapsule } from '@graasp/sdk';
 
-import { PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 /**
  * Utility function to get the item's type, including capsule
  * @param item
  * @returns type of the item
  */
-export function getItemType(item: PackedItem) {
+export function getItemType(item: Item) {
   if (
     item.type === ItemType.FOLDER &&
     // TODO: fix typing issue

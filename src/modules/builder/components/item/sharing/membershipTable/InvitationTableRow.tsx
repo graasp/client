@@ -11,7 +11,7 @@ import {
   buildInvitationTableRowId,
   buildItemInvitationRowDeleteButtonId,
 } from '@/config/selectors';
-import type { PackedItem, PermissionLevel } from '@/openapi/client';
+import type { Item, PermissionLevel } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
@@ -24,7 +24,7 @@ const InvitationTableRow = ({
   data,
   item,
 }: {
-  item: PackedItem;
+  item: Item;
   data: Invitation;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);

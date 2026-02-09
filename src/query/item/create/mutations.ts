@@ -9,7 +9,7 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
 
-import { Item } from '@/openapi/client/types.gen.js';
+import type { Item } from '@/openapi/client/types.gen.js';
 
 import {
   getKeyForParentId,

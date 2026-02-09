@@ -8,7 +8,7 @@ import { PublicationStatus } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';

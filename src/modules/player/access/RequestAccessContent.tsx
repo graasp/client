@@ -13,7 +13,7 @@ import {
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
   REQUEST_MEMBERSHIP_BUTTON_ID,
 } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import {
   createMembershipRequestMutation,
   getOwnMembershipRequestByItemIdOptions,

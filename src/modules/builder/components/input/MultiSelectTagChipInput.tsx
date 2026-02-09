@@ -22,7 +22,7 @@ import {
   buildMultiSelectChipInputId,
   buildMultiSelectChipsSelector,
 } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import { getCountForTagsOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import useTagsManager from '../item/publish/customizedTags/useTagsManager';

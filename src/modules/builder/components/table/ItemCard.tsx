@@ -7,14 +7,14 @@ import { formatDate, getLinkThumbnailUrl } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { ITEM_CARD_CLASS, buildItemCard } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { DiscriminatedItem } from '@/openapi/client';
 import { Card, type CardProps } from '@/ui/Card/Card';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 
 import { getItemType } from '~builder/utils/capsule';
 
 type Props = {
-  item: PackedItem;
+  item: DiscriminatedItem;
   dense?: boolean;
   footer: JSX.Element;
   isOver?: boolean;

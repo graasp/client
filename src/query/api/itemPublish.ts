@@ -1,7 +1,7 @@
 import { ItemPublished, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import { PackedItem } from '@/openapi/client';
+import type { Item, PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
@@ -18,21 +18,21 @@ import { verifyAuthentication } from './axios.js';
 export const getAllPublishedItems = async (args: { categoryIds?: UUID[] }) =>
   axios
     .get<
-      PackedItem[]
+      Item[]
     >(`${API_HOST}/${buildGetAllPublishedItemsRoute(args?.categoryIds)}`)
     .then(({ data }) => data);
 
 export const getMostLikedPublishedItems = async (args: { limit?: number }) =>
   axios
     .get<
-      PackedItem[]
+      Item[]
     >(`${API_HOST}/${buildGetMostLikedPublishedItemsRoute(args?.limit)}`)
     .then(({ data }) => data);
 
 export const getMostRecentPublishedItems = async (args: { limit?: number }) =>
   axios
     .get<
-      PackedItem[]
+      Item[]
     >(`${API_HOST}/${buildGetMostRecentPublishedItemsRoute(args?.limit)}`)
     .then(({ data }) => data);
 

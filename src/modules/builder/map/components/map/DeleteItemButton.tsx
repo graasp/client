@@ -6,7 +6,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 
 import { NS } from '@/config/constants';
-import type { PackedItem } from '@/openapi/client';
+import type { DiscriminatedItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 import DeleteButton from '@/ui/buttons/DeleteButton/DeleteButton';
 
@@ -14,7 +14,7 @@ import { MAP } from '../../constants';
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 type Props = {
-  item: PackedItem;
+  item: DiscriminatedItem;
 };
 
 const DeleteItemButton = ({ item }: Props): JSX.Element => {

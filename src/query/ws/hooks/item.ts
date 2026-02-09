@@ -18,7 +18,7 @@ import {
 
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
 
-import type { PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
@@ -50,7 +50,7 @@ const invalidateRootDescendants = (
  */
 type ItemOpFeedbackEvent<
   T extends FeedBackOperationType = FeedBackOperationType,
-> = OpFeedbackEvent<PackedItem, T>;
+> = OpFeedbackEvent<Item, T>;
 
 const InvalidateItemOpFeedback = (queryClient: QueryClient) => ({
   [FeedBackOperation.DELETE]: () => {

@@ -5,12 +5,12 @@ import { Stack } from '@mui/material';
 import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import { PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import BookmarkButton from '../common/BookmarkButton';
 
 type Props = {
-  data: PackedItem;
+  data: Item;
 };
 
 // items and memberships match by index

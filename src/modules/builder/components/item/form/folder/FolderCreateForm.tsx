@@ -20,7 +20,7 @@ import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 import { createPageMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';

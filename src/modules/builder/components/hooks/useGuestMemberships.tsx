@@ -1,7 +1,7 @@
 import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import { Item, ItemMembership } from '@/openapi/client';
+import type { Item, ItemMembership } from '@/openapi/client';
 
 export function useGuestMemberships(itemId: Item['id']): {
   isLoading: boolean;

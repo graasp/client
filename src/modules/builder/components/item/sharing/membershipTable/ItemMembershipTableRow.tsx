@@ -10,7 +10,7 @@ import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
 } from '@/config/selectors';
-import type { ItemMembership, PackedItem } from '@/openapi/client';
+import type { Item, ItemMembership } from '@/openapi/client';
 import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
@@ -26,7 +26,7 @@ const ItemMembershipTableRow = ({
   isDisabled,
 }: {
   data: ItemMembership;
-  item: PackedItem;
+  item: Item;
   allowDowngrade?: boolean;
   isOnlyAdmin?: boolean;
   isDisabled: boolean;

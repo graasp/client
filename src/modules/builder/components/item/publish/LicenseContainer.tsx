@@ -21,7 +21,7 @@ import {
   CC_SAVE_BUTTON,
   LIBRARY_SETTINGS_CC_SETTINGS_ID,
 } from '@/config/selectors';
-import type { PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import { CC_LICENSE_ABOUT_URL } from '~builder/constants';
@@ -34,7 +34,7 @@ import PublicationModal from './PublicationModal';
 const SYNC_STATUS_KEY = 'PublishLicense';
 
 type Props = {
-  item: PackedItem;
+  item: Item;
 };
 
 export const LicenseContainer = ({ item }: Props): JSX.Element => {

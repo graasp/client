@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import { MaxWidth } from '@graasp/sdk';
 
-import { Item } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 const getWidthFromSizing = (size?: Item['settings']['maxWidth']): string => {
   switch (size) {

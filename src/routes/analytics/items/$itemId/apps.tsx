@@ -10,7 +10,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { type AuthenticatedUser, useAuth } from '@/AuthContext';
 import { NS } from '@/config/constants';
 import { API_HOST } from '@/config/env';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import { Api } from '@/query';
 import AppItem from '@/ui/items/AppItem';
 

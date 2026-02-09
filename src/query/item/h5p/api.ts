@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import { buildImportH5PRoute } from '../../routes.js';
@@ -11,7 +11,7 @@ export const importH5P = async (args: {
   file: Blob;
   previousItemId?: Item['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<PackedItem> =>
+}): Promise<Item> =>
   verifyAuthentication(() => {
     const { id, previousItemId, file } = args;
     const itemPayload = new FormData();
@@ -22,7 +22,7 @@ export const importH5P = async (args: {
      */
     itemPayload.append('files', file);
     return axios
-      .post<PackedItem>(
+      .post<Item>(
         `${API_HOST}/${buildImportH5PRoute(id, previousItemId)}`,
         itemPayload,
         {

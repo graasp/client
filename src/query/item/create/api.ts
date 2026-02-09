@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import {
@@ -23,10 +23,10 @@ export const postItem = async ({
   geolocation,
   settings,
   previousItemId,
-}: PostItemPayloadType): Promise<PackedItem> =>
+}: PostItemPayloadType): Promise<Item> =>
   verifyAuthentication(() =>
     axios
-      .post<PackedItem>(
+      .post<Item>(
         `${API_HOST}/${buildPostItemRoute(parentId, previousItemId)}`,
         {
           name: name.trim(),
@@ -50,7 +50,7 @@ export const postItemWithThumbnail = async ({
   settings,
   thumbnail,
   previousItemId,
-}: PostItemWithThumbnailPayloadType): Promise<PackedItem> =>
+}: PostItemWithThumbnailPayloadType): Promise<Item> =>
   verifyAuthentication(() => {
     const itemPayload = new FormData();
     // name and type are required
@@ -74,7 +74,7 @@ export const postItemWithThumbnail = async ({
      */
     itemPayload.append('file', thumbnail);
     return axios
-      .post<PackedItem>(
+      .post<Item>(
         `${API_HOST}/${buildPostItemWithThumbnailRoute(parentId, previousItemId)}`,
         itemPayload,
         {
@@ -89,7 +89,7 @@ export const uploadFiles = async (args: {
   files: File[];
   previousItemId?: Item['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<PackedItem> =>
+}): Promise<Item> =>
   verifyAuthentication(() => {
     const { id, previousItemId, files } = args;
     const itemPayload = new FormData();
@@ -98,7 +98,7 @@ export const uploadFiles = async (args: {
       itemPayload.append('files', f);
     }
     return axios
-      .post<PackedItem>(
+      .post<Item>(
         `${API_HOST}/${buildUploadFilesRoute(id, previousItemId)}`,
         itemPayload,
         {

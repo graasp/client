@@ -12,7 +12,7 @@ import { PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { buildPublicationStatus } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { BUILDER } from '~builder/langs';

@@ -11,7 +11,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
 import { ClientManager } from '@/lib/ClientManager';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import PublicationButton from './PublicationButton';
 

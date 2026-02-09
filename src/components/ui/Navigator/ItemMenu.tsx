@@ -5,7 +5,7 @@ import { IconButton, IconButtonProps, Menu, Typography } from '@mui/material';
 import { type UseQueryResult } from '@tanstack/react-query';
 import { ChevronRightIcon } from 'lucide-react';
 
-import type { PackedItem } from '@/openapi/client';
+import type { Item } from '@/openapi/client';
 
 import { MenuItemLink } from '../MenuItemLink';
 
@@ -17,7 +17,7 @@ export type ItemMenuProps = {
   buildMenuItemId?: (itemId: string) => string;
   icon?: JSX.Element;
   itemId: string;
-  useChildren: (itemId: string) => UseQueryResult<PackedItem[]>;
+  useChildren: (itemId: string) => UseQueryResult<Item[]>;
   renderArrow?: boolean;
 };
 

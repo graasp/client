@@ -22,15 +22,15 @@ import PublicationModal from '../PublicationModal';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  item: Item;
+  itemId: Item['id'];
 };
 
-export const CustomizedTags = ({ item }: Props): JSX.Element => {
+export const CustomizedTags = ({ itemId }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { deleteValue } = useTagsManager({ itemId: item.id });
+  const { deleteValue } = useTagsManager({ itemId });
   const { isOpen, openModal, closeModal } = useModalStatus();
   const { tags } = useTagsManager({
-    itemId: item.id,
+    itemId,
   });
 
   const chipTags = tags?.map(({ name, id }) => (
@@ -65,17 +65,17 @@ export const CustomizedTags = ({ item }: Props): JSX.Element => {
               />
             </Typography>
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               tagCategory={TagCategory.Discipline}
               helpertext={t(BUILDER.TAGS_DISCIPLINE_HELPERTEXT)}
             />
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               helpertext={t(BUILDER.TAGS_LEVEL_HELPERTEXT)}
               tagCategory={TagCategory.Level}
             />
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               helpertext={t(BUILDER.TAGS_RESOURCE_TYPE_HELPERTEXT)}
               tagCategory={TagCategory.ResourceType}
             />

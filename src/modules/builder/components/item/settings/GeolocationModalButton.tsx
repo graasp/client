@@ -21,14 +21,14 @@ import Button from '@/ui/buttons/Button/Button';
 import { BUILDER } from '~builder/langs';
 
 type Props = {
-  item: Item;
+  itemId: Item['id'];
 };
 
-export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
+export const GeolocationModalButton = ({ itemId }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { t: commonT } = useTranslation(NS.Common);
   const [open, setOpen] = useState(false);
-  const { data: geoloc } = useItemGeolocation(item.id);
+  const { data: geoloc } = useItemGeolocation(itemId);
   const { mutate: saveGeoloc } = mutations.usePutItemGeolocation();
 
   const helperLabelRef = useRef<HTMLInputElement>(null);
@@ -59,7 +59,7 @@ export const GeolocationModalButton = ({ item }: Props): JSX.Element => {
     }
 
     saveGeoloc({
-      itemId: item.id,
+      itemId: itemId,
       geolocation: {
         helperLabel: helperLabelRef.current?.value ?? geoloc?.helperLabel,
         addressLabel: addressLabelRef.current?.value ?? geoloc?.addressLabel,
