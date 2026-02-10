@@ -2,7 +2,7 @@ import { Dispatch, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { Ordering, OrderingType } from '~builder/enums';
 
@@ -24,14 +24,14 @@ export const useSorting = ({
   ordering: OrderingType;
   setSortBy: Dispatch<AllSortingOptions>;
   setOrdering: Dispatch<OrderingType>;
-  sortFn: (a: Item, b: Item) => number;
+  sortFn: (a: GenericItem, b: GenericItem) => number;
 } => {
   const [sortBy, setSortBy] = useState<AllSortingOptions>(
     s ?? SortingOptions.ItemUpdatedAt,
   );
   const [ordering, setOrdering] = useState<OrderingType>(o);
 
-  const sortFn = (a: Item, b: Item) => {
+  const sortFn = (a: GenericItem, b: GenericItem) => {
     const f = ordering === Ordering.ASC ? 1 : -1;
     let value = 0;
     switch (sortBy) {

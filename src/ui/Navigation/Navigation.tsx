@@ -18,7 +18,7 @@ import { MenuItemLink } from '@/components/ui/MenuItemLink.js';
 import { TypographyLink } from '@/components/ui/TypographyLink.js';
 import { ITEM_NAME_MAX_LENGTH } from '@/config/constants';
 import { hooks } from '@/config/queryClient.js';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 const StyledBreadcrumbs = styled(Breadcrumbs)(() => ({
   '.MuiBreadcrumbs-separator': {
@@ -36,7 +36,7 @@ export type NavigationProps = {
   itemPath: string;
   buildMenuId?: (id: string) => string;
   id?: string;
-  item?: Item;
+  item?: GenericItem;
   parents?: { name: string; id: string }[];
   sx?: SxProps;
   useChildren: UseChildrenType;
@@ -138,7 +138,7 @@ function ParentsNavigation({
 }
 
 type CurrentItemProps = {
-  item: Item;
+  item: GenericItem;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   buildIconId?: (id: string) => string;
   buildMenuId?: (id: string) => string;

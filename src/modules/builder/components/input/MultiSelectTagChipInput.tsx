@@ -22,13 +22,13 @@ import {
   buildMultiSelectChipInputId,
   buildMultiSelectChipsSelector,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { getCountForTagsOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import useTagsManager from '../item/publish/customizedTags/useTagsManager';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
   tagCategory: TagCategoryType;
   helpertext?: string;
 };

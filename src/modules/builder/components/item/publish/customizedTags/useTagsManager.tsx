@@ -9,7 +9,7 @@ import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import {
   createTagForItemMutation,
   deleteTagForItemMutation,
@@ -19,7 +19,7 @@ import {
 
 const EMPTY_STRING = '';
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
 };
 
 type UseMultiSelectChipInput = {

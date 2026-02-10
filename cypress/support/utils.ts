@@ -8,7 +8,7 @@ import {
 import { StatusCodes } from 'http-status-codes';
 import { validate as uuidValidate, version as uuidVersion } from 'uuid';
 
-import type { Item, ItemMembership } from '@/openapi/client';
+import type { GenericItem, ItemMembership } from '@/openapi/client';
 
 import { ItemForTest } from './types';
 
@@ -216,7 +216,7 @@ export const getHighestPermissionForMemberFromMemberships = ({
 }: {
   memberships?: ItemMembership[];
   memberId?: string;
-  itemPath: Item['path'];
+  itemPath: GenericItem['path'];
 }): null | ItemMembership => {
   if (!memberId) {
     return null;

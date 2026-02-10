@@ -3,7 +3,7 @@ import { UUID } from '@graasp/sdk';
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import {
   axiosClient as axios,
   verifyAuthentication,
@@ -39,10 +39,10 @@ export const deleteItemThumbnail = async (id: UUID) =>
     .then(({ data }) => data);
 
 export const uploadItemThumbnail = async (args: {
-  id: Item['id'];
+  id: GenericItem['id'];
   file: Blob;
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<Item> =>
+}): Promise<GenericItem> =>
   verifyAuthentication(() => {
     const { id, file } = args;
     const itemPayload = new FormData();
@@ -53,7 +53,7 @@ export const uploadItemThumbnail = async (args: {
      */
     itemPayload.append('file', file);
     return axios
-      .post<Item>(
+      .post<GenericItem>(
         `${API_HOST}/${buildUploadItemThumbnailRoute(id)}`,
         itemPayload,
         {

@@ -1,7 +1,7 @@
 import { SimpleMembershipRequest, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import { ItemMembership } from '@/openapi/client/types.gen.js';
+import type { ItemMembership } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {

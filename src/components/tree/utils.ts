@@ -1,16 +1,16 @@
 import { getMimetype, getParentFromPath } from '@graasp/sdk';
 
-import type { Item, ItemType } from '@/openapi/client';
+import type { GenericItem, ItemType } from '@/openapi/client';
 
 type ItemIdToDirectChildren = {
-  [nodeId: string]: Item[];
+  [nodeId: string]: GenericItem[];
 };
 
 /**
  * build parent -> children map
  * items without parent are not in the map
  */
-const createMapTree = (data: Item[]): ItemIdToDirectChildren =>
+const createMapTree = (data: GenericItem[]): ItemIdToDirectChildren =>
   data.reduce<ItemIdToDirectChildren>((treeMap, elem) => {
     const parentId = getParentFromPath(elem.path);
     if (parentId) {
@@ -39,7 +39,10 @@ type TreeNode = {
 };
 
 // handle item children tree
-export const buildItemsTree = (data: Item[], rootItems: Item[]) => {
+export const buildItemsTree = (
+  data: GenericItem[],
+  rootItems: GenericItem[],
+) => {
   const tree: TreeNode = {};
   if (data.length === 1) {
     // this for non children one item as tree map build based on children to parent relation
@@ -56,7 +59,7 @@ export const buildItemsTree = (data: Item[], rootItems: Item[]) => {
   }
   const mapTree = createMapTree(data);
 
-  const buildTree = (node: Item) => {
+  const buildTree = (node: GenericItem) => {
     if (node.type === 'folder' && mapTree[node.id]) {
       const children = mapTree[node.id] ?? [];
 

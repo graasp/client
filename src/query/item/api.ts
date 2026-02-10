@@ -1,7 +1,7 @@
 import { ItemGeolocation, ResultOf, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { verifyAuthentication } from '../api/axios.js';
@@ -30,7 +30,7 @@ export const getItems = async (ids: UUID[]) =>
     .then(({ data }) => data);
 
 export type PostItemPayloadType = Partial<PackedItem> &
-  Pick<Item, 'type' | 'name'> &
+  Pick<GenericItem, 'type' | 'name'> &
   Partial<{
     parentId: UUID;
     geolocation: Pick<ItemGeolocation, 'lat' | 'lng'>;
@@ -51,12 +51,12 @@ export const deleteItems = async (ids: UUID[]) =>
 // querystring = {parentId}
 export const editItem = async (
   id: UUID,
-  item: Pick<Item, 'id'> &
-    Partial<Pick<Item, 'name' | 'description' | 'extra' | 'settings'>>,
-): Promise<Item> =>
+  item: Pick<GenericItem, 'id'> &
+    Partial<Pick<GenericItem, 'name' | 'description' | 'extra' | 'settings'>>,
+): Promise<GenericItem> =>
   verifyAuthentication(() =>
     axios
-      .patch<Item>(`${API_HOST}/${buildEditItemRoute(id)}`, {
+      .patch<GenericItem>(`${API_HOST}/${buildEditItemRoute(id)}`, {
         ...item,
         name: item.name?.trim(),
       })

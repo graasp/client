@@ -13,7 +13,7 @@ import {
 
 import { useChatboxProvider } from '@/components/chatbox/Chatbox/chatbox.hook.js';
 import { NS } from '@/config/constants.js';
-import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
+import type { ChatMessageWithCreator } from '@/openapi/client';
 
 import { LIST_ICON_MIN_WIDTH } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';

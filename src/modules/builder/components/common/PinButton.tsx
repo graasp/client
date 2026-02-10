@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { PIN_ITEM_BUTTON_CLASS } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import GraaspPinButton from '@/ui/buttons/PinButton/PinButton';
 import { ActionButtonVariant } from '@/ui/types';
 
@@ -12,7 +12,7 @@ import { BUILDER } from '../../langs';
 
 type Props = {
   type?: ActionButtonVariant;
-  item: Item;
+  item: GenericItem;
   onClick?: () => void;
 };
 

@@ -5,13 +5,13 @@ import { DialogActions, DialogContent, DialogTitle } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { EDIT_ITEM_MODAL_CANCEL_BUTTON_ID } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import CancelButton from '~builder/components/common/CancelButton';
 import { FileUploader } from '~builder/components/file/FileUploader';
 
 type UploadFileModalContentProps = {
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
   onClose: () => void;
 };
 

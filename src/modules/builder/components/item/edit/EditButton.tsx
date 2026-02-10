@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { NS } from '@/config/constants';
 import { EDIT_ITEM_BUTTON_CLASS, buildEditButtonId } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import GraaspEditButton from '@/ui/buttons/EditButton/EditButton';
 import { ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../../langs';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
   type?: ActionButtonVariant;
   onClick?: MouseEventHandler;
 };

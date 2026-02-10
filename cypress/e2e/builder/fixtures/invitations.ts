@@ -3,8 +3,8 @@ import { PackedFolderItemFactory } from '@graasp/sdk';
 import { v4 } from 'uuid';
 
 import type {
+  GenericItem,
   Invitation,
-  Item,
   PackedItem,
   PermissionLevel,
 } from '@/openapi/client';
@@ -13,7 +13,7 @@ import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
 
 export const buildInvitation = (args: {
-  item: Item;
+  item: GenericItem;
   email?: string;
   permission?: PermissionLevel;
 }): Invitation => {

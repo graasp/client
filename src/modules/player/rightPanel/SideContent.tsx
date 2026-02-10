@@ -16,7 +16,7 @@ import {
   ITEM_FULLSCREEN_BUTTON_ID,
   ITEM_PINNED_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { DRAWER_WIDTH } from '@/ui/constants';
 import { useMobileView } from '@/ui/hooks/useMobileView';
 
@@ -58,7 +58,7 @@ const StyledIconButton = styled(IconButton)({
 });
 
 type Props = {
-  item: Item;
+  item: GenericItem;
   content: JSX.Element;
 };
 

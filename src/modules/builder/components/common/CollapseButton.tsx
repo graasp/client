@@ -8,13 +8,13 @@ import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { COLLAPSE_ITEM_BUTTON_CLASS } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
   type?: ActionButtonVariant;
   onClick?: () => void;
 };

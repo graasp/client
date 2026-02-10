@@ -10,7 +10,7 @@ import { CopyIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_MENU_DUPLICATE_BUTTON_CLASS } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
@@ -19,7 +19,7 @@ const DuplicateButton = ({
   onClick,
 }: {
   onClick?: () => void;
-  item: Item;
+  item: GenericItem;
 }): JSX.Element => {
   const { mutate: copyItems } = mutations.useCopyItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);

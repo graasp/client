@@ -8,7 +8,7 @@ import {
 import { v4 } from 'uuid';
 
 import type {
-  Item,
+  GenericItem,
   ItemMembership,
   PackedItem,
   PermissionLevel,
@@ -19,7 +19,7 @@ import { ApiConfig } from '../../../support/types';
 
 export const buildItemMembership = (args: {
   permission?: PermissionLevel;
-  item: Item;
+  item: GenericItem;
   account: Partial<Account>;
   creator?: Member;
 }): ItemMembership => ({

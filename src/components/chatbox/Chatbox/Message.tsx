@@ -8,7 +8,7 @@ import truncate from 'lodash.truncate';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
 import { hooks } from '@/config/queryClient.js';
-import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
+import type { ChatMessageWithCreator } from '@/openapi/client';
 import Avatar from '@/ui/Avatar/Avatar.js';
 
 import {

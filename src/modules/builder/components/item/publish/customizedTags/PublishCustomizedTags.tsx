@@ -5,7 +5,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
@@ -15,7 +15,7 @@ import CustomizedTags from './CustomizedTags';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
   onChange?: (args: {
     isLoading: boolean;
     isSuccess: boolean;

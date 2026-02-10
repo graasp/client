@@ -9,7 +9,7 @@ import {
 
 import { StatusCodes } from 'http-status-codes';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import CustomInitialLoader from '../CustomInitialLoader/CustomInitialLoader.js';
 import ForbiddenText from './ForbiddenText.js';
@@ -20,7 +20,7 @@ export type ItemLoginAuthorizationProps = {
   itemId: UUID;
   itemErrorStatusCode: number | null;
   currentAccount?: CurrentAccount | null;
-  item?: Item;
+  item?: GenericItem;
   itemLoginSchemaType?: ItemLoginSchemaType;
   usernameInputId?: string;
   signInButtonId?: string;

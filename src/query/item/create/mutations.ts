@@ -9,7 +9,7 @@ import {
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
 
-import type { Item } from '@/openapi/client/types.gen.js';
+import type { GenericItem } from '@/openapi/client';
 
 import {
   getKeyForParentId,
@@ -78,9 +78,9 @@ export const useUploadFiles = (queryConfig: QueryClientConfig) => () => {
   const { notifier } = queryConfig;
   return useMutation({
     mutationFn: async (args: {
-      id?: Item['id'];
+      id?: GenericItem['id'];
       files: File[];
-      previousItemId?: Item['id'];
+      previousItemId?: GenericItem['id'];
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => {
       // filter out big files to not upload them

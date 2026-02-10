@@ -12,7 +12,7 @@ import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
@@ -29,7 +29,7 @@ const BaseItemForm = ({
   item,
   onClose,
 }: {
-  item: Item;
+  item: GenericItem;
   onClose: () => void;
 }): JSX.Element => {
   const { t: translateCommon } = useTranslation(NS.Common);

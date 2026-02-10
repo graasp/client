@@ -197,9 +197,9 @@ export type CurrentSettings = {
 };
 
 /**
- * Item
+ * Generic Item
  */
-export type Item = {
+export type GenericItem = {
     id: string;
     name: string;
     description: null | string;
@@ -699,9 +699,9 @@ export type ShortcutItem = {
 };
 
 /**
- * DiscriminatedItem
+ * Item
  */
-export type DiscriminatedItem = AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | FileItem | FolderItem | H5pItem | PageItem | ShortcutItem;
+export type Item = AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | FileItem | FolderItem | H5pItem | PageItem | ShortcutItem;
 
 /**
  * Packed Item
@@ -808,7 +808,7 @@ export type ItemLoginSchema = {
      * Item login status, which can be enabled, frozen, or disabled. Item login cannot be deleted, an item login can be disabled instead to prevent deleting associated guest accounts.
      */
     status: 'active' | 'disabled' | 'freeze';
-    item?: Item;
+    item?: GenericItem;
     createdAt: string;
     updatedAt: string;
 };
@@ -820,7 +820,7 @@ export type ItemLoginSchema = {
 export type ItemMembership = {
     id: string;
     account: AugmentedAccount;
-    item: Item;
+    item: GenericItem;
     permission: PermissionLevel;
     creator?: NullableAugmentedAccount;
     createdAt: string;
@@ -846,7 +846,7 @@ export type RawItemMembership = {
  */
 export type CompleteMembershipRequest = {
     member: Member;
-    item: Item;
+    item: GenericItem;
     createdAt: string;
 };
 
@@ -898,7 +898,7 @@ export type AppActionLegacy = {
 export type AppData = {
     id: string;
     account: MinimalAccount;
-    item: Item;
+    item: GenericItem;
     data: {
         [key: string]: unknown;
     };
@@ -916,7 +916,7 @@ export type AppData = {
 export type AppDataWithLegacyProps = {
     id: string;
     account: MinimalAccount;
-    item: Item;
+    item: GenericItem;
     data: {
         [key: string]: unknown;
     };
@@ -956,7 +956,7 @@ export type Invitation = {
     email: string;
     name?: null | string;
     permission: PermissionLevel;
-    item: Item;
+    item: GenericItem;
     createdAt: string;
     updatedAt: string;
 };
@@ -991,7 +991,7 @@ export type PackedBookmark = {
  */
 export type ItemFlag = {
     id: string;
-    item: Item;
+    item: GenericItem;
     type: 'inappropriate-content' | 'hate-speech' | 'fraud-plagiarism' | 'spam' | 'targeted-harassment' | 'false-information';
     creator: NullableMinimalAccount;
     createdAt: string;
@@ -1003,7 +1003,7 @@ export type ItemFlag = {
  */
 export type ItemLike = {
     id: string;
-    item: Item;
+    item: GenericItem;
 };
 
 /**
@@ -1032,7 +1032,7 @@ export type RawItemLike = {
  */
 export type ItemPublished = {
     id: string;
-    item: Item;
+    item: GenericItem;
     creator: NullableMember;
     createdAt: string;
 };
@@ -1093,7 +1093,7 @@ export type SearchHit = {
  */
 export type ItemValidationGroup = {
     id: string;
-    item: Item;
+    item: GenericItem;
     createdAt: string;
     itemValidations: Array<{
         id: string;
@@ -1111,7 +1111,7 @@ export type ItemValidationGroup = {
  */
 export type RecycledItemData = {
     id: string;
-    item: Item;
+    item: GenericItem;
     createdAt: string;
 };
 
@@ -5696,7 +5696,7 @@ export type GetOwnRecycledItemsResponses = {
      * Default Response
      */
     200: {
-        data: Array<Item>;
+        data: Array<GenericItem>;
         pagination: {
             page: number;
             pageSize: number;
@@ -5785,7 +5785,7 @@ export type GetLatestItemValidationGroupResponses = {
      */
     200: null | {
         id: string;
-        item: Item;
+        item: GenericItem;
         createdAt: string;
         itemValidations: Array<{
             id: string;
@@ -6402,7 +6402,7 @@ export type GetGeolocationByItemResponses = {
         helperLabel: null | string;
         createdAt: string;
         updatedAt: string;
-        item: Item & PackedItem;
+        item: GenericItem & PackedItem;
     };
 };
 
@@ -6478,7 +6478,7 @@ export type GetItemsInBoxResponses = {
         helperLabel: null | string;
         createdAt: string;
         updatedAt: string;
-        item: Item & PackedItem;
+        item: GenericItem & PackedItem;
     }>;
 };
 
@@ -7138,7 +7138,7 @@ export type CreateItemResponses = {
     /**
      * Default Response
      */
-    200: Item;
+    200: GenericItem;
 };
 
 export type CreateItemResponse = CreateItemResponses[keyof CreateItemResponses];
@@ -7248,9 +7248,51 @@ export type UpdateItemError = UpdateItemErrors[keyof UpdateItemErrors];
 
 export type UpdateItemResponses = {
     /**
+     * Generic Item
      * Default Response
      */
-    200: Item;
+    200: {
+        id: string;
+        name: string;
+        description: null | string;
+        path: string;
+        lang: string;
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMember;
+        createdAt: string;
+        updatedAt: string;
+    } & {
+        type: ItemType;
+        extra: {
+            [key: string]: unknown;
+        };
+    };
 };
 
 export type UpdateItemResponse = UpdateItemResponses[keyof UpdateItemResponses];
@@ -7414,9 +7456,51 @@ export type ReorderItemError = ReorderItemErrors[keyof ReorderItemErrors];
 
 export type ReorderItemResponses = {
     /**
+     * Generic Item
      * Default Response
      */
-    200: Item;
+    200: {
+        id: string;
+        name: string;
+        description: null | string;
+        path: string;
+        lang: string;
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
+        creator?: NullableMember;
+        createdAt: string;
+        updatedAt: string;
+    } & {
+        type: ItemType;
+        extra: {
+            [key: string]: unknown;
+        };
+    };
 };
 
 export type ReorderItemResponse = ReorderItemResponses[keyof ReorderItemResponses];
@@ -7513,7 +7597,7 @@ export type CreateItemWithThumbnailResponses = {
     /**
      * Default Response
      */
-    200: Item;
+    200: GenericItem;
 };
 
 export type CreateItemWithThumbnailResponse = CreateItemWithThumbnailResponses[keyof CreateItemWithThumbnailResponses];

@@ -13,7 +13,7 @@ import { Context, Member } from '@graasp/sdk';
 import { addDays } from 'date-fns/addDays';
 
 import { hooks } from '@/config/queryClient';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import { useDescendants } from '@/query/item/descendants/hooks';
 
 import { DateRange } from '~analytics/config/type';
@@ -28,8 +28,8 @@ const defaultValue: {
   selectedActionTypes: string[];
   setSelectedActionTypes: Dispatch<string[]>;
   error: boolean;
-  itemData?: Item;
-  itemChildren?: Item[];
+  itemData?: GenericItem;
+  itemChildren?: GenericItem[];
   isLoading: boolean;
   requestedSampleSize: number;
   descendantApps: PackedItem[];

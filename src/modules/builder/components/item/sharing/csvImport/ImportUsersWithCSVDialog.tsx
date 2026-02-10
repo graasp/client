@@ -2,14 +2,14 @@ import type { JSX } from 'react';
 
 import { Dialog } from '@mui/material';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import ImportUsersDialogContent, {
   DIALOG_ID_LABEL,
 } from './ImportUsersDialogContent';
 
 type ImportUsersWithCSVDialogProps = {
-  item: Item;
+  item: GenericItem;
   handleCloseModal: () => void;
   open: boolean;
 };

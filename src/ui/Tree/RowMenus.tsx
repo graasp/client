@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 
 import { Pagination, Stack } from '@mui/material';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import RowMenu, { RowMenuProps } from './RowMenu.js';
 import { NavigationElement } from './types.js';
@@ -17,8 +17,8 @@ export type RowMenusProps = {
   nbPages?: number;
   page?: number;
   emptyContent?: JSX.Element;
-  buildRowMenuId?: (id: Item['id']) => string;
-  buildRowMenuArrowId?: (id: Item['id']) => string;
+  buildRowMenuId?: (id: GenericItem['id']) => string;
+  buildRowMenuArrowId?: (id: GenericItem['id']) => string;
 };
 
 const RowMenus = ({

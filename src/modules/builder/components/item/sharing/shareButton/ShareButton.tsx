@@ -18,7 +18,7 @@ import {
   SHARE_BUTTON_SELECTOR,
   SHARE_ITEM_CSV_PARSER_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';
@@ -27,7 +27,7 @@ import ImportUsersWithCSVDialog from '../csvImport/ImportUsersWithCSVDialog';
 import CreateItemMembershipForm from './CreateItemMembershipForm';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
 };
 
 const ShareButton = ({ item }: Props): JSX.Element => {

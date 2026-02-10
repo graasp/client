@@ -7,7 +7,7 @@ import { ItemLoginSchemaStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { buildItemMembershipRowId } from '@/config/selectors';
-import type { Item, ItemMembership } from '@/openapi/client';
+import type { GenericItem, ItemMembership } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
@@ -20,7 +20,7 @@ const GuestItemMembershipTableRow = ({
   isDisabled,
 }: {
   data: ItemMembership;
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
   isDisabled?: boolean;
 }): JSX.Element => {
   const { t: translateEnums } = useTranslation(NS.Enums);

@@ -1,17 +1,17 @@
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import { buildImportZipRoute } from '../../routes.js';
 
 export const importZip = async (args: {
-  id?: Item['id'];
+  id?: GenericItem['id'];
   file: Blob;
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<Item> =>
+}): Promise<GenericItem> =>
   verifyAuthentication(() => {
     const { id, file } = args;
     const itemPayload = new FormData();
@@ -22,12 +22,16 @@ export const importZip = async (args: {
      */
     itemPayload.append('files', file);
     return axios
-      .post<Item>(`${API_HOST}/${buildImportZipRoute(id)}`, itemPayload, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      .post<GenericItem>(
+        `${API_HOST}/${buildImportZipRoute(id)}`,
+        itemPayload,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
 
-        onUploadProgress: (progressEvent) => {
-          args.onUploadProgress?.(progressEvent);
+          onUploadProgress: (progressEvent) => {
+            args.onUploadProgress?.(progressEvent);
+          },
         },
-      })
+      )
       .then(({ data }) => data);
   });

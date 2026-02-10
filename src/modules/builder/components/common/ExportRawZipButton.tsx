@@ -9,11 +9,11 @@ import { PackageIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { buildExportAsZipButtonId } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { exportZipMutation } from '@/openapi/client/@tanstack/react-query.gen';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
 
   /**
    * ui context the button is located

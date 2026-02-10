@@ -14,7 +14,7 @@ import { useParams } from '@tanstack/react-router';
 
 import { NS } from '@/config/constants';
 import { hooks, mutations } from '@/config/queryClient';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 import DraggingWrapper from '@/ui/draggable/DraggingWrapper';
 
@@ -30,7 +30,7 @@ export type ItemsTableProps = {
   showThumbnail?: boolean;
   canMove?: boolean;
   enableMoveInBetween?: boolean;
-  onCardClick?: (id: Item['id']) => void;
+  onCardClick?: (id: GenericItem['id']) => void;
   selectedIds?: string[];
   onMove?: () => void;
 };

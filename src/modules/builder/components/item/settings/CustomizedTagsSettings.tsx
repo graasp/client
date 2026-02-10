@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
 import CustomizedTags from '../publish/customizedTags/CustomizedTags';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
 };
 
 export const CustomizedTagsSettings = ({ item }: Props): JSX.Element => {

@@ -7,14 +7,14 @@ import { PlusIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { CREATE_ITEM_BUTTON_ID } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '../../langs';
 import NewItemModal from './NewItemModal';
 
 type Props = {
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
   size?: ButtonProps['size'];
   type?: 'button' | 'icon';
 };

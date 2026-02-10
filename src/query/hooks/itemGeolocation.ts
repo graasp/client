@@ -3,7 +3,7 @@ import { ItemGeolocation } from '@graasp/sdk';
 import { useQuery } from '@tanstack/react-query';
 
 import { DEFAULT_LANG } from '@/config/constants.js';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import * as Api from '../api/itemGeolocation.js';
 import { UndefinedArgument } from '../config/errors.js';
@@ -20,7 +20,7 @@ import {
 } from '../routines/itemGeolocation.js';
 import useDebounce from './useDebounce.js';
 
-export const useItemGeolocation = (id?: Item['id']) =>
+export const useItemGeolocation = (id?: GenericItem['id']) =>
   useQuery({
     queryKey: itemKeys.single(id).geolocation,
     queryFn: () => {
@@ -48,7 +48,7 @@ export const useItemsInMap = ({
   lng1?: ItemGeolocation['lng'];
   lng2?: ItemGeolocation['lng'];
   keywords?: string[];
-  parentItemId?: Item['id'];
+  parentItemId?: GenericItem['id'];
 }) => {
   const enabled = Boolean(
     ((lat1 || lat1 === 0) &&

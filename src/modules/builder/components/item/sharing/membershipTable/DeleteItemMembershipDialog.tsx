@@ -16,7 +16,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { ItemMembership } from '@/openapi/client';
 import { deleteItemMembershipMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { itemKeys } from '@/query/keys';
@@ -31,7 +31,7 @@ const descriptionId = 'alert-dialog-description';
 type Props = {
   open?: boolean;
   handleClose: () => void;
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
   membershipToDelete: Pick<ItemMembership, 'id' | 'account' | 'permission'>;
   hasOnlyOneAdmin?: boolean;
 };

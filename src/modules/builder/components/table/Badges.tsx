@@ -2,7 +2,7 @@ import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { NS } from '@/config/constants';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import ItemBadges from '@/ui/ItemBadges/ItemBadges';
 
 type ItemStatuses = {
@@ -21,10 +21,10 @@ const DEFAULT_ITEM_STATUSES: ItemStatuses = {
   isPublic: false,
 };
 
-export type ItemsStatuses = { [key: Item['id']]: ItemStatuses };
+export type ItemsStatuses = { [key: GenericItem['id']]: ItemStatuses };
 
 type ChildCompProps = {
-  data: Item;
+  data: GenericItem;
   itemsStatuses?: ItemsStatuses;
 };
 

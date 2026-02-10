@@ -9,7 +9,7 @@ import { FolderPlus } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { ADD_FOLDER_BUTTON_CY } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -17,8 +17,8 @@ import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { FolderCreateForm } from './FolderCreateForm';
 
 type Props = {
-  previousItemId?: Item['id'];
-  parentId?: Item['id'];
+  previousItemId?: GenericItem['id'];
+  parentId?: GenericItem['id'];
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
   size?: ButtonProps['size'];
   type?: 'button' | 'icon';

@@ -14,14 +14,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { NS } from '@/config/constants';
 import notifier from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { useItemGeolocation } from '@/query/hooks/itemGeolocation';
 import Button from '@/ui/buttons/Button/Button';
 
 import { BUILDER } from '~builder/langs';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
 };
 
 export const GeolocationModalButton = ({ itemId }: Props): JSX.Element => {

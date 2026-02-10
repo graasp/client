@@ -13,10 +13,10 @@ import { StatusCodes } from 'http-status-codes';
 
 import type {
   AppItem,
-  DiscriminatedItem,
   DocumentItem,
   EmbeddedLinkItem,
   FileItem,
+  GenericItem,
   Item,
 } from '@/openapi/client';
 
@@ -127,7 +127,7 @@ export const expectFolderLayout = ({
   items,
 }: {
   rootId: string;
-  items: DiscriminatedItem[];
+  items: Item[];
 }): void => {
   const children = items.filter(
     (item) => getParentFromPath(item.path) === rootId,
@@ -177,12 +177,12 @@ export class TestHelper {
   private isLoggedIn: boolean = false;
   private readonly hasAccessToItem: boolean = true;
   private readonly pseudoMember: CompleteGuest;
-  private readonly item: Item;
+  private readonly item: GenericItem;
   private readonly returnItemLoginSchemaType: boolean = true;
 
   constructor(args: {
     pseudoMember: CompleteGuest;
-    item: Item;
+    item: GenericItem;
     initiallyIsLoggedIn?: boolean;
     returnItemLoginSchemaType?: boolean;
     hasAccessToItem?: boolean;

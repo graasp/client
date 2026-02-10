@@ -5,12 +5,12 @@ import { Stack } from '@mui/material';
 import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import BookmarkButton from '../common/BookmarkButton';
 
 type Props = {
-  data: Item;
+  data: GenericItem;
 };
 
 // items and memberships match by index

@@ -6,7 +6,7 @@ import { IconButton, Stack, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -18,7 +18,7 @@ import PublicationModal from './PublicationModal';
 const SYNC_STATUS_KEY = 'PublishItemTitle';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
 };
 
 export const EditItemName = ({ item }: Props): JSX.Element => {

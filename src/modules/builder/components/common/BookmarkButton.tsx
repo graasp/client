@@ -6,7 +6,7 @@ import { IconButtonProps } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { PackedBookmark } from '@/openapi/client';
 import {
   createBookmarkMutation,
@@ -20,7 +20,7 @@ import { ActionButtonVariant } from '@/ui/types';
 import { BUILDER } from '../../langs';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
   type?: ActionButtonVariant;
   onClick?: () => void;
   size?: IconButtonProps['size'];
@@ -28,7 +28,7 @@ type Props = {
 };
 
 const isItemBookmarked = (
-  itemId: Item['id'],
+  itemId: GenericItem['id'],
   bookmarks?: PackedBookmark[],
 ): boolean => bookmarks?.some((f) => f.item.id === itemId) || false;
 

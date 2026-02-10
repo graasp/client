@@ -6,7 +6,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
 
 import { AuthContext } from '@/AuthContext';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { RightHeader } from './RightHeader';
 
@@ -28,7 +28,7 @@ function getUser(userType: AccountType) {
     name: 'Bob',
     lang: 'en',
     type: AccountType.Guest as const,
-    item: {} as Item,
+    item: {} as GenericItem,
   };
 }
 

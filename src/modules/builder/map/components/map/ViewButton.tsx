@@ -5,12 +5,12 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton, Tooltip } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { useQueryClientContext } from '../context/QueryClientContext';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
 };
 
 const ViewButton = ({ itemId }: Props): JSX.Element => {

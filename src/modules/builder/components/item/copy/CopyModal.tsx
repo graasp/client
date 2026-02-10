@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -17,7 +17,7 @@ export const CopyModal = ({
 }: {
   open: boolean;
   onClose: () => void;
-  items: Item[];
+  items: GenericItem[];
 }): JSX.Element | null => {
   const { mutate: copyItems } = mutations.useCopyItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);

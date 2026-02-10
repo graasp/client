@@ -11,7 +11,7 @@ import {
   getMimetype,
 } from '@graasp/sdk';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay.js';
 
 export const getDefaultFileAlignmentSetting = (
@@ -66,7 +66,7 @@ type WithCaptionItem = {
     descriptionPlacement?: DescriptionPlacementType;
     alignment?: AlignmentType;
   };
-  extra?: Item['extra'];
+  extra?: GenericItem['extra'];
 };
 
 type WithCaptionProps<T extends WithCaptionItem> = {

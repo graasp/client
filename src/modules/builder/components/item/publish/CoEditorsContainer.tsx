@@ -11,7 +11,7 @@ import {
   CO_EDITOR_SETTINGS_CHECKBOX_ID,
   EMAIL_NOTIFICATION_CHECKBOX,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
@@ -20,7 +20,7 @@ import { BUILDER } from '~builder/langs';
 const SYNC_STATUS_KEY = 'PublishCoEditors';
 
 type Props = {
-  item: Item;
+  item: GenericItem;
   notifyCoEditors: boolean;
   onNotificationChanged: (enabled: boolean) => void;
 };

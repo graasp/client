@@ -9,7 +9,7 @@ import {
   getIdsFromPath,
 } from '@graasp/sdk';
 
-import type { Item, PermissionLevel } from '@/openapi/client';
+import type { GenericItem, PermissionLevel } from '@/openapi/client';
 
 import {
   CUSTOM_APP_CYPRESS_ID,
@@ -261,7 +261,7 @@ declare global {
 
       dragAndDrop(subject: string, x: number, y: number): void;
 
-      selectItem(id: Item['id']): void;
+      selectItem(id: GenericItem['id']): void;
 
       setUpApi(args?: ApiConfig): void;
 
@@ -713,7 +713,7 @@ Cypress.Commands.add('dragAndDrop', (subject, x, y) => {
     });
 });
 
-Cypress.Commands.add('selectItem', (id: Item['id']) => {
+Cypress.Commands.add('selectItem', (id: GenericItem['id']) => {
   cy.get(buildFolderItemCardThumbnail(id)).click();
 });
 

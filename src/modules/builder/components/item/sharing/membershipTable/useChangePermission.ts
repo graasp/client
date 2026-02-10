@@ -1,6 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { Item, ItemMembership, PermissionLevel } from '@/openapi/client';
+import type {
+  GenericItem,
+  ItemMembership,
+  PermissionLevel,
+} from '@/openapi/client';
 import {
   createItemMembershipMutation,
   updateItemMembershipMutation,
@@ -11,8 +15,8 @@ export function useChangePermission({
   itemPath,
   itemId,
 }: {
-  itemId: Item['id'];
-  itemPath: Item['path'];
+  itemId: GenericItem['id'];
+  itemPath: GenericItem['path'];
 }) {
   const queryClient = useQueryClient();
   const {

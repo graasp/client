@@ -6,7 +6,7 @@ import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import {
   useItemGeolocation,
   useSuggestionsForAddress,
@@ -19,7 +19,11 @@ import MapGeolocationPicker, {
 
 import GeolocationModalButton from './GeolocationModalButton';
 
-const GeolocationPicker = ({ itemId }: { itemId: Item['id'] }): JSX.Element => {
+const GeolocationPicker = ({
+  itemId,
+}: {
+  itemId: GenericItem['id'];
+}): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { data: geoloc } = useItemGeolocation(itemId);
   const { mutate: putGeoloc } = mutations.usePutItemGeolocation();

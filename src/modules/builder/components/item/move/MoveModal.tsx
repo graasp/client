@@ -5,7 +5,7 @@ import { getParentFromPath } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import type { NavigationElement } from '@/ui/Tree/types';
 
 import { BUILDER } from '../../../langs';
@@ -37,7 +37,7 @@ export const MoveModal = ({
   };
 
   const isDisabled = (
-    itemsArray: Item[],
+    itemsArray: GenericItem[],
     item: NavigationElement,
     homeId: string,
   ) => {

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import { NS } from '@/config/constants';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import ConfirmLicenseDialogContent from '../../common/ConfirmLicenseDialogContent';
 import useItemLicense from '../../hooks/useItemLicense';
@@ -19,7 +19,7 @@ import useItemLicense from '../../hooks/useItemLicense';
 type Props = {
   open: boolean;
   setOpen: (b: boolean) => void;
-  item: Item;
+  item: GenericItem;
 };
 
 const commonsSx = {

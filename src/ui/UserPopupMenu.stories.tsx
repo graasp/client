@@ -3,7 +3,7 @@ import { AccountType } from '@graasp/sdk';
 import type { Meta, StoryObj } from '@storybook/react';
 import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { SMALL_AVATAR_SIZE } from '@/ui/constants.js';
 
 import Avatar from './Avatar/Avatar.js';
@@ -69,7 +69,7 @@ export const Guest = {
     user: {
       ...CURRENT_USER,
       type: AccountType.Guest,
-      item: {} as Item,
+      item: {} as GenericItem,
     },
     avatar: (
       <Avatar

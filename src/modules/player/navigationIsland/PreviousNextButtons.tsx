@@ -13,15 +13,15 @@ import {
   NEXT_ITEM_NAV_BUTTON_ID,
   PREVIOUS_ITEM_NAV_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { LoadingButton, NavigationButton } from './customButtons';
 
 function getPrevious(
   itemId: string,
   // includes the rootItem
-  folderHierarchy: Item[],
-): Item | null {
+  folderHierarchy: GenericItem[],
+): GenericItem | null {
   const idx = folderHierarchy.findIndex(({ id }) => id === itemId);
   if (idx < 0) {
     return null;
@@ -29,7 +29,10 @@ function getPrevious(
   return folderHierarchy[idx - 1];
 }
 
-function getNext(itemId: string, folderHierarchy: Item[]): Item | null {
+function getNext(
+  itemId: string,
+  folderHierarchy: GenericItem[],
+): GenericItem | null {
   const idx = folderHierarchy.findIndex(({ id }) => id === itemId);
   if (idx < 0 || idx + 1 > folderHierarchy.length) {
     return null;

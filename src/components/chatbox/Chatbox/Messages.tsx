@@ -10,8 +10,8 @@ import groupBy from 'lodash.groupby';
 import { useChatboxProvider } from '@/components/chatbox/Chatbox/chatbox.hook.js';
 import { NS } from '@/config/constants.js';
 import { getLocalForDateFns } from '@/config/langs.js';
+import type { ChatMessageWithCreator } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
-import type { ChatMessageWithCreator } from '@/openapi/client/types.gen.js';
 
 import { DEFAULT_DATE_FORMAT, SCROLL_SAFETY_MARGIN } from '../constants.js';
 import { useEditingContext } from '../context/EditingContext.js';

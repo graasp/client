@@ -19,7 +19,7 @@ import {
   MY_GRAASP_ITEM_PATH,
   TREE_MODAL_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
 import type { NavigationElement } from '@/ui/Tree/types';
 
@@ -37,12 +37,12 @@ export type ItemSelectionModalProps = {
   /** disabled rows
    *  */
   isDisabled?: (
-    items: Item[],
+    items: GenericItem[],
     item: NavigationElement,
     homeId: string,
   ) => boolean;
   // items can be undefined because "many" operations start empty
-  items?: Item[];
+  items?: GenericItem[];
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;

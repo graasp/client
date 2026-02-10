@@ -20,7 +20,7 @@ import {
   FOLDER_FORM_DESCRIPTION_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { createPageMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
@@ -38,9 +38,9 @@ type Inputs = {
 
 type FolderCreateFormProps = {
   onClose: () => void;
-  parentId?: Item['id'];
+  parentId?: GenericItem['id'];
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
 };
 
 export function FolderCreateForm({

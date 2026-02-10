@@ -25,7 +25,7 @@ import {
   SHARE_ITEM_FROM_CSV_CANCEL_BUTTON_ID,
   SHARE_ITEM_FROM_CSV_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import ChoiceDisplay from './ChoiceDisplay';
 import DisplayInvitationSummary from './DisplayInvitationSummary';
@@ -77,7 +77,7 @@ const CSVFileSelectionButton = ({
 };
 
 type ImportUsersDialogContentProps = {
-  item: Item;
+  item: GenericItem;
   isFolder: boolean;
   handleClose: () => void;
 };

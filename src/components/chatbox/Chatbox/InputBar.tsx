@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Box } from '@mui/material';
 
 import { useChatboxProvider } from '@/components/chatbox/Chatbox/chatbox.hook.js';
-import type { CreateChatMessageData } from '@/openapi/client/types.gen.js';
+import type { CreateChatMessageData } from '@/openapi/client';
 
 import { useEditingContext } from '../context/EditingContext.js';
 import { useMessagesContext } from '../context/MessagesContext.js';

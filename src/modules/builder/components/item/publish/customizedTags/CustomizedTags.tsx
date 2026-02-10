@@ -11,7 +11,7 @@ import {
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
   buildCustomizedTagsSelector,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { MultiSelectTagChipInput } from '~builder/components/input/MultiSelectTagChipInput';
 import { TAGS_DOCUMENTATION } from '~builder/constants';
@@ -22,7 +22,7 @@ import PublicationModal from '../PublicationModal';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  itemId: Item['id'];
+  itemId: GenericItem['id'];
 };
 
 export const CustomizedTags = ({ itemId }: Props): JSX.Element => {

@@ -2,7 +2,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { getKeyForParentId } from '../../keys.js';
 import { type QueryClientConfig } from '../../types.js';
@@ -14,9 +14,9 @@ export const useImportH5P = (queryConfig: QueryClientConfig) => () => {
   const { notifier } = queryConfig;
   return useMutation({
     mutationFn: async (args: {
-      id?: Item['id'];
+      id?: GenericItem['id'];
       file: Blob;
-      previousItemId?: Item['id'];
+      previousItemId?: GenericItem['id'];
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => importH5P(args),
     onSuccess: () => {

@@ -9,7 +9,7 @@ import {
   buildItemRowArrowId,
   buildNavigationModalItemId,
 } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import type { RowMenuProps } from '@/ui/Tree/RowMenu';
 import RowMenu from '@/ui/Tree/RowMenu';
 import RowMenus from '@/ui/Tree/RowMenus';
@@ -17,7 +17,7 @@ import type { NavigationElement } from '@/ui/Tree/types';
 
 interface RootNavigationTreeProps {
   isDisabled?: RowMenuProps['isDisabled'];
-  items: Item[];
+  items: GenericItem[];
   onClick: RowMenuProps['onClick'];
   onNavigate: RowMenuProps['onNavigate'];
   rootMenuItems: NavigationElement[];

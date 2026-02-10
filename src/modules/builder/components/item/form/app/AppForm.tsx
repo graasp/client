@@ -9,7 +9,7 @@ import { ItemGeolocation, buildAppExtra } from '@graasp/sdk';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
@@ -19,9 +19,9 @@ import { CustomAppForm } from './CustomAppForm';
 
 type Props = {
   onClose: () => void;
-  parentId?: Item['id'];
+  parentId?: GenericItem['id'];
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
 };
 
 type Inputs = {

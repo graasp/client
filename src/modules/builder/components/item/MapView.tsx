@@ -6,7 +6,7 @@ import { ItemGeolocation } from '@graasp/sdk';
 
 import { hooks, mutations } from '@/config/queryClient';
 import { buildMapViewId } from '@/config/selectors';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import {
   useAddressFromGeolocation,
   useItemsInMap,
@@ -20,10 +20,10 @@ import NewItemModal from '../main/NewItemModal';
 import { useCurrentLocation } from '../map/useCurrentLocation';
 
 type Props = {
-  viewItem: (itemId: Item['id']) => void;
-  viewItemInBuilder: (itemId: Item['id']) => void;
+  viewItem: (itemId: GenericItem['id']) => void;
+  viewItemInBuilder: (itemId: GenericItem['id']) => void;
   enableGeolocation?: boolean;
-  parentId?: Item['id'];
+  parentId?: GenericItem['id'];
   title?: string;
   height?: string;
 };

@@ -2,13 +2,13 @@ import type { JSX } from 'react';
 
 import { Stack } from '@mui/material';
 
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 
 export type CurrentItemProps = {
-  item: Item;
+  item: GenericItem;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   buildIconId?: (id: string) => string;
   buildMenuId?: (id: string) => string;

@@ -13,7 +13,7 @@ import {
   SETTINGS_RESIZE_TOGGLE_ID,
   SETTINGS_SAVE_ACTIONS_TOGGLE_ID,
 } from '@/config/selectors';
-import type { Item, PackedItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import PinButton from '@/ui/buttons/PinButton/PinButton';
 import { ActionButton } from '@/ui/types';
 
@@ -33,7 +33,7 @@ type Props = {
   item: PackedItem;
 };
 
-type ItemSetting = Item['settings'];
+type ItemSetting = GenericItem['settings'];
 
 const ItemSettingsProperties = ({ item }: Props): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);

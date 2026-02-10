@@ -13,7 +13,7 @@ import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
 import { getErrorMessage } from '@/config/notifier';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 import FileDropper from '@/ui/upload/FileDropper/FileDropper';
 
@@ -25,7 +25,7 @@ type Props = {
   onStart?: () => void;
   /** id of the component */
   id?: string;
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
 };
 
 export function FileUploader({

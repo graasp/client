@@ -5,7 +5,7 @@ import { ShortcutItemType, buildShortcutExtra } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -13,7 +13,7 @@ import ItemSelectionModal, {
 } from '../../main/itemSelectionModal/ItemSelectionModal';
 
 export type Props = {
-  item: Item;
+  item: GenericItem;
   onClose: () => void;
   open: boolean;
 };
@@ -25,13 +25,13 @@ const CreateShortcutModal = ({
 }: Props): JSX.Element | null => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: createShortcut } = mutations.usePostItem();
-  const [item] = useState<Item>(defaultItem);
+  const [item] = useState<GenericItem>(defaultItem);
 
   const onConfirm: ItemSelectionModalProps['onConfirm'] = (destination) => {
     const target = item.id; // id of the item where the shortcut is pointing
 
     const shortcut: Partial<ShortcutItemType> &
-      Pick<Item, 'name' | 'type'> & {
+      Pick<GenericItem, 'name' | 'type'> & {
         parentId?: string;
       } = {
       name: translateBuilder(BUILDER.CREATE_SHORTCUT_DEFAULT_NAME, {

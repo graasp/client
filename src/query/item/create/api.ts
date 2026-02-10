@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
-import type { Item } from '@/openapi/client';
+import type { GenericItem } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import {
@@ -23,10 +23,10 @@ export const postItem = async ({
   geolocation,
   settings,
   previousItemId,
-}: PostItemPayloadType): Promise<Item> =>
+}: PostItemPayloadType): Promise<GenericItem> =>
   verifyAuthentication(() =>
     axios
-      .post<Item>(
+      .post<GenericItem>(
         `${API_HOST}/${buildPostItemRoute(parentId, previousItemId)}`,
         {
           name: name.trim(),
@@ -50,7 +50,7 @@ export const postItemWithThumbnail = async ({
   settings,
   thumbnail,
   previousItemId,
-}: PostItemWithThumbnailPayloadType): Promise<Item> =>
+}: PostItemWithThumbnailPayloadType): Promise<GenericItem> =>
   verifyAuthentication(() => {
     const itemPayload = new FormData();
     // name and type are required
@@ -74,7 +74,7 @@ export const postItemWithThumbnail = async ({
      */
     itemPayload.append('file', thumbnail);
     return axios
-      .post<Item>(
+      .post<GenericItem>(
         `${API_HOST}/${buildPostItemWithThumbnailRoute(parentId, previousItemId)}`,
         itemPayload,
         {
@@ -85,11 +85,11 @@ export const postItemWithThumbnail = async ({
   });
 
 export const uploadFiles = async (args: {
-  id?: Item['id'];
+  id?: GenericItem['id'];
   files: File[];
-  previousItemId?: Item['id'];
+  previousItemId?: GenericItem['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<Item> =>
+}): Promise<GenericItem> =>
   verifyAuthentication(() => {
     const { id, previousItemId, files } = args;
     const itemPayload = new FormData();
@@ -98,7 +98,7 @@ export const uploadFiles = async (args: {
       itemPayload.append('files', f);
     }
     return axios
-      .post<Item>(
+      .post<GenericItem>(
         `${API_HOST}/${buildUploadFilesRoute(id, previousItemId)}`,
         itemPayload,
         {
