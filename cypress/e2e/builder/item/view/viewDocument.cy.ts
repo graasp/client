@@ -1,6 +1,6 @@
 import { PackedDocumentItemFactory } from '@graasp/sdk';
 
-import { DocumentItem, PackedItem } from '@/openapi/client/types.gen';
+import type { DocumentItem, PackedItem } from '@/openapi/client';
 
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectDocumentViewScreenLayout } from '../../../../support/viewUtils';

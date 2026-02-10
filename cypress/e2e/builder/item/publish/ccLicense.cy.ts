@@ -1,6 +1,6 @@
 import { CCLicenseAdaptions, PackedFolderItemFactory } from '@graasp/sdk';
 
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import {
   CC_ALLOW_COMMERCIAL_CONTROL_ID,

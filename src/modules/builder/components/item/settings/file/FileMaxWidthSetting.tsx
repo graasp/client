@@ -10,7 +10,7 @@ import { ExpandIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { FILE_SETTING_MAX_WIDTH_ID } from '@/config/selectors';
-import { FileItem } from '@/openapi/client';
+import type { FileItem } from '@/openapi/client';
 import Select from '@/ui/Select/Select';
 
 import ItemSettingProperty from '../ItemSettingProperty';

@@ -6,7 +6,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import {
   AUTO_LOGIN_CONTAINER_ID,

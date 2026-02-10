@@ -5,7 +5,7 @@ import {
   getLinkExtra,
 } from '@graasp/sdk';
 
-import { DocumentItem, PackedItem } from '@/openapi/client';
+import type { DocumentItem, PackedItem } from '@/openapi/client';
 
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_SELECTOR,

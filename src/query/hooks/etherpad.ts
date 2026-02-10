@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { EtherpadItem } from '@/openapi/client';
+import type { EtherpadItem } from '@/openapi/client';
 
 import * as Api from '../api/etherpad.js';
 import { UndefinedArgument } from '../config/errors.js';

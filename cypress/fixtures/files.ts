@@ -1,6 +1,6 @@
 import { MimeTypes, PackedFileItemFactory, buildFileExtra } from '@graasp/sdk';
 
-import { FileItem } from '@/openapi/client';
+import type { FileItem } from '@/openapi/client';
 
 import { MOCK_IMAGE_URL, MOCK_PDF_URL, MOCK_VIDEO_URL } from './fileLinks';
 import { CURRENT_MEMBER } from './members';

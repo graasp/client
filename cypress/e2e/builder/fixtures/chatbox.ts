@@ -5,7 +5,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import { FolderItem, PackedItem } from '@/openapi/client';
+import type { FolderItem, PackedItem } from '@/openapi/client';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
 import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';

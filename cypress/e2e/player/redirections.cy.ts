@@ -6,7 +6,7 @@ import {
   ItemLoginSchemaType,
 } from '@graasp/sdk';
 
-import { FolderItem } from '@/openapi/client/types.gen';
+import type { FolderItem } from '@/openapi/client';
 
 import { FORBIDDEN_CONTENT_CONTAINER_ID } from '../../../src/config/selectors';
 import { FOLDER_WITH_SUBFOLDER_ITEM } from '../../fixtures/items';

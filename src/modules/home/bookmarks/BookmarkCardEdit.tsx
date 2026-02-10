@@ -18,7 +18,7 @@ import { XIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { buildBookmarkCardEditClassName } from '@/config/selectors';
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 import {
   deleteBookmarkMutation,
   getOwnBookmarkQueryKey,

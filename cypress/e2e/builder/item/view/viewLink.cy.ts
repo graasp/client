@@ -1,6 +1,6 @@
 import { PackedLinkItemFactory } from '@graasp/sdk';
 
-import { PackedItem } from '@/openapi/client/types.gen';
+import type { PackedItem } from '@/openapi/client';
 
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectLinkViewScreenLayout } from '../../../../support/viewUtils';

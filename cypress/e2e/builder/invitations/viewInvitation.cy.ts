@@ -1,6 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { PackedItem } from '@/openapi/client';
+import type { PackedItem } from '@/openapi/client';
 
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,

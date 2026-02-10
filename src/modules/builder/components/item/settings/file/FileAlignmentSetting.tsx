@@ -20,7 +20,7 @@ import {
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
-import { FileItem } from '@/openapi/client';
+import type { FileItem } from '@/openapi/client';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
 
 import ItemSettingProperty from '../ItemSettingProperty';
