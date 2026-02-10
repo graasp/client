@@ -11,7 +11,7 @@ import { buildContentPagePath } from './utils';
 describe('Pseudonimized access', () => {
   it('Logged out', () => {
     const rootItem: ItemForTest = {
-      ...PackedFolderItemFactory({ name: 'pseudo' }),
+      ...PackedFolderItemFactory({ name: 'pseudo' }, { permission: null }),
       itemLoginSchema: { type: `${ItemLoginSchemaType.Username}` },
     };
     const items = [rootItem];
@@ -37,7 +37,7 @@ describe('Pseudonimized access', () => {
 
   it('Enroll', () => {
     const rootItem: ItemForTest = {
-      ...PackedFolderItemFactory({ name: 'pseudo' }),
+      ...PackedFolderItemFactory({ name: 'pseudo' }, { permission: null }),
       itemLoginSchema: { type: `${ItemLoginSchemaType.Username}` },
     };
     const items = [rootItem];

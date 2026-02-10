@@ -1,5 +1,7 @@
 import { MembershipRequestStatus, PackedFolderItemFactory } from '@graasp/sdk';
 
+import { v4 } from 'uuid';
+
 import {
   ITEM_LOGIN_SCREEN_FORBIDDEN_ID,
   MEMBERSHIP_REQUEST_PENDING_SCREEN_SELECTOR,
@@ -29,22 +31,17 @@ it('Request membership when signed in', () => {
   cy.get(`#${REQUEST_MEMBERSHIP_BUTTON_ID}`).should('be.disabled');
 });
 it('Cannot request membership if item is hidden', () => {
-  const item = PackedFolderItemFactory(
-    {},
-    { permission: null, hiddenVisibility: { type: 'hidden' } },
-  );
-
   cy.setUpApi({
-    items: [item],
+    items: [],
   });
 
-  cy.visit(buildItemPath(item.id));
+  cy.visit(buildItemPath(v4()));
 
   cy.get(`#${ITEM_LOGIN_SCREEN_FORBIDDEN_ID}`).should('be.visible');
 });
 
 it('Membership request is already sent', () => {
-  const item = PackedFolderItemFactory();
+  const item = PackedFolderItemFactory({}, { permission: null });
   cy.setUpApi({
     items: [item],
     membershipRequests: [
