@@ -36,7 +36,7 @@
     "@tanstack/react-router": "1.136.8",
     "@tanstack/router-devtools": "1.136.8",
     "@tanstack/zod-adapter": "1.136.8",
-    "axios": "1.12.2",
+    "axios": "1.13.5",
     "date-fns": "4.1.0",
     "http-status-codes": "2.3.0",
     "i18n-iso-countries": "7.14.0",
