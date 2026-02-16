@@ -14,7 +14,7 @@ i18n
     // namespaces that will be loaded by default
     ns: ['common'],
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: `${import.meta.env.PROD ? '/client' : ''}/locales/{{lng}}/{{ns}}.json`,
     },
     // specify which languages are supported
     // 1. prefers exact match across all supported langs
