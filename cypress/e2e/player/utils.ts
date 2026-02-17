@@ -1,5 +1,6 @@
 import {
   CompleteGuest,
+  FileItemExtra,
   HttpMethod,
   MimeTypes,
   appendQueryParamToUrl,
@@ -96,7 +97,7 @@ export const expectAppViewScreenLayout = ({ id, extra }: AppItem): void => {
 };
 
 export const expectFileViewScreenLayout = ({ id, extra }: FileItem): void => {
-  const mimetype = getFileExtra(extra)?.mimetype ?? '';
+  const mimetype = getFileExtra(extra as FileItemExtra)?.mimetype ?? '';
   // embedded element
   let selector = '';
   if (MimeTypes.isImage(mimetype)) {

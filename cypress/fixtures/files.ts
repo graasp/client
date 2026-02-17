@@ -14,7 +14,6 @@ export const IMAGE_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   description: 'a default image description',
   type: 'file',
   path: 'bd5519a2_5ba9_4305_b221_185facbe6a99',
-  creator: CURRENT_MEMBER,
   createdAt: '2021-03-16T16:00:50.968Z',
   updatedAt: '2021-03-16T16:00:52.655Z',
   extra: buildFileExtra({
@@ -39,7 +38,6 @@ export const VIDEO_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   description: 'a default video description',
   type: 'file',
   path: 'qd5519a2_5ba9_4305_b221_185facbe6a99',
-  creator: CURRENT_MEMBER,
   createdAt: '2021-03-16T16:00:50.968Z',
   updatedAt: '2021-03-16T16:00:52.655Z',
   extra: buildFileExtra({
@@ -64,7 +62,6 @@ export const PDF_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
   description: 'a default pdf description',
   type: 'file',
   path: 'cd5519a2_5ba9_4305_b221_185facbe6a99',
-  creator: CURRENT_MEMBER,
   createdAt: '2021-03-16T16:00:50.968Z',
   updatedAt: '2021-03-16T16:00:52.655Z',
   extra: buildFileExtra({

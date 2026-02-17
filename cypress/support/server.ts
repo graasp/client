@@ -1659,15 +1659,12 @@ export const mockGetPublishItemsForMember = (
         `${API_HOST}/${buildGetPublishedItemsForMemberRoute(ID_FORMAT)}`,
       ),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shoulThrow) {
         return reply({ statusCode: StatusCodes.INTERNAL_SERVER_ERROR });
       }
 
-      const memberId = url.slice(API_HOST.length).split('/')[4];
-      const published = publishedItemData
-        .filter((p) => p.item.creator.id === memberId)
-        .map((i) => i.item);
+      const published = publishedItemData.map((i) => i.item);
       return reply(published);
     },
   ).as('getPublishedItemsForMember');

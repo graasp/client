@@ -2,7 +2,12 @@ import { type JSX, memo, useEffect, useState } from 'react';
 
 import { Alert, Box, Skeleton } from '@mui/material';
 
-import { MimeTypes, formatFileSize, getFileExtra } from '@graasp/sdk';
+import {
+  FileItemExtra,
+  MimeTypes,
+  formatFileSize,
+  getFileExtra,
+} from '@graasp/sdk';
 
 import { FileItem as FileItemType } from '@/openapi/client';
 import { Errors } from '@/ui/enums/errors.js';
@@ -97,7 +102,7 @@ const FileItem = ({
   }
 
   const getComponent = (): JSX.Element => {
-    const fileExtra = getFileExtra(item.extra);
+    const fileExtra = getFileExtra(item.extra as FileItemExtra);
     const { mimetype, altText, size } = fileExtra;
 
     if (mimetype) {

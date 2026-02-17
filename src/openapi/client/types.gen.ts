@@ -28,6 +28,51 @@ export type _Error = {
 export type ItemType = 'app' | 'document' | 'embeddedLink' | 'etherpad' | 'file' | 'folder' | 'h5p' | 'page' | 'shortcut';
 
 /**
+ * Generic Item
+ */
+export type GenericItem = {
+    id: string;
+    name: string;
+    description: null | string;
+    path: string;
+    lang: string;
+    /**
+     * Item settings
+     * Parameters, mostly visual, common to all types of items.
+     */
+    settings: {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
+        showLinkIframe?: boolean;
+        showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
+    };
+    createdAt: string;
+    updatedAt: string;
+} & {
+    type: ItemType;
+    extra: {
+        [key: string]: unknown;
+    };
+};
+
+/**
  * Minimal Account
  * Minimal sharable account properties
  */
@@ -197,54 +242,8 @@ export type CurrentSettings = {
 };
 
 /**
- * Generic Item
- */
-export type GenericItem = {
-    id: string;
-    name: string;
-    description: null | string;
-    path: string;
-    lang: string;
-    /**
-     * Item settings
-     * Parameters, mostly visual, common to all types of items.
-     */
-    settings: {
-        /**
-         * @deprecated
-         */
-        lang?: string;
-        isPinned?: boolean;
-        /**
-         * @deprecated
-         */
-        tags?: Array<string>;
-        showChatbox?: boolean;
-        isResizable?: boolean;
-        hasThumbnail?: boolean;
-        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
-        displayCoEditors?: boolean;
-        descriptionPlacement?: 'above' | 'below';
-        isCollapsible?: boolean;
-        enableSaveActions?: boolean;
-        showLinkIframe?: boolean;
-        showLinkButton?: boolean;
-        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-        alignment?: 'center' | 'left' | 'right';
-    };
-    creator?: NullableMember;
-    createdAt: string;
-    updatedAt: string;
-} & {
-    type: ItemType;
-    extra: {
-        [key: string]: unknown;
-    };
-};
-
-/**
  * App Item
- * Item of type app, represents an interactive application that can access to the app API.
+ * Item of type app, represents an interactive application that can access to the Graasp app API.
  */
 export type AppItem = {
     id: string;
@@ -279,13 +278,15 @@ export type AppItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'app';
     extra: {
         app: {
             url: string;
+            settings?: {
+                [key: string]: unknown;
+            };
         };
     };
 };
@@ -327,7 +328,6 @@ export type DocumentItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'document';
@@ -373,10 +373,28 @@ export type EmbeddedLinkItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     } & {
+        /**
+         * @deprecated
+         */
+        lang?: string;
+        isPinned?: boolean;
+        /**
+         * @deprecated
+         */
+        tags?: Array<string>;
+        showChatbox?: boolean;
+        isResizable?: boolean;
+        hasThumbnail?: boolean;
+        ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+        displayCoEditors?: boolean;
+        descriptionPlacement?: 'above' | 'below';
+        isCollapsible?: boolean;
+        enableSaveActions?: boolean;
         showLinkIframe?: boolean;
         showLinkButton?: boolean;
+        maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'embeddedLink';
@@ -428,7 +446,6 @@ export type EtherpadItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'etherpad';
@@ -478,7 +495,6 @@ export type FileItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'file';
@@ -488,8 +504,22 @@ export type FileItem = {
             path: string;
             mimetype: string;
             size: number;
+            /**
+             * alternative text of the file if it is an image
+             */
             altText?: string;
-            content: string;
+            /**
+             * content of the file if it is readable
+             */
+            content?: string;
+            /**
+             * @deprecated
+             */
+            key?: string;
+            /**
+             * @deprecated
+             */
+            contenttype?: string;
         };
     };
 };
@@ -530,7 +560,6 @@ export type FolderItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'folder';
@@ -581,7 +610,6 @@ export type H5pItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'h5p';
@@ -642,7 +670,6 @@ export type PageItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'page';
@@ -687,7 +714,6 @@ export type ShortcutItem = {
         maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         alignment?: 'center' | 'left' | 'right';
     };
-    creator?: NullableMember;
     createdAt: string;
     updatedAt: string;
     type: 'shortcut';
@@ -708,6 +734,7 @@ export type Item = AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | Fi
  * Item with additional information
  */
 export type PackedItem = (AppItem | DocumentItem | EmbeddedLinkItem | EtherpadItem | FileItem | FolderItem | H5pItem | PageItem | ShortcutItem) & {
+    creator: NullableMember;
     permission: PermissionLevel | null;
     hidden?: ItemVisibility;
     public?: ItemVisibility;
@@ -845,7 +872,11 @@ export type RawItemMembership = {
  * Complete Membership Request
  */
 export type CompleteMembershipRequest = {
-    member: Member;
+    member: {
+        id: string;
+        name: string;
+        email: string;
+    };
     item: GenericItem;
     createdAt: string;
 };
@@ -854,7 +885,11 @@ export type CompleteMembershipRequest = {
  * Simple Membership Request
  */
 export type SimpleMembershipRequest = {
-    member: Member;
+    member: {
+        id: string;
+        name: string;
+        email: string;
+    };
     createdAt: string;
 };
 
@@ -1647,6 +1682,15 @@ export type GetStorageFilesData = {
 };
 
 export type GetStorageFilesErrors = {
+    /**
+     * Bad Request
+     */
+    400: {
+        /**
+         * Error message
+         */
+        error: string;
+    };
     /**
      * Error object with useful information about the unexpected behavior that occured
      */
@@ -2955,6 +2999,10 @@ export type GetCollectionInformationsResponses = {
      * Default Response
      */
     200: null | {
+        id: string;
+        item: GenericItem;
+        creator: NullableMember;
+        createdAt: string;
         totalViews: number;
     };
 };
@@ -3469,7 +3517,6 @@ export type CreateShortcutResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'shortcut';
@@ -3545,7 +3592,6 @@ export type UpdateShortcutResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'shortcut';
@@ -3665,7 +3711,7 @@ export type UploadFileError = UploadFileErrors[keyof UploadFileErrors];
 
 export type UploadFileResponses = {
     /**
-     * Successful response
+     * Successful Response
      */
     204: void;
 };
@@ -3904,7 +3950,6 @@ export type CreateFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4012,7 +4057,6 @@ export type UpdateFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4086,7 +4130,6 @@ export type ConvertFolderToCapsuleResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4160,7 +4203,6 @@ export type CreateFolderWithThumbnailResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4266,7 +4308,6 @@ export type CreateCapsuleResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4340,7 +4381,6 @@ export type ConvertCapsuleToFolderResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'folder';
@@ -4413,7 +4453,7 @@ export type CreateAppError = CreateAppErrors[keyof CreateAppErrors];
 export type CreateAppResponses = {
     /**
      * App Item
-     * Item of type app, represents an interactive application that can access to the app API.
+     * Item of type app, represents an interactive application that can access to the Graasp app API.
      */
     200: {
         id: string;
@@ -4448,13 +4488,15 @@ export type CreateAppResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'app';
         extra: {
             app: {
                 url: string;
+                settings?: {
+                    [key: string]: unknown;
+                };
             };
         };
     };
@@ -4514,7 +4556,7 @@ export type UpdateAppError = UpdateAppErrors[keyof UpdateAppErrors];
 export type UpdateAppResponses = {
     /**
      * App Item
-     * Item of type app, represents an interactive application that can access to the app API.
+     * Item of type app, represents an interactive application that can access to the Graasp app API.
      */
     200: {
         id: string;
@@ -4549,13 +4591,15 @@ export type UpdateAppResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'app';
         extra: {
             app: {
                 url: string;
+                settings?: {
+                    [key: string]: unknown;
+                };
             };
         };
     };
@@ -4992,10 +5036,17 @@ export type ExportZipError = ExportZipErrors[keyof ExportZipErrors];
 
 export type ExportZipResponses = {
     /**
-     * email with download link has been sent
+     * Default Response
      */
-    202: unknown;
+    202: {
+        /**
+         * email with download link has been sent
+         */
+        message: string;
+    };
 };
+
+export type ExportZipResponse = ExportZipResponses[keyof ExportZipResponses];
 
 export type GraaspZipExportData = {
     body?: never;
@@ -5084,12 +5135,29 @@ export type CreateLinkData = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         } & {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
             showLinkIframe?: boolean;
             showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
         };
         url: string;
-        showLinkIframe?: boolean;
-        showLinkButton?: boolean;
         geolocation?: unknown;
     };
     path?: never;
@@ -5146,8 +5214,27 @@ export type UpdateLinkData = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         } & {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
             showLinkIframe?: boolean;
             showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
         };
         url?: string;
         showLinkIframe?: boolean;
@@ -5181,6 +5268,35 @@ export type UpdateLinkResponse = UpdateLinkResponses[keyof UpdateLinkResponses];
 export type CreateDocumentData = {
     body: {
         name: string;
+        description?: null | string;
+        lang?: string;
+        /**
+         * Item settings
+         * Parameters, mostly visual, common to all types of items.
+         */
+        settings?: {
+            /**
+             * @deprecated
+             */
+            lang?: string;
+            isPinned?: boolean;
+            /**
+             * @deprecated
+             */
+            tags?: Array<string>;
+            showChatbox?: boolean;
+            isResizable?: boolean;
+            hasThumbnail?: boolean;
+            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
+            displayCoEditors?: boolean;
+            descriptionPlacement?: 'above' | 'below';
+            isCollapsible?: boolean;
+            enableSaveActions?: boolean;
+            showLinkIframe?: boolean;
+            showLinkButton?: boolean;
+            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+            alignment?: 'center' | 'left' | 'right';
+        };
         content: string;
         flavor?: 'none' | 'info' | 'success' | 'warning' | 'error';
         isRaw?: boolean;
@@ -5205,54 +5321,9 @@ export type CreateDocumentError = CreateDocumentErrors[keyof CreateDocumentError
 
 export type CreateDocumentResponses = {
     /**
-     * Document Item
      * Item of type document, represents a text.
      */
-    200: {
-        id: string;
-        name: string;
-        description: null | string;
-        path: string;
-        lang: string;
-        /**
-         * Item settings
-         * Parameters, mostly visual, common to all types of items.
-         */
-        settings: {
-            /**
-             * @deprecated
-             */
-            lang?: string;
-            isPinned?: boolean;
-            /**
-             * @deprecated
-             */
-            tags?: Array<string>;
-            showChatbox?: boolean;
-            isResizable?: boolean;
-            hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
-            displayCoEditors?: boolean;
-            descriptionPlacement?: 'above' | 'below';
-            isCollapsible?: boolean;
-            enableSaveActions?: boolean;
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-            alignment?: 'center' | 'left' | 'right';
-        };
-        creator?: NullableMember;
-        createdAt: string;
-        updatedAt: string;
-        type: 'document';
-        extra: {
-            document: {
-                content: string;
-                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
-                isRaw?: boolean;
-            };
-        };
-    };
+    200: DocumentItem;
 };
 
 export type CreateDocumentResponse = CreateDocumentResponses[keyof CreateDocumentResponses];
@@ -5311,54 +5382,9 @@ export type UpdateDocumentError = UpdateDocumentErrors[keyof UpdateDocumentError
 
 export type UpdateDocumentResponses = {
     /**
-     * Document Item
      * Item of type document, represents a text.
      */
-    200: {
-        id: string;
-        name: string;
-        description: null | string;
-        path: string;
-        lang: string;
-        /**
-         * Item settings
-         * Parameters, mostly visual, common to all types of items.
-         */
-        settings: {
-            /**
-             * @deprecated
-             */
-            lang?: string;
-            isPinned?: boolean;
-            /**
-             * @deprecated
-             */
-            tags?: Array<string>;
-            showChatbox?: boolean;
-            isResizable?: boolean;
-            hasThumbnail?: boolean;
-            ccLicenseAdaption?: 'CC BY' | 'CC BY-NC' | 'CC BY-SA' | 'CC BY-NC-SA' | 'CC BY-ND' | 'CC BY-NC-ND' | 'CC0' | null;
-            displayCoEditors?: boolean;
-            descriptionPlacement?: 'above' | 'below';
-            isCollapsible?: boolean;
-            enableSaveActions?: boolean;
-            showLinkIframe?: boolean;
-            showLinkButton?: boolean;
-            maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-            alignment?: 'center' | 'left' | 'right';
-        };
-        creator?: NullableMember;
-        createdAt: string;
-        updatedAt: string;
-        type: 'document';
-        extra: {
-            document: {
-                content: string;
-                flavor?: 'none' | 'info' | 'success' | 'warning' | 'error' | 'none' | 'info' | 'success' | 'warning' | 'error';
-                isRaw?: boolean;
-            };
-        };
-    };
+    200: DocumentItem;
 };
 
 export type UpdateDocumentResponse = UpdateDocumentResponses[keyof UpdateDocumentResponses];
@@ -6735,7 +6761,6 @@ export type CreatePageResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
         type: 'page';
@@ -7284,7 +7309,6 @@ export type UpdateItemResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
     } & {
@@ -7492,7 +7516,6 @@ export type ReorderItemResponses = {
             maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
             alignment?: 'center' | 'left' | 'right';
         };
-        creator?: NullableMember;
         createdAt: string;
         updatedAt: string;
     } & {

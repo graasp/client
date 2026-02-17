@@ -1,6 +1,7 @@
 import {
   FolderItemFactory,
   ItemOpFeedbackEvent,
+  PackedFolderItemFactory,
   PublicationStatus,
   buildPathFromIds,
   getParentFromPath,
@@ -8,7 +9,7 @@ import {
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { FolderItem, GenericItem } from '@/openapi/client';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 
 import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
@@ -30,7 +31,7 @@ describe('Ws Item Hooks', () => {
   });
 
   describe('useItemFeedbackUpdates', () => {
-    const item = FolderItemFactory() as FolderItem;
+    const item = PackedFolderItemFactory() as PackedItem;
     const itemActorId = item.creator?.id ?? 'random-id';
     const channel = { name: itemActorId, topic: TOPICS.ITEM_MEMBER };
     const hook = () => hooks.useItemFeedbackUpdates(itemActorId);

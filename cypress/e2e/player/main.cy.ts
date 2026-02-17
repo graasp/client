@@ -36,17 +36,17 @@ import {
 
 const GRAASP_DOCUMENT_ITEM = PackedDocumentItemFactory();
 const items = [
-  { ...GRAASP_LINK_ITEM, permission: 'admin' as const },
+  { ...GRAASP_LINK_ITEM, permission: 'admin' as const, creator: null },
   {
     ...GRAASP_LINK_ITEM_IFRAME_ONLY,
     permission: 'admin' as const,
   },
-  { ...YOUTUBE_LINK_ITEM, permission: 'admin' as const },
-  { ...IMAGE_ITEM_DEFAULT, permission: 'admin' as const },
-  { ...VIDEO_ITEM_DEFAULT, permission: 'admin' as const },
-  { ...PDF_ITEM_DEFAULT, permission: 'admin' as const },
-  { ...GRAASP_DOCUMENT_ITEM, permission: 'admin' as const },
-  { ...GRAASP_APP_ITEM, permission: 'admin' as const },
+  { ...YOUTUBE_LINK_ITEM, permission: 'admin' as const, creator: null },
+  { ...IMAGE_ITEM_DEFAULT, permission: 'admin' as const, creator: null },
+  { ...VIDEO_ITEM_DEFAULT, permission: 'admin' as const, creator: null },
+  { ...PDF_ITEM_DEFAULT, permission: 'admin' as const, creator: null },
+  { ...GRAASP_DOCUMENT_ITEM, permission: 'admin' as const, creator: null },
+  { ...GRAASP_APP_ITEM, permission: 'admin' as const, creator: null },
   ...FOLDER_WITH_SUBFOLDER_ITEM.items,
   ...FOLDER_WITHOUT_CHILDREN_ORDER.items,
 ];

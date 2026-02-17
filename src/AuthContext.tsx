@@ -131,7 +131,7 @@ export function AuthProvider({
             id: currentMember.id,
             lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
             type: AccountType.Guest as const,
-            item: currentMember.itemLoginSchema.item as GenericItem,
+            item: currentMember.itemLoginSchema.item as unknown as GenericItem,
           },
           logout,
           login: null,

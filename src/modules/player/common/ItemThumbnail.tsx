@@ -19,9 +19,8 @@ const ItemThumbnail = ({
   return (
     <ItemIcon
       type={item.type}
-      // TODO: fix type
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mimetype={getMimetype((item as any).extra)}
+      mimetype={getMimetype(item.extra as any)}
       alt={item.name}
       iconSrc={thumbnailSrc}
     />
