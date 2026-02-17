@@ -2,7 +2,9 @@ import { type JSX, useEffect } from 'react';
 
 import { Box, CircularProgress, useTheme } from '@mui/material';
 
-import { PackedItem, UnionOfConst } from '@graasp/sdk';
+import { UnionOfConst } from '@graasp/sdk';
+
+import type { PackedItem } from '@/openapi/client';
 
 import { useDataSyncContext } from '../context/DataSyncContext';
 import ThumbnailCrop from './ThumbnailCrop';

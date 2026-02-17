@@ -1,9 +1,9 @@
-import { AccountType, type DiscriminatedItem } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import { ItemMembership } from '@/openapi/client';
+import type { GenericItem, ItemMembership } from '@/openapi/client';
 
-export function useGuestMemberships(itemId: DiscriminatedItem['id']): {
+export function useGuestMemberships(itemId: GenericItem['id']): {
   isLoading: boolean;
   data?: ItemMembership[];
 } {

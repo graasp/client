@@ -4,11 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, DialogActions, DialogContent } from '@mui/material';
 
-import {
-  DocumentItemExtraFlavor,
-  DocumentItemType,
-  buildDocumentExtra,
-} from '@graasp/sdk';
+import { DocumentItemExtraFlavor, buildDocumentExtra } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
@@ -16,6 +12,7 @@ import {
   ITEM_FORM_CONFIRM_BUTTON_ID,
   ITEM_FORM_DOCUMENT_TEXT_ID,
 } from '@/config/selectors';
+import type { DocumentItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 
 import CancelButton from '~builder/components/common/CancelButton';
@@ -30,7 +27,7 @@ import { DocumentFlavorSelect } from './DocumentFlavorSelect';
 
 type Props = {
   onClose: () => void;
-  item: DocumentItemType;
+  item: DocumentItem;
 };
 
 type Inputs = {

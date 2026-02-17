@@ -1,5 +1,7 @@
 import { PackedFolderItemFactory, TagCategory } from '@graasp/sdk';
 
+import type { PackedItem } from '@/openapi/client';
+
 import {
   ITEM_HEADER_ID,
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
@@ -44,7 +46,7 @@ describe('Customized Tags', () => {
         permission: 'admin',
         publicVisibility: { type: 'public' },
       },
-    );
+    ) as PackedItem;
     const item = {
       ...packedItem,
       published: {
@@ -163,7 +165,7 @@ describe('Tags permissions', () => {
     const item = PackedFolderItemFactory(
       {},
       { permission: null, publicVisibility: {} },
-    );
+    ) as PackedItem;
     const publishedItem: ItemForTest = {
       ...item,
       visibilities: [
@@ -179,7 +181,6 @@ describe('Tags permissions', () => {
         item,
         createdAt: '2021-08-11T12:56:36.834Z',
         creator: MEMBERS.ANNA,
-        totalViews: 0,
       },
     };
     cy.setUpApi({
@@ -197,7 +198,7 @@ describe('Tags permissions', () => {
     const item = PackedFolderItemFactory(
       {},
       { permission: 'read', publicVisibility: {} },
-    );
+    ) as PackedItem;
     const publishedItem: ItemForTest = {
       ...item,
       visibilities: [
@@ -213,7 +214,6 @@ describe('Tags permissions', () => {
         item,
         createdAt: '2021-08-11T12:56:36.834Z',
         creator: MEMBERS.ANNA,
-        totalViews: 0,
       },
     };
     cy.setUpApi({

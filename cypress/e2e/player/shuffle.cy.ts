@@ -1,5 +1,3 @@
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import {
   FOLDER_NAME_TITLE_CLASS,
   buildTreeItemClass,
@@ -35,8 +33,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       cy.get(`.${buildTreeItemClass(root.id)}`)
@@ -65,8 +62,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -102,8 +98,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -139,8 +134,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -176,8 +170,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -227,8 +220,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -265,8 +257,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -318,8 +309,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -357,8 +347,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id
@@ -397,8 +386,7 @@ describe.skip('Shuffle', () => {
 
       expectFolderLayout({
         rootId: root.id,
-        items:
-          YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items as DiscriminatedItem[],
+        items: YET_ANOTHER_FOLDER_WITH_FIVE_ORDERED_SUBFOLDER_ITEMS.items,
       });
 
       // shuffled order is always the same for a given member + item id

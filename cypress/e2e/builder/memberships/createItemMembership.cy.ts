@@ -1,6 +1,6 @@
 import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client';
+import type { PackedItem, PermissionLevel } from '@/openapi/client';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -136,7 +136,7 @@ describe('Create Membership', () => {
   });
 
   it('cannot add membership item twice', () => {
-    const ITEM = PackedFolderItemFactory();
+    const ITEM = PackedFolderItemFactory() as PackedItem;
     const account = MEMBERS.ANNA;
     cy.setUpApi({
       items: [

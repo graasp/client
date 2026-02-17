@@ -4,9 +4,8 @@ import { useTranslation } from 'react-i18next';
 import WarningIcon from '@mui/icons-material/Warning';
 import { Tooltip } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { GenericItem } from '@/openapi/client';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
@@ -16,7 +15,7 @@ import CustomizedTags from './CustomizedTags';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: GenericItem;
   onChange?: (args: {
     isLoading: boolean;
     isSuccess: boolean;
@@ -44,7 +43,7 @@ export const PublishCustomizedTags = ({
 
   return (
     <>
-      <CustomizedTags item={item} />
+      <CustomizedTags itemId={item.id} />
 
       {showWarning && (
         <Tooltip title={t(BUILDER.ITEM_TAGS_MISSING_WARNING)}>

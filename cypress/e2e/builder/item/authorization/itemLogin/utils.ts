@@ -3,8 +3,9 @@ import {
   ItemLoginSchemaFactory,
   ItemLoginSchemaStatus,
   ItemLoginSchemaType,
-  PackedItem,
 } from '@graasp/sdk';
+
+import type { PackedItem } from '@/openapi/client';
 
 export const addItemLoginSchema = (
   item: PackedItem,
@@ -13,7 +14,7 @@ export const addItemLoginSchema = (
 ): PackedItem & { itemLoginSchema: ItemLoginSchema } => ({
   ...item,
   itemLoginSchema: ItemLoginSchemaFactory({
-    item,
+    item: item as unknown as ItemLoginSchema['item'],
     type: itemLoginSchemaType,
     status,
   }),

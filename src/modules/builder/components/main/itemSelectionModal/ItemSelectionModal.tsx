@@ -12,8 +12,6 @@ import {
   Stack,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import {
@@ -21,6 +19,7 @@ import {
   MY_GRAASP_ITEM_PATH,
   TREE_MODAL_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import Breadcrumbs from '@/ui/Tree/Breadcrumbs';
 import type { NavigationElement } from '@/ui/Tree/types';
 
@@ -38,12 +37,12 @@ export type ItemSelectionModalProps = {
   /** disabled rows
    *  */
   isDisabled?: (
-    items: DiscriminatedItem[],
+    items: GenericItem[],
     item: NavigationElement,
     homeId: string,
   ) => boolean;
   // items can be undefined because "many" operations start empty
-  items?: DiscriminatedItem[];
+  items?: GenericItem[];
   onClose: (args: { id: string | null; open: boolean }) => void;
   onConfirm: (destination: string | undefined) => void;
   open?: boolean;

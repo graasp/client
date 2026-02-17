@@ -12,7 +12,6 @@ import {
 
 import {
   DescriptionPlacementType,
-  DiscriminatedItem,
   ItemGeolocation,
   UnionOfConst,
 } from '@graasp/sdk';
@@ -21,6 +20,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import { createLinkMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { getKeyForParentId, itemsWithGeolocationKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
@@ -36,9 +36,9 @@ import { LinkType, getSettingsFromLinkType, normalizeURL } from './linkUtils';
 
 type Props = {
   onClose: () => void;
-  parentId?: DiscriminatedItem['id'];
+  parentId?: GenericItem['id'];
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: GenericItem['id'];
 };
 
 type Inputs = {

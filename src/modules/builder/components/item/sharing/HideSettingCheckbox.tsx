@@ -1,13 +1,14 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PackedItem, getIdsFromPath } from '@graasp/sdk';
+import { getIdsFromPath } from '@graasp/sdk';
 
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { SETTINGS_HIDE_ITEM_ID } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 

@@ -1,4 +1,4 @@
-import { PackedFolderItemFactory, PageItemType } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   ITEM_FORM_LINK_INPUT_ID,
@@ -8,9 +8,9 @@ import { buildItemPath } from '../../utils';
 
 const page = {
   ...PackedFolderItemFactory(),
-  type: 'page',
+  type: 'page' as const,
   extra: {} as never,
-} as PageItemType;
+};
 
 describe('Pages', () => {
   it('Click on link card show options', () => {

@@ -1,7 +1,6 @@
 // todo: remove this ignore once the queries are refactored
 /* eslint-disable react-hooks/rules-of-hooks */
 import {
-  DiscriminatedItem,
   MAX_FILE_SIZE,
   MAX_NUMBER_OF_FILES_UPLOAD,
   partitionArray,
@@ -9,6 +8,8 @@ import {
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosProgressEvent } from 'axios';
+
+import type { GenericItem } from '@/openapi/client';
 
 import {
   getKeyForParentId,
@@ -77,9 +78,9 @@ export const useUploadFiles = (queryConfig: QueryClientConfig) => () => {
   const { notifier } = queryConfig;
   return useMutation({
     mutationFn: async (args: {
-      id?: DiscriminatedItem['id'];
+      id?: GenericItem['id'];
       files: File[];
-      previousItemId?: DiscriminatedItem['id'];
+      previousItemId?: GenericItem['id'];
       onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
     }) => {
       // filter out big files to not upload them

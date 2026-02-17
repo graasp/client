@@ -1,20 +1,23 @@
 import {
   FolderItemFactory,
   GuestFactory,
+  ItemLoginSchema,
   ItemLoginSchemaFactory,
   ItemLoginSchemaType,
 } from '@graasp/sdk';
+
+import type { FolderItem } from '@/openapi/client';
 
 import { FORBIDDEN_CONTENT_CONTAINER_ID } from '../../../src/config/selectors';
 import { FOLDER_WITH_SUBFOLDER_ITEM } from '../../fixtures/items';
 import { TestHelper, buildContentPagePath, buildMainPath } from './utils';
 
-const item = FolderItemFactory({ name: 'Pseudo Item' });
+const item = FolderItemFactory({ name: 'Pseudo Item' }) as FolderItem;
 const pseudoMember = GuestFactory({
   name: 'bob-guest',
   itemLoginSchema: ItemLoginSchemaFactory({
     type: ItemLoginSchemaType.Username,
-    item,
+    item: item as unknown as ItemLoginSchema['item'],
   }),
 });
 

@@ -1,6 +1,6 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import type { PermissionLevel } from '@/openapi/client';
+import type { PackedItem, PermissionLevel } from '@/openapi/client';
 
 import {
   CREATE_MEMBERSHIP_FORM_ID,
@@ -57,7 +57,9 @@ describe('Create Invitation', () => {
   });
 
   it('cannot invite member with membership', () => {
-    const item = PackedFolderItemFactory({ creator: MEMBERS.ANNA });
+    const item = PackedFolderItemFactory({
+      creator: MEMBERS.ANNA,
+    }) as PackedItem;
     const items = [
       {
         ...item,

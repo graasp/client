@@ -9,11 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 
-import {
-  DiscriminatedItem,
-  MAX_ZIP_FILE_SIZE,
-  formatFileSize,
-} from '@graasp/sdk';
+import { MAX_ZIP_FILE_SIZE, formatFileSize } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
 
@@ -23,6 +19,7 @@ import {
   CREATE_ITEM_CLOSE_BUTTON_ID,
   H5P_DASHBOARD_UPLOADER_ID,
 } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import Button from '@/ui/buttons/Button/Button';
 import UploadFileButton from '@/ui/upload/UploadFileButton/UploadFileButton';
 
@@ -34,7 +31,7 @@ const ImportH5P = ({
   previousItemId,
 }: {
   onClose?: () => void;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: GenericItem['id'];
 }): JSX.Element => {
   const { itemId } = useParams({ strict: false });
   const { mutateAsync: importH5P, isPending: isLoading } =

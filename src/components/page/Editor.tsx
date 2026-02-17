@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Button } from '@mui/material';
 
-import { PageItemType } from '@graasp/sdk';
-
 import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
 import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
 import {
@@ -17,6 +15,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ParagraphNode, TextNode } from 'lexical';
 
 import { NS } from '@/config/constants';
+import { PageItem } from '@/openapi/client';
 import { stringToColor } from '@/ui/Avatar/stringToColor';
 
 import { StatusToolbar } from './StatusToolbar';
@@ -37,7 +36,7 @@ function onError(error: Error) {
 }
 
 type Props = {
-  item: PageItemType;
+  item: PageItem;
   currentAccount?: { name: string; id: string };
 };
 

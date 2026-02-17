@@ -1,12 +1,7 @@
-import {
-  DiscriminatedItem,
-  ItemGeolocation,
-  Pagination,
-  UUID,
-} from '@graasp/sdk';
+import { ItemGeolocation, Pagination, UUID } from '@graasp/sdk';
 
 import { DEFAULT_LANG } from '@/config/constants.js';
-import { type ItemType } from '@/openapi/client';
+import type { GenericItem, ItemType } from '@/openapi/client';
 
 import { DEFAULT_THUMBNAIL_SIZE } from './config/constants.js';
 import { ItemSearchParams } from './item/types.js';
@@ -283,7 +278,7 @@ export const itemsWithGeolocationKeys = {
     lat2?: ItemGeolocation['lat'];
     lng1?: ItemGeolocation['lng'];
     lng2?: ItemGeolocation['lng'];
-    parentItemId?: DiscriminatedItem['id'];
+    parentItemId?: GenericItem['id'];
   }) => [
     ...itemsWithGeolocationKeys.allBounds,
     { lat1, lat2, lng1, lng2, parentItemId, keywords },

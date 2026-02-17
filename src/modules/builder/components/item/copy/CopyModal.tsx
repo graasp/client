@@ -1,10 +1,9 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '../../../langs';
 import ItemSelectionModal, {
@@ -18,7 +17,7 @@ export const CopyModal = ({
 }: {
   open: boolean;
   onClose: () => void;
-  items: DiscriminatedItem[];
+  items: GenericItem[];
 }): JSX.Element | null => {
   const { mutate: copyItems } = mutations.useCopyItems();
   const { t: translateBuilder } = useTranslation(NS.Builder);

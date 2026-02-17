@@ -4,15 +4,8 @@ import type {
   CompleteGuest,
   CompleteMember,
   CompleteMembershipRequest,
-  DiscriminatedItem,
-  FileItemType,
-  Invitation,
-  ItemBookmark,
   ItemGeolocation,
   ItemLoginSchema,
-  ItemMembership,
-  ItemPublished,
-  ItemValidationGroup,
   MemberStorageItem,
   MembershipRequestStatus,
   PublicationStatus,
@@ -24,12 +17,17 @@ import type {
 
 import type {
   CurrentSettings,
+  Invitation,
+  ItemMembership,
+  ItemPublished,
+  ItemValidationGroup,
   ItemVisibility,
-  PermissionLevel,
+  PackedBookmark,
+  PackedItem,
   Profile,
 } from '@/openapi/client';
 
-export type ItemForTest = DiscriminatedItem & {
+export type ItemForTest = PackedItem & {
   geolocation?: Partial<ItemGeolocation>;
   tags?: Tag[];
   thumbnails?: ThumbnailsBySize;
@@ -40,13 +38,12 @@ export type ItemForTest = DiscriminatedItem & {
   memberships?: ItemMembership[];
   invitations?: Partial<Invitation>[];
   published?: ItemPublished;
-  permission?: PermissionLevel | null;
   public?: ItemVisibility;
 };
 
 export type MemberForTest = CompleteMember & { thumbnails?: string };
 
-export type FileItemForTest = FileItemType & {
+export type FileItemForTest = PackedItem & {
   createFilepath: string;
   readFilepath: string;
 };
@@ -58,12 +55,12 @@ export type ApiConfig = {
   getCurrentProfileError?: boolean;
   editPublicProfileError?: boolean;
   items?: ItemForTest[];
-  recycledItems?: DiscriminatedItem[];
+  recycledItems?: PackedItem[];
   members?: MemberForTest[];
   currentMember?: MemberForTest | null;
   mentions?: ChatMention[];
   shortLinks?: ShortLink[];
-  bookmarkedItems?: ItemBookmark[];
+  bookmarkedItems?: PackedBookmark[];
   recycledItemData?: RecycledItemData[];
   itemPublicationStatus?: PublicationStatus;
   publishedItemData?: ItemPublished[];

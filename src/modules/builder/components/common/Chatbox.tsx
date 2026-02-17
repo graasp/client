@@ -1,12 +1,11 @@
 import type { JSX } from 'react';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { useQuery } from '@tanstack/react-query';
 
 import { Chatbox as GraaspChatbox } from '@/components/chatbox/Chatbox/Chatbox';
 import { useChatboxProvider } from '@/components/chatbox/Chatbox/chatbox.hook';
 import { CHATBOX_ID, CHATBOX_INPUT_BOX_ID } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen';
 import Loader from '@/ui/Loader/Loader';
 

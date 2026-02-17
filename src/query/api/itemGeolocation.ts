@@ -1,7 +1,8 @@
-import { DiscriminatedItem, ItemGeolocation, UUID } from '@graasp/sdk';
+import { ItemGeolocation, UUID } from '@graasp/sdk';
 
 import { DEFAULT_LANG } from '@/config/constants.js';
 import { API_HOST } from '@/config/env.js';
+import type { GenericItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
@@ -22,7 +23,7 @@ export const getItemGeolocation = async (id: UUID) =>
     .then(({ data }) => data);
 
 export const putItemGeolocation = async (payload: {
-  itemId: DiscriminatedItem['id'];
+  itemId: GenericItem['id'];
   geolocation: Pick<ItemGeolocation, 'lat' | 'lng'> &
     Pick<Partial<ItemGeolocation>, 'country' | 'addressLabel' | 'helperLabel'>;
 }) =>
@@ -40,7 +41,7 @@ export const getItemsInMap = async (payload: {
   lat2?: ItemGeolocation['lat'];
   lng1?: ItemGeolocation['lng'];
   lng2?: ItemGeolocation['lng'];
-  parentItemId?: DiscriminatedItem['id'];
+  parentItemId?: GenericItem['id'];
   keywords?: string[];
 }) =>
   verifyAuthentication(() =>

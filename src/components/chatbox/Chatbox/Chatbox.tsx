@@ -6,7 +6,7 @@ import { WS_CLIENT } from '@/config/queryClient.js';
 import type {
   ChatMessageWithCreator,
   NullableCurrentAccount,
-} from '@/openapi/client/types.gen.js';
+} from '@/openapi/client';
 
 import { CONTAINER_HEIGHT_SAFETY_MARGIN } from '../constants.js';
 import { EditingContextProvider } from '../context/EditingContext.js';

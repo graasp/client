@@ -2,11 +2,12 @@ import type { JSX } from 'react';
 
 import { SelectProps } from '@mui/material';
 
-import { PackedItem, PermissionLevelCompare } from '@graasp/sdk';
+import { PermissionLevelCompare } from '@graasp/sdk';
 
 import { LANGS } from '@/config/langs';
 import { mutations } from '@/config/queryClient';
 import { LANGUAGE_SELECTOR_ID } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import Select from '@/ui/Select/Select';
 
 const LanguageSelect = ({ item }: { item: PackedItem }): JSX.Element => {

@@ -1,18 +1,19 @@
-import {
-  DiscriminatedItem,
-  Invitation,
-  PackedFolderItemFactory,
-} from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import { v4 } from 'uuid';
 
-import type { PermissionLevel } from '@/openapi/client';
+import type {
+  GenericItem,
+  Invitation,
+  PackedItem,
+  PermissionLevel,
+} from '@/openapi/client';
 
 import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
 
 export const buildInvitation = (args: {
-  item: DiscriminatedItem;
+  item: GenericItem;
   email?: string;
   permission?: PermissionLevel;
 }): Invitation => {
@@ -24,32 +25,30 @@ export const buildInvitation = (args: {
     permission: permission ?? 'read',
     createdAt: '2021-08-11T12:56:36.834Z',
     updatedAt: '2021-08-11T12:56:36.834Z',
-    creator: MEMBERS.ANNA,
     item,
   };
 };
 
 // warning: default permission admin
-const itemsWithInvitations: DiscriminatedItem[] = [
+const itemsWithInvitations = [
   PackedFolderItemFactory({
     id: 'bcafbd2a-5688-11eb-ae93-0242ac130002',
     name: 'parent',
     path: 'bcafbd2a_5688_11eb_ae93_0242ac130002',
-  }),
+  }) as PackedItem,
   PackedFolderItemFactory({
     id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
     name: 'own_item_name1',
     creator: MEMBERS.BOB,
     path: 'bcafbd2a_5688_11eb_ae93_0242ac130002.ecafbd2a_5688_11eb_ae93_0242ac130002',
-  }),
+  }) as PackedItem,
 ];
 
 export const ITEMS_WITH_INVITATIONS = {
   items: [
-    { ...itemsWithInvitations[0], permission: 'admin' },
+    itemsWithInvitations[0],
     {
       ...itemsWithInvitations[1],
-      permission: 'admin',
 
       // for tests only
       memberships: [
@@ -80,7 +79,6 @@ export const ITEMS_WITH_INVITATIONS = {
           email: MEMBERS.BOB.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
         },
         {
           id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
@@ -89,7 +87,6 @@ export const ITEMS_WITH_INVITATIONS = {
           email: MEMBERS.CEDRIC.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
         },
         {
           id: 'ecbfbd2a-5688-11eb-be93-0242ac130007',
@@ -98,7 +95,6 @@ export const ITEMS_WITH_INVITATIONS = {
           email: MEMBERS.DAVID.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
         },
       ] as const,
     },
@@ -107,14 +103,14 @@ export const ITEMS_WITH_INVITATIONS = {
 } as const satisfies ApiConfig;
 
 // warning: default permission admin
-const itemsWithInvitationsWriteAccess: DiscriminatedItem[] = [
+const itemsWithInvitationsWriteAccess = [
   PackedFolderItemFactory(
     {
       id: 'bcafbd2a-5688-11eb-ae93-0242ac130002',
       path: 'bcafbd2a_5688_11eb_ae93_0242ac130002',
     },
     { permission: 'write' },
-  ),
+  ) as PackedItem,
   PackedFolderItemFactory(
     {
       id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
@@ -122,7 +118,7 @@ const itemsWithInvitationsWriteAccess: DiscriminatedItem[] = [
       path: 'bcafbd2a_5688_11eb_ae93_0242ac130002.ecafbd2a_5688_11eb_ae93_0242ac130002',
     },
     { permission: 'write' },
-  ),
+  ) as PackedItem,
 ];
 export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
   items: [
@@ -149,7 +145,6 @@ export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
           email: MEMBERS.CEDRIC.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
         },
         {
           id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
@@ -158,7 +153,6 @@ export const ITEM_WITH_INVITATIONS_WRITE_ACCESS: ApiConfig = {
           email: MEMBERS.DAVID.email,
           createdAt: '2021-08-11T12:56:36.834Z',
           updatedAt: '2021-08-11T12:56:36.834Z',
-          creator: MEMBERS.ANNA,
         },
       ],
     },

@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import Clear from '@mui/icons-material/Clear';
 import { Box, IconButton, Stack, Tooltip, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { GenericItem } from '@/openapi/client';
 import {
   useItemGeolocation,
   useSuggestionsForAddress,
@@ -21,12 +20,12 @@ import MapGeolocationPicker, {
 import GeolocationModalButton from './GeolocationModalButton';
 
 const GeolocationPicker = ({
-  item,
+  itemId,
 }: {
-  item: DiscriminatedItem;
+  itemId: GenericItem['id'];
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { data: geoloc } = useItemGeolocation(item.id);
+  const { data: geoloc } = useItemGeolocation(itemId);
   const { mutate: putGeoloc } = mutations.usePutItemGeolocation();
   const { mutate: deleteGeoloc } = mutations.useDeleteItemGeolocation();
 
@@ -38,7 +37,7 @@ const GeolocationPicker = ({
   }): void => {
     const { addressLabel, lat, lng, country } = option;
     putGeoloc({
-      itemId: item.id,
+      itemId: itemId,
       geolocation: {
         addressLabel,
         lat,
@@ -49,12 +48,12 @@ const GeolocationPicker = ({
   };
 
   const clearGeoloc = () => {
-    deleteGeoloc({ itemId: item.id });
+    deleteGeoloc({ itemId: itemId });
   };
 
   // the input is disabled if the geoloc is defined in parent
   // but it should be enabled if the geoloc is not defined
-  const isDisabled = Boolean(geoloc && geoloc?.item?.id !== item.id);
+  const isDisabled = Boolean(geoloc && geoloc?.item?.id !== itemId);
 
   return (
     <Stack gap={1}>
@@ -87,7 +86,7 @@ const GeolocationPicker = ({
           {t(BUILDER.ITEM_SETTINGS_GEOLOCATION_INHERITED_EXPLANATION)}
         </Typography>
       )}
-      <GeolocationModalButton item={item} />
+      <GeolocationModalButton itemId={itemId} />
     </Stack>
   );
 };

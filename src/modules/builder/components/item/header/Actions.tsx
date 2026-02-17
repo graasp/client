@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Divider, IconButton, Menu } from '@mui/material';
 
-import { AccountType, PackedItem, PermissionLevelCompare } from '@graasp/sdk';
+import { AccountType, PermissionLevelCompare } from '@graasp/sdk';
 
 import { useSearch } from '@tanstack/react-router';
 import { MoreVerticalIcon } from 'lucide-react';
@@ -11,6 +11,7 @@ import { MoreVerticalIcon } from 'lucide-react';
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
 import { ITEM_MENU_BOOKMARK_BUTTON_CLASS } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import { ActionButton } from '@/ui/types';
 
 import ExportRawZipButton from '~builder/components/common/ExportRawZipButton';
@@ -75,7 +76,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     item.type === 'folder' ? (
       <ExportRawZipButton
         key="export-zip"
-        item={item}
+        itemId={item.id}
         dataUmamiContext="header"
       />
     ) : (
@@ -160,7 +161,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
             <Divider key="canWriteEndDivider" />,
           ]
         : null}
-      <FlagButton item={item} />
+      <FlagButton itemId={item.id} />
       {canAdmin && (
         <RecycleButton
           key="recycle"

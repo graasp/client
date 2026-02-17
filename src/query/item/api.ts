@@ -1,17 +1,11 @@
-import {
-  DiscriminatedItem,
-  ItemGeolocation,
-  PackedItem,
-  ResultOf,
-  UUID,
-} from '@graasp/sdk';
+import { ItemGeolocation, ResultOf, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { verifyAuthentication } from '../api/axios.js';
 import {
-  SHARED_ITEM_WITH_ROUTE,
   buildCopyItemsRoute,
   buildDeleteItemsRoute,
   buildDownloadFilesRoute,
@@ -35,8 +29,8 @@ export const getItems = async (ids: UUID[]) =>
     .get<ResultOf<PackedItem>>(`${API_HOST}/${buildGetItemsRoute(ids)}`)
     .then(({ data }) => data);
 
-export type PostItemPayloadType = Partial<DiscriminatedItem> &
-  Pick<DiscriminatedItem, 'type' | 'name'> &
+export type PostItemPayloadType = Partial<PackedItem> &
+  Pick<GenericItem, 'type' | 'name'> &
   Partial<{
     parentId: UUID;
     geolocation: Pick<ItemGeolocation, 'lat' | 'lng'>;
@@ -57,14 +51,12 @@ export const deleteItems = async (ids: UUID[]) =>
 // querystring = {parentId}
 export const editItem = async (
   id: UUID,
-  item: Pick<DiscriminatedItem, 'id'> &
-    Partial<
-      Pick<DiscriminatedItem, 'name' | 'description' | 'extra' | 'settings'>
-    >,
-): Promise<DiscriminatedItem> =>
+  item: Pick<GenericItem, 'id'> &
+    Partial<Pick<GenericItem, 'name' | 'description' | 'extra' | 'settings'>>,
+): Promise<GenericItem> =>
   verifyAuthentication(() =>
     axios
-      .patch<DiscriminatedItem>(`${API_HOST}/${buildEditItemRoute(id)}`, {
+      .patch<GenericItem>(`${API_HOST}/${buildEditItemRoute(id)}`, {
         ...item,
         name: item.name?.trim(),
       })
@@ -97,13 +89,6 @@ export const copyItems = async ({ ids, to }: { ids: UUID[]; to?: UUID }) =>
       })
       .then(({ data }) => data);
   });
-
-export const getSharedItems = async () =>
-  verifyAuthentication(() =>
-    axios
-      .get<DiscriminatedItem[]>(`${API_HOST}/${SHARED_ITEM_WITH_ROUTE}`, {})
-      .then(({ data }) => data),
-  );
 
 export const getFileContentUrl = async (id: UUID) =>
   axios

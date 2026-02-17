@@ -5,8 +5,6 @@ import { ItemChildrenParams, ItemSearchParams } from './types';
 
 export const ITEMS_ROUTE = 'items';
 
-export const SHARED_ITEM_WITH_ROUTE = `${ITEMS_ROUTE}/shared-with`;
-
 export const setSearchQueryParams = ({
   creatorId,
   ordering,

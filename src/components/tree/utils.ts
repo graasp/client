@@ -1,16 +1,16 @@
-import { DiscriminatedItem, getMimetype, getParentFromPath } from '@graasp/sdk';
+import { getMimetype, getParentFromPath } from '@graasp/sdk';
 
-import { ItemType } from '@/openapi/client';
+import type { GenericItem, ItemType } from '@/openapi/client';
 
 type ItemIdToDirectChildren = {
-  [nodeId: string]: DiscriminatedItem[];
+  [nodeId: string]: GenericItem[];
 };
 
 /**
  * build parent -> children map
  * items without parent are not in the map
  */
-const createMapTree = (data: DiscriminatedItem[]): ItemIdToDirectChildren =>
+const createMapTree = (data: GenericItem[]): ItemIdToDirectChildren =>
   data.reduce<ItemIdToDirectChildren>((treeMap, elem) => {
     const parentId = getParentFromPath(elem.path);
     if (parentId) {
@@ -40,8 +40,8 @@ type TreeNode = {
 
 // handle item children tree
 export const buildItemsTree = (
-  data: DiscriminatedItem[],
-  rootItems: DiscriminatedItem[],
+  data: GenericItem[],
+  rootItems: GenericItem[],
 ) => {
   const tree: TreeNode = {};
   if (data.length === 1) {
@@ -49,13 +49,17 @@ export const buildItemsTree = (
     tree[data[0].id] = {
       id: data[0].id,
       name: data[0].name,
-      metadata: { type: data[0].type, mimetype: getMimetype(data[0].extra) },
+      metadata: {
+        type: data[0].type,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mimetype: getMimetype(data[0].extra as any),
+      },
       children: [],
     };
   }
   const mapTree = createMapTree(data);
 
-  const buildTree = (node: DiscriminatedItem) => {
+  const buildTree = (node: GenericItem) => {
     if (node.type === 'folder' && mapTree[node.id]) {
       const children = mapTree[node.id] ?? [];
 
@@ -73,7 +77,8 @@ export const buildItemsTree = (
       name: node.name,
       metadata: {
         type: node.type,
-        mimetype: getMimetype(node.extra),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mimetype: getMimetype(node.extra as any),
       },
     };
   };

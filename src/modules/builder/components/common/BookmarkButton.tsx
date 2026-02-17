@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButtonProps } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
+import type { GenericItem } from '@/openapi/client';
 import { PackedBookmark } from '@/openapi/client';
 import {
   createBookmarkMutation,
@@ -21,7 +20,7 @@ import { ActionButtonVariant } from '@/ui/types';
 import { BUILDER } from '../../langs';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: GenericItem;
   type?: ActionButtonVariant;
   onClick?: () => void;
   size?: IconButtonProps['size'];
@@ -29,9 +28,9 @@ type Props = {
 };
 
 const isItemBookmarked = (
-  item: DiscriminatedItem,
+  itemId: GenericItem['id'],
   bookmarks?: PackedBookmark[],
-): boolean => bookmarks?.some((f) => f.item.id === item.id) || false;
+): boolean => bookmarks?.some((f) => f.item.id === itemId) || false;
 
 const BookmarkButton = ({
   item,
@@ -56,7 +55,7 @@ const BookmarkButton = ({
     },
   });
 
-  const isFavorite = isItemBookmarked(item, bookmarks);
+  const isFavorite = isItemBookmarked(item.id, bookmarks);
 
   const handleFavorite = () => {
     addFavorite.mutate({ path: { itemId: item.id } });

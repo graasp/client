@@ -1,4 +1,4 @@
-import { FolderItemFactory, ItemLoginSchemaType } from '@graasp/sdk';
+import { ItemLoginSchemaType, PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   ENROLL_BUTTON_SELECTOR,
@@ -11,7 +11,7 @@ import { buildContentPagePath } from './utils';
 describe('Pseudonimized access', () => {
   it('Logged out', () => {
     const rootItem: ItemForTest = {
-      ...FolderItemFactory({ name: 'pseudo' }),
+      ...PackedFolderItemFactory({ name: 'pseudo' }, { permission: null }),
       itemLoginSchema: { type: `${ItemLoginSchemaType.Username}` },
     };
     const items = [rootItem];
@@ -37,7 +37,7 @@ describe('Pseudonimized access', () => {
 
   it('Enroll', () => {
     const rootItem: ItemForTest = {
-      ...FolderItemFactory({ name: 'pseudo' }),
+      ...PackedFolderItemFactory({ name: 'pseudo' }, { permission: null }),
       itemLoginSchema: { type: `${ItemLoginSchemaType.Username}` },
     };
     const items = [rootItem];

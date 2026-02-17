@@ -2,12 +2,12 @@ import { type JSX, useState } from 'react';
 
 import { Collapse, List, ListItemButton, Typography } from '@mui/material';
 
-import { DiscriminatedItem, getIdsFromPath } from '@graasp/sdk';
+import { getIdsFromPath } from '@graasp/sdk';
 
 import { ErrorBoundary } from '@sentry/react';
 
 import { buildTreeItemClass } from '@/config/selectors';
-import { ItemType } from '@/openapi/client';
+import type { GenericItem, ItemType } from '@/openapi/client';
 
 import { ExpandButton } from './ExpandButton';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
@@ -84,8 +84,8 @@ function ListItem({
 type TreeViewProps = {
   id: string;
   header?: string;
-  rootItems: (DiscriminatedItem & { children?: DiscriminatedItem[] })[];
-  items?: (DiscriminatedItem & { children?: DiscriminatedItem[] })[];
+  rootItems: (GenericItem & { children?: GenericItem[] })[];
+  items?: (GenericItem & { children?: GenericItem[] })[];
   onTreeItemSelect?: (value: string) => void;
   itemId: string;
   /**

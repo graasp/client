@@ -1,4 +1,4 @@
-import { LinkItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedFolderItemFactory, PackedLinkItemFactory } from '@graasp/sdk';
 
 import {
   NEXT_ITEM_NAV_BUTTON_ID,
@@ -100,7 +100,7 @@ describe('Internal navigation', () => {
       `/player/${target.id}`,
       window.location.origin,
     ).toString();
-    const link = LinkItemFactory({
+    const link = PackedLinkItemFactory({
       name: 'Link to target',
       extra: {
         embeddedLink: {

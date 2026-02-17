@@ -1,18 +1,17 @@
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { AxiosProgressEvent } from 'axios';
 
 import { API_HOST } from '@/config/env.js';
+import type { GenericItem } from '@/openapi/client';
 
 import { axiosClient as axios, verifyAuthentication } from '../../api/axios.js';
 import { buildImportZipRoute } from '../../routes.js';
 
 export const importZip = async (args: {
-  id?: DiscriminatedItem['id'];
+  id?: GenericItem['id'];
   file: Blob;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: GenericItem['id'];
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
-}): Promise<DiscriminatedItem> =>
+}): Promise<GenericItem> =>
   verifyAuthentication(() => {
     const { id, file } = args;
     const itemPayload = new FormData();
@@ -23,7 +22,7 @@ export const importZip = async (args: {
      */
     itemPayload.append('files', file);
     return axios
-      .post<DiscriminatedItem>(
+      .post<GenericItem>(
         `${API_HOST}/${buildImportZipRoute(id)}`,
         itemPayload,
         {

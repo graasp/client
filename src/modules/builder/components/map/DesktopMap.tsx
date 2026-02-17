@@ -1,29 +1,29 @@
 import type { JSX } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { useNavigate } from '@tanstack/react-router';
+
+import type { GenericItem } from '@/openapi/client';
 
 import MapView from '../item/MapView';
 
 type Props = {
-  parentId?: DiscriminatedItem['id'];
+  parentId?: GenericItem['id'];
 };
 
 export const DesktopMap = ({ parentId }: Props): JSX.Element => {
   const navigate = useNavigate();
 
-  const viewItem = (item: DiscriminatedItem) => {
+  const viewItem = (itemId: GenericItem['id']) => {
     navigate({
       to: '/player/$rootId/$itemId',
-      params: { rootId: item.id, itemId: item.id },
+      params: { rootId: itemId, itemId },
     });
   };
 
-  const viewItemInBuilder = (item: DiscriminatedItem) => {
+  const viewItemInBuilder = (itemId: GenericItem['id']) => {
     navigate({
       to: '/builder/items/$itemId',
-      params: { itemId: item.id },
+      params: { itemId },
     });
   };
 

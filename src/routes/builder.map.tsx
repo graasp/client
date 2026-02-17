@@ -1,10 +1,10 @@
 import type { JSX } from 'react';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router';
 import { zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
+
+import type { GenericItem } from '@/openapi/client';
 
 import MapView from '~builder/components/item/MapView';
 
@@ -25,18 +25,18 @@ function MapItemScreen(): JSX.Element | null {
 
   const navigate = useNavigate();
 
-  const viewItem = (item: DiscriminatedItem) => {
+  const viewItem = (itemId: GenericItem['id']) => {
     throw redirect({
       to: '/player/$rootId/$itemId',
-      params: { rootId: item.id, itemId: item.id },
+      params: { rootId: itemId, itemId },
     });
   };
 
-  const viewItemInBuilder = (item: DiscriminatedItem) => {
+  const viewItemInBuilder = (itemId: GenericItem['id']) => {
     // navigate to item in map
     navigate({
       to: '/builder/items/$itemId',
-      params: { itemId: item.id },
+      params: { itemId },
     });
   };
 

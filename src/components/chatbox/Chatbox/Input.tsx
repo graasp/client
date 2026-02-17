@@ -20,8 +20,8 @@ import { Box, IconButton, Typography, styled, useTheme } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants.js';
+import type { CreateChatMessageData } from '@/openapi/client';
 import { getCurrentAccountOptions } from '@/openapi/client/@tanstack/react-query.gen.js';
-import type { CreateChatMessageData } from '@/openapi/client/types.gen.js';
 
 import {
   ALL_MEMBERS_ID,

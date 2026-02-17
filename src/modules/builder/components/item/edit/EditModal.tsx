@@ -4,10 +4,9 @@ import { toast } from 'react-toastify';
 
 import { Dialog, DialogTitle } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { EDIT_MODAL_ID } from '@/config/selectors';
+import type { Item } from '@/openapi/client';
 
 import { BUILDER } from '../../../langs';
 import BaseItemForm from '../form/BaseItemForm';
@@ -20,7 +19,7 @@ import { EditPageForm } from '../form/page/EditPageForm';
 import EditShortcutForm from '../shortcut/EditShortcutForm';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: Item;
   onClose: () => void;
   open: boolean;
 };
@@ -35,7 +34,7 @@ export function EditModal({
 
   // updated properties are separated from the original item
   // so only necessary properties are sent when editing
-  const [updatedItem, setUpdatedItem] = useState<DiscriminatedItem>(item);
+  const [updatedItem, setUpdatedItem] = useState<Item>(item);
 
   useEffect(() => {
     if (item.id !== updatedItem.id) {

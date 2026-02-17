@@ -8,14 +8,12 @@ import {
   useMemo,
 } from 'react';
 
-import {
-  AccountType,
-  DiscriminatedItem,
-  getCurrentAccountLang,
-} from '@graasp/sdk';
+import { AccountType, getCurrentAccountLang } from '@graasp/sdk';
 
 import * as Sentry from '@sentry/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import type { GenericItem } from '@/openapi/client';
 
 import { DEFAULT_LANG } from './config/constants';
 import { LocalStorage } from './config/localStorage';
@@ -43,7 +41,7 @@ export type AuthenticatedGuest = {
   id: string;
   lang: string;
   type: AccountType.Guest;
-  item: DiscriminatedItem;
+  item: GenericItem;
 };
 export type AuthenticatedUser = AuthenticatedMember | AuthenticatedGuest;
 type AuthContextLoggedMember = {
@@ -133,7 +131,7 @@ export function AuthProvider({
             id: currentMember.id,
             lang: getCurrentAccountLang(currentMember, DEFAULT_LANG),
             type: AccountType.Guest as const,
-            item: currentMember.itemLoginSchema.item,
+            item: currentMember.itemLoginSchema.item as unknown as GenericItem,
           },
           logout,
           login: null,

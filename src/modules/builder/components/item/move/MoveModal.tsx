@@ -1,10 +1,11 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem, PackedItem, getParentFromPath } from '@graasp/sdk';
+import { getParentFromPath } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import type { NavigationElement } from '@/ui/Tree/types';
 
 import { BUILDER } from '../../../langs';
@@ -36,7 +37,7 @@ export const MoveModal = ({
   };
 
   const isDisabled = (
-    itemsArray: DiscriminatedItem[],
+    itemsArray: GenericItem[],
     item: NavigationElement,
     homeId: string,
   ) => {

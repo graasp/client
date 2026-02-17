@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 
 import {
   Channel,
-  DiscriminatedItem,
   FeedBackOperation,
   FeedBackOperationType,
   ItemOpFeedbackEvent as OpFeedbackEvent,
@@ -18,6 +17,8 @@ import {
 } from '@graasp/sdk';
 
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
+
+import type { GenericItem } from '@/openapi/client';
 
 import { getKeyForParentId, itemKeys, memberKeys } from '../../keys.js';
 import {
@@ -49,7 +50,7 @@ const invalidateRootDescendants = (
  */
 type ItemOpFeedbackEvent<
   T extends FeedBackOperationType = FeedBackOperationType,
-> = OpFeedbackEvent<DiscriminatedItem, T>;
+> = OpFeedbackEvent<GenericItem, T>;
 
 const InvalidateItemOpFeedback = (queryClient: QueryClient) => ({
   [FeedBackOperation.DELETE]: () => {

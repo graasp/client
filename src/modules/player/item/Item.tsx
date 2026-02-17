@@ -12,19 +12,7 @@ import {
   Stack,
 } from '@mui/material';
 
-import {
-  ActionTriggers,
-  AppItemType,
-  Context,
-  DocumentItemType,
-  EtherpadItemType,
-  FileItemType,
-  H5PItemType,
-  LinkItemType,
-  PackedItem,
-  ShortcutItemType,
-  buildPdfViewerURL,
-} from '@graasp/sdk';
+import { ActionTriggers, Context, buildPdfViewerURL } from '@graasp/sdk';
 
 import { getRouteApi } from '@tanstack/react-router';
 
@@ -42,6 +30,16 @@ import {
   buildFolderButtonId,
   buildLinkItemId,
 } from '@/config/selectors';
+import type {
+  AppItem as AppItemType,
+  DocumentItem as DocumentItemType,
+  EtherpadItem as EtherpadItemType,
+  FileItem as FileItemType,
+  H5pItem as H5PItemType,
+  EmbeddedLinkItem as LinkItemType,
+  PackedItem,
+  ShortcutItem as ShortcutItemType,
+} from '@/openapi/client';
 import { Api } from '@/query';
 import withCollapse from '@/ui/Collapse/withCollapse';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';

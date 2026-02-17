@@ -3,18 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { TableCell, Typography } from '@mui/material';
 
-import {
-  AccountType,
-  DiscriminatedItem,
-  ItemLoginSchemaStatus,
-} from '@graasp/sdk';
+import { AccountType, ItemLoginSchemaStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
   buildItemMembershipRowEditButtonId,
   buildItemMembershipRowId,
 } from '@/config/selectors';
-import { ItemMembership } from '@/openapi/client';
+import type { GenericItem, ItemMembership } from '@/openapi/client';
 import { DEFAULT_TEXT_DISABLED_COLOR } from '@/ui/theme';
 
 import DeleteItemMembershipButton from './DeleteItemMembershipButton';
@@ -30,7 +26,7 @@ const ItemMembershipTableRow = ({
   isDisabled,
 }: {
   data: ItemMembership;
-  item: DiscriminatedItem;
+  item: GenericItem;
   allowDowngrade?: boolean;
   isOnlyAdmin?: boolean;
   isDisabled: boolean;

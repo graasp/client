@@ -3,19 +3,18 @@ import { useTranslation } from 'react-i18next';
 
 import { IconButton, ListItemIcon, MenuItem, Tooltip } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { ChevronsDownUpIcon, ChevronsUpDownIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { COLLAPSE_ITEM_BUTTON_CLASS } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import { ActionButton, ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../langs';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: GenericItem;
   type?: ActionButtonVariant;
   onClick?: () => void;
 };

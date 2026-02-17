@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Alert, Button } from '@mui/material';
 
-import { Context, PackedItem, PublicationStatus } from '@graasp/sdk';
+import { Context, PublicationStatus } from '@graasp/sdk';
 
 import { LinkIcon } from 'lucide-react';
 
@@ -11,6 +11,7 @@ import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
 import { ClientManager } from '@/lib/ClientManager';
+import type { PackedItem } from '@/openapi/client';
 
 import PublicationButton from './PublicationButton';
 

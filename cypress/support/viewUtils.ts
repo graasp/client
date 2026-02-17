@@ -1,11 +1,11 @@
 import {
   CompleteMember,
-  DocumentItemType,
-  LinkItemType,
   PermissionLevelCompare,
   getDocumentExtra,
   getLinkExtra,
 } from '@graasp/sdk';
+
+import type { DocumentItem, PackedItem } from '@/openapi/client';
 
 import {
   DOCUMENT_ITEM_TEXT_EDITOR_SELECTOR,
@@ -52,7 +52,7 @@ export const expectDocumentViewScreenLayout = ({
   item,
   currentMember = CURRENT_MEMBER,
 }: {
-  item: DocumentItemType;
+  item: PackedItem & DocumentItem;
   currentMember?: MemberForTest;
 }): void => {
   cy.get(DOCUMENT_ITEM_TEXT_EDITOR_SELECTOR).then((editor) => {
@@ -81,10 +81,15 @@ export const expectLinkViewScreenLayout = ({
   item,
   currentMember = CURRENT_MEMBER,
 }: {
-  item: LinkItemType;
+  item: ItemForTest;
   currentMember?: MemberForTest;
 }): void => {
   const { id, description, settings } = item;
+  if (item.type !== 'embeddedLink') {
+    throw new Error(
+      'expectLinkViewScreenLayout should not be used for embedded link items',
+    );
+  }
   const { url, html } = getLinkExtra(item.extra) || {};
 
   // embedded element

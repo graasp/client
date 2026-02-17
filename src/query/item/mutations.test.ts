@@ -1,8 +1,8 @@
 import {
-  DiscriminatedItem,
   FolderItemFactory,
   HttpMethod,
   MAX_TARGETS_FOR_MODIFY_REQUEST,
+  PackedItem,
   RecycledItemData,
   buildPathFromIds,
   getParentFromPath,
@@ -166,9 +166,7 @@ describe('Items Mutations', () => {
       await expect(mockedMutation.mutateAsync(payload)).rejects.toThrow();
 
       // item key should not be changed and should be invalidated
-      expect(
-        queryClient.getQueryData<DiscriminatedItem>(itemKey),
-      ).toMatchObject(item);
+      expect(queryClient.getQueryData<PackedItem>(itemKey)).toMatchObject(item);
       expect(queryClient.getQueryState(itemKey)?.isInvalidated).toBeTruthy();
     });
   });
@@ -219,7 +217,7 @@ describe('Items Mutations', () => {
       // original copied items path have not changed
       copied.forEach((item) => {
         const itemKey = itemKeys.single(item.id).content;
-        const path = queryClient.getQueryData<DiscriminatedItem>(itemKey)?.path;
+        const path = queryClient.getQueryData<PackedItem>(itemKey)?.path;
         expect(path).toEqual(item.path);
       });
 
@@ -273,7 +271,7 @@ describe('Items Mutations', () => {
       // Check new path are corrects
       moved.forEach((item) => {
         const itemKey = itemKeys.single(item.id).content;
-        const path = queryClient.getQueryData<DiscriminatedItem>(itemKey)?.path;
+        const path = queryClient.getQueryData<PackedItem>(itemKey)?.path;
         expect(path).toEqual(`${to.path}.${buildPathFromIds(item.id)}`);
       });
 
@@ -322,7 +320,7 @@ describe('Items Mutations', () => {
       // Check new paths are corrects
       moved.forEach((item) => {
         const itemKey = itemKeys.single(item.id).content;
-        const path = queryClient.getQueryData<DiscriminatedItem>(itemKey)?.path;
+        const path = queryClient.getQueryData<PackedItem>(itemKey)?.path;
         expect(path).toEqual(`${to.path}.${buildPathFromIds(item.id)}`);
       });
 
@@ -373,7 +371,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const itemId of itemIds) {
         const itemKey = itemKeys.single(itemId).content;
-        const data = queryClient.getQueryData<DiscriminatedItem>(itemKey);
+        const data = queryClient.getQueryData<PackedItem>(itemKey);
         expect(data).toMatchObject(items.find(({ id }) => id === itemId)!);
       }
 
@@ -383,7 +381,7 @@ describe('Items Mutations', () => {
       const childrenKey = getKeyForParentId(null);
       expect(
         queryClient
-          .getQueryData<DiscriminatedItem[]>(childrenKey)
+          .getQueryData<PackedItem[]>(childrenKey)
           ?.filter(({ id: thisId }) => itemIds.includes(thisId)).length,
       ).toBeFalsy();
 
@@ -427,7 +425,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const itemId of itemIds) {
         const itemKey = itemKeys.single(itemId).content;
-        const data = queryClient.getQueryData<DiscriminatedItem>(itemKey);
+        const data = queryClient.getQueryData<PackedItem>(itemKey);
         expect(data).toMatchObject(toRecycle.find(({ id }) => id === itemId)!);
       }
 
@@ -437,7 +435,7 @@ describe('Items Mutations', () => {
 
       expect(
         queryClient
-          .getQueryData<DiscriminatedItem[]>(childrenKey)
+          .getQueryData<PackedItem[]>(childrenKey)
           ?.filter(({ id }) => itemIds.includes(id)).length,
       ).toBeFalsy();
     });
@@ -486,7 +484,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const itemId of itemIds) {
         const itemKey = itemKeys.single(itemId).content;
-        const state = queryClient.getQueryState<DiscriminatedItem>(itemKey);
+        const state = queryClient.getQueryState<PackedItem>(itemKey);
         expect(state?.isInvalidated).toBeFalsy();
       }
 
@@ -527,7 +525,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const itemId of itemIds) {
         const itemKey = itemKeys.single(itemId).content;
-        const state = queryClient.getQueryState<DiscriminatedItem>(itemKey);
+        const state = queryClient.getQueryState<PackedItem>(itemKey);
         expect(state?.isInvalidated).toBeFalsy();
       }
     });
@@ -576,7 +574,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const item of items) {
         const itemKey = itemKeys.single(item.id).content;
-        const data = queryClient.getQueryData<DiscriminatedItem>(itemKey);
+        const data = queryClient.getQueryData<PackedItem>(itemKey);
         expect(data).toMatchObject(item);
       }
 
@@ -632,7 +630,7 @@ describe('Items Mutations', () => {
       // in real cases, the path should be different
       for (const item of items) {
         const itemKey = itemKeys.single(item.id).content;
-        const data = queryClient.getQueryData<DiscriminatedItem>(itemKey);
+        const data = queryClient.getQueryData<PackedItem>(itemKey);
         expect(data).toMatchObject(item);
       }
 

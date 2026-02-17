@@ -1,5 +1,4 @@
 import {
-  DocumentItemFactory,
   PackedDocumentItemFactory,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
@@ -18,7 +17,7 @@ const parentItem = PackedFolderItemFactory({
 });
 const FOLDER_WITH_HIDDEN_ITEMS: ItemForTest[] = [
   parentItem,
-  DocumentItemFactory({ parentItem, settings: { isCollapsible: false } }),
+  PackedDocumentItemFactory({ parentItem, settings: { isCollapsible: false } }),
   PackedDocumentItemFactory(
     { parentItem, settings: { isCollapsible: false } },
     { hiddenVisibility: {} },

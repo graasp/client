@@ -1,7 +1,7 @@
-import { AccountType, DiscriminatedItem } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
-import { ItemMembership } from '@/openapi/client';
+import type { GenericItem, ItemMembership } from '@/openapi/client';
 
 import { selectHighestMemberships } from '~builder/utils/membership';
 
@@ -10,7 +10,7 @@ export const useHighestMemberships = ({
   item,
 }: {
   canAdmin: boolean;
-  item: DiscriminatedItem;
+  item: GenericItem;
 }): {
   data?: ItemMembership[];
   isPending: boolean;

@@ -12,7 +12,7 @@ import {
   TextField,
 } from '@mui/material';
 
-import { DiscriminatedItem, TagCategoryType } from '@graasp/sdk';
+import { TagCategoryType } from '@graasp/sdk';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -22,12 +22,13 @@ import {
   buildMultiSelectChipInputId,
   buildMultiSelectChipsSelector,
 } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import { getCountForTagsOptions } from '@/openapi/client/@tanstack/react-query.gen';
 
 import useTagsManager from '../item/publish/customizedTags/useTagsManager';
 
 type Props = {
-  itemId: DiscriminatedItem['id'];
+  itemId: GenericItem['id'];
   tagCategory: TagCategoryType;
   helpertext?: string;
 };

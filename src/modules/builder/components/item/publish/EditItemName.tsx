@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import { IconButton, Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { GenericItem } from '@/openapi/client';
 
 import { useDataSyncContext } from '~builder/components/context/DataSyncContext';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
@@ -19,7 +18,7 @@ import PublicationModal from './PublicationModal';
 const SYNC_STATUS_KEY = 'PublishItemTitle';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: GenericItem;
 };
 
 export const EditItemName = ({ item }: Props): JSX.Element => {

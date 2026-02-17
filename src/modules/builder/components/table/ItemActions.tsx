@@ -2,14 +2,15 @@ import type { JSX } from 'react';
 
 import { Stack } from '@mui/material';
 
-import { AccountType, DiscriminatedItem } from '@graasp/sdk';
+import { AccountType } from '@graasp/sdk';
 
 import { hooks } from '@/config/queryClient';
+import type { GenericItem } from '@/openapi/client';
 
 import BookmarkButton from '../common/BookmarkButton';
 
 type Props = {
-  data: DiscriminatedItem;
+  data: GenericItem;
 };
 
 // items and memberships match by index

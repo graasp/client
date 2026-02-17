@@ -1,5 +1,7 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import type { PackedItem } from '@/openapi/client';
+
 import {
   HIDDEN_ITEM_BUTTON_CLASS,
   SETTINGS_HIDE_ITEM_ID,
@@ -18,7 +20,7 @@ import {
 const hiddenItem = PackedFolderItemFactory(
   {},
   { hiddenVisibility: { type: 'hidden' } },
-);
+) as PackedItem;
 const HIDDEN_ITEM: ItemForTest = {
   ...hiddenItem,
   memberships: [

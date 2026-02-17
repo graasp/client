@@ -1,17 +1,16 @@
 import { type JSX, MouseEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { EDIT_ITEM_BUTTON_CLASS, buildEditButtonId } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import GraaspEditButton from '@/ui/buttons/EditButton/EditButton';
 import { ActionButtonVariant } from '@/ui/types';
 
 import { BUILDER } from '../../../langs';
 
 type Props = {
-  itemId: DiscriminatedItem['id'];
+  itemId: GenericItem['id'];
   type?: ActionButtonVariant;
   onClick?: MouseEventHandler;
 };

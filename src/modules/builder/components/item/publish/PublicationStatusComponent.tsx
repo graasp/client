@@ -8,10 +8,11 @@ import InfoIcon from '@mui/icons-material/Info';
 import PendingActionsIcon from '@mui/icons-material/PendingActions';
 import { Chip, ChipProps, CircularProgress } from '@mui/material';
 
-import { PackedItem, PublicationStatus } from '@graasp/sdk';
+import { PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { buildPublicationStatus } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import { usePublicationStatus } from '@/query/item/publication/hooks';
 
 import { BUILDER } from '~builder/langs';

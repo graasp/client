@@ -1,10 +1,11 @@
 import {
-  DiscriminatedItem,
   ExportActionsFormatting,
   ItemGeolocation,
   ItemVisibility,
   UUID,
 } from '@graasp/sdk';
+
+import type { GenericItem } from '@/openapi/client';
 
 import * as itemRoutes from './item/routes';
 import * as memberRoutes from './member/routes';
@@ -97,7 +98,7 @@ export const buildDeleteItemVisibilityRoute = ({
   itemId,
   type,
 }: {
-  itemId: DiscriminatedItem['id'];
+  itemId: GenericItem['id'];
   type: ItemVisibility['type'];
 }) => `${ITEMS_ROUTE}/${itemId}/visibilities/${type}`;
 export const buildPostItemLoginSignInRoute = (id: UUID) =>
@@ -258,7 +259,7 @@ export const buildGetItemsInMapRoute = ({
   lat2?: ItemGeolocation['lat'];
   lng1?: ItemGeolocation['lng'];
   lng2?: ItemGeolocation['lng'];
-  parentItemId?: DiscriminatedItem['id'];
+  parentItemId?: GenericItem['id'];
 }) => {
   const params = new URLSearchParams();
   if (lat1 || lat1 === 0) {

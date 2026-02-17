@@ -9,7 +9,7 @@ import {
   toggleButtonGroupClasses,
 } from '@mui/material';
 
-import { Alignment, AlignmentType, FileItemType } from '@graasp/sdk';
+import { Alignment, AlignmentType } from '@graasp/sdk';
 
 import {
   AlignCenterIcon,
@@ -20,6 +20,7 @@ import {
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
+import type { FileItem } from '@/openapi/client';
 import { DEFAULT_LIGHT_PRIMARY_COLOR } from '@/ui/theme';
 
 import ItemSettingProperty from '../ItemSettingProperty';
@@ -54,7 +55,7 @@ export const FileAlignmentSetting = ({
   item,
 }: {
   variant: SettingVariantType;
-  item: FileItemType;
+  item: FileItem;
 }): JSX.Element => {
   const { t: translateBuilder } = useTranslation(NS.Builder);
   const { mutate: editItem } = mutations.useEditItem();

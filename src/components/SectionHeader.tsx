@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography, useMediaQuery } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { FOLDER_NAME_TITLE_CLASS } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay';
 import Thumbnail from '@/ui/Thumbnail/Thumbnail';
 import { theme } from '@/ui/theme';

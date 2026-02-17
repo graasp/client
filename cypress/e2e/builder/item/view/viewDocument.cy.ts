@@ -1,11 +1,13 @@
 import { PackedDocumentItemFactory } from '@graasp/sdk';
 
+import type { DocumentItem, PackedItem } from '@/openapi/client';
+
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectDocumentViewScreenLayout } from '../../../../support/viewUtils';
 import { buildItemMembership } from '../../fixtures/memberships';
 import { buildItemPath } from '../../utils';
 
-const DOCUMENT = PackedDocumentItemFactory();
+const DOCUMENT = PackedDocumentItemFactory() as PackedItem & DocumentItem;
 
 describe('View Document', () => {
   describe('Grid', () => {

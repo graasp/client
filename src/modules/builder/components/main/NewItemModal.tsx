@@ -2,9 +2,11 @@ import { type JSX, ReactNode, useState } from 'react';
 
 import { Dialog, Stack } from '@mui/material';
 
-import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
+import { ItemGeolocation } from '@graasp/sdk';
 
 import { useParams } from '@tanstack/react-router';
+
+import type { GenericItem } from '@/openapi/client';
 
 import { InternalItemType, NewItemTabType } from '../../types';
 import AppForm from '../item/form/app/AppForm';
@@ -21,7 +23,7 @@ type Props = {
   open: boolean;
   handleClose: () => void;
   geolocation?: Pick<ItemGeolocation, 'lat' | 'lng'>;
-  previousItemId?: DiscriminatedItem['id'];
+  previousItemId?: GenericItem['id'];
 };
 
 function NewItemModalContent({

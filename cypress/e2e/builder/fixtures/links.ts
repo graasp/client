@@ -1,12 +1,8 @@
-import {
-  LinkItemType,
-  PackedLinkItemFactory,
-  buildLinkExtra,
-} from '@graasp/sdk';
+import { PackedLinkItemFactory, buildLinkExtra } from '@graasp/sdk';
 
 import { CURRENT_MEMBER } from '../../../fixtures/members';
 
-export const GRAASP_LINK_ITEM: LinkItemType = PackedLinkItemFactory({
+export const GRAASP_LINK_ITEM = PackedLinkItemFactory({
   creator: CURRENT_MEMBER,
   extra: buildLinkExtra({
     url: 'https://graasp.eu',
@@ -18,19 +14,16 @@ export const GRAASP_LINK_ITEM: LinkItemType = PackedLinkItemFactory({
   }),
 });
 
-export const GRAASP_LINK_ITEM_IFRAME_ONLY: LinkItemType = PackedLinkItemFactory(
-  {
-    ...GRAASP_LINK_ITEM,
-    id: 'ecafbd2a-5688-11eb-ae91-0242ac130122',
-    settings: {
-      showLinkIframe: true,
-      showLinkButton: false,
-    },
+export const GRAASP_LINK_ITEM_IFRAME_ONLY = PackedLinkItemFactory({
+  ...GRAASP_LINK_ITEM,
+  id: 'ecafbd2a-5688-11eb-ae91-0242ac130122',
+  settings: {
+    showLinkIframe: true,
+    showLinkButton: false,
   },
-);
+});
 
-export const YOUTUBE_LINK_ITEM: LinkItemType = PackedLinkItemFactory({
-  type: 'embeddedLink',
+export const YOUTUBE_LINK_ITEM = PackedLinkItemFactory({
   name: 'graasp youtube link',
   description: 'a description for graasp youtube link',
   creator: CURRENT_MEMBER,

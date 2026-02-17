@@ -1,6 +1,8 @@
-import { DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
+import { ItemGeolocation } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import type { GenericItem } from '@/openapi/client';
 
 import * as Api from '../api/itemGeolocation.js';
 import { itemKeys, itemsWithGeolocationKeys } from '../keys.js';
@@ -15,7 +17,7 @@ export default (queryConfig: QueryClientConfig) => {
     const queryClient = useQueryClient();
     return useMutation({
       mutationFn: (payload: {
-        itemId: DiscriminatedItem['id'];
+        itemId: GenericItem['id'];
         geolocation: Pick<ItemGeolocation, 'lat' | 'lng'> &
           Pick<
             Partial<ItemGeolocation>,
@@ -48,7 +50,7 @@ export default (queryConfig: QueryClientConfig) => {
   const useDeleteItemGeolocation = () => {
     const queryClient = useQueryClient();
     return useMutation({
-      mutationFn: (payload: { itemId: DiscriminatedItem['id'] }) =>
+      mutationFn: (payload: { itemId: GenericItem['id'] }) =>
         Api.deleteItemGeolocation(payload),
       onSuccess: () => {
         queryConfig.notifier?.({

@@ -1,10 +1,7 @@
 import { type JSX, type ReactNode, createContext, useContext } from 'react';
 
 import { hooks } from '@/config/queryClient';
-import type {
-  ChatMessageWithCreator,
-  MinimalAccount,
-} from '@/openapi/client/types.gen';
+import type { ChatMessageWithCreator, MinimalAccount } from '@/openapi/client';
 
 export type MessagesContextType = {
   messages?: ChatMessageWithCreator[];

@@ -1,10 +1,6 @@
-import {
-  DiscriminatedItem,
-  Etherpad,
-  EtherpadItemType,
-  UUID,
-} from '@graasp/sdk';
+import { Etherpad, EtherpadItemType, UUID } from '@graasp/sdk';
 
+import type { GenericItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildGetEtherpadRoute, buildPostEtherpadRoute } from '../routes.js';
@@ -53,7 +49,7 @@ export const postEtherpad = async (
   {
     name,
     parentId,
-  }: Pick<DiscriminatedItem, 'name'> & {
+  }: Pick<GenericItem, 'name'> & {
     parentId?: UUID;
   },
   { API_HOST }: QueryClientConfig,

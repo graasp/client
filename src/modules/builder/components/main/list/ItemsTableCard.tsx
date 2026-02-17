@@ -3,13 +3,11 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Stack } from '@mui/material';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { useLocation } from '@tanstack/react-router';
 
 import { CustomLink } from '@/components/ui/CustomLink';
 import { NS } from '@/config/constants';
-import { ItemType } from '@/openapi/client';
+import { ItemType, PackedItem } from '@/openapi/client';
 import type { DroppedFile } from '@/ui/draggable/types';
 
 import SmallUploadFile from '~builder/components/file/SmallUploadFile';

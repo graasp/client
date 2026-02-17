@@ -1,9 +1,12 @@
 import {
-  FolderItemFactory,
   GuestFactory,
+  ItemLoginSchema,
   ItemLoginSchemaFactory,
   ItemLoginSchemaType,
+  PackedFolderItemFactory,
 } from '@graasp/sdk';
+
+import type { PackedItem } from '@/openapi/client';
 
 import {
   AUTO_LOGIN_CONTAINER_ID,
@@ -25,12 +28,14 @@ const buildAutoLoginPath = ({
   return url;
 };
 
-const pseudonimizedItem = FolderItemFactory({ name: 'Pseudo Item' });
+const pseudonimizedItem = PackedFolderItemFactory({
+  name: 'Pseudo Item',
+}) as PackedItem;
 const pseudoMember = GuestFactory({
   name: 'bob-guest',
   itemLoginSchema: ItemLoginSchemaFactory({
     type: ItemLoginSchemaType.Username,
-    item: pseudonimizedItem,
+    item: pseudonimizedItem as unknown as ItemLoginSchema['item'],
   }),
 });
 

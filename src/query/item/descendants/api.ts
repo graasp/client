@@ -1,7 +1,7 @@
-import { PackedItem, UUID } from '@graasp/sdk';
+import { UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
-import { type ItemType } from '@/openapi/client';
+import { type ItemType, type PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import { buildGetItemDescendants } from '../routes.js';

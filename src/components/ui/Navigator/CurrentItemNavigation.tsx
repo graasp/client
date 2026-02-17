@@ -2,13 +2,13 @@ import type { JSX } from 'react';
 
 import { Stack } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
+import type { GenericItem } from '@/openapi/client';
 
 import { TypographyLink } from '../TypographyLink.js';
 import ItemMenu, { ItemMenuProps } from './ItemMenu.js';
 
 export type CurrentItemProps = {
-  item: DiscriminatedItem;
+  item: GenericItem;
   buildBreadcrumbsItemLinkId?: (id: string) => string;
   buildIconId?: (id: string) => string;
   buildMenuId?: (id: string) => string;

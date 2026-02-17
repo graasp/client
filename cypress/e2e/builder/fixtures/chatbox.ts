@@ -1,17 +1,17 @@
 import {
   ChatMention,
-  DiscriminatedItem,
   FolderItemFactory,
-  FolderItemType,
   MentionStatus,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
+
+import type { FolderItem, PackedItem } from '@/openapi/client';
 
 import { DEFAULT_FOLDER_ITEM } from '../../../fixtures/items';
 import { CURRENT_MEMBER, MEMBERS } from '../../../fixtures/members';
 import { ItemForTest } from '../../../support/types';
 
-const item: FolderItemType = FolderItemFactory({
+const item: FolderItem = FolderItemFactory({
   ...DEFAULT_FOLDER_ITEM,
   id: 'adf09f5a-5688-11eb-ae93-0242ac130004',
   path: 'adf09f5a_5688_11eb_ae93_0242ac130004',
@@ -22,7 +22,8 @@ const item: FolderItemType = FolderItemFactory({
 
 // warning: permission admin by default
 export const ITEM_WITH_CHATBOX_MESSAGES: ItemForTest = {
-  ...PackedFolderItemFactory(item),
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  ...PackedFolderItemFactory(item as any),
   memberships: [
     {
       item,
@@ -54,13 +55,13 @@ export const ITEM_WITH_CHATBOX_MESSAGES: ItemForTest = {
   ],
 };
 
-const items: DiscriminatedItem[] = [
-  {
+const items = [
+  PackedFolderItemFactory({
     ...DEFAULT_FOLDER_ITEM,
     id: '78ad1166-3862-4593-a10c-d380e7b66674',
     path: '78ad1166-3862-4593-a10c-d380e7b66674',
     name: 'item with chatbox messages',
-  },
+  }) as PackedItem,
 ];
 
 const ITEM_WITH_CHATBOX_MESSAGES_AND_ADMIN: ItemForTest = {

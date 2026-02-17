@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { DiscriminatedItem, Paginated } from '@graasp/sdk';
+import { Paginated } from '@graasp/sdk';
 
 import { waitFor } from '@testing-library/dom';
 import { act, renderHook } from '@testing-library/react';
 import { StatusCodes } from 'http-status-codes';
 import nock from 'nock';
 import { afterEach, describe, expect, it } from 'vitest';
+
+import type { PackedItem } from '@/openapi/client';
 
 import { memberKeys } from '../../keys.js';
 import {
@@ -38,7 +40,7 @@ describe('useInfiniteOwnRecycledItems', () => {
     expect(data!.pages[0]).toMatchObject(response);
     // verify cache keys
     expect(
-      queryClient.getQueryData<{ pages: Paginated<DiscriminatedItem>[] }>(key)!
+      queryClient.getQueryData<{ pages: Paginated<PackedItem>[] }>(key)!
         .pages[0],
     ).toMatchObject(response);
   });

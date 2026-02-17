@@ -4,13 +4,14 @@ import { Trans, useTranslation } from 'react-i18next';
 import EditIcon from '@mui/icons-material/Edit';
 import { Chip, Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem, TagCategory } from '@graasp/sdk';
+import { TagCategory } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import {
   ITEM_TAGS_OPEN_MODAL_BUTTON_CY,
   buildCustomizedTagsSelector,
 } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 
 import { MultiSelectTagChipInput } from '~builder/components/input/MultiSelectTagChipInput';
 import { TAGS_DOCUMENTATION } from '~builder/constants';
@@ -21,15 +22,15 @@ import PublicationModal from '../PublicationModal';
 import { useTagsManager } from './useTagsManager';
 
 type Props = {
-  item: DiscriminatedItem;
+  itemId: GenericItem['id'];
 };
 
-export const CustomizedTags = ({ item }: Props): JSX.Element => {
+export const CustomizedTags = ({ itemId }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
-  const { deleteValue } = useTagsManager({ itemId: item.id });
+  const { deleteValue } = useTagsManager({ itemId });
   const { isOpen, openModal, closeModal } = useModalStatus();
   const { tags } = useTagsManager({
-    itemId: item.id,
+    itemId,
   });
 
   const chipTags = tags?.map(({ name, id }) => (
@@ -64,17 +65,17 @@ export const CustomizedTags = ({ item }: Props): JSX.Element => {
               />
             </Typography>
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               tagCategory={TagCategory.Discipline}
               helpertext={t(BUILDER.TAGS_DISCIPLINE_HELPERTEXT)}
             />
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               helpertext={t(BUILDER.TAGS_LEVEL_HELPERTEXT)}
               tagCategory={TagCategory.Level}
             />
             <MultiSelectTagChipInput
-              itemId={item.id}
+              itemId={itemId}
               helpertext={t(BUILDER.TAGS_RESOURCE_TYPE_HELPERTEXT)}
               tagCategory={TagCategory.ResourceType}
             />

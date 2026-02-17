@@ -1,12 +1,11 @@
 import type { JSX } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { PackedItem } from '@graasp/sdk';
-
 import { MessageSquareTextIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import type { PackedItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 

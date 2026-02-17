@@ -1,3 +1,7 @@
+import { PackedLinkItemFactory } from '@graasp/sdk';
+
+import type { PackedItem } from '@/openapi/client';
+
 import { CURRENT_MEMBER } from '../../../../fixtures/members';
 import { expectLinkViewScreenLayout } from '../../../../support/viewUtils';
 import {
@@ -8,38 +12,46 @@ import {
 import { buildItemMembership } from '../../fixtures/memberships';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
+const linkItem = PackedLinkItemFactory(GRAASP_LINK_ITEM) as PackedItem;
+const linkItemIframeOnly = PackedLinkItemFactory(
+  GRAASP_LINK_ITEM_IFRAME_ONLY,
+) as PackedItem;
+const linkItemYoutube = PackedLinkItemFactory(YOUTUBE_LINK_ITEM) as PackedItem;
+
+const items = [
+  {
+    ...linkItem,
+    memberships: [
+      buildItemMembership({
+        item: linkItem,
+        account: CURRENT_MEMBER,
+      }),
+    ],
+  },
+  {
+    ...linkItemIframeOnly,
+    memberships: [
+      buildItemMembership({
+        item: linkItemIframeOnly,
+        account: CURRENT_MEMBER,
+      }),
+    ],
+  },
+  {
+    ...linkItemYoutube,
+    memberships: [
+      buildItemMembership({
+        item: linkItemYoutube,
+        account: CURRENT_MEMBER,
+      }),
+    ],
+  },
+];
+
 describe('Links', () => {
   beforeEach(() => {
     cy.setUpApi({
-      items: [
-        {
-          ...GRAASP_LINK_ITEM,
-          memberships: [
-            buildItemMembership({
-              item: GRAASP_LINK_ITEM,
-              account: CURRENT_MEMBER,
-            }),
-          ],
-        },
-        {
-          ...GRAASP_LINK_ITEM_IFRAME_ONLY,
-          memberships: [
-            buildItemMembership({
-              item: GRAASP_LINK_ITEM_IFRAME_ONLY,
-              account: CURRENT_MEMBER,
-            }),
-          ],
-        },
-        {
-          ...YOUTUBE_LINK_ITEM,
-          memberships: [
-            buildItemMembership({
-              item: YOUTUBE_LINK_ITEM,
-              account: CURRENT_MEMBER,
-            }),
-          ],
-        },
-      ],
+      items,
     });
   });
 

@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
-import { DiscriminatedItem, Tag, TagCategoryType } from '@graasp/sdk';
+import { Tag, TagCategoryType } from '@graasp/sdk';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import groupBy from 'lodash.groupby';
 
 import { NS } from '@/config/constants';
 import { hooks } from '@/config/queryClient';
+import type { GenericItem } from '@/openapi/client';
 import {
   createTagForItemMutation,
   deleteTagForItemMutation,
@@ -18,7 +19,7 @@ import {
 
 const EMPTY_STRING = '';
 type Props = {
-  itemId: DiscriminatedItem['id'];
+  itemId: GenericItem['id'];
 };
 
 type UseMultiSelectChipInput = {

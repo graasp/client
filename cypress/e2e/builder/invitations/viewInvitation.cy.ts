@@ -1,5 +1,7 @@
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
+import type { PackedItem } from '@/openapi/client';
+
 import {
   ITEM_RESEND_INVITATION_BUTTON_CLASS,
   buildInvitationTableRowId,
@@ -43,7 +45,10 @@ describe('View Invitations', () => {
 
 describe('Cannot view Invitations for writers and readers', () => {
   it('view invitation in share item modal write-only mode', () => {
-    const item = PackedFolderItemFactory({}, { permission: 'write' });
+    const item = PackedFolderItemFactory(
+      {},
+      { permission: 'write' },
+    ) as PackedItem;
     const invitations = [
       {
         id: 'ecafbd2a-5688-11eb-be92-0242ac130005',
@@ -52,7 +57,6 @@ describe('Cannot view Invitations for writers and readers', () => {
         email: MEMBERS.CEDRIC.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
       },
       {
         id: 'ecafbd1a-5688-11eb-be93-0242ac130006',
@@ -61,7 +65,6 @@ describe('Cannot view Invitations for writers and readers', () => {
         email: MEMBERS.DAVID.email,
         createdAt: '2021-08-11T12:56:36.834Z',
         updatedAt: '2021-08-11T12:56:36.834Z',
-        creator: MEMBERS.ANNA,
       },
     ];
     cy.setUpApi({ items: [{ ...item, invitations }] });

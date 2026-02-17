@@ -1,10 +1,10 @@
 import {
-  ItemValidationGroup,
   ItemValidationStatus,
   PackedFolderItemFactory,
-  PackedItem,
   PublicationStatus,
 } from '@graasp/sdk';
+
+import type { ItemValidationGroup, PackedItem } from '@/openapi/client';
 
 import {
   EMAIL_NOTIFICATION_CHECKBOX,
@@ -149,7 +149,9 @@ describe('Private Item', () => {
 
   describe('Ready to Publish Item', () => {
     const status = PublicationStatus.ReadyToPublish;
-    const itemValidationGroup = ItemValidationGroupFactory(privateItem);
+    const itemValidationGroup = ItemValidationGroupFactory(
+      privateItem,
+    ) as ItemValidationGroup;
 
     beforeEach(() => {
       setUpAndVisitItemPage(privateItem, {
@@ -177,7 +179,7 @@ describe('Private Item', () => {
     const status = PublicationStatus.Invalid;
     const itemValidationGroup = ItemValidationGroupFactory(privateItem, {
       status: ItemValidationStatus.Failure,
-    });
+    }) as ItemValidationGroup;
 
     beforeEach(() => {
       setUpAndVisitItemPage(privateItem, {
@@ -229,7 +231,7 @@ describe('Public Item', () => {
     const status = PublicationStatus.Pending;
     const itemValidationGroup = ItemValidationGroupFactory(publicItem, {
       status: ItemValidationStatus.Pending,
-    });
+    }) as ItemValidationGroup;
 
     beforeEach(() => {
       setUpAndVisitItemPage(PublishedItemFactory(publicItem), {
@@ -254,7 +256,9 @@ describe('Public Item', () => {
 
   describe('Ready to Publish Item', () => {
     const status = PublicationStatus.ReadyToPublish;
-    const itemValidationGroup = ItemValidationGroupFactory(publicItem);
+    const itemValidationGroup = ItemValidationGroupFactory(
+      publicItem,
+    ) as ItemValidationGroup;
 
     beforeEach(() => {
       setUpAndVisitItemPage(publicItem, {
@@ -284,7 +288,9 @@ describe('Public Item', () => {
 
   describe('Published Item', () => {
     const status = PublicationStatus.Published;
-    const itemValidationGroup = ItemValidationGroupFactory(publicItem);
+    const itemValidationGroup = ItemValidationGroupFactory(
+      publicItem,
+    ) as ItemValidationGroup;
 
     beforeEach(() => {
       setUpAndVisitItemPage(PublishedItemFactory(publicItem), {

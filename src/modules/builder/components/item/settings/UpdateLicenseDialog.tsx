@@ -10,9 +10,8 @@ import {
   DialogTitle,
 } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { GenericItem } from '@/openapi/client';
 
 import ConfirmLicenseDialogContent from '../../common/ConfirmLicenseDialogContent';
 import useItemLicense from '../../hooks/useItemLicense';
@@ -20,7 +19,7 @@ import useItemLicense from '../../hooks/useItemLicense';
 type Props = {
   open: boolean;
   setOpen: (b: boolean) => void;
-  item: DiscriminatedItem;
+  item: GenericItem;
 };
 
 const commonsSx = {

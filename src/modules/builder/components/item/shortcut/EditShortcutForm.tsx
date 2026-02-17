@@ -4,14 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import { Box, Button, DialogActions, DialogContent } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import {
   EDIT_ITEM_MODAL_CANCEL_BUTTON_ID,
   ITEM_FORM_CONFIRM_BUTTON_ID,
 } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 
 import CancelButton from '~builder/components/common/CancelButton';
 
@@ -25,7 +24,7 @@ function EditShortcutForm({
   item,
   onClose,
 }: Readonly<{
-  item: DiscriminatedItem;
+  item: GenericItem;
   onClose: () => void;
 }>): ReactNode {
   const { t: translateCommon } = useTranslation(NS.Common);

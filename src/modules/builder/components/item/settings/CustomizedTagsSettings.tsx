@@ -3,16 +3,15 @@ import { useTranslation } from 'react-i18next';
 
 import { Stack, Typography } from '@mui/material';
 
-import { DiscriminatedItem } from '@graasp/sdk';
-
 import { NS } from '@/config/constants';
+import type { GenericItem } from '@/openapi/client';
 
 import { BUILDER } from '~builder/langs';
 
 import CustomizedTags from '../publish/customizedTags/CustomizedTags';
 
 type Props = {
-  item: DiscriminatedItem;
+  item: GenericItem;
 };
 
 export const CustomizedTagsSettings = ({ item }: Props): JSX.Element => {
@@ -22,7 +21,7 @@ export const CustomizedTagsSettings = ({ item }: Props): JSX.Element => {
     <Stack spacing={1}>
       <Typography variant="h4">{t(BUILDER.ITEM_TAGS_TITLE)}</Typography>
       <Typography>{t(BUILDER.ITEM_TAGS_PLACEHOLDER)}</Typography>
-      <CustomizedTags item={item} />
+      <CustomizedTags itemId={item.id} />
     </Stack>
   );
 };

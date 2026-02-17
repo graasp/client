@@ -2,8 +2,9 @@ import type { JSX } from 'react';
 
 import { Typography } from '@mui/material';
 
-import { DocumentItemType, getDocumentExtra } from '@graasp/sdk';
+import { getDocumentExtra } from '@graasp/sdk';
 
+import { type DocumentItem as DocumentItemType } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay.js';
 import { withFlavor } from '@/ui/TextDisplay/withFlavor.js';
 

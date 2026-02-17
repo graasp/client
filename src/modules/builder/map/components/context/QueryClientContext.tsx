@@ -1,12 +1,8 @@
 import { type JSX, createContext, useContext, useMemo } from 'react';
 
-import {
-  CurrentAccount,
-  DiscriminatedItem,
-  ItemGeolocation,
-  PackedItem,
-} from '@graasp/sdk';
+import { CurrentAccount, ItemGeolocation } from '@graasp/sdk';
 
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import type { configureQueryClient } from '@/query';
 import {
   type useAddressFromGeolocation,
@@ -28,8 +24,8 @@ export interface QueryClientContextInterface {
   useRecycleItems: QueryClientMutations['useRecycleItems'];
   usePostItem: QueryClientMutations['usePostItem'];
   useDeleteItemGeolocation: QueryClientMutations['useDeleteItemGeolocation'];
-  viewItem: (item: DiscriminatedItem) => void;
-  viewItemInBuilder: (item: DiscriminatedItem) => void;
+  viewItem: (itemId: GenericItem['id']) => void;
+  viewItemInBuilder: (itemId: GenericItem['id']) => void;
   handleAddOnClick?: ({
     location,
   }: {

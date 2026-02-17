@@ -1,8 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import type { PackedItem } from '@graasp/sdk';
-
-import type { PermissionLevel } from '@/openapi/client';
+import type { PackedItem, PermissionLevel } from '@/openapi/client';
 
 type OutletContextType = {
   item: PackedItem;

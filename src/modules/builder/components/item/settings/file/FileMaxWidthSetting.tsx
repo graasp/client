@@ -3,13 +3,14 @@ import { useTranslation } from 'react-i18next';
 
 import { SelectChangeEvent } from '@mui/material';
 
-import { FileItemType, MaxWidth } from '@graasp/sdk';
+import { MaxWidth } from '@graasp/sdk';
 
 import { ExpandIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { FILE_SETTING_MAX_WIDTH_ID } from '@/config/selectors';
+import type { FileItem } from '@/openapi/client';
 import Select from '@/ui/Select/Select';
 
 import ItemSettingProperty from '../ItemSettingProperty';
@@ -22,7 +23,7 @@ export const FileMaxWidthSetting = ({
   item,
 }: {
   variant: SettingVariantType;
-  item: FileItemType;
+  item: FileItem;
 }): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
   const { t: translateEnum } = useTranslation(NS.Enums);

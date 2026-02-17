@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
 import {
+  FileItemExtra,
   formatDate,
   formatFileSize,
   getFileExtra,
@@ -41,7 +42,7 @@ const ItemMetadataContent = (): JSX.Element => {
   let size = null;
   let mimetype = null;
   if (item.type === 'file') {
-    const extra = getFileExtra(item.extra);
+    const extra = getFileExtra(item.extra as FileItemExtra);
     mimetype = extra?.mimetype;
     size = extra?.size;
   }
@@ -84,7 +85,8 @@ const ItemMetadataContent = (): JSX.Element => {
                 {mimetype ?? getItemType(item)}
                 <Preview>
                   {item.type === 'folder' &&
-                    (isCapsule(item) ? (
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    (isCapsule(item as any) ? (
                       <ConvertToFolderButton
                         itemPath={item.path}
                         itemId={item.id}

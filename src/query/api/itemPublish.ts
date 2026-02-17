@@ -1,11 +1,7 @@
-import {
-  DiscriminatedItem,
-  ItemPublished,
-  PackedItem,
-  UUID,
-} from '@graasp/sdk';
+import { ItemPublished, UUID } from '@graasp/sdk';
 
 import { API_HOST } from '@/config/env.js';
+import type { GenericItem, PackedItem } from '@/openapi/client';
 import { axiosClient as axios } from '@/query/api/axios.js';
 
 import {
@@ -22,21 +18,21 @@ import { verifyAuthentication } from './axios.js';
 export const getAllPublishedItems = async (args: { categoryIds?: UUID[] }) =>
   axios
     .get<
-      DiscriminatedItem[]
+      GenericItem[]
     >(`${API_HOST}/${buildGetAllPublishedItemsRoute(args?.categoryIds)}`)
     .then(({ data }) => data);
 
 export const getMostLikedPublishedItems = async (args: { limit?: number }) =>
   axios
     .get<
-      DiscriminatedItem[]
+      GenericItem[]
     >(`${API_HOST}/${buildGetMostLikedPublishedItemsRoute(args?.limit)}`)
     .then(({ data }) => data);
 
 export const getMostRecentPublishedItems = async (args: { limit?: number }) =>
   axios
     .get<
-      DiscriminatedItem[]
+      GenericItem[]
     >(`${API_HOST}/${buildGetMostRecentPublishedItemsRoute(args?.limit)}`)
     .then(({ data }) => data);
 

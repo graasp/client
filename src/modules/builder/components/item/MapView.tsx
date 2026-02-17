@@ -2,10 +2,11 @@ import { type JSX, useState } from 'react';
 
 import { Skeleton, Stack, Typography } from '@mui/material';
 
-import { type DiscriminatedItem, ItemGeolocation } from '@graasp/sdk';
+import { ItemGeolocation } from '@graasp/sdk';
 
 import { hooks, mutations } from '@/config/queryClient';
 import { buildMapViewId } from '@/config/selectors';
+import type { GenericItem } from '@/openapi/client';
 import {
   useAddressFromGeolocation,
   useItemsInMap,
@@ -19,10 +20,10 @@ import NewItemModal from '../main/NewItemModal';
 import { useCurrentLocation } from '../map/useCurrentLocation';
 
 type Props = {
-  viewItem: (item: DiscriminatedItem) => void;
-  viewItemInBuilder: (item: DiscriminatedItem) => void;
+  viewItem: (itemId: GenericItem['id']) => void;
+  viewItemInBuilder: (itemId: GenericItem['id']) => void;
   enableGeolocation?: boolean;
-  parentId?: DiscriminatedItem['id'];
+  parentId?: GenericItem['id'];
   title?: string;
   height?: string;
 };

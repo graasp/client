@@ -3,11 +3,12 @@ import { useTranslation } from 'react-i18next';
 
 import { Button, Typography } from '@mui/material';
 
-import { PackedItem, PublicationStatus } from '@graasp/sdk';
+import { PublicationStatus } from '@graasp/sdk';
 
 import { NS } from '@/config/constants';
 import { mutations } from '@/config/queryClient';
 import { buildItemPublicationButton } from '@/config/selectors';
+import type { PackedItem } from '@/openapi/client';
 
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import { BUILDER } from '~builder/langs';

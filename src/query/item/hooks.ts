@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { PackedItem, UUID, WebsocketClient } from '@graasp/sdk';
+import { UUID, WebsocketClient } from '@graasp/sdk';
 
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
-import { getParentItems } from '@/openapi/client/sdk.gen.js';
+import { type PackedItem, getParentItems } from '@/openapi/client';
 
 import {
   CONSTANT_KEY_STALE_TIME_MILLISECONDS,
@@ -21,7 +21,6 @@ import {
 } from './accessible/hooks.js';
 import * as Api from './api.js';
 import { useDescendants } from './descendants/hooks.js';
-import { useItemThumbnailUrl } from './thumbnail/hooks.js';
 import { ItemChildrenParams } from './types.js';
 
 const config = (
@@ -68,7 +67,7 @@ const config = (
             ...params,
             ordered,
             keywords: debouncedKeywords,
-          });
+          }) as Promise<PackedItem[]>;
         },
         ...defaultQueryOptions,
         enabled: Boolean(id) && enabled,
@@ -142,7 +141,7 @@ const config = (
           if (!id) {
             throw new UndefinedArgument();
           }
-          return Api.getItem(id);
+          return Api.getItem(id) as Promise<PackedItem>;
         },
         enabled: Boolean(id),
         ...defaultQueryOptions,
@@ -166,8 +165,6 @@ const config = (
       }),
 
     useItemFeedbackUpdates: itemWsHooks?.useItemFeedbackUpdates,
-
-    useItemThumbnailUrl,
   };
 };
 

@@ -1,7 +1,5 @@
 import {
-  DiscriminatedItem,
   MAX_TARGETS_FOR_MODIFY_REQUEST,
-  PackedItem,
   RecycledItemData,
   UUID,
   buildPathFromIds,
@@ -13,6 +11,8 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query';
+
+import type { PackedItem } from '@/openapi/client';
 
 import { splitRequestByIds } from '../api/axios.js';
 import { getKeyForParentId, itemKeys, memberKeys } from '../keys.js';
@@ -104,10 +104,10 @@ export default (queryConfig: QueryClientConfig) => {
 
     return useMutation({
       mutationFn: (
-        item: Pick<DiscriminatedItem, 'id'> &
+        item: Pick<PackedItem, 'id'> &
           Partial<
             Pick<
-              DiscriminatedItem,
+              PackedItem,
               'name' | 'description' | 'extra' | 'settings' | 'lang'
             >
           >,
@@ -148,14 +148,14 @@ export default (queryConfig: QueryClientConfig) => {
       onMutate: async (itemIds: UUID[]) => {
         // get path from first item and invalidate parent's children
         const itemKey = itemKeys.single(itemIds[0]).content;
-        const itemData = queryClient.getQueryData<DiscriminatedItem>(itemKey);
+        const itemData = queryClient.getQueryData<PackedItem>(itemKey);
         const itemPath = itemData?.path;
         const newParent = itemPath
           ? {
               parent: await mutateParentChildren(
                 {
                   childPath: itemPath,
-                  value: (old: DiscriminatedItem[]) =>
+                  value: (old: PackedItem[]) =>
                     old.filter(({ id }) => !itemIds.includes(id)),
                 },
                 queryClient,
@@ -180,7 +180,7 @@ export default (queryConfig: QueryClientConfig) => {
     const queryClient = useQueryClient();
     return useMutation({
       mutationFn: (itemIds) =>
-        splitRequestByIds<DiscriminatedItem>(
+        splitRequestByIds<PackedItem>(
           itemIds,
           MAX_TARGETS_FOR_MODIFY_REQUEST,
           (chunk) => Api.deleteItems(chunk),
@@ -233,7 +233,7 @@ export default (queryConfig: QueryClientConfig) => {
     const queryClient = useQueryClient();
     return useMutation({
       mutationFn: ({ items, to }: { items: PackedItem[]; to?: UUID }) =>
-        splitRequestByIds<DiscriminatedItem>(
+        splitRequestByIds<PackedItem>(
           items.map((i) => i.id),
           MAX_TARGETS_FOR_MODIFY_REQUEST,
           (chunk) => Api.moveItems({ ids: chunk, to }),

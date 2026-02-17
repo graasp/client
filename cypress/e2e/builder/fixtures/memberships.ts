@@ -1,7 +1,5 @@
 import {
   Account,
-  DiscriminatedItem,
-  ItemMembership,
   Member,
   MemberFactory,
   PackedFolderItemFactory,
@@ -9,14 +7,19 @@ import {
 
 import { v4 } from 'uuid';
 
-import type { PermissionLevel } from '@/openapi/client';
+import type {
+  GenericItem,
+  ItemMembership,
+  PackedItem,
+  PermissionLevel,
+} from '@/openapi/client';
 
 import { MEMBERS } from '../../../fixtures/members';
 import { ApiConfig } from '../../../support/types';
 
 export const buildItemMembership = (args: {
   permission?: PermissionLevel;
-  item: DiscriminatedItem;
+  item: GenericItem;
   account: Partial<Account>;
   creator?: Member;
 }): ItemMembership => ({
@@ -29,7 +32,7 @@ export const buildItemMembership = (args: {
   id: v4(),
 });
 
-const sampleItems: DiscriminatedItem[] = [
+const sampleItems: PackedItem[] = [
   PackedFolderItemFactory({
     id: 'ecafbd2a-5688-11eb-ae93-0242ac130002',
     name: 'own_item_name1',

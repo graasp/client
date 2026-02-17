@@ -7,11 +7,7 @@ import {
   CompleteMembershipRequest,
   DEFAULT_LANG,
   HttpMethod,
-  Invitation,
-  ItemBookmark,
   ItemGeolocation,
-  ItemPublished,
-  ItemValidationGroup,
   ItemVisibilityOptionsType,
   ItemVisibilityType,
   Member,
@@ -31,7 +27,14 @@ import { CyHttpMessages } from 'cypress/types/net-stubbing';
 import { StatusCodes } from 'http-status-codes';
 import { v4 } from 'uuid';
 
-import { CurrentSettings, Profile } from '@/openapi/client/types.gen';
+import type {
+  CurrentSettings,
+  Invitation,
+  ItemPublished,
+  ItemValidationGroup,
+  PackedBookmark,
+  Profile,
+} from '@/openapi/client';
 
 import { ITEM_PAGE_SIZE, SETTINGS } from '../../src/modules/builder/constants';
 import { API_ROUTES } from '../../src/query/routes';
@@ -1334,7 +1337,7 @@ export const mockGetLatestValidationGroup = (
 };
 
 export const mockGetItemBookmarks = (
-  itemBookmarks: ItemBookmark[],
+  itemBookmarks: PackedBookmark[],
   shouldThrowError: boolean,
 ): void => {
   cy.intercept(
@@ -1656,15 +1659,12 @@ export const mockGetPublishItemsForMember = (
         `${API_HOST}/${buildGetPublishedItemsForMemberRoute(ID_FORMAT)}`,
       ),
     },
-    ({ reply, url }) => {
+    ({ reply }) => {
       if (shoulThrow) {
         return reply({ statusCode: StatusCodes.INTERNAL_SERVER_ERROR });
       }
 
-      const memberId = url.slice(API_HOST.length).split('/')[4];
-      const published = publishedItemData
-        .filter((p) => p.item.creator.id === memberId)
-        .map((i) => i.item);
+      const published = publishedItemData.map((i) => i.item);
       return reply(published);
     },
   ).as('getPublishedItemsForMember');

@@ -4,16 +4,13 @@ import { useTranslation } from 'react-i18next';
 
 import { DialogActions, DialogContent, Stack } from '@mui/material';
 
-import {
-  EtherpadItemType,
-  EtherpadPermission,
-  getParentFromPath,
-} from '@graasp/sdk';
+import { EtherpadPermission, getParentFromPath } from '@graasp/sdk';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { NS } from '@/config/constants';
 import { ITEM_FORM_CONFIRM_BUTTON_ID } from '@/config/selectors';
+import type { EtherpadItem } from '@/openapi/client';
 import { updateEtherpadMutation } from '@/openapi/client/@tanstack/react-query.gen';
 import { getKeyForParentId, itemKeys } from '@/query/keys';
 import Button from '@/ui/buttons/Button/Button';
@@ -29,7 +26,7 @@ export function EtherpadEditForm({
   item,
   onClose,
 }: Readonly<{
-  item: EtherpadItemType;
+  item: EtherpadItem;
   onClose: () => void;
 }>): JSX.Element {
   const queryClient = useQueryClient();

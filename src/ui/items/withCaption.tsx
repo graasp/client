@@ -7,11 +7,11 @@ import {
   AlignmentType,
   DescriptionPlacement,
   DescriptionPlacementType,
-  DiscriminatedItem,
   MimeTypes,
   getMimetype,
 } from '@graasp/sdk';
 
+import type { GenericItem } from '@/openapi/client';
 import TextDisplay from '@/ui/TextDisplay/TextDisplay.js';
 
 export const getDefaultFileAlignmentSetting = (
@@ -66,7 +66,7 @@ type WithCaptionItem = {
     descriptionPlacement?: DescriptionPlacementType;
     alignment?: AlignmentType;
   };
-  extra?: DiscriminatedItem['extra'];
+  extra?: GenericItem['extra'];
 };
 
 type WithCaptionProps<T extends WithCaptionItem> = {
@@ -86,7 +86,8 @@ export const CaptionWrapper = <T extends WithCaptionItem>({
   const alignment =
     item.settings?.alignment ??
     getDefaultFileAlignmentSetting(
-      item.extra ? getMimetype(item.extra) : undefined,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      item.extra ? getMimetype(item.extra as any) : undefined,
     );
 
   const alignItems = getAlignItemsFromAlignmentSetting(alignment);
