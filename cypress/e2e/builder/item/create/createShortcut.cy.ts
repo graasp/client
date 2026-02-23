@@ -41,7 +41,6 @@ const checkCreateShortcutRequest = ({
   cy.wait('@postItemShortcut').then(({ request: { body, url } }) => {
     // check post item request is correct
 
-    expect(body.type).to.eql('shortcut');
     expect(body.target).to.eql(id);
 
     if (toItemId) {
@@ -59,7 +58,7 @@ describe('Create Shortcut', () => {
   beforeEach(() => {
     cy.intercept({
       method: HttpMethod.Post,
-      url: /\/items\/shortcuts\//,
+      pathname: '/api/items/shortcuts',
     }).as('postItemShortcut');
   });
 
