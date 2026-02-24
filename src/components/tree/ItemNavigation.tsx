@@ -9,7 +9,6 @@ import { useAuth } from '@/AuthContext.tsx';
 import { NS } from '@/config/constants.ts';
 import { hooks } from '@/config/queryClient';
 import { MAIN_MENU_ID, TREE_VIEW_ID } from '@/config/selectors';
-import { ItemType } from '@/openapi/client';
 import MainMenu from '@/ui/MainMenu/MainMenu';
 
 import { LoadingTree } from './LoadingTree';
@@ -18,63 +17,98 @@ import { combineUuids, shuffleAllButLastItemInArray } from './shuffle';
 
 const { useItem, useDescendants } = hooks;
 
-export const ItemNavigation = ({
+const GRAASP_MENU_ITEMS = ['folder' as const, 'shortcut' as const];
+const useNavigationItems = ({
+  shuffle,
   rootId,
-  itemId,
-  shuffle = false,
-  types,
-  showHidden = false,
-  handleNavigationOnClick,
+  showHidden,
 }: {
   rootId: string;
-  itemId: string;
   shuffle?: boolean;
-  types?: ItemType[];
   showHidden?: boolean;
-  handleNavigationOnClick: (newItemId: string) => void;
-}): JSX.Element | null => {
+}) => {
   const { user } = useAuth();
-
-  const { t } = useTranslation(NS.Common);
+  const userId = user?.id ?? '';
 
   const { data: descendants, isLoading: isLoadingTree } = useDescendants({
     id: rootId ?? '',
-    types,
+    types: GRAASP_MENU_ITEMS,
     showHidden,
   });
 
-  const { data: rootItem, isLoading, isError, error } = useItem(rootId);
+  const {
+    data: rootItem,
+    isLoading: isItemLoading,
+    isError,
+    error,
+  } = useItem(rootId);
 
+  // shuffle descendants if enabled
   let shuffledDescendants = [...(descendants || [])];
   if (shuffle) {
     const baseId = rootId ?? '';
-    const memberId = user?.id ?? '';
-    const combinedUuids = combineUuids(baseId, memberId);
+
+    const combinedUuids = combineUuids(baseId, userId);
     shuffledDescendants = shuffleAllButLastItemInArray(
       shuffledDescendants,
       combinedUuids,
     );
   }
 
-  if (rootItem) {
-    if (descendants) {
-      return (
-        <MainMenu id={MAIN_MENU_ID}>
-          <TreeView
-            key={rootId}
-            id={TREE_VIEW_ID}
-            rootItems={[rootItem]}
-            items={[rootItem, ...shuffledDescendants]}
-            onTreeItemSelect={handleNavigationOnClick}
-            itemId={itemId}
-            allowedTypes={types}
-          />
-        </MainMenu>
-      );
+  // ignore shortcuts that are part of the descendants
+  const filteredDescendants = shuffledDescendants.filter((item) => {
+    if (item.type !== 'shortcut') {
+      return true;
     }
-    if (isLoadingTree) {
-      return <LoadingTree />;
-    }
+    return !shuffledDescendants.some(
+      (d) => d.id === item.extra.shortcut.target,
+    );
+  });
+
+  return {
+    descendants: filteredDescendants,
+    rootItem,
+    isLoading: isLoadingTree || isItemLoading,
+    isError,
+    error,
+  };
+};
+
+export const ItemNavigation = ({
+  rootId,
+  itemId,
+  shuffle = false,
+  showHidden = false,
+  handleNavigationOnClick,
+}: {
+  rootId: string;
+  itemId: string;
+  shuffle?: boolean;
+  showHidden?: boolean;
+  handleNavigationOnClick: (newItemId: string) => void;
+}): JSX.Element | null => {
+  const { t } = useTranslation(NS.Common);
+
+  const { rootItem, isLoading, descendants, isError, error } =
+    useNavigationItems({
+      shuffle,
+      rootId,
+      showHidden,
+    });
+
+  if (rootItem && descendants) {
+    return (
+      <MainMenu id={MAIN_MENU_ID}>
+        <TreeView
+          key={rootId}
+          id={TREE_VIEW_ID}
+          rootItems={[rootItem]}
+          items={[rootItem, ...descendants]}
+          onTreeItemSelect={handleNavigationOnClick}
+          itemId={itemId}
+        />
+      </MainMenu>
+    );
   }
 
   if (isLoading) {

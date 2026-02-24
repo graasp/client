@@ -13,8 +13,6 @@ import { ExpandButton } from './ExpandButton';
 import { TreeErrorBoundary } from './TreeErrorBoundary';
 import { PartialItemWithChildren, buildItemsTree } from './utils';
 
-export const GRAASP_MENU_ITEMS = ['folder' as const, 'shortcut' as const];
-
 function ListItem({
   expandedIds,
   selectedIds,
@@ -44,6 +42,7 @@ function ListItem({
           gap: 1,
           py: 0,
           fontWeight: isSelected || level === 0 ? 'bold' : 'normal',
+          alignItems: 'start',
         }}
         onClick={() => {
           onClick?.(item.id);
@@ -52,14 +51,17 @@ function ListItem({
           }
         }}
       >
-        {Boolean(item.children?.length) && (
-          <ExpandButton
-            element={item}
-            level={level}
-            isExpanded={isExpanded}
-            toggleExpand={toggleExpand}
-          />
-        )}
+        {/* necessary wrapper for alignment */}
+        <div>
+          {Boolean(item.children?.length) && (
+            <ExpandButton
+              element={item}
+              level={level}
+              isExpanded={isExpanded}
+              toggleExpand={toggleExpand}
+            />
+          )}
+        </div>
         {item.name}
       </ListItemButton>
       <Collapse in={isExpanded} timeout="auto">
@@ -100,19 +102,15 @@ export function TreeView({
   items,
   rootItems,
   onTreeItemSelect,
-  allowedTypes = [],
   itemId,
 }: Readonly<TreeViewProps>): JSX.Element {
-  const itemsToShow = items?.filter((item) =>
-    allowedTypes.length ? allowedTypes.includes(item.type) : true,
-  );
   const [expandedIds, setExpandedIds] = useState<string[]>(() => {
-    const focusedItem = itemsToShow?.find((i) => i.id === itemId);
+    const focusedItem = items?.find((i) => i.id === itemId);
     const defaultExpandedIds = rootItems[0]?.id ? [rootItems[0].id] : [];
     return focusedItem ? getIdsFromPath(focusedItem.path) : defaultExpandedIds;
   });
 
-  const itemTree = buildItemsTree(itemsToShow ?? [], rootItems);
+  const itemTree = buildItemsTree(items ?? [], rootItems);
   const tree = Object.values(itemTree);
 
   const toggleExpand = (targetId: string) => {

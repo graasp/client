@@ -12,7 +12,14 @@ import {
   Stack,
 } from '@mui/material';
 
-import { ActionTriggers, Context, buildPdfViewerURL } from '@graasp/sdk';
+import {
+  ActionTriggers,
+  Context,
+  buildPathFromIds,
+  buildPdfViewerURL,
+  isChildOf,
+  isDescendantOf,
+} from '@graasp/sdk';
 
 import { getRouteApi } from '@tanstack/react-router';
 
@@ -285,15 +292,22 @@ const ShortcutContent = ({ item }: { item: ShortcutItemType }): JSX.Element => {
 
 const FolderButtonContent = ({ item }: { item: PackedItem }) => {
   const search = itemRoute.useSearch();
-  const { itemId } = itemRoute.useParams();
+  const { itemId, rootId } = itemRoute.useParams();
   const { data: currentDisplayedItem } = useItem(itemId);
+  const { data: rootItem } = useItem(rootId);
   const thumbnail = item.thumbnails?.medium;
 
   const newSearchParams = new URLSearchParams(search.toString());
-  newSearchParams.set('from', window.location.pathname);
+  newSearchParams.set('from', globalThis.location.pathname);
   if (currentDisplayedItem) {
-    newSearchParams.set('fromName', currentDisplayedItem.name);
+    newSearchParams.set(
+      'fromName',
+      encodeURIComponent(currentDisplayedItem.name),
+    );
   }
+
+  const isDescendantOfRoot = isDescendantOf(item.path, rootItem?.path ?? '');
+
   return (
     <FolderCard
       id={buildFolderButtonId(item.id)}
@@ -306,10 +320,14 @@ const FolderButtonContent = ({ item }: { item: PackedItem }) => {
         ) : undefined
       }
       to="/player/$rootId/$itemId"
-      params={{ rootId: item.id, itemId: item.id }}
+      params={{
+        // display descendant in the same context, or change context if it's an external item
+        rootId: isDescendantOfRoot ? rootId : item.id,
+        itemId: item.id,
+      }}
       search={{
         ...search,
-        from: window.location.pathname,
+        from: globalThis.location.pathname,
         ...(currentDisplayedItem
           ? { fromName: currentDisplayedItem.name }
           : {}),
