@@ -2,12 +2,10 @@ import { configureWebsocketClient } from '@graasp/sdk';
 
 import { configureQueryClient } from '@/query';
 
-import { API_HOST, SHOW_NOTIFICATIONS } from './env';
+import { API_HOST, SHOW_NOTIFICATIONS, WS_HOST } from './env';
 import notifier from './notifier';
 
-export const WS_CLIENT = configureWebsocketClient(
-  `${API_HOST.replace('http', 'ws')}/ws`,
-);
+export const WS_CLIENT = configureWebsocketClient(WS_HOST);
 
 const {
   queryClient,
@@ -29,13 +27,13 @@ const {
   wsClient: WS_CLIENT,
 });
 export {
-  useQueryClient,
+  axios,
+  hooks,
   mutations,
   queryClient,
   QueryClientProvider,
-  hooks,
-  useMutation,
   ReactQueryDevtools,
-  axios,
+  useMutation,
   useQuery,
+  useQueryClient,
 };

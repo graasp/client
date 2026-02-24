@@ -33,7 +33,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
   const shouldOpen = BROWSER && BROWSER !== 'none';
 
   return defineConfig({
-    base: process.env.NODE_ENV == 'production' ? '/client' : '/',
+    base: process.env.VITE_BASE_URL ? '/client' : '/',
     server: {
       port: PORT,
       // whether we should open the url on start
