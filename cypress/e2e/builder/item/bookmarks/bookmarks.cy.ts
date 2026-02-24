@@ -26,7 +26,7 @@ const removefromItemCard = (itemId: string) => {
   cy.get(`#${buildItemCard(itemId)} ${UNBOOKMARK_ICON_SELECTOR}`).click();
 };
 const removefromBookmarkCard = (itemId: string) => {
-  cy.get(`#${BOOKMARK_MANAGE_BUTTON_ID} `).click();
+  cy.get(`#${BOOKMARK_MANAGE_BUTTON_ID}`).click();
   cy.get(buildBookmarkCardRemoveButton(itemId)).click();
 };
 
@@ -85,7 +85,7 @@ describe('Bookmarked Item', () => {
       });
     });
 
-    it('remove item from item card', () => {
+    it('remove item from bookmark card', () => {
       const itemId = ITEMS[1].id;
 
       removefromBookmarkCard(itemId);
