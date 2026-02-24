@@ -15,9 +15,7 @@ import {
 import {
   ActionTriggers,
   Context,
-  buildPathFromIds,
   buildPdfViewerURL,
-  isChildOf,
   isDescendantOf,
 } from '@graasp/sdk';
 
@@ -296,15 +294,6 @@ const FolderButtonContent = ({ item }: { item: PackedItem }) => {
   const { data: currentDisplayedItem } = useItem(itemId);
   const { data: rootItem } = useItem(rootId);
   const thumbnail = item.thumbnails?.medium;
-
-  const newSearchParams = new URLSearchParams(search.toString());
-  newSearchParams.set('from', globalThis.location.pathname);
-  if (currentDisplayedItem) {
-    newSearchParams.set(
-      'fromName',
-      encodeURIComponent(currentDisplayedItem.name),
-    );
-  }
 
   const isDescendantOfRoot = isDescendantOf(item.path, rootItem?.path ?? '');
 

@@ -28,7 +28,7 @@ export function FromShortcutButton(): JSX.Element | null {
 
   if (fromUrl) {
     const decodedFromName = decodeURIComponent(fromName);
-    // go back without from attributes
+    // go back to previous page without "from" attributes
     const strippedSearch = { ...search, from: undefined, fromName: undefined };
 
     return (
