@@ -1,6 +1,7 @@
 import {
   DocumentItemExtraFlavor,
   DocumentItemFactory,
+  HttpMethod,
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
@@ -12,6 +13,13 @@ import { createDocument } from '../../../../support/createUtils';
 import { buildItemPath } from '../../utils';
 
 describe('Create Document', () => {
+  beforeEach(() => {
+    cy.intercept({
+      method: HttpMethod.Post,
+      url: /\/items\/documents\//,
+    }).as('postItemDocument');
+  });
+
   it('create document', () => {
     const FOLDER = PackedFolderItemFactory();
     const CHILD = PackedFolderItemFactory({ parentItem: FOLDER });
@@ -24,7 +32,7 @@ describe('Create Document', () => {
     // create
     createDocument(DocumentItemFactory());
 
-    cy.wait('@postItem').then(({ request: { url } }) => {
+    cy.wait('@postItemDocument').then(({ request: { url } }) => {
       expect(url).to.contain(FOLDER.id);
       // add after child
       expect(url).to.contain(CHILD.id);
@@ -48,11 +56,9 @@ describe('Create Document', () => {
     });
     createDocument(document);
 
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      expect(body.extra.document.isRaw).to.equal(true);
-      expect(body.extra.document.content).to.equal(
-        document.extra.document.content,
-      );
+    cy.wait('@postItemDocument').then(({ request: { body } }) => {
+      expect(body.isRaw).to.equal(true);
+      expect(body.content).to.equal(document.extra.document.content);
       // should update view
       cy.wait('@getItem').its('response.url').should('contain', id);
     });
@@ -118,7 +124,7 @@ describe('Create Document', () => {
     cy.get(`#${ITEM_FORM_DOCUMENT_TEXT_ID}`).type('something');
     cy.get(`#${ITEM_FORM_CONFIRM_BUTTON_ID}`).click();
 
-    cy.wait('@postItem');
+    cy.wait('@postItemDocument');
   });
 
   it('create document with flavor', () => {
@@ -141,11 +147,9 @@ describe('Create Document', () => {
     });
     createDocument(documentToCreate);
 
-    cy.wait('@postItem').then(({ request: { body } }) => {
-      expect(body.extra.document.flavor).to.eq(
-        documentToCreate.extra.document.flavor,
-      );
-      expect(body.extra.document.content).to.contain('Some Title');
+    cy.wait('@postItemDocument').then(({ request: { body } }) => {
+      expect(body.flavor).to.eq(documentToCreate.extra.document.flavor);
+      expect(body.content).to.contain('Some Title');
     });
   });
 });
