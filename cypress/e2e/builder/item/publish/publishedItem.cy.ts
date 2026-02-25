@@ -73,7 +73,7 @@ const waitOnItemValidation = (item: PackedItem) => {
 
 const waitOnPublishItem = (
   item: PackedItem,
-  { shouldNotify }: { shouldNotify: boolean } = { shouldNotify: false },
+  { shouldNotify = false }: { shouldNotify?: boolean } = {},
 ) => {
   cy.wait('@publishItem').then((data) => {
     const {
