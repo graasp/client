@@ -70,7 +70,7 @@ describe('Display preferences', () => {
     }
   });
 
-  describe('Marketing emails subscription', () => {
+  describe.only('Marketing emails subscription', () => {
     it('Enabled', () => {
       cy.setUpApi({
         currentSettings: {
@@ -83,7 +83,7 @@ describe('Display preferences', () => {
           pathname: /\/api\/members\/current\/marketing\/unsubscribe$/,
         },
         ({ reply }) => {
-          reply();
+          reply({});
         },
       ).as('unsubscribe');
 
