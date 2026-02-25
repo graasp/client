@@ -70,7 +70,7 @@ describe('Display preferences', () => {
     }
   });
 
-  describe.only('Marketing emails subscription', () => {
+  describe('Marketing emails subscription', () => {
     it('Enabled', () => {
       cy.setUpApi({
         currentSettings: {
