@@ -11,3 +11,4 @@ Dockerfile
 docs
 node_modules
 storybook_static
+.tanstack

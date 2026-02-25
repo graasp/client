@@ -83,7 +83,7 @@ describe('Display preferences', () => {
           pathname: /\/api\/members\/current\/marketing\/unsubscribe$/,
         },
         ({ reply }) => {
-          reply();
+          reply({});
         },
       ).as('unsubscribe');
 
