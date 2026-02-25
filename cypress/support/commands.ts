@@ -142,6 +142,7 @@ import {
   mockPostAvatar,
   mockPostInvitations,
   mockPostItem,
+  mockPostItemActions,
   mockPostItemChatMessage,
   mockPostItemFlag,
   mockPostItemLogin,
@@ -541,6 +542,8 @@ Cypress.Commands.add(
     mockEnroll();
 
     mockGetCurrentSettings(currentMember, currentSettings);
+
+    mockPostItemActions();
   },
 );
 

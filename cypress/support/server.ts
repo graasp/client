@@ -1001,6 +1001,22 @@ export const mockGetItemChat = (
   cy.intercept(
     {
       method: HttpMethod.Get,
+      pathname: /\/api\/items\/[0-9a-fA-F-]{36}\/chat$/,
+    },
+    ({ reply, url }) => {
+      if (shouldThrowError) {
+        return reply({ statusCode: StatusCodes.BAD_REQUEST });
+      }
+
+      const itemId = url.split('/')[-2];
+      const item = items.find(({ id }) => itemId === id);
+
+      return reply(item?.chat ?? []);
+    },
+  ).as('getItemChatAPI');
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
       url: new RegExp(`${API_HOST}/${buildGetItemChatRoute(ID_FORMAT)}$`),
     },
     ({ reply, url }) => {
@@ -2423,4 +2439,16 @@ export const mockGetCurrentSettings = (
       reply(completeCurrentSettings);
     },
   ).as('getCurrentSettings');
+};
+
+export const mockPostItemActions = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      pathname: /\/api\/items\/[0-9a-fA-F-]{36}\/actions$/,
+    },
+    ({ reply }) => {
+      reply([]);
+    },
+  ).as('postItemActions');
 };
