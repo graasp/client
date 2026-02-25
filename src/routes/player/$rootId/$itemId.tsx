@@ -10,7 +10,6 @@ import { fallback, zodValidator } from '@tanstack/zod-adapter';
 import { z } from 'zod';
 
 import { ItemNavigation } from '@/components/tree/ItemNavigation';
-import { GRAASP_MENU_ITEMS } from '@/components/tree/TreeView';
 import { CustomLink } from '@/components/ui/CustomLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
@@ -94,7 +93,6 @@ function PlayerWrapper(): JSX.Element {
           rootId={rootId}
           itemId={itemId}
           shuffle={shuffle}
-          types={GRAASP_MENU_ITEMS}
           handleNavigationOnClick={(newItemId: string) => {
             navigate({
               to: '/player/$rootId/$itemId',

@@ -27,18 +27,25 @@ export function FromShortcutButton(): JSX.Element | null {
   }
 
   if (fromUrl) {
+    const decodedFromName = decodeURIComponent(fromName);
+    // go back to previous page without "from" attributes
+    const strippedSearch = { ...search, from: undefined, fromName: undefined };
+
     return (
       <Stack direction="column" justifyContent="center" alignItems="center">
         <ButtonLink
           id={BACK_TO_SHORTCUT_ID}
           to={fromUrl}
-          search={search}
+          search={strippedSearch}
           variant="outlined"
           startIcon={<DoorOpenIcon />}
           color="warning"
           sx={{ textTransform: 'unset' }}
         >
-          {t('FROM_SHORTCUT_BUTTON_TEXT', { name: fromName })}
+          {t('FROM_SHORTCUT_BUTTON_TEXT', {
+            name: decodedFromName,
+            interpolation: { escapeValue: false },
+          })}
         </ButtonLink>
       </Stack>
     );

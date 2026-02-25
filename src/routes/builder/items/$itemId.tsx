@@ -15,7 +15,6 @@ import { useAuth } from '@/AuthContext';
 import { EnrollContent } from '@/components/EnrollContent';
 import { ItemNavigation } from '@/components/tree/ItemNavigation';
 import { LoadingTree } from '@/components/tree/LoadingTree';
-import { GRAASP_MENU_ITEMS } from '@/components/tree/TreeView';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
@@ -139,7 +138,6 @@ function RouteComponent() {
             : itemId
         }
         showHidden
-        types={GRAASP_MENU_ITEMS}
         handleNavigationOnClick={(newItemId: string) => {
           navigate({
             to: '/builder/items/$itemId',

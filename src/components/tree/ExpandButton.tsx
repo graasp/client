@@ -28,12 +28,14 @@ export function ExpandButton({
     <>
       {/* icon type for root level items */}
       {level === 0 && element.metadata?.type && (
-        <ItemIcon
-          size="17px"
-          alt="icon"
-          type={element.metadata.type}
-          mimetype={element.metadata.mimetype}
-        />
+        <div style={{ paddingTop: 3 }}>
+          <ItemIcon
+            size="17px"
+            alt="icon"
+            type={element.metadata.type}
+            mimetype={element.metadata.mimetype}
+          />
+        </div>
       )}
       {level > 0 && (
         <IconButton
