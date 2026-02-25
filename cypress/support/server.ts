@@ -812,7 +812,7 @@ export const mockGetAccessibleItems = (items: ItemForTest[]): void => {
       const pageSize = Number.parseInt(params.get('pageSize') ?? '10', 10);
 
       // warning: we don't check memberships
-      const root = items.filter(isRootItem);
+      const root = items.filter((element) => isRootItem(element));
 
       // improvement: apply requested filters
 

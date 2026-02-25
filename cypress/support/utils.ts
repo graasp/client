@@ -37,20 +37,18 @@ export const extractItemIdOrThrow = (
   url: URL,
 ): string => {
   const { protocol, host, pathname: urlPath } = url;
-  const filterOutEmptyString = (
-    value: string,
-    _index: number,
-    _array: string[],
-  ) => value !== '';
+  const filterOutEmptyString = (value: string) => value !== '';
 
   const hostAndProtocol = `${protocol}//${host}`;
   const interceptedParts = `${hostAndProtocol}/${interceptedPathFormat}`
     .slice(hostAndProtocol.length)
     .split('/')
-    .filter(filterOutEmptyString);
+    .filter((element) => filterOutEmptyString(element));
 
   const positionOfId = interceptedParts.indexOf(ID_FORMAT);
-  const urlParts = urlPath.split('/').filter(filterOutEmptyString);
+  const urlParts = urlPath
+    .split('/')
+    .filter((element) => filterOutEmptyString(element));
   const itemId = urlParts[positionOfId];
 
   if (!uuidValidateV4(itemId)) {
