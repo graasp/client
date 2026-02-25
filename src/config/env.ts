@@ -30,7 +30,3 @@ export const H5P_INTEGRATION_URL =
 // Question: should we host the pdf player assets inside the public directory here instead of at another bucket ?
 // Are there any security implications if it is hosted on the same domain as the app code ?
 export const GRAASP_ASSETS_URL = import.meta.env.VITE_GRAASP_ASSETS_URL;
-
-export const BASE_FOR_LOCALE = import.meta.env.VITE_BASE_LOCALE
-  ? '/client'
-  : '';
