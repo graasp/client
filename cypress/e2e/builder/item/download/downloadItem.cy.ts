@@ -6,7 +6,7 @@ import {
   PackedFolderItemFactory,
 } from '@graasp/sdk';
 
-import path from 'node:path';
+import path from 'path';
 
 import {
   buildDataCyWrapper,
