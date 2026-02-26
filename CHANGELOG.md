@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.38.0](https://github.com/graasp/client/compare/v2.37.0...v2.38.0) (2026-02-26)
+
+
+### Features
+
+* use shortcut and document create endpoints ([#1200](https://github.com/graasp/client/issues/1200)) ([84c436e](https://github.com/graasp/client/commit/84c436e3009258de364064fd80b95d0399e3b8ce))
+
+
+### Bug Fixes
+
+* code smells ([#1207](https://github.com/graasp/client/issues/1207)) ([d6894a0](https://github.com/graasp/client/commit/d6894a08934e3df66c31b5531c5a52910dc1f854))
+* **deps:** update mui (non-major) to v7.3.8 ([#1126](https://github.com/graasp/client/issues/1126)) ([8a9835f](https://github.com/graasp/client/commit/8a9835fa44aaa6afcf379b32035a0d3b8d95e6c8))
+* hide internal shortcuts from sidebar navigation ([#1204](https://github.com/graasp/client/issues/1204)) ([fbcec7e](https://github.com/graasp/client/commit/fbcec7eab8d6624a8b9632373db29b00ee5d93a0))
+* make changes necessary for single origin ([#1203](https://github.com/graasp/client/issues/1203)) ([9e43c7d](https://github.com/graasp/client/commit/9e43c7d0cef9de402688284964ccf29a7cb365b0))
+* update storybook deploy workflow with better permissions and sha updates ([#1206](https://github.com/graasp/client/issues/1206)) ([0e56239](https://github.com/graasp/client/commit/0e56239037d54d52c6517e10e9a021e3d4f5a69a))
+
 ## [2.37.0](https://github.com/graasp/client/compare/v2.36.0...v2.37.0) (2026-02-25)
 
 
