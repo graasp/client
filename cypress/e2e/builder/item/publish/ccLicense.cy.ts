@@ -136,9 +136,9 @@ const setUpAndVisitItemPage = (item: ItemForTest) => {
   openPublishItemTab(item.id);
 };
 
-const openLicenseModal = (
-  { hasALicense }: { hasALicense: boolean } = { hasALicense: true },
-) =>
+const openLicenseModal = ({
+  hasALicense = true,
+}: { hasALicense?: boolean } = {}) =>
   cy
     .get(
       buildDataCyWrapper(
