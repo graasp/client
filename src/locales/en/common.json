@@ -41,6 +41,7 @@
   },
   "ERRORS": {
     "UNEXPECTED": "An unexpected Error occurred",
+    "NO_INTEGRATION_URL": "No integration URL found for this H5P item",
     "NETWORK": {
       "TITLE": "Network Error",
       "TEXT": "There seems to be a problem joining the server. Please try again later"

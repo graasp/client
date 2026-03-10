@@ -22,7 +22,6 @@ const config = ({ mode }: { mode: string }): UserConfig => {
 
   // ensure required variables are present
   if (mode === 'production') {
-    requireEnvVariable('VITE_GRAASP_H5P_INTEGRATION_URL');
     requireEnvVariable('VITE_GRAASP_REDIRECTION_HOST');
   }
 

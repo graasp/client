@@ -23,9 +23,6 @@ export const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA;
  * It's value is required in production since it is not recommended to use the fallback backend endpoint.
  * The backend endpoint is considered in-secure when the app and the backend are hosted on a domain where cookies are shared.
  */
-export const H5P_INTEGRATION_URL =
-  import.meta.env.VITE_GRAASP_H5P_INTEGRATION_URL ??
-  `${API_HOST}/items/h5p-assets/integration.html`;
 
 // Question: should we host the pdf player assets inside the public directory here instead of at another bucket ?
 // Are there any security implications if it is hosted on the same domain as the app code ?
