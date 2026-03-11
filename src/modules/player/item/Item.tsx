@@ -25,7 +25,7 @@ import { useAuth } from '@/AuthContext';
 import { PageReader } from '@/components/page/PageReader';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { API_HOST, GRAASP_ASSETS_URL, H5P_INTEGRATION_URL } from '@/config/env';
+import { API_HOST, GRAASP_ASSETS_URL } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import {
   buildAppId,
@@ -259,8 +259,12 @@ const H5PContent = ({ item }: { item: H5PItemType }): JSX.Element => {
   const { onCollapse } = useCollapseAction(item.id);
 
   const contentId = item?.extra?.h5p?.contentId;
+  const integrationUrl = item?.extra?.h5p?.integrationUrl;
   if (!contentId) {
     return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;
+  }
+  if (!integrationUrl) {
+    return <Alert severity="error">{t('ERRORS.NO_INTEGRATION_URL')}</Alert>;
   }
 
   return (
@@ -268,7 +272,7 @@ const H5PContent = ({ item }: { item: H5PItemType }): JSX.Element => {
       itemId={item.id}
       itemName={item.name}
       contentId={contentId}
-      integrationUrl={H5P_INTEGRATION_URL}
+      integrationUrl={integrationUrl}
       showCollapse={item.settings?.isCollapsible}
       onCollapse={onCollapse}
     />
