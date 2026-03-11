@@ -5,7 +5,7 @@ import { configureQueryClient } from '@/query';
 import { API_HOST, SHOW_NOTIFICATIONS, WS_HOST } from './env';
 import notifier from './notifier';
 
-export const WS_CLIENT = configureWebsocketClient(WS_HOST);
+export const WS_CLIENT = configureWebsocketClient(`${WS_HOST}/ws`);
 
 const {
   queryClient,
