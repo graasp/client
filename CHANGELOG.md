@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.38.1](https://github.com/graasp/client/compare/v2.38.0...v2.38.1) (2026-03-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency axios to v1.13.6 ([#1211](https://github.com/graasp/client/issues/1211)) ([0651a96](https://github.com/graasp/client/commit/0651a96a6e2d617ea509f970a4cad4ba3ed078a0))
+* use h5p integration url from the backend ([#1213](https://github.com/graasp/client/issues/1213)) ([a77dfd8](https://github.com/graasp/client/commit/a77dfd885c5d1057906869c05bbfdf09b9dba4ce))
+* websocket host ([857e644](https://github.com/graasp/client/commit/857e6442dd0c12c4e979ad59026fed5cf1f3c064))
+
 ## [2.38.0](https://github.com/graasp/client/compare/v2.37.0...v2.38.0) (2026-02-26)
 
 
