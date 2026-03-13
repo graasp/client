@@ -5,7 +5,7 @@ import {
   MimeTypes,
 } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CogIcon } from 'lucide-react';
 import { expect, within } from 'storybook/test';
 

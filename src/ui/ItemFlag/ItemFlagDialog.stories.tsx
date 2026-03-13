@@ -1,6 +1,6 @@
 import { FlagType } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, screen, userEvent, within } from 'storybook/test';
 
 import ItemFlagDialog from './ItemFlagDialog.js';

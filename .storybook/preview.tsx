@@ -3,7 +3,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-import type { Preview, StoryContext } from '@storybook/react';
+import type { Preview, StoryContext } from '@storybook/react-vite';
 import {
   RouterProvider,
   createMemoryHistory,
@@ -39,8 +39,7 @@ const preview: Preview = {
           { value: 'ltr', title: 'left-to-right' },
           { value: 'rtl', title: 'right-to-left' },
         ],
-        // Property that specifies if the name of the item will be displayed
-        showName: true,
+
         // Change title based on selected value
         dynamicTitle: true,
       },

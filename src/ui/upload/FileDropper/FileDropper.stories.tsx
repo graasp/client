@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, within } from 'storybook/test';
 
 import Button from '@/ui/buttons/Button/Button.js';

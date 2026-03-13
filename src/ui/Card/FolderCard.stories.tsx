@@ -1,4 +1,4 @@
-import { Meta, StoryObj, composeStories } from '@storybook/react';
+import { Meta, StoryObj, composeStories } from '@storybook/react-vite';
 
 import TextDisplay from '../TextDisplay/TextDisplay.js';
 import * as TextDisplayStories from '../TextDisplay/TextDisplay.stories.js';

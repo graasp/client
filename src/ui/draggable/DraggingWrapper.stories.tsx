@@ -2,7 +2,7 @@ import { Box } from '@mui/material';
 
 import { FolderItemFactory, FolderItemType } from '@graasp/sdk';
 
-import { type Meta, type StoryObj } from '@storybook/react';
+import { type Meta, type StoryObj } from '@storybook/react-vite';
 
 import { Card } from '@/ui/Card/Card.js';
 import ItemBadges from '@/ui/ItemBadges/ItemBadges.js';

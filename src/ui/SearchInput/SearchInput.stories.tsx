@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react-vite';
 import { fn, userEvent, within } from 'storybook/test';
 
 import { SearchInput } from './SearchInput.js';

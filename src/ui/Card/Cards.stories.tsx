@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 
 import { PackedFolderItemFactory } from '@graasp/sdk';
 
-import { Meta, StoryObj, composeStories } from '@storybook/react';
+import { Meta, StoryObj, composeStories } from '@storybook/react-vite';
 import { v4 } from 'uuid';
 
 import ItemBadges from '@/ui/ItemBadges/ItemBadges.js';

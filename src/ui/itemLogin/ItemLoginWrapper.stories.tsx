@@ -5,7 +5,7 @@ import {
   PackedDocumentItemFactory,
 } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { StatusCodes } from 'http-status-codes';
 import { expect, fn, within } from 'storybook/test';
 import { v4 } from 'uuid';

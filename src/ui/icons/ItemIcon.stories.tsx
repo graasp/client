@@ -1,6 +1,6 @@
 import { MimeTypes } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import ItemIcon from './ItemIcon.js';

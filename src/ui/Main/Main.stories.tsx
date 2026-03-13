@@ -4,7 +4,7 @@ import { Avatar, Box, Link, Typography } from '@mui/material';
 
 import { Context } from '@graasp/sdk';
 
-import { Meta, type StoryObj, composeStories } from '@storybook/react';
+import { Meta, type StoryObj, composeStories } from '@storybook/react-vite';
 import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
 import MainMenu from '@/ui/MainMenu/MainMenu.js';

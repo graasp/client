@@ -1,6 +1,6 @@
 import { ItemLoginSchemaType, PackedDocumentItemFactory } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';

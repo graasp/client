@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import DrawerHeader from './DrawerHeader.js';
 

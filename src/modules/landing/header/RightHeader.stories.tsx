@@ -2,7 +2,7 @@ import { ComponentProps } from 'react';
 
 import { AccountType } from '@graasp/sdk';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 
 import { AuthContext } from '@/AuthContext';
