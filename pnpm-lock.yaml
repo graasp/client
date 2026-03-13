@@ -73,7 +73,7 @@ importers:
         version: 1.166.7(@tanstack/react-router@1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(@tanstack/router-core@1.166.7)(csstype@3.2.3)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@tanstack/zod-adapter':
         specifier: 1.166.7
-        version: 1.166.7(@tanstack/react-router@1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(zod@4.3.6)
+        version: 1.166.7(@tanstack/react-router@1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(zod@3.24.2)
       axios:
         specifier: 1.13.6
         version: 1.13.6
@@ -206,9 +206,6 @@ importers:
       remark-gfm:
         specifier: 4.0.1
         version: 4.0.1
-      social-links:
-        specifier: 1.15.0
-        version: 1.15.0
       stylis:
         specifier: 4.3.6
         version: 4.3.6
@@ -225,8 +222,8 @@ importers:
         specifier: ^13.6.27
         version: 13.6.29
       zod:
-        specifier: 4.3.6
-        version: 4.3.6
+        specifier: 3.24.2
+        version: 3.24.2
     devDependencies:
       '@commitlint/cli':
         specifier: 19.8.1
@@ -262,7 +259,7 @@ importers:
         specifier: 10.2.17
         version: 10.2.17(react@19.1.1)(storybook@10.2.17(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))
       '@storybook/addon-vitest':
-        specifier: ^10.2.17
+        specifier: 10.2.17
         version: 10.2.17(@vitest/browser-playwright@4.1.0)(@vitest/browser@4.1.0(vite@8.0.0(@types/node@25.0.10)(esbuild@0.27.4)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0))(vitest@4.1.0))(@vitest/runner@4.1.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(storybook@10.2.17(@testing-library/dom@10.4.1)(prettier@3.6.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(vitest@4.1.0)
       '@storybook/react':
         specifier: 10.2.17
@@ -6182,9 +6179,6 @@ packages:
     resolution: {integrity: sha512-qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==}
     engines: {node: '>=10'}
 
-  social-links@1.15.0:
-    resolution: {integrity: sha512-Q5K8wcryxBvF+Czv8F9IL0B86VRxkibBtfv9GaDyPoM/vTQOZVbv3zIFvovvMiJOkfd1vs4Eg2ESrSAGXiON4A==}
-
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
@@ -9225,10 +9219,10 @@ snapshots:
 
   '@tanstack/virtual-file-routes@1.161.4': {}
 
-  '@tanstack/zod-adapter@1.166.7(@tanstack/react-router@1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(zod@4.3.6)':
+  '@tanstack/zod-adapter@1.166.7(@tanstack/react-router@1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(zod@3.24.2)':
     dependencies:
       '@tanstack/react-router': 1.166.7(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
-      zod: 4.3.6
+      zod: 3.24.2
 
   '@testing-library/dom@10.4.1':
     dependencies:
@@ -13580,8 +13574,6 @@ snapshots:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
-
-  social-links@1.15.0: {}
 
   source-map-js@1.2.1: {}
 
