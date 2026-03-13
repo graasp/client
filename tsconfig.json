@@ -2,17 +2,26 @@
   "files": [],
   "references": [
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.app.json",
     },
     {
-      "path": "./tsconfig.node.json"
+      "path": "./tsconfig.node.json",
     },
     {
-      "path": "./cypress/tsconfig.json"
-    }
+      "path": "./cypress/tsconfig.json",
+    },
   ],
   "compilerOptions": {
     // this is needed for cypress to compile to ESM ... Should be removed when not using cypress anymore
-    "module": "ESNext"
-  }
+    "module": "ESNext",
+    "paths": {
+      "~account/*": ["./src/modules/account/*"],
+      "~analytics/*": ["./src/modules/analytics/*"],
+      "~auth/*": ["./src/modules/auth/*"],
+      "~builder/*": ["./src/modules/builder/*"],
+      "~landing/*": ["./src/modules/landing/*"],
+      "~player/*": ["./src/modules/player/*"],
+      "@/*": ["./src/*"],
+    },
+  },
 }
