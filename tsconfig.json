@@ -14,6 +14,7 @@
   "compilerOptions": {
     // this is needed for cypress to compile to ESM ... Should be removed when not using cypress anymore
     "module": "ESNext",
+    "moduleResolution": "bundler",
     "paths": {
       "~account/*": ["./src/modules/account/*"],
       "~analytics/*": ["./src/modules/analytics/*"],

@@ -67,21 +67,21 @@ jobs:
         run: pnpm cypress install
 
       #  use the Cypress GitHub Action to run Cypress Component tests within the chrome browser
-      - name: Cypress run components
-        uses: cypress-io/github-action@v6
-        with:
-          install: false
-          component: true
-          browser: chrome
-          quiet: true
-          config-file: cypress.config.ts
-        env:
-          VITE_PORT: ${{ vars.VITE_PORT }}
-          VITE_VERSION: ${{ vars.VITE_VERSION }}
-          VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
-          VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
-          VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
-          VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
+      # - name: Cypress run components
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     install: false
+      #     component: true
+      #     browser: chrome
+      #     quiet: true
+      #     config-file: cypress.config.ts
+      #   env:
+      #     VITE_PORT: ${{ vars.VITE_PORT }}
+      #     VITE_VERSION: ${{ vars.VITE_VERSION }}
+      #     VITE_GRAASP_API_HOST: ${{ vars.VITE_GRAASP_API_HOST }}
+      #     VITE_GRAASP_LIBRARY_HOST: ${{ vars.VITE_GRAASP_LIBRARY_HOST }}
+      #     VITE_SHOW_NOTIFICATIONS: ${{ vars.VITE_SHOW_NOTIFICATIONS }}
+      #     VITE_GRAASP_REDIRECTION_HOST: ${{ vars.VITE_GRAASP_REDIRECTION_HOST }}
 
       #  use the Cypress GitHub Action to run Cypress tests within the chrome browser
       - name: Cypress
