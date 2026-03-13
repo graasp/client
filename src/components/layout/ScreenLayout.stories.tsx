@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { BorderedSection } from './BorderedSection';
 import { Default as DefaultBorderedSection } from './BorderedSection.stories';

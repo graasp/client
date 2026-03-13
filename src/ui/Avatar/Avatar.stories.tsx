@@ -1,6 +1,6 @@
 import { Box, Stack } from '@mui/material';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import Avatar from './Avatar.js';

@@ -7,7 +7,7 @@ import {
   UnionOfConst,
 } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import FileItem from './FileItem.js';
 

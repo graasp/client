@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Basic as BasicEnumeratedParagraph } from './EnumeratedParagraph.stories';
 import { Basic as BasicListedParagraph } from './ListedParagraph.stories';

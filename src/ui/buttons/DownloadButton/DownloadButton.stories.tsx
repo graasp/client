@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react-vite';
 import { expect, fn, within } from 'storybook/test';
 
 import { ActionButton, ColorVariants } from '../../types.js';

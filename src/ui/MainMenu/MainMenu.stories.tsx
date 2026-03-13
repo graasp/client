@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CirclePlusIcon, SnowflakeIcon, SparklesIcon } from 'lucide-react';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';

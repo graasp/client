@@ -1,6 +1,6 @@
 import { Box, IconButton, Stack } from '@mui/material';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Grip, Snowflake } from 'lucide-react';
 import { expect, fn, within } from 'storybook/test';
 

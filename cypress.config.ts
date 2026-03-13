@@ -26,12 +26,12 @@ export default defineConfig({
     requestTimeout: 8000,
     numTestsKeptInMemory: 25,
   },
-  component: {
-    devServer: {
-      framework: 'react',
-      bundler: 'vite',
-    },
-    env: ENV,
-  },
+  // component: {
+  //   devServer: {
+  //     framework: 'react',
+  //     bundler: 'vite',
+  //   },
+  //   env: ENV,
+  // },
   experimentalMemoryManagement: true,
 });
