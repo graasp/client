@@ -73,7 +73,7 @@ export const Simple: Story = {
 export const Secondary: Story = {
   args: {
     color: 'secondary',
-    defaultValue: undefined,
+    defaultValue: '',
     displayEmpty: true,
     values: VALUES,
   },
