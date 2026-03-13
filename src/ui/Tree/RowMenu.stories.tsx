@@ -1,4 +1,4 @@
-import { Meta, type StoryObj } from '@storybook/react';
+import { Meta, type StoryObj } from '@storybook/react-vite';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';

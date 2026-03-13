@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/react';
+import { StoryObj } from '@storybook/react-vite';
 
 import TextEditor from '../TextEditor/TextEditor.js';
 import DocumentItem from './DocumentItem.js';

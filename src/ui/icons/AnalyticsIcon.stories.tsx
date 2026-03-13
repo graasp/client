@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import AnalyticsIcon from './AnalyticsIcon.js';

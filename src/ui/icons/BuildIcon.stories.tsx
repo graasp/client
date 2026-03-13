@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react-vite';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
 import BuildIcon from './BuildIcon.js';

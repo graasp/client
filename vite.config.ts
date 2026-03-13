@@ -1,6 +1,6 @@
 /// <reference types="./src/vite-env.d.ts"/>
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
-import react from '@vitejs/plugin-react';
+import viteReact from '@vitejs/plugin-react';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
@@ -72,7 +72,7 @@ const config = ({ mode }: { mode: string }): UserConfig => {
             overlay: { initialIsOpen: false, position: 'br' },
           })
         : undefined,
-      react(),
+      viteReact(),
       umamiPlugin({
         websiteId: VITE_UMAMI_WEBSITE_ID,
         host: VITE_UMAMI_HOST,

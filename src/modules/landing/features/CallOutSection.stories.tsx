@@ -1,6 +1,6 @@
 import { Box, Button, Stack } from '@mui/material';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { CallOutSection } from './CallOutSection';
 

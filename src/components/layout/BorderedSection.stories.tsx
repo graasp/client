@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { SettingItem } from '~account/settings/SettingItem';
 import { Default as SettingItemDefault } from '~account/settings/SettingItem.stories';

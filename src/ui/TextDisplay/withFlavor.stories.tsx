@@ -1,6 +1,6 @@
 import { DocumentItemExtraFlavor } from '@graasp/sdk';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import TextDisplay from './TextDisplay.js';
 import { HTML_CONTENT } from './fixtures.js';

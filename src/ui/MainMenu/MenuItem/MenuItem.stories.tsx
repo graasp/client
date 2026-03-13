@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react-vite';
 import { SparklesIcon } from 'lucide-react';
 import { expect, fn, userEvent, within } from 'storybook/test';
 
