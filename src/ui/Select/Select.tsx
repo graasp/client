@@ -69,7 +69,7 @@ const Select = <T extends string | number>({
         color={color}
         variant={variant}
         id={id}
-        value={value}
+        value={value ?? ''}
         sx={sx}
         inputProps={{ name }}
       >

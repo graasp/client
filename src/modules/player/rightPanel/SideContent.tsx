@@ -1,5 +1,4 @@
 import type { JSX } from 'react';
-import Fullscreen from 'react-fullscreen-crossbrowser';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Stack, Tooltip, styled } from '@mui/material';
@@ -24,6 +23,7 @@ import { FLOATING_BUTTON_Z_INDEX } from '~player/config/constants';
 import { useLayoutContext } from '~player/contexts/LayoutContext';
 import { ItemContentWrapper } from '~player/item/Item';
 
+import { Fullscreen } from './Fullscreen';
 import SideDrawer from './SideDrawer';
 
 const StyledMain = styled('div', {
@@ -163,10 +163,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
   };
 
   return (
-    <Fullscreen
-      enabled={isFullscreen}
-      onChange={(isFullscreenEnabled) => setIsFullscreen(isFullscreenEnabled)}
-    >
+    <Fullscreen isEnabled={isFullscreen}>
       {displayChatbox()}
       {displayPinnedItems()}
       <Stack id="contentGrid">
