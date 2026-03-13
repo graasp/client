@@ -92,7 +92,7 @@ const ThumbnailCrop = ({
     onSelectFile,
     onClose,
     onConfirmCrop,
-  } = useThumbnailCrop({ currentThumbnail, setChanges, onDelete });
+  } = useThumbnailCrop({ currentThumbnail, setChanges });
 
   const handleDelete = (e: MouseEvent) => {
     // Stop propagation to prevent opening upload file modal.
@@ -111,6 +111,7 @@ const ThumbnailCrop = ({
           zIndex={theme.zIndex.drawer - 1}
         >
           <IconButton
+            data-testid={REMOVE_THUMBNAIL_BUTTON}
             data-cy={REMOVE_THUMBNAIL_BUTTON}
             aria-label={t('THUMBNAIL_UPLOADER_DELETE_ARIA_LABEL')}
             color="error"
@@ -160,6 +161,7 @@ const ThumbnailCrop = ({
         </HoveredBox>
         {croppedUrl ? (
           <img
+            data-testid={IMAGE_THUMBNAIL_FOLDER}
             data-cy={IMAGE_THUMBNAIL_FOLDER}
             alt={t('THUMBNAIL_UPLOADER_IMAGE_ALT')}
             src={croppedUrl}
@@ -167,12 +169,14 @@ const ThumbnailCrop = ({
           />
         ) : (
           <ImageUpIcon
+            data-testid={IMAGE_PLACEHOLDER_FOLDER}
             data-cy={IMAGE_PLACEHOLDER_FOLDER}
             color={theme.palette.primary.main}
           />
         )}
       </Stack>
       <VisuallyHiddenInput
+        data-testid={IMAGE_THUMBNAIL_UPLOADER}
         data-cy={IMAGE_THUMBNAIL_UPLOADER}
         type="file"
         accept="image/*"

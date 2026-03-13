@@ -15,7 +15,6 @@ type UseThumbnailCrop = {
 type Props = {
   currentThumbnail?: string;
   setChanges: (payload: { thumbnail?: Blob }) => void;
-  onDelete?: () => void;
 };
 
 export const useThumbnailCrop = ({
