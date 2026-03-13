@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_PAT }}
           release-type: node
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Auto Tag
         uses: graasp/graasp-deploy/.github/actions/auto-tag-after-release@v1

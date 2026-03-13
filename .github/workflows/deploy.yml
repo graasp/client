@@ -35,7 +35,7 @@ jobs:
     environment: ${{ inputs.environment || 'development' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.version || 'main' }}
 
@@ -74,7 +74,7 @@ jobs:
           aws cloudfront create-invalidation --distribution-id $distribution_id --paths '/index.html' '/locales*'
 
       - name: Create Sentry release
-        uses: getsentry/action-release@v1
+        uses: getsentry/action-release@v3
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ vars.SENTRY_ORG }}
