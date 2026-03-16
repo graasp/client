@@ -4,7 +4,6 @@ import react from '@vitejs/plugin-react';
 import { type UserConfig, defineConfig, loadEnv } from 'vite';
 import checker from 'vite-plugin-checker';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import tsConfigPaths from 'vite-tsconfig-paths';
 
 import { umamiPlugin } from './umami.plugin';
 
@@ -55,12 +54,13 @@ const config = ({ mode }: { mode: string }): UserConfig => {
       // forces to use the specified port
       strictPort: true,
     },
+    resolve: {
+      tsconfigPaths: true,
+    },
 
     plugins: [
       tanstackRouter({ target: 'react', autoCodeSplitting: true }),
-      tsConfigPaths({
-        projects: ['./tsconfig.json'],
-      }),
+
       // the checker plugin is disabled when running the tests
       mode !== 'test'
         ? checker({
