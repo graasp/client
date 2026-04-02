@@ -61,7 +61,8 @@
     "BIO_ERROR_MSG": "La biographie est un champ obligatoire",
     "BIO_EMPTY_MSG": "Aucune biographie n'a été précisée",
     "VISIBILITY_LABEL": "Rendre ce profil public",
-    "CHECK_TEXT": "Vérifier le profil"
+    "CHECK_TEXT": "Vérifier le profil",
+    "PATCH_SUCCESS_MESSAGE": "Le profil a été mis à jour avec succès."
   },
   "ALWAYS_RECEIVE_EMAILS": "Toujours recevoir les notifications par email",
   "DISABLE_EMAILS": "Désactiver les notifications par email",
@@ -98,6 +99,7 @@
   "MEMBER_STORAGE_FILE_UPDATED_AT": "Dernière mise à jour",
   "MEMBER_STORAGE_PARENT_FOLDER": "Dossier parent",
   "MEMBER_STORAGE_NO_PARENT": "-",
+  "STORAGE_LOAD_MORE_FILES": "Charger plus",
   "MEMBER_STORAGE_FILES_ERROR": "Oops, une erreur est survenue lors de la récupération de la liste des fichiers. Veuillez réessayer plus tard.",
   "MEMBER_STORAGE_FILES_EMPTY": "Vous n'avez pas téléchargé de fichier.",
   "EXPORT_INFORMATIONS_TITLE": "Télécharger une copie de vos données",
