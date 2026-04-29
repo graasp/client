@@ -16,6 +16,7 @@ import { Route as MemberOnlyRouteImport } from './routes/_memberOnly'
 import { Route as LandingRouteImport } from './routes/_landing'
 import { Route as PlayerIndexRouteImport } from './routes/player/index'
 import { Route as BuilderIndexRouteImport } from './routes/builder/index'
+import { Route as AuthIndexRouteImport } from './routes/auth/index'
 import { Route as AnalyticsIndexRouteImport } from './routes/analytics/index'
 import { Route as LandingIndexRouteImport } from './routes/_landing/index'
 import { Route as EmailChangeRouteImport } from './routes/email.change'
@@ -87,6 +88,11 @@ const BuilderIndexRoute = BuilderIndexRouteImport.update({
   id: '/builder/',
   path: '/builder/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthIndexRoute = AuthIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthRoute,
 } as any)
 const AnalyticsIndexRoute = AnalyticsIndexRouteImport.update({
   id: '/',
@@ -311,6 +317,7 @@ export interface FileRoutesByFullPath {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/auth/': typeof AuthIndexRoute
   '/builder': typeof BuilderIndexRoute
   '/player': typeof PlayerIndexRoute
   '/home': typeof MemberOnlyHomeLayoutHomeRoute
@@ -334,7 +341,6 @@ export interface FileRoutesByFullPath {
   '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
 }
 export interface FileRoutesByTo {
-  '/auth': typeof AuthRouteWithChildren
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -353,6 +359,7 @@ export interface FileRoutesByTo {
   '/email/change': typeof EmailChangeRoute
   '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
+  '/auth': typeof AuthIndexRoute
   '/builder': typeof BuilderIndexRoute
   '/player': typeof PlayerIndexRoute
   '/home': typeof MemberOnlyHomeLayoutHomeRoute
@@ -397,6 +404,7 @@ export interface FileRoutesById {
   '/email/change': typeof EmailChangeRoute
   '/_landing/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
+  '/auth/': typeof AuthIndexRoute
   '/builder/': typeof BuilderIndexRoute
   '/player/': typeof PlayerIndexRoute
   '/_memberOnly/_homeLayout/home': typeof MemberOnlyHomeLayoutHomeRoute
@@ -443,6 +451,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics/'
+    | '/auth/'
     | '/builder'
     | '/player'
     | '/home'
@@ -466,7 +475,6 @@ export interface FileRouteTypes {
     | '/builder/items/$itemId/share'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/auth'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -485,6 +493,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/'
     | '/analytics'
+    | '/auth'
     | '/builder'
     | '/player'
     | '/home'
@@ -528,6 +537,7 @@ export interface FileRouteTypes {
     | '/email/change'
     | '/_landing/'
     | '/analytics/'
+    | '/auth/'
     | '/builder/'
     | '/player/'
     | '/_memberOnly/_homeLayout/home'
@@ -617,6 +627,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/builder'
       preLoaderRoute: typeof BuilderIndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auth/': {
+      id: '/auth/'
+      path: '/'
+      fullPath: '/auth/'
+      preLoaderRoute: typeof AuthIndexRouteImport
+      parentRoute: typeof AuthRoute
     }
     '/analytics/': {
       id: '/analytics/'
@@ -981,6 +998,7 @@ interface AuthRouteChildren {
   AuthResetPasswordRoute: typeof AuthResetPasswordRoute
   AuthSigninRoute: typeof AuthSigninRoute
   AuthSuccessRoute: typeof AuthSuccessRoute
+  AuthIndexRoute: typeof AuthIndexRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
@@ -990,6 +1008,7 @@ const AuthRouteChildren: AuthRouteChildren = {
   AuthResetPasswordRoute: AuthResetPasswordRoute,
   AuthSigninRoute: AuthSigninRoute,
   AuthSuccessRoute: AuthSuccessRoute,
+  AuthIndexRoute: AuthIndexRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
