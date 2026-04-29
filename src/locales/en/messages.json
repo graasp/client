@@ -14,6 +14,8 @@
   "TOO_MANY_CHILDREN": "One item has too many children for the operation to proceed",
   "INVALID_MOVE_TARGET": "You cannot move items to the item you selected",
   "MEMBER_NOT_FOUND": "A user was not found",
+  "MEMBER_UNAUTHORIZED": "You are not authorized to access this. Please log in with a user that is authorized to access this.",
+  "UNEXPECTED_LOGIN_ERROR": "An unexpected error occurred during login. Please log in again.",
   "CANNOT_MODIFY_OTHER_MEMBERS": "You cannot modify another user",
   "TOO_MANY_MEMBERSHIP": "One item has too many memberships for the operation to proceed",
   "MEMBER_CANNOT_ACCESS": "A user does not have access to an item",
