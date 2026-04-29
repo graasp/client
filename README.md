@@ -72,6 +72,7 @@ Using the following command, you should be able to build an image that contains 
 
 ```sh
 docker build -t client-local \
+ --build-arg VITE_GRAASP_API_HOST=<url of the backend> \
  --build-arg VITE_RECAPTCHA=<recaptcha_site_key> \
  --build-arg VITE_GRAASP_REDIRECTION_HOST=http://localhost:3000/short-links \
  .

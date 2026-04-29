@@ -37,6 +37,6 @@ RUN pnpm vite build
 FROM joseluisq/static-web-server:2 AS runner
 WORKDIR /app
 # Copy only necessary files
-COPY --from=builder /app/build .
+COPY --from=builder /app/dist .
 
-CMD [ "-d", "/app" ]
+CMD [ "-d", "/app", "--page-fallback", "/app/index.html" ]
