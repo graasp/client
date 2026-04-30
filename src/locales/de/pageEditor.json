@@ -1,0 +1,41 @@
+{
+  "TOOLBAR": {
+    "TEXT_FORMAT": {
+      "LEFT": "Links",
+      "RIGHT": "Rechts",
+      "CENTER": "Center",
+      "JUSTIFY": "Rechtfertigen"
+    },
+    "FONT_SIZE": {
+      "INCREASE": "Schriftgröße vergrößern",
+      "DECREASE": "Schriftgröße verringern"
+    },
+    "LINK_ITEM": {
+      "BUTTON": "Link einfügen",
+      "INSERT": {
+        "TITLE": "Link einfügen",
+        "SUBMIT_BUTTON": "Einfügen"
+      }
+    }
+  },
+  "DISCONNECTED_TEXT": "Sie wurden getrennt.",
+  "RELOAD_BUTTON": "Neu laden",
+  "WARNINGS": {
+    "BETA": "Die Funktionsseiten befinden sich in der Beta-Phase. Die Dokumentation und den aktuellen Status der Funktion finden Sie auf der Dokumentationswebsite.",
+    "FEEDBACK": "Geben Sie uns Ihr Feedback <1>über dieses Formular</1>."
+  },
+  "EDITOR": {
+    "PLACEHOLDER": "Geben Sie einen Text ein..."
+  },
+  "LINK": {
+    "TYPE": {
+      "BUTTON": "Taste",
+      "EMBED": "Einbetten",
+      "TEXT": "Link"
+    },
+    "URL": {
+      "BUTTON": "Link",
+      "VISIT_LINK_BUTTON": "Besuchen Sie den externen Link"
+    }
+  }
+}
