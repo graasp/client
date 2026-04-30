@@ -9,6 +9,13 @@
     "FONT_SIZE": {
       "INCREASE": "Augmenter la taille du texte",
       "DECREASE": "Diminuer la taille du texte"
+    },
+    "LINK_ITEM": {
+      "BUTTON": "Insérer un lien",
+      "INSERT": {
+        "TITLE": "Insérer un lien",
+        "SUBMIT_BUTTON": "Insérer"
+      }
     }
   },
   "DISCONNECTED_TEXT": "Vous avez été déconnecté.",
@@ -26,6 +33,9 @@
       "EMBED": "Intégration",
       "TEXT": "Lien"
     },
-    "URL": { "BUTTON": "Lien", "VISIT_LINK_BUTTON": "Visiter le lien externe" }
+    "URL": {
+      "BUTTON": "Lien",
+      "VISIT_LINK_BUTTON": "Visiter le lien externe"
+    }
   }
 }
