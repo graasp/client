@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.38.1](https://github.com/graasp/client/compare/v2.38.0...v2.38.1) (2026-04-29)
+
+
+### Bug Fixes
+
+* add better auth error handling ([#1227](https://github.com/graasp/client/issues/1227)) ([dc1f4dc](https://github.com/graasp/client/commit/dc1f4dcd74c96b4e5c1011233c487c687a89d37c))
+* **deps:** update dependency axios to v1.13.6 ([#1211](https://github.com/graasp/client/issues/1211)) ([0651a96](https://github.com/graasp/client/commit/0651a96a6e2d617ea509f970a4cad4ba3ed078a0))
+* **deps:** update dependency axios to v1.15.0 [security] ([#1225](https://github.com/graasp/client/issues/1225)) ([bedb25c](https://github.com/graasp/client/commit/bedb25c782c05491e3aff2974d79ebd37963fa2e))
+* **deps:** update dependency uuid to v14 [security] ([#1226](https://github.com/graasp/client/issues/1226)) ([0372bb8](https://github.com/graasp/client/commit/0372bb84a56667eb2e0c6bced725d0126a87761d))
+* **deps:** update mui (non-major) to v7.3.9 ([#1222](https://github.com/graasp/client/issues/1222)) ([05639a4](https://github.com/graasp/client/commit/05639a4870c6b0a033c7bdbb1dacb4f610aaa6d0))
+* **fr:** update translations ([#1223](https://github.com/graasp/client/issues/1223)) ([25232b0](https://github.com/graasp/client/commit/25232b007fb11125a2092aa771a41a272ad39986))
+* update dockerfile to match build directory and use page fallback for static server ([e7fe4cd](https://github.com/graasp/client/commit/e7fe4cd62825d92a5fe2cf67d2a2b90f6051800b))
+* upgrade actions ([#1216](https://github.com/graasp/client/issues/1216)) ([b57c728](https://github.com/graasp/client/commit/b57c7289540968e9f61b059a2c7bcfc5c2d99038))
+* use h5p integration url from the backend ([#1213](https://github.com/graasp/client/issues/1213)) ([a77dfd8](https://github.com/graasp/client/commit/a77dfd885c5d1057906869c05bbfdf09b9dba4ce))
+* websocket host ([857e644](https://github.com/graasp/client/commit/857e6442dd0c12c4e979ad59026fed5cf1f3c064))
+
 ## [2.38.0](https://github.com/graasp/client/compare/v2.37.0...v2.38.0) (2026-02-26)
 
 
