@@ -22,7 +22,7 @@ i18n
     // 1. prefers exact match across all supported langs
     // 2. prefers lang without locale
     // 3. uses fallback
-    supportedLngs: ['fr', 'de', 'it', 'es', 'ar', 'en'],
+    supportedLngs: ['fr', 'de', 'it', 'es', 'ar', 'en', 'ja'],
     // options for the language detector
     detection: {
       // The priority order is defined as:

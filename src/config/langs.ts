@@ -5,6 +5,7 @@ import { enUS } from 'date-fns/locale/en-US';
 import { es } from 'date-fns/locale/es';
 import { fr } from 'date-fns/locale/fr';
 import { it } from 'date-fns/locale/it';
+import { ja } from 'date-fns/locale/ja';
 
 import { DEFAULT_LANG } from './constants';
 
@@ -15,6 +16,7 @@ const dateFnsLocales = {
   it: it,
   es: es,
   ar: ar,
+  ja: ja,
 } as const;
 
 export function getLocalForDateFns(i18nLocale: string): Locale {
@@ -39,7 +41,7 @@ export const LANGS = {
   fr: 'Français',
   // hu: "Magyar",
   it: 'Italiano',
-  // ja: '日本語',
+  ja: '日本語',
   // ka: "ქართული",
   // lt: "lietuvių kalba",
   // lv: "Latviešu",
