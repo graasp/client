@@ -1,5 +1,6 @@
 {
   "NAVBAR": {
+    "HOME": "Accueil",
     "GETTING_STARTED": "Commencer",
     "FEATURES": "Fonctionalités",
     "LIBRARY": "Bibliothèque",
@@ -13,11 +14,25 @@
     "REGISTER_CALL_TO_ACTION": "Créer un compte",
     "LIBRARY_CALL_TO_ACTION": "Visiter la bibliothèque",
     "SUPPORTERS_LABEL": "Soutenue par",
-    "MISSION": {
-      "TITLE": "Notre vision",
-      "DESCRIPTION": "Notre objectif est de permettre aux enseignants d'adopter pleinement la technologie numérique à valeur ajoutée pour impliquer leurs élèves dans des scénarios d'apprentissage innovants et pour développer leurs compétences numériques.",
-      "CALL_TO_ACTION_LABEL": "Voulez-vous en savoir plus ?",
-      "CALL_TO_ACTION_BUTTON_TEXT": "Apprenez à nous connaître"
+    "MISSIONS": {
+      "TITLE": "Nos Missions",
+      "RESEARCH": {
+        "TITLE": "Nous faisons avancer la recherche dans l'éducation",
+        "DESCRIPTION_1": "De nombreux articles académiques et retours d'expériences pratiques se sont appuyés sur Graasp, mettant en évidence son efficacité à favoriser l'apprentissage collaboratif fondé sur l'investigation ainsi que son impact significatif au sein de la communauté des technologies éducatives. <a>Découvrir tous les articles</a>.",
+        "DESCRIPTION_2": "Besoin d'aide pour vos recherches ? Nous sommes à l'écoute pour vous aider.",
+        "BUTTON_TEXT": "Nous contacter"
+      },
+      "PRIVACY": {
+        "TITLE": "Nous protégeons la vie privée et la souveraineté des données",
+        "DESCRIPTION": "Développé avec une forte attention portée à la confidentialité et à la souveraineté des données, Graasp permet aux utilisateurs de conserver un contrôle total sur leurs informations, à l'abri de toute exploitation par des tiers. Hébergé en Suisse et géré par l'association à but non lucratif Graasp Association, il bénéficie des solides lois suisses sur la protection des données qui renforcent ces principes fondamentaux.",
+        "BUTTON_TEXT": "A propos de l'association"
+      },
+      "OPEN": {
+        "TITLE": "Nous défendons l'ouverture et la transparence",
+        "DESCRIPTION_1": "En tant que projet open source, Graasp promeut la transparence, la confiance et la collaboration.",
+        "DESCRIPTION_2": "Sa nature ouverte encourage les contributions de la communauté, l'amélioration continue et l'adaptabilité. Nous veillons à ce que la plateforme évolue en harmonie avec les besoins des enseignants et des apprenants.",
+        "BUTTON_TEXT": "Voir sur GitHub"
+      }
     },
     "MESSAGES": {
       "CREATE": {
@@ -52,34 +67,14 @@
       "TEXT": "Révolutionner l'enseignement grâce à des outils d'apprentissage interactifs sur Graasp !",
       "BUTTON_TEXT": "Créer un compte"
     },
-    "MISSIONS": {
-      "TITLE": "Nos Missions",
-      "RESEARCH": {
-        "TITLE": "Nous faisons avancer la recherche dans l'éducation",
-        "DESCRIPTION_1": "De nombreux articles académiques et retours d'expériences pratiques se sont appuyés sur Graasp, mettant en évidence son efficacité à favoriser l'apprentissage collaboratif fondé sur l'investigation ainsi que son impact significatif au sein de la communauté des technologies éducatives. <a>Découvrir tous les articles</a>.",
-        "DESCRIPTION_2": "Besoin d'aide pour vos recherches ? Nous sommes à l'écoute pour vous aider.",
-        "BUTTON_TEXT": "Nous contacter"
-      },
-      "PRIVACY": {
-        "TITLE": "Nous protégeons la vie privée et la souveraineté des données",
-        "DESCRIPTION": "Développé avec une forte attention portée à la confidentialité et à la souveraineté des données, Graasp permet aux utilisateurs de conserver un contrôle total sur leurs informations, à l'abri de toute exploitation par des tiers. Hébergé en Suisse et géré par l'association à but non lucratif Graasp Association, il bénéficie des solides lois suisses sur la protection des données qui renforcent ces principes fondamentaux.",
-        "BUTTON_TEXT": "A propos de l'association"
-      },
-      "OPEN": {
-        "TITLE": "Nous défendons l'ouverture et la transparence",
-        "DESCRIPTION_1": "En tant que projet open source, Graasp promeut la transparence, la confiance et la collaboration.",
-        "DESCRIPTION_2": "Sa nature ouverte encourage les contributions de la communauté, l'amélioration continue et l'adaptabilité. Nous veillons à ce que la plateforme évolue en harmonie avec les besoins des enseignants et des apprenants.",
-        "BUTTON_TEXT": "Voir sur GitHub"
-      }
+    "USER_TESTIMONIES": {
+      "TITLE": "Ce que nos utilisateurs disent de nous",
+      "JOIN_US": "Rejoignez-nous et embarquez pour un brillant voyage dans l'éducation et la carrière professionnelle !"
     },
     "NEED_SUPPORT": {
       "TITLE": "Besoin d'aide ?",
       "DESCRIPTION": "Nous sommes heureux d'aider en cas de questions, doutes ou besoin de conseils sur la manière dont Graasp peut répondre aux besoins. Notre boîte email <b>support@graasp.org</b> est ouverte et notre équipe répondra dans les plus brefs délais.",
       "BUTTON_TEXT": "Nous contacter"
-    },
-    "USER_TESTIMONIES": {
-      "TITLE": "Ce que nos utilisateurs disent de nous",
-      "JOIN_US": "Rejoignez-nous et embarquez pour un brillant voyage dans l'éducation et la carrière professionnelle !"
     }
   },
   "TERMS": {
@@ -532,6 +527,7 @@
     }
   },
   "NAV": {
-    "GO_TO_GRAASP": "Commencer"
+    "GO_TO_GRAASP": "Commencer",
+    "GO_TO_ITEM": "Retour à '{{name}}'"
   }
 }

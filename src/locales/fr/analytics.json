@@ -30,6 +30,7 @@
   },
   "NO_USER_SELECTED": "Aucun utilisateur sélectionné",
   "OTHER_ACTION_TYPE": "Autre",
+  "SAMPLE_ACTIONS_CHARTS_MESSAGE": "Affichage des actions à partir d'un échantillon de taille maximale demandée de {{requestedSampleSize}} actions.",
   "SAMPLE_ACTIONS_MESSAGE": "Par défaut, un échantillon d'actions maximales de {{requestedSampleSize}} est demandé et affiché dans les graphiques ci-dessous, afin de fournir un aperçu général de l'activité de cet élément.",
   "TAB_MY_ANALYTICS": "Mes analyses",
   "TAB_GENERAL": "Général",
@@ -130,5 +131,7 @@
   "EXPORTING_DONE": "Requête {{format}} envoyée",
   "LAST_THREE_MONTHS_LABEL": "Les trois derniers mois",
   "Count": "Compte : {{count}}",
-  "CHART_DATA_UNAVAILABLE": "Impossible d'obtenir les données pour ce graphique"
+  "CHART_DATA_UNAVAILABLE": "Impossible d'obtenir les données pour ce graphique",
+  "All": "Tous",
+  "Me": "Moi"
 }

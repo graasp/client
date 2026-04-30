@@ -41,6 +41,7 @@
   },
   "ERRORS": {
     "UNEXPECTED": "Une erreur inattendue s'est produite",
+    "NO_INTEGRATION_URL": "Aucune URL d'intégration trouvée pour cet élément H5P",
     "NETWORK": {
       "TITLE": "Erreur réseau",
       "TEXT": "Il semble y avoir un problème de communication avec le serveur. Veuillez réessayer plus tard"
@@ -68,6 +69,12 @@
     "LOG_OUT": "Se déconnecter",
     "NEED_HELP": "Besoin d'aide ?"
   },
+  "ARIA": {
+    "MORE": "Plus",
+    "REMOVE_BOOKMARK": "Supprimer le signet",
+    "ADD_LOCATION": "Ajouter à cet emplacement"
+  },
+  "FOLDER_HEADER_CREATED_BY": "Créé par {{name}}",
   "ENROLL": {
     "TITLE": "Inscrivez-vous à cette capsule",
     "BUTTON": "S'inscrire",
