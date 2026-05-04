@@ -20,5 +20,9 @@
       "SUBTITLE": "Teilen und entdecken Sie offene Bildungsressourcen in der Bibliothek",
       "BUTTON_TEXT": "Erkunden"
     }
-  }
+  },
+  "SURVEY": {
+    "INFO": "Wir führen eine Nutzerumfrage durch, um besser zu verstehen, wie Sie Graasp nutzen. Ihr Feedback ist uns wichtig!<br/>Den Link zur Umfrage finden Sie <l1>hier</l1>."
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "Ab Mitte Januar werden Elemente, die vor mehr als 90 Tagen gelöscht wurden, endgültig aus Ihrem Papierkorb entfernt. Um den versehentlichen Verlust wichtiger Dateien zu vermeiden, überprüfen Sie bitte regelmäßig Ihren Papierkorb."
 }

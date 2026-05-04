@@ -41,6 +41,7 @@
   },
   "ERRORS": {
     "UNEXPECTED": "Ein unerwarteter Fehler ist aufgetreten",
+    "NO_INTEGRATION_URL": "Für dieses H5P-Element wurde keine Integrations-URL gefunden.",
     "NETWORK": {
       "TITLE": "Netzwerkfehler",
       "TEXT": "Beim Beitritt zum Server scheint ein Problem aufgetreten zu sein. Bitte versuchen Sie es später noch einmal."
@@ -68,6 +69,12 @@
     "LOG_OUT": "Ausloggen",
     "NEED_HELP": "Brauchen Sie Hilfe?"
   },
+  "ARIA": {
+    "MORE": "Mehr",
+    "REMOVE_BOOKMARK": "Lesezeichen entfernen",
+    "ADD_LOCATION": "An dieser Stelle hinzufügen"
+  },
+  "FOLDER_HEADER_CREATED_BY": "Erstellt von {{name}}",
   "ENROLL": {
     "TITLE": "Für diesen Artikel anmelden",
     "BUTTON": "Einschreiben",

@@ -28,6 +28,11 @@
   "COPY_ITEM_MODAL_TITLE_zero": "Wohin möchten Sie {{name}} kopieren?",
   "COPY_ITEM_MODAL_TITLE_one": "Wohin möchten Sie {{name}} und einen anderen kopieren?",
   "COPY_ITEM_MODAL_TITLE_other": "Wohin möchten Sie {{name}} und {{count}} andere kopieren?",
+  "COPY_WARNING_MODAL": {
+    "TITLE": "Kopie {{name}}",
+    "DESCRIPTION": "Sie müssen angemeldet sein, um diesen Artikel zu kopieren.",
+    "LOGIN": "Login"
+  },
   "ITEM_TEMPLATE_SELECTION_MODAL_TITLE": "Welches Element möchten Sie als Vorlage für die Gruppen verwenden?",
   "ITEM_TEMPLATE_SELECTION_BUTTON": "{{name}} als Vorlage verwenden",
   "CREATE_ITEM_ADD_BUTTON": "Hinzufügen",
@@ -540,5 +545,57 @@
     "INTRODUCTION": "Vom <b>{{fromDate}}</b> bis zum <b>{{toDate}}</b> werden Wartungsarbeiten durchgeführt, die eine Abschaltung der Graasp-Plattform erfordern.",
     "DETAILS": "graasp.org wird am <b>{{fromDate}}</b> vollständig nicht erreichbar sein und am <b>{{toDate}}</b> wieder zur Verfügung stehen.",
     "CONTACT": "Beeinträchtigt diese Wartung Ihre Aktivitäten auf Graasp? Wir sind für Sie da! Kontaktieren Sie uns unter <strong>maintenance@graasp.org</strong>"
-  }
+  },
+  "CHATBOX": {
+    "SEND_MESSAGE_ERROR": "Beim Senden der Nachricht ist ein Fehler aufgetreten.",
+    "EDIT_MESSAGE_ERROR": "Beim Bearbeiten der Nachricht ist ein Fehler aufgetreten.",
+    "DELETE_MESSAGE_ERROR": "Beim Löschen der Nachricht ist ein Fehler aufgetreten.",
+    "CLEAR_ERROR": "Beim Löschen des Chats ist ein Fehler aufgetreten."
+  },
+  "CONVERT_TO_CAPSULE_MODAL_TITLE": "In Kapsel umwandeln",
+  "CONVERT_TO_CAPSULE_MODAL_CONTENT": "Durch das Umwandeln eines Ordners in eine Lernkapsel bleiben alle vorhandenen Inhalte und Daten erhalten. Lernkapseln eignen sich ideal zur Organisation einer kompletten Lerneinheit. Sollte eine Lernkapsel Ihren Anforderungen nicht entsprechen, können Sie jederzeit über die Einstellungen wieder zu einem Ordner zurückkehren.",
+  "CONVERT_TO_CAPSULE_MODAL_CONTENT_DETAILS": {
+    "TITLE": "Warum Kapseln verwenden? (Demnächst verfügbar)",
+    "SIMPLIFIED_PERMISSIONS": {
+      "TITLE": "Vereinfachte Berechtigungen",
+      "DESCRIPTION": "Die Zugriffsberechtigungen werden ausschließlich auf Capsule-Ebene verwaltet."
+    },
+    "INLINE_EDITOR": {
+      "TITLE": "Inline-Editor",
+      "DESCRIPTION": "Erstellen und bearbeiten Sie Inhalte direkt in der Capsule für einen schnelleren und reibungsloseren Workflow."
+    },
+    "CLEAR_ROLES_AND_VIEWS": {
+      "TITLE": "Klare Rollen und Sichtweisen",
+      "DESCRIPTION": "Rollenbasierte Ansichten für ein fokussiertes Lernerlebnis:",
+      "READERS": "Leser sehen nur die Spieleransicht.",
+      "WRITERS_AND_ADMINS": "Autoren und Administratoren haben Zugriff auf die Builder-Ansicht zur Erstellung und Verwaltung von Inhalten."
+    },
+    "ACTIVITY_UNITY": {
+      "TITLE": "Aktivitäts-Einheit",
+      "DESCRIPTION": "Die Player-Ansicht zeigt den gesamten Inhalt auf einmal an; eine teilweise Wiedergabe ist nicht möglich."
+    }
+  },
+  "CONVERT_TO_CAPSULE_MODAL_CONFIRM_BUTTON_ARIA_LABEL": "Bestätigen Sie die Umstellung auf Capsule",
+  "CONVERT_TO_CAPSULE_MODAL_CONFIRM_BUTTON": "In Kapsel umwandeln",
+  "CONVERT_TO_CAPSULE_SUCCESS_MESSAGE": "Der Gegenstand wurde erfolgreich in eine Kapsel umgewandelt.",
+  "CONVERT_TO_CAPSULE_ERROR_MESSAGE": "Beim Konvertieren des Artikels in eine Kapsel ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+  "CONVERT_TO_FOLDER_MODAL_TITLE": "In Ordner konvertieren",
+  "CONVERT_TO_FOLDER_MODAL_CONTENT": "Durch das Umwandeln einer Capsule in einen Ordner bleiben alle vorhandenen Inhalte und Daten erhalten. Ordner eignen sich optimal zum Organisieren und Verwalten von Daten. Sollte ein Ordner Ihren Anforderungen nicht entsprechen, können Sie jederzeit über das Einstellungsmenü wieder zu einem Ordner zurückkehren.",
+  "CONVERT_TO_FOLDER_MODAL_CONTENT_DETAILS": {
+    "TITLE": "Wozu Ordner verwenden?",
+    "FLEXIBLE_PERMISSIONS": {
+      "TITLE": "Flexible Berechtigungen",
+      "DESCRIPTION": "Verwalten Sie Zugriffsrechte auf jeder Ebene und erhalten Sie so eine detailliertere Kontrolle."
+    },
+    "FOLDER_EDITOR": {
+      "TITLE": "Ordner-Editor",
+      "DESCRIPTION": "Die Inhalte werden zur einfacheren Verwaltung als Dateistruktur angezeigt."
+    },
+    "EXPANDED_VISIBILITY": {
+      "TITLE": "Erweiterte Sichtbarkeit",
+      "DESCRIPTION": "Leser können sowohl auf die Spieleransicht als auch auf die Entwickleransicht zugreifen."
+    }
+  },
+  "CONVERT_TO_FOLDER_MODAL_CONFIRM_BUTTON_ARIA_LABEL": "Konvertierung in Ordner bestätigen",
+  "CONVERT_TO_FOLDER_MODAL_CONFIRM_BUTTON": "In Ordner konvertieren"
 }
