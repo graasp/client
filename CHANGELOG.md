@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.38.2](https://github.com/graasp/client/compare/v2.38.1...v2.38.2) (2026-05-04)
+
+
+### Bug Fixes
+
+* add japanese as a supported language ([#1229](https://github.com/graasp/client/issues/1229)) ([8e68121](https://github.com/graasp/client/commit/8e6812165b280f929c2fdd4f80b16d278dbda7b2))
+* **deps:** update mui (non-major) to v7.3.10 ([#1235](https://github.com/graasp/client/issues/1235)) ([add47f3](https://github.com/graasp/client/commit/add47f3872a05470d2c63959c2a5f8666d0fbe00))
+* **de:** update translations ([#1232](https://github.com/graasp/client/issues/1232)) ([ccf035b](https://github.com/graasp/client/commit/ccf035b357007e42c926f487a4339de3aa2dd0ee))
+* **fr:** update translations ([#1231](https://github.com/graasp/client/issues/1231)) ([f43e04e](https://github.com/graasp/client/commit/f43e04e88d7916a86affb0f93285736e9a1d606a))
+
 ## [2.38.1](https://github.com/graasp/client/compare/v2.38.0...v2.38.1) (2026-04-29)
 
 
