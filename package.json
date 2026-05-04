@@ -203,7 +203,7 @@
     "vitest": "3.2.4"
   },
   "volta": {
-    "node": "22.22.1"
+    "node": "22.22.2"
   },
   "eslintConfig": {
     "extends": [
