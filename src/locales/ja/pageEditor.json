@@ -1,0 +1,41 @@
+{
+  "TOOLBAR": {
+    "TEXT_FORMAT": {
+      "LEFT": "左",
+      "RIGHT": "右",
+      "CENTER": "中心",
+      "JUSTIFY": "正当化する"
+    },
+    "FONT_SIZE": {
+      "INCREASE": "フォントサイズを大きくする",
+      "DECREASE": "フォントサイズを小さくする"
+    },
+    "LINK_ITEM": {
+      "BUTTON": "リンクを挿入",
+      "INSERT": {
+        "TITLE": "リンクを挿入",
+        "SUBMIT_BUTTON": "入れる"
+      }
+    }
+  },
+  "DISCONNECTED_TEXT": "接続が切断されました。",
+  "RELOAD_BUTTON": "リロード",
+  "WARNINGS": {
+    "BETA": "「ページ」機能は<bold>ベータ版</bold>です。この機能のドキュメントと現在のステータスは<1>ドキュメントWebサイト</1>で確認できます。",
+    "FEEDBACK": "こちらのフォームからご意見をお聞かせください。"
+  },
+  "EDITOR": {
+    "PLACEHOLDER": "テキストを入力してください..."
+  },
+  "LINK": {
+    "TYPE": {
+      "BUTTON": "ボタン",
+      "EMBED": "埋め込み",
+      "TEXT": "リンク"
+    },
+    "URL": {
+      "BUTTON": "リンク",
+      "VISIT_LINK_BUTTON": "外部リンクにアクセス"
+    }
+  }
+}
