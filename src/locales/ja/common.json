@@ -1,0 +1,83 @@
+{
+  "LOGOUT": {
+    "BUTTON_TEXT": "ログアウト"
+  },
+  "LOG_IN": {
+    "BUTTON_TEXT": "ログイン"
+  },
+  "REGISTER": {
+    "BUTTON_TEXT": "登録する"
+  },
+  "BACK": {
+    "BUTTON_TEXT": "戻る"
+  },
+  "HOME": {
+    "BUTTON_TEXT": "家に帰れ"
+  },
+  "SAVE": {
+    "BUTTON_TEXT": "保存"
+  },
+  "CANCEL": {
+    "BUTTON_TEXT": "キャンセル"
+  },
+  "EDIT": {
+    "BUTTON_TEXT": "編集"
+  },
+  "CLOSE": {
+    "BUTTON_TEXT": "近い"
+  },
+  "CONFIRM": {
+    "BUTTON_TEXT": "確認する"
+  },
+  "CONJONCTION": {
+    "OR": "または"
+  },
+  "CONSTRUCTION": {
+    "TITLE": "このページは現在作成中です",
+    "DESCRIPTION": "アプリのこの部分の改善に取り組んでいます。必要な変更を行う間、ご理解いただけますようお願い申し上げます。"
+  },
+  "USER_MENU": {
+    "SETTINGS": "設定"
+  },
+  "ERRORS": {
+    "UNEXPECTED": "予期せぬエラーが発生しました",
+    "NO_INTEGRATION_URL": "このH5Pアイテムの統合URLが見つかりませんでした。",
+    "NETWORK": {
+      "TITLE": "ネットワークエラー",
+      "TEXT": "サーバーへの接続に問題が発生しているようです。しばらくしてからもう一度お試しください。"
+    }
+  },
+  "FIELD_ERROR": {
+    "REQUIRED": "この項目は必須です",
+    "USERNAME_MIN_LENGTH": "ユーザー名は{{min}}文字以上である必要があります",
+    "USERNAME_MAX_LENGTH": "ユーザー名は{{max}}文字未満である必要があります",
+    "USERNAME_SPECIAL_CHARACTERS": "ユーザー名には、引用符、スラッシュ、<、>、^、% を含めることはできません。",
+    "INVALID_EMAIL": "これは有効なメールアドレスではないようです"
+  },
+  "UNKNOWN_DATE": "未知",
+  "PAGE_TITLES": {
+    "MY_GRAASP": "私の理解",
+    "BOOKMARKED_ITEMS": "ブックマーク",
+    "LIBRARY": "図書館",
+    "TRASH": "ごみ"
+  },
+  "USER_SWITCH": {
+    "HOME": "家",
+    "SETTINGS": "設定",
+    "STORAGE": "ストレージ",
+    "LOG_IN": "ログイン",
+    "LOG_OUT": "ログアウト",
+    "NEED_HELP": "お困りですか？"
+  },
+  "ARIA": {
+    "MORE": "もっと",
+    "REMOVE_BOOKMARK": "ブックマークを削除",
+    "ADD_LOCATION": "この場所に追加"
+  },
+  "FOLDER_HEADER_CREATED_BY": "{{name}}によって作成されました",
+  "ENROLL": {
+    "TITLE": "このアイテムに登録する",
+    "BUTTON": "登録する",
+    "DESCRIPTION": "下記のボタンをクリックして登録し、このアイテムにアクセスしてください。"
+  }
+}
