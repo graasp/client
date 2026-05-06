@@ -63,10 +63,13 @@ export type AuthContextType = AuthContextLoggedMember | AuthContextSignedOut;
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
-type MemberForLogout = {
-  type: string;
-  itemLoginSchema?: { item?: { id?: string } };
-} | null | undefined;
+type MemberForLogout =
+  | {
+      type: string;
+      itemLoginSchema?: { item?: { id?: string } };
+    }
+  | null
+  | undefined;
 
 function buildLogoutRedirectURL(
   currentMember: MemberForLogout,
@@ -74,9 +77,7 @@ function buildLogoutRedirectURL(
   origin: string,
 ): URL {
   const isGuest = currentMember?.type === AccountType.Guest;
-  const loginItemId = isGuest
-    ? currentMember?.itemLoginSchema?.item?.id
-    : null;
+  const loginItemId = isGuest ? currentMember?.itemLoginSchema?.item?.id : null;
   if (isGuest && loginItemId) {
     return new URL(`/player/${loginItemId}/${loginItemId}`, origin);
   }
