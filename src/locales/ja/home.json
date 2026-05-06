@@ -1,0 +1,28 @@
+{
+  "MENU": {
+    "HOME": "家",
+    "MY_ITEMS": "私の理解",
+    "BOOKMARKED_ITEMS": "ブックマーク",
+    "LIBRARY": "図書館",
+    "RECYCLED_ITEMS": "ごみ"
+  },
+  "BOOKMARKED_ITEMS": {
+    "SHOW_LESS": "表示を減らす",
+    "SHOW_MORE": "もっと見る",
+    "MANAGE_BUTTON": "管理",
+    "DONE_BUTTON": "終わり",
+    "TITLE": "ブックマーク",
+    "ERROR_MESSAGE": "ブックマークしたアイテムの取得中に問題が発生しました。"
+  },
+  "LIBRARY": {
+    "CARD": {
+      "TITLE": "Graaspライブラリ",
+      "SUBTITLE": "図書館でオープン教育リソースを共有・発見しよう",
+      "BUTTON_TEXT": "探検する"
+    }
+  },
+  "SURVEY": {
+    "INFO": "Graaspのご利用状況をより深く理解するため、ユーザーアンケートを実施しております。皆様からのフィードバックは大変貴重です。<br/>アンケートへのリンクは<l1>こちら</l1>です。"
+  },
+  "OLD_DELETED_ITEMS_NOTICE": "1月中旬より、90日以上前に削除されたアイテムはゴミ箱から完全に削除されます。重要なアイテムを誤って失うことを防ぐため、ゴミ箱の中身を定期的にご確認ください。"
+}
