@@ -205,6 +205,7 @@ export const ITEM_PINNED_ID = 'item-pinned';
 export const ITEM_CHATBOX_ID = 'chatbox';
 
 export const PREVENT_GUEST_MESSAGE_ID = 'prevent-guests';
+export const PREVENT_GUEST_LOGOUT_BUTTON_ID = 'prevent-guests-logout';
 
 export const RECYCLED_ITEMS_ROOT_CONTAINER = 'recycledItemsPageRootContainer';
 export const RECYCLED_ITEMS_EMPTY_ID = 'recycledItemsEmpty';

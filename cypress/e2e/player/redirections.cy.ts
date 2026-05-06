@@ -42,7 +42,7 @@ describe('Item page', () => {
       cy.url().should('include', `?url=`);
     });
   });
-  describe('Logged in', () => {
+  describe('Logged in as guest', () => {
     beforeEach(() => {
       const helper = new TestHelper({
         item,
@@ -56,11 +56,11 @@ describe('Item page', () => {
       cy.visit(buildMainPath({ rootId: item.id }));
     });
 
-    it('Should redirect to auth with url parameter', () => {
+    it('Should redirect to the item player page on logout', () => {
       cy.get(`#${FORBIDDEN_CONTENT_CONTAINER_ID} button`)
         .should('be.visible')
         .click();
-      cy.url().should('include', `?url=`);
+      cy.url().should('include', `/player/${item.id}/${item.id}`);
     });
   });
 });
