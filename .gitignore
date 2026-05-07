@@ -53,3 +53,4 @@ storybook-static
 outDir/
 
 openapi-ts-error*
+.claude
