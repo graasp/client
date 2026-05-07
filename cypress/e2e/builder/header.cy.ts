@@ -45,5 +45,12 @@ describe('Header', () => {
       // guest does not see the language switch
       cy.get('#languageSwitch').should('not.exist');
     });
+    it('redirects to the item player page on logout', () => {
+      cy.visit(`/builder/items/${folder.id}`);
+      cy.get(`#${HEADER_MEMBER_MENU_BUTTON_ID}`).click();
+      cy.get('li').contains('Log out').click();
+      cy.wait('@signOut');
+      cy.url().should('include', `/player/${folder.id}/${folder.id}`);
+    });
   });
 });

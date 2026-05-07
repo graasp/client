@@ -124,6 +124,7 @@
   "DRAWER_OPEN_ARIA_LABEL": "Schublade öffnen",
   "GUEST_AUTH": {
     "TITLE": "Gäste können nicht auf diese Seite zugreifen",
-    "DESCRIPTION": "Sie sind derzeit mit einem Gastkonto angemeldet. Mit diesen Konten können Sie keine Einstellungen und Konfigurationen verwalten. Registrieren Sie ein Konto, um diese Funktionen zu nutzen."
+    "DESCRIPTION": "Sie sind derzeit mit einem Gastkonto angemeldet. Mit diesen Konten können Sie keine Einstellungen und Konfigurationen verwalten. Registrieren Sie ein Konto, um diese Funktionen zu nutzen.",
+    "LOGOUT_BUTTON": "Vom Gastkonto abmelden"
   }
 }

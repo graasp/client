@@ -63,6 +63,29 @@ export type AuthContextType = AuthContextLoggedMember | AuthContextSignedOut;
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
+type MemberForLogout =
+  | {
+      type: string;
+      itemLoginSchema?: { item?: { id?: string } };
+    }
+  | null
+  | undefined;
+
+function buildLogoutRedirectURL(
+  currentMember: MemberForLogout,
+  currentHref: string,
+  origin: string,
+): URL {
+  const isGuest = currentMember?.type === AccountType.Guest;
+  const loginItemId = isGuest ? currentMember?.itemLoginSchema?.item?.id : null;
+  if (isGuest && loginItemId) {
+    return new URL(`/player/${loginItemId}/${loginItemId}`, origin);
+  }
+  const redirectionURL = new URL('/auth/login', origin);
+  redirectionURL.searchParams.set('url', currentHref);
+  return redirectionURL;
+}
+
 export function AuthProvider({
   children,
 }: Readonly<{
@@ -74,7 +97,6 @@ export function AuthProvider({
   const queryClient = useQueryClient();
 
   const logout = useCallback(async () => {
-    const url = window.location.href;
     // call the logout mutation
     await useLogout.mutateAsync({});
     queryClient.resetQueries();
@@ -82,12 +104,15 @@ export function AuthProvider({
 
     // unset the user in Sentry session
     Sentry.setUser(null);
-    // redirect to auth page with url from the page that we just left.
-    const redirectionURL = new URL('/auth/login', window.location.origin);
-    redirectionURL.searchParams.set('url', url);
-    // navigate to the auth page with the right params
-    window.location.assign(redirectionURL);
-  }, [queryClient, useLogout]);
+
+    window.location.assign(
+      buildLogoutRedirectURL(
+        currentMember,
+        window.location.href,
+        window.location.origin,
+      ),
+    );
+  }, [queryClient, useLogout, currentMember]);
 
   const login = useCallback(
     async (args: LoginInput) => {

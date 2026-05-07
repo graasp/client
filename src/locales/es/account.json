@@ -119,6 +119,7 @@
   "DRAWER_OPEN_ARIA_LABEL": "Cajón abierto",
   "GUEST_AUTH": {
     "TITLE": "Los invitados no pueden acceder a esta página.",
-    "DESCRIPTION": "Has iniciado sesión como invitado. Estas cuentas no pueden administrar la configuración. Crea una cuenta para usar estas funciones."
+    "DESCRIPTION": "Has iniciado sesión como invitado. Estas cuentas no pueden administrar la configuración. Crea una cuenta para usar estas funciones.",
+    "LOGOUT_BUTTON": "Cerrar sesión de la cuenta de invitado"
   }
 }
