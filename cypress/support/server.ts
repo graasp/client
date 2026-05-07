@@ -2445,10 +2445,70 @@ export const mockPostItemActions = (): void => {
   cy.intercept(
     {
       method: HttpMethod.Post,
-      pathname: /\/api\/items\/[0-9a-fA-F-]{36}\/actions$/,
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/actions$`),
     },
     ({ reply }) => {
       reply([]);
     },
   ).as('postItemActions');
+};
+
+export const mockGetItemActionsByDay = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/actions/actions-by-day`),
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK, body: [] }),
+  ).as('getItemActionsByDay');
+};
+
+export const mockGetItemActionsByHour = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/actions/actions-by-hour`),
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK, body: [] }),
+  ).as('getItemActionsByHour');
+};
+
+export const mockGetItemActionsByWeekday = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Get,
+      pathname: new RegExp(`/api/items/${ID_FORMAT}/actions/actions-by-weekday`),
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK, body: [] }),
+  ).as('getItemActionsByWeekday');
+};
+
+export const mockPostEmbeddedLink = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      pathname: new RegExp(`/api/items/embedded-links/`),
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK, body: {} }),
+  ).as('postItemLink');
+};
+
+export const mockPostShortcut = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      pathname: '/api/items/shortcuts',
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK, body: {} }),
+  ).as('postItemShortcut');
+};
+
+export const mockPostMarketingSubscribe = (): void => {
+  cy.intercept(
+    {
+      method: HttpMethod.Post,
+      pathname: /\/api\/members\/current\/marketing\/subscribe$/,
+    },
+    ({ reply }) => reply({ statusCode: StatusCodes.OK }),
+  ).as('postMarketingSubscribe');
 };
