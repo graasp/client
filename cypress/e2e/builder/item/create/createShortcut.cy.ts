@@ -1,8 +1,6 @@
-import {
-  HttpMethod,
-  PackedFileItemFactory,
-  PackedFolderItemFactory,
-} from '@graasp/sdk';
+import { PackedFileItemFactory, PackedFolderItemFactory } from '@graasp/sdk';
+
+import { mockPostShortcut } from '../../../../support/server';
 
 import {
   ITEM_MENU_SHORTCUT_BUTTON_CLASS,
@@ -56,10 +54,7 @@ const checkCreateShortcutRequest = ({
 
 describe('Create Shortcut', () => {
   beforeEach(() => {
-    cy.intercept({
-      method: HttpMethod.Post,
-      pathname: '/api/items/shortcuts',
-    }).as('postItemShortcut');
+    mockPostShortcut();
   });
 
   it('create shortcut from Home to Home', () => {

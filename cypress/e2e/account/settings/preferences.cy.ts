@@ -1,5 +1,7 @@
 import { EmailFrequency, HttpMethod } from '@graasp/sdk';
 
+import { mockPostMarketingSubscribe } from '../../../support/server';
+
 import { LANGS } from '../../../../src/config/langs';
 import { ACCOUNT_SETTINGS_PATH } from '../../../../src/config/paths';
 import {
@@ -109,15 +111,7 @@ describe('Display preferences', () => {
           marketingEmailsSubscribedAt: null,
         },
       });
-      cy.intercept(
-        {
-          method: HttpMethod.Post,
-          pathname: /\/api\/members\/current\/marketing\/subscribe$/,
-        },
-        ({ reply }) => {
-          reply();
-        },
-      ).as('subscribe');
+      mockPostMarketingSubscribe();
 
       cy.visit(ACCOUNT_SETTINGS_PATH);
       cy.get(`#${PREFERENCES_MARKETING_SUBSCRIPTION_DISPLAY_ID}`).should(
@@ -132,7 +126,7 @@ describe('Display preferences', () => {
         .click();
 
       cy.get(`#${PREFERENCES_SAVE_BUTTON_ID}`).click();
-      cy.wait('@subscribe');
+      cy.wait('@postMarketingSubscribe');
     });
   });
 

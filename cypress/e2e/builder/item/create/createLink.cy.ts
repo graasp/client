@@ -1,4 +1,4 @@
-import { HttpMethod, PackedFolderItemFactory } from '@graasp/sdk';
+import { PackedFolderItemFactory } from '@graasp/sdk';
 
 import {
   CREATE_ITEM_BUTTON_ID,
@@ -8,6 +8,7 @@ import {
   ITEM_FORM_NAME_INPUT_ID,
 } from '../../../../../src/config/selectors';
 import { buildItemPath } from '../../utils';
+import { mockPostEmbeddedLink } from '../../../../support/server';
 
 const openLinkModal = () => {
   cy.get(`#${CREATE_ITEM_BUTTON_ID}`).click();
@@ -24,10 +25,7 @@ const createLink = ({ url }: { url: string }): void => {
 
 describe('Create Link', () => {
   beforeEach(() => {
-    cy.intercept({
-      method: HttpMethod.Post,
-      url: /\/items\/embedded-links\//,
-    }).as('postItemLink');
+    mockPostEmbeddedLink();
   });
 
   it('create link in item', () => {

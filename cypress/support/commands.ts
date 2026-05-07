@@ -94,6 +94,9 @@ import {
   mockExportData,
   mockGetAccessibleItems,
   mockGetAppData,
+  mockGetItemActionsByDay,
+  mockGetItemActionsByHour,
+  mockGetItemActionsByWeekday,
   mockGetAppLink,
   mockGetAppListRoute,
   mockGetAvatarUrl,
@@ -544,6 +547,10 @@ Cypress.Commands.add(
     mockGetCurrentSettings(currentMember, currentSettings);
 
     mockPostItemActions();
+
+    mockGetItemActionsByDay();
+    mockGetItemActionsByHour();
+    mockGetItemActionsByWeekday();
   },
 );
 
