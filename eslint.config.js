@@ -30,6 +30,7 @@ export default [
       '.yarn/*',
       'coverage/*',
       'src/openapi/client',
+      '.claude',
     ],
   },
   ...fixupConfigRules(
