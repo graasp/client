@@ -17,7 +17,8 @@ export const GRAASP_REDIRECTION_HOST = import.meta.env
   .VITE_GRAASP_REDIRECTION_HOST;
 
 const env = window.__ENV__;
-export const RECAPTCHA_SITE_KEY = env?.RECAPTCHA_SITE_KEY ?? import.meta.env.VITE_RECAPTCHA;
+export const RECAPTCHA_SITE_KEY =
+  env?.RECAPTCHA_SITE_KEY ?? import.meta.env.VITE_RECAPTCHA;
 
 /**
  * The integration url needed to display H5P content
