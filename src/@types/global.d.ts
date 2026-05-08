@@ -1,4 +1,6 @@
 interface Window {
+  // this is a property injected by the backend to supply environment variables that can change at runtime.
+  __ENV__: Record<string, string>;
   umami: {
     track(): Promise<string> | undefined;
     track(
