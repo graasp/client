@@ -1,6 +1,6 @@
 import { AppItemFactory, Context, MemberFactory } from '@graasp/sdk';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 
 import AppItem, { CURRENT_TIMESTAMP_QUERY_PARAM } from './AppItem.js';

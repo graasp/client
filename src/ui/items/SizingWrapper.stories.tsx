@@ -2,7 +2,7 @@ import { Container } from '@mui/material';
 
 import { MaxWidth } from '@graasp/sdk';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { SizingWrapper } from './SizingWrapper.js';
 

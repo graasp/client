@@ -7,7 +7,6 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { Alert, Skeleton, Typography } from '@mui/material';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import SocialLinks from 'social-links';
 
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
@@ -27,10 +26,9 @@ import {
 
 import { DisplayLink } from './DisplayLink';
 import { EditPublicProfile, Inputs } from './EditPublicProfile';
+import { socialLinkFor } from './socialLinks';
 
 export function PublicProfile(): JSX.Element {
-  const socialLinks = new SocialLinks();
-
   const { t } = useTranslation(NS.Account, { keyPrefix: 'PUBLIC_PROFILE' });
   const { t: translateCommon } = useTranslation(NS.Common);
   const { t: translateMessage } = useTranslation(NS.Messages);
@@ -110,7 +108,7 @@ export function PublicProfile(): JSX.Element {
           <DisplayLink
             icon={<LinkedInIcon />}
             contentId="linkedinId"
-            href={socialLinks.sanitize('linkedin', linkedinId)}
+            href={socialLinkFor('linkedin', linkedinId)}
             content={linkedinId}
           />
         )}
@@ -118,7 +116,7 @@ export function PublicProfile(): JSX.Element {
           <DisplayLink
             icon={<TwitterIcon />}
             contentId="twitterId"
-            href={socialLinks.sanitize('twitter', twitterId)}
+            href={socialLinkFor('twitter', twitterId)}
             content={twitterId}
           />
         )}
@@ -126,7 +124,7 @@ export function PublicProfile(): JSX.Element {
           <DisplayLink
             icon={<FacebookIcon />}
             contentId="facebookId"
-            href={socialLinks.sanitize('facebook', facebookId)}
+            href={socialLinkFor('facebook', facebookId)}
             content={facebookId}
           />
         )}

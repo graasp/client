@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Basic, Enumerated, Listed, WithSubsection } from './Section.stories';
 import { Page, Section } from './layouts';

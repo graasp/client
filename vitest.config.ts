@@ -1,4 +1,5 @@
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { playwright } from '@vitest/browser-playwright';
 import { configDefaults, defineConfig } from 'vitest/config';
 
 const queryClientInclude = 'src/query/**/*.test.ts';
@@ -59,7 +60,7 @@ export default defineConfig({
             enabled: true,
             headless: true,
             instances: [{ browser: 'chromium' }],
-            provider: 'playwright',
+            provider: playwright(),
           },
           setupFiles: ['.storybook/vitest.setup.ts'],
         },

@@ -1,4 +1,4 @@
-import type { StoryObj } from '@storybook/react';
+import type { StoryObj } from '@storybook/react-vite';
 
 import { ColorVariants } from '@/ui/types.js';
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';

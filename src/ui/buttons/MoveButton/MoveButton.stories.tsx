@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ActionButton, ColorVariants } from '@/ui/types.js';
 import { TABLE_CATEGORIES } from '@/ui/utils/storybook.js';

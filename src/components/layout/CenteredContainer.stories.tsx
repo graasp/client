@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { CenteredContainer } from './CenteredContainer';
 

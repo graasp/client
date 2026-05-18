@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { BasicParagraph } from './Paragraphs.stories';
 import { Paragraphs, SubSection } from './layouts';

@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import TextDisplay from './TextDisplay.js';
 import { HTML_CONTENT, HTML_TABLE, STYLED_HTML_TABLE } from './fixtures.js';

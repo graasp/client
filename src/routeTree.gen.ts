@@ -297,6 +297,7 @@ const BuilderItemsItemIdItemPagePublishRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsRouteWithChildren
   '/auth': typeof AuthRouteWithChildren
   '/signin': typeof SigninRoute
@@ -315,11 +316,10 @@ export interface FileRoutesByFullPath {
   '/auth/success': typeof AuthSuccessRoute
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
-  '/': typeof LandingIndexRoute
   '/analytics/': typeof AnalyticsIndexRoute
   '/auth/': typeof AuthIndexRoute
-  '/builder': typeof BuilderIndexRoute
-  '/player': typeof PlayerIndexRoute
+  '/builder/': typeof BuilderIndexRoute
+  '/player/': typeof PlayerIndexRoute
   '/home': typeof MemberOnlyHomeLayoutHomeRoute
   '/published': typeof MemberOnlyHomeLayoutPublishedRoute
   '/recycled': typeof MemberOnlyHomeLayoutRecycledRoute
@@ -329,7 +329,7 @@ export interface FileRoutesByFullPath {
   '/analytics/items/$itemId': typeof AnalyticsItemsItemIdRouteWithChildren
   '/builder/items/$itemId': typeof BuilderItemsItemIdItemPageRouteWithChildren
   '/player/$rootId/$itemId': typeof PlayerRootIdItemIdRouteWithChildren
-  '/player/$rootId': typeof PlayerRootIdIndexRoute
+  '/player/$rootId/': typeof PlayerRootIdIndexRoute
   '/analytics/items/$itemId/apps': typeof AnalyticsItemsItemIdAppsRoute
   '/analytics/items/$itemId/export': typeof AnalyticsItemsItemIdExportRoute
   '/player/$rootId/$itemId/autoLogin': typeof PlayerRootIdItemIdAutoLoginRoute
@@ -341,6 +341,7 @@ export interface FileRoutesByFullPath {
   '/builder/items/$itemId/share': typeof BuilderItemsItemIdItemPageShareRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof LandingIndexRoute
   '/signin': typeof SigninRoute
   '/about-us': typeof LandingAboutUsRoute
   '/contact-us': typeof LandingContactUsRoute
@@ -357,7 +358,6 @@ export interface FileRoutesByTo {
   '/auth/success': typeof AuthSuccessRoute
   '/builder/map': typeof BuilderMapRoute
   '/email/change': typeof EmailChangeRoute
-  '/': typeof LandingIndexRoute
   '/analytics': typeof AnalyticsIndexRoute
   '/auth': typeof AuthIndexRoute
   '/builder': typeof BuilderIndexRoute
@@ -431,6 +431,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/analytics'
     | '/auth'
     | '/signin'
@@ -449,11 +450,10 @@ export interface FileRouteTypes {
     | '/auth/success'
     | '/builder/map'
     | '/email/change'
-    | '/'
     | '/analytics/'
     | '/auth/'
-    | '/builder'
-    | '/player'
+    | '/builder/'
+    | '/player/'
     | '/home'
     | '/published'
     | '/recycled'
@@ -463,7 +463,7 @@ export interface FileRouteTypes {
     | '/analytics/items/$itemId'
     | '/builder/items/$itemId'
     | '/player/$rootId/$itemId'
-    | '/player/$rootId'
+    | '/player/$rootId/'
     | '/analytics/items/$itemId/apps'
     | '/analytics/items/$itemId/export'
     | '/player/$rootId/$itemId/autoLogin'
@@ -475,6 +475,7 @@ export interface FileRouteTypes {
     | '/builder/items/$itemId/share'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/signin'
     | '/about-us'
     | '/contact-us'
@@ -491,7 +492,6 @@ export interface FileRouteTypes {
     | '/auth/success'
     | '/builder/map'
     | '/email/change'
-    | '/'
     | '/analytics'
     | '/auth'
     | '/builder'
@@ -603,28 +603,28 @@ declare module '@tanstack/react-router' {
     '/_memberOnly': {
       id: '/_memberOnly'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof MemberOnlyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_landing': {
       id: '/_landing'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof LandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/player/': {
       id: '/player/'
       path: '/player'
-      fullPath: '/player'
+      fullPath: '/player/'
       preLoaderRoute: typeof PlayerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/builder/': {
       id: '/builder/'
       path: '/builder'
-      fullPath: '/builder'
+      fullPath: '/builder/'
       preLoaderRoute: typeof BuilderIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -708,7 +708,7 @@ declare module '@tanstack/react-router' {
     '/_memberOnly/_homeLayout': {
       id: '/_memberOnly/_homeLayout'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof MemberOnlyHomeLayoutRouteImport
       parentRoute: typeof MemberOnlyRoute
     }
@@ -764,7 +764,7 @@ declare module '@tanstack/react-router' {
     '/player/$rootId/': {
       id: '/player/$rootId/'
       path: '/player/$rootId'
-      fullPath: '/player/$rootId'
+      fullPath: '/player/$rootId/'
       preLoaderRoute: typeof PlayerRootIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }

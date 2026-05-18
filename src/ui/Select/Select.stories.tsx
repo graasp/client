@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 
 import { TABLE_CATEGORIES } from '../utils/storybook.js';
@@ -73,7 +73,7 @@ export const Simple: Story = {
 export const Secondary: Story = {
   args: {
     color: 'secondary',
-    defaultValue: undefined,
+    defaultValue: '',
     displayEmpty: true,
     values: VALUES,
   },

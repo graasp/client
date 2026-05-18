@@ -11,8 +11,6 @@ import {
   Typography,
 } from '@mui/material';
 
-import { Config, SocialLinks } from 'social-links';
-
 import { useAuth } from '@/AuthContext';
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
@@ -27,12 +25,7 @@ import { useButtonColor } from '@/ui/buttons/hooks';
 
 import { FacebookIcon, LinkedInIcon, TwitterIcon } from '~landing/footer/icons';
 
-const config: Config = {
-  usePredefinedProfiles: true,
-  trimInput: true,
-  allowQueryParams: true,
-};
-const socialLinks = new SocialLinks(config);
+import { extractProfileId, isSocialLinkValid } from './socialLinks';
 
 type EditPublicProfileProps = {
   onClose: (value?: Inputs) => void;
@@ -126,7 +119,7 @@ export function EditPublicProfile({
               validate: (val) => {
                 if (val) {
                   return (
-                    socialLinks.isValid(socialProfile, val) ||
+                    isSocialLinkValid(socialProfile, val) ||
                     t('INVALID_LINK_ERROR')
                   );
                 }
@@ -134,7 +127,7 @@ export function EditPublicProfile({
               setValueAs: (val) => {
                 if (val) {
                   try {
-                    return socialLinks.getProfileId(socialProfile, val);
+                    return extractProfileId(socialProfile, val);
                   } catch {
                     return val;
                   }

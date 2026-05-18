@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { BoundFunctions } from '@testing-library/dom';
 import { queries } from '@testing-library/dom';
 import { expect, userEvent, within } from 'storybook/test';
