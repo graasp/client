@@ -5,6 +5,7 @@ import {
   StaticRange,
   defaultInputRanges,
   defaultStaticRanges,
+  // @ts-expect-error types are completly out of date
 } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -46,6 +47,7 @@ const DateRangeInput = ({ dateRange, setDateRange }: Props): JSX.Element => {
   const formattedEndDate = format(dateRange.endDate, 'MMM d, yyyy');
   const inputValue = `${formattedStartDate} - ${formattedEndDate}`;
 
+  // @ts-expect-error any since we do not have types
   const defaultStaticRangesTranslatedLabels = defaultStaticRanges.map((r) => ({
     ...r,
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -88,7 +90,10 @@ const DateRangeInput = ({ dateRange, setDateRange }: Props): JSX.Element => {
         }}
       >
         <DateRangePicker
-          onChange={(item) => setDateRange({ ...dateRange, ...item.selection })}
+          onChange={
+            // @ts-expect-error any since we do not have types
+            (item) => setDateRange({ ...dateRange, ...item.selection })
+          }
           maxDate={new Date()}
           ranges={[dateRange]}
           locale={getLocalForDateFns(i18n.language)}

@@ -162,7 +162,6 @@
     "@types/node": "25.0.10",
     "@types/papaparse": "5.3.16",
     "@types/react": "19.2.14",
-    "@types/react-date-range": "1.4.10",
     "@types/react-dom": "19.2.3",
     "@types/react-mentions": "4.4.1",
     "@types/stylis": "4.2.7",
@@ -205,17 +204,6 @@
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
-    ]
-  },
-  "resolutions": {
-    "date-fns": "^4"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "cypress",
-      "esbuild",
-      "msw",
-      "unrs-resolver"
     ]
   }
 }
