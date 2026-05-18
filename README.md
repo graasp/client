@@ -20,7 +20,7 @@
 
 ## Getting Started
 
-You will need `pnpm`. Refer to the [Getting started documentation for developers](https://graasp.github.io/docs/developer/getting-started#pnpm-volta) to install it using [`volta`](https://volta.sh/)
+You will need [`mise`](https://mise.jdx.dev/) to install the correct version of node and `pnpm`.
 
 1. Install the dependencies `pnpm i`
 1. Start the development server with `pnpm dev`

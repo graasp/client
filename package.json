@@ -10,9 +10,9 @@
     "Basile Spaenlehauer"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
-  "packageManager": "pnpm@10.32.1",
+  "packageManager": "pnpm@11.1.2",
   "type": "module",
   "dependencies": {
     "@air/react-drag-to-select": "5.0.11",
@@ -162,7 +162,6 @@
     "@types/node": "25.0.10",
     "@types/papaparse": "5.3.16",
     "@types/react": "19.2.14",
-    "@types/react-date-range": "1.4.10",
     "@types/react-dom": "19.2.3",
     "@types/react-mentions": "4.4.1",
     "@types/stylis": "4.2.7",
@@ -202,23 +201,9 @@
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "3.2.4"
   },
-  "volta": {
-    "node": "22.22.2"
-  },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
-    ]
-  },
-  "resolutions": {
-    "date-fns": "^4"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "cypress",
-      "esbuild",
-      "msw",
-      "unrs-resolver"
     ]
   }
 }
