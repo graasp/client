@@ -5,7 +5,6 @@ import { Stack, Typography } from '@mui/material';
 import { Button } from '@/components/ui/Button';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
 function PresentationVideoSection() {
   const { t } = useTranslation(NS.Landing, {
@@ -36,9 +35,9 @@ function PresentationVideoSection() {
         <ButtonLink variant="contained" to="/auth/register">
           {t('JOIN_BUTTON_TEXT')}
         </ButtonLink>
-        <a href={GRAASP_LIBRARY_HOST}>
-          <Button color="secondary">{t('LIBRARY_BUTTON_TEXT')}</Button>
-        </a>
+        <Button variant="contained" href="/library" color="secondary">
+          {t('LIBRARY_BUTTON_TEXT')}
+        </Button>
       </Stack>
     </Stack>
   );

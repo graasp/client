@@ -13,7 +13,6 @@ import { ItemNavigation } from '@/components/tree/ItemNavigation';
 import { CustomLink } from '@/components/ui/CustomLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks } from '@/config/queryClient';
 import Main from '@/ui/Main/Main';
 import PlatformSwitch from '@/ui/PlatformSwitch/PlatformSwitch';
@@ -62,7 +61,7 @@ function PlayerWrapper(): JSX.Element {
       href: '/player',
     },
     [Platform.Library]: {
-      href: GRAASP_LIBRARY_HOST,
+      href: '/library',
     },
     [Platform.Analytics]: {
       href: `/analytics/items/${itemId}`,
