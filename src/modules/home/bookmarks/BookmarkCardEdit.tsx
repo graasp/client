@@ -25,7 +25,7 @@ import {
 } from '@/openapi/client/@tanstack/react-query.gen';
 import { useButtonColor } from '@/ui/buttons/hooks';
 
-import ItemThumbnail from '../../player/common/ItemThumbnail';
+import { BookmarkThumbnail } from './BookmarkThumbnail';
 
 type Props = {
   item: PackedItem;
@@ -77,7 +77,7 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
               // do not allow icons to shrink
               flexShrink={0}
             >
-              <ItemThumbnail item={item} />
+              <BookmarkThumbnail item={item} />
             </Box>
 
             <Stack minWidth={0}>

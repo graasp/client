@@ -10,7 +10,7 @@ import { NS } from '@/config/constants';
 import { buildItemBookmarkCard } from '@/config/selectors';
 import type { PackedItem } from '@/openapi/client';
 
-import ItemThumbnail from '../../player/common/ItemThumbnail';
+import { BookmarkThumbnail } from './BookmarkThumbnail';
 
 type Props = {
   item: PackedItem;
@@ -47,7 +47,6 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
             flex: 1,
             display: 'flex',
             alignItems: 'center',
-            padding: 2,
           }}
         >
           <Stack direction="row" spacing={2} width="100%" minWidth={0}>
@@ -58,9 +57,9 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
               // do not allow icons to shrink
               flexShrink={0}
             >
-              <ItemThumbnail item={item} />
+              <BookmarkThumbnail item={item} />
             </Box>
-            <Stack minWidth={0}>
+            <Stack minWidth={0} justifyContent="center">
               <Typography
                 variant="h5"
                 component="h2"
@@ -68,10 +67,11 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
                 textOverflow="ellipsis"
                 overflow="hidden"
                 noWrap
+                paddingRight={2}
               >
                 {item.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" paddingRight={2} noWrap>
                 {formatDate(item.updatedAt, { locale: i18n.language })}
               </Typography>
             </Stack>
