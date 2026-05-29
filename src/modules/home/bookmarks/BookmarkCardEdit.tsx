@@ -62,13 +62,17 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
       }
     >
       <Card sx={{ height: '100%', width: '100%' }} id={`bookmark-${item.id}`}>
-        <CardContent id={`bookmarkCardAction-${item.id}`}>
+        <CardContent
+          id={`bookmarkCardAction-${item.id}`}
+          sx={{ p: 0, '&:last-child': { pb: 0 } }}
+        >
           <Stack
             direction="row"
             alignItems="stretch"
             width="100%"
             height="100%"
-            gap={1}
+            gap={2}
+            paddingRight={2}
           >
             <Box
               display="flex"
@@ -80,7 +84,7 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
               <BookmarkThumbnail item={item} />
             </Box>
 
-            <Stack minWidth={0}>
+            <Stack minWidth={0} justifyContent="center">
               <Typography
                 variant="h5"
                 component="h2"
