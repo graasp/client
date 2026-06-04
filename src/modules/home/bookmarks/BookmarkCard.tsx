@@ -9,8 +9,7 @@ import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
 import { buildItemBookmarkCard } from '@/config/selectors';
 import type { PackedItem } from '@/openapi/client';
-
-import { BookmarkThumbnail } from './BookmarkThumbnail';
+import CardThumbnail from '@/ui/Card/CardThumbnail';
 
 type Props = {
   item: PackedItem;
@@ -33,6 +32,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
         justifyContent="space-between"
         width="100%"
         height="100%"
+        paddingRight={2}
       >
         <CardActionAreaLink
           id={`bookmarkCardAction-${item.id}`}
@@ -57,7 +57,12 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
               // do not allow icons to shrink
               flexShrink={0}
             >
-              <BookmarkThumbnail item={item} />
+              <CardThumbnail
+                width={60}
+                minHeight={60}
+                thumbnail={item.thumbnails?.medium}
+                alt={item.name}
+              />
             </Box>
             <Stack minWidth={0} justifyContent="center">
               <Typography
@@ -67,14 +72,12 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
                 textOverflow="ellipsis"
                 overflow="hidden"
                 noWrap
-                paddingRight={2}
               >
                 {item.name}
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
-                paddingRight={2}
                 noWrap
               >
                 {formatDate(item.updatedAt, { locale: i18n.language })}
