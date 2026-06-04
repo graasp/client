@@ -75,11 +75,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
               >
                 {item.name}
               </Typography>
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                noWrap
-              >
+              <Typography variant="body2" color="text.secondary" noWrap>
                 {formatDate(item.updatedAt, { locale: i18n.language })}
               </Typography>
             </Stack>
