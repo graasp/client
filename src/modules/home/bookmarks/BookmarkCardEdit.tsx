@@ -23,13 +23,14 @@ import {
   deleteBookmarkMutation,
   getOwnBookmarkQueryKey,
 } from '@/openapi/client/@tanstack/react-query.gen';
+import CardThumbnail from '@/ui/Card/CardThumbnail';
 import { useButtonColor } from '@/ui/buttons/hooks';
-
-import ItemThumbnail from '../../player/common/ItemThumbnail';
 
 type Props = {
   item: PackedItem;
 };
+
+const BOOKMARK_THUMBNAIL_SIZE = 60;
 
 export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
   const queryClient = useQueryClient();
@@ -62,13 +63,17 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
       }
     >
       <Card sx={{ height: '100%', width: '100%' }} id={`bookmark-${item.id}`}>
-        <CardContent id={`bookmarkCardAction-${item.id}`}>
+        <CardContent
+          id={`bookmarkCardAction-${item.id}`}
+          sx={{ p: 0, '&:last-child': { pb: 0 } }}
+        >
           <Stack
             direction="row"
             alignItems="stretch"
             width="100%"
             height="100%"
-            gap={1}
+            gap={2}
+            paddingRight={2}
           >
             <Box
               display="flex"
@@ -77,10 +82,15 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
               // do not allow icons to shrink
               flexShrink={0}
             >
-              <ItemThumbnail item={item} />
+              <CardThumbnail
+                width={BOOKMARK_THUMBNAIL_SIZE}
+                minHeight={BOOKMARK_THUMBNAIL_SIZE}
+                thumbnail={item.thumbnails?.medium}
+                alt={item.name}
+              />
             </Box>
 
-            <Stack minWidth={0}>
+            <Stack minWidth={0} justifyContent="center">
               <Typography
                 variant="h5"
                 component="h2"

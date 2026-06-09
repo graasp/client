@@ -9,12 +9,13 @@ import { CardActionAreaLink } from '@/components/ui/CardActionAreaLink';
 import { NS } from '@/config/constants';
 import { buildItemBookmarkCard } from '@/config/selectors';
 import type { PackedItem } from '@/openapi/client';
-
-import ItemThumbnail from '../../player/common/ItemThumbnail';
+import CardThumbnail from '@/ui/Card/CardThumbnail';
 
 type Props = {
   item: PackedItem;
 };
+
+const BOOKMARK_THUMBNAIL_SIZE = 60;
 
 export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
   const { i18n } = useTranslation(NS.Player);
@@ -33,6 +34,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
         justifyContent="space-between"
         width="100%"
         height="100%"
+        paddingRight={2}
       >
         <CardActionAreaLink
           id={`bookmarkCardAction-${item.id}`}
@@ -47,7 +49,6 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
             flex: 1,
             display: 'flex',
             alignItems: 'center',
-            padding: 2,
           }}
         >
           <Stack direction="row" spacing={2} width="100%" minWidth={0}>
@@ -58,9 +59,14 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
               // do not allow icons to shrink
               flexShrink={0}
             >
-              <ItemThumbnail item={item} />
+              <CardThumbnail
+                width={BOOKMARK_THUMBNAIL_SIZE}
+                minHeight={BOOKMARK_THUMBNAIL_SIZE}
+                thumbnail={item.thumbnails?.medium}
+                alt={item.name}
+              />
             </Box>
-            <Stack minWidth={0}>
+            <Stack minWidth={0} justifyContent="center">
               <Typography
                 variant="h5"
                 component="h2"
@@ -71,7 +77,7 @@ export function BookmarkCard({ item }: Readonly<Props>): JSX.Element {
               >
                 {item.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" color="text.secondary" noWrap>
                 {formatDate(item.updatedAt, { locale: i18n.language })}
               </Typography>
             </Stack>
