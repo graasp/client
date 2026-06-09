@@ -30,6 +30,8 @@ type Props = {
   item: PackedItem;
 };
 
+const BOOKMARK_THUMBNAIL_SIZE = 60;
+
 export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
   const queryClient = useQueryClient();
   const { i18n } = useTranslation();
@@ -81,8 +83,8 @@ export function BookmarkCardEdit({ item }: Readonly<Props>): JSX.Element {
               flexShrink={0}
             >
               <CardThumbnail
-                width={60}
-                minHeight={60}
+                width={BOOKMARK_THUMBNAIL_SIZE}
+                minHeight={BOOKMARK_THUMBNAIL_SIZE}
                 thumbnail={item.thumbnails?.medium}
                 alt={item.name}
               />
