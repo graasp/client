@@ -28,12 +28,7 @@ import { theme } from '@/ui/theme';
 
 import { AuthProvider, useAuth } from './AuthContext';
 import './app.css';
-import {
-  APP_VERSION,
-  GRAASP_LIBRARY_HOST,
-  SENTRY_DSN,
-  SENTRY_ENV,
-} from './config/env';
+import { APP_VERSION, SENTRY_DSN, SENTRY_ENV } from './config/env';
 import { QueryClientProvider, queryClient } from './config/queryClient';
 import { ClientManager } from './lib/ClientManager';
 import { routeTree } from './routeTree.gen';
@@ -64,8 +59,7 @@ const clientManager = ClientManager.getInstance();
 clientManager.addPrefix(Context.Builder, '/builder/items');
 clientManager.addPrefix(Context.Analytics, '/analytics/items');
 clientManager.addPrefix(Context.Player, '/player');
-clientManager.addHost(Context.Library, new URL(GRAASP_LIBRARY_HOST));
-clientManager.addPrefix(Context.Library, '/collections');
+clientManager.addPrefix(Context.Library, '/library/collections');
 
 // Set up a Router instance
 const router = createRouter({

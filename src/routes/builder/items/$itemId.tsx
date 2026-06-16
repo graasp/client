@@ -19,7 +19,6 @@ import { ButtonLink } from '@/components/ui/ButtonLink';
 import { HeaderRightContent } from '@/components/ui/HeaderRightContent';
 import { MainMenuItem } from '@/components/ui/MainMenuItem';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import { hooks, mutations } from '@/config/queryClient';
 import {
   APP_NAVIGATION_PLATFORM_SWITCH_ID,
@@ -108,7 +107,7 @@ function RouteComponent() {
       href: `/player/${itemId}/${itemId}`,
     },
     [Platform.Library]: {
-      href: GRAASP_LIBRARY_HOST,
+      href: `/library`,
     },
     [Platform.Analytics]: {
       href: `/analytics/items/${itemId}`,
