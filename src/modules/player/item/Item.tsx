@@ -39,7 +39,6 @@ import type {
   AppItem as AppItemType,
   DocumentItem as DocumentItemType,
   EtherpadItem as EtherpadItemType,
-  FileItem as FileItemType,
   H5pItem as H5PItemType,
   EmbeddedLinkItem as LinkItemType,
   PackedItem,
@@ -74,13 +73,7 @@ const PDF_VIEWER_LINK = buildPdfViewerURL(GRAASP_ASSETS_URL);
 // use a bit less of the height because of the header and some margin
 const SCREEN_MAX_HEIGHT = window.innerHeight * 0.8;
 
-const {
-  useEtherpad,
-  useItem,
-  useChildren,
-  useFileContentUrl,
-  useChildrenPaginated,
-} = hooks;
+const { useEtherpad, useItem, useChildren, useChildrenPaginated } = hooks;
 
 type EtherpadContentProps = {
   item: EtherpadItemType;
@@ -123,16 +116,11 @@ const EtherpadContent = ({ item }: EtherpadContentProps) => {
 };
 
 type FileContentProps = {
-  item: FileItemType;
+  item: Extract<PackedItem, { type: 'file' }>;
 };
 const FileContent = ({ item }: FileContentProps) => {
   const { t } = useTranslation(NS.Common);
-  // fetch file content if type is file
-  const {
-    data: fileUrl,
-    isPending: isFileContentPending,
-    isError: isFileError,
-  } = useFileContentUrl(item.id);
+  const fileUrl = item.extra.file.url;
   const { triggerAction, onCollapse } = useCollapseAction(item.id);
 
   const onDownloadClick = useCallback(() => {
@@ -143,36 +131,22 @@ const FileContent = ({ item }: FileContentProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [item.id]);
 
-  if (item) {
-    return (
-      <FileItem
-        id={buildFileId(item.id)}
-        item={item}
-        fileUrl={fileUrl}
-        maxHeight={SCREEN_MAX_HEIGHT}
-        showCollapse={item.settings?.isCollapsible}
-        pdfViewerLink={PDF_VIEWER_LINK?.toString()}
-        onClick={onDownloadClick}
-        onCollapse={onCollapse}
-      />
-    );
+  if (!fileUrl) {
+    return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;
   }
 
-  if (isFileContentPending) {
-    return (
-      <ItemSkeleton
-        itemType={'file'}
-        isChildren={false}
-        screenMaxHeight={SCREEN_MAX_HEIGHT}
-      />
-    );
-  }
-
-  if (isFileError) {
-    console.error(isFileError);
-  }
-
-  return <Alert severity="error">{t('ERRORS.UNEXPECTED')}</Alert>;
+  return (
+    <FileItem
+      id={buildFileId(item.id)}
+      item={item}
+      fileUrl={fileUrl}
+      maxHeight={SCREEN_MAX_HEIGHT}
+      showCollapse={item.settings?.isCollapsible}
+      pdfViewerLink={PDF_VIEWER_LINK?.toString()}
+      onClick={onDownloadClick}
+      onCollapse={onCollapse}
+    />
+  );
 };
 
 const LinkContent = ({ item }: { item: LinkItemType }): JSX.Element => {
