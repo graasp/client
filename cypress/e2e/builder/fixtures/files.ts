@@ -32,6 +32,7 @@ export const IMAGE_ITEM_DEFAULT: FileItemForTest = {
       mimetype: 'image/png',
       altText: 'myAltText',
       content: '',
+      url: MOCK_IMAGE_URL,
     }),
   }),
   // for testing: creating needs a fixture, reading needs an url
@@ -59,6 +60,7 @@ export const IMAGE_ITEM_DEFAULT_WITH_MAX_WIDTH: FileItemForTest = {
       mimetype: 'image/png',
       altText: 'myAltText',
       content: '',
+      url: MOCK_IMAGE_URL,
     }),
   }),
   // for testing: creating needs a fixture, reading needs an url
@@ -84,6 +86,7 @@ export const VIDEO_ITEM_DEFAULT: FileItemForTest = {
       mimetype: MimeTypes.Video.MP4,
       altText: 'myAltText',
       content: '',
+      url: MOCK_VIDEO_URL,
     }),
   }),
   // for testing: creating needs a fixture, reading needs an url
@@ -109,6 +112,7 @@ export const PDF_ITEM_DEFAULT: FileItemForTest = {
       mimetype: MimeTypes.PDF,
       altText: 'myAltText',
       content: '',
+      url: MOCK_PDF_URL,
     }),
   }),
   // for testing: creating needs a fixture, reading needs an url
