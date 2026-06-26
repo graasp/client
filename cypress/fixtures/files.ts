@@ -22,6 +22,7 @@ export const IMAGE_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
     size: 32439,
     mimetype: MimeTypes.Image.PNG,
     content: '',
+    url: MOCK_IMAGE_URL,
   }),
   // for testing
   readFilepath: MOCK_IMAGE_URL,
@@ -46,6 +47,7 @@ export const VIDEO_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
     size: 52345,
     mimetype: MimeTypes.Video.MP4,
     content: '',
+    url: MOCK_VIDEO_URL,
   }),
   // for testing
   readFilepath: MOCK_VIDEO_URL,
@@ -70,6 +72,7 @@ export const PDF_ITEM_DEFAULT: FileItem & { readFilepath: string } = {
     size: 54321,
     mimetype: MimeTypes.PDF,
     content: '',
+    url: MOCK_PDF_URL,
   }),
   // for testing
   readFilepath: MOCK_PDF_URL,
@@ -93,6 +96,7 @@ export const IMAGE_ITEM_S3 = PackedFileItemFactory(
       size: 32439,
       mimetype: MimeTypes.Image.PNG,
       content: '',
+      url: MOCK_IMAGE_URL,
     }),
     settings: {
       isPinned: false,
@@ -119,6 +123,7 @@ export const VIDEO_ITEM_S3 = PackedFileItemFactory(
       size: 52345,
       mimetype: MimeTypes.Video.MP4,
       content: '',
+      url: MOCK_VIDEO_URL,
     }),
     settings: {
       isPinned: false,
@@ -140,6 +145,7 @@ export const PDF_ITEM_S3 = PackedFileItemFactory(
       size: 54321,
       mimetype: MimeTypes.PDF,
       content: '',
+      url: MOCK_PDF_URL,
     }),
     settings: {
       isPinned: false,
