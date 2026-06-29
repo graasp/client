@@ -1,4 +1,4 @@
-import { useEffect, useRef, type JSX } from 'react';
+import { type JSX, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Stack, Tooltip, styled } from '@mui/material';
