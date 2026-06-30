@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.38.3](https://github.com/graasp/client/compare/v2.38.2...v2.38.3) (2026-06-30)
+
+
+### Bug Fixes
+
+* add Greek and Ukrainian languages ([#1243](https://github.com/graasp/client/issues/1243)) ([b84705b](https://github.com/graasp/client/commit/b84705bf436f75a3fee87ded21e35af46b96a374))
+* added thumbnail to bookmarked items ([#1245](https://github.com/graasp/client/issues/1245)) ([5fbf1b9](https://github.com/graasp/client/commit/5fbf1b94ab5ff08b1582987aed3e5dd6c5841202))
+* allow dynamic envs ([#1241](https://github.com/graasp/client/issues/1241)) ([9edefc9](https://github.com/graasp/client/commit/9edefc9cd6bd05a77f97c996403fcf9731e46cb2))
+* **deps:** update dependency axios to v1.15.2 [security] ([#1239](https://github.com/graasp/client/issues/1239)) ([310c7d7](https://github.com/graasp/client/commit/310c7d7eaef63291c63d851f4bc1f647530ecd9e))
+* go back button placement ([#1251](https://github.com/graasp/client/issues/1251)) ([8691db6](https://github.com/graasp/client/commit/8691db63f87ca54ff86e312f50900d300a6d6c14))
+* guests should be redirected to item page on logout and should be able to log out when forbidden ([#1238](https://github.com/graasp/client/issues/1238)) ([e71d9d9](https://github.com/graasp/client/commit/e71d9d99e8965ab5b14ebeee7316aeaf50c5e811))
+* **ja:** update japanese translations ([#1236](https://github.com/graasp/client/issues/1236)) ([3a2e29b](https://github.com/graasp/client/commit/3a2e29bcff4e2bab5efdb8d8e7ecefcf19b098e8))
+* remove proxy warnings in tests ([#1240](https://github.com/graasp/client/issues/1240)) ([6e1974f](https://github.com/graasp/client/commit/6e1974f790bdf1eef34571f1873548e01bdc4807))
+* update node to 24 ([#1242](https://github.com/graasp/client/issues/1242)) ([bfb0e2e](https://github.com/graasp/client/commit/bfb0e2e5390046d7096cd9cbc320c108b1e96d14))
+
 ## [2.38.2](https://github.com/graasp/client/compare/v2.38.1...v2.38.2) (2026-05-04)
 
 
