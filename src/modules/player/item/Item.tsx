@@ -465,9 +465,9 @@ const FolderContent = ({
             ))}
           </Stack>
           {showLoadMoreButton}
+          <FromShortcutButton />
         </Stack>
       </Container>
-      <FromShortcutButton />
       <NavigationIsland />
     </>
   );
