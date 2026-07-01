@@ -1,10 +1,9 @@
-import type { JSX } from 'react';
-import Fullscreen from 'react-fullscreen-crossbrowser';
+import { type JSX, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Stack, Tooltip, styled } from '@mui/material';
 
-import { useParams, useSearch } from '@tanstack/react-router';
+import { useNavigate, useParams, useSearch } from '@tanstack/react-router';
 import { ExpandIcon, ShrinkIcon } from 'lucide-react';
 
 import { Chatbox } from '@/components/chatbox/Chatbox/Chatbox';
@@ -63,48 +62,104 @@ type Props = {
 };
 
 const SideContent = ({ content, item }: Props): JSX.Element | null => {
-  const { rootId } = useParams({ from: '/player/$rootId/$itemId' });
+  const { itemId, rootId } = useParams({ from: '/player/$rootId/$itemId' });
+  const navigate = useNavigate();
   const { isMobile } = useMobileView();
   const { data: children } = hooks.useChildren(item.id, undefined, {
     enabled: !!item,
   });
   const search = useSearch({ from: '/player/$rootId/$itemId' });
+  const { fullscreen } = search;
 
   const {
     toggleChatbox,
     togglePinned,
     isChatboxOpen,
     isPinnedOpen,
-    isFullscreen,
     setIsFullscreen,
   } = useLayoutContext();
 
   const { t } = useTranslation(NS.Player);
   const settings = item.settings ?? {};
 
-  if (!rootId) {
-    return null;
-  }
-
   const pinnedItems = children?.filter(
     ({ settings: s, hidden }) => s.isPinned && !hidden,
   );
   const pinnedCount = pinnedItems?.length ?? 0;
 
+  const navigateFullscreen = useCallback(
+    (fullscreenEnabled: boolean) => {
+      navigate({
+        to: '/player/$rootId/$itemId',
+        params: { itemId, rootId },
+        search: { ...search, fullscreen: fullscreenEnabled },
+      });
+    },
+    [itemId, navigate, rootId, search],
+  );
+
   const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
+    if (fullscreen) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch((err) => {
+          console.error(
+            `Error attempting to exit fullscreen mode: ${err.message} (${err.name})`,
+          );
+        });
+      }
+
+      setIsFullscreen(false);
+      navigateFullscreen(false);
+      return;
+    }
+
+    document.documentElement
+      .requestFullscreen()
+      .then(() => {
+        setIsFullscreen(true);
+        navigateFullscreen(true);
+      })
+      .catch((err) => {
+        console.error(
+          `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
+        );
+      });
   };
 
+  useEffect(() => {
+    const syncFullscreenRoute = () => {
+      const isBrowserFullscreen = Boolean(document.fullscreenElement);
+      setIsFullscreen(isBrowserFullscreen);
+
+      if (fullscreen && !isBrowserFullscreen) {
+        navigateFullscreen(false);
+      }
+    };
+
+    syncFullscreenRoute();
+
+    window.addEventListener('fullscreenchange', syncFullscreenRoute);
+    window.addEventListener('resize', syncFullscreenRoute);
+
+    return () => {
+      window.removeEventListener('fullscreenchange', syncFullscreenRoute);
+      window.removeEventListener('resize', syncFullscreenRoute);
+    };
+  }, [fullscreen, navigateFullscreen, setIsFullscreen]);
+
+  if (!rootId) {
+    return null;
+  }
+
   const displayFullscreenButton = () => {
-    const { fullscreen } = search;
-    if (isMobile || !fullscreen) {
+    if (isMobile) {
       return null;
     }
 
     return (
       <Tooltip
         title={
-          isFullscreen
+          fullscreen
             ? t('EXIT_FULLSCREEN_TOOLTIP')
             : t('ENTER_FULLSCREEN_TOOLTIP')
         }
@@ -112,13 +167,13 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
         <StyledIconButton
           id={ITEM_FULLSCREEN_BUTTON_ID}
           aria-label={
-            isFullscreen
+            fullscreen
               ? t('EXIT_FULLSCREEN_TOOLTIP')
               : t('ENTER_FULLSCREEN_TOOLTIP')
           }
           onClick={toggleFullscreen}
         >
-          {isFullscreen ? <ShrinkIcon /> : <ExpandIcon />}
+          {fullscreen ? <ShrinkIcon /> : <ExpandIcon />}
         </StyledIconButton>
       </Tooltip>
     );
@@ -163,10 +218,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
   };
 
   return (
-    <Fullscreen
-      enabled={isFullscreen}
-      onChange={(isFullscreenEnabled) => setIsFullscreen(isFullscreenEnabled)}
-    >
+    <>
       {displayChatbox()}
       {displayPinnedItems()}
       <Stack id="contentGrid">
@@ -178,7 +230,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
           {content}
         </StyledMain>
       </Stack>
-    </Fullscreen>
+    </>
   );
 };
 
