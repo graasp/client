@@ -1,5 +1,4 @@
-import type { JSX } from 'react';
-import Fullscreen from 'react-fullscreen-crossbrowser';
+import { type JSX, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconButton, Stack, Tooltip, styled } from '@mui/material';
@@ -57,6 +56,13 @@ const StyledIconButton = styled(IconButton)({
   zIndex: FLOATING_BUTTON_Z_INDEX,
 });
 
+const StyledFullscreenContainer = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  '&::backdrop': {
+    backgroundColor: theme.palette.background.default,
+  },
+}));
+
 type Props = {
   item: GenericItem;
   content: JSX.Element;
@@ -81,6 +87,18 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
 
   const { t } = useTranslation(NS.Player);
   const settings = item.settings ?? {};
+  const fullscreenRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleFullscreenChange = (): void => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+
+    return () =>
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, [setIsFullscreen]);
 
   if (!rootId) {
     return null;
@@ -92,7 +110,21 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
   const pinnedCount = pinnedItems?.length ?? 0;
 
   const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
+    const fullscreenElement = fullscreenRef.current;
+
+    if (!fullscreenElement) {
+      return;
+    }
+
+    const fullscreenAction = document.fullscreenElement
+      ? document.exitFullscreen()
+      : fullscreenElement.requestFullscreen();
+
+    fullscreenAction.catch((err) => {
+      console.error(
+        `Error attempting to toggle fullscreen mode: ${err.message} (${err.name})`,
+      );
+    });
   };
 
   const displayFullscreenButton = () => {
@@ -163,10 +195,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
   };
 
   return (
-    <Fullscreen
-      enabled={isFullscreen}
-      onChange={(isFullscreenEnabled) => setIsFullscreen(isFullscreenEnabled)}
-    >
+    <StyledFullscreenContainer ref={fullscreenRef}>
       {displayChatbox()}
       {displayPinnedItems()}
       <Stack id="contentGrid">
@@ -178,7 +207,7 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
           {content}
         </StyledMain>
       </Stack>
-    </Fullscreen>
+    </StyledFullscreenContainer>
   );
 };
 
