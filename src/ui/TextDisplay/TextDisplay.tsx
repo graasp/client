@@ -31,7 +31,7 @@ const TextDisplay = ({
       <StyledDiv className="quill" id={id}>
         <div className="ql-snow ql-disabled">
           <div className="ql-editor">
-            <Interweave content={content} noWrap />
+            <Interweave content={content} noWrap allowAttributes />
           </div>
         </div>
       </StyledDiv>
