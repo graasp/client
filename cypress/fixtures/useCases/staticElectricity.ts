@@ -174,6 +174,7 @@ export const STATIC_ELECTRICITY: {
           // encoding: '7bit',
           mimetype: 'image/jpeg',
           content: '',
+          url: MOCK_IMAGE_URL,
         }),
       }),
       readFilepath: MOCK_IMAGE_URL,

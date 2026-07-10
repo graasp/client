@@ -504,6 +504,7 @@ export type FileItem = {
             path: string;
             mimetype: string;
             size: number;
+            url?: string;
             /**
              * alternative text of the file if it is an image
              */
