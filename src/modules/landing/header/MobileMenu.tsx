@@ -2,14 +2,13 @@ import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Divider, IconButton } from '@mui/material';
+import { Divider, IconButton, MenuItem } from '@mui/material';
 import Menu from '@mui/material/Menu';
 
 import { MenuIcon } from 'lucide-react';
 
 import { MenuItemLink } from '@/components/ui/MenuItemLink';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
 import useUserMenu from './useUserMenu';
 
@@ -92,13 +91,9 @@ export function MobileMenu() {
         >
           {t('GETTING_STARTED')}
         </MenuItemLink>
-        <MenuItemLink
-          activeProps={() => ({ selected: true })}
-          to={GRAASP_LIBRARY_HOST}
-          onClick={handleClose}
-        >
+        <MenuItem href="/library" onClick={handleClose}>
           {t('LIBRARY')}
-        </MenuItemLink>
+        </MenuItem>
         <MenuItemLink
           activeProps={() => ({ selected: true })}
           to="/about-us"

@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
 export function Menu() {
   const { t } = useTranslation(NS.Landing, { keyPrefix: 'NAVBAR' });
@@ -16,12 +15,7 @@ export function Menu() {
       <ButtonLink activeProps={() => ({ fontWeight: 'bold' })} to="/support">
         {t('GETTING_STARTED')}
       </ButtonLink>
-      <ButtonLink
-        activeProps={() => ({ fontWeight: 'bold' })}
-        to={GRAASP_LIBRARY_HOST}
-      >
-        {t('LIBRARY')}
-      </ButtonLink>
+      <Button href="/library">{t('LIBRARY')}</Button>
       <ButtonLink activeProps={() => ({ fontWeight: 'bold' })} to="/about-us">
         {t('ABOUT_US')}
       </ButtonLink>
