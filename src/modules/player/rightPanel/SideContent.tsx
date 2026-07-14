@@ -71,13 +71,8 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
   const search = useSearch({ from: '/player/$rootId/$itemId' });
   const { fullscreen } = search;
 
-  const {
-    toggleChatbox,
-    togglePinned,
-    isChatboxOpen,
-    isPinnedOpen,
-    setIsFullscreen,
-  } = useLayoutContext();
+  const { toggleChatbox, togglePinned, isChatboxOpen, isPinnedOpen } =
+    useLayoutContext();
 
   const { t } = useTranslation(NS.Player);
   const settings = item.settings ?? {};
@@ -92,44 +87,37 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
       navigate({
         to: '/player/$rootId/$itemId',
         params: { itemId, rootId },
-        search: { ...search, fullscreen: fullscreenEnabled },
+        search: (currentSearch) => ({
+          ...currentSearch,
+          fullscreen: fullscreenEnabled,
+        }),
       });
     },
-    [itemId, navigate, rootId, search],
+    [itemId, navigate, rootId],
   );
 
-  const toggleFullscreen = () => {
-    if (fullscreen) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen().catch((err) => {
-          console.error(
-            `Error attempting to exit fullscreen mode: ${err.message} (${err.name})`,
-          );
-        });
+  const toggleFullscreen = async () => {
+    try {
+      if (fullscreen) {
+        navigateFullscreen(false);
+
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+        }
+
+        return;
       }
 
-      setIsFullscreen(false);
-      navigateFullscreen(false);
-      return;
+      await document.documentElement.requestFullscreen();
+      navigateFullscreen(true);
+    } catch (error) {
+      console.error('Error attempting to toggle fullscreen mode:', error);
     }
-
-    document.documentElement
-      .requestFullscreen()
-      .then(() => {
-        setIsFullscreen(true);
-        navigateFullscreen(true);
-      })
-      .catch((err) => {
-        console.error(
-          `Error attempting to enable fullscreen mode: ${err.message} (${err.name})`,
-        );
-      });
   };
 
   useEffect(() => {
     const syncFullscreenRoute = () => {
       const isBrowserFullscreen = Boolean(document.fullscreenElement);
-      setIsFullscreen(isBrowserFullscreen);
 
       if (fullscreen && !isBrowserFullscreen) {
         navigateFullscreen(false);
@@ -138,14 +126,14 @@ const SideContent = ({ content, item }: Props): JSX.Element | null => {
 
     syncFullscreenRoute();
 
-    window.addEventListener('fullscreenchange', syncFullscreenRoute);
+    document.addEventListener('fullscreenchange', syncFullscreenRoute);
     window.addEventListener('resize', syncFullscreenRoute);
 
     return () => {
-      window.removeEventListener('fullscreenchange', syncFullscreenRoute);
+      document.removeEventListener('fullscreenchange', syncFullscreenRoute);
       window.removeEventListener('resize', syncFullscreenRoute);
     };
-  }, [fullscreen, navigateFullscreen, setIsFullscreen]);
+  }, [fullscreen, navigateFullscreen]);
 
   if (!rootId) {
     return null;

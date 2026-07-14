@@ -16,8 +16,6 @@ type LayoutContextType = {
   setIsPinnedOpen: Dispatch<SetStateAction<boolean>>;
   isChatboxOpen: boolean;
   setIsChatboxOpen: Dispatch<SetStateAction<boolean>>;
-  isFullscreen: boolean;
-  setIsFullscreen: Dispatch<SetStateAction<boolean>>;
   toggleChatbox: () => void;
   togglePinned: () => void;
 };
@@ -29,10 +27,6 @@ const LayoutContext = createContext<LayoutContextType>({
   },
   isChatboxOpen: false,
   setIsChatboxOpen: () => {
-    throw new Error('No context');
-  },
-  isFullscreen: false,
-  setIsFullscreen: () => {
     throw new Error('No context');
   },
   toggleChatbox: () => {
@@ -52,7 +46,6 @@ export const LayoutContextProvider = ({ children }: Props): JSX.Element => {
 
   const [isPinnedOpen, setIsPinnedOpen] = useState<boolean>(!isMobile);
   const [isChatboxOpen, setIsChatboxOpen] = useState<boolean>(false);
-  const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
     // TODO: fix this issue
@@ -66,8 +59,6 @@ export const LayoutContextProvider = ({ children }: Props): JSX.Element => {
       setIsPinnedOpen,
       isChatboxOpen,
       setIsChatboxOpen,
-      isFullscreen,
-      setIsFullscreen,
       toggleChatbox: () => {
         setIsChatboxOpen((prev) => !prev);
         if (isPinnedOpen) {
@@ -83,14 +74,7 @@ export const LayoutContextProvider = ({ children }: Props): JSX.Element => {
         }
       },
     }),
-    [
-      isPinnedOpen,
-      setIsPinnedOpen,
-      isChatboxOpen,
-      setIsChatboxOpen,
-      isFullscreen,
-      setIsFullscreen,
-    ],
+    [isPinnedOpen, setIsPinnedOpen, isChatboxOpen, setIsChatboxOpen],
   );
   return (
     <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>

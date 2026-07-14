@@ -47,7 +47,7 @@ describe('Auto Login on pseudonimized item', () => {
   ['1234', '"1234"', 'bobichette'].forEach((username) =>
     it(`Allows auto login for ${username} on item with item login`, () => {
       const search = new URLSearchParams({
-        fullscreen: 'true',
+        shuffle: 'true',
       });
       const keepSearchString = search.toString();
       search.set('username', username);
@@ -92,7 +92,7 @@ describe('Auto Login on private item', () => {
   it('Fails if itemLogin is not enabled', () => {
     const search = new URLSearchParams({
       username: '1234',
-      fullscreen: 'true',
+      shuffle: 'true',
     });
     const routeArgs = {
       rootId: pseudonimizedItem.id,
@@ -116,7 +116,7 @@ describe('Auto Login with logged in user', () => {
   it('Redirects to item page', () => {
     const search = new URLSearchParams({
       username: '1234',
-      fullscreen: 'true',
+      shuffle: 'true',
     });
     const routeArgs = {
       rootId: pseudonimizedItem.id,
