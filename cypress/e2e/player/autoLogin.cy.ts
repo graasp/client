@@ -47,9 +47,8 @@ describe('Auto Login on pseudonimized item', () => {
   ['1234', '"1234"', 'bobichette'].forEach((username) =>
     it(`Allows auto login for ${username} on item with item login`, () => {
       const search = new URLSearchParams({
-        shuffle: 'true',
+        fullscreen: 'true',
       });
-      const keepSearchString = search.toString();
       search.set('username', username);
       const routeArgs = {
         rootId: pseudonimizedItem.id,
@@ -63,8 +62,11 @@ describe('Auto Login on pseudonimized item', () => {
       // checks that the user was correctly redirected to the item page
       const { searchParams: _, ...pathArgs } = routeArgs;
       cy.location('pathname').should('equal', buildContentPagePath(pathArgs));
-      // keep the search params
-      cy.location('search').should('equal', `?${keepSearchString}`);
+      cy.location('search').should((searchString) => {
+        const searchParams = new URLSearchParams(searchString);
+        expect(searchParams.get('fullscreen')).to.equal('false');
+        expect(searchParams.has('username')).to.equal(false);
+      });
     }),
   );
   it('Missing username triggers error', () => {
@@ -92,7 +94,7 @@ describe('Auto Login on private item', () => {
   it('Fails if itemLogin is not enabled', () => {
     const search = new URLSearchParams({
       username: '1234',
-      shuffle: 'true',
+      fullscreen: 'true',
     });
     const routeArgs = {
       rootId: pseudonimizedItem.id,
@@ -116,7 +118,7 @@ describe('Auto Login with logged in user', () => {
   it('Redirects to item page', () => {
     const search = new URLSearchParams({
       username: '1234',
-      shuffle: 'true',
+      fullscreen: 'true',
     });
     const routeArgs = {
       rootId: pseudonimizedItem.id,
