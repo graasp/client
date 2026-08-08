@@ -137,7 +137,7 @@
     "@eslint/compat": "1.4.1",
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "9.36.0",
-    "@hey-api/openapi-ts": "0.84.4",
+    "@hey-api/openapi-ts": "0.97.3",
     "@storybook/addon-a11y": "9.1.20",
     "@storybook/addon-docs": "9.1.20",
     "@storybook/addon-links": "9.1.20",
