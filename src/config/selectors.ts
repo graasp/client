@@ -6,6 +6,8 @@ import {
 } from '@graasp/sdk';
 
 export const SETTINGS_PAGE_CONTAINER_ID = 'settings-page-container';
+export const LEARNING_INSTRUCTIONS_EDITOR_ID = 'learning-instructions-editor';
+export const LEARNING_GOALS_NEW_INPUT_ID = 'learning-goals-new-input';
 
 export const PREFERENCES_LANGUAGE_SWITCH_ID = 'preferences-language-switch';
 export const PREFERENCES_LANGUAGE_DISPLAY_ID = 'preferences-language-display';
@@ -200,6 +202,17 @@ export const ITEM_PINNED_BUTTON_ID = 'itemPinnedButton';
 export const CHATBOX_DRAWER_ID = 'chatboxDrawer';
 
 export const ITEM_FULLSCREEN_BUTTON_ID = 'item-fullscreen-button';
+
+export const PDF_LEARNING_WORKSPACE_ID = 'pdf-learning-workspace';
+export const PDF_LEARNING_CONTENT_ID = 'pdf-learning-content';
+export const PDF_LEARNING_PANEL_ID = 'pdf-learning-panel';
+export const PDF_LEARNING_PANEL_TOGGLE_ID = 'pdf-learning-panel-toggle';
+export const PDF_LEARNING_PANEL_CLOSE_ID = 'pdf-learning-panel-close';
+export const PDF_LEARNING_PANEL_RESIZER_ID = 'pdf-learning-panel-resizer';
+export const PDF_LEARNING_INSTRUCTIONS_ID = 'pdf-learning-instructions';
+export const PDF_LEARNING_NOTES_ID = 'pdf-learning-notes';
+export const PDF_LEARNING_PROGRESS_ID = 'pdf-learning-progress';
+export const PDF_LEARNING_GOALS_ID = 'pdf-learning-goals';
 
 export const ITEM_PINNED_ID = 'item-pinned';
 export const ITEM_CHATBOX_ID = 'chatbox';

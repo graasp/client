@@ -94,9 +94,6 @@ import {
   mockExportData,
   mockGetAccessibleItems,
   mockGetAppData,
-  mockGetItemActionsByDay,
-  mockGetItemActionsByHour,
-  mockGetItemActionsByWeekday,
   mockGetAppLink,
   mockGetAppListRoute,
   mockGetAvatarUrl,
@@ -106,6 +103,9 @@ import {
   mockGetCurrentSettings,
   mockGetDescendants,
   mockGetItem,
+  mockGetItemActionsByDay,
+  mockGetItemActionsByHour,
+  mockGetItemActionsByWeekday,
   mockGetItemBookmarks,
   mockGetItemChat,
   mockGetItemGeolocation,
@@ -135,6 +135,9 @@ import {
   mockGetTagsByItem,
   mockImportH5p,
   mockImportZip,
+  mockLearningGoals,
+  mockLearningWorkspaceSettings,
+  mockLearningWorkspaces,
   mockLogin,
   mockMoveItems,
   mockNextMaintenance,
@@ -296,6 +299,10 @@ Cypress.Commands.add(
     members = Object.values(MEMBERS),
     mentions = SAMPLE_MENTIONS,
     itemValidationGroups = [],
+    learningWorkspaces = {},
+    learningWorkspaceSettings = {},
+    learningGoals = {},
+    learningGoalCompletions = {},
     itemPublicationStatus = PublicationStatus.Unpublished,
     membershipRequests = [],
     getMemberStorageFilesError = false,
@@ -424,6 +431,9 @@ Cypress.Commands.add(
 
     mockGetParents({ items });
     mockGetChildren({ items: cachedItems });
+    mockLearningWorkspaces(learningWorkspaces);
+    mockLearningWorkspaceSettings(learningWorkspaceSettings);
+    mockLearningGoals(learningGoals, learningGoalCompletions);
 
     mockMoveItems(cachedItems, moveItemsError);
 

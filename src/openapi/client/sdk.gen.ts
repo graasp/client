@@ -2,7 +2,7 @@
 
 import type { Client, Options as Options2, TDataShape } from './client';
 import { client } from './client.gen';
-import type { AuthenticateData, AuthenticateErrors, ClearAllMentionsData, ClearAllMentionsErrors, ClearAllMentionsResponses, ClearChatMessageData, ClearChatMessageErrors, ClearChatMessageResponses, CollectionSearchData, CollectionSearchErrors, CollectionSearchResponses, ConvertCapsuleToFolderData, ConvertCapsuleToFolderErrors, ConvertCapsuleToFolderResponses, ConvertFolderToCapsuleData, ConvertFolderToCapsuleErrors, ConvertFolderToCapsuleResponses, CopyManyItemsData, CopyManyItemsErrors, CopyManyItemsResponses, CreateAppActionData, CreateAppActionErrors, CreateAppActionResponses, CreateAppData, CreateAppDataData, CreateAppDataErrors, CreateAppDataFileData, CreateAppDataFileErrors, CreateAppDataFileResponses, CreateAppDataResponses, CreateAppErrors, CreateAppResponses, CreateAppSettingData, CreateAppSettingErrors, CreateAppSettingFileData, CreateAppSettingFileErrors, CreateAppSettingFileResponses, CreateAppSettingResponses, CreateBookmarkData, CreateBookmarkErrors, CreateBookmarkResponses, CreateCapsuleData, CreateCapsuleErrors, CreateCapsuleResponses, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptErrors, CreateChatbotCompletionPromptResponses, CreateChatMessageData, CreateChatMessageErrors, CreateChatMessageResponses, CreateDocumentData, CreateDocumentErrors, CreateDocumentResponses, CreateEtherpadData, CreateEtherpadErrors, CreateEtherpadResponses, CreateFolderData, CreateFolderErrors, CreateFolderResponses, CreateFolderWithThumbnailData, CreateFolderWithThumbnailErrors, CreateFolderWithThumbnailResponses, CreateInvitationData, CreateInvitationErrors, CreateInvitationResponses, CreateItemData, CreateItemErrors, CreateItemFlagData, CreateItemFlagErrors, CreateItemFlagResponses, CreateItemLikeData, CreateItemLikeErrors, CreateItemLikeResponses, CreateItemMembershipData, CreateItemMembershipErrors, CreateItemMembershipResponses, CreateItemResponses, CreateItemWithThumbnailData, CreateItemWithThumbnailErrors, CreateItemWithThumbnailResponses, CreateLinkData, CreateLinkErrors, CreateLinkResponses, CreateMembershipRequestData, CreateMembershipRequestResponses, CreateOwnProfileData, CreateOwnProfileErrors, CreateOwnProfileResponses, CreatePageData, CreatePageErrors, CreatePageResponses, CreatePasswordData, CreatePasswordErrors, CreatePasswordResponses, CreateShortcutData, CreateShortcutErrors, CreateShortcutResponses, CreateShortLinkData, CreateShortLinkErrors, CreateShortLinkResponses, CreateTagForItemData, CreateTagForItemErrors, CreateTagForItemResponses, CreateVisibilityData, CreateVisibilityErrors, CreateVisibilityResponses, DeleteAliasData, DeleteAliasErrors, DeleteAliasResponses, DeleteApiItemsByIdThumbnailsData, DeleteApiItemsByIdThumbnailsResponses, DeleteApiMembersMembersByIdDeleteData, DeleteApiMembersMembersByIdDeleteResponses, DeleteAppDataData, DeleteAppDataErrors, DeleteAppDataResponses, DeleteAppSettingData, DeleteAppSettingErrors, DeleteAppSettingResponses, DeleteBookmarkData, DeleteBookmarkErrors, DeleteBookmarkResponses, DeleteChatMessageData, DeleteChatMessageErrors, DeleteChatMessageResponses, DeleteCurrentAccountData, DeleteCurrentAccountErrors, DeleteCurrentAccountResponses, DeleteGeolocationData, DeleteGeolocationErrors, DeleteGeolocationResponses, DeleteInvitationData, DeleteInvitationErrors, DeleteInvitationResponses, DeleteItemLikeData, DeleteItemLikeErrors, DeleteItemLikeResponses, DeleteItemLoginSchemaData, DeleteItemLoginSchemaErrors, DeleteItemLoginSchemaResponses, DeleteItemMembershipData, DeleteItemMembershipErrors, DeleteItemMembershipResponses, DeleteManyItemsData, DeleteManyItemsErrors, DeleteManyItemsResponses, DeleteMembershipRequestData, DeleteMembershipRequestResponses, DeleteMentionData, DeleteMentionErrors, DeleteMentionResponses, DeleteTagForItemData, DeleteTagForItemErrors, DeleteTagForItemResponses, DeleteVisibilityData, DeleteVisibilityErrors, DeleteVisibilityResponses, DownloadAppDataFileData, DownloadAppDataFileErrors, DownloadAppDataFileResponses, DownloadAppSettingFileData, DownloadAppSettingFileErrors, DownloadAppSettingFileResponses, DownloadAvatarData, DownloadAvatarErrors, DownloadAvatarResponses, DownloadFileData, DownloadFileErrors, DownloadFileResponses, DownloadItemThumbnailData, DownloadItemThumbnailErrors, DownloadItemThumbnailResponses, EnrollData, EnrollResponses, ExportActionsData, ExportActionsErrors, ExportActionsResponses, ExportMemberDataData, ExportMemberDataErrors, ExportMemberDataResponses, ExportZipData, ExportZipErrors, ExportZipResponses, GenerateAppTokenData, GenerateAppTokenErrors, GenerateAppTokenResponses, GeolocationReverseData, GeolocationReverseErrors, GeolocationReverseResponses, GeolocationSearchData, GeolocationSearchErrors, GeolocationSearchResponses, GetAccessibleItemsData, GetAccessibleItemsErrors, GetAccessibleItemsResponses, GetApiItemsCollectionsSearchRebuildData, GetApiItemsCollectionsSearchRebuildResponses, GetApiItemsPublicationByItemIdStatusData, GetApiItemsPublicationByItemIdStatusResponses, GetApiStatusData, GetApiStatusResponses, GetApiVersionData, GetApiVersionResponses, GetApiWsData, GetApiWsResponses, GetAppActionsForAppData, GetAppActionsForAppErrors, GetAppActionsForAppResponses, GetAppContextData, GetAppContextResponses, GetAppDataForAppData, GetAppDataForAppErrors, GetAppDataForAppResponses, GetAppListData, GetAppListErrors, GetAppListResponses, GetAppSettingsForAppData, GetAppSettingsForAppErrors, GetAppSettingsForAppResponses, GetChatData, GetChatErrors, GetChatResponses, GetChildrenData, GetChildrenErrors, GetChildrenResponses, GetCollectionInformationsData, GetCollectionInformationsErrors, GetCollectionInformationsResponses, GetCollectionsForMemberData, GetCollectionsForMemberErrors, GetCollectionsForMemberResponses, GetCountForTagsData, GetCountForTagsErrors, GetCountForTagsResponses, GetCurrentAccountData, GetCurrentAccountErrors, GetCurrentAccountResponses, GetCurrentSettingsData, GetCurrentSettingsErrors, GetCurrentSettingsResponses, GetDescendantItemsData, GetDescendantItemsErrors, GetDescendantItemsResponses, GetEtherpadFromItemData, GetEtherpadFromItemErrors, GetEtherpadFromItemResponses, GetFacetsForNameData, GetFacetsForNameErrors, GetFacetsForNameResponses, GetFeaturedCollectionsData, GetFeaturedCollectionsErrors, GetFeaturedCollectionsResponses, GetFlagTypesData, GetFlagTypesErrors, GetFlagTypesResponses, GetGeolocationByItemData, GetGeolocationByItemErrors, GetGeolocationByItemResponses, GetInvitationByIdData, GetInvitationByIdErrors, GetInvitationByIdResponses, GetInvitationForItemData, GetInvitationForItemErrors, GetInvitationForItemResponses, GetItemActionsByDayData, GetItemActionsByDayErrors, GetItemActionsByDayResponses, GetItemActionsByHourData, GetItemActionsByHourErrors, GetItemActionsByHourResponses, GetItemActionsByWeekdayData, GetItemActionsByWeekdayErrors, GetItemActionsByWeekdayResponses, GetItemData, GetItemErrors, GetItemLoginSchemaData, GetItemLoginSchemaErrors, GetItemLoginSchemaResponses, GetItemLoginSchemaTypeData, GetItemLoginSchemaTypeErrors, GetItemLoginSchemaTypeResponses, GetItemMembershipsForItemData, GetItemMembershipsForItemErrors, GetItemMembershipsForItemResponses, GetItemResponses, GetItemsInBoxData, GetItemsInBoxErrors, GetItemsInBoxResponses, GetLatestItemValidationGroupData, GetLatestItemValidationGroupErrors, GetLatestItemValidationGroupResponses, GetLikesForCurrentMemberData, GetLikesForCurrentMemberErrors, GetLikesForCurrentMemberResponses, GetLikesForItemData, GetLikesForItemErrors, GetLikesForItemResponses, GetLinkMetadataData, GetLinkMetadataErrors, GetLinkMetadataResponses, GetMemberProfileData, GetMemberProfileErrors, GetMemberProfileResponses, GetMembersActionsData, GetMembersActionsErrors, GetMembersActionsResponses, GetMembershipRequestsByItemIdData, GetMembershipRequestsByItemIdResponses, GetMostLikedCollectionsData, GetMostLikedCollectionsErrors, GetMostLikedCollectionsResponses, GetMostRecentCollectionsData, GetMostRecentCollectionsErrors, GetMostRecentCollectionsResponses, GetNextMaintenanceData, GetNextMaintenanceErrors, GetNextMaintenanceResponses, GetOneMemberData, GetOneMemberErrors, GetOneMemberResponses, GetOwnBookmarkData, GetOwnBookmarkErrors, GetOwnBookmarkResponses, GetOwnMembershipRequestByItemIdData, GetOwnMembershipRequestByItemIdResponses, GetOwnMentionsData, GetOwnMentionsErrors, GetOwnMentionsResponses, GetOwnMostUsedAppsData, GetOwnMostUsedAppsErrors, GetOwnMostUsedAppsResponses, GetOwnPasswordStatusData, GetOwnPasswordStatusResponses, GetOwnProfileData, GetOwnProfileErrors, GetOwnProfileResponses, GetOwnRecycledItemsData, GetOwnRecycledItemsErrors, GetOwnRecycledItemsResponses, GetParentItemsData, GetParentItemsErrors, GetParentItemsResponses, GetShortLinkAvailabilityData, GetShortLinkAvailabilityErrors, GetShortLinkAvailabilityResponses, GetShortLinkRedirectionData, GetShortLinkRedirectionErrors, GetShortLinksForItemData, GetShortLinksForItemErrors, GetShortLinksForItemResponses, GetStorageData, GetStorageErrors, GetStorageFilesData, GetStorageFilesErrors, GetStorageFilesResponses, GetStorageResponses, GetTagsForItemData, GetTagsForItemErrors, GetTagsForItemResponses, GetUrlData, GetUrlErrors, GetUrlResponses, GraaspZipExportData, GraaspZipExportErrors, GraaspZipExportResponses, HealthData, HealthResponses, ImportH5pData, ImportH5pErrors, ImportH5pResponses, ImportZipData, ImportZipErrors, ImportZipResponses, InviteFromCsvData, InviteFromCsvErrors, InviteFromCsvResponses, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateErrors, InviteFromCsvWithTemplateResponses, LoginData, LoginErrors, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestErrors, LoginOrRegisterAsGuestResponses, LoginResponses, MarketingEmailsSubscribeData, MarketingEmailsSubscribeErrors, MarketingEmailsSubscribeResponses, MarketingEmailsUnsubscribeData, MarketingEmailsUnsubscribeErrors, MarketingEmailsUnsubscribeResponses, MoveManyItemsData, MoveManyItemsErrors, MoveManyItemsResponses, PagesWebsockets2Data, PagesWebsockets2Responses, PagesWebsocketsData, PagesWebsocketsResponses, PatchChangeEmailData, PatchChangeEmailErrors, PatchChangeEmailResponses, PatchChatMessageData, PatchChatMessageErrors, PatchChatMessageResponses, PatchMentionData, PatchMentionErrors, PatchMentionResponses, PostActionData, PostActionErrors, PostActionResponses, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsErrors, PostApiItemsByIdThumbnailsResponses, PostApiMembersAvatarData, PostApiMembersAvatarResponses, PostChangeEmailData, PostChangeEmailErrors, PostChangeEmailResponses, PublishItemData, PublishItemErrors, PublishItemResponses, PutGeolocationData, PutGeolocationErrors, PutGeolocationResponses, RecycleManyItemsData, RecycleManyItemsErrors, RecycleManyItemsResponses, RegisterData, RegisterErrors, RegisterResponses, ReorderItemData, ReorderItemErrors, ReorderItemResponses, RequestPasswordResetLinkData, RequestPasswordResetLinkErrors, RequestPasswordResetLinkResponses, ResetPasswordData, ResetPasswordErrors, ResetPasswordResponses, RestoreManyItemsData, RestoreManyItemsErrors, RestoreManyItemsResponses, SendInvitationData, SendInvitationErrors, SendInvitationResponses, SignInWithPasswordData, SignInWithPasswordErrors, SignInWithPasswordResponses, SignOutData, SignOutErrors, SignOutResponses, UnpublishItemData, UnpublishItemErrors, UnpublishItemResponses, UpdateAppData, UpdateAppDataData, UpdateAppDataErrors, UpdateAppDataResponses, UpdateAppErrors, UpdateAppResponses, UpdateAppSettingData, UpdateAppSettingErrors, UpdateAppSettingResponses, UpdateCurrentAccountData, UpdateCurrentAccountErrors, UpdateCurrentAccountResponses, UpdateDocumentData, UpdateDocumentErrors, UpdateDocumentResponses, UpdateEtherpadData, UpdateEtherpadErrors, UpdateEtherpadResponses, UpdateFileData, UpdateFileErrors, UpdateFileResponses, UpdateFolderData, UpdateFolderErrors, UpdateFolderResponses, UpdateInvitationData, UpdateInvitationErrors, UpdateInvitationResponses, UpdateItemData, UpdateItemErrors, UpdateItemLoginSchemaData, UpdateItemLoginSchemaErrors, UpdateItemLoginSchemaResponses, UpdateItemMembershipData, UpdateItemMembershipErrors, UpdateItemMembershipResponses, UpdateItemResponses, UpdateLinkData, UpdateLinkErrors, UpdateLinkResponses, UpdateOwnProfileData, UpdateOwnProfileErrors, UpdateOwnProfileResponses, UpdatePasswordData, UpdatePasswordErrors, UpdatePasswordResponses, UpdateShortcutData, UpdateShortcutErrors, UpdateShortcutResponses, UpdateShortLinkData, UpdateShortLinkErrors, UpdateShortLinkResponses, UploadFileData, UploadFileErrors, UploadFileResponses, ValidateItemData, ValidateItemErrors, ValidateItemResponses } from './types.gen';
+import type { AuthenticateData, AuthenticateErrors, ClearAllMentionsData, ClearAllMentionsErrors, ClearAllMentionsResponses, ClearChatMessageData, ClearChatMessageErrors, ClearChatMessageResponses, CollectionSearchData, CollectionSearchErrors, CollectionSearchResponses, CompleteLearningGoalData, CompleteLearningGoalErrors, CompleteLearningGoalResponses, ConvertCapsuleToFolderData, ConvertCapsuleToFolderErrors, ConvertCapsuleToFolderResponses, ConvertFolderToCapsuleData, ConvertFolderToCapsuleErrors, ConvertFolderToCapsuleResponses, CopyManyItemsData, CopyManyItemsErrors, CopyManyItemsResponses, CreateAppActionData, CreateAppActionErrors, CreateAppActionResponses, CreateAppData, CreateAppDataData, CreateAppDataErrors, CreateAppDataFileData, CreateAppDataFileErrors, CreateAppDataFileResponses, CreateAppDataResponses, CreateAppErrors, CreateAppResponses, CreateAppSettingData, CreateAppSettingErrors, CreateAppSettingFileData, CreateAppSettingFileErrors, CreateAppSettingFileResponses, CreateAppSettingResponses, CreateBookmarkData, CreateBookmarkErrors, CreateBookmarkResponses, CreateCapsuleData, CreateCapsuleErrors, CreateCapsuleResponses, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptErrors, CreateChatbotCompletionPromptResponses, CreateChatMessageData, CreateChatMessageErrors, CreateChatMessageResponses, CreateDocumentData, CreateDocumentErrors, CreateDocumentResponses, CreateEtherpadData, CreateEtherpadErrors, CreateEtherpadResponses, CreateFolderData, CreateFolderErrors, CreateFolderResponses, CreateFolderWithThumbnailData, CreateFolderWithThumbnailErrors, CreateFolderWithThumbnailResponses, CreateInvitationData, CreateInvitationErrors, CreateInvitationResponses, CreateItemData, CreateItemErrors, CreateItemFlagData, CreateItemFlagErrors, CreateItemFlagResponses, CreateItemLikeData, CreateItemLikeErrors, CreateItemLikeResponses, CreateItemMembershipData, CreateItemMembershipErrors, CreateItemMembershipResponses, CreateItemResponses, CreateItemWithThumbnailData, CreateItemWithThumbnailErrors, CreateItemWithThumbnailResponses, CreateLearningGoalData, CreateLearningGoalErrors, CreateLearningGoalResponses, CreateLinkData, CreateLinkErrors, CreateLinkResponses, CreateMembershipRequestData, CreateMembershipRequestResponses, CreateOwnProfileData, CreateOwnProfileErrors, CreateOwnProfileResponses, CreatePageData, CreatePageErrors, CreatePageResponses, CreatePasswordData, CreatePasswordErrors, CreatePasswordResponses, CreateShortcutData, CreateShortcutErrors, CreateShortcutResponses, CreateShortLinkData, CreateShortLinkErrors, CreateShortLinkResponses, CreateTagForItemData, CreateTagForItemErrors, CreateTagForItemResponses, CreateVisibilityData, CreateVisibilityErrors, CreateVisibilityResponses, DeleteAliasData, DeleteAliasErrors, DeleteAliasResponses, DeleteApiItemsByIdThumbnailsData, DeleteApiItemsByIdThumbnailsResponses, DeleteApiMembersMembersByIdDeleteData, DeleteApiMembersMembersByIdDeleteResponses, DeleteAppDataData, DeleteAppDataErrors, DeleteAppDataResponses, DeleteAppSettingData, DeleteAppSettingErrors, DeleteAppSettingResponses, DeleteBookmarkData, DeleteBookmarkErrors, DeleteBookmarkResponses, DeleteChatMessageData, DeleteChatMessageErrors, DeleteChatMessageResponses, DeleteCurrentAccountData, DeleteCurrentAccountErrors, DeleteCurrentAccountResponses, DeleteGeolocationData, DeleteGeolocationErrors, DeleteGeolocationResponses, DeleteInvitationData, DeleteInvitationErrors, DeleteInvitationResponses, DeleteItemLikeData, DeleteItemLikeErrors, DeleteItemLikeResponses, DeleteItemLoginSchemaData, DeleteItemLoginSchemaErrors, DeleteItemLoginSchemaResponses, DeleteItemMembershipData, DeleteItemMembershipErrors, DeleteItemMembershipResponses, DeleteLearningGoalData, DeleteLearningGoalErrors, DeleteLearningGoalResponses, DeleteManyItemsData, DeleteManyItemsErrors, DeleteManyItemsResponses, DeleteMembershipRequestData, DeleteMembershipRequestResponses, DeleteMentionData, DeleteMentionErrors, DeleteMentionResponses, DeleteTagForItemData, DeleteTagForItemErrors, DeleteTagForItemResponses, DeleteVisibilityData, DeleteVisibilityErrors, DeleteVisibilityResponses, DownloadAppDataFileData, DownloadAppDataFileErrors, DownloadAppDataFileResponses, DownloadAppSettingFileData, DownloadAppSettingFileErrors, DownloadAppSettingFileResponses, DownloadAvatarData, DownloadAvatarErrors, DownloadAvatarResponses, DownloadFileData, DownloadFileErrors, DownloadFileResponses, DownloadItemThumbnailData, DownloadItemThumbnailErrors, DownloadItemThumbnailResponses, EnrollData, EnrollResponses, ExportActionsData, ExportActionsErrors, ExportActionsResponses, ExportMemberDataData, ExportMemberDataErrors, ExportMemberDataResponses, ExportZipData, ExportZipErrors, ExportZipResponses, GenerateAppTokenData, GenerateAppTokenErrors, GenerateAppTokenResponses, GeolocationReverseData, GeolocationReverseErrors, GeolocationReverseResponses, GeolocationSearchData, GeolocationSearchErrors, GeolocationSearchResponses, GetAccessibleItemsData, GetAccessibleItemsErrors, GetAccessibleItemsResponses, GetApiBustCacheData, GetApiBustCacheResponses, GetApiItemsCollectionsSearchRebuildData, GetApiItemsCollectionsSearchRebuildResponses, GetApiItemsPublicationByItemIdStatusData, GetApiItemsPublicationByItemIdStatusResponses, GetApiStatusData, GetApiStatusResponses, GetApiVersionData, GetApiVersionResponses, GetAppActionsForAppData, GetAppActionsForAppErrors, GetAppActionsForAppResponses, GetAppContextData, GetAppContextResponses, GetAppDataForAppData, GetAppDataForAppErrors, GetAppDataForAppResponses, GetAppListData, GetAppListErrors, GetAppListResponses, GetAppSettingsForAppData, GetAppSettingsForAppErrors, GetAppSettingsForAppResponses, GetChatData, GetChatErrors, GetChatResponses, GetChildrenData, GetChildrenErrors, GetChildrenResponses, GetCollectionInformationsData, GetCollectionInformationsErrors, GetCollectionInformationsResponses, GetCollectionsForMemberData, GetCollectionsForMemberErrors, GetCollectionsForMemberResponses, GetCountForTagsData, GetCountForTagsErrors, GetCountForTagsResponses, GetCurrentAccountData, GetCurrentAccountErrors, GetCurrentAccountResponses, GetCurrentSettingsData, GetCurrentSettingsErrors, GetCurrentSettingsResponses, GetDescendantItemsData, GetDescendantItemsErrors, GetDescendantItemsResponses, GetEtherpadFromItemData, GetEtherpadFromItemErrors, GetEtherpadFromItemResponses, GetFacetsForNameData, GetFacetsForNameErrors, GetFacetsForNameResponses, GetFeaturedCollectionsData, GetFeaturedCollectionsErrors, GetFeaturedCollectionsResponses, GetFlagTypesData, GetFlagTypesErrors, GetFlagTypesResponses, GetGeolocationByItemData, GetGeolocationByItemErrors, GetGeolocationByItemResponses, GetInvitationByIdData, GetInvitationByIdErrors, GetInvitationByIdResponses, GetInvitationForItemData, GetInvitationForItemErrors, GetInvitationForItemResponses, GetItemActionsByDayData, GetItemActionsByDayErrors, GetItemActionsByDayResponses, GetItemActionsByHourData, GetItemActionsByHourErrors, GetItemActionsByHourResponses, GetItemActionsByWeekdayData, GetItemActionsByWeekdayErrors, GetItemActionsByWeekdayResponses, GetItemData, GetItemErrors, GetItemLoginSchemaData, GetItemLoginSchemaErrors, GetItemLoginSchemaResponses, GetItemLoginSchemaTypeData, GetItemLoginSchemaTypeErrors, GetItemLoginSchemaTypeResponses, GetItemMembershipsForItemData, GetItemMembershipsForItemErrors, GetItemMembershipsForItemResponses, GetItemResponses, GetItemsInBoxData, GetItemsInBoxErrors, GetItemsInBoxResponses, GetLatestItemValidationGroupData, GetLatestItemValidationGroupErrors, GetLatestItemValidationGroupResponses, GetLearningGoalsData, GetLearningGoalsErrors, GetLearningGoalsResponses, GetLearningWorkspaceSettingsData, GetLearningWorkspaceSettingsErrors, GetLearningWorkspaceSettingsResponses, GetLikesForCurrentMemberData, GetLikesForCurrentMemberErrors, GetLikesForCurrentMemberResponses, GetLikesForItemData, GetLikesForItemErrors, GetLikesForItemResponses, GetLinkMetadataData, GetLinkMetadataErrors, GetLinkMetadataResponses, GetMemberProfileData, GetMemberProfileErrors, GetMemberProfileResponses, GetMembersActionsData, GetMembersActionsErrors, GetMembersActionsResponses, GetMembershipRequestsByItemIdData, GetMembershipRequestsByItemIdResponses, GetMostLikedCollectionsData, GetMostLikedCollectionsErrors, GetMostLikedCollectionsResponses, GetMostRecentCollectionsData, GetMostRecentCollectionsErrors, GetMostRecentCollectionsResponses, GetNextMaintenanceData, GetNextMaintenanceErrors, GetNextMaintenanceResponses, GetOneMemberData, GetOneMemberErrors, GetOneMemberResponses, GetOwnBookmarkData, GetOwnBookmarkErrors, GetOwnBookmarkResponses, GetOwnLearningGoalCompletionsData, GetOwnLearningGoalCompletionsErrors, GetOwnLearningGoalCompletionsResponses, GetOwnLearningWorkspaceData, GetOwnLearningWorkspaceErrors, GetOwnLearningWorkspaceResponses, GetOwnMembershipRequestByItemIdData, GetOwnMembershipRequestByItemIdResponses, GetOwnMentionsData, GetOwnMentionsErrors, GetOwnMentionsResponses, GetOwnMostUsedAppsData, GetOwnMostUsedAppsErrors, GetOwnMostUsedAppsResponses, GetOwnPasswordStatusData, GetOwnPasswordStatusResponses, GetOwnProfileData, GetOwnProfileErrors, GetOwnProfileResponses, GetOwnRecycledItemsData, GetOwnRecycledItemsErrors, GetOwnRecycledItemsResponses, GetParentItemsData, GetParentItemsErrors, GetParentItemsResponses, GetShortLinkAvailabilityData, GetShortLinkAvailabilityErrors, GetShortLinkAvailabilityResponses, GetShortLinkRedirectionData, GetShortLinkRedirectionErrors, GetShortLinksForItemData, GetShortLinksForItemErrors, GetShortLinksForItemResponses, GetStorageData, GetStorageErrors, GetStorageFilesData, GetStorageFilesErrors, GetStorageFilesResponses, GetStorageResponses, GetTagsForItemData, GetTagsForItemErrors, GetTagsForItemResponses, GetUrlData, GetUrlErrors, GetUrlResponses, GraaspZipExportData, GraaspZipExportErrors, GraaspZipExportResponses, HealthData, HealthResponses, ImportH5pData, ImportH5pErrors, ImportH5pResponses, ImportZipData, ImportZipErrors, ImportZipResponses, InviteFromCsvData, InviteFromCsvErrors, InviteFromCsvResponses, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateErrors, InviteFromCsvWithTemplateResponses, LoginData, LoginErrors, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestErrors, LoginOrRegisterAsGuestResponses, LoginResponses, MarketingEmailsSubscribeData, MarketingEmailsSubscribeErrors, MarketingEmailsSubscribeResponses, MarketingEmailsUnsubscribeData, MarketingEmailsUnsubscribeErrors, MarketingEmailsUnsubscribeResponses, MoveManyItemsData, MoveManyItemsErrors, MoveManyItemsResponses, PatchChangeEmailData, PatchChangeEmailErrors, PatchChangeEmailResponses, PatchChatMessageData, PatchChatMessageErrors, PatchChatMessageResponses, PatchMentionData, PatchMentionErrors, PatchMentionResponses, PostActionData, PostActionErrors, PostActionResponses, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsErrors, PostApiItemsByIdThumbnailsResponses, PostApiMembersAvatarData, PostApiMembersAvatarResponses, PostChangeEmailData, PostChangeEmailErrors, PostChangeEmailResponses, PublishItemData, PublishItemErrors, PublishItemResponses, PutGeolocationData, PutGeolocationErrors, PutGeolocationResponses, RecycleManyItemsData, RecycleManyItemsErrors, RecycleManyItemsResponses, RegisterData, RegisterErrors, RegisterResponses, ReorderItemData, ReorderItemErrors, ReorderItemResponses, ReorderLearningGoalsData, ReorderLearningGoalsErrors, ReorderLearningGoalsResponses, RequestPasswordResetLinkData, RequestPasswordResetLinkErrors, RequestPasswordResetLinkResponses, ResetPasswordData, ResetPasswordErrors, ResetPasswordResponses, RestoreManyItemsData, RestoreManyItemsErrors, RestoreManyItemsResponses, SendInvitationData, SendInvitationErrors, SendInvitationResponses, SignInWithPasswordData, SignInWithPasswordErrors, SignInWithPasswordResponses, SignOutData, SignOutErrors, SignOutResponses, UncompleteLearningGoalData, UncompleteLearningGoalErrors, UncompleteLearningGoalResponses, UnpublishItemData, UnpublishItemErrors, UnpublishItemResponses, UpdateAppData, UpdateAppDataData, UpdateAppDataErrors, UpdateAppDataResponses, UpdateAppErrors, UpdateAppResponses, UpdateAppSettingData, UpdateAppSettingErrors, UpdateAppSettingResponses, UpdateCurrentAccountData, UpdateCurrentAccountErrors, UpdateCurrentAccountResponses, UpdateDocumentData, UpdateDocumentErrors, UpdateDocumentResponses, UpdateEtherpadData, UpdateEtherpadErrors, UpdateEtherpadResponses, UpdateFileData, UpdateFileErrors, UpdateFileResponses, UpdateFolderData, UpdateFolderErrors, UpdateFolderResponses, UpdateInvitationData, UpdateInvitationErrors, UpdateInvitationResponses, UpdateItemData, UpdateItemErrors, UpdateItemLoginSchemaData, UpdateItemLoginSchemaErrors, UpdateItemLoginSchemaResponses, UpdateItemMembershipData, UpdateItemMembershipErrors, UpdateItemMembershipResponses, UpdateItemResponses, UpdateLearningGoalData, UpdateLearningGoalErrors, UpdateLearningGoalResponses, UpdateLearningWorkspaceSettingsData, UpdateLearningWorkspaceSettingsErrors, UpdateLearningWorkspaceSettingsResponses, UpdateLinkData, UpdateLinkErrors, UpdateLinkResponses, UpdateOwnLearningWorkspaceData, UpdateOwnLearningWorkspaceErrors, UpdateOwnLearningWorkspaceResponses, UpdateOwnProfileData, UpdateOwnProfileErrors, UpdateOwnProfileResponses, UpdatePasswordData, UpdatePasswordErrors, UpdatePasswordResponses, UpdateShortcutData, UpdateShortcutErrors, UpdateShortcutResponses, UpdateShortLinkData, UpdateShortLinkErrors, UpdateShortLinkResponses, UploadFileData, UploadFileErrors, UploadFileResponses, ValidateItemData, ValidateItemErrors, ValidateItemResponses } from './types.gen';
 
 export type Options<TData extends TDataShape = TDataShape, ThrowOnError extends boolean = boolean> = Options2<TData, ThrowOnError> & {
     /**
@@ -39,6 +39,13 @@ export const getApiStatus = <ThrowOnError extends boolean = false>(options?: Opt
 export const getApiVersion = <ThrowOnError extends boolean = false>(options?: Options<GetApiVersionData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetApiVersionResponses, unknown, ThrowOnError>({
         url: '/api/version',
+        ...options
+    });
+};
+
+export const getApiBustCache = <ThrowOnError extends boolean = false>(options?: Options<GetApiBustCacheData, ThrowOnError>) => {
+    return (options?.client ?? client).get<GetApiBustCacheResponses, unknown, ThrowOnError>({
+        url: '/api/bust-cache',
         ...options
     });
 };
@@ -181,13 +188,6 @@ export const getOwnPasswordStatus = <ThrowOnError extends boolean = false>(optio
     });
 };
 
-export const getApiWs = <ThrowOnError extends boolean = false>(options?: Options<GetApiWsData, ThrowOnError>) => {
-    return (options?.client ?? client).get<GetApiWsResponses, unknown, ThrowOnError>({
-        url: '/api/ws',
-        ...options
-    });
-};
-
 export const getMembersActions = <ThrowOnError extends boolean = false>(options?: Options<GetMembersActionsData, ThrowOnError>) => {
     return (options?.client ?? client).get<GetMembersActionsResponses, GetMembersActionsErrors, ThrowOnError>({
         url: '/api/members/actions',
@@ -228,13 +228,13 @@ export const getCurrentAccount = <ThrowOnError extends boolean = false>(options?
  * Update authenticated account
  * Update authenticated account, such as name or language.
  */
-export const updateCurrentAccount = <ThrowOnError extends boolean = false>(options?: Options<UpdateCurrentAccountData, ThrowOnError>) => {
-    return (options?.client ?? client).patch<UpdateCurrentAccountResponses, UpdateCurrentAccountErrors, ThrowOnError>({
+export const updateCurrentAccount = <ThrowOnError extends boolean = false>(options: Options<UpdateCurrentAccountData, ThrowOnError>) => {
+    return (options.client ?? client).patch<UpdateCurrentAccountResponses, UpdateCurrentAccountErrors, ThrowOnError>({
         url: '/api/members/current',
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options?.headers
+            ...options.headers
         }
     });
 };
@@ -375,13 +375,13 @@ export const getMemberProfile = <ThrowOnError extends boolean = false>(options: 
  * Update profile of current member
  * Update profile of current member
  */
-export const updateOwnProfile = <ThrowOnError extends boolean = false>(options?: Options<UpdateOwnProfileData, ThrowOnError>) => {
-    return (options?.client ?? client).patch<UpdateOwnProfileResponses, UpdateOwnProfileErrors, ThrowOnError>({
+export const updateOwnProfile = <ThrowOnError extends boolean = false>(options: Options<UpdateOwnProfileData, ThrowOnError>) => {
+    return (options.client ?? client).patch<UpdateOwnProfileResponses, UpdateOwnProfileErrors, ThrowOnError>({
         url: '/api/members/profile/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options?.headers
+            ...options.headers
         }
     });
 };
@@ -390,13 +390,13 @@ export const updateOwnProfile = <ThrowOnError extends boolean = false>(options?:
  * Create profile for current member
  * Create profile for current member.
  */
-export const createOwnProfile = <ThrowOnError extends boolean = false>(options?: Options<CreateOwnProfileData, ThrowOnError>) => {
-    return (options?.client ?? client).post<CreateOwnProfileResponses, CreateOwnProfileErrors, ThrowOnError>({
+export const createOwnProfile = <ThrowOnError extends boolean = false>(options: Options<CreateOwnProfileData, ThrowOnError>) => {
+    return (options.client ?? client).post<CreateOwnProfileResponses, CreateOwnProfileErrors, ThrowOnError>({
         url: '/api/members/profile/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options?.headers
+            ...options.headers
         }
     });
 };
@@ -793,13 +793,13 @@ export const unpublishItem = <ThrowOnError extends boolean = false>(options: Opt
  * Get collections given search query
  * Get collections given search query. the results are highlighted given the search query.
  */
-export const collectionSearch = <ThrowOnError extends boolean = false>(options?: Options<CollectionSearchData, ThrowOnError>) => {
-    return (options?.client ?? client).post<CollectionSearchResponses, CollectionSearchErrors, ThrowOnError>({
+export const collectionSearch = <ThrowOnError extends boolean = false>(options: Options<CollectionSearchData, ThrowOnError>) => {
+    return (options.client ?? client).post<CollectionSearchResponses, CollectionSearchErrors, ThrowOnError>({
         url: '/api/items/collections/search',
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options?.headers
+            ...options.headers
         }
     });
 };
@@ -1899,6 +1899,146 @@ export const geolocationSearch = <ThrowOnError extends boolean = false>(options:
 };
 
 /**
+ * Get the shared learning workspace settings for an item
+ */
+export const getLearningWorkspaceSettings = <ThrowOnError extends boolean = false>(options: Options<GetLearningWorkspaceSettingsData, ThrowOnError>) => {
+    return (options.client ?? client).get<GetLearningWorkspaceSettingsResponses, GetLearningWorkspaceSettingsErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-workspace-settings',
+        ...options
+    });
+};
+
+/**
+ * Update the shared learning workspace settings for an item
+ */
+export const updateLearningWorkspaceSettings = <ThrowOnError extends boolean = false>(options: Options<UpdateLearningWorkspaceSettingsData, ThrowOnError>) => {
+    return (options.client ?? client).patch<UpdateLearningWorkspaceSettingsResponses, UpdateLearningWorkspaceSettingsErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-workspace-settings',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Get the authenticated account's private learning workspace for an item
+ */
+export const getOwnLearningWorkspace = <ThrowOnError extends boolean = false>(options: Options<GetOwnLearningWorkspaceData, ThrowOnError>) => {
+    return (options.client ?? client).get<GetOwnLearningWorkspaceResponses, GetOwnLearningWorkspaceErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-workspace',
+        ...options
+    });
+};
+
+/**
+ * Update the authenticated account's private learning workspace for an item
+ */
+export const updateOwnLearningWorkspace = <ThrowOnError extends boolean = false>(options: Options<UpdateOwnLearningWorkspaceData, ThrowOnError>) => {
+    return (options.client ?? client).patch<UpdateOwnLearningWorkspaceResponses, UpdateOwnLearningWorkspaceErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-workspace',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Get the ordered learning goals for an item
+ */
+export const getLearningGoals = <ThrowOnError extends boolean = false>(options: Options<GetLearningGoalsData, ThrowOnError>) => {
+    return (options.client ?? client).get<GetLearningGoalsResponses, GetLearningGoalsErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals',
+        ...options
+    });
+};
+
+/**
+ * Create a learning goal for an item
+ */
+export const createLearningGoal = <ThrowOnError extends boolean = false>(options: Options<CreateLearningGoalData, ThrowOnError>) => {
+    return (options.client ?? client).post<CreateLearningGoalResponses, CreateLearningGoalErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Replace the order of all learning goals for an item
+ */
+export const reorderLearningGoals = <ThrowOnError extends boolean = false>(options: Options<ReorderLearningGoalsData, ThrowOnError>) => {
+    return (options.client ?? client).put<ReorderLearningGoalsResponses, ReorderLearningGoalsErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals/order',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Delete a learning goal
+ */
+export const deleteLearningGoal = <ThrowOnError extends boolean = false>(options: Options<DeleteLearningGoalData, ThrowOnError>) => {
+    return (options.client ?? client).delete<DeleteLearningGoalResponses, DeleteLearningGoalErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals/{goalId}',
+        ...options
+    });
+};
+
+/**
+ * Update a learning goal
+ */
+export const updateLearningGoal = <ThrowOnError extends boolean = false>(options: Options<UpdateLearningGoalData, ThrowOnError>) => {
+    return (options.client ?? client).patch<UpdateLearningGoalResponses, UpdateLearningGoalErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals/{goalId}',
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            ...options.headers
+        }
+    });
+};
+
+/**
+ * Get the authenticated account's private learning goal completions
+ */
+export const getOwnLearningGoalCompletions = <ThrowOnError extends boolean = false>(options: Options<GetOwnLearningGoalCompletionsData, ThrowOnError>) => {
+    return (options.client ?? client).get<GetOwnLearningGoalCompletionsResponses, GetOwnLearningGoalCompletionsErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goal-completions',
+        ...options
+    });
+};
+
+/**
+ * Mark a learning goal incomplete for the authenticated account
+ */
+export const uncompleteLearningGoal = <ThrowOnError extends boolean = false>(options: Options<UncompleteLearningGoalData, ThrowOnError>) => {
+    return (options.client ?? client).delete<UncompleteLearningGoalResponses, UncompleteLearningGoalErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals/{goalId}/completion',
+        ...options
+    });
+};
+
+/**
+ * Mark a learning goal complete for the authenticated account
+ */
+export const completeLearningGoal = <ThrowOnError extends boolean = false>(options: Options<CompleteLearningGoalData, ThrowOnError>) => {
+    return (options.client ?? client).put<CompleteLearningGoalResponses, CompleteLearningGoalErrors, ThrowOnError>({
+        url: '/api/items/{itemId}/learning-goals/{goalId}/completion',
+        ...options
+    });
+};
+
+/**
  * Get tags for item
  * Get tags for item.
  */
@@ -1951,28 +2091,6 @@ export const createPage = <ThrowOnError extends boolean = false>(options: Option
 };
 
 /**
- * Connect to websockets for a page
- * Connect to websockets for a page and allow collaboration through yjs.
- */
-export const pagesWebsockets = <ThrowOnError extends boolean = false>(options: Options<PagesWebsocketsData, ThrowOnError>) => {
-    return (options.client ?? client).get<PagesWebsocketsResponses, unknown, ThrowOnError>({
-        url: '/api/items/pages/{id}/ws/read',
-        ...options
-    });
-};
-
-/**
- * Connect to websockets for a page
- * Connect to websockets for a page and allow collaboration through yjs.
- */
-export const pagesWebsockets2 = <ThrowOnError extends boolean = false>(options: Options<PagesWebsockets2Data, ThrowOnError>) => {
-    return (options.client ?? client).get<PagesWebsockets2Responses, unknown, ThrowOnError>({
-        url: '/api/items/pages/{id}/ws',
-        ...options
-    });
-};
-
-/**
  * Delete many items
  * Delete many items given their ids. This endpoint is asynchronous and a feedback is returned through websockets.
  */
@@ -1987,13 +2105,13 @@ export const deleteManyItems = <ThrowOnError extends boolean = false>(options: O
  * Create item
  * Create item, whose possible types are folder, app, document, embeddedLink, file, etherpad, h5p and shortcut.
  */
-export const createItem = <ThrowOnError extends boolean = false>(options?: Options<CreateItemData, ThrowOnError>) => {
-    return (options?.client ?? client).post<CreateItemResponses, CreateItemErrors, ThrowOnError>({
+export const createItem = <ThrowOnError extends boolean = false>(options: Options<CreateItemData, ThrowOnError>) => {
+    return (options.client ?? client).post<CreateItemResponses, CreateItemErrors, ThrowOnError>({
         url: '/api/items/',
         ...options,
         headers: {
             'Content-Type': 'application/json',
-            ...options?.headers
+            ...options.headers
         }
     });
 };

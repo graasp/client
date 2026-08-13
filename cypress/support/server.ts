@@ -32,6 +32,10 @@ import type {
   Invitation,
   ItemPublished,
   ItemValidationGroup,
+  LearningGoal,
+  LearningGoalCompletion,
+  LearningWorkspace,
+  LearningWorkspaceSettings,
   PackedBookmark,
   Profile,
 } from '@/openapi/client';
@@ -1244,6 +1248,223 @@ export const mockGetChildren = ({ items }: { items: ItemForTest[] }): void => {
   ).as('getChildren');
 };
 
+export const mockLearningWorkspaces = (
+  initialWorkspaces: Record<string, LearningWorkspace | null>,
+): void => {
+  const workspaces = structuredClone(initialWorkspaces);
+  const route = new RegExp(`/api/items/${ID_FORMAT}/learning-workspace$`);
+
+  cy.intercept(
+    { method: HttpMethod.Get, pathname: route },
+    ({ url, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      return reply({
+        statusCode: StatusCodes.OK,
+        body: workspaces[itemId] ?? null,
+      });
+    },
+  ).as('getLearningWorkspace');
+
+  cy.intercept(
+    { method: HttpMethod.Patch, pathname: route },
+    ({ url, body, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      const now = new Date().toISOString();
+      const current = workspaces[itemId];
+      const workspace: LearningWorkspace = {
+        id: current?.id ?? itemId,
+        itemId,
+        notes: '',
+        createdAt: current?.createdAt ?? now,
+        updatedAt: now,
+        ...current,
+        ...body,
+      };
+      workspaces[itemId] = workspace;
+      return reply(workspace);
+    },
+  ).as('updateLearningWorkspace');
+};
+
+export const mockLearningWorkspaceSettings = (
+  initialSettings: Record<string, LearningWorkspaceSettings | null>,
+): void => {
+  const workspaceSettings = structuredClone(initialSettings);
+  const route = new RegExp(
+    `/api/items/${ID_FORMAT}/learning-workspace-settings$`,
+  );
+
+  cy.intercept(
+    { method: HttpMethod.Get, pathname: route },
+    ({ url, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      return reply({
+        statusCode: StatusCodes.OK,
+        body: workspaceSettings[itemId] ?? null,
+      });
+    },
+  ).as('getLearningWorkspaceSettings');
+
+  cy.intercept(
+    { method: HttpMethod.Patch, pathname: route },
+    ({ url, body, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      const now = new Date().toISOString();
+      const current = workspaceSettings[itemId];
+      const settings: LearningWorkspaceSettings = {
+        itemId,
+        instructions: '',
+        createdAt: current?.createdAt ?? now,
+        updatedAt: now,
+        ...current,
+        ...body,
+      };
+      workspaceSettings[itemId] = settings;
+      return reply(settings);
+    },
+  ).as('updateLearningWorkspaceSettings');
+};
+
+export const mockLearningGoals = (
+  initialGoals: Record<string, LearningGoal[]>,
+  initialCompletions: Record<string, LearningGoalCompletion[]>,
+): void => {
+  const goals = structuredClone(initialGoals);
+  const completions = structuredClone(initialCompletions);
+  const goalsRoute = new RegExp(`/api/items/${ID_FORMAT}/learning-goals$`);
+  const orderRoute = new RegExp(
+    `/api/items/${ID_FORMAT}/learning-goals/order$`,
+  );
+  const goalRoute = new RegExp(
+    `/api/items/${ID_FORMAT}/learning-goals/${ID_FORMAT}$`,
+  );
+  const completionsRoute = new RegExp(
+    `/api/items/${ID_FORMAT}/learning-goal-completions$`,
+  );
+  const completionRoute = new RegExp(
+    `/api/items/${ID_FORMAT}/learning-goals/${ID_FORMAT}/completion$`,
+  );
+
+  cy.intercept(
+    { method: HttpMethod.Get, pathname: goalsRoute },
+    ({ url, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      return reply(goals[itemId] ?? []);
+    },
+  ).as('getLearningGoals');
+
+  cy.intercept(
+    { method: HttpMethod.Post, pathname: goalsRoute },
+    ({ url, body, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      const now = new Date().toISOString();
+      const itemGoals = goals[itemId] ?? [];
+      const goal: LearningGoal = {
+        id: v4(),
+        itemId,
+        text: body.text.trim(),
+        position: itemGoals.length,
+        createdAt: now,
+        updatedAt: now,
+      };
+      goals[itemId] = [...itemGoals, goal];
+      return reply({ statusCode: StatusCodes.CREATED, body: goal });
+    },
+  ).as('createLearningGoal');
+
+  cy.intercept(
+    { method: HttpMethod.Patch, pathname: goalRoute },
+    ({ url, body, reply }) => {
+      const parts = new URL(url).pathname.split('/');
+      const itemId = parts[3];
+      const goalId = parts[5];
+      const itemGoals = goals[itemId] ?? [];
+      const goal = itemGoals.find(({ id }) => id === goalId);
+      if (!goal) {
+        return reply({ statusCode: StatusCodes.NOT_FOUND });
+      }
+      const updated = {
+        ...goal,
+        text: body.text.trim(),
+        updatedAt: new Date().toISOString(),
+      };
+      goals[itemId] = itemGoals.map((entry) =>
+        entry.id === goalId ? updated : entry,
+      );
+      return reply(updated);
+    },
+  ).as('updateLearningGoal');
+
+  cy.intercept(
+    { method: HttpMethod.Delete, pathname: goalRoute },
+    ({ url, reply }) => {
+      const parts = new URL(url).pathname.split('/');
+      const itemId = parts[3];
+      const goalId = parts[5];
+      goals[itemId] = (goals[itemId] ?? [])
+        .filter(({ id }) => id !== goalId)
+        .map((goal, position) => ({ ...goal, position }));
+      completions[itemId] = (completions[itemId] ?? []).filter(
+        (entry) => entry.goalId !== goalId,
+      );
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
+    },
+  ).as('deleteLearningGoal');
+
+  cy.intercept(
+    { method: HttpMethod.Put, pathname: orderRoute },
+    ({ url, body, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      const byId = new Map(
+        (goals[itemId] ?? []).map((goal) => [goal.id, goal]),
+      );
+      goals[itemId] = body.goalIds.map((id: string, position: number) => ({
+        ...byId.get(id)!,
+        position,
+      }));
+      return reply(goals[itemId]);
+    },
+  ).as('reorderLearningGoals');
+
+  cy.intercept(
+    { method: HttpMethod.Get, pathname: completionsRoute },
+    ({ url, reply }) => {
+      const itemId = new URL(url).pathname.split('/')[3];
+      return reply(completions[itemId] ?? []);
+    },
+  ).as('getLearningGoalCompletions');
+
+  cy.intercept(
+    { method: HttpMethod.Put, pathname: completionRoute },
+    ({ url, reply }) => {
+      const parts = new URL(url).pathname.split('/');
+      const itemId = parts[3];
+      const goalId = parts[5];
+      const itemCompletions = completions[itemId] ?? [];
+      if (!itemCompletions.some((entry) => entry.goalId === goalId)) {
+        completions[itemId] = [
+          ...itemCompletions,
+          { goalId, completedAt: new Date().toISOString() },
+        ];
+      }
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
+    },
+  ).as('completeLearningGoal');
+
+  cy.intercept(
+    { method: HttpMethod.Delete, pathname: completionRoute },
+    ({ url, reply }) => {
+      const parts = new URL(url).pathname.split('/');
+      const itemId = parts[3];
+      const goalId = parts[5];
+      completions[itemId] = (completions[itemId] ?? []).filter(
+        (entry) => entry.goalId !== goalId,
+      );
+      return reply({ statusCode: StatusCodes.NO_CONTENT });
+    },
+  ).as('uncompleteLearningGoal');
+};
+
 export const mockGetParents = ({ items }: { items: ItemForTest[] }): void => {
   cy.intercept(
     {
@@ -2378,7 +2599,7 @@ export const mockEnroll = (): void => {
 
 export const mockGetItemMembershipsForItem = (
   items: ItemForTest[],
-  currentMember: Member,
+  currentMember: Member | null,
 ): void => {
   cy.intercept(
     {
@@ -2392,23 +2613,30 @@ export const mockGetItemMembershipsForItem = (
       // build default membership depending on current member
       // if the current member is the creator, it has membership
       // otherwise it should return an error
-      const isCreator = creator.id === currentMember?.id;
+      const isCreator = Boolean(
+        creator && currentMember && creator.id === currentMember.id,
+      );
 
       // no membership
       if (!checkMembership({ item }) && !isCreator) {
         reply({ statusCode: StatusCodes.UNAUTHORIZED });
       }
       // return defined memberships or default membership
-      const result = memberships || [
-        {
-          permission: 'admin',
-          account: { ...creator, type: AccountType.Individual },
-          item,
-          id: v4(),
-          createdAt: '2021-08-11T12:56:36.834Z',
-          updatedAt: '2021-08-11T12:56:36.834Z',
-        },
-      ];
+      const account = creator ?? currentMember;
+      const result =
+        memberships ||
+        (account
+          ? [
+              {
+                permission: 'admin',
+                account: { ...account, type: AccountType.Individual },
+                item,
+                id: v4(),
+                createdAt: '2021-08-11T12:56:36.834Z',
+                updatedAt: '2021-08-11T12:56:36.834Z',
+              },
+            ]
+          : []);
       reply(result);
     },
   ).as('getItemMemberships');

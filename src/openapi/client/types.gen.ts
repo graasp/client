@@ -1058,6 +1058,47 @@ export type RawItemLike = {
 };
 
 /**
+ * Learning Goal
+ */
+export type LearningGoal = {
+    id: string;
+    itemId: string;
+    text: string;
+    position: number;
+    createdAt: string;
+    updatedAt: string;
+};
+
+/**
+ * Learning Goal Completion
+ */
+export type LearningGoalCompletion = {
+    goalId: string;
+    completedAt: string;
+};
+
+/**
+ * Learning Workspace
+ */
+export type LearningWorkspace = {
+    id: string;
+    itemId: string;
+    notes: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
+/**
+ * Learning Workspace Settings
+ */
+export type LearningWorkspaceSettings = {
+    itemId: string;
+    instructions: string;
+    createdAt: string;
+    updatedAt: string;
+};
+
+/**
  * Item Published
  * Information of a published item
  */
@@ -1216,6 +1257,20 @@ export type GetApiVersionData = {
 };
 
 export type GetApiVersionResponses = {
+    /**
+     * Default Response
+     */
+    200: unknown;
+};
+
+export type GetApiBustCacheData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/api/bust-cache';
+};
+
+export type GetApiBustCacheResponses = {
     /**
      * Default Response
      */
@@ -1490,20 +1545,6 @@ export type GetOwnPasswordStatusResponses = {
 
 export type GetOwnPasswordStatusResponse = GetOwnPasswordStatusResponses[keyof GetOwnPasswordStatusResponses];
 
-export type GetApiWsData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/ws';
-};
-
-export type GetApiWsResponses = {
-    /**
-     * Default Response
-     */
-    200: unknown;
-};
-
 export type GetMembersActionsData = {
     body?: never;
     path?: never;
@@ -1601,7 +1642,7 @@ export type GetCurrentAccountResponses = {
 export type GetCurrentAccountResponse = GetCurrentAccountResponses[keyof GetCurrentAccountResponses];
 
 export type UpdateCurrentAccountData = {
-    body?: {
+    body: {
         name?: string;
         enableSaveActions?: boolean;
         extra?: {
@@ -2019,7 +2060,7 @@ export type GetMemberProfileResponses = {
 export type GetMemberProfileResponse = GetMemberProfileResponses[keyof GetMemberProfileResponses];
 
 export type UpdateOwnProfileData = {
-    body?: {
+    body: {
         bio?: string;
         facebookId?: string;
         linkedinId?: string;
@@ -2054,7 +2095,7 @@ export type UpdateOwnProfileResponses = {
 export type UpdateOwnProfileResponse = UpdateOwnProfileResponses[keyof UpdateOwnProfileResponses];
 
 export type CreateOwnProfileData = {
-    body?: {
+    body: {
         bio?: string;
         facebookId?: string;
         linkedinId?: string;
@@ -2660,7 +2701,7 @@ export type DownloadAppSettingFileResponses = {
 export type DownloadAppSettingFileResponse = DownloadAppSettingFileResponses[keyof DownloadAppSettingFileResponses];
 
 export type CreateChatbotCompletionPromptData = {
-    body?: Array<{
+    body: Array<{
         role: 'system' | 'assistant' | 'user';
         content: string;
     }>;
@@ -2795,7 +2836,7 @@ export type UpdateItemLoginSchemaData = {
      * Item Login Schema
      * Instance allowing to login without a member on related item and its descendants. The required credentials are defined given the type.
      */
-    body?: {
+    body: {
         /**
          * Item login status, which can be enabled, frozen, or disabled. Item login cannot be deleted, an item login can be disabled instead to prevent deleting associated guest accounts.
          */
@@ -3060,7 +3101,7 @@ export type UnpublishItemResponses = {
 export type UnpublishItemResponse = UnpublishItemResponses[keyof UnpublishItemResponses];
 
 export type CollectionSearchData = {
-    body?: {
+    body: {
         attributesToHighlight?: Array<string>;
         attributesToCrop?: Array<string>;
         cropLength?: number;
@@ -3109,7 +3150,7 @@ export type CollectionSearchResponses = {
 export type CollectionSearchResponse = CollectionSearchResponses[keyof CollectionSearchResponses];
 
 export type GetFacetsForNameData = {
-    body?: {
+    body: {
         query?: string;
         langs?: Array<string>;
         isPublishedRoot?: boolean;
@@ -3530,7 +3571,7 @@ export type UpdateShortcutData = {
     /**
      * Shortcut Item
      */
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
     };
@@ -3746,7 +3787,7 @@ export type UpdateFileData = {
      * File Item
      * Item of type file, represents a file.
      */
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -3967,7 +4008,7 @@ export type UpdateFolderData = {
     /**
      * Folder Item
      */
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -4501,7 +4542,7 @@ export type CreateAppResponses = {
 export type CreateAppResponse = CreateAppResponses[keyof CreateAppResponses];
 
 export type UpdateAppData = {
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -4870,7 +4911,7 @@ export type CreateEtherpadResponses = {
 export type CreateEtherpadResponse = CreateEtherpadResponses[keyof CreateEtherpadResponses];
 
 export type UpdateEtherpadData = {
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -5183,7 +5224,7 @@ export type CreateLinkResponses = {
 export type CreateLinkResponse = CreateLinkResponses[keyof CreateLinkResponses];
 
 export type UpdateLinkData = {
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -5325,7 +5366,7 @@ export type CreateDocumentResponses = {
 export type CreateDocumentResponse = CreateDocumentResponses[keyof CreateDocumentResponses];
 
 export type UpdateDocumentData = {
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -5504,7 +5545,7 @@ export type DeleteInvitationResponses = {
 export type DeleteInvitationResponse = DeleteInvitationResponses[keyof DeleteInvitationResponses];
 
 export type UpdateInvitationData = {
-    body?: {
+    body: {
         name?: string;
         permission?: PermissionLevel;
     };
@@ -6572,6 +6613,344 @@ export type GeolocationSearchResponses = {
 
 export type GeolocationSearchResponse = GeolocationSearchResponses[keyof GeolocationSearchResponses];
 
+export type GetLearningWorkspaceSettingsData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-workspace-settings';
+};
+
+export type GetLearningWorkspaceSettingsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type GetLearningWorkspaceSettingsError = GetLearningWorkspaceSettingsErrors[keyof GetLearningWorkspaceSettingsErrors];
+
+export type GetLearningWorkspaceSettingsResponses = {
+    /**
+     * Default Response
+     */
+    200: LearningWorkspaceSettings | null;
+};
+
+export type GetLearningWorkspaceSettingsResponse = GetLearningWorkspaceSettingsResponses[keyof GetLearningWorkspaceSettingsResponses];
+
+export type UpdateLearningWorkspaceSettingsData = {
+    body: {
+        instructions: string;
+    };
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-workspace-settings';
+};
+
+export type UpdateLearningWorkspaceSettingsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type UpdateLearningWorkspaceSettingsError = UpdateLearningWorkspaceSettingsErrors[keyof UpdateLearningWorkspaceSettingsErrors];
+
+export type UpdateLearningWorkspaceSettingsResponses = {
+    /**
+     * Default Response
+     */
+    200: LearningWorkspaceSettings;
+};
+
+export type UpdateLearningWorkspaceSettingsResponse = UpdateLearningWorkspaceSettingsResponses[keyof UpdateLearningWorkspaceSettingsResponses];
+
+export type GetOwnLearningWorkspaceData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-workspace';
+};
+
+export type GetOwnLearningWorkspaceErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type GetOwnLearningWorkspaceError = GetOwnLearningWorkspaceErrors[keyof GetOwnLearningWorkspaceErrors];
+
+export type GetOwnLearningWorkspaceResponses = {
+    /**
+     * Default Response
+     */
+    200: LearningWorkspace | null;
+};
+
+export type GetOwnLearningWorkspaceResponse = GetOwnLearningWorkspaceResponses[keyof GetOwnLearningWorkspaceResponses];
+
+export type UpdateOwnLearningWorkspaceData = {
+    body: {
+        notes?: string;
+    };
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-workspace';
+};
+
+export type UpdateOwnLearningWorkspaceErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type UpdateOwnLearningWorkspaceError = UpdateOwnLearningWorkspaceErrors[keyof UpdateOwnLearningWorkspaceErrors];
+
+export type UpdateOwnLearningWorkspaceResponses = {
+    /**
+     * Default Response
+     */
+    200: LearningWorkspace;
+};
+
+export type UpdateOwnLearningWorkspaceResponse = UpdateOwnLearningWorkspaceResponses[keyof UpdateOwnLearningWorkspaceResponses];
+
+export type GetLearningGoalsData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals';
+};
+
+export type GetLearningGoalsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type GetLearningGoalsError = GetLearningGoalsErrors[keyof GetLearningGoalsErrors];
+
+export type GetLearningGoalsResponses = {
+    /**
+     * Default Response
+     */
+    200: Array<LearningGoal>;
+};
+
+export type GetLearningGoalsResponse = GetLearningGoalsResponses[keyof GetLearningGoalsResponses];
+
+export type CreateLearningGoalData = {
+    body: {
+        text: string;
+    };
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals';
+};
+
+export type CreateLearningGoalErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type CreateLearningGoalError = CreateLearningGoalErrors[keyof CreateLearningGoalErrors];
+
+export type CreateLearningGoalResponses = {
+    /**
+     * Default Response
+     */
+    201: LearningGoal;
+};
+
+export type CreateLearningGoalResponse = CreateLearningGoalResponses[keyof CreateLearningGoalResponses];
+
+export type ReorderLearningGoalsData = {
+    body: {
+        goalIds: Array<string>;
+    };
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals/order';
+};
+
+export type ReorderLearningGoalsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type ReorderLearningGoalsError = ReorderLearningGoalsErrors[keyof ReorderLearningGoalsErrors];
+
+export type ReorderLearningGoalsResponses = {
+    /**
+     * Default Response
+     */
+    200: Array<LearningGoal>;
+};
+
+export type ReorderLearningGoalsResponse = ReorderLearningGoalsResponses[keyof ReorderLearningGoalsResponses];
+
+export type DeleteLearningGoalData = {
+    body?: never;
+    path: {
+        itemId: string;
+        goalId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals/{goalId}';
+};
+
+export type DeleteLearningGoalErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type DeleteLearningGoalError = DeleteLearningGoalErrors[keyof DeleteLearningGoalErrors];
+
+export type DeleteLearningGoalResponses = {
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type DeleteLearningGoalResponse = DeleteLearningGoalResponses[keyof DeleteLearningGoalResponses];
+
+export type UpdateLearningGoalData = {
+    body: {
+        text: string;
+    };
+    path: {
+        itemId: string;
+        goalId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals/{goalId}';
+};
+
+export type UpdateLearningGoalErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type UpdateLearningGoalError = UpdateLearningGoalErrors[keyof UpdateLearningGoalErrors];
+
+export type UpdateLearningGoalResponses = {
+    /**
+     * Default Response
+     */
+    200: LearningGoal;
+};
+
+export type UpdateLearningGoalResponse = UpdateLearningGoalResponses[keyof UpdateLearningGoalResponses];
+
+export type GetOwnLearningGoalCompletionsData = {
+    body?: never;
+    path: {
+        itemId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goal-completions';
+};
+
+export type GetOwnLearningGoalCompletionsErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type GetOwnLearningGoalCompletionsError = GetOwnLearningGoalCompletionsErrors[keyof GetOwnLearningGoalCompletionsErrors];
+
+export type GetOwnLearningGoalCompletionsResponses = {
+    /**
+     * Default Response
+     */
+    200: Array<LearningGoalCompletion>;
+};
+
+export type GetOwnLearningGoalCompletionsResponse = GetOwnLearningGoalCompletionsResponses[keyof GetOwnLearningGoalCompletionsResponses];
+
+export type UncompleteLearningGoalData = {
+    body?: never;
+    path: {
+        itemId: string;
+        goalId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals/{goalId}/completion';
+};
+
+export type UncompleteLearningGoalErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type UncompleteLearningGoalError = UncompleteLearningGoalErrors[keyof UncompleteLearningGoalErrors];
+
+export type UncompleteLearningGoalResponses = {
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type UncompleteLearningGoalResponse = UncompleteLearningGoalResponses[keyof UncompleteLearningGoalResponses];
+
+export type CompleteLearningGoalData = {
+    body?: never;
+    path: {
+        itemId: string;
+        goalId: string;
+    };
+    query?: never;
+    url: '/api/items/{itemId}/learning-goals/{goalId}/completion';
+};
+
+export type CompleteLearningGoalErrors = {
+    /**
+     * Error object with useful information about the unexpected behavior that occured
+     */
+    '4XX': _Error;
+};
+
+export type CompleteLearningGoalError = CompleteLearningGoalErrors[keyof CompleteLearningGoalErrors];
+
+export type CompleteLearningGoalResponses = {
+    /**
+     * Default Response
+     */
+    204: void;
+};
+
+export type CompleteLearningGoalResponse = CompleteLearningGoalResponses[keyof CompleteLearningGoalResponses];
+
 export type GetTagsForItemData = {
     body?: never;
     path: {
@@ -6768,38 +7147,6 @@ export type CreatePageResponses = {
 
 export type CreatePageResponse = CreatePageResponses[keyof CreatePageResponses];
 
-export type PagesWebsocketsData = {
-    body?: never;
-    path: {
-        id: string;
-    };
-    query?: never;
-    url: '/api/items/pages/{id}/ws/read';
-};
-
-export type PagesWebsocketsResponses = {
-    /**
-     * Default Response
-     */
-    200: unknown;
-};
-
-export type PagesWebsockets2Data = {
-    body?: never;
-    path: {
-        id: string;
-    };
-    query?: never;
-    url: '/api/items/pages/{id}/ws';
-};
-
-export type PagesWebsockets2Responses = {
-    /**
-     * Default Response
-     */
-    200: unknown;
-};
-
 export type DeleteManyItemsData = {
     body?: never;
     path?: never;
@@ -6828,7 +7175,7 @@ export type DeleteManyItemsResponses = {
 export type DeleteManyItemsResponse = DeleteManyItemsResponses[keyof DeleteManyItemsResponses];
 
 export type CreateItemData = {
-    body?: {
+    body: {
         name: string;
         description?: null | string;
         lang?: string;
@@ -7192,7 +7539,7 @@ export type GetItemResponses = {
 export type GetItemResponse = GetItemResponses[keyof GetItemResponses];
 
 export type UpdateItemData = {
-    body?: {
+    body: {
         name?: string;
         description?: null | string;
         lang?: string;
@@ -7449,7 +7796,7 @@ export type GetParentItemsResponses = {
 export type GetParentItemsResponse = GetParentItemsResponses[keyof GetParentItemsResponses];
 
 export type ReorderItemData = {
-    body?: {
+    body: {
         /**
          * Item which the item defined in params should go after. If not defined, the item will become the first child of its parent.
          */
@@ -7525,7 +7872,7 @@ export type ReorderItemResponses = {
 export type ReorderItemResponse = ReorderItemResponses[keyof ReorderItemResponses];
 
 export type MoveManyItemsData = {
-    body?: {
+    body: {
         /**
          * Parent item id where to move the items
          */
@@ -7560,7 +7907,7 @@ export type MoveManyItemsResponses = {
 export type MoveManyItemsResponse = MoveManyItemsResponses[keyof MoveManyItemsResponses];
 
 export type CopyManyItemsData = {
-    body?: {
+    body: {
         /**
          * Parent item id where the items are copied
          */
@@ -7599,6 +7946,7 @@ export type CreateItemWithThumbnailData = {
     path?: never;
     query?: {
         parentId?: string;
+        previousItemId?: string;
     };
     url: '/api/items/with-thumbnail';
 };
