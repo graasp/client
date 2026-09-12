@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Alert,
+  Box,
   Checkbox,
   CircularProgress,
   Divider,
@@ -35,6 +36,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
 import {
   PDF_LEARNING_GOALS_ID,
+  PDF_LEARNING_INSTRUCTIONS_CONTENT_ID,
   PDF_LEARNING_INSTRUCTIONS_ID,
   PDF_LEARNING_NOTES_ID,
   PDF_LEARNING_PANEL_CLOSE_ID,
@@ -66,6 +68,76 @@ type Props = {
 };
 
 type NotesSaveState = 'unsaved' | 'saving' | 'saved' | 'failed';
+
+const COLLAPSED_INSTRUCTIONS_HEIGHT = 192;
+
+const CollapsibleInstructions = ({
+  content,
+}: {
+  content: string;
+}): JSX.Element => {
+  const { t } = useTranslation(NS.Player);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+
+  useEffect(() => {
+    const element = contentRef.current;
+    if (!element) {
+      return;
+    }
+
+    const observer = new ResizeObserver(() => {
+      setIsOverflowing(element.scrollHeight > COLLAPSED_INSTRUCTIONS_HEIGHT);
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <Stack gap={0.5} alignItems="flex-start">
+      <Box
+        id={PDF_LEARNING_INSTRUCTIONS_CONTENT_ID}
+        ref={contentRef}
+        sx={{
+          position: 'relative',
+          width: '100%',
+          maxHeight: isExpanded ? 'none' : COLLAPSED_INSTRUCTIONS_HEIGHT,
+          overflow: 'hidden',
+          overflowWrap: 'anywhere',
+          ...(!isExpanded &&
+            isOverflowing && {
+              '&::after': {
+                position: 'absolute',
+                right: 0,
+                bottom: 0,
+                left: 0,
+                height: 4,
+                background: (theme) =>
+                  `linear-gradient(to bottom, transparent, ${theme.palette.background.paper})`,
+                content: '""',
+                pointerEvents: 'none',
+              },
+            }),
+        }}
+      >
+        <TextDisplay content={content} />
+      </Box>
+      {isOverflowing && (
+        <Button
+          size="small"
+          variant="text"
+          color="player"
+          aria-expanded={isExpanded}
+          aria-controls={PDF_LEARNING_INSTRUCTIONS_CONTENT_ID}
+          onClick={() => setIsExpanded((value) => !value)}
+        >
+          {t(isExpanded ? 'SHOW_LESS' : 'SHOW_MORE')}
+        </Button>
+      )}
+    </Stack>
+  );
+};
 
 const NotesEditor = ({
   initialNotes,
@@ -321,7 +393,7 @@ const LearningPanel = ({
     );
 
     return hasInstructions ? (
-      <TextDisplay content={instructions} />
+      <CollapsibleInstructions key={instructions} content={instructions} />
     ) : (
       <Typography variant="body2" color="text.secondary">
         {t('PDF_LEARNING_WORKSPACE_INSTRUCTIONS_EMPTY')}

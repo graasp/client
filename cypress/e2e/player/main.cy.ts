@@ -7,6 +7,7 @@ import {
   MAIN_MENU_ID,
   PDF_LEARNING_CONTENT_ID,
   PDF_LEARNING_GOALS_ID,
+  PDF_LEARNING_INSTRUCTIONS_CONTENT_ID,
   PDF_LEARNING_INSTRUCTIONS_ID,
   PDF_LEARNING_NOTES_ID,
   PDF_LEARNING_PANEL_CLOSE_ID,
@@ -253,6 +254,53 @@ describe('Main Screen', () => {
         cy.get(`#${PDF_LEARNING_INSTRUCTIONS_ID}`)
           .should('contain.text', 'No instructions provided')
           .and('not.contain.text', PDF_ITEM_DEFAULT.description);
+      });
+
+      it('Collapses long instructions and lets the learner expand them', () => {
+        const { id } = PDF_ITEM_DEFAULT;
+        const now = new Date().toISOString();
+        const instructions = Array.from(
+          { length: 12 },
+          (_, index) => `<p>Instruction paragraph ${index + 1}</p>`,
+        ).join('');
+        cy.setUpApi({
+          items,
+          learningWorkspaceSettings: {
+            [id]: {
+              itemId: id,
+              instructions,
+              createdAt: now,
+              updatedAt: now,
+            },
+          },
+        });
+        cy.visit(buildContentPagePath({ rootId: id, itemId: id }));
+
+        cy.get(`#${PDF_LEARNING_INSTRUCTIONS_CONTENT_ID}`)
+          .should('have.css', 'max-height', '192px')
+          .and(($content) => {
+            expect($content[0].scrollHeight).to.be.greaterThan(
+              $content[0].clientHeight,
+            );
+          });
+        cy.get(`#${PDF_LEARNING_INSTRUCTIONS_ID}`)
+          .contains('button', 'Show more')
+          .should('have.attr', 'aria-expanded', 'false')
+          .click();
+        cy.get(`#${PDF_LEARNING_INSTRUCTIONS_CONTENT_ID}`).should(
+          'have.css',
+          'max-height',
+          'none',
+        );
+        cy.get(`#${PDF_LEARNING_INSTRUCTIONS_ID}`)
+          .contains('button', 'Show less')
+          .should('have.attr', 'aria-expanded', 'true')
+          .click();
+        cy.get(`#${PDF_LEARNING_INSTRUCTIONS_CONTENT_ID}`).should(
+          'have.css',
+          'max-height',
+          '192px',
+        );
       });
 
       it('Supports pointer and keyboard resizing and restores the saved width', () => {

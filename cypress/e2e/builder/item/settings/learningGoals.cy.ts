@@ -70,7 +70,11 @@ describe('PDF learning goals settings', () => {
       .its('request.body')
       .should('deep.equal', { text: 'Identify the main argument' });
 
-    cy.get('button[aria-label="Move Explain the conclusion up"]').click();
+    cy.get(
+      'button[aria-label="Reorder Explain the conclusion. Use the Up and Down arrow keys to move it."]',
+    )
+      .focus()
+      .type('{upArrow}');
     cy.wait('@reorderLearningGoals')
       .its('request.body.goalIds.0')
       .should('equal', secondGoal.id);

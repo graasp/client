@@ -626,8 +626,5 @@
   "LEARNING_GOALS_SETTINGS_DELETE_GOAL": "Delete {{goal}}",
   "LEARNING_GOALS_SETTINGS_DELETE_TITLE": "Delete learning goal?",
   "LEARNING_GOALS_SETTINGS_DELETE_DESCRIPTION": "Deleting this goal also removes every learner’s private completion for it and may change their displayed progress.",
-  "LEARNING_GOALS_SETTINGS_MOVE_UP": "Move up",
-  "LEARNING_GOALS_SETTINGS_MOVE_UP_GOAL": "Move {{goal}} up",
-  "LEARNING_GOALS_SETTINGS_MOVE_DOWN": "Move down",
-  "LEARNING_GOALS_SETTINGS_MOVE_DOWN_GOAL": "Move {{goal}} down"
+  "LEARNING_GOALS_SETTINGS_REORDER_GOAL": "Reorder {{goal}}. Use the Up and Down arrow keys to move it."
 }

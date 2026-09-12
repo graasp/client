@@ -210,6 +210,8 @@ export const PDF_LEARNING_PANEL_TOGGLE_ID = 'pdf-learning-panel-toggle';
 export const PDF_LEARNING_PANEL_CLOSE_ID = 'pdf-learning-panel-close';
 export const PDF_LEARNING_PANEL_RESIZER_ID = 'pdf-learning-panel-resizer';
 export const PDF_LEARNING_INSTRUCTIONS_ID = 'pdf-learning-instructions';
+export const PDF_LEARNING_INSTRUCTIONS_CONTENT_ID =
+  'pdf-learning-instructions-content';
 export const PDF_LEARNING_NOTES_ID = 'pdf-learning-notes';
 export const PDF_LEARNING_PROGRESS_ID = 'pdf-learning-progress';
 export const PDF_LEARNING_GOALS_ID = 'pdf-learning-goals';

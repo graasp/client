@@ -1,4 +1,12 @@
-import { type JSX, useState } from 'react';
+import {
+  type JSX,
+  type KeyboardEvent,
+  type ReactNode,
+  useRef,
+  useState,
+} from 'react';
+import { DndProvider, useDrag, useDrop } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -16,7 +24,7 @@ import {
 } from '@mui/material';
 
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ArrowDown, ArrowUp, Pencil, Target, Trash2 } from 'lucide-react';
+import { GripVertical, Pencil, Target, Trash2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
@@ -34,9 +42,91 @@ import {
 import ItemSettingProperty from './ItemSettingProperty';
 
 const MAX_GOALS = 20;
+const LEARNING_GOAL_DND_TYPE = 'learning-goal';
 
 type Props = {
   item: PackedItem;
+};
+
+type DraggableGoalRowProps = {
+  goal: LearningGoal;
+  disabled: boolean;
+  children: ReactNode;
+  onDrop: (draggedGoalId: string, targetGoalId: string) => void;
+  onKeyboardMove: (offset: -1 | 1) => void;
+};
+
+const DraggableGoalRow = ({
+  goal,
+  disabled,
+  children,
+  onDrop,
+  onKeyboardMove,
+}: DraggableGoalRowProps): JSX.Element => {
+  const { t } = useTranslation(NS.Builder);
+  const rowRef = useRef<HTMLDivElement>(null);
+  const dragHandleRef = useRef<HTMLButtonElement>(null);
+  const [{ isDragging }, drag] = useDrag({
+    type: LEARNING_GOAL_DND_TYPE,
+    item: { id: goal.id },
+    canDrag: !disabled,
+    collect: (monitor) => ({ isDragging: monitor.isDragging() }),
+  });
+  const [{ isOver }, drop] = useDrop<{ id: string }, void, { isOver: boolean }>(
+    {
+      accept: LEARNING_GOAL_DND_TYPE,
+      canDrop: ({ id }) => !disabled && id !== goal.id,
+      drop: ({ id }) => onDrop(id, goal.id),
+      collect: (monitor) => ({
+        isOver: monitor.canDrop() && monitor.isOver({ shallow: true }),
+      }),
+    },
+  );
+  drag(dragHandleRef);
+  drop(rowRef);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      onKeyboardMove(event.key === 'ArrowUp' ? -1 : 1);
+    }
+  };
+
+  return (
+    <Stack
+      ref={rowRef}
+      direction="row"
+      alignItems="center"
+      gap={0.5}
+      sx={{
+        borderRadius: 1,
+        bgcolor: isOver ? 'action.hover' : undefined,
+        opacity: isDragging ? 0.4 : 1,
+      }}
+    >
+      <IconButton
+        ref={dragHandleRef}
+        size="small"
+        disabled={disabled}
+        aria-label={t('LEARNING_GOALS_SETTINGS_REORDER_GOAL', {
+          goal: goal.text,
+        })}
+        onKeyDown={handleKeyDown}
+        sx={{ cursor: disabled ? undefined : 'grab' }}
+      >
+        <GripVertical size={18} />
+      </IconButton>
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems={{ sm: 'center' }}
+        gap={1}
+        flex={1}
+        minWidth={0}
+      >
+        {children}
+      </Stack>
+    </Stack>
+  );
 };
 
 const LearningGoalsSettings = ({ item }: Props): JSX.Element => {
@@ -126,17 +216,8 @@ const LearningGoalsSettings = ({ item }: Props): JSX.Element => {
     }
   };
 
-  const moveGoal = async (index: number, offset: -1 | 1) => {
-    const target = index + offset;
-    if (target < 0 || target >= goals.length) {
-      return;
-    }
+  const saveGoalOrder = async (reordered: LearningGoal[]) => {
     const previous = goals;
-    const reordered = [...goals];
-    [reordered[index], reordered[target]] = [
-      reordered[target],
-      reordered[index],
-    ];
     const optimistic = reordered.map((goal, position) => ({
       ...goal,
       position,
@@ -152,6 +233,31 @@ const LearningGoalsSettings = ({ item }: Props): JSX.Element => {
       queryClient.setQueryData(queryKey, previous);
       setMutationFailed(true);
     }
+  };
+
+  const moveGoal = (index: number, offset: -1 | 1) => {
+    const target = index + offset;
+    if (target < 0 || target >= goals.length) {
+      return;
+    }
+    const reordered = [...goals];
+    [reordered[index], reordered[target]] = [
+      reordered[target],
+      reordered[index],
+    ];
+    void saveGoalOrder(reordered);
+  };
+
+  const dropGoal = (draggedGoalId: string, targetGoalId: string) => {
+    const sourceIndex = goals.findIndex(({ id }) => id === draggedGoalId);
+    const targetIndex = goals.findIndex(({ id }) => id === targetGoalId);
+    if (sourceIndex < 0 || targetIndex < 0 || sourceIndex === targetIndex) {
+      return;
+    }
+    const reordered = goals.filter(({ id }) => id !== draggedGoalId);
+    const draggedGoal = goals[sourceIndex];
+    reordered.splice(targetIndex, 0, draggedGoal);
+    void saveGoalOrder(reordered);
   };
 
   const content = (() => {
@@ -187,7 +293,11 @@ const LearningGoalsSettings = ({ item }: Props): JSX.Element => {
 
     return (
       <Stack gap={2} pt={2}>
-        <Stack direction={{ xs: 'column', sm: 'row' }} gap={1}>
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          alignItems={{ sm: 'flex-start' }}
+          gap={1}
+        >
           <TextField
             id={LEARNING_GOALS_NEW_INPUT_ID}
             fullWidth
@@ -225,118 +335,94 @@ const LearningGoalsSettings = ({ item }: Props): JSX.Element => {
             {t('LEARNING_GOALS_SETTINGS_EMPTY')}
           </Typography>
         ) : (
-          <Stack gap={1}>
-            {goals.map((goal, index) => (
-              <Stack
-                key={goal.id}
-                direction={{ xs: 'column', sm: 'row' }}
-                gap={1}
-                alignItems={{ sm: 'center' }}
-              >
-                {editingId === goal.id ? (
-                  <>
-                    <TextField
-                      fullWidth
-                      size="small"
-                      value={editingText}
-                      slotProps={{ htmlInput: { maxLength: 200 } }}
-                      helperText={`${editingText.length}/200`}
-                      onChange={(event) => setEditingText(event.target.value)}
-                    />
-                    <Stack direction="row" gap={1}>
-                      <Button
+          <DndProvider backend={HTML5Backend} context={window}>
+            <Stack gap={1}>
+              {goals.map((goal, index) => (
+                <DraggableGoalRow
+                  key={goal.id}
+                  goal={goal}
+                  disabled={isSaving || Boolean(editingId)}
+                  onDrop={dropGoal}
+                  onKeyboardMove={(offset) => moveGoal(index, offset)}
+                >
+                  {editingId === goal.id ? (
+                    <>
+                      <TextField
+                        fullWidth
                         size="small"
-                        disabled={isSaving || !editingText.trim()}
-                        onClick={() => void handleSaveEdit(goal.id)}
-                      >
-                        {t('LEARNING_GOALS_SETTINGS_SAVE')}
-                      </Button>
-                      <Button
-                        size="small"
-                        variant="text"
-                        disabled={isSaving}
-                        onClick={() => {
-                          setEditingId(undefined);
-                          setEditingText('');
-                        }}
-                      >
-                        {t('LEARNING_GOALS_SETTINGS_CANCEL')}
-                      </Button>
-                    </Stack>
-                  </>
-                ) : (
-                  <>
-                    <Typography
-                      variant="body2"
-                      flex={1}
-                      sx={{ overflowWrap: 'anywhere' }}
-                    >
-                      {goal.text}
-                    </Typography>
-                    <Stack direction="row">
-                      <Tooltip title={t('LEARNING_GOALS_SETTINGS_MOVE_UP')}>
-                        <span>
-                          <IconButton
-                            size="small"
-                            disabled={isSaving || index === 0}
-                            aria-label={t(
-                              'LEARNING_GOALS_SETTINGS_MOVE_UP_GOAL',
-                              { goal: goal.text },
-                            )}
-                            onClick={() => void moveGoal(index, -1)}
-                          >
-                            <ArrowUp size={18} />
-                          </IconButton>
-                        </span>
-                      </Tooltip>
-                      <Tooltip title={t('LEARNING_GOALS_SETTINGS_MOVE_DOWN')}>
-                        <span>
-                          <IconButton
-                            size="small"
-                            disabled={isSaving || index === goals.length - 1}
-                            aria-label={t(
-                              'LEARNING_GOALS_SETTINGS_MOVE_DOWN_GOAL',
-                              { goal: goal.text },
-                            )}
-                            onClick={() => void moveGoal(index, 1)}
-                          >
-                            <ArrowDown size={18} />
-                          </IconButton>
-                        </span>
-                      </Tooltip>
-                      <Tooltip title={t('LEARNING_GOALS_SETTINGS_EDIT')}>
-                        <IconButton
+                        value={editingText}
+                        slotProps={{ htmlInput: { maxLength: 200 } }}
+                        helperText={`${editingText.length}/200`}
+                        onChange={(event) => setEditingText(event.target.value)}
+                      />
+                      <Stack direction="row" gap={1}>
+                        <Button
                           size="small"
+                          disabled={isSaving || !editingText.trim()}
+                          onClick={() => void handleSaveEdit(goal.id)}
+                        >
+                          {t('LEARNING_GOALS_SETTINGS_SAVE')}
+                        </Button>
+                        <Button
+                          size="small"
+                          variant="text"
                           disabled={isSaving}
-                          aria-label={t('LEARNING_GOALS_SETTINGS_EDIT_GOAL', {
-                            goal: goal.text,
-                          })}
                           onClick={() => {
-                            setEditingId(goal.id);
-                            setEditingText(goal.text);
+                            setEditingId(undefined);
+                            setEditingText('');
                           }}
                         >
-                          <Pencil size={18} />
-                        </IconButton>
-                      </Tooltip>
-                      <Tooltip title={t('LEARNING_GOALS_SETTINGS_DELETE')}>
-                        <IconButton
-                          size="small"
-                          disabled={isSaving}
-                          aria-label={t('LEARNING_GOALS_SETTINGS_DELETE_GOAL', {
-                            goal: goal.text,
-                          })}
-                          onClick={() => setGoalToDelete(goal)}
-                        >
-                          <Trash2 size={18} />
-                        </IconButton>
-                      </Tooltip>
-                    </Stack>
-                  </>
-                )}
-              </Stack>
-            ))}
-          </Stack>
+                          {t('LEARNING_GOALS_SETTINGS_CANCEL')}
+                        </Button>
+                      </Stack>
+                    </>
+                  ) : (
+                    <>
+                      <Typography
+                        variant="body2"
+                        flex={1}
+                        sx={{ overflowWrap: 'anywhere' }}
+                      >
+                        {goal.text}
+                      </Typography>
+                      <Stack direction="row">
+                        <Tooltip title={t('LEARNING_GOALS_SETTINGS_EDIT')}>
+                          <IconButton
+                            size="small"
+                            disabled={isSaving}
+                            aria-label={t('LEARNING_GOALS_SETTINGS_EDIT_GOAL', {
+                              goal: goal.text,
+                            })}
+                            onClick={() => {
+                              setEditingId(goal.id);
+                              setEditingText(goal.text);
+                            }}
+                          >
+                            <Pencil size={18} />
+                          </IconButton>
+                        </Tooltip>
+                        <Tooltip title={t('LEARNING_GOALS_SETTINGS_DELETE')}>
+                          <IconButton
+                            size="small"
+                            disabled={isSaving}
+                            aria-label={t(
+                              'LEARNING_GOALS_SETTINGS_DELETE_GOAL',
+                              {
+                                goal: goal.text,
+                              },
+                            )}
+                            onClick={() => setGoalToDelete(goal)}
+                          >
+                            <Trash2 size={18} />
+                          </IconButton>
+                        </Tooltip>
+                      </Stack>
+                    </>
+                  )}
+                </DraggableGoalRow>
+              ))}
+            </Stack>
+          </DndProvider>
         )}
 
         {mutationFailed && (
