@@ -3,8 +3,8 @@
 import { type DefaultError, type InfiniteData, infiniteQueryOptions, queryOptions, type UseMutationOptions } from '@tanstack/react-query';
 
 import { client } from '../client.gen';
-import { authenticate, clearAllMentions, clearChatMessage, collectionSearch, convertCapsuleToFolder, convertFolderToCapsule, copyManyItems, createApp, createAppAction, createAppData, createAppDataFile, createAppSetting, createAppSettingFile, createBookmark, createCapsule, createChatbotCompletionPrompt, createChatMessage, createDocument, createEtherpad, createFolder, createFolderWithThumbnail, createInvitation, createItem, createItemFlag, createItemLike, createItemMembership, createItemWithThumbnail, createLink, createMembershipRequest, createOwnProfile, createPage, createPassword, createShortcut, createShortLink, createTagForItem, createVisibility, deleteAlias, deleteApiItemsByIdThumbnails, deleteApiMembersMembersByIdDelete, deleteAppData, deleteAppSetting, deleteBookmark, deleteChatMessage, deleteCurrentAccount, deleteGeolocation, deleteInvitation, deleteItemLike, deleteItemLoginSchema, deleteItemMembership, deleteManyItems, deleteMembershipRequest, deleteMention, deleteTagForItem, deleteVisibility, downloadAppDataFile, downloadAppSettingFile, downloadAvatar, downloadFile, downloadItemThumbnail, enroll, exportActions, exportMemberData, exportZip, generateAppToken, geolocationReverse, geolocationSearch, getAccessibleItems, getApiItemsCollectionsSearchRebuild, getApiItemsPublicationByItemIdStatus, getApiStatus, getApiVersion, getApiWs, getAppActionsForApp, getAppContext, getAppDataForApp, getAppList, getAppSettingsForApp, getChat, getChildren, getCollectionInformations, getCollectionsForMember, getCountForTags, getCurrentAccount, getCurrentSettings, getDescendantItems, getEtherpadFromItem, getFacetsForName, getFeaturedCollections, getFlagTypes, getGeolocationByItem, getInvitationById, getInvitationForItem, getItem, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, getItemLoginSchema, getItemLoginSchemaType, getItemMembershipsForItem, getItemsInBox, getLatestItemValidationGroup, getLikesForCurrentMember, getLikesForItem, getLinkMetadata, getMemberProfile, getMembersActions, getMembershipRequestsByItemId, getMostLikedCollections, getMostRecentCollections, getNextMaintenance, getOneMember, getOwnBookmark, getOwnMembershipRequestByItemId, getOwnMentions, getOwnMostUsedApps, getOwnPasswordStatus, getOwnProfile, getOwnRecycledItems, getParentItems, getShortLinkAvailability, getShortLinkRedirection, getShortLinksForItem, getStorage, getStorageFiles, getTagsForItem, getUrl, graaspZipExport, health, importH5P, importZip, inviteFromCsv, inviteFromCsvWithTemplate, login, loginOrRegisterAsGuest, marketingEmailsSubscribe, marketingEmailsUnsubscribe, moveManyItems, type Options, pagesWebsockets, pagesWebsockets2, patchChangeEmail, patchChatMessage, patchMention, postAction, postApiItemsByIdThumbnails, postApiMembersAvatar, postChangeEmail, publishItem, putGeolocation, recycleManyItems, register, reorderItem, requestPasswordResetLink, resetPassword, restoreManyItems, sendInvitation, signInWithPassword, signOut, unpublishItem, updateApp, updateAppData, updateAppSetting, updateCurrentAccount, updateDocument, updateEtherpad, updateFile, updateFolder, updateInvitation, updateItem, updateItemLoginSchema, updateItemMembership, updateLink, updateOwnProfile, updatePassword, updateShortcut, updateShortLink, uploadFile, validateItem } from '../sdk.gen';
-import type { AuthenticateData, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, ConvertCapsuleToFolderData, ConvertCapsuleToFolderError, ConvertCapsuleToFolderResponse, ConvertFolderToCapsuleData, ConvertFolderToCapsuleError, ConvertFolderToCapsuleResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, CreateAppData, CreateAppDataData, CreateAppDataError, CreateAppDataFileData, CreateAppDataFileError, CreateAppDataFileResponse, CreateAppDataResponse, CreateAppError, CreateAppResponse, CreateAppSettingData, CreateAppSettingError, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, CreateAppSettingResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, CreateCapsuleData, CreateCapsuleError, CreateCapsuleResponse, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, CreateItemData, CreateItemError, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, CreateItemResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, CreateLinkData, CreateLinkError, CreateLinkResponse, CreateMembershipRequestData, CreateMembershipRequestResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, CreatePageData, CreatePageError, CreatePageResponse, CreatePasswordData, CreatePasswordError, CreatePasswordResponse, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, DeleteApiItemsByIdThumbnailsData, DeleteApiMembersMembersByIdDeleteData, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, DeleteMembershipRequestData, DeleteMembershipRequestResponse, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, DownloadAppDataFileData, DownloadAppSettingFileData, DownloadAvatarData, DownloadFileData, DownloadItemThumbnailData, EnrollData, EnrollResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, ExportZipData, ExportZipError, ExportZipResponse, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GeolocationReverseData, GeolocationSearchData, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetApiItemsCollectionsSearchRebuildData, GetApiItemsPublicationByItemIdStatusData, GetApiStatusData, GetApiVersionData, GetApiWsData, GetAppActionsForAppData, GetAppContextData, GetAppDataForAppData, GetAppListData, GetAppSettingsForAppData, GetChatData, GetChildrenData, GetCollectionInformationsData, GetCollectionsForMemberData, GetCountForTagsData, GetCurrentAccountData, GetCurrentSettingsData, GetDescendantItemsData, GetEtherpadFromItemData, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetFeaturedCollectionsData, GetFlagTypesData, GetGeolocationByItemData, GetInvitationByIdData, GetInvitationForItemData, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, GetItemData, GetItemLoginSchemaData, GetItemLoginSchemaTypeData, GetItemMembershipsForItemData, GetItemsInBoxData, GetLatestItemValidationGroupData, GetLikesForCurrentMemberData, GetLikesForItemData, GetLinkMetadataData, GetMemberProfileData, GetMembersActionsData, GetMembershipRequestsByItemIdData, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetNextMaintenanceData, GetOneMemberData, GetOwnBookmarkData, GetOwnMembershipRequestByItemIdData, GetOwnMentionsData, GetOwnMostUsedAppsData, GetOwnPasswordStatusData, GetOwnProfileData, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, GetParentItemsData, GetShortLinkAvailabilityData, GetShortLinkRedirectionData, GetShortLinksForItemData, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetTagsForItemData, GetUrlData, GraaspZipExportData, GraaspZipExportError, HealthData, ImportH5pData, ImportH5pError, ImportH5pResponse, ImportZipData, ImportZipError, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, LoginData, LoginError, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, LoginResponse, MarketingEmailsSubscribeData, MarketingEmailsSubscribeError, MarketingEmailsSubscribeResponse, MarketingEmailsUnsubscribeData, MarketingEmailsUnsubscribeError, MarketingEmailsUnsubscribeResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, PagesWebsockets2Data, PagesWebsocketsData, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, PostActionData, PostActionError, PostActionResponse, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsError, PostApiItemsByIdThumbnailsResponse, PostApiMembersAvatarData, PostApiMembersAvatarResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PublishItemData, PublishItemError, PublishItemResponse, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RegisterData, RegisterError, RegisterResponse, ReorderItemData, ReorderItemError, ReorderItemResponse, RequestPasswordResetLinkData, ResetPasswordData, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, SignInWithPasswordData, SignInWithPasswordError, SignInWithPasswordResponse, SignOutData, SignOutError, SignOutResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, UpdateAppData, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, UpdateAppError, UpdateAppResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, UpdateFileData, UpdateFileError, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, UpdateItemData, UpdateItemError, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, UpdateItemResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, UpdatePasswordData, UpdatePasswordError, UpdatePasswordResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, UploadFileData, UploadFileError, UploadFileResponse, ValidateItemData, ValidateItemError, ValidateItemResponse } from '../types.gen';
+import { authenticate, clearAllMentions, clearChatMessage, collectionSearch, completeLearningGoal, convertCapsuleToFolder, convertFolderToCapsule, copyManyItems, createApp, createAppAction, createAppData, createAppDataFile, createAppSetting, createAppSettingFile, createBookmark, createCapsule, createChatbotCompletionPrompt, createChatMessage, createDocument, createEtherpad, createFolder, createFolderWithThumbnail, createInvitation, createItem, createItemFlag, createItemLike, createItemMembership, createItemWithThumbnail, createLearningGoal, createLink, createMembershipRequest, createOwnProfile, createPage, createPassword, createShortcut, createShortLink, createTagForItem, createVisibility, deleteAlias, deleteApiItemsByIdThumbnails, deleteApiMembersMembersByIdDelete, deleteAppData, deleteAppSetting, deleteBookmark, deleteChatMessage, deleteCurrentAccount, deleteGeolocation, deleteInvitation, deleteItemLike, deleteItemLoginSchema, deleteItemMembership, deleteLearningGoal, deleteManyItems, deleteMembershipRequest, deleteMention, deleteTagForItem, deleteVisibility, downloadAppDataFile, downloadAppSettingFile, downloadAvatar, downloadFile, downloadItemThumbnail, enroll, exportActions, exportMemberData, exportZip, generateAppToken, geolocationReverse, geolocationSearch, getAccessibleItems, getApiBustCache, getApiItemsCollectionsSearchRebuild, getApiItemsPublicationByItemIdStatus, getApiStatus, getApiVersion, getAppActionsForApp, getAppContext, getAppDataForApp, getAppList, getAppSettingsForApp, getChat, getChildren, getCollectionInformations, getCollectionsForMember, getCountForTags, getCurrentAccount, getCurrentSettings, getDescendantItems, getEtherpadFromItem, getFacetsForName, getFeaturedCollections, getFlagTypes, getGeolocationByItem, getInvitationById, getInvitationForItem, getItem, getItemActionsByDay, getItemActionsByHour, getItemActionsByWeekday, getItemLoginSchema, getItemLoginSchemaType, getItemMembershipsForItem, getItemsInBox, getLatestItemValidationGroup, getLearningGoals, getLearningWorkspaceSettings, getLikesForCurrentMember, getLikesForItem, getLinkMetadata, getMemberProfile, getMembersActions, getMembershipRequestsByItemId, getMostLikedCollections, getMostRecentCollections, getNextMaintenance, getOneMember, getOwnBookmark, getOwnLearningGoalCompletions, getOwnLearningWorkspace, getOwnMembershipRequestByItemId, getOwnMentions, getOwnMostUsedApps, getOwnPasswordStatus, getOwnProfile, getOwnRecycledItems, getParentItems, getShortLinkAvailability, getShortLinkRedirection, getShortLinksForItem, getStorage, getStorageFiles, getTagsForItem, getUrl, graaspZipExport, health, importH5P, importZip, inviteFromCsv, inviteFromCsvWithTemplate, login, loginOrRegisterAsGuest, marketingEmailsSubscribe, marketingEmailsUnsubscribe, moveManyItems, type Options, patchChangeEmail, patchChatMessage, patchMention, postAction, postApiItemsByIdThumbnails, postApiMembersAvatar, postChangeEmail, publishItem, putGeolocation, recycleManyItems, register, reorderItem, reorderLearningGoals, requestPasswordResetLink, resetPassword, restoreManyItems, sendInvitation, signInWithPassword, signOut, uncompleteLearningGoal, unpublishItem, updateApp, updateAppData, updateAppSetting, updateCurrentAccount, updateDocument, updateEtherpad, updateFile, updateFolder, updateInvitation, updateItem, updateItemLoginSchema, updateItemMembership, updateLearningGoal, updateLearningWorkspaceSettings, updateLink, updateOwnLearningWorkspace, updateOwnProfile, updatePassword, updateShortcut, updateShortLink, uploadFile, validateItem } from '../sdk.gen';
+import type { AuthenticateData, ClearAllMentionsData, ClearAllMentionsError, ClearAllMentionsResponse, ClearChatMessageData, ClearChatMessageError, ClearChatMessageResponse, CollectionSearchData, CollectionSearchError, CollectionSearchResponse, CompleteLearningGoalData, CompleteLearningGoalError, CompleteLearningGoalResponse, ConvertCapsuleToFolderData, ConvertCapsuleToFolderError, ConvertCapsuleToFolderResponse, ConvertFolderToCapsuleData, ConvertFolderToCapsuleError, ConvertFolderToCapsuleResponse, CopyManyItemsData, CopyManyItemsError, CopyManyItemsResponse, CreateAppActionData, CreateAppActionError, CreateAppActionResponse, CreateAppData, CreateAppDataData, CreateAppDataError, CreateAppDataFileData, CreateAppDataFileError, CreateAppDataFileResponse, CreateAppDataResponse, CreateAppError, CreateAppResponse, CreateAppSettingData, CreateAppSettingError, CreateAppSettingFileData, CreateAppSettingFileError, CreateAppSettingFileResponse, CreateAppSettingResponse, CreateBookmarkData, CreateBookmarkError, CreateBookmarkResponse, CreateCapsuleData, CreateCapsuleError, CreateCapsuleResponse, CreateChatbotCompletionPromptData, CreateChatbotCompletionPromptError, CreateChatbotCompletionPromptResponse, CreateChatMessageData, CreateChatMessageError, CreateChatMessageResponse, CreateDocumentData, CreateDocumentError, CreateDocumentResponse, CreateEtherpadData, CreateEtherpadError, CreateEtherpadResponse, CreateFolderData, CreateFolderError, CreateFolderResponse, CreateFolderWithThumbnailData, CreateFolderWithThumbnailError, CreateFolderWithThumbnailResponse, CreateInvitationData, CreateInvitationError, CreateInvitationResponse, CreateItemData, CreateItemError, CreateItemFlagData, CreateItemFlagError, CreateItemFlagResponse, CreateItemLikeData, CreateItemLikeError, CreateItemLikeResponse, CreateItemMembershipData, CreateItemMembershipError, CreateItemMembershipResponse, CreateItemResponse, CreateItemWithThumbnailData, CreateItemWithThumbnailError, CreateItemWithThumbnailResponse, CreateLearningGoalData, CreateLearningGoalError, CreateLearningGoalResponse, CreateLinkData, CreateLinkError, CreateLinkResponse, CreateMembershipRequestData, CreateMembershipRequestResponse, CreateOwnProfileData, CreateOwnProfileError, CreateOwnProfileResponse, CreatePageData, CreatePageError, CreatePageResponse, CreatePasswordData, CreatePasswordError, CreatePasswordResponse, CreateShortcutData, CreateShortcutError, CreateShortcutResponse, CreateShortLinkData, CreateShortLinkError, CreateShortLinkResponse, CreateTagForItemData, CreateTagForItemError, CreateTagForItemResponse, CreateVisibilityData, CreateVisibilityError, CreateVisibilityResponse, DeleteAliasData, DeleteAliasError, DeleteAliasResponse, DeleteApiItemsByIdThumbnailsData, DeleteApiMembersMembersByIdDeleteData, DeleteAppDataData, DeleteAppDataError, DeleteAppDataResponse, DeleteAppSettingData, DeleteAppSettingError, DeleteAppSettingResponse, DeleteBookmarkData, DeleteBookmarkError, DeleteBookmarkResponse, DeleteChatMessageData, DeleteChatMessageError, DeleteChatMessageResponse, DeleteCurrentAccountData, DeleteCurrentAccountError, DeleteCurrentAccountResponse, DeleteGeolocationData, DeleteGeolocationError, DeleteGeolocationResponse, DeleteInvitationData, DeleteInvitationError, DeleteInvitationResponse, DeleteItemLikeData, DeleteItemLikeError, DeleteItemLikeResponse, DeleteItemLoginSchemaData, DeleteItemLoginSchemaError, DeleteItemMembershipData, DeleteItemMembershipError, DeleteItemMembershipResponse, DeleteLearningGoalData, DeleteLearningGoalError, DeleteLearningGoalResponse, DeleteManyItemsData, DeleteManyItemsError, DeleteManyItemsResponse, DeleteMembershipRequestData, DeleteMembershipRequestResponse, DeleteMentionData, DeleteMentionError, DeleteMentionResponse, DeleteTagForItemData, DeleteTagForItemError, DeleteTagForItemResponse, DeleteVisibilityData, DeleteVisibilityError, DeleteVisibilityResponse, DownloadAppDataFileData, DownloadAppSettingFileData, DownloadAvatarData, DownloadFileData, DownloadItemThumbnailData, EnrollData, EnrollResponse, ExportActionsData, ExportActionsError, ExportActionsResponse, ExportMemberDataData, ExportMemberDataError, ExportMemberDataResponse, ExportZipData, ExportZipError, ExportZipResponse, GenerateAppTokenData, GenerateAppTokenError, GenerateAppTokenResponse, GeolocationReverseData, GeolocationSearchData, GetAccessibleItemsData, GetAccessibleItemsError, GetAccessibleItemsResponse, GetApiBustCacheData, GetApiItemsCollectionsSearchRebuildData, GetApiItemsPublicationByItemIdStatusData, GetApiStatusData, GetApiVersionData, GetAppActionsForAppData, GetAppContextData, GetAppDataForAppData, GetAppListData, GetAppSettingsForAppData, GetChatData, GetChildrenData, GetCollectionInformationsData, GetCollectionsForMemberData, GetCountForTagsData, GetCurrentAccountData, GetCurrentSettingsData, GetDescendantItemsData, GetEtherpadFromItemData, GetFacetsForNameData, GetFacetsForNameError, GetFacetsForNameResponse, GetFeaturedCollectionsData, GetFlagTypesData, GetGeolocationByItemData, GetInvitationByIdData, GetInvitationForItemData, GetItemActionsByDayData, GetItemActionsByHourData, GetItemActionsByWeekdayData, GetItemData, GetItemLoginSchemaData, GetItemLoginSchemaTypeData, GetItemMembershipsForItemData, GetItemsInBoxData, GetLatestItemValidationGroupData, GetLearningGoalsData, GetLearningWorkspaceSettingsData, GetLikesForCurrentMemberData, GetLikesForItemData, GetLinkMetadataData, GetMemberProfileData, GetMembersActionsData, GetMembershipRequestsByItemIdData, GetMostLikedCollectionsData, GetMostRecentCollectionsData, GetNextMaintenanceData, GetOneMemberData, GetOwnBookmarkData, GetOwnLearningGoalCompletionsData, GetOwnLearningWorkspaceData, GetOwnMembershipRequestByItemIdData, GetOwnMentionsData, GetOwnMostUsedAppsData, GetOwnPasswordStatusData, GetOwnProfileData, GetOwnRecycledItemsData, GetOwnRecycledItemsError, GetOwnRecycledItemsResponse, GetParentItemsData, GetShortLinkAvailabilityData, GetShortLinkRedirectionData, GetShortLinksForItemData, GetStorageData, GetStorageFilesData, GetStorageFilesError, GetStorageFilesResponse, GetTagsForItemData, GetUrlData, GraaspZipExportData, GraaspZipExportError, HealthData, ImportH5pData, ImportH5pError, ImportH5pResponse, ImportZipData, ImportZipError, InviteFromCsvData, InviteFromCsvError, InviteFromCsvResponse, InviteFromCsvWithTemplateData, InviteFromCsvWithTemplateError, InviteFromCsvWithTemplateResponse, LoginData, LoginError, LoginOrRegisterAsGuestData, LoginOrRegisterAsGuestError, LoginOrRegisterAsGuestResponse, LoginResponse, MarketingEmailsSubscribeData, MarketingEmailsSubscribeError, MarketingEmailsSubscribeResponse, MarketingEmailsUnsubscribeData, MarketingEmailsUnsubscribeError, MarketingEmailsUnsubscribeResponse, MoveManyItemsData, MoveManyItemsError, MoveManyItemsResponse, PatchChangeEmailData, PatchChangeEmailError, PatchChangeEmailResponse, PatchChatMessageData, PatchChatMessageError, PatchChatMessageResponse, PatchMentionData, PatchMentionError, PatchMentionResponse, PostActionData, PostActionError, PostActionResponse, PostApiItemsByIdThumbnailsData, PostApiItemsByIdThumbnailsError, PostApiItemsByIdThumbnailsResponse, PostApiMembersAvatarData, PostApiMembersAvatarResponse, PostChangeEmailData, PostChangeEmailError, PostChangeEmailResponse, PublishItemData, PublishItemError, PublishItemResponse, PutGeolocationData, PutGeolocationError, PutGeolocationResponse, RecycleManyItemsData, RecycleManyItemsError, RecycleManyItemsResponse, RegisterData, RegisterError, RegisterResponse, ReorderItemData, ReorderItemError, ReorderItemResponse, ReorderLearningGoalsData, ReorderLearningGoalsError, ReorderLearningGoalsResponse, RequestPasswordResetLinkData, ResetPasswordData, RestoreManyItemsData, RestoreManyItemsError, RestoreManyItemsResponse, SendInvitationData, SendInvitationError, SendInvitationResponse, SignInWithPasswordData, SignInWithPasswordError, SignInWithPasswordResponse, SignOutData, SignOutError, SignOutResponse, UncompleteLearningGoalData, UncompleteLearningGoalError, UncompleteLearningGoalResponse, UnpublishItemData, UnpublishItemError, UnpublishItemResponse, UpdateAppData, UpdateAppDataData, UpdateAppDataError, UpdateAppDataResponse, UpdateAppError, UpdateAppResponse, UpdateAppSettingData, UpdateAppSettingError, UpdateAppSettingResponse, UpdateCurrentAccountData, UpdateCurrentAccountError, UpdateDocumentData, UpdateDocumentError, UpdateDocumentResponse, UpdateEtherpadData, UpdateEtherpadError, UpdateEtherpadResponse, UpdateFileData, UpdateFileError, UpdateFolderData, UpdateFolderError, UpdateFolderResponse, UpdateInvitationData, UpdateInvitationError, UpdateInvitationResponse, UpdateItemData, UpdateItemError, UpdateItemLoginSchemaData, UpdateItemLoginSchemaError, UpdateItemMembershipData, UpdateItemMembershipError, UpdateItemMembershipResponse, UpdateItemResponse, UpdateLearningGoalData, UpdateLearningGoalError, UpdateLearningGoalResponse, UpdateLearningWorkspaceSettingsData, UpdateLearningWorkspaceSettingsError, UpdateLearningWorkspaceSettingsResponse, UpdateLinkData, UpdateLinkError, UpdateLinkResponse, UpdateOwnLearningWorkspaceData, UpdateOwnLearningWorkspaceError, UpdateOwnLearningWorkspaceResponse, UpdateOwnProfileData, UpdateOwnProfileError, UpdateOwnProfileResponse, UpdatePasswordData, UpdatePasswordError, UpdatePasswordResponse, UpdateShortcutData, UpdateShortcutError, UpdateShortcutResponse, UpdateShortLinkData, UpdateShortLinkError, UpdateShortLinkResponse, UploadFileData, UploadFileError, UploadFileResponse, ValidateItemData, ValidateItemError, ValidateItemResponse } from '../types.gen';
 
 export type QueryKey<TOptions extends Options> = [
     Pick<TOptions, 'baseUrl' | 'body' | 'headers' | 'path' | 'query'> & {
@@ -93,6 +93,23 @@ export const getApiVersionOptions = (options?: Options<GetApiVersionData>) => {
             return data;
         },
         queryKey: getApiVersionQueryKey(options)
+    });
+};
+
+export const getApiBustCacheQueryKey = (options?: Options<GetApiBustCacheData>) => createQueryKey('getApiBustCache', options);
+
+export const getApiBustCacheOptions = (options?: Options<GetApiBustCacheData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getApiBustCache({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getApiBustCacheQueryKey(options)
     });
 };
 
@@ -279,23 +296,6 @@ export const getOwnPasswordStatusOptions = (options?: Options<GetOwnPasswordStat
             return data;
         },
         queryKey: getOwnPasswordStatusQueryKey(options)
-    });
-};
-
-export const getApiWsQueryKey = (options?: Options<GetApiWsData>) => createQueryKey('getApiWs', options);
-
-export const getApiWsOptions = (options?: Options<GetApiWsData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await getApiWs({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: getApiWsQueryKey(options)
     });
 };
 
@@ -3099,6 +3099,222 @@ export const geolocationSearchOptions = (options: Options<GeolocationSearchData>
     });
 };
 
+export const getLearningWorkspaceSettingsQueryKey = (options: Options<GetLearningWorkspaceSettingsData>) => createQueryKey('getLearningWorkspaceSettings', options);
+
+/**
+ * Get the shared learning workspace settings for an item
+ */
+export const getLearningWorkspaceSettingsOptions = (options: Options<GetLearningWorkspaceSettingsData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getLearningWorkspaceSettings({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getLearningWorkspaceSettingsQueryKey(options)
+    });
+};
+
+/**
+ * Update the shared learning workspace settings for an item
+ */
+export const updateLearningWorkspaceSettingsMutation = (options?: Partial<Options<UpdateLearningWorkspaceSettingsData>>): UseMutationOptions<UpdateLearningWorkspaceSettingsResponse, UpdateLearningWorkspaceSettingsError, Options<UpdateLearningWorkspaceSettingsData>> => {
+    const mutationOptions: UseMutationOptions<UpdateLearningWorkspaceSettingsResponse, UpdateLearningWorkspaceSettingsError, Options<UpdateLearningWorkspaceSettingsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateLearningWorkspaceSettings({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getOwnLearningWorkspaceQueryKey = (options: Options<GetOwnLearningWorkspaceData>) => createQueryKey('getOwnLearningWorkspace', options);
+
+/**
+ * Get the authenticated account's private learning workspace for an item
+ */
+export const getOwnLearningWorkspaceOptions = (options: Options<GetOwnLearningWorkspaceData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getOwnLearningWorkspace({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getOwnLearningWorkspaceQueryKey(options)
+    });
+};
+
+/**
+ * Update the authenticated account's private learning workspace for an item
+ */
+export const updateOwnLearningWorkspaceMutation = (options?: Partial<Options<UpdateOwnLearningWorkspaceData>>): UseMutationOptions<UpdateOwnLearningWorkspaceResponse, UpdateOwnLearningWorkspaceError, Options<UpdateOwnLearningWorkspaceData>> => {
+    const mutationOptions: UseMutationOptions<UpdateOwnLearningWorkspaceResponse, UpdateOwnLearningWorkspaceError, Options<UpdateOwnLearningWorkspaceData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateOwnLearningWorkspace({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getLearningGoalsQueryKey = (options: Options<GetLearningGoalsData>) => createQueryKey('getLearningGoals', options);
+
+/**
+ * Get the ordered learning goals for an item
+ */
+export const getLearningGoalsOptions = (options: Options<GetLearningGoalsData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getLearningGoals({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getLearningGoalsQueryKey(options)
+    });
+};
+
+/**
+ * Create a learning goal for an item
+ */
+export const createLearningGoalMutation = (options?: Partial<Options<CreateLearningGoalData>>): UseMutationOptions<CreateLearningGoalResponse, CreateLearningGoalError, Options<CreateLearningGoalData>> => {
+    const mutationOptions: UseMutationOptions<CreateLearningGoalResponse, CreateLearningGoalError, Options<CreateLearningGoalData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await createLearningGoal({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Replace the order of all learning goals for an item
+ */
+export const reorderLearningGoalsMutation = (options?: Partial<Options<ReorderLearningGoalsData>>): UseMutationOptions<ReorderLearningGoalsResponse, ReorderLearningGoalsError, Options<ReorderLearningGoalsData>> => {
+    const mutationOptions: UseMutationOptions<ReorderLearningGoalsResponse, ReorderLearningGoalsError, Options<ReorderLearningGoalsData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await reorderLearningGoals({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Delete a learning goal
+ */
+export const deleteLearningGoalMutation = (options?: Partial<Options<DeleteLearningGoalData>>): UseMutationOptions<DeleteLearningGoalResponse, DeleteLearningGoalError, Options<DeleteLearningGoalData>> => {
+    const mutationOptions: UseMutationOptions<DeleteLearningGoalResponse, DeleteLearningGoalError, Options<DeleteLearningGoalData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await deleteLearningGoal({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Update a learning goal
+ */
+export const updateLearningGoalMutation = (options?: Partial<Options<UpdateLearningGoalData>>): UseMutationOptions<UpdateLearningGoalResponse, UpdateLearningGoalError, Options<UpdateLearningGoalData>> => {
+    const mutationOptions: UseMutationOptions<UpdateLearningGoalResponse, UpdateLearningGoalError, Options<UpdateLearningGoalData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await updateLearningGoal({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+export const getOwnLearningGoalCompletionsQueryKey = (options: Options<GetOwnLearningGoalCompletionsData>) => createQueryKey('getOwnLearningGoalCompletions', options);
+
+/**
+ * Get the authenticated account's private learning goal completions
+ */
+export const getOwnLearningGoalCompletionsOptions = (options: Options<GetOwnLearningGoalCompletionsData>) => {
+    return queryOptions({
+        queryFn: async ({ queryKey, signal }) => {
+            const { data } = await getOwnLearningGoalCompletions({
+                ...options,
+                ...queryKey[0],
+                signal,
+                throwOnError: true
+            });
+            return data;
+        },
+        queryKey: getOwnLearningGoalCompletionsQueryKey(options)
+    });
+};
+
+/**
+ * Mark a learning goal incomplete for the authenticated account
+ */
+export const uncompleteLearningGoalMutation = (options?: Partial<Options<UncompleteLearningGoalData>>): UseMutationOptions<UncompleteLearningGoalResponse, UncompleteLearningGoalError, Options<UncompleteLearningGoalData>> => {
+    const mutationOptions: UseMutationOptions<UncompleteLearningGoalResponse, UncompleteLearningGoalError, Options<UncompleteLearningGoalData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await uncompleteLearningGoal({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
+/**
+ * Mark a learning goal complete for the authenticated account
+ */
+export const completeLearningGoalMutation = (options?: Partial<Options<CompleteLearningGoalData>>): UseMutationOptions<CompleteLearningGoalResponse, CompleteLearningGoalError, Options<CompleteLearningGoalData>> => {
+    const mutationOptions: UseMutationOptions<CompleteLearningGoalResponse, CompleteLearningGoalError, Options<CompleteLearningGoalData>> = {
+        mutationFn: async (fnOptions) => {
+            const { data } = await completeLearningGoal({
+                ...options,
+                ...fnOptions,
+                throwOnError: true
+            });
+            return data;
+        }
+    };
+    return mutationOptions;
+};
+
 export const getTagsForItemQueryKey = (options: Options<GetTagsForItemData>) => createQueryKey('getTagsForItem', options);
 
 /**
@@ -3172,48 +3388,6 @@ export const createPageMutation = (options?: Partial<Options<CreatePageData>>): 
         }
     };
     return mutationOptions;
-};
-
-export const pagesWebsocketsQueryKey = (options: Options<PagesWebsocketsData>) => createQueryKey('pagesWebsockets', options);
-
-/**
- * Connect to websockets for a page
- * Connect to websockets for a page and allow collaboration through yjs.
- */
-export const pagesWebsocketsOptions = (options: Options<PagesWebsocketsData>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await pagesWebsockets({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: pagesWebsocketsQueryKey(options)
-    });
-};
-
-export const pagesWebsockets2QueryKey = (options: Options<PagesWebsockets2Data>) => createQueryKey('pagesWebsockets2', options);
-
-/**
- * Connect to websockets for a page
- * Connect to websockets for a page and allow collaboration through yjs.
- */
-export const pagesWebsockets2Options = (options: Options<PagesWebsockets2Data>) => {
-    return queryOptions({
-        queryFn: async ({ queryKey, signal }) => {
-            const { data } = await pagesWebsockets2({
-                ...options,
-                ...queryKey[0],
-                signal,
-                throwOnError: true
-            });
-            return data;
-        },
-        queryKey: pagesWebsockets2QueryKey(options)
-    });
 };
 
 /**

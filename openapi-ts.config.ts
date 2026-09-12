@@ -1,6 +1,7 @@
 import { defineConfig } from '@hey-api/openapi-ts';
 
-import { API_HOST } from './src/config/env';
+const API_HOST =
+  process.env.VITE_GRAASP_API_HOST ?? 'http://localhost:3000';
 
 export default defineConfig({
   input: `${API_HOST}/docs/json`,
