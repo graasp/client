@@ -132,7 +132,7 @@ describe('Shortcuts', () => {
       buildContentPagePath({
         rootId: parentItem.id,
         itemId: parentItem.id,
-        searchParams: 'fullscreen=true',
+        searchParams: 'shuffle=true',
       }),
     );
 
@@ -143,11 +143,11 @@ describe('Shortcuts', () => {
       .and('contain', parentItem.id)
       .and('contain', 'fromName')
       .and('contain', 'parent+item')
-      .and('contain', 'fullscreen=true');
+      .and('contain', 'shuffle=true');
 
     // go back to origin
     cy.get(`#${BACK_TO_SHORTCUT_ID}`).click();
-    cy.url().should('contain', parentItem.id).and('contain', 'fullscreen=true');
+    cy.url().should('contain', parentItem.id).and('contain', 'shuffle=true');
   });
 
   it('No from name does not show button', () => {

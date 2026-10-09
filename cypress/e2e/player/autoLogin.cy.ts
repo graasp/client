@@ -49,7 +49,6 @@ describe('Auto Login on pseudonimized item', () => {
       const search = new URLSearchParams({
         fullscreen: 'true',
       });
-      const keepSearchString = search.toString();
       search.set('username', username);
       const routeArgs = {
         rootId: pseudonimizedItem.id,
@@ -63,8 +62,11 @@ describe('Auto Login on pseudonimized item', () => {
       // checks that the user was correctly redirected to the item page
       const { searchParams: _, ...pathArgs } = routeArgs;
       cy.location('pathname').should('equal', buildContentPagePath(pathArgs));
-      // keep the search params
-      cy.location('search').should('equal', `?${keepSearchString}`);
+      cy.location('search').should((searchString) => {
+        const searchParams = new URLSearchParams(searchString);
+        expect(searchParams.get('fullscreen')).to.equal('false');
+        expect(searchParams.has('username')).to.equal(false);
+      });
     }),
   );
   it('Missing username triggers error', () => {
