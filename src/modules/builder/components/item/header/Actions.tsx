@@ -44,7 +44,7 @@ const internalId = 'menu';
 const Actions = ({ item }: Props): JSX.Element[] | null => {
   const { copyOpen } = useSearch({ from: '/builder/items/$itemId' });
   const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
-  const { data: member } = hooks.useCurrentMember();
+  const { data: member, isPending: isMemberPending } = hooks.useCurrentMember();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -69,22 +69,31 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
   const canAdmin =
     item.permission && PermissionLevelCompare.gte(item.permission, 'admin');
 
+  const moreButton = (
+    <IconButton
+      key="moreVertButton"
+      aria-label={t('MORE')}
+      aria-controls={open ? internalId : undefined}
+      aria-haspopup="true"
+      aria-expanded={open}
+      onClick={handleClick}
+    >
+      <MoreVerticalIcon />
+    </IconButton>
+  );
+
+  // wait for the current member to avoid showing the logged out menu
+  if (isMemberPending) {
+    return null;
+  }
+
   if (!member?.id) {
     // logged out visitors can only download the zip of a public folder
     if (item.type !== 'folder' || !item.public) {
       return null;
     }
     return [
-      <IconButton
-        key="moreVertButton"
-        aria-label={t('MORE')}
-        aria-controls={open ? internalId : undefined}
-        aria-haspopup="true"
-        aria-expanded={open}
-        onClick={handleClick}
-      >
-        <MoreVerticalIcon />
-      </IconButton>,
+      moreButton,
       <Menu
         key="menu"
         id={internalId}
@@ -92,7 +101,11 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
         open={open}
         onClose={closeMenu}
       >
-        <PublicExportZipButton itemId={item.id} dataUmamiContext="header" />
+        <PublicExportZipButton
+          itemId={item.id}
+          dataUmamiContext="header"
+          onClick={closeMenu}
+        />
       </Menu>,
     ];
   }
@@ -124,16 +137,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
       onClose={closeCreateShortcutModal}
       open={isCreateShortcutOpen}
     />,
-    <IconButton
-      key="moreVertButton"
-      aria-label={t('MORE')}
-      aria-controls={open ? internalId : undefined}
-      aria-haspopup="true"
-      aria-expanded={open}
-      onClick={handleClick}
-    >
-      <MoreVerticalIcon />
-    </IconButton>,
+    moreButton,
     <Menu
       key="menu"
       id={internalId}

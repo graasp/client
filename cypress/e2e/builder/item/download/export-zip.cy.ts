@@ -9,6 +9,7 @@ import {
 import {
   buildDownloadButtonId,
   buildExportAsZipButtonId,
+  buildItemCard,
   buildItemsGridMoreButtonSelector,
   buildPublicExportZipButtonId,
 } from '../../../../../src/config/selectors';
@@ -113,6 +114,9 @@ describe('Download public folder as ZIP', () => {
     const child = PackedFolderItemFactory({ parentItem: parent });
     cy.setUpApi({ items: [parent, child], currentMember: null });
     cy.visit(buildItemPath(parent.id));
+    // the menus are not rendered at all, so the zip button cannot be reached
+    cy.get(`#${buildItemCard(child.id)}`).should('exist');
+    cy.get(buildItemsGridMoreButtonSelector(child.id)).should('not.exist');
     cy.get(`#${buildPublicExportZipButtonId(child.id)}`).should('not.exist');
     cy.get(`#${buildPublicExportZipButtonId(parent.id)}`).should('not.exist');
   });

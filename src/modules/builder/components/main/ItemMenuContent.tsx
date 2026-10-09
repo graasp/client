@@ -79,7 +79,11 @@ function GuestAndPublicMenu({
           <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
         )}
         {!account && isPublicFolder && (
-          <PublicExportZipButton itemId={item.id} dataUmamiContext="card" />
+          <PublicExportZipButton
+            itemId={item.id}
+            dataUmamiContext="card"
+            onClick={closeMenu}
+          />
         )}
         {account?.id ? <FlagButton key="flag" itemId={item.id} /> : false}
       </Menu>

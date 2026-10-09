@@ -16,6 +16,11 @@ type Props = {
    * ui context the button is located
    */
   dataUmamiContext?: string;
+
+  /**
+   * called when the download starts, e.g. to close the parent menu
+   */
+  onClick?: () => void;
 };
 
 /**
@@ -26,6 +31,7 @@ type Props = {
 const PublicExportZipButton = ({
   itemId,
   dataUmamiContext,
+  onClick,
 }: Props): JSX.Element => {
   const { t } = useTranslation(NS.Builder);
 
@@ -34,6 +40,7 @@ const PublicExportZipButton = ({
       id={buildPublicExportZipButtonId(itemId)}
       component="a"
       href={`/public/folders/${itemId}/export`}
+      onClick={onClick}
       data-umami-event="public-export-zip"
       data-umami-event-context={dataUmamiContext}
     >
