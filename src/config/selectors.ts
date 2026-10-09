@@ -501,6 +501,8 @@ export const CONFIRM_MEMBERSHIP_DELETE_BUTTON_ID =
   'confirmDeleteMembershipButton';
 export const buildDownloadButtonId = (itemId: string): string =>
   `download-button-id-${itemId}`;
+export const buildPublicExportZipButtonId = (itemId: string): string =>
+  `public-export-zip-button-id-${itemId}`;
 export const buildExportAsZipButtonId = (itemId: string): string =>
   `export-zip-button-id-${itemId}`;
 export const CUSTOM_APP_URL_ID = 'customAppURLId';

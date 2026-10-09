@@ -15,6 +15,7 @@ import type { PackedItem } from '@/openapi/client';
 import { ActionButton } from '@/ui/types';
 
 import ExportRawZipButton from '~builder/components/common/ExportRawZipButton';
+import PublicExportZipButton from '~builder/components/common/PublicExportZipButton';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DownloadButton from '~builder/components/main/DownloadButton';
 
@@ -43,7 +44,7 @@ const internalId = 'menu';
 const Actions = ({ item }: Props): JSX.Element[] | null => {
   const { copyOpen } = useSearch({ from: '/builder/items/$itemId' });
   const { t } = useTranslation(NS.Common, { keyPrefix: 'ARIA' });
-  const { data: member } = hooks.useCurrentMember();
+  const { data: member, isPending: isMemberPending } = hooks.useCurrentMember();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: MouseEvent<HTMLButtonElement>): void => {
@@ -68,8 +69,45 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
   const canAdmin =
     item.permission && PermissionLevelCompare.gte(item.permission, 'admin');
 
-  if (!member?.id) {
+  const moreButton = (
+    <IconButton
+      key="moreVertButton"
+      aria-label={t('MORE')}
+      aria-controls={open ? internalId : undefined}
+      aria-haspopup="true"
+      aria-expanded={open}
+      onClick={handleClick}
+    >
+      <MoreVerticalIcon />
+    </IconButton>
+  );
+
+  // wait for the current member to avoid showing the logged out menu
+  if (isMemberPending) {
     return null;
+  }
+
+  if (!member?.id) {
+    // logged out visitors can only download the zip of a public folder
+    if (item.type !== 'folder' || !item.public) {
+      return null;
+    }
+    return [
+      moreButton,
+      <Menu
+        key="menu"
+        id={internalId}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={closeMenu}
+      >
+        <PublicExportZipButton
+          itemId={item.id}
+          dataUmamiContext="header"
+          onClick={closeMenu}
+        />
+      </Menu>,
+    ];
   }
 
   const downloadButton =
@@ -99,16 +137,7 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
       onClose={closeCreateShortcutModal}
       open={isCreateShortcutOpen}
     />,
-    <IconButton
-      key="moreVertButton"
-      aria-label={t('MORE')}
-      aria-controls={open ? internalId : undefined}
-      aria-haspopup="true"
-      aria-expanded={open}
-      onClick={handleClick}
-    >
-      <MoreVerticalIcon />
-    </IconButton>,
+    moreButton,
     <Menu
       key="menu"
       id={internalId}
