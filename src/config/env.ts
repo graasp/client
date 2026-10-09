@@ -11,12 +11,6 @@ export const APP_VERSION = import.meta.env.VITE_VERSION;
 export const GRAASP_LIBRARY_HOST =
   import.meta.env.VITE_GRAASP_LIBRARY_HOST ?? 'http://localhost:3005';
 
-/**
- * Host of the admin app, which serves the export of public folders
- */
-export const GRAASP_ADMIN_HOST =
-  import.meta.env.VITE_GRAASP_ADMIN_HOST ?? 'http://localhost:4000';
-
 export const SENTRY_ENV = import.meta.env.VITE_SENTRY_ENV;
 export const SENTRY_DSN = import.meta.env.VITE_SENTRY_DSN;
 export const GRAASP_REDIRECTION_HOST = import.meta.env

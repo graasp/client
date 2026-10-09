@@ -6,7 +6,6 @@ import { ListItemIcon, MenuItem } from '@mui/material';
 import { PackageIcon } from 'lucide-react';
 
 import { NS } from '@/config/constants';
-import { GRAASP_ADMIN_HOST } from '@/config/env';
 import { buildPublicExportZipButtonId } from '@/config/selectors';
 import type { GenericItem } from '@/openapi/client';
 
@@ -21,7 +20,8 @@ type Props = {
 
 /**
  * Download a public folder as zip, for visitors who are not logged in
- * The export is served by the admin app
+ * The export is served by the admin app, which also serves this client,
+ * so the path is absolute without a host
  */
 const PublicExportZipButton = ({
   itemId,
@@ -33,7 +33,7 @@ const PublicExportZipButton = ({
     <MenuItem
       id={buildPublicExportZipButtonId(itemId)}
       component="a"
-      href={`${GRAASP_ADMIN_HOST}/public/folders/${itemId}/export`}
+      href={`/public/folders/${itemId}/export`}
       data-umami-event="public-export-zip"
       data-umami-event-context={dataUmamiContext}
     >

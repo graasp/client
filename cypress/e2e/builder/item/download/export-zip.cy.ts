@@ -9,8 +9,8 @@ import {
 import {
   buildDownloadButtonId,
   buildExportAsZipButtonId,
-  buildPublicExportZipButtonId,
   buildItemsGridMoreButtonSelector,
+  buildPublicExportZipButtonId,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -71,7 +71,7 @@ describe('Download public folder as ZIP', () => {
     createdAt: new Date().toISOString(),
   });
   const buildAdminExportHref = (itemId: string) =>
-    `${Cypress.env('VITE_GRAASP_ADMIN_HOST') ?? 'http://localhost:4000'}/public/folders/${itemId}/export`;
+    `/public/folders/${itemId}/export`;
 
   it('logged out visitor can download a public folder and its subfolder', () => {
     const parent = PackedFolderItemFactory();
