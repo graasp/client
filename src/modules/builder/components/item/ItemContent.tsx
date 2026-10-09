@@ -26,7 +26,6 @@ import type {
   AppItem as AppItemType,
   DocumentItem as DocumentItemType,
   EtherpadItem as EtherpadItemType,
-  FileItem as FileItemType,
   H5pItem as H5PItemType,
   EmbeddedLinkItem as LinkItemType,
   PackedItem,
@@ -53,7 +52,7 @@ import { SettingVariant } from './settings/settingTypes';
 
 const ITEM_DEFAULT_HEIGHT = '70vh';
 
-const { useFileContentUrl, useEtherpad } = hooks;
+const { useEtherpad } = hooks;
 
 const StyledContainer = styled(Container)(() => ({
   flexGrow: 1,
@@ -62,8 +61,12 @@ const StyledContainer = styled(Container)(() => ({
 /**
  * Helper component to render typed file items
  */
-const FileContent = ({ item }: { item: FileItemType }): JSX.Element | null => {
-  const { data: fileUrl, isLoading, isError } = useFileContentUrl(item.id);
+const FileContent = ({
+  item,
+}: {
+  item: Extract<PackedItem, { type: 'file' }>;
+}): JSX.Element => {
+  const fileUrl = item.extra.file.url;
 
   if (fileUrl) {
     return (
@@ -84,15 +87,7 @@ const FileContent = ({ item }: { item: FileItemType }): JSX.Element | null => {
     );
   }
 
-  if (isLoading) {
-    return <Skeleton height="50vh" />;
-  }
-
-  if (isError) {
-    return <ErrorAlert id={ITEM_SCREEN_ERROR_ALERT_ID} />;
-  }
-
-  return null;
+  return <ErrorAlert id={ITEM_SCREEN_ERROR_ALERT_ID} />;
 };
 
 /**
