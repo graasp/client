@@ -21,6 +21,7 @@ import ExportRawZipButton from '../common/ExportRawZipButton';
 import FlagButton from '../common/FlagButton';
 import HideButton from '../common/HideButton';
 import PinButton from '../common/PinButton';
+import PublicExportZipButton from '../common/PublicExportZipButton';
 import RecycleButton from '../common/RecycleButton';
 import useModalStatus from '../hooks/useModalStatus';
 import CopyButton from '../item/copy/CopyButton';
@@ -55,8 +56,10 @@ function GuestAndPublicMenu({
     setAnchorEl(null);
   };
 
-  // logged out user see nothing for public folder
-  if (!account && item.type === 'folder') {
+  const isPublicFolder = item.type === 'folder' && Boolean(item.public);
+
+  // logged out user see nothing for a folder, except the zip of a public one
+  if (!account && item.type === 'folder' && !isPublicFolder) {
     return null;
   }
 
@@ -74,6 +77,9 @@ function GuestAndPublicMenu({
       <Menu id={internalId} anchorEl={anchorEl} open={open} onClose={closeMenu}>
         {item.type !== 'folder' && (
           <DownloadButton item={item} type={ActionButton.MENU_ITEM} />
+        )}
+        {!account && isPublicFolder && (
+          <PublicExportZipButton itemId={item.id} dataUmamiContext="card" />
         )}
         {account?.id ? <FlagButton key="flag" itemId={item.id} /> : false}
       </Menu>

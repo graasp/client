@@ -15,6 +15,7 @@ import type { PackedItem } from '@/openapi/client';
 import { ActionButton } from '@/ui/types';
 
 import ExportRawZipButton from '~builder/components/common/ExportRawZipButton';
+import PublicExportZipButton from '~builder/components/common/PublicExportZipButton';
 import useModalStatus from '~builder/components/hooks/useModalStatus';
 import DownloadButton from '~builder/components/main/DownloadButton';
 
@@ -69,7 +70,31 @@ const Actions = ({ item }: Props): JSX.Element[] | null => {
     item.permission && PermissionLevelCompare.gte(item.permission, 'admin');
 
   if (!member?.id) {
-    return null;
+    // logged out visitors can only download the zip of a public folder
+    if (item.type !== 'folder' || !item.public) {
+      return null;
+    }
+    return [
+      <IconButton
+        key="moreVertButton"
+        aria-label={t('MORE')}
+        aria-controls={open ? internalId : undefined}
+        aria-haspopup="true"
+        aria-expanded={open}
+        onClick={handleClick}
+      >
+        <MoreVerticalIcon />
+      </IconButton>,
+      <Menu
+        key="menu"
+        id={internalId}
+        anchorEl={anchorEl}
+        open={open}
+        onClose={closeMenu}
+      >
+        <PublicExportZipButton itemId={item.id} dataUmamiContext="header" />
+      </Menu>,
+    ];
   }
 
   const downloadButton =

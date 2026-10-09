@@ -134,6 +134,7 @@
   "ITEM_MENU_CREATE_SHORTCUT_MENU_ITEM": "Verknüpfung erstellen",
   "ITEM_MENU_FLAG_MENU_ITEM": "Melden",
   "ITEM_MENU_EXPORT_RAW_MENU_ITEM": "Als ZIP exportieren",
+  "ITEM_MENU_PUBLIC_EXPORT_ZIP_MENU_ITEM": "ZIP herunterladen",
   "ITEM_METADATA_CREATED_AT_TITLE": "Hergestellt in",
   "ITEM_METADATA_CREATOR_TITLE": "Urheber",
   "ITEM_METADATA_LINK_TITLE": "Verknüpfung",

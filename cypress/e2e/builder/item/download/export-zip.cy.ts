@@ -9,6 +9,7 @@ import {
 import {
   buildDownloadButtonId,
   buildExportAsZipButtonId,
+  buildPublicExportZipButtonId,
   buildItemsGridMoreButtonSelector,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
@@ -59,5 +60,60 @@ describe('Export Folder as ZIP', () => {
     cy.get(`[role="menu"] #${buildDownloadButtonId(item.id)}`).should(
       'not.exist',
     );
+  });
+});
+
+describe('Download public folder as ZIP', () => {
+  const publicVisibility = (item: { path: string }) => ({
+    id: 'public-visibility-id',
+    type: 'public' as const,
+    itemPath: item.path,
+    createdAt: new Date().toISOString(),
+  });
+  const buildAdminExportHref = (itemId: string) =>
+    `${Cypress.env('VITE_GRAASP_ADMIN_HOST') ?? 'http://localhost:4000'}/public/folders/${itemId}/export`;
+
+  it('logged out visitor can download a public folder and its subfolder', () => {
+    const parent = PackedFolderItemFactory();
+    const parentWithVisibility = {
+      ...parent,
+      public: publicVisibility(parent),
+    };
+    const child = PackedFolderItemFactory({ parentItem: parent });
+    const childWithVisibility = {
+      ...child,
+      public: publicVisibility(parent),
+    };
+    cy.setUpApi({
+      items: [parentWithVisibility, childWithVisibility],
+      currentMember: null,
+    });
+
+    // subfolder card menu
+    cy.visit(buildItemPath(parent.id));
+    cy.get(buildItemsGridMoreButtonSelector(child.id)).click();
+    cy.get(`[role="menu"] #${buildPublicExportZipButtonId(child.id)}`)
+      .should('have.attr', 'href')
+      .and('eq', buildAdminExportHref(child.id));
+    cy.get('body').type('{esc}');
+
+    // folder header menu
+    cy.get(`[aria-label="More"]`).first().click();
+    cy.get(`[role="menu"] #${buildPublicExportZipButtonId(parent.id)}`)
+      .should('have.attr', 'href')
+      .and('eq', buildAdminExportHref(parent.id));
+    // logged out visitors do not use the emailed export
+    cy.get(`[role="menu"] #${buildExportAsZipButtonId(parent.id)}`).should(
+      'not.exist',
+    );
+  });
+
+  it('is not shown on a non-public folder', () => {
+    const parent = PackedFolderItemFactory();
+    const child = PackedFolderItemFactory({ parentItem: parent });
+    cy.setUpApi({ items: [parent, child], currentMember: null });
+    cy.visit(buildItemPath(parent.id));
+    cy.get(`#${buildPublicExportZipButtonId(child.id)}`).should('not.exist');
+    cy.get(`#${buildPublicExportZipButtonId(parent.id)}`).should('not.exist');
   });
 });
