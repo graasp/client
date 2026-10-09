@@ -4,6 +4,7 @@ import {
   ITEM_HEADER_ID,
   PIN_ITEM_BUTTON_CLASS,
   buildItemsGridMoreButtonSelector,
+  buildPublicExportZipButtonId,
 } from '../../../../../src/config/selectors';
 import { HOME_PATH, buildItemPath } from '../../utils';
 
@@ -27,7 +28,10 @@ describe('Anonymous', () => {
   });
   it("Can see item but can't pin", () => {
     cy.get(`#${ITEM_HEADER_ID}`).should('be.visible');
-    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).should('not.exist');
+    // logged out visitors can only download the zip of a public folder
+    cy.get(`#${ITEM_HEADER_ID} [aria-label="More"]`).click();
+    cy.get(`#${buildPublicExportZipButtonId(itemId)}`).should('be.visible');
+    cy.get(`.${PIN_ITEM_BUTTON_CLASS}`).should('not.exist');
   });
 });
 
