@@ -22,6 +22,10 @@ import type {
   ItemPublished,
   ItemValidationGroup,
   ItemVisibility,
+  LearningGoal,
+  LearningGoalCompletion,
+  LearningWorkspace,
+  LearningWorkspaceSettings,
   PackedBookmark,
   PackedItem,
   Profile,
@@ -68,6 +72,10 @@ export type ApiConfig = {
     status?: MembershipRequestStatus;
   })[];
   itemValidationGroups?: ItemValidationGroup[];
+  learningWorkspaces?: Record<string, LearningWorkspace | null>;
+  learningWorkspaceSettings?: Record<string, LearningWorkspaceSettings | null>;
+  learningGoals?: Record<string, LearningGoal[]>;
+  learningGoalCompletions?: Record<string, LearningGoalCompletion[]>;
   deleteItemsError?: boolean;
   postItemError?: boolean;
   moveItemsError?: boolean;

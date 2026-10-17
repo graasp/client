@@ -15,7 +15,10 @@ import {
 import {
   ActionTriggers,
   Context,
+  type FileItemExtra,
+  MimeTypes,
   buildPdfViewerURL,
+  getFileExtra,
   isDescendantOf,
 } from '@graasp/sdk';
 
@@ -61,6 +64,7 @@ import { FolderCard } from '~player/ui/FolderCard';
 
 import { SectionHeader } from '../../../components/SectionHeader';
 import { FromShortcutButton } from './FromShortcutButton';
+import PdfLearningWorkspace from './PdfLearningWorkspace';
 import { useCollapseAction } from './useCollapseAction';
 import usePageTitle from './usePageTitle';
 
@@ -127,6 +131,7 @@ type FileContentProps = {
 };
 const FileContent = ({ item }: FileContentProps) => {
   const { t } = useTranslation(NS.Common);
+  const { itemId } = itemRoute.useParams();
   // fetch file content if type is file
   const {
     data: fileUrl,
@@ -144,7 +149,9 @@ const FileContent = ({ item }: FileContentProps) => {
   }, [item.id]);
 
   if (item) {
-    return (
+    const mimetype = getFileExtra(item.extra as FileItemExtra).mimetype;
+    const isCurrentItemPdf = item.id === itemId && MimeTypes.isPdf(mimetype);
+    const fileContent = (
       <FileItem
         id={buildFileId(item.id)}
         item={item}
@@ -156,6 +163,14 @@ const FileContent = ({ item }: FileContentProps) => {
         onCollapse={onCollapse}
       />
     );
+
+    if (isCurrentItemPdf) {
+      return (
+        <PdfLearningWorkspace item={item}>{fileContent}</PdfLearningWorkspace>
+      );
+    }
+
+    return fileContent;
   }
 
   if (isFileContentPending) {
