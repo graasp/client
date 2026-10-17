@@ -17,7 +17,6 @@ import { useAuth } from '@/AuthContext';
 import { BorderedSection } from '@/components/layout/BorderedSection';
 import { Button } from '@/components/ui/Button';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 import {
   PUBLIC_PROFILE_BIO_ID,
   PUBLIC_PROFILE_SAVE_BUTTON_ID,
@@ -99,9 +98,7 @@ export function EditPublicProfile({
     <BorderedSection title={t('TITLE')}>
       <Typography variant="body1">{t('DESCRIPTION')}</Typography>
       {profile && user && (
-        <a href={`${GRAASP_LIBRARY_HOST}/members/${user.id}`}>
-          {t('CHECK_TEXT')}
-        </a>
+        <a href={`/library/members/${user.id}`}>{t('CHECK_TEXT')}</a>
       )}
 
       <Stack

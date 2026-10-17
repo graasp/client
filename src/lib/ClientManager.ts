@@ -73,15 +73,7 @@ export class ClientManager {
     qs: { [key: string]: string | number | boolean } = {},
   ) {
     // make a copy of the host
-    let host = new URL(this.host.toString());
-    if (context === Context.Library) {
-      const libraryHost = this.clientHosts.get(context);
-      if (libraryHost) {
-        host = libraryHost;
-      } else {
-        throw new Error('Library host used before it was defined.');
-      }
-    }
+    const host = new URL(this.host.toString());
     const prefix = this.getPrefix(context);
     const url =
       context === Context.Player

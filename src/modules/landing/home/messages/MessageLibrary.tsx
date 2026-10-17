@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 
 import {
+  Button,
   Grid,
   Stack,
   Typography,
@@ -8,9 +9,7 @@ import {
   useTheme,
 } from '@mui/material';
 
-import { ButtonLink } from '@/components/ui/ButtonLink';
 import { NS } from '@/config/constants';
-import { GRAASP_LIBRARY_HOST } from '@/config/env';
 
 import { Message } from '../Message';
 import { UserCapsuleExample } from '../UserCapsuleExample';
@@ -41,33 +40,31 @@ function MessageLibrary() {
           />
         </Typography>
         <Stack direction="row" gap={2}>
-          <ButtonLink
-            to={GRAASP_LIBRARY_HOST}
+          <Button
+            href="/library"
             sx={{
               // make button take only needed space
               width: 'fit-content',
             }}
             color="primary"
             variant="contained"
-            dataUmamiEvent="messages-library-button"
+            data-umami-event="messages-library-button"
           >
             {t('LIBRARY_BUTTON_TEXT')}
-          </ButtonLink>
+          </Button>
           {isSmUp && (
-            <ButtonLink
-              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-              // @ts-expect-error
-              to={`${GRAASP_LIBRARY_HOST}/oer`}
+            <Button
+              href="/library/oer"
               sx={{
                 // make button take only needed space
                 width: 'fit-content',
               }}
               color="secondary"
               variant="contained"
-              dataUmamiEvent="messages-library-oer-button"
+              data-umami-event="messages-library-oer-button"
             >
               {t('OER_BUTTON_TEXT')}
-            </ButtonLink>
+            </Button>
           )}
         </Stack>
       </Message>
