@@ -604,8 +604,11 @@ export const SORTING_SELECT_SELECTOR_TEST_ID = 'sortingSelect';
 export const SORTING_SELECT_SELECTOR = `[data-testid="${SORTING_SELECT_SELECTOR_TEST_ID}"]`;
 export const SORTING_ORDERING_SELECTOR_DESC = '.lucide-arrow-up-wide-narrow';
 export const SORTING_ORDERING_SELECTOR_ASC = '.lucide-arrow-down-narrow-wide';
-export const UNBOOKMARK_ICON_SELECTOR = '.lucide-bookmark';
-export const BOOKMARK_ICON_SELECTOR = '.lucide-bookmark';
+// the icon reflects the bookmark state, so these only match once bookmarks are loaded
+export const UNBOOKMARK_ICON_SELECTOR =
+  '.lucide-bookmark[data-bookmarked="true"]';
+export const BOOKMARK_ICON_SELECTOR =
+  '.lucide-bookmark[data-bookmarked="false"]';
 
 export const MEMBER_VALIDATION_BANNER_ID = 'memberValidationBanner';
 export const MEMBER_VALIDATION_BANNER_CLOSE_BUTTON_ID =

@@ -50,7 +50,11 @@ const BookmarkButton = ({
 }: BookmarkButtonProps): JSX.Element => {
   const { color: buttonColor } = useButtonColor(color);
   const icon = (
-    <BookmarkIcon fill={isFavorite ? BOOKMARK_COLOR : 'none'} fontSize={size} />
+    <BookmarkIcon
+      fill={isFavorite ? BOOKMARK_COLOR : 'none'}
+      fontSize={size}
+      data-bookmarked={isFavorite}
+    />
   );
 
   const tooltipText =
