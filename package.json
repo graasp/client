@@ -45,7 +45,7 @@
     "i18next-fetch-backend": "6.0.0",
     "interweave": "13.1.1",
     "jwt-decode": "4.0.0",
-    "katex": "0.16.22",
+    "katex": "0.18.2",
     "leaflet": "1.9.4",
     "lexical": "0.33.1",
     "lodash.countby": "4.6.0",
